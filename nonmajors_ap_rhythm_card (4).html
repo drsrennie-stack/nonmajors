@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rhythm Card · BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F2E8D5;
+    --sand-cream: #FEF9EC;
+    --ocean-deep: #1E3D4C;
+    --ocean-mid: #335E6E;
+    --sea-glass: #8FB8BF;
+    --sea-glass-mist: #DCE8EB;
+    --terra: #A0402A;
+    --ink: #15262F;
+
+    --border: 1px solid var(--sea-glass);
+    --border-strong: 1.5px solid var(--ocean-mid);
+    --border-ink: 1px solid var(--ocean-deep);
+
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --serif: 'Lora', Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 40px 36px 56px;
+  }
+
+  /* === Masthead === */
+  .masthead {
+    border-bottom: var(--border-strong);
+    padding-bottom: 24px;
+    margin-bottom: 36px;
+  }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 10px;
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(28px, 4vw, 38px);
+    line-height: 1.15;
+    color: var(--ocean-deep);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .masthead .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ocean-mid);
+    margin: 0 0 18px;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 24px;
+    font-size: 13px;
+    color: var(--ocean-mid);
+  }
+  .meta-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .meta-row strong { color: var(--ocean-deep); font-weight: 600; }
+  .dot {
+    display: inline-block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--terra);
+  }
+  .byline {
+    margin-top: 14px;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ocean-mid);
+    font-size: 15px;
+  }
+
+  /* === Section shell === */
+  .section { margin-top: 48px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .section-num {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--terra);
+    font-weight: 500;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 26px;
+    color: var(--ocean-deep);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .section-lede {
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--ocean-mid);
+    max-width: 62ch;
+    margin: 0 0 6px;
+  }
+
+  /* === The Term: 8-week grid === */
+  .term-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border: var(--border);
+    background: #FFFFFF;
+  }
+  .week-card {
+    padding: 18px 20px;
+    border-right: var(--border);
+    border-bottom: var(--border);
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+  .week-card:nth-child(2n) { border-right: none; }
+  .week-card:nth-last-child(-n+2) { border-bottom: none; }
+
+  .week-number {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--ocean-deep);
+    line-height: 1;
+    padding-top: 2px;
+    border-right: var(--border);
+    padding-right: 14px;
+    text-align: right;
+  }
+  .week-number .lbl {
+    display: block;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sea-glass);
+    margin-top: 4px;
+  }
+  .week-body .unit {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ocean-deep);
+    margin: 0 0 4px;
+  }
+  .week-body .systems {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ocean-mid);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* === The Week: rhythm table === */
+  .rhythm-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: var(--border);
+    background: #FFFFFF;
+    font-size: 14px;
+  }
+  .rhythm-table thead th {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ocean-deep);
+    background: var(--sea-glass-mist);
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: var(--border-strong);
+  }
+  .rhythm-table tbody td {
+    padding: 14px;
+    border-bottom: var(--border);
+    vertical-align: top;
+  }
+  .rhythm-table tbody tr:last-child td { border-bottom: none; }
+
+  .day-cell {
+    width: 150px;
+    font-family: var(--sans);
+  }
+  .day-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--ocean-deep);
+    margin: 0 0 2px;
+  }
+  .day-tag {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 12px;
+    color: var(--ocean-mid);
+  }
+
+  .student-cell { width: 42%; }
+  .instructor-cell { color: var(--ocean-mid); }
+  .instructor-cell em {
+    font-family: var(--serif);
+    color: var(--sea-glass);
+    font-style: normal;
+  }
+
+  /* Deadline emphasis */
+  tr.deadline td.day-cell {
+    background: #FAF4E6;
+    border-left: 3px solid var(--terra);
+  }
+  tr.deadline .day-name { color: var(--terra); }
+  .pill {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--terra);
+    background: #FAF4E6;
+    border: 1px solid var(--terra);
+    border-radius: 2px;
+    padding: 2px 8px;
+    margin-bottom: 6px;
+  }
+
+  /* === Orientation note === */
+  .note {
+    margin-top: 48px;
+    background: var(--sand-cream);
+    border: var(--border);
+    border-left: 3px solid var(--ocean-mid);
+    padding: 22px 26px;
+  }
+  .note h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--ocean-deep);
+    margin: 0 0 8px;
+  }
+  .note p {
+    font-size: 15px;
+    color: var(--ink);
+    margin: 0 0 10px;
+    max-width: 72ch;
+  }
+  .note p:last-child { margin-bottom: 0; }
+
+  .note.policy {
+    margin-top: 24px;
+    border-left-color: var(--terra);
+  }
+  .note.policy h3 { color: var(--terra); }
+
+  /* === Track legend === */
+  .tracks {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border: var(--border);
+  }
+  .track {
+    padding: 18px 20px;
+    border-right: var(--border);
+    border-bottom: var(--border);
+  }
+  .track:nth-child(2n) { border-right: none; }
+  .track:nth-last-child(-n+2) { border-bottom: none; }
+  .track-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 6px;
+  }
+  .track-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ocean-deep);
+    margin: 0 0 6px;
+  }
+  .track-desc {
+    font-size: 13px;
+    color: var(--ocean-mid);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* === Footer === */
+  .footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--ocean-mid);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer .version {
+    font-family: var(--sans);
+    letter-spacing: 0.06em;
+  }
+
+  /* === Responsive === */
+  @media (max-width: 720px) {
+    .page { padding: 28px 18px 40px; }
+    .term-grid { grid-template-columns: 1fr; }
+    .week-card { border-right: none; }
+    .week-card:nth-last-child(-n+2) { border-bottom: var(--border); }
+    .week-card:last-child { border-bottom: none; }
+    .tracks { grid-template-columns: 1fr; }
+    .track { border-right: none; }
+    .track:nth-last-child(-n+2) { border-bottom: var(--border); }
+    .track:last-child { border-bottom: none; }
+    .rhythm-table { font-size: 13px; }
+    .rhythm-table tbody td { padding: 12px 10px; }
+    .day-cell { width: 110px; }
+    .student-cell { width: auto; }
+  }
+
+  /* === Print === */
+  @media print {
+    html, body {
+      background: #FFFFFF;
+      color: #000000;
+      font-size: 11pt;
+    }
+    .page { max-width: none; padding: 0.5in; }
+    .masthead, .section, .note, .tracks, .footer { page-break-inside: avoid; }
+    .term-grid, .rhythm-table, .tracks, .note {
+      border-color: #000000 !important;
+    }
+    .week-card, .rhythm-table td, .rhythm-table th, .track {
+      border-color: #000000 !important;
+    }
+    .rhythm-table thead th { background: #FFFFFF !important; color: #000000 !important; }
+    tr.deadline td.day-cell, .note { background: #FFFFFF !important; }
+    .pill { border-color: #000000 !important; color: #000000 !important; background: #FFFFFF !important; }
+    .section-num, .eyebrow, .track-label, tr.deadline .day-name { color: #000000 !important; }
+    .masthead h1, .section-title, .week-number, .week-body .unit,
+    .day-name, .note h3, .track-name { color: #000000 !important; }
+    .subtitle, .systems, .section-lede, .meta-row, .instructor-cell,
+    .track-desc, .footer, .day-tag, .byline { color: #333333 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <p class="eyebrow">Rhythm Card · Summer 2026</p>
+    <h1>Essentials of Anatomy &amp; Physiology · BIO 304</h1>
+    <p class="subtitle">Your weekly map. What to do each day, what&rsquo;s due when, and how the weekend stays yours.</p>
+    <div class="meta-row">
+      <span><strong>Built for</strong> EMT, funeral sciences, allied health</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span><strong>Format</strong> Fully online, asynchronous</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span><strong>Length</strong> 8 weeks</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span><strong>Pace</strong> Front-loaded Mon to Fri</span>
+    </div>
+    <p class="byline">with Dr. Sharilyn Rennie</p>
+  </header>
+
+  <!-- SECTION 1: THE TERM -->
+  <section class="section" aria-labelledby="term-head">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title" id="term-head">The Term</h2>
+    </div>
+    <p class="section-lede">Eight weeks. One body system per week. Each one pairs anatomy and physiology with a clinical tool you&rsquo;ll use in your future program.</p>
+
+    <div class="term-grid">
+
+      <div class="week-card">
+        <div class="week-number">1<span class="lbl">Week</span></div>
+        <div class="week-body">
+          <p class="unit">Body Basics · Cells &amp; Tissues</p>
+          <p class="systems">Levels of organization, cell function, the four tissue types, and homeostasis as the rule every system follows.</p>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-number">2<span class="lbl">Week</span></div>
+        <div class="week-body">
+          <p class="unit">Protection &amp; Support</p>
+          <p class="systems">Skin as first barrier, bone and joints, and skeletal muscle. The structures that protect, support, and move the body.</p>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-number">3<span class="lbl">Week</span></div>
+        <div class="week-body">
+          <p class="unit">Control Systems</p>
+          <p class="systems">Nervous and endocrine basics. Fast electrical signaling, slower chemical signaling, and how the two coordinate.</p>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-number">4<span class="lbl">Week</span></div>
+        <div class="week-body">
+          <p class="unit">Senses &amp; Integration</p>
+          <p class="systems">The five senses, major brain regions, reflex arcs, and how the brain turns signals into perception and action.</p>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-number">5<span class="lbl">Week</span></div>
+        <div class="week-body">
+          <p class="unit">Transport</p>
+          <p class="systems">Heart and vessels, blood composition, circulation, and the immune basics that keep the system intact.</p>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-number">6<span class="lbl">Week</span></div>
+        <div class="week-body">
+          <p class="unit">Gas Exchange &amp; Waste</p>
+          <p class="systems">Breathing mechanics, gas exchange at the alveolus, kidney filtration, and how the body balances water and waste.</p>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-number">7<span class="lbl">Week</span></div>
+        <div class="week-body">
+          <p class="unit">Nutrition</p>
+          <p class="systems">Digestive anatomy, mechanical and chemical breakdown, absorption, basic metabolism, and the liver as metabolic hub.</p>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-number">8<span class="lbl">Week</span></div>
+        <div class="week-body">
+          <p class="unit">Life Stages · Final Synthesis</p>
+          <p class="systems">Reproductive basics, pregnancy and development, aging physiology, and how the systems work together across a life.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 2: THE WEEK -->
+  <section class="section" aria-labelledby="week-head">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title" id="week-head">The Week</h2>
+    </div>
+    <p class="section-lede">Here&rsquo;s what each day of your week looks like. Two firm deadlines: Friday for your first discussion post, Sunday for everything else.</p>
+
+    <table class="rhythm-table">
+      <thead>
+        <tr>
+          <th scope="col">Day</th>
+          <th scope="col">What you do</th>
+          <th scope="col">What I do</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="day-cell">
+            <p class="day-name">Monday</p>
+            <p class="day-tag">Week opens</p>
+          </td>
+          <td class="student-cell">New concept videos and readings go live. Print the trainer. Start watching when you&rsquo;re ready.</td>
+          <td class="instructor-cell">Concept launch video posted.</td>
+        </tr>
+        <tr>
+          <td class="day-cell">
+            <p class="day-name">Tuesday</p>
+            <p class="day-tag">Warm-up</p>
+          </td>
+          <td class="student-cell">Keep working through the concept videos. Fill in your trainer as you go.</td>
+          <td class="instructor-cell"><em>·</em></td>
+        </tr>
+        <tr>
+          <td class="day-cell">
+            <p class="day-name">Wednesday</p>
+            <p class="day-tag">Prompt opens</p>
+          </td>
+          <td class="student-cell">Discussion prompt opens. Keep working through concept videos and your trainer.</td>
+          <td class="instructor-cell">Discussion prompt posted.</td>
+        </tr>
+        <tr>
+          <td class="day-cell">
+            <p class="day-name">Thursday</p>
+            <p class="day-tag">Apply</p>
+          </td>
+          <td class="student-cell">Weekly lab opens. Keep working the trainer and start on the lab when you&rsquo;re ready.</td>
+          <td class="instructor-cell"><em>·</em></td>
+        </tr>
+        <tr class="deadline">
+          <td class="day-cell">
+            <span class="pill">Post due</span>
+            <p class="day-name">Friday</p>
+            <p class="day-tag">First post deadline</p>
+          </td>
+          <td class="student-cell">Your first discussion post is due today so classmates have time to read and reply. Watch the Friday synthesis Loom. Everything else can land here too if you want a free weekend.</td>
+          <td class="instructor-cell">Friday synthesis Loom posted.</td>
+        </tr>
+        <tr>
+          <td class="day-cell">
+            <p class="day-name">Saturday</p>
+            <p class="day-tag">Open window</p>
+          </td>
+          <td class="student-cell">If your life needs weekend hours to study, use them. No penalty.</td>
+          <td class="instructor-cell"><em>·</em></td>
+        </tr>
+        <tr class="deadline">
+          <td class="day-cell">
+            <span class="pill">Hard cut</span>
+            <p class="day-name">Sunday</p>
+            <p class="day-tag">Final deadline</p>
+          </td>
+          <td class="student-cell">Everything else due by end of day: trainer, quiz, weekly lab, and discussion replies. Next week opens Monday.</td>
+          <td class="instructor-cell"><em>·</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SECTION 3: THE FOUR TRACKS -->
+  <section class="section" aria-labelledby="tracks-head">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title" id="tracks-head">Four Tracks, One Week</h2>
+    </div>
+    <p class="section-lede">Every week pulls from the same four tracks. You&rsquo;ll know the rhythm by Week 2.</p>
+
+    <div class="tracks">
+      <div class="track">
+        <p class="track-label">Track 01</p>
+        <p class="track-name">Lecture</p>
+        <p class="track-desc">About 90 minutes of concept videos per week, broken into 4 to 6 chunks of 15 to 20 minutes. Watch at your own pace. A short weekly quiz checks the concepts (two attempts, best score kept, due Sunday). Friday closes with a shorter synthesis Loom.</p>
+      </div>
+      <div class="track">
+        <p class="track-label">Track 02</p>
+        <p class="track-name">Discussion</p>
+        <p class="track-desc">Weekly async forum. The prompt opens Wednesday, after you&rsquo;ve worked through most of the concept videos. Your first post is due Friday so classmates have the weekend to read and reply. Replies to classmates are due Sunday.</p>
+      </div>
+      <div class="track">
+        <p class="track-label">Track 03</p>
+        <p class="track-name">Trainer</p>
+        <p class="track-desc">One trainer per week, built around the 4 to 6 concept videos. Print it at the start of the week. Fill in each section as you watch the matching video. Photograph and upload by Sunday.</p>
+      </div>
+      <div class="track">
+        <p class="track-label">Track 04</p>
+        <p class="track-name">Lab</p>
+        <p class="track-desc">Two parts, one submission each week, due Sunday. In the anatomy half you label structures on OpenStax figures. In the physiology half you use a clinical risk calculator and interpret what the numbers mean.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORIENTATION NOTE -->
+  <aside class="note" aria-label="Why the week is built this way">
+    <h3>Why the week is built this way</h3>
+    <p>Summer online courses tend to burn people out. This one is shaped against that. Most of your work lands Sunday end of day. You can aim to finish by Friday if you want your weekend free, or use the weekend if you need to. Same credit either way, same grade ceiling.</p>
+    <p>There is one earlier deadline: your first discussion post is due Friday so classmates have the weekend to read it and reply. Replies themselves are due Sunday with everything else. No penalty for finishing early.</p>
+  </aside>
+
+  <!-- LATE POLICY -->
+  <aside class="note policy" aria-label="Late work policy">
+    <h3>Late policy</h3>
+    <p>Everything is due Sunday end of day, with one exception: your first discussion post is due Friday so classmates have time to reply. Submissions <strong>within 24 hours of either deadline earn 50%</strong> of the points they would have earned on time. <strong>After 24 hours, the grade is zero. No exceptions.</strong></p>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>BIO 304 · American River College · Summer 2026</span>
+    <span class="version">Rhythm Card v1</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var FRAME_ID = 'nonmajors_ap_rhythm_card_v1';
+  function sendHeight() {
+    var h = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(sendHeight);
+  }
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(sendHeight).observe(document.body);
+  }
+  setTimeout(sendHeight, 100);
+  setTimeout(sendHeight, 500);
+  setTimeout(sendHeight, 1500);
+})();
+</script>
+</body>
+</html>
