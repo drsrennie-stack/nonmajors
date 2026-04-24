@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Course Home · BIO 304</title>
+<title>Course Home · BIOL 304</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
@@ -152,7 +152,7 @@
   /* === Tool cards === */
   .tool-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin-top: 16px;
   }
@@ -166,6 +166,7 @@
   }
   .tool-card.rhythm { border-left: 3px solid var(--terra); }
   .tool-card.reading { border-left: 3px solid var(--ocean-mid); }
+  .tool-card.syllabus { border-left: 3px solid var(--ocean-deep); }
   .tool-card .tool-label {
     font-family: var(--sans);
     font-size: 11px;
@@ -176,6 +177,7 @@
     margin: 0;
   }
   .tool-card.reading .tool-label { color: var(--ocean-mid); }
+  .tool-card.syllabus .tool-label { color: var(--ocean-deep); }
   .tool-card h3 {
     font-family: var(--serif);
     font-weight: 500;
@@ -454,7 +456,7 @@
   <!-- MASTHEAD -->
   <header class="masthead">
     <p class="eyebrow">Course Home · Summer 2026</p>
-    <h1>Essentials of Anatomy &amp; Physiology · BIO 304</h1>
+    <h1>Essentials of Anatomy &amp; Physiology · BIOL 304</h1>
     <p class="subtitle">Welcome. Here&rsquo;s how this class works, what you&rsquo;ll do each week, and how to reach me.</p>
     <div class="meta-row">
       <span><strong>Built for</strong> EMT, funeral sciences, allied health</span>
@@ -478,7 +480,7 @@
       <span class="section-num">01</span>
       <h2 class="section-title" id="tools-head">Your Planning Tools</h2>
     </div>
-    <p class="section-lede">Open these in a tab you keep. The Rhythm Card is your week-by-week schedule. The Reading Map is your textbook-to-week crosswalk.</p>
+    <p class="section-lede">Three documents run this course. Open them in tabs you keep: the Rhythm Card for weekly timing, the Reading Map for textbook pacing, and the Syllabus for official policies.</p>
 
     <div class="tool-grid">
       <article class="tool-card rhythm">
@@ -492,6 +494,12 @@
         <h3>Reading Map</h3>
         <p>Which OpenStax chapters to read each week, and whether to read them in depth, focus on named sections, or use as a reference only.</p>
         <p class="open-link"><a href="https://drsrennie-stack.github.io/nonmajors/biol304_reading_map.html" target="_blank" rel="noopener">Open the Reading Map &rarr;</a></p>
+      </article>
+      <article class="tool-card syllabus">
+        <p class="tool-label">Tool 03</p>
+        <h3>Syllabus</h3>
+        <p>Policies, grade breakdown, academic calendar, and required ARC information. Read once at the start, refer back whenever you need to.</p>
+        <p class="open-link"><a href="https://drsrennie-stack.github.io/nonmajors/biol304_syllabus.html" target="_blank" rel="noopener">Open the Syllabus &rarr;</a></p>
       </article>
     </div>
   </section>
@@ -657,7 +665,7 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <span>BIO 304 · American River College · Summer 2026</span>
+    <span>BIOL 304 · American River College · Summer 2026</span>
     <span class="version">Course Home v1</span>
   </footer>
 
