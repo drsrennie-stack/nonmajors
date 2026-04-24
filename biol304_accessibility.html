@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accessibility · BIOL 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F2E8D5;
+    --sand-cream: #FEF9EC;
+    --ocean-deep: #1E3D4C;
+    --ocean-mid: #335E6E;
+    --sea-glass: #8FB8BF;
+    --sea-glass-mist: #DCE8EB;
+    --terra: #A0402A;
+    --ink: #15262F;
+
+    --border: 1px solid var(--sea-glass);
+    --border-strong: 1.5px solid var(--ocean-mid);
+
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --serif: 'Lora', Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 40px 36px 56px;
+  }
+
+  a { color: var(--terra); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover { color: var(--ocean-deep); }
+
+  /* === Masthead === */
+  .masthead {
+    border-bottom: var(--border-strong);
+    padding-bottom: 24px;
+    margin-bottom: 36px;
+  }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 10px;
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(28px, 4vw, 38px);
+    line-height: 1.15;
+    color: var(--ocean-deep);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .masthead .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ocean-mid);
+    margin: 0 0 18px;
+    max-width: 62ch;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 24px;
+    font-size: 13px;
+    color: var(--ocean-mid);
+  }
+  .meta-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .meta-row strong { color: var(--ocean-deep); font-weight: 600; }
+  .dot {
+    display: inline-block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--terra);
+  }
+  .byline {
+    margin-top: 14px;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ocean-mid);
+    font-size: 15px;
+  }
+
+  /* === Commitment note === */
+  .commitment {
+    margin-top: 28px;
+    background: var(--sand-cream);
+    border: var(--border);
+    border-left: 3px solid var(--ocean-deep);
+    padding: 22px 26px;
+  }
+  .commitment p {
+    font-size: 15px;
+    margin: 0 0 10px;
+    max-width: 72ch;
+  }
+  .commitment p:last-child { margin-bottom: 0; }
+
+  /* === Section shell === */
+  .section { margin-top: 52px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .section-num {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--terra);
+    font-weight: 500;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 26px;
+    color: var(--ocean-deep);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .section-lede {
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--ocean-mid);
+    max-width: 64ch;
+    margin: 0 0 16px;
+  }
+  .section p {
+    margin: 0 0 12px;
+    max-width: 72ch;
+  }
+  .section p:last-child { margin-bottom: 0; }
+
+  /* === Feature grid === */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border: var(--border);
+    margin-top: 14px;
+  }
+  .feature-item {
+    padding: 18px 22px;
+    border-right: var(--border);
+    border-bottom: var(--border);
+  }
+  .feature-item:nth-child(2n) { border-right: none; }
+  .feature-item:nth-last-child(-n+2) { border-bottom: none; }
+  .feature-item .label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 6px;
+  }
+  .feature-item h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--ocean-deep);
+    margin: 0 0 6px;
+  }
+  .feature-item p {
+    font-size: 13px;
+    color: var(--ocean-mid);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* === Contact callout === */
+  .contact-callout {
+    margin: 16px 0;
+    background: var(--sand-cream);
+    border: var(--border);
+    border-left: 3px solid var(--terra);
+    padding: 22px 26px;
+  }
+  .contact-callout h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--terra);
+    margin: 0 0 10px;
+  }
+  .contact-callout p {
+    font-size: 15px;
+    margin: 0 0 10px;
+    max-width: 72ch;
+  }
+  .contact-callout p:last-child { margin-bottom: 0; }
+  .contact-callout .field {
+    display: block;
+    margin: 6px 0;
+    font-size: 14px;
+  }
+  .contact-callout .field strong {
+    color: var(--ocean-deep);
+    font-weight: 600;
+    display: inline-block;
+    min-width: 110px;
+  }
+
+  /* === Pathway steps === */
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0;
+    counter-reset: step;
+    border: var(--border);
+  }
+  .steps li {
+    counter-increment: step;
+    padding: 16px 20px 16px 62px;
+    border-bottom: var(--border);
+    position: relative;
+    font-size: 14.5px;
+  }
+  .steps li:last-child { border-bottom: none; }
+  .steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 20px;
+    top: 16px;
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--terra);
+  }
+  .steps li strong {
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--ocean-deep);
+  }
+
+  /* === Known-issue block === */
+  .known-issues {
+    margin: 14px 0;
+    background: var(--sea-glass-mist);
+    border: var(--border);
+    border-left: 3px solid var(--ocean-mid);
+    padding: 20px 24px;
+  }
+  .known-issues h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--ocean-deep);
+    margin: 0 0 8px;
+  }
+  .known-issues ul {
+    margin: 8px 0 0;
+    padding: 0 0 0 18px;
+  }
+  .known-issues li {
+    font-size: 14px;
+    margin: 6px 0;
+    line-height: 1.55;
+  }
+  .known-issues p {
+    font-size: 14px;
+    margin: 0 0 8px;
+    max-width: 72ch;
+  }
+
+  /* === Footer === */
+  .footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--ocean-mid);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer .version {
+    font-family: var(--sans);
+    letter-spacing: 0.06em;
+  }
+
+  /* === Responsive === */
+  @media (max-width: 720px) {
+    .page { padding: 28px 18px 40px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .feature-item { border-right: none; }
+    .feature-item:nth-last-child(-n+2) { border-bottom: var(--border); }
+    .feature-item:last-child { border-bottom: none; }
+  }
+
+  /* === Print === */
+  @media print {
+    html, body { background: #FFFFFF; color: #000000; font-size: 10.5pt; }
+    .page { max-width: none; padding: 0.5in; }
+    .masthead, .section, .commitment, .feature-grid, .contact-callout,
+    .steps, .known-issues, .footer { page-break-inside: avoid; }
+    .commitment, .feature-grid, .feature-item, .contact-callout,
+    .steps, .steps li, .known-issues, .footer {
+      border-color: #000000 !important;
+    }
+    .commitment, .contact-callout, .known-issues { background: #FFFFFF !important; }
+    a { color: #000000 !important; }
+    .section-num, .eyebrow, .feature-item .label, .contact-callout h3,
+    .steps li::before { color: #000000 !important; }
+    .masthead h1, .section-title, .feature-item h3, .known-issues h3,
+    .steps li strong { color: #000000 !important; }
+    .subtitle, .section-lede, .meta-row, .byline, .feature-item p,
+    .footer { color: #333333 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <p class="eyebrow">Accessibility &middot; Summer 2026</p>
+    <h1>Accessibility in BIOL 304</h1>
+    <p class="subtitle">How this course works with the body you have, and how to get help if it doesn&rsquo;t.</p>
+    <div class="meta-row">
+      <span><strong>Course</strong> BIOL 304</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span><strong>Institution</strong> American River College</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span><strong>Term</strong> Summer 2026</span>
+    </div>
+    <p class="byline">with Dr. Sharilyn Rennie</p>
+  </header>
+
+  <!-- COMMITMENT -->
+  <aside class="commitment" aria-label="Accessibility commitment">
+    <p>Accessibility is not a favor. It is how this class is supposed to work for every student in it. If something about this course is getting in the way of your learning, I want to know so we can fix it together.</p>
+    <p>This page tells you what we have already built in for accessibility, how to set up formal accommodations through DSPS, and how to reach me directly if something is not working for you.</p>
+  </aside>
+
+  <!-- SECTION 01 -->
+  <section class="section" aria-labelledby="s01-head">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title" id="s01-head">What&rsquo;s Built In</h2>
+    </div>
+    <p class="section-lede">These accessibility features are part of how this course is designed, not add-ons. Every student benefits from them whether they request accommodations or not.</p>
+
+    <div class="feature-grid">
+      <div class="feature-item">
+        <p class="label">Textbook</p>
+        <h3>OpenStax A&amp;P 2e</h3>
+        <p>OpenStax textbooks are designed to meet WCAG 2.0 AA and are screen-reader compatible. Available in multiple formats: HTML, PDF, EPUB, and print.</p>
+      </div>
+      <div class="feature-item">
+        <p class="label">Platform</p>
+        <h3>Canvas LMS</h3>
+        <p>Canvas is independently audited for accessibility and supports screen readers, keyboard navigation, and browser zoom. Captions are available on video content.</p>
+      </div>
+      <div class="feature-item">
+        <p class="label">Videos</p>
+        <h3>Captions on every video</h3>
+        <p>All concept videos and Friday synthesis Looms include captions. Transcripts are available on request.</p>
+      </div>
+      <div class="feature-item">
+        <p class="label">Time</p>
+        <h3>Flexible weekly rhythm</h3>
+        <p>Sunday end-of-day deadlines (with a Friday anchor for first discussion posts) let you structure the week around your life, energy, and access needs.</p>
+      </div>
+      <div class="feature-item">
+        <p class="label">Documents</p>
+        <h3>Readable by design</h3>
+        <p>Course documents use high-contrast text, clear headings, sans-serif body type, and responsive layouts. Each document includes a print-friendly stylesheet.</p>
+      </div>
+      <div class="feature-item">
+        <p class="label">Labs</p>
+        <h3>Descriptive alt-text on figures</h3>
+        <p>Anatomy labeling activities use OpenStax figures, which include descriptive alt-text. If you need an alternative format for a specific figure, contact me early in the week.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 -->
+  <section class="section" aria-labelledby="s02-head">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title" id="s02-head">If You Need Formal Accommodations</h2>
+    </div>
+    <p class="section-lede">DSPS (Disability Services and Programs for Students) is the office that approves accommodations. I follow what DSPS approves.</p>
+
+    <ol class="steps">
+      <li><strong>Contact ARC DSPS</strong> as early in the term as possible. Email <a href="mailto:dsps@arc.losrios.edu">dsps@arc.losrios.edu</a> or call (916) 484-8382. If you are already registered with DSPS, request accommodations for this course through their normal process.</li>
+      <li><strong>Share the documentation with me.</strong> Once DSPS approves your accommodations, send me the letter (email is easiest). You do not need to explain the underlying condition. Only the approved accommodations.</li>
+      <li><strong>We make a plan.</strong> For most accommodations (extended time on quizzes, alternative formats, flexible pacing), the path forward is straightforward. For anything that needs adjustment to how the course runs, we talk it through and I make the changes.</li>
+    </ol>
+
+    <p>The earlier in the term you do this, the smoother it is. Accommodations can be added mid-term, but retroactive adjustments to past assignments generally cannot.</p>
+  </section>
+
+  <!-- SECTION 03 -->
+  <section class="section" aria-labelledby="s03-head">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title" id="s03-head">If You Hit an Accessibility Barrier</h2>
+    </div>
+    <p class="section-lede">Sometimes the course has a barrier we did not see coming. Tell me so I can fix it.</p>
+
+    <p>Examples of the kind of thing I want to hear about: a video without captions, a document that will not work with your screen reader, a link that breaks, a figure that is missing alt-text, a deadline that conflicts with a medical appointment, a technical tool that is not working with your assistive technology, anything.</p>
+
+    <aside class="contact-callout" aria-label="How to report a barrier">
+      <h3>How to report a barrier</h3>
+      <p>Send me an email describing what happened, where in the course it happened, and what you were trying to do. I will respond within 48 hours of the next business day.</p>
+      <p class="field"><strong>Email</strong> <a href="mailto:rennies@arc.losrios.edu">rennies@arc.losrios.edu</a></p>
+      <p>You do not need to have DSPS accommodations to report a barrier. Accessibility helps everyone.</p>
+    </aside>
+  </section>
+
+  <!-- SECTION 04 -->
+  <section class="section" aria-labelledby="s04-head">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title" id="s04-head">Known Limits</h2>
+    </div>
+    <p class="section-lede">Honesty about what this course has not been able to guarantee yet.</p>
+
+    <aside class="known-issues" aria-label="Known accessibility limits">
+      <h3>What I can and cannot claim</h3>
+      <p>This course has been designed with accessibility principles in mind. It has not been independently audited for full WCAG 2.2 AA conformance. Most of the course materials are built on platforms (OpenStax, Canvas) that have been audited. The custom HTML documents I have built (the Rhythm Card, Reading Map, Course Home, and Syllabus) follow accessibility best practices for color contrast, heading structure, and keyboard navigation, but have not been formally audited.</p>
+      <p>If you encounter anything that does not work with your assistive technology, that is a real problem and I will treat it as such. See Section 03 above.</p>
+      <ul>
+        <li>Some OpenStax figures have minimal alt-text. If a specific figure is not described well for your needs, tell me and I will provide an extended description.</li>
+        <li>The synthesis Looms recorded fresh each week may have a lag of a few days before auto-captions are reviewed and corrected. Draft captions are available immediately.</li>
+        <li>Third-party risk calculators used in some labs (such as the ASCVD calculator) are external tools. Their accessibility is not under my control. If one does not work for you, contact me and I will provide an alternative.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>BIOL 304 &middot; American River College &middot; Summer 2026</span>
+    <span class="version">Accessibility v1</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var FRAME_ID = 'biol304_accessibility_v1';
+  function sendHeight() {
+    var h = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(sendHeight);
+  }
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(sendHeight).observe(document.body);
+  }
+  setTimeout(sendHeight, 100);
+  setTimeout(sendHeight, 500);
+  setTimeout(sendHeight, 1500);
+})();
+</script>
+</body>
+</html>
