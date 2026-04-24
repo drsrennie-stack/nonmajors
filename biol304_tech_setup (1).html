@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Setup · BIOL 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F2E8D5;
+    --sand-cream: #FEF9EC;
+    --ocean-deep: #1E3D4C;
+    --ocean-mid: #335E6E;
+    --sea-glass: #8FB8BF;
+    --sea-glass-mist: #DCE8EB;
+    --terra: #A0402A;
+    --ink: #15262F;
+
+    --border: 1px solid var(--sea-glass);
+    --border-strong: 1.5px solid var(--ocean-mid);
+
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --serif: 'Lora', Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 40px 36px 56px;
+  }
+
+  a { color: var(--terra); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover { color: var(--ocean-deep); }
+
+  /* === Masthead === */
+  .masthead {
+    border-bottom: var(--border-strong);
+    padding-bottom: 24px;
+    margin-bottom: 36px;
+  }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 10px;
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(28px, 4vw, 38px);
+    line-height: 1.15;
+    color: var(--ocean-deep);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .masthead .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ocean-mid);
+    margin: 0 0 18px;
+    max-width: 64ch;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 24px;
+    font-size: 13px;
+    color: var(--ocean-mid);
+  }
+  .meta-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .meta-row strong { color: var(--ocean-deep); font-weight: 600; }
+  .dot {
+    display: inline-block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--terra);
+  }
+  .byline {
+    margin-top: 14px;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ocean-mid);
+    font-size: 15px;
+  }
+
+  /* === Lead copy === */
+  .lead {
+    margin-top: 24px;
+    max-width: 72ch;
+  }
+  .lead p {
+    font-size: 16px;
+    margin: 0 0 14px;
+  }
+  .lead p:last-child { margin-bottom: 0; }
+
+  /* === Requirement grid === */
+  .req-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border: var(--border);
+    margin: 28px 0 0;
+  }
+  .req-card {
+    padding: 18px 22px;
+    border-right: var(--border);
+    border-bottom: var(--border);
+  }
+  .req-card:nth-child(2n) { border-right: none; }
+  .req-card:nth-last-child(-n+2) { border-bottom: none; }
+  .req-card .level {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 0 6px;
+  }
+  .req-card.required .level { color: var(--terra); }
+  .req-card.recommended .level { color: var(--ocean-mid); }
+  .req-card h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--ocean-deep);
+    margin: 0 0 6px;
+  }
+  .req-card p {
+    font-size: 13.5px;
+    color: var(--ocean-mid);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* === Section heading === */
+  .sub-head {
+    margin: 36px 0 12px;
+  }
+  .sub-head h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--ocean-deep);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .sub-head p {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--ocean-mid);
+    margin: 6px 0 0;
+    max-width: 64ch;
+  }
+
+  /* === Help block === */
+  .help-block {
+    margin: 14px 0;
+    background: var(--sand-cream);
+    border: var(--border);
+    border-left: 3px solid var(--terra);
+    padding: 20px 24px;
+  }
+  .help-block h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--terra);
+    margin: 0 0 8px;
+  }
+  .help-block p {
+    font-size: 14.5px;
+    margin: 0 0 8px;
+    max-width: 72ch;
+  }
+  .help-block p:last-child { margin-bottom: 0; }
+  .help-block .field {
+    display: block;
+    margin: 4px 0;
+    font-size: 14px;
+  }
+  .help-block .field strong {
+    color: var(--ocean-deep);
+    font-weight: 600;
+    display: inline-block;
+    min-width: 120px;
+  }
+
+  /* === Footer === */
+  .footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--ocean-mid);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer .version { font-family: var(--sans); letter-spacing: 0.06em; }
+
+  /* === Responsive === */
+  @media (max-width: 720px) {
+    .page { padding: 28px 18px 40px; }
+    .req-grid { grid-template-columns: 1fr; }
+    .req-card { border-right: none; }
+    .req-card:nth-last-child(-n+2) { border-bottom: var(--border); }
+    .req-card:last-child { border-bottom: none; }
+  }
+
+  /* === Print === */
+  @media print {
+    html, body { background: #FFFFFF; color: #000000; font-size: 10.5pt; }
+    .page { max-width: none; padding: 0.5in; }
+    .masthead, .req-grid, .help-block, .sub-head, .footer { page-break-inside: avoid; }
+    .req-grid, .req-card, .help-block, .footer { border-color: #000000 !important; }
+    .help-block { background: #FFFFFF !important; }
+    a { color: #000000 !important; }
+    .eyebrow, .req-card .level, .help-block h3 { color: #000000 !important; }
+    .masthead h1, .sub-head h2, .req-card h3 { color: #000000 !important; }
+    .subtitle, .meta-row, .byline, .lead p, .req-card p,
+    .sub-head p, .help-block p, .footer { color: #333333 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <p class="eyebrow">Module 0 &middot; Summer 2026</p>
+    <h1>Tech Setup &amp; Requirements</h1>
+    <p class="subtitle">The hardware and software that will keep this course running smoothly for you.</p>
+    <div class="meta-row">
+      <span><strong>Course</strong> BIOL 304</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span><strong>Format</strong> Fully online</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span><strong>Platform</strong> Canvas</span>
+    </div>
+    <p class="byline">with Dr. Sharilyn Rennie</p>
+  </header>
+
+  <!-- LEAD -->
+  <div class="lead">
+    <p>This is a fully online course. Nothing fancy is required. Anything you already use for school will probably work. Here is what you actually need.</p>
+  </div>
+
+  <!-- REQUIREMENTS GRID -->
+  <div class="req-grid">
+    <article class="req-card required">
+      <p class="level">Required</p>
+      <h3>A computer or laptop</h3>
+      <p>Any Mac, Windows, or Chromebook from the last 5 or so years. Phones and tablets work for reading and watching videos but are harder for lab uploads and typing longer discussion posts.</p>
+    </article>
+
+    <article class="req-card required">
+      <p class="level">Required</p>
+      <h3>Reliable internet</h3>
+      <p>Enough to stream video comfortably. If you watch YouTube or Netflix without problems, you are fine for this course.</p>
+    </article>
+
+    <article class="req-card required">
+      <p class="level">Required</p>
+      <h3>A modern browser</h3>
+      <p>Chrome, Firefox, Safari, or Edge in their current versions. Canvas works best in Chrome and Firefox. <strong>Chrome is required for weekly quizzes</strong> (see Honorlock below). Keep your browser up to date for best performance.</p>
+    </article>
+
+    <article class="req-card required">
+      <p class="level">Required</p>
+      <h3>Honorlock (Chrome extension)</h3>
+      <p>A free Chrome extension used only for taking weekly quizzes. At ARC, it is configured in lockdown-only mode: no webcam, no audio, no recording. It just prevents other tabs from being open during a quiz. Installation instructions will be posted in Module 0 before Week 1.</p>
+    </article>
+
+    <article class="req-card required">
+      <p class="level">Required</p>
+      <h3>A printer</h3>
+      <p>You will print one trainer each week and fill it in by hand. Any home printer works. If you do not have one at home, any campus or public library printer will do.</p>
+    </article>
+
+    <article class="req-card required">
+      <p class="level">Required</p>
+      <h3>A camera</h3>
+      <p>Any phone camera is fine. You will photograph your completed trainer and anatomy labels each week and upload them to Canvas.</p>
+    </article>
+
+    <article class="req-card required">
+      <p class="level">Required</p>
+      <h3>Your Los Rios login</h3>
+      <p>You should already have this from registration. Use it to access Canvas at <a href="https://lrccd.instructure.com" target="_blank" rel="noopener">lrccd.instructure.com</a>.</p>
+    </article>
+
+    <article class="req-card recommended">
+      <p class="level">Recommended</p>
+      <h3>The Canvas app</h3>
+      <p>Canvas has free apps for iOS and Android. Useful for reading announcements on the go. Not required, but students who use it rarely miss deadlines.</p>
+    </article>
+
+    <article class="req-card recommended">
+      <p class="level">Recommended</p>
+      <h3>Colored pens or pencils</h3>
+      <p>Three to five colors. Helps a lot with trainers and anatomy labeling. Not required, but makes the work easier and the memorization stickier.</p>
+    </article>
+  </div>
+
+  <!-- NEED HELP -->
+  <div class="sub-head">
+    <h2>If something is not working</h2>
+    <p>Tech issues are real, and they usually are not your fault. Here is where to go.</p>
+  </div>
+
+  <aside class="help-block" aria-label="Where to get tech help">
+    <h3>Canvas support first</h3>
+    <p>For anything Canvas-related (login issues, assignments not loading, videos not playing, submissions failing), <strong>Canvas support is 24/7</strong> and always the fastest fix.</p>
+    <p class="field"><strong>How to reach them</strong> Click the Help icon inside Canvas (question mark on the left sidebar). Options include live chat, phone, and email.</p>
+    <p class="field"><strong>What to include</strong> Your course name (BIOL 304), what you were trying to do, and a screenshot of any error message.</p>
+  </aside>
+
+  <aside class="help-block" aria-label="When to email the instructor">
+    <h3>Email me if the problem is the course, not Canvas</h3>
+    <p>If the course content itself has a problem (a broken link inside a page I built, a video with no audio, a lab that is missing a file), email me. I can fix those.</p>
+    <p class="field"><strong>Email</strong> <a href="mailto:rennies@arc.losrios.edu">rennies@arc.losrios.edu</a></p>
+    <p class="field"><strong>Response time</strong> Within 48 hours of the next business day.</p>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>BIOL 304 &middot; American River College &middot; Summer 2026</span>
+    <span class="version">Tech Setup v1</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var FRAME_ID = 'biol304_tech_setup_v1';
+  function sendHeight() {
+    var h = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(sendHeight);
+  }
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(sendHeight).observe(document.body);
+  }
+  setTimeout(sendHeight, 100);
+  setTimeout(sendHeight, 500);
+  setTimeout(sendHeight, 1500);
+})();
+</script>
+</body>
+</html>
