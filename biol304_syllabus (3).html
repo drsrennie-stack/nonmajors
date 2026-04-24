@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syllabus · BIOL 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F2E8D5;
+    --sand-cream: #FEF9EC;
+    --ocean-deep: #1E3D4C;
+    --ocean-mid: #335E6E;
+    --sea-glass: #8FB8BF;
+    --sea-glass-mist: #DCE8EB;
+    --terra: #A0402A;
+    --ink: #15262F;
+
+    --border: 1px solid var(--sea-glass);
+    --border-strong: 1.5px solid var(--ocean-mid);
+
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --serif: 'Lora', Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 40px 36px 56px;
+  }
+
+  a { color: var(--terra); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover { color: var(--ocean-deep); }
+
+  /* === Masthead === */
+  .masthead {
+    border-bottom: var(--border-strong);
+    padding-bottom: 24px;
+    margin-bottom: 36px;
+  }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 10px;
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(28px, 4vw, 38px);
+    line-height: 1.15;
+    color: var(--ocean-deep);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .masthead .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ocean-mid);
+    margin: 0 0 18px;
+    max-width: 62ch;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 24px;
+    font-size: 13px;
+    color: var(--ocean-mid);
+  }
+  .meta-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .meta-row strong { color: var(--ocean-deep); font-weight: 600; }
+  .dot {
+    display: inline-block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--terra);
+  }
+  .byline {
+    margin-top: 14px;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ocean-mid);
+    font-size: 15px;
+  }
+
+  /* === Welcome note === */
+  .welcome {
+    margin-top: 28px;
+    background: var(--sand-cream);
+    border: var(--border);
+    border-left: 3px solid var(--ocean-deep);
+    padding: 22px 26px;
+  }
+  .welcome p {
+    font-size: 15px;
+    margin: 0 0 10px;
+    max-width: 72ch;
+  }
+  .welcome p:last-child { margin-bottom: 0; }
+
+  /* === TOC === */
+  .toc {
+    margin-top: 36px;
+    border: var(--border);
+    padding: 24px 28px;
+    background: #FFFFFF;
+  }
+  .toc h2 {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 14px;
+  }
+  .toc ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    columns: 2;
+    column-gap: 36px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin: 0 0 8px;
+    break-inside: avoid;
+  }
+  .toc a {
+    color: var(--ocean-deep);
+    text-decoration: none;
+    display: flex;
+    gap: 10px;
+  }
+  .toc a:hover { color: var(--terra); text-decoration: underline; }
+  .toc .num {
+    font-family: var(--serif);
+    color: var(--terra);
+    font-weight: 500;
+    min-width: 24px;
+  }
+
+  /* === Section shell === */
+  .section { margin-top: 56px; scroll-margin-top: 20px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .section-num {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--terra);
+    font-weight: 500;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 26px;
+    color: var(--ocean-deep);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .section-lede {
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--ocean-mid);
+    max-width: 64ch;
+    margin: 0 0 16px;
+  }
+  .section h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--ocean-deep);
+    margin: 24px 0 10px;
+  }
+  .section p {
+    margin: 0 0 12px;
+    max-width: 72ch;
+  }
+  .section p:last-child { margin-bottom: 0; }
+
+  /* === Official callout === */
+  .official {
+    background: var(--sea-glass-mist);
+    border: var(--border);
+    border-left: 3px solid var(--ocean-mid);
+    padding: 18px 22px;
+    margin: 12px 0 18px;
+  }
+  .official .label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ocean-mid);
+    margin: 0 0 8px;
+  }
+  .official p {
+    margin: 0;
+    font-size: 14px;
+    font-family: var(--serif);
+  }
+
+  /* === SLO list === */
+  .slo-list {
+    list-style: none;
+    padding: 0;
+    counter-reset: slo;
+    margin: 14px 0;
+  }
+  .slo-list li {
+    counter-increment: slo;
+    padding: 12px 14px 12px 52px;
+    position: relative;
+    border-bottom: var(--border);
+    font-size: 14.5px;
+  }
+  .slo-list li:first-child { border-top: var(--border); }
+  .slo-list li::before {
+    content: counter(slo, decimal-leading-zero);
+    position: absolute;
+    left: 14px;
+    top: 13px;
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--terra);
+  }
+
+  /* === Inline callout cards === */
+  .callout-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border: var(--border);
+    margin: 12px 0 16px;
+  }
+  .callout-item {
+    padding: 16px 20px;
+    border-right: var(--border);
+    border-bottom: var(--border);
+  }
+  .callout-item:nth-child(2n) { border-right: none; }
+  .callout-item:nth-last-child(-n+2) { border-bottom: none; }
+  .callout-item .label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 4px;
+  }
+  .callout-item h4 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--ocean-deep);
+    margin: 0 0 6px;
+  }
+  .callout-item p {
+    font-size: 13px;
+    color: var(--ocean-mid);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* === Tables === */
+  .syllabus-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: var(--border);
+    background: #FFFFFF;
+    font-size: 14px;
+    margin: 12px 0 18px;
+  }
+  .syllabus-table thead th {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ocean-deep);
+    background: var(--sea-glass-mist);
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: var(--border-strong);
+  }
+  .syllabus-table tbody td {
+    padding: 12px 14px;
+    border-bottom: var(--border);
+    vertical-align: top;
+  }
+  .syllabus-table tbody tr:last-child td { border-bottom: none; }
+  .syllabus-table .num-col {
+    font-family: var(--serif);
+    font-weight: 500;
+    color: var(--ocean-deep);
+    width: 80px;
+  }
+  .syllabus-table .weight-col {
+    font-family: var(--serif);
+    color: var(--terra);
+    font-weight: 500;
+    width: 100px;
+    text-align: right;
+  }
+  .syllabus-table .week-col {
+    font-family: var(--serif);
+    font-weight: 500;
+    color: var(--ocean-deep);
+    width: 60px;
+  }
+
+  /* === Policy note (terra) === */
+  .policy-note {
+    margin: 14px 0 18px;
+    background: var(--sand-cream);
+    border: var(--border);
+    border-left: 3px solid var(--terra);
+    padding: 20px 24px;
+  }
+  .policy-note h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--terra);
+    margin: 0 0 10px;
+  }
+  .policy-note p {
+    font-size: 15px;
+    margin: 0;
+    max-width: 72ch;
+  }
+
+  /* === Do / Don't grid === */
+  .dodont {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border: var(--border);
+    margin: 12px 0 18px;
+  }
+  .dodont-col {
+    padding: 18px 22px;
+    border-right: var(--border);
+  }
+  .dodont-col:last-child { border-right: none; }
+  .dodont-col .header {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+  }
+  .dodont-col.do .header { color: var(--ocean-mid); }
+  .dodont-col.dont .header { color: var(--terra); }
+  .dodont-col ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .dodont-col li {
+    font-size: 14px;
+    padding: 6px 0 6px 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .dodont-col li::before {
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 8px;
+    height: 1px;
+  }
+  .dodont-col.do li::before {
+    content: "";
+    background: var(--ocean-mid);
+  }
+  .dodont-col.dont li::before {
+    content: "";
+    background: var(--terra);
+  }
+
+  /* === Placeholder === */
+  .placeholder {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--terra);
+  }
+
+  /* === Support list === */
+  .support-list {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0;
+    border: var(--border);
+  }
+  .support-list li {
+    padding: 14px 20px;
+    border-bottom: var(--border);
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .support-list li:last-child { border-bottom: none; }
+  .support-list .svc {
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--ocean-deep);
+    font-size: 14px;
+  }
+  .support-list .info {
+    font-size: 14px;
+    color: var(--ocean-mid);
+  }
+
+  /* === Agreement === */
+  .agreement {
+    margin: 16px 0;
+    background: var(--sand-cream);
+    border: var(--border);
+    border-left: 3px solid var(--ocean-deep);
+    padding: 24px 28px;
+  }
+  .agreement h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--ocean-deep);
+    margin: 0 0 10px;
+  }
+  .agreement p { margin: 0 0 12px; max-width: 72ch; font-size: 15px; }
+  .agreement p:last-child { margin-bottom: 0; }
+  .agreement .pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 14px;
+  }
+  .agreement .pair h4 {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 8px;
+  }
+  .agreement .pair ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .agreement .pair li {
+    font-size: 14px;
+    padding: 4px 0 4px 16px;
+    position: relative;
+    line-height: 1.55;
+  }
+  .agreement .pair li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 8px;
+    height: 1px;
+    background: var(--sea-glass);
+  }
+
+  /* === Footer === */
+  .footer {
+    margin-top: 64px;
+    padding-top: 20px;
+    border-top: var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--ocean-mid);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer .version {
+    font-family: var(--sans);
+    letter-spacing: 0.06em;
+  }
+
+  /* === Responsive === */
+  @media (max-width: 720px) {
+    .page { padding: 28px 18px 40px; }
+    .toc ol { columns: 1; }
+    .callout-grid { grid-template-columns: 1fr; }
+    .callout-item { border-right: none; }
+    .callout-item:nth-last-child(-n+2) { border-bottom: var(--border); }
+    .callout-item:last-child { border-bottom: none; }
+    .dodont { grid-template-columns: 1fr; }
+    .dodont-col { border-right: none; border-bottom: var(--border); }
+    .dodont-col:last-child { border-bottom: none; }
+    .agreement .pair { grid-template-columns: 1fr; }
+    .support-list li { grid-template-columns: 1fr; gap: 4px; }
+    .syllabus-table { font-size: 13px; }
+    .syllabus-table tbody td, .syllabus-table thead th { padding: 10px 10px; }
+  }
+
+  /* === Print === */
+  @media print {
+    html, body { background: #FFFFFF; color: #000000; font-size: 10.5pt; }
+    .page { max-width: none; padding: 0.5in; }
+    .masthead, .section, .welcome, .toc, .official, .policy-note,
+    .agreement, .footer, .callout-grid, .dodont, .syllabus-table,
+    .support-list, .slo-list li { page-break-inside: avoid; }
+    .welcome, .toc, .official, .policy-note, .agreement, .callout-grid,
+    .syllabus-table, .support-list, .dodont, .footer {
+      border-color: #000000 !important;
+    }
+    .welcome, .official, .policy-note, .agreement { background: #FFFFFF !important; }
+    .syllabus-table thead th { background: #FFFFFF !important; color: #000000 !important; }
+    a { color: #000000 !important; }
+    .section-num, .eyebrow, .toc .num, .toc h2, .slo-list li::before,
+    .callout-item .label, .official .label, .policy-note h3, .agreement h3,
+    .syllabus-table .weight-col, .dodont-col.dont .header,
+    .agreement .pair h4 { color: #000000 !important; }
+    .masthead h1, .section-title, .section h3, .callout-item h4,
+    .syllabus-table .num-col, .syllabus-table .week-col, .support-list .svc {
+      color: #000000 !important;
+    }
+    .subtitle, .section-lede, .meta-row, .byline, .callout-item p,
+    .official p, .support-list .info, .footer, .dodont-col.do .header {
+      color: #333333 !important;
+    }
+    .placeholder { color: #000000 !important; font-style: italic; }
+    .toc a { color: #000000 !important; text-decoration: none; }
+    .slo-list { border-color: #000000 !important; }
+    .slo-list li { border-color: #000000 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <p class="eyebrow">Syllabus &middot; Summer 2026</p>
+    <h1>Essentials of Anatomy &amp; Physiology &middot; BIOL 304</h1>
+    <p class="subtitle">The canonical course document. How this class runs, what&rsquo;s expected, and where to find help.</p>
+    <div class="meta-row">
+      <span><strong>Units</strong> 4 (3 lecture + 1 lab)</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span><strong>Format</strong> Fully online, asynchronous</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span><strong>Length</strong> 8 weeks</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span><strong>Section</strong> 10058 (LEC) + 10059 (LAB)</span>
+    </div>
+    <p class="byline">with Dr. Sharilyn Rennie</p>
+  </header>
+
+  <!-- WELCOME NOTE -->
+  <aside class="welcome" aria-label="Welcome">
+    <p>This syllabus is the canonical record of how BIOL 304 runs this summer. Everything about grading, pacing, expectations, and support is here. Read it once at the start and keep it open for reference.</p>
+    <p>Two other documents sit alongside it: the <strong>Rhythm Card</strong> for your day-to-day schedule, and the <strong>Reading Map</strong> for what to read in OpenStax each week. Both are linked inside the course.</p>
+  </aside>
+
+  <!-- TABLE OF CONTENTS -->
+  <nav class="toc" aria-label="Table of contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#s01"><span class="num">01</span><span>About This Course</span></a></li>
+      <li><a href="#s02"><span class="num">02</span><span>What You Need</span></a></li>
+      <li><a href="#s03"><span class="num">03</span><span>How This Class Works</span></a></li>
+      <li><a href="#s04"><span class="num">04</span><span>Your Grade</span></a></li>
+      <li><a href="#s05"><span class="num">05</span><span>Late Work</span></a></li>
+      <li><a href="#s06"><span class="num">06</span><span>Week-by-Week Schedule</span></a></li>
+      <li><a href="#s07"><span class="num">07</span><span>Communication</span></a></li>
+      <li><a href="#s08"><span class="num">08</span><span>Regular &amp; Substantive Interaction</span></a></li>
+      <li><a href="#s09"><span class="num">09</span><span>Academic Integrity &amp; AI</span></a></li>
+      <li><a href="#s10"><span class="num">10</span><span>Accessibility</span></a></li>
+      <li><a href="#s11"><span class="num">11</span><span>Student Support</span></a></li>
+      <li><a href="#s12"><span class="num">12</span><span>Important Dates</span></a></li>
+      <li><a href="#s13"><span class="num">13</span><span>Our Agreement</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- SECTION 01 -->
+  <section class="section" id="s01" aria-labelledby="s01-head">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title" id="s01-head">About This Course</h2>
+    </div>
+    <p class="section-lede">A one-semester survey of human anatomy and physiology, built for students heading into allied health programs.</p>
+
+    <h3>Course description</h3>
+    <aside class="official" aria-label="Official course description">
+      <p class="label">From the Course Outline of Record</p>
+      <p>This course examines body systems from an anatomical and physiological point of view. The basic anatomy and physiology of all the body systems are covered with an emphasis on developing vocabulary in each area. BIOL 304 is an introductory course for health career programs, such as Healthcare Interpreting, Gerontology Health Care, and Funeral Service that require one semester of combined anatomy and physiology.</p>
+    </aside>
+    <p>Translated into plain language: we work through the body&rsquo;s eight organ systems, one per week, paired with a clinical tool (a risk score, an assessment, an exam) that you will actually use in your field. The textbook is free. The pace is firm. The rhythm is built so your weekends can be yours.</p>
+
+    <h3>Student Learning Outcomes</h3>
+    <p>By the end of this course, you will be able to:</p>
+    <ol class="slo-list">
+      <li>Identify major organs, cavities, bones and bone markings, muscles, and blood vessels on models or drawings.</li>
+      <li>Explain how different organ systems contribute to the maintenance of the living cells of our bodies.</li>
+      <li>Explain how different organ systems work together to maintain homeostasis.</li>
+      <li>Correlate course knowledge of organ systems to disease, aging, and healing processes.</li>
+      <li>Integrate the body&rsquo;s structural design with its functioning to explain how life is maintained.</li>
+      <li>Differentiate between credible sources of scientific information and anecdotes or stories.</li>
+    </ol>
+
+    <h3>Who this course serves</h3>
+    <p>BIOL 304 meets the science requirement for several ARC programs, including Emergency and Episodic Care, Funeral Service Education, Gerontology: Geriatric Health Care, and Healthcare Interpreting. It is also accepted for Cal-GETC Area 5B (Biological Science) and 5C (Laboratory), and transfers to both CSU and UC systems. Prerequisites: none.</p>
+  </section>
+
+  <!-- SECTION 02 -->
+  <section class="section" id="s02" aria-labelledby="s02-head">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title" id="s02-head">What You Need</h2>
+    </div>
+    <p class="section-lede">Free textbook, basic tech, a printer, and a camera. No access codes, no publisher subscriptions.</p>
+
+    <div class="callout-grid">
+      <div class="callout-item">
+        <p class="label">Required</p>
+        <h4>Textbook</h4>
+        <p>OpenStax <em>Anatomy and Physiology 2e</em> by Betts et al. Free digital copy at openstax.org. Low-cost print copies available through OpenStax and most bookstores.</p>
+      </div>
+      <div class="callout-item">
+        <p class="label">Required</p>
+        <h4>Canvas &amp; internet</h4>
+        <p>Reliable internet access. A laptop or desktop is strongly recommended (tablets and phones work but are harder for lab submissions).</p>
+      </div>
+      <div class="callout-item">
+        <p class="label">Required</p>
+        <h4>Printer &amp; camera</h4>
+        <p>You&rsquo;ll print one trainer each week, fill it in by hand, and photograph it to upload. Any printer and any phone camera will do.</p>
+      </div>
+      <div class="callout-item">
+        <p class="label">Recommended</p>
+        <h4>Colored pens or pencils</h4>
+        <p>The trainers and anatomy labs are easier (and more memorable) with a few colors. Three to five colors is plenty.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 -->
+  <section class="section" id="s03" aria-labelledby="s03-head">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title" id="s03-head">How This Class Works</h2>
+    </div>
+    <p class="section-lede">One body system per week, for eight weeks. Each week pulls from the same four tracks: Lecture, Discussion, Trainer, Lab.</p>
+
+    <h3>The four weekly tracks</h3>
+    <div class="callout-grid">
+      <div class="callout-item">
+        <p class="label">Track 01</p>
+        <h4>Lecture</h4>
+        <p>About 90 minutes of concept videos per week, in 4 to 6 short chunks. A weekly quiz checks the concepts (two attempts, best score kept, due Sunday).</p>
+      </div>
+      <div class="callout-item">
+        <p class="label">Track 02</p>
+        <h4>Discussion</h4>
+        <p>Weekly async forum. Prompt opens Wednesday. First post due Friday so classmates have the weekend to read. Replies due Sunday.</p>
+      </div>
+      <div class="callout-item">
+        <p class="label">Track 03</p>
+        <h4>Trainer</h4>
+        <p>One trainer per week, printed and hand-completed as you watch the concept videos. Photograph and upload by Sunday.</p>
+      </div>
+      <div class="callout-item">
+        <p class="label">Track 04</p>
+        <h4>Lab</h4>
+        <p>Two parts, one submission. Anatomy labeling on OpenStax figures plus a physiology activity using a clinical risk calculator. Due Sunday.</p>
+      </div>
+    </div>
+
+    <p>The full day-by-day rhythm lives in the <strong>Rhythm Card</strong>, linked on the course home page. Your weekly chapter assignments live in the <strong>Reading Map</strong>, also linked there.</p>
+  </section>
+
+  <!-- SECTION 04 -->
+  <section class="section" id="s04" aria-labelledby="s04-head">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title" id="s04-head">Your Grade</h2>
+    </div>
+    <p class="section-lede">Five components, weighted by how much they show your learning over time.</p>
+
+    <h3>Weights</h3>
+    <table class="syllabus-table" aria-label="Grade breakdown">
+      <thead>
+        <tr>
+          <th scope="col">Component</th>
+          <th scope="col">What it is</th>
+          <th scope="col" class="weight-col">Weight</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num-col">Trainer</td>
+          <td>Weekly hand-completed reference pages tied to the concept videos.</td>
+          <td class="weight-col">25%</td>
+        </tr>
+        <tr>
+          <td class="num-col">Lab</td>
+          <td>Weekly two-part lab: anatomy labeling plus physiology calculator work.</td>
+          <td class="weight-col">20%</td>
+        </tr>
+        <tr>
+          <td class="num-col">Quiz</td>
+          <td>Weekly concept quiz. Two attempts, best score kept.</td>
+          <td class="weight-col">20%</td>
+        </tr>
+        <tr>
+          <td class="num-col">Portfolio</td>
+          <td>Clinical reference portfolio, one page per system, built across all eight weeks.</td>
+          <td class="weight-col">20%</td>
+        </tr>
+        <tr>
+          <td class="num-col">Discussion</td>
+          <td>Weekly async forum: a first post by Friday and replies by Sunday.</td>
+          <td class="weight-col">15%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Grading scale</h3>
+    <table class="syllabus-table" aria-label="Letter grade scale">
+      <thead>
+        <tr>
+          <th scope="col">Letter</th>
+          <th scope="col">Percentage</th>
+          <th scope="col">What it means</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num-col">A</td>
+          <td>90 to 100%</td>
+          <td>Strong grasp of all major concepts; consistent, thoughtful engagement.</td>
+        </tr>
+        <tr>
+          <td class="num-col">B</td>
+          <td>80 to 89%</td>
+          <td>Solid grasp of most concepts; steady engagement.</td>
+        </tr>
+        <tr>
+          <td class="num-col">C</td>
+          <td>70 to 79%</td>
+          <td>Basic working knowledge; minimum bar for most allied health programs.</td>
+        </tr>
+        <tr>
+          <td class="num-col">D</td>
+          <td>60 to 69%</td>
+          <td>Significant gaps; credit earned but below most program thresholds.</td>
+        </tr>
+        <tr>
+          <td class="num-col">F</td>
+          <td>Below 60%</td>
+          <td>No credit.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SECTION 05 -->
+  <section class="section" id="s05" aria-labelledby="s05-head">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title" id="s05-head">Late Work</h2>
+    </div>
+    <p class="section-lede">Two firm deadlines each week. One short grace window. No exceptions after that.</p>
+
+    <aside class="policy-note" aria-label="Late work policy">
+      <h3>The policy</h3>
+      <p>Everything is due Sunday end of day, with one exception: your first discussion post is due Friday so classmates have time to reply. Submissions <strong>within 24 hours of either deadline earn 50%</strong> of the points they would have earned on time. <strong>After 24 hours, the grade is zero. No exceptions.</strong></p>
+    </aside>
+
+    <p>The grace window exists because life happens: you get sick, a shift runs long, the internet dies. It exists once per week, and it caps at 50%. After that, the gradebook closes so I can grade on a predictable schedule without the weekly cycle bleeding into the next.</p>
+    <p>If something is genuinely catastrophic (hospitalization, a death in the family, something documented and serious), email me as early as possible so we can figure out next steps together.</p>
+  </section>
+
+  <!-- SECTION 06 -->
+  <section class="section" id="s06" aria-labelledby="s06-head">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2 class="section-title" id="s06-head">Week-by-Week Schedule</h2>
+    </div>
+    <p class="section-lede">Eight weeks, one body system per week, one clinical tool per week. Full reading list is in the Reading Map.</p>
+
+    <table class="syllabus-table" aria-label="Week-by-week schedule">
+      <thead>
+        <tr>
+          <th scope="col" class="week-col">Week</th>
+          <th scope="col">System</th>
+          <th scope="col">Lab tool</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="week-col">1</td>
+          <td>Body Basics, Cells &amp; Tissues</td>
+          <td>BMI + Body Surface Area (Mosteller)</td>
+        </tr>
+        <tr>
+          <td class="week-col">2</td>
+          <td>Protection &amp; Support</td>
+          <td>EWG Skin Deep + ABCDE melanoma self-exam</td>
+        </tr>
+        <tr>
+          <td class="week-col">3</td>
+          <td>Control Systems</td>
+          <td>Glasgow Coma Scale (GCS)</td>
+        </tr>
+        <tr>
+          <td class="week-col">4</td>
+          <td>Senses &amp; Integration</td>
+          <td>Cincinnati Prehospital Stroke Scale (FAST)</td>
+        </tr>
+        <tr>
+          <td class="week-col">5</td>
+          <td>Transport</td>
+          <td>ECG rate and rhythm + ASCVD 10-year risk</td>
+        </tr>
+        <tr>
+          <td class="week-col">6</td>
+          <td>Gas Exchange &amp; Waste</td>
+          <td>Urine dipstick + AirNow AQI</td>
+        </tr>
+        <tr>
+          <td class="week-col">7</td>
+          <td>Nutrition</td>
+          <td>Mifflin-St Jeor TDEE + nutrition label audit</td>
+        </tr>
+        <tr>
+          <td class="week-col">8</td>
+          <td>Life Stages &amp; Synthesis</td>
+          <td>APGAR + Naegele&rsquo;s Rule + USPSTF screening</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The final portfolio is due at the end of Week 8. See section 01 of the course home page for the portfolio structure.</p>
+  </section>
+
+  <!-- SECTION 07 -->
+  <section class="section" id="s07" aria-labelledby="s07-head">
+    <div class="section-head">
+      <span class="section-num">07</span>
+      <h2 class="section-title" id="s07-head">Communication</h2>
+    </div>
+    <p class="section-lede">Most questions are faster through the Virtual Office Hours discussion than through email.</p>
+
+    <div class="callout-grid">
+      <div class="callout-item">
+        <p class="label">Primary</p>
+        <h4>Virtual Office Hours</h4>
+        <p>A Canvas discussion where you post questions and I (and classmates) answer. If you have a question, someone else probably has it too. The link is on the course home.</p>
+      </div>
+      <div class="callout-item">
+        <p class="label">For personal matters</p>
+        <h4>Email</h4>
+        <p><a href="mailto:rennies@arc.losrios.edu">rennies@arc.losrios.edu</a>. Use this for anything private (grades, accommodations, personal emergencies).</p>
+      </div>
+      <div class="callout-item">
+        <p class="label">Response time</p>
+        <h4>Within 48 hours</h4>
+        <p>Within 48 hours of the next business day. I do not grade or answer email over the weekend.</p>
+      </div>
+      <div class="callout-item">
+        <p class="label">Summer note</p>
+        <h4>No live office hours</h4>
+        <p>There are no scheduled live office hours during the summer session. The Virtual Office Hours discussion is the async equivalent.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 08 · RSI -->
+  <section class="section" id="s08" aria-labelledby="s08-head">
+    <div class="section-head">
+      <span class="section-num">08</span>
+      <h2 class="section-title" id="s08-head">Regular &amp; Substantive Interaction</h2>
+    </div>
+    <p class="section-lede">How this asynchronous course stays a real course, with a real instructor, who shows up for your learning every week.</p>
+
+    <p>Online classes are required by federal and California regulation to include regular and substantive interaction (RSI) between the instructor and students, and among students themselves. RSI is what distinguishes a real course from a correspondence packet. Here is how I plan to meet that standard every week in BIOL 304.</p>
+
+    <h3>Instructor to student, every week</h3>
+    <div class="callout-grid">
+      <div class="callout-item">
+        <p class="label">Monday</p>
+        <h4>Weekly announcement</h4>
+        <p>An orientation announcement each Monday setting up the week&rsquo;s system, pointing to key videos and readings, and flagging anything unusual.</p>
+      </div>
+      <div class="callout-item">
+        <p class="label">Wednesday</p>
+        <h4>Discussion engagement</h4>
+        <p>When the prompt opens, I enter the forum and participate with substantive follow-up questions and clarifications as posts come in.</p>
+      </div>
+      <div class="callout-item">
+        <p class="label">Friday</p>
+        <h4>Synthesis Loom</h4>
+        <p>A short recorded video each Friday pulling the week&rsquo;s concepts together, addressing common questions, and flagging what matters for the next week.</p>
+      </div>
+      <div class="callout-item">
+        <p class="label">Ongoing</p>
+        <h4>Virtual Office Hours</h4>
+        <p>Active presence in the Virtual Office Hours discussion throughout the week. Substantive responses within 48 hours of the next business day.</p>
+      </div>
+    </div>
+
+    <h3>Feedback on your work</h3>
+    <p>Trainers, labs, discussion posts, and portfolio entries receive feedback from me within one week of the Sunday deadline. Quizzes are auto-graded with immediate feedback on correct and incorrect answers. Feedback is not just a score. You will hear what worked, what to revisit, and (where relevant) how the concept shows up in your future program.</p>
+
+    <h3>Student to student</h3>
+    <p>The weekly discussion is where you connect with classmates. Your first post is due Friday so classmates have the weekend to read and engage. Replies by Sunday are required and graded for substance, not just quantity. You will learn from how other people think about the same material you are working through.</p>
+
+    <h3>If you are quiet, I notice</h3>
+    <p>If I see a student disappear from discussion, from assignment submissions, or from Canvas activity for more than a few days, I will reach out. Not to pressure, but to check in. Online summer sessions move fast and it is easy to fall behind without realizing it. Early contact is almost always recoverable. Silent withdrawal usually is not.</p>
+  </section>
+
+  <!-- SECTION 09 -->
+  <section class="section" id="s09" aria-labelledby="s09-head">
+    <div class="section-head">
+      <span class="section-num">09</span>
+      <h2 class="section-title" id="s09-head">Academic Integrity &amp; AI</h2>
+    </div>
+    <p class="section-lede">Your work represents your own thinking. AI tools are allowed as tutors, not as writers.</p>
+
+    <h3>Academic integrity</h3>
+    <p>Every submission in this course must be your own work. This includes trainers, quizzes, discussion posts, lab write-ups, and portfolio entries. Submitting someone else&rsquo;s work as your own, whether from a classmate, a website, or an AI tool, is academic dishonesty. Consequences include a zero on the assignment, a failing grade in the course, and referral to ARC for further action.</p>
+
+    <h3>AI policy</h3>
+    <p>AI tools (ChatGPT, Claude, Gemini, and others) are part of how people learn now. Here&rsquo;s the line in this class:</p>
+
+    <div class="dodont">
+      <div class="dodont-col do">
+        <p class="header">You can use AI to</p>
+        <ul>
+          <li>Ask for explanations of concepts you don&rsquo;t understand</li>
+          <li>Check your reasoning on a calculation or interpretation</li>
+          <li>Get feedback on the clarity of your own writing</li>
+          <li>Practice quiz-style questions for study</li>
+        </ul>
+      </div>
+      <div class="dodont-col dont">
+        <p class="header">You cannot use AI to</p>
+        <ul>
+          <li>Write your discussion posts or portfolio entries</li>
+          <li>Generate your lab interpretations</li>
+          <li>Answer quiz questions during an attempt</li>
+          <li>Replace your own thinking in any graded work</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>If you use AI to help you understand something, that&rsquo;s fine. Just write the submission in your own words. When in doubt, note the AI assistance in your submission. Honesty about your process is always better than pretending.</p>
+    <p>Your trainers (hand-written on paper) and your lab calculations (your own work with the tools) are the most durable evidence of your learning. The course is designed so the real engagement shows up there.</p>
+  </section>
+
+  <!-- SECTION 10 -->
+  <section class="section" id="s10" aria-labelledby="s10-head">
+    <div class="section-head">
+      <span class="section-num">10</span>
+      <h2 class="section-title" id="s10-head">Accessibility</h2>
+    </div>
+    <p class="section-lede">Accommodations make this course work for the body you have. Set them up through DSPS at the start of the term.</p>
+
+    <p>American River College is committed to providing equal access to education. If you have a disability or condition that may affect your learning or your ability to complete coursework, please contact ARC Disabled Student Programs and Services (DSPS) at the start of the term.</p>
+    <p>DSPS works with you to identify reasonable accommodations. Common accommodations include extended time on quizzes, alternative formats for materials, and flexible deadlines when medically appropriate.</p>
+
+    <aside class="official" aria-label="ARC DSPS contact">
+      <p class="label">ARC Disability Services and Programs for Students (DSPS)</p>
+      <p><strong>Email:</strong> <a href="mailto:dsps@arc.losrios.edu">dsps@arc.losrios.edu</a><br>
+      <strong>Phone:</strong> <a href="tel:+19164848382">(916) 484-8382</a><br>
+      <strong>Video Phone:</strong> (916) 993-3087<br>
+      <strong>Location:</strong> North Entrance of the Welcome and Support Center Building<br>
+      <strong>Hours:</strong> Mon, Wed, Thu, Fri 8:00 am to 5:00 pm &middot; Tue 8:00 am to 7:00 pm<br>
+      <strong>Website:</strong> <a href="https://arc.losrios.edu/dsps" target="_blank" rel="noopener">arc.losrios.edu/dsps</a></p>
+    </aside>
+
+    <p>Once DSPS has approved your accommodations, share the documentation with me as early as possible (email is best for this) and we will work out how to apply them to this specific course. You do not need to disclose the nature of your disability. Only the approved accommodations.</p>
+  </section>
+
+  <!-- SECTION 11 -->
+  <section class="section" id="s11" aria-labelledby="s11-head">
+    <div class="section-head">
+      <span class="section-num">11</span>
+      <h2 class="section-title" id="s11-head">Student Support</h2>
+    </div>
+    <p class="section-lede">A short list of services you should know exist, even if you don&rsquo;t need them today.</p>
+
+    <ul class="support-list">
+      <li>
+        <span class="svc">Canvas technical help</span>
+        <span class="info">24/7 chat and phone support through the help menu inside Canvas. Always your first call for tech issues.</span>
+      </li>
+      <li>
+        <span class="svc">ARC tutoring</span>
+        <span class="info">Learning Resource Center (LRC) Tutoring. Free, in-person and online. Email <a href="mailto:tutoring@arc.losrios.edu">tutoring@arc.losrios.edu</a>, phone <a href="tel:+19164848808">(916) 484-8808</a>. Website: <a href="https://arc.losrios.edu/lrc-tutoring" target="_blank" rel="noopener">arc.losrios.edu/lrc-tutoring</a>. Online scheduling through Penji.</span>
+      </li>
+      <li>
+        <span class="svc">Counseling &amp; mental health</span>
+        <span class="info">ARC Counseling provides academic, career, personal, and crisis counseling. Email <a href="mailto:counselingcenterarc@arc.losrios.edu">counselingcenterarc@arc.losrios.edu</a>, phone (916) 484-8572. Open Mon to Thu 8:00 am to 7:00 pm, Fri 8:00 am to 5:00 pm. Located in the Administration Building. For immediate crisis support outside business hours, call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline).</span>
+      </li>
+      <li>
+        <span class="svc">Basic needs</span>
+        <span class="info">The Beaver Cares Basic Needs Center connects students to food, housing assistance (including short-term hotel vouchers), CalFresh enrollment, diapers and baby supplies through the Baby Beavers Diaper Program, and community clothing resources. Visit <a href="https://arc.losrios.edu/student-resources/basic-needs-resources/beaver-cares-basic-needs-center/beaver-cares-basic-needs-center-services" target="_blank" rel="noopener">arc.losrios.edu/beaver-cares</a> to request services.</span>
+      </li>
+      <li>
+        <span class="svc">Veterans services</span>
+        <span class="info">ARC Veterans Resource Center (VRC) supports student veterans, servicemembers, and their qualified dependents with GI Bill benefits, VA certifications, and the VetSuccess on Campus (VSOC) program. Phone (916) 484-8135 to schedule a meeting with a VSOC counselor.</span>
+      </li>
+      <li>
+        <span class="svc">Title IX &amp; nondiscrimination</span>
+        <span class="info">American River College is committed to a learning environment free of sex discrimination, sexual harassment, and sexual violence. Title IX of the Education Amendments of 1972 prohibits discrimination based on sex in federally funded education programs and activities. <strong>As a faculty member at a California community college, I am a Responsible Employee under Title IX. If you share information with me about sexual harassment, sexual assault, dating violence, domestic violence, or stalking, I am required to report it to the Los Rios Title IX Coordinator.</strong> If you want to speak confidentially before deciding whether to make a report, contact ARC Counseling (listed above) or review the confidential resources on <a href="https://arc.losrios.edu/support-and-services/safety-and-emergency-management/sexual-misconduct-and-title-ix" target="_blank" rel="noopener">ARC&rsquo;s Title IX page</a>.</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- SECTION 12 -->
+  <section class="section" id="s12" aria-labelledby="s12-head">
+    <div class="section-head">
+      <span class="section-num">12</span>
+      <h2 class="section-title" id="s12-head">Important Dates</h2>
+    </div>
+    <p class="section-lede">Term calendar, add/drop deadlines, census.</p>
+
+    <table class="syllabus-table" aria-label="Important term dates">
+      <thead>
+        <tr>
+          <th scope="col">Event</th>
+          <th scope="col">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Classes start (Week 1 opens)</td>
+          <td>Monday, June 8, 2026</td>
+        </tr>
+        <tr>
+          <td>Last day to drop without a "W" (also last day for tuition refund)</td>
+          <td>Friday, June 12, 2026</td>
+        </tr>
+        <tr>
+          <td>Last day to enroll</td>
+          <td>Tuesday, June 16, 2026</td>
+        </tr>
+        <tr>
+          <td>Last day to withdraw with a "W"</td>
+          <td>Friday, July 17, 2026</td>
+        </tr>
+        <tr>
+          <td>Last day of classes (final portfolio due)</td>
+          <td>Friday, July 31, 2026</td>
+        </tr>
+        <tr>
+          <td>Final grades posted</td>
+          <td>Tuesday, August 11, 2026</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SECTION 13 -->
+  <section class="section" id="s13" aria-labelledby="s13-head">
+    <div class="section-head">
+      <span class="section-num">13</span>
+      <h2 class="section-title" id="s13-head">Our Agreement</h2>
+    </div>
+    <p class="section-lede">This is a two-way relationship. Here&rsquo;s what you can count on from me, and what I&rsquo;m counting on from you.</p>
+
+    <aside class="agreement" aria-label="Mutual agreement">
+      <h3>By staying enrolled past the add/drop deadline, you agree to the policies above.</h3>
+      <p>If something doesn&rsquo;t work for you, email me early. I want you to succeed in this class and in the program you&rsquo;re headed toward.</p>
+
+      <div class="pair">
+        <div>
+          <h4>I commit to</h4>
+          <ul>
+            <li>Responding to email within 48 hours of the next business day</li>
+            <li>Posting grades within one week of each Sunday deadline</li>
+            <li>Being present in the Virtual Office Hours discussion</li>
+            <li>Treating you with respect and as a future colleague in healthcare</li>
+          </ul>
+        </div>
+        <div>
+          <h4>I ask you to</h4>
+          <ul>
+            <li>Submit your own work</li>
+            <li>Communicate early when something goes wrong</li>
+            <li>Treat classmates with the respect they deserve</li>
+            <li>Engage with the material, not just complete assignments</li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <p>Welcome to BIOL 304. I&rsquo;m glad you&rsquo;re here. Let&rsquo;s do good work together this summer.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>BIOL 304 &middot; American River College &middot; Summer 2026</span>
+    <span class="version">Syllabus v1</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var FRAME_ID = 'biol304_syllabus_v1';
+  function sendHeight() {
+    var h = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(sendHeight);
+  }
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(sendHeight).observe(document.body);
+  }
+  setTimeout(sendHeight, 100);
+  setTimeout(sendHeight, 500);
+  setTimeout(sendHeight, 1500);
+})();
+</script>
+</body>
+</html>
