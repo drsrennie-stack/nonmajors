@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Textbook · BIOL 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F2E8D5;
+    --sand-cream: #FEF9EC;
+    --ocean-deep: #1E3D4C;
+    --ocean-mid: #335E6E;
+    --sea-glass: #8FB8BF;
+    --sea-glass-mist: #DCE8EB;
+    --terra: #A0402A;
+    --ink: #15262F;
+
+    --border: 1px solid var(--sea-glass);
+    --border-strong: 1.5px solid var(--ocean-mid);
+
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --serif: 'Lora', Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 40px 36px 56px;
+  }
+
+  a { color: var(--terra); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover { color: var(--ocean-deep); }
+
+  /* === Masthead === */
+  .masthead {
+    border-bottom: var(--border-strong);
+    padding-bottom: 24px;
+    margin-bottom: 36px;
+  }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 10px;
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(28px, 4vw, 38px);
+    line-height: 1.15;
+    color: var(--ocean-deep);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .masthead .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ocean-mid);
+    margin: 0 0 18px;
+    max-width: 64ch;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 24px;
+    font-size: 13px;
+    color: var(--ocean-mid);
+  }
+  .meta-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .meta-row strong { color: var(--ocean-deep); font-weight: 600; }
+  .dot {
+    display: inline-block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--terra);
+  }
+  .byline {
+    margin-top: 14px;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ocean-mid);
+    font-size: 15px;
+  }
+
+  /* === Lead copy === */
+  .lead {
+    margin-top: 24px;
+    max-width: 72ch;
+  }
+  .lead p {
+    font-size: 16px;
+    margin: 0 0 14px;
+  }
+  .lead p:last-child { margin-bottom: 0; }
+
+  /* === Format grid === */
+  .format-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border: var(--border);
+    margin: 28px 0;
+  }
+  .format-card {
+    padding: 20px 24px;
+    border-right: var(--border);
+    border-bottom: var(--border);
+  }
+  .format-card:nth-child(2n) { border-right: none; }
+  .format-card:nth-last-child(-n+2) { border-bottom: none; }
+  .format-card .label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 6px;
+  }
+  .format-card h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--ocean-deep);
+    margin: 0 0 6px;
+  }
+  .format-card p {
+    font-size: 14px;
+    color: var(--ocean-mid);
+    margin: 0 0 10px;
+    line-height: 1.55;
+  }
+  .format-card p:last-child { margin-bottom: 0; }
+  .format-card a {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* === Citation block === */
+  .citation-block {
+    margin: 24px 0;
+    background: var(--sand-cream);
+    border: var(--border);
+    border-left: 3px solid var(--ocean-mid);
+    padding: 20px 24px;
+  }
+  .citation-block .label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ocean-mid);
+    margin: 0 0 8px;
+  }
+  .citation-block p {
+    margin: 0;
+    font-size: 14px;
+    font-family: var(--serif);
+    line-height: 1.6;
+  }
+
+  /* === Pre-reading callout === */
+  .prereading {
+    margin: 28px 0 0;
+    background: var(--sea-glass-mist);
+    border: var(--border);
+    border-left: 3px solid var(--ocean-deep);
+    padding: 24px 28px;
+  }
+  .prereading .label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ocean-deep);
+    margin: 0 0 10px;
+  }
+  .prereading h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--ocean-deep);
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  .prereading p {
+    font-size: 15px;
+    margin: 0 0 12px;
+    max-width: 70ch;
+  }
+  .prereading p:last-child { margin-bottom: 0; }
+  .prereading ol {
+    margin: 12px 0;
+    padding-left: 0;
+    list-style: none;
+    counter-reset: prestep;
+  }
+  .prereading li {
+    counter-increment: prestep;
+    padding: 10px 14px 10px 48px;
+    position: relative;
+    font-size: 14.5px;
+    line-height: 1.55;
+    background: #FFFFFF;
+    border: var(--border);
+    margin-bottom: 8px;
+  }
+  .prereading li::before {
+    content: counter(prestep, decimal-leading-zero);
+    position: absolute;
+    left: 14px;
+    top: 10px;
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--terra);
+  }
+  .prereading li strong {
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--ocean-deep);
+  }
+
+  /* === Tip callout === */
+  .tip {
+    margin: 24px 0;
+    background: var(--sand-cream);
+    border: var(--border);
+    border-left: 3px solid var(--terra);
+    padding: 20px 24px;
+  }
+  .tip h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--terra);
+    margin: 0 0 8px;
+  }
+  .tip p {
+    font-size: 14.5px;
+    margin: 0;
+    max-width: 72ch;
+  }
+
+  /* === Footer === */
+  .footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--ocean-mid);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer .version { font-family: var(--sans); letter-spacing: 0.06em; }
+
+  /* === Responsive === */
+  @media (max-width: 720px) {
+    .page { padding: 28px 18px 40px; }
+    .format-grid { grid-template-columns: 1fr; }
+    .format-card { border-right: none; }
+    .format-card:nth-last-child(-n+2) { border-bottom: var(--border); }
+    .format-card:last-child { border-bottom: none; }
+  }
+
+  /* === Print === */
+  @media print {
+    html, body { background: #FFFFFF; color: #000000; font-size: 10.5pt; }
+    .page { max-width: none; padding: 0.5in; }
+    .masthead, .format-grid, .citation-block, .tip, .prereading, .footer { page-break-inside: avoid; }
+    .format-grid, .format-card, .citation-block, .tip, .prereading, .footer {
+      border-color: #000000 !important;
+    }
+    .citation-block, .tip, .prereading { background: #FFFFFF !important; }
+    .prereading li { border-color: #000000 !important; background: #FFFFFF !important; }
+    a { color: #000000 !important; }
+    .eyebrow, .format-card .label, .citation-block .label, .tip h3, .prereading .label, .prereading li::before { color: #000000 !important; }
+    .masthead h1, .format-card h3, .prereading h3 { color: #000000 !important; }
+    .subtitle, .meta-row, .byline, .lead p, .format-card p, .prereading p, .footer { color: #333333 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <p class="eyebrow">Module 0 &middot; Summer 2026</p>
+    <h1>Your Textbook Is Free</h1>
+    <p class="subtitle">OpenStax Anatomy &amp; Physiology 2e. Peer-reviewed, openly licensed, no access code.</p>
+    <div class="meta-row">
+      <span><strong>Course</strong> BIOL 304</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span><strong>Book</strong> Anatomy &amp; Physiology 2e</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span><strong>Cost</strong> $0 digital</span>
+    </div>
+    <p class="byline">with Dr. Sharilyn Rennie</p>
+  </header>
+
+  <!-- LEAD -->
+  <div class="lead">
+    <p>Your textbook for this course is <strong>Anatomy and Physiology 2e</strong> by Betts and colleagues, published by OpenStax at Rice University. It is peer-reviewed, covers everything we need for BIOL 304, and is available in several formats at no cost.</p>
+    <p>There is no access code. No publisher subscription. No new-edition churn. Use the format that works for you.</p>
+  </div>
+
+  <!-- FORMAT GRID -->
+  <div class="format-grid">
+    <article class="format-card">
+      <p class="label">Format 01</p>
+      <h3>Read online</h3>
+      <p>Works in any browser on any device. No download, no account. Good if you want to look something up quickly or read on a phone between shifts.</p>
+      <p><a href="https://openstax.org/books/anatomy-and-physiology-2e" target="_blank" rel="noopener">Open the online book &rarr;</a></p>
+    </article>
+
+    <article class="format-card">
+      <p class="label">Format 02</p>
+      <h3>Download the PDF</h3>
+      <p>Full textbook as one PDF. Good if your internet is spotty or you want to annotate in a PDF reader. Large file, so download once over Wi-Fi.</p>
+      <p><a href="https://openstax.org/details/books/anatomy-and-physiology-2e" target="_blank" rel="noopener">Get the PDF &rarr;</a></p>
+    </article>
+
+    <article class="format-card">
+      <p class="label">Format 03</p>
+      <h3>EPUB for e-readers</h3>
+      <p>Works with Kindle, iPad Books, and most e-reader apps. Good if you like to read on an e-ink screen or already study in Books or a Kindle workflow.</p>
+      <p><a href="https://openstax.org/details/books/anatomy-and-physiology-2e" target="_blank" rel="noopener">Get the EPUB &rarr;</a></p>
+    </article>
+
+    <article class="format-card">
+      <p class="label">Format 04</p>
+      <h3>Buy a print copy</h3>
+      <p>If you prefer paper, OpenStax sells low-cost print copies at about at-cost pricing. You can also request one through many campus bookstores.</p>
+      <p><a href="https://openstax.org/details/books/anatomy-and-physiology-2e" target="_blank" rel="noopener">Print ordering info &rarr;</a></p>
+    </article>
+  </div>
+
+  <!-- PRE-READING CALLOUT -->
+  <aside class="prereading" aria-label="How to use the textbook">
+    <p class="label">How to read this textbook</p>
+    <h3>Pre-read first. Don&rsquo;t read cover to cover.</h3>
+    <p>Here is a thing that nobody tells you about reading dense science textbooks: <strong>you will not remember what you read until after you have already learned it.</strong> Reading a chapter front to back, paragraph by paragraph, is one of the least efficient ways to study. Your brain has nowhere to file the information yet.</p>
+    <p>Cognitive science research on reading comprehension and memory consistently shows that previewing material before deep reading builds the mental scaffolding that makes later study stick. A 5-minute pre-read does more for retention than a 30-minute slow read of the same chapter.</p>
+    <p>Try this every week:</p>
+    <ol>
+      <li><strong>Skim the chapter.</strong> Read the section headings, the bolded terms, and the figure captions. Do not try to understand. Just notice what is there. (5 minutes)</li>
+      <li><strong>Watch the concept videos.</strong> Now you know what is in the chapter, so the videos give you context for what matters.</li>
+      <li><strong>Read as you complete the trainer.</strong> When you reach a trainer section on a topic, deep-read just that topic in OpenStax. Not the whole chapter. Just what the trainer is asking about. Your brain now has somewhere to file the information because the trainer is asking you to use it.</li>
+    </ol>
+    <p>This is also why the Reading Map separates Read, Focus, and Reference. You are not supposed to read every chapter cover to cover. You are supposed to read what matters and use the rest as a reference.</p>
+  </aside>
+
+  <!-- TIP -->
+  <aside class="tip" aria-label="Getting started tip">
+    <h3>A quick recommendation</h3>
+    <p>For a summer course, most students do best with the online version open in one tab and the PDF downloaded as a backup. The Reading Map tells you which chapters to read each week and whether to read the whole thing or focus on specific sections, so you are not drinking from a firehose.</p>
+  </aside>
+
+  <!-- CITATION -->
+  <aside class="citation-block" aria-label="Textbook citation">
+    <p class="label">Full citation</p>
+    <p>Betts, J. G., Young, K. A., Wise, J. A., Johnson, E., Poe, B., Kruse, D. H., Korol, O., Johnson, J. E., Womble, M., &amp; DeSaix, P. (2022). <em>Anatomy and Physiology 2e.</em> OpenStax. Access for free at openstax.org/books/anatomy-and-physiology-2e. Licensed under CC BY 4.0.</p>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>BIOL 304 &middot; American River College &middot; Summer 2026</span>
+    <span class="version">Textbook v1</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var FRAME_ID = 'biol304_textbook_v1';
+  function sendHeight() {
+    var h = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(sendHeight);
+  }
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(sendHeight).observe(document.body);
+  }
+  setTimeout(sendHeight, 100);
+  setTimeout(sendHeight, 500);
+  setTimeout(sendHeight, 1500);
+})();
+</script>
+</body>
+</html>
