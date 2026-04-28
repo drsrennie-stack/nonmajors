@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discussion · Week 1 · BIOL 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F2E8D5;
+    --sand-cream: #FEF9EC;
+    --ocean-deep: #1E3D4C;
+    --ocean-mid: #335E6E;
+    --sea-glass: #8FB8BF;
+    --sea-glass-mist: #DCE8EB;
+    --terra: #A0402A;
+    --ink: #15262F;
+
+    --border: 1px solid var(--sea-glass);
+    --border-strong: 1.5px solid var(--ocean-mid);
+
+    --shadow-sm: 0 2px 6px rgba(30, 61, 76, 0.06), 0 1px 2px rgba(30, 61, 76, 0.04);
+    --shadow-md: 0 4px 12px rgba(30, 61, 76, 0.08), 0 2px 4px rgba(30, 61, 76, 0.05);
+
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --serif: 'Lora', Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FAFAF7;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 36px 32px 48px;
+  }
+
+  a { color: var(--terra); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover { color: var(--ocean-deep); }
+
+  /* === Masthead === */
+  .masthead {
+    border-bottom: var(--border-strong);
+    padding-bottom: 22px;
+    margin-bottom: 28px;
+  }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 10px;
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(26px, 4vw, 34px);
+    line-height: 1.15;
+    color: var(--ocean-deep);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .masthead .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ocean-mid);
+    margin: 0;
+    max-width: 64ch;
+  }
+
+  /* === Deadline strip === */
+  .deadlines {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .deadline {
+    background: #FFFFFF;
+    border: var(--border);
+    border-left: 3px solid var(--terra);
+    border-radius: 4px;
+    padding: 14px 18px;
+    box-shadow: var(--shadow-sm);
+  }
+  .deadline.replies { border-left-color: var(--ocean-mid); }
+  .deadline .label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 4px;
+  }
+  .deadline.replies .label { color: var(--ocean-mid); }
+  .deadline h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--ocean-deep);
+    margin: 0 0 4px;
+    letter-spacing: -0.005em;
+  }
+  .deadline p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ocean-mid);
+    margin: 0;
+  }
+
+  /* === Hook card === */
+  .hook {
+    background: #FFFFFF;
+    border: var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 32px;
+  }
+  .hook p {
+    font-size: 15.5px;
+    margin: 0 0 12px;
+    max-width: 68ch;
+  }
+  .hook p:last-child { margin-bottom: 0; }
+  .hook strong {
+    color: var(--ocean-deep);
+    font-weight: 600;
+  }
+
+  /* === Section headings === */
+  .step-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 32px 0 16px;
+  }
+  .step-tag {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: var(--ocean-deep);
+    border-radius: 2px;
+    padding: 4px 10px;
+  }
+  .step-head h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--ocean-deep);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  /* === Topic chooser === */
+  .topic-card {
+    background: #FFFFFF;
+    border: var(--border);
+    border-radius: 4px;
+    padding: 22px 26px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 18px;
+  }
+  .topic-card .lede {
+    font-size: 14.5px;
+    color: var(--ocean-mid);
+    margin: 0 0 14px;
+  }
+  .topic-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .topic-list li {
+    background: var(--sea-glass-mist);
+    border: 1px solid var(--sea-glass);
+    border-radius: 3px;
+    padding: 9px 14px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ocean-deep);
+  }
+  .topic-list li.other {
+    background: var(--sand-cream);
+    border-color: var(--terra);
+    border-style: dashed;
+    font-style: italic;
+    color: var(--terra);
+  }
+
+  /* === Three-part requirement cards === */
+  .req-card {
+    background: #FFFFFF;
+    border: var(--border);
+    border-radius: 4px;
+    padding: 22px 26px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 14px;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .req-num {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 32px;
+    color: var(--terra);
+    line-height: 1;
+    text-align: center;
+  }
+  .req-body h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--ocean-deep);
+    margin: 0 0 6px;
+    letter-spacing: -0.005em;
+  }
+  .req-body p {
+    font-size: 14.5px;
+    color: var(--ocean-mid);
+    margin: 0 0 8px;
+    line-height: 1.55;
+  }
+  .req-body p:last-child { margin-bottom: 0; }
+  .req-body p strong {
+    color: var(--ocean-deep);
+    font-weight: 600;
+  }
+
+  /* === Reply rules: do/don't === */
+  .reply-rules {
+    background: linear-gradient(180deg, #FFFFFF 0%, var(--sand-cream) 100%);
+    border: var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    box-shadow: var(--shadow-md);
+    margin-top: 16px;
+  }
+  .reply-rules h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--ocean-deep);
+    margin: 0 0 10px;
+  }
+  .reply-rules > p {
+    font-size: 14.5px;
+    margin: 0 0 16px;
+  }
+  .dodont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 12px;
+  }
+  .dodont-card {
+    background: #FFFFFF;
+    border: var(--border);
+    border-radius: 3px;
+    padding: 14px 18px;
+  }
+  .dodont-card.do { border-left: 3px solid var(--ocean-mid); }
+  .dodont-card.dont { border-left: 3px solid var(--terra); }
+  .dodont-card .label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+  .dodont-card.do .label { color: var(--ocean-mid); }
+  .dodont-card.dont .label { color: var(--terra); }
+  .dodont-card ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+  .dodont-card li {
+    font-size: 13.5px;
+    color: var(--ocean-mid);
+    margin: 4px 0;
+    line-height: 1.5;
+  }
+  .dodont-card.dont li {
+    font-style: italic;
+  }
+
+  /* === AI policy callout === */
+  .ai-policy {
+    background: var(--sand-cream);
+    border: var(--border);
+    border-left: 4px solid var(--terra);
+    border-radius: 4px;
+    padding: 22px 26px;
+    box-shadow: var(--shadow-md);
+    margin-top: 24px;
+  }
+  .ai-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .ai-tag {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: var(--terra);
+    border-radius: 2px;
+    padding: 4px 10px;
+  }
+  .ai-policy h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--terra);
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .ai-policy p {
+    font-size: 14.5px;
+    margin: 0 0 10px;
+    max-width: 70ch;
+    line-height: 1.55;
+  }
+  .ai-policy p:last-child { margin-bottom: 0; }
+  .ai-policy p strong {
+    color: var(--ocean-deep);
+    font-weight: 600;
+  }
+  .ai-policy .ai-tail {
+    font-style: italic;
+    color: var(--ocean-mid);
+    font-family: var(--serif);
+    font-size: 14px;
+    border-top: 1px dashed var(--sea-glass);
+    padding-top: 12px;
+    margin-top: 14px;
+  }
+
+  /* === Instructor note === */
+  .note {
+    background: var(--sea-glass-mist);
+    border: var(--border);
+    border-left: 3px solid var(--ocean-deep);
+    border-radius: 4px;
+    padding: 22px 26px;
+    box-shadow: var(--shadow-sm);
+    margin-top: 32px;
+  }
+  .note .label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ocean-deep);
+    margin: 0 0 8px;
+  }
+  .note p {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ocean-mid);
+    margin: 0 0 10px;
+    max-width: 68ch;
+  }
+  .note p:last-child { margin-bottom: 0; }
+  .note .signoff {
+    font-style: italic;
+    color: var(--ocean-deep);
+    font-weight: 500;
+    margin-top: 12px;
+  }
+
+  /* === Footer === */
+  .footer {
+    margin-top: 36px;
+    padding-top: 18px;
+    border-top: var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--ocean-mid);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer .version { font-family: var(--sans); letter-spacing: 0.06em; }
+
+  /* === Responsive === */
+  @media (max-width: 720px) {
+    .page { padding: 24px 16px 36px; }
+    .deadlines { grid-template-columns: 1fr; }
+    .topic-list { grid-template-columns: 1fr; }
+    .req-card { grid-template-columns: 1fr; gap: 8px; }
+    .req-num { text-align: left; }
+    .dodont { grid-template-columns: 1fr; }
+  }
+
+  /* === Print === */
+  @media print {
+    html, body { background: #FFFFFF; color: #000000; font-size: 11pt; }
+    .page { max-width: none; padding: 0.5in; }
+    .deadline, .hook, .topic-card, .req-card, .reply-rules, .note, .dodont-card, .ai-policy {
+      box-shadow: none !important;
+      page-break-inside: avoid;
+    }
+    .deadline, .hook, .topic-card, .req-card, .reply-rules, .note, .dodont-card,
+    .topic-list li, .footer, .ai-policy { border-color: #000000 !important; }
+    .reply-rules, .note, .topic-list li, .topic-list li.other, .ai-policy { background: #FFFFFF !important; }
+    .step-tag, .ai-tag { background: #FFFFFF !important; color: #000000 !important; border: 1px solid #000000 !important; }
+    a { color: #000000 !important; }
+    .eyebrow, .deadline .label, .step-tag, .req-num, .dodont-card .label,
+    .note .label, .topic-list li.other, .ai-tag, .ai-policy h3 { color: #000000 !important; }
+    .masthead h1, .deadline h3, .hook strong, .step-head h2, .req-body h3,
+    .req-body p strong, .reply-rules h3, .topic-list li, .note .signoff,
+    .ai-policy p strong {
+      color: #000000 !important;
+    }
+    .subtitle, .deadline p, .hook p, .topic-card .lede, .req-body p,
+    .reply-rules > p, .dodont-card li, .note p, .footer,
+    .ai-policy p, .ai-policy .ai-tail { color: #333333 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <p class="eyebrow">Week 01 Discussion</p>
+    <h1>Why Homeostasis Matters in Your Field</h1>
+    <p class="subtitle">The principle that holds the rest of the course together. Now connect it to where you are headed.</p>
+  </header>
+
+  <!-- DEADLINES -->
+  <div class="deadlines">
+    <div class="deadline">
+      <p class="label">First post</p>
+      <h3>Friday, June 12</h3>
+      <p>by 11:59 PM</p>
+    </div>
+    <div class="deadline replies">
+      <p class="label">Two replies</p>
+      <h3>Sunday, June 14</h3>
+      <p>by 11:59 PM</p>
+    </div>
+  </div>
+
+  <!-- HOOK -->
+  <aside class="hook" aria-label="Why this discussion">
+    <p>This week we covered the principle that holds the rest of the course together: <strong>homeostasis.</strong> The body is constantly maintaining set points (temperature, glucose, blood pressure, fluid balance, oxygen) and constantly responding when something pushes it off.</p>
+    <p>For someone going into healthcare, recognizing when homeostasis is breaking down is often the entire job. For everyone else, it shows up everywhere from athletic performance to working in heat to caring for a sick family member. This week we connect the concept to real life.</p>
+  </aside>
+
+  <!-- STEP 1: PICK A TOPIC -->
+  <div class="step-head">
+    <span class="step-tag">Step 01</span>
+    <h2>Pick one homeostatic system</h2>
+  </div>
+
+  <article class="topic-card">
+    <p class="lede">Choose one from the list, or pick your own. Whatever interests you.</p>
+    <ul class="topic-list">
+      <li>Body temperature regulation</li>
+      <li>Blood glucose regulation</li>
+      <li>Blood pressure regulation</li>
+      <li>Fluid &amp; electrolyte balance</li>
+      <li>Oxygen &amp; carbon dioxide balance</li>
+      <li class="other">Or another homeostatic system you find interesting</li>
+    </ul>
+  </article>
+
+  <!-- STEP 2: WRITE YOUR POST -->
+  <div class="step-head">
+    <span class="step-tag">Step 02</span>
+    <h2>Write your post (150 to 300 words)</h2>
+  </div>
+
+  <article class="req-card">
+    <span class="req-num">01</span>
+    <div class="req-body">
+      <h3>Walk through the feedback loop</h3>
+      <p>What is the <strong>receptor</strong>, the <strong>control center</strong>, and the <strong>effector</strong> for this system? Keep it general. No need for deep physiology yet.</p>
+    </div>
+  </article>
+
+  <article class="req-card">
+    <span class="req-num">02</span>
+    <div class="req-body">
+      <h3>Connect it to a profession</h3>
+      <p>When might someone in your future field encounter a patient or client where this homeostatic system is breaking down? Healthcare paths (EMT, funeral service, healthcare interpreting, gerontology, allied health) are obvious fits. <strong>If you are not heading into healthcare, pick a profession you are familiar with, or one you have always wondered about.</strong> Athletic coaching, firefighting, social work, teaching, parenting, military service, restaurant work, animal care. Be specific.</p>
+    </div>
+  </article>
+
+  <article class="req-card">
+    <span class="req-num">03</span>
+    <div class="req-body">
+      <h3>Name one question this raised for you</h3>
+      <p>What do you want to know more about? We may not have the answer yet. Naming the question is part of how learning works.</p>
+    </div>
+  </article>
+
+  <!-- STEP 3: REPLY RULES -->
+  <div class="step-head">
+    <span class="step-tag">Step 03</span>
+    <h2>Reply to two classmates by Sunday</h2>
+  </div>
+
+  <aside class="reply-rules" aria-label="What counts as a substantive reply">
+    <h3>What makes a reply substantive</h3>
+    <p>Read at least three classmates&rsquo; posts before you reply. Then leave two replies that engage with what they actually wrote.</p>
+
+    <div class="dodont">
+      <div class="dodont-card do">
+        <p class="label">Counts as substantive</p>
+        <ul>
+          <li>Connecting their example to one you know about</li>
+          <li>Asking a follow-up question that pushes their thinking</li>
+          <li>Offering a different angle on the same scenario</li>
+          <li>Sharing what you would want to know more about based on what they wrote</li>
+        </ul>
+      </div>
+      <div class="dodont-card dont">
+        <p class="label">Does not count</p>
+        <ul>
+          <li>Great post!</li>
+          <li>I agree.</li>
+          <li>Same.</li>
+          <li>Anything you could write without reading their post</li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- AI POLICY -->
+  <aside class="ai-policy" aria-label="AI policy for this discussion">
+    <div class="ai-head">
+      <span class="ai-tag">Important</span>
+      <h3>No AI for this discussion</h3>
+    </div>
+    <p>This is a discussion. The point is your thinking, in your words, in conversation with classmates&rsquo; thinking. AI cannot do that work for you, and it should not.</p>
+    <p><strong>Do not use ChatGPT, Claude, Gemini, Copilot, or any other AI tool to draft your post or your replies.</strong> Canvas and Turnitin both flag AI-generated content automatically. AI-generated responses (or responses suspected of being AI-generated based on tool flags) will receive a zero on the initial post with no opportunity to revise.</p>
+    <p>The only exception: an assignment that explicitly tells you to interact with an AI tool. This is not one of those assignments.</p>
+    <p class="ai-tail">If you are stuck on what to write, the LRC Tutoring Center can help you brainstorm and draft (free, online or in person at <a href="https://arc.losrios.edu/lrc-tutoring" target="_blank" rel="noopener">arc.losrios.edu/lrc-tutoring</a>). You can also revisit your Week 1 trainer: the homeostasis section already walks through a feedback loop and is your starting point.</p>
+  </aside>
+
+  <!-- INSTRUCTOR NOTE -->
+  <aside class="note" aria-label="A note from the instructor">
+    <p class="label">A note from me</p>
+    <p>Homeostasis is the easy concept to underestimate. It sounds abstract until the first time you see someone whose temperature regulation has failed, or whose blood glucose has crashed, or whose blood pressure will not stabilize. Then you realize the whole rest of the course is teaching you to recognize and respond to homeostatic breakdown.</p>
+    <p>This discussion is a chance to start practicing that recognition while the stakes are zero. I will read every post. I respond selectively in the forum so my voice does not crowd out yours, but I am paying attention to all of them.</p>
+    <p class="signoff">With warmth, Dr. Rennie</p>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>BIOL 304 &middot; Discussion &middot; Week 1</span>
+    <span class="version">v1</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var FRAME_ID = 'biol304_week1_discussion_v1';
+  function sendHeight() {
+    var h = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(sendHeight);
+  }
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(sendHeight).observe(document.body);
+  }
+  setTimeout(sendHeight, 100);
+  setTimeout(sendHeight, 500);
+  setTimeout(sendHeight, 1500);
+})();
+</script>
+</body>
+</html>

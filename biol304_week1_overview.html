@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 1 · BIOL 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F2E8D5;
+    --sand-cream: #FEF9EC;
+    --ocean-deep: #1E3D4C;
+    --ocean-mid: #335E6E;
+    --sea-glass: #8FB8BF;
+    --sea-glass-mist: #DCE8EB;
+    --terra: #A0402A;
+    --ink: #15262F;
+
+    --border: 1px solid var(--sea-glass);
+    --border-strong: 1.5px solid var(--ocean-mid);
+
+    --shadow-sm: 0 2px 6px rgba(30, 61, 76, 0.06), 0 1px 2px rgba(30, 61, 76, 0.04);
+    --shadow-md: 0 4px 12px rgba(30, 61, 76, 0.08), 0 2px 4px rgba(30, 61, 76, 0.05);
+    --shadow-lg: 0 8px 24px rgba(30, 61, 76, 0.10), 0 3px 6px rgba(30, 61, 76, 0.06);
+
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --serif: 'Lora', Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FAFAF7;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 40px 36px 56px;
+  }
+
+  a { color: var(--terra); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover { color: var(--ocean-deep); }
+
+  /* === Masthead === */
+  .masthead {
+    border-bottom: var(--border-strong);
+    padding-bottom: 24px;
+    margin-bottom: 36px;
+  }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 10px;
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(32px, 4.5vw, 44px);
+    line-height: 1.1;
+    color: var(--ocean-deep);
+    margin: 0 0 8px;
+    letter-spacing: -0.015em;
+  }
+  .masthead .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ocean-mid);
+    margin: 0 0 18px;
+    max-width: 64ch;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 24px;
+    font-size: 13px;
+    color: var(--ocean-mid);
+  }
+  .meta-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .meta-row strong { color: var(--ocean-deep); font-weight: 600; }
+  .dot {
+    display: inline-block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--terra);
+  }
+
+  /* === Welcome / orientation === */
+  .welcome-card {
+    margin-top: 28px;
+    background: #FFFFFF;
+    border: var(--border);
+    border-radius: 4px;
+    padding: 26px 30px;
+    box-shadow: var(--shadow-md);
+  }
+  .welcome-card h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--ocean-deep);
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  .welcome-card p {
+    font-size: 15.5px;
+    margin: 0 0 12px;
+    max-width: 70ch;
+  }
+  .welcome-card p:last-child { margin-bottom: 0; }
+
+  /* === Section shell === */
+  .section { margin-top: 56px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .section-num {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--terra);
+    font-weight: 500;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 26px;
+    color: var(--ocean-deep);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .section-lede {
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--ocean-mid);
+    max-width: 64ch;
+    margin: 0 0 16px;
+  }
+
+  /* === Concept cards (lifted) === */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 16px;
+  }
+  .concept-card {
+    background: #FFFFFF;
+    border: var(--border);
+    border-radius: 4px;
+    padding: 22px 24px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .concept-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+  .concept-card .label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 6px;
+  }
+  .concept-card h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--ocean-deep);
+    margin: 0 0 8px;
+    letter-spacing: -0.005em;
+  }
+  .concept-card p {
+    font-size: 13.5px;
+    color: var(--ocean-mid);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* === This-week-checklist === */
+  .checklist {
+    background: #FFFFFF;
+    border: var(--border);
+    border-radius: 4px;
+    box-shadow: var(--shadow-md);
+    margin-top: 16px;
+    overflow: hidden;
+  }
+  .checklist-row {
+    padding: 18px 24px;
+    border-bottom: var(--border);
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 18px;
+    align-items: center;
+  }
+  .checklist-row:last-child { border-bottom: none; }
+  .checklist-num {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--terra);
+    text-align: center;
+    line-height: 1;
+  }
+  .checklist-body h4 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ocean-deep);
+    margin: 0 0 2px;
+  }
+  .checklist-body p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ocean-mid);
+    margin: 0;
+  }
+  .checklist-due {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--terra);
+    background: var(--sand-cream);
+    border: 1px solid var(--terra);
+    border-radius: 2px;
+    padding: 4px 10px;
+    white-space: nowrap;
+  }
+  .checklist-due.fri { color: var(--ocean-mid); border-color: var(--ocean-mid); background: var(--sea-glass-mist); }
+
+  /* === Reading callout === */
+  .reading-card {
+    margin-top: 16px;
+    background: #FFFFFF;
+    border: var(--border);
+    border-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    padding: 22px 26px;
+  }
+  .reading-card .label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 8px;
+  }
+  .reading-card h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--ocean-deep);
+    margin: 0 0 12px;
+  }
+  .reading-row {
+    padding: 8px 0;
+    border-top: 1px dashed var(--sea-glass);
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 14px;
+    align-items: baseline;
+    font-size: 14px;
+  }
+  .reading-row:first-of-type { border-top: none; padding-top: 4px; }
+  .reading-tier {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .reading-tier.read { background: var(--ocean-deep); color: #FFFFFF; }
+  .reading-tier.focus { background: var(--terra); color: #FFFFFF; }
+  .reading-ch { font-family: var(--sans); font-weight: 600; color: var(--ocean-deep); }
+  .reading-detail {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ocean-mid);
+    font-size: 13px;
+    text-align: right;
+  }
+
+  /* === Lab preview === */
+  .lab-preview {
+    margin-top: 16px;
+    background: linear-gradient(180deg, #FFFFFF 0%, var(--sand-cream) 100%);
+    border: var(--border);
+    border-left: 3px solid var(--terra);
+    border-radius: 4px;
+    box-shadow: var(--shadow-md);
+    padding: 26px 30px;
+  }
+  .lab-preview .label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 8px;
+  }
+  .lab-preview h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--ocean-deep);
+    margin: 0 0 12px;
+  }
+  .lab-preview p {
+    font-size: 14.5px;
+    margin: 0 0 14px;
+    max-width: 70ch;
+  }
+  .lab-parts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 14px;
+  }
+  .lab-part {
+    background: #FFFFFF;
+    border: var(--border);
+    border-radius: 3px;
+    padding: 14px 18px;
+    box-shadow: var(--shadow-sm);
+  }
+  .lab-part .pt {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 4px;
+  }
+  .lab-part h4 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--ocean-deep);
+    margin: 0 0 4px;
+  }
+  .lab-part p {
+    font-size: 13px;
+    color: var(--ocean-mid);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* === Footer === */
+  .footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--ocean-mid);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer .version { font-family: var(--sans); letter-spacing: 0.06em; }
+
+  /* === Responsive === */
+  @media (max-width: 720px) {
+    .page { padding: 28px 18px 40px; }
+    .concept-grid { grid-template-columns: 1fr; }
+    .checklist-row { grid-template-columns: 40px 1fr; gap: 14px; }
+    .checklist-due { grid-column: 2; justify-self: start; margin-top: 4px; }
+    .lab-parts { grid-template-columns: 1fr; }
+    .reading-row { grid-template-columns: 70px 1fr; }
+    .reading-detail { grid-column: 2; text-align: left; }
+  }
+
+  /* === Print === */
+  @media print {
+    html, body { background: #FFFFFF; color: #000000; font-size: 10.5pt; }
+    .page { max-width: none; padding: 0.5in; }
+    .masthead, .welcome-card, .section, .concept-card, .checklist,
+    .reading-card, .lab-preview, .footer { page-break-inside: avoid; box-shadow: none !important; }
+    .welcome-card, .concept-card, .checklist, .checklist-row, .reading-card,
+    .lab-preview, .lab-part, .footer { border-color: #000000 !important; background: #FFFFFF !important; }
+    a { color: #000000 !important; }
+    .section-num, .eyebrow, .concept-card .label, .checklist-num, .checklist-due,
+    .reading-card .label, .reading-tier, .lab-preview .label, .lab-part .pt {
+      color: #000000 !important;
+    }
+    .reading-tier { background: #FFFFFF !important; border: 1px solid #000000 !important; }
+    .checklist-due { background: #FFFFFF !important; border: 1px solid #000000 !important; }
+    .masthead h1, .welcome-card h2, .section-title, .concept-card h3,
+    .checklist-body h4, .reading-card h3, .lab-preview h3, .lab-part h4 {
+      color: #000000 !important;
+    }
+    .subtitle, .meta-row, .welcome-card p, .section-lede, .concept-card p,
+    .checklist-body p, .reading-detail, .lab-preview p, .lab-part p, .footer {
+      color: #333333 !important;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <p class="eyebrow">Week 01 &middot; Summer 2026</p>
+    <h1>Body Basics, Cells &amp; Tissues</h1>
+    <p class="subtitle">Where the body starts. Levels of organization, the four tissue types, and the rule that holds everything else together: homeostasis.</p>
+    <div class="meta-row">
+      <span><strong>Week opens</strong> Monday, June 8</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span><strong>First post due</strong> Friday, June 12</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span><strong>Everything else</strong> Sunday, June 14</span>
+    </div>
+  </header>
+
+  <!-- WELCOME -->
+  <aside class="welcome-card" aria-label="Welcome to week 1">
+    <h2>Welcome to Week 1</h2>
+    <p>This week we lay the foundation. Levels of organization (atoms to organisms), what cells actually do, the four tissue types your body is built from, and the principle every body system has to obey: homeostasis. The vocabulary you build this week will show up every week after.</p>
+    <p>Take it slow on Day 1. The terminology will feel like a wall. By Wednesday, you will already start hearing the same words in the videos and the trainer and the readings, and the wall starts to feel like a doorway.</p>
+  </aside>
+
+  <!-- SECTION 01: WHAT YOU'LL LEARN -->
+  <section class="section" aria-labelledby="learn-head">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title" id="learn-head">What You&rsquo;ll Learn</h2>
+    </div>
+    <p class="section-lede">Five concepts anchor this week. Each one connects to a video, a trainer section, and an OpenStax reading.</p>
+
+    <div class="concept-grid">
+      <article class="concept-card">
+        <p class="label">Concept 01</p>
+        <h3>Levels of organization</h3>
+        <p>From atoms to molecules to cells to tissues to organs to systems to the whole organism. The vocabulary that lets us talk about the body at any scale.</p>
+      </article>
+
+      <article class="concept-card">
+        <p class="label">Concept 02</p>
+        <h3>Anatomical terminology</h3>
+        <p>Body planes (sagittal, frontal, transverse), directional terms (superior, distal, medial), body cavities, and regional names. Your shared language with every clinical chart.</p>
+      </article>
+
+      <article class="concept-card">
+        <p class="label">Concept 03</p>
+        <h3>Cell structure &amp; function</h3>
+        <p>The cell membrane, the major organelles, and how things move across membranes. Why every cell is doing the same basic jobs in different ways.</p>
+      </article>
+
+      <article class="concept-card">
+        <p class="label">Concept 04</p>
+        <h3>The four tissue types</h3>
+        <p>Epithelial, connective, muscle, and nervous. Every organ in the body is built from some combination of these four. Recognize them and you have a key to the rest of the course.</p>
+      </article>
+
+      <article class="concept-card">
+        <p class="label">Concept 05</p>
+        <h3>Homeostasis</h3>
+        <p>The body&rsquo;s thermostat principle. How systems detect change and pull the body back to a working set point. The single idea this whole course turns on.</p>
+      </article>
+
+      <article class="concept-card">
+        <p class="label">Concept 06</p>
+        <h3>Biomolecules in brief</h3>
+        <p>Carbohydrates, lipids, proteins, and nucleic acids. The four families of molecules every later week will keep referring back to.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- SECTION 02: THIS WEEK'S CHECKLIST -->
+  <section class="section" aria-labelledby="checklist-head">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title" id="checklist-head">Your Week at a Glance</h2>
+    </div>
+    <p class="section-lede">Four things to finish. The Rhythm Card has the day-by-day version. This is the deliverable list.</p>
+
+    <div class="checklist">
+      <div class="checklist-row">
+        <div class="checklist-num">01</div>
+        <div class="checklist-body">
+          <h4>Watch the concept videos and fill in the trainer</h4>
+          <p>Print the trainer first, then work through it as the videos play. Read OpenStax for each topic only when its trainer section asks for it.</p>
+        </div>
+        <span class="checklist-due">Due Sun</span>
+      </div>
+
+      <div class="checklist-row">
+        <div class="checklist-num">02</div>
+        <div class="checklist-body">
+          <h4>Take the weekly quiz</h4>
+          <p>Open Honorlock in Chrome. Two attempts allowed, best score kept.</p>
+        </div>
+        <span class="checklist-due">Due Sun</span>
+      </div>
+
+      <div class="checklist-row">
+        <div class="checklist-num">03</div>
+        <div class="checklist-body">
+          <h4>Complete the lab (anatomy + physiology)</h4>
+          <p>Anatomy: label body planes, cavities, and directional terms. Physiology: calculate BMI and Body Surface Area.</p>
+        </div>
+        <span class="checklist-due">Due Sun</span>
+      </div>
+
+      <div class="checklist-row">
+        <div class="checklist-num">04</div>
+        <div class="checklist-body">
+          <h4>Discussion: first post Friday, replies Sunday</h4>
+          <p>The prompt opens Wednesday. First post by Friday so classmates have the weekend to read. Two substantive replies due Sunday.</p>
+        </div>
+        <span class="checklist-due fri">Post Fri</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 03: READINGS -->
+  <section class="section" aria-labelledby="reading-head">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title" id="reading-head">This Week&rsquo;s Reading</h2>
+    </div>
+    <p class="section-lede">Pre-read first, then read each topic only when its trainer section asks for it. Full reading map is in Module 0.</p>
+
+    <div class="reading-card">
+      <p class="label">OpenStax A&amp;P 2e</p>
+      <h3>Chapters for Week 1</h3>
+
+      <div class="reading-row">
+        <span class="reading-tier read">Read</span>
+        <span class="reading-ch">Chapter 1</span>
+        <span class="reading-detail">An Introduction to the Human Body</span>
+      </div>
+
+      <div class="reading-row">
+        <span class="reading-tier read">Read</span>
+        <span class="reading-ch">Chapter 4</span>
+        <span class="reading-detail">The Tissue Level of Organization</span>
+      </div>
+
+      <div class="reading-row">
+        <span class="reading-tier focus">Focus</span>
+        <span class="reading-ch">Chapter 2</span>
+        <span class="reading-detail">Sections 2.4 and 2.5 on biomolecules</span>
+      </div>
+
+      <div class="reading-row">
+        <span class="reading-tier focus">Focus</span>
+        <span class="reading-ch">Chapter 3</span>
+        <span class="reading-detail">Sections 3.1 and 3.2 on the cell membrane and organelles</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 04: LAB PREVIEW -->
+  <section class="section" aria-labelledby="lab-head">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title" id="lab-head">Your Lab This Week</h2>
+    </div>
+    <p class="section-lede">Two parts, one submission. Both due Sunday. Full lab opens Thursday on its own page.</p>
+
+    <aside class="lab-preview" aria-label="Week 1 lab preview">
+      <p class="label">Week 1 Lab</p>
+      <h3>Body planes &amp; the body&rsquo;s first numbers</h3>
+      <p>The first lab gets you fluent in the language of anatomy and the basic measure-calculate-interpret pattern every later week will use. Both calculators here (BMI and BSA) are tools you will see in real clinical contexts.</p>
+
+      <div class="lab-parts">
+        <div class="lab-part">
+          <p class="pt">Part A</p>
+          <h4>Anatomy lab</h4>
+          <p>Label body planes, cavities, and directional terms on figures from OpenStax Chapter 1.</p>
+        </div>
+        <div class="lab-part">
+          <p class="pt">Part B</p>
+          <h4>Physiology lab</h4>
+          <p>Calculate BMI and Body Surface Area (Mosteller formula) for sample patient profiles. Interpret what the numbers mean.</p>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>BIOL 304 &middot; American River College &middot; Summer 2026</span>
+    <span class="version">Week 1 Overview v1</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var FRAME_ID = 'biol304_week1_overview_v1';
+  function sendHeight() {
+    var h = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(sendHeight);
+  }
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(sendHeight).observe(document.body);
+  }
+  setTimeout(sendHeight, 100);
+  setTimeout(sendHeight, 500);
+  setTimeout(sendHeight, 1500);
+})();
+</script>
+</body>
+</html>

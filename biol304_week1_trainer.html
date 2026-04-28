@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trainer · Week 1 · BIOL 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F2E8D5;
+    --sand-cream: #FEF9EC;
+    --ocean-deep: #1E3D4C;
+    --ocean-mid: #335E6E;
+    --sea-glass: #8FB8BF;
+    --sea-glass-mist: #DCE8EB;
+    --terra: #A0402A;
+    --ink: #15262F;
+
+    --border: 1px solid var(--sea-glass);
+    --border-strong: 1.5px solid var(--ocean-mid);
+
+    --shadow-sm: 0 2px 6px rgba(30, 61, 76, 0.06), 0 1px 2px rgba(30, 61, 76, 0.04);
+    --shadow-md: 0 4px 12px rgba(30, 61, 76, 0.08), 0 2px 4px rgba(30, 61, 76, 0.05);
+
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --serif: 'Lora', Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FAFAF7;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 36px 56px;
+  }
+
+  a { color: var(--terra); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover { color: var(--ocean-deep); }
+
+  /* === Cover === */
+  .cover {
+    background: #FFFFFF;
+    border: var(--border);
+    border-radius: 4px;
+    padding: 36px 40px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 32px;
+  }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 10px;
+  }
+  .cover h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(28px, 4vw, 36px);
+    line-height: 1.15;
+    color: var(--ocean-deep);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .cover .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ocean-mid);
+    margin: 0 0 20px;
+  }
+  .cover-fields {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0 0;
+    padding-top: 18px;
+    border-top: var(--border);
+  }
+  .cover-field {
+    font-size: 12px;
+  }
+  .cover-field .label {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 4px;
+  }
+  .cover-field .line {
+    border-bottom: 1.5px solid var(--ocean-deep);
+    height: 22px;
+  }
+
+  /* === How-to-use === */
+  .howto {
+    background: var(--sand-cream);
+    border: var(--border);
+    border-left: 3px solid var(--ocean-mid);
+    border-radius: 4px;
+    padding: 22px 26px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 32px;
+  }
+  .howto h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--ocean-deep);
+    margin: 0 0 10px;
+  }
+  .howto p {
+    font-size: 14px;
+    margin: 0 0 8px;
+    max-width: 70ch;
+  }
+  .howto p:last-child { margin-bottom: 0; }
+  .howto ol {
+    margin: 8px 0;
+    padding-left: 22px;
+  }
+  .howto li {
+    font-size: 14px;
+    margin: 4px 0;
+  }
+
+  /* === Trainer section card === */
+  .trainer-section {
+    background: #FFFFFF;
+    border: var(--border);
+    border-radius: 4px;
+    padding: 32px 36px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 28px;
+    page-break-inside: avoid;
+  }
+  .section-tag {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: var(--ocean-deep);
+    border-radius: 2px;
+    padding: 4px 10px;
+    margin-bottom: 12px;
+  }
+  .trainer-section h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 26px;
+    color: var(--ocean-deep);
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .trainer-section .reading-cue {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--terra);
+    margin: 0 0 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--sea-glass);
+  }
+
+  /* === Prompt blocks === */
+  .prompt {
+    margin: 18px 0;
+  }
+  .prompt-q {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ocean-deep);
+    margin: 0 0 8px;
+  }
+  .prompt-q .num {
+    font-family: var(--serif);
+    color: var(--terra);
+    font-weight: 500;
+    margin-right: 6px;
+  }
+  .prompt-help {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ocean-mid);
+    margin: 0 0 10px;
+  }
+  .lines {
+    margin: 8px 0 14px;
+  }
+  .lines .line {
+    border-bottom: 1px solid var(--sea-glass);
+    height: 28px;
+  }
+  .lines.short .line { height: 24px; }
+  .lines.tall .line { height: 32px; }
+
+  /* === Diagram box === */
+  .diagram-box {
+    background: var(--sand-cream);
+    border: 1px dashed var(--ocean-mid);
+    border-radius: 3px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+  }
+  .diagram-box .head {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 4px;
+  }
+  .diagram-box .what {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--ocean-mid);
+    margin: 0;
+  }
+
+  /* === Draw-prompt: instructions + canvas + checklist === */
+  .draw-prompt {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 16px;
+    margin: 14px 0 18px;
+  }
+  .draw-canvas {
+    background: #FFFFFF;
+    border: 1.5px dashed var(--ocean-mid);
+    border-radius: 3px;
+    min-height: 320px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    overflow: hidden;
+  }
+  .draw-instructions {
+    padding: 14px 16px;
+    background: var(--sand-cream);
+    border-right: 1px dashed var(--ocean-mid);
+    display: flex;
+    flex-direction: column;
+  }
+  .draw-instructions .head {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 6px;
+  }
+  .draw-instructions .what {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 12.5px;
+    color: var(--ocean-mid);
+    margin: 0 0 8px;
+    line-height: 1.5;
+  }
+  .draw-instructions .abstract-ok {
+    font-family: var(--sans);
+    font-size: 11.5px;
+    color: var(--ocean-mid);
+    background: var(--sea-glass-mist);
+    border-left: 2px solid var(--ocean-mid);
+    padding: 6px 10px;
+    margin: 6px 0 0;
+    border-radius: 2px;
+    line-height: 1.4;
+  }
+  .draw-area {
+    background: #FFFFFF;
+    position: relative;
+  }
+  .draw-area::before {
+    content: "Draw here";
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sea-glass);
+  }
+  .draw-checklist {
+    background: var(--sand-cream);
+    border: var(--border);
+    border-left: 3px solid var(--terra);
+    border-radius: 3px;
+    padding: 14px 16px;
+  }
+  .draw-checklist .head {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 8px;
+  }
+  .draw-checklist h4 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 14.5px;
+    color: var(--ocean-deep);
+    margin: 0 0 10px;
+  }
+  .draw-checklist ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .draw-checklist li {
+    font-size: 13px;
+    color: var(--ocean-deep);
+    padding: 5px 0 5px 24px;
+    position: relative;
+    line-height: 1.45;
+    border-bottom: 1px dashed var(--sea-glass);
+  }
+  .draw-checklist li:last-child { border-bottom: none; }
+  .draw-checklist li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid var(--ocean-deep);
+    border-radius: 2px;
+    background: #FFFFFF;
+  }
+
+  /* === Match-the-pair === */
+  .match {
+    margin: 16px 0;
+  }
+  .match-row {
+    display: grid;
+    grid-template-columns: 220px 30px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--sea-glass);
+  }
+  .match-row:last-child { border-bottom: none; }
+  .match-term {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ocean-deep);
+  }
+  .match-arrow {
+    font-family: var(--serif);
+    color: var(--terra);
+    text-align: center;
+    font-size: 16px;
+  }
+  .match-blank {
+    border-bottom: 1.5px solid var(--ocean-deep);
+    height: 22px;
+  }
+
+  /* === Quick-table === */
+  .qtable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    border: 1px solid var(--ocean-mid);
+  }
+  .qtable th {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: var(--ocean-deep);
+    padding: 10px 12px;
+    text-align: left;
+    border: 1px solid var(--ocean-mid);
+  }
+  .qtable td {
+    padding: 12px;
+    border: 1px solid var(--ocean-mid);
+    vertical-align: top;
+    height: 50px;
+  }
+  .qtable td:first-child {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--ocean-deep);
+    background: var(--sea-glass-mist);
+    width: 32%;
+  }
+
+  /* === Submission card === */
+  .submit-card {
+    background: linear-gradient(180deg, var(--sand-cream) 0%, #FFFFFF 100%);
+    border: var(--border);
+    border-left: 3px solid var(--terra);
+    border-radius: 4px;
+    padding: 22px 26px;
+    box-shadow: var(--shadow-md);
+    margin-top: 32px;
+  }
+  .submit-card h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--terra);
+    margin: 0 0 10px;
+  }
+  .submit-card p {
+    font-size: 14px;
+    margin: 0 0 8px;
+    max-width: 70ch;
+  }
+  .submit-card p:last-child { margin-bottom: 0; }
+  .submit-card .submit-section-head {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ocean-deep);
+    margin: 18px 0 8px;
+  }
+  .submit-card ol.submit-steps {
+    margin: 6px 0 14px;
+    padding-left: 20px;
+    counter-reset: substep;
+  }
+  .submit-card ol.submit-steps li {
+    font-size: 13.5px;
+    margin: 6px 0;
+    line-height: 1.55;
+    padding-left: 4px;
+  }
+  .submit-card code {
+    font-family: 'Plus Jakarta Sans', monospace;
+    background: var(--sea-glass-mist);
+    border: 1px solid var(--sea-glass);
+    border-radius: 2px;
+    padding: 1px 6px;
+    font-size: 12.5px;
+    color: var(--ocean-deep);
+    font-weight: 600;
+  }
+  .submit-card .submit-warning {
+    background: #FFFFFF;
+    border: var(--border);
+    border-left: 3px solid var(--terra);
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin: 14px 0;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  .submit-card .submit-warning strong {
+    color: var(--terra);
+  }
+
+  /* === Footer === */
+  .footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--ocean-mid);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer .version { font-family: var(--sans); letter-spacing: 0.06em; }
+
+  /* === Responsive === */
+  @media (max-width: 720px) {
+    .page { padding: 28px 18px 40px; }
+    .cover-fields { grid-template-columns: 1fr; }
+    .match-row { grid-template-columns: 1fr; gap: 4px; }
+    .match-arrow { display: none; }
+    .qtable { font-size: 13px; }
+    .qtable td:first-child { width: 40%; }
+    .draw-prompt { grid-template-columns: 1fr; }
+    .draw-canvas { grid-template-columns: 1fr; min-height: 260px; }
+    .draw-instructions { border-right: none; border-bottom: 1px dashed var(--ocean-mid); }
+    .draw-area { min-height: 200px; }
+  }
+
+  /* === Print === */
+  @media print {
+    @page { margin: 0.5in; }
+    html, body { background: #FFFFFF; color: #000000; font-size: 11pt; }
+    .page { max-width: none; padding: 0; }
+    .cover, .howto, .trainer-section, .submit-card { box-shadow: none !important; page-break-inside: avoid; }
+    .draw-prompt { page-break-inside: avoid; }
+    .cover, .howto, .trainer-section, .submit-card, .footer,
+    .qtable, .qtable th, .qtable td, .diagram-box,
+    .draw-canvas, .draw-instructions, .draw-area, .draw-checklist { border-color: #000000 !important; }
+    .qtable th { background: #FFFFFF !important; color: #000000 !important; }
+    .qtable td:first-child { background: #FFFFFF !important; }
+    .howto, .submit-card, .diagram-box, .draw-canvas, .draw-instructions,
+    .draw-area, .draw-checklist { background: #FFFFFF !important; }
+    .draw-instructions .abstract-ok { background: #FFFFFF !important; border-color: #000000 !important; color: #333333 !important; }
+    .draw-instructions { border-right: 1px dashed #000000 !important; }
+    .draw-area::before { color: #999999 !important; }
+    .draw-checklist li::before { border-color: #000000 !important; background: #FFFFFF !important; }
+    .section-tag { background: #FFFFFF !important; color: #000000 !important; border: 1px solid #000000 !important; }
+    .lines .line, .match-blank, .cover-field .line { border-color: #000000 !important; }
+    a { color: #000000 !important; }
+    .eyebrow, .section-tag, .prompt-q .num, .submit-card h3,
+    .diagram-box .head, .draw-instructions .head, .draw-checklist .head,
+    .cover-field .label, .trainer-section .reading-cue {
+      color: #000000 !important;
+    }
+    .cover h1, .trainer-section h2, .howto h2, .prompt-q,
+    .match-term, .qtable td:first-child, .draw-checklist h4,
+    .draw-checklist li { color: #000000 !important; }
+    .cover .subtitle, .howto p, .howto li, .prompt-help, .submit-card p,
+    .submit-card .submit-steps li,
+    .diagram-box .what, .draw-instructions .what, .footer { color: #333333 !important; }
+    .submit-card .submit-section-head { color: #000000 !important; }
+    .submit-card .submit-warning { background: #FFFFFF !important; border-color: #000000 !important; }
+    .submit-card .submit-warning strong { color: #000000 !important; }
+    .submit-card code { background: #FFFFFF !important; border-color: #000000 !important; color: #000000 !important; }
+    .trainer-section { page-break-after: auto; }
+    .trainer-section + .trainer-section { page-break-before: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- COVER -->
+  <header class="cover">
+    <p class="eyebrow">Cognitive Trainer &middot; Week 01</p>
+    <h1>Body Basics, Cells &amp; Tissues</h1>
+    <p class="subtitle">Print this. Fill it in by hand as you work through the videos and readings. Photograph each page and upload by Sunday.</p>
+
+    <div class="cover-fields">
+      <div class="cover-field">
+        <p class="label">Name</p>
+        <div class="line"></div>
+      </div>
+      <div class="cover-field">
+        <p class="label">Date started</p>
+        <div class="line"></div>
+      </div>
+      <div class="cover-field">
+        <p class="label">Date finished</p>
+        <div class="line"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HOW TO USE -->
+  <aside class="howto" aria-label="How to use this trainer">
+    <h2>How to use this trainer</h2>
+    <p>This trainer is your live note-taking tool. It is not a worksheet to power through. The point is to slow down and put concepts in your own handwriting.</p>
+    <ol>
+      <li><strong>Print it on paper</strong> at the start of the week, OR <strong>download it as a PDF</strong> and write on it with a tablet stylus. Either is fine.</li>
+      <li><strong>Skim the OpenStax chapters</strong> first (5 minutes, just headings and figures).</li>
+      <li><strong>Watch the concept videos</strong> for context.</li>
+      <li><strong>Read each topic only when its trainer section asks for it.</strong> Then fill in that section.</li>
+      <li><strong>Photograph each page, combine into ONE PDF in page order, and upload that single PDF</strong> to the Week 1 Trainer assignment in Canvas by Sunday. See the submission instructions at the end of this trainer for how.</li>
+    </ol>
+    <p><strong>Handwriting only.</strong> No typed text, no handwriting fonts, no screenshots of typed responses. The act of writing it by hand is the learning. I check for this. Typed or font-generated submissions earn a zero.</p>
+  </aside>
+
+  <!-- SECTION 1: LEVELS OF ORGANIZATION -->
+  <section class="trainer-section" aria-labelledby="s1-head">
+    <span class="section-tag">Section 01</span>
+    <h2 id="s1-head">Levels of Organization</h2>
+    <p class="reading-cue">Read OpenStax Chapter 1, Section 1.2 before completing this section.</p>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">01</span> List the six levels of organization, smallest to largest. Give one example for each.</p>
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">02</span> In your own words, what is the difference between an organ and an organ system?</p>
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">03</span> Pick one organ system. Describe it at three different levels of organization (cell, tissue, organ).</p>
+      <p class="prompt-help">Example for the cardiovascular system: cardiac muscle cell, cardiac muscle tissue, the heart.</p>
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: ANATOMICAL TERMINOLOGY -->
+  <section class="trainer-section" aria-labelledby="s2-head">
+    <span class="section-tag">Section 02</span>
+    <h2 id="s2-head">Anatomical Terminology</h2>
+    <p class="reading-cue">Read OpenStax Chapter 1, Section 1.6 before completing this section.</p>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">01</span> Match each directional term to its meaning.</p>
+      <div class="match">
+        <div class="match-row"><span class="match-term">Superior</span><span class="match-arrow">&rarr;</span><span class="match-blank"></span></div>
+        <div class="match-row"><span class="match-term">Inferior</span><span class="match-arrow">&rarr;</span><span class="match-blank"></span></div>
+        <div class="match-row"><span class="match-term">Anterior (ventral)</span><span class="match-arrow">&rarr;</span><span class="match-blank"></span></div>
+        <div class="match-row"><span class="match-term">Posterior (dorsal)</span><span class="match-arrow">&rarr;</span><span class="match-blank"></span></div>
+        <div class="match-row"><span class="match-term">Medial</span><span class="match-arrow">&rarr;</span><span class="match-blank"></span></div>
+        <div class="match-row"><span class="match-term">Lateral</span><span class="match-arrow">&rarr;</span><span class="match-blank"></span></div>
+        <div class="match-row"><span class="match-term">Proximal</span><span class="match-arrow">&rarr;</span><span class="match-blank"></span></div>
+        <div class="match-row"><span class="match-term">Distal</span><span class="match-arrow">&rarr;</span><span class="match-blank"></span></div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">02</span> Name the three body planes and what they divide the body into.</p>
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">03</span> List the major body cavities. For each, name one organ it contains.</p>
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: BODY MAPPING (drawings) -->
+  <section class="trainer-section" aria-labelledby="s3-head">
+    <span class="section-tag">Section 03</span>
+    <h2 id="s3-head">Body Mapping</h2>
+    <p class="reading-cue">Use OpenStax Chapter 1 figures as your reference. You do not need to read more before this section.</p>
+
+    <p class="prompt-help">Drawing is part of how you learn this. The pictures do not need to be beautiful. Stick figures, blocks, ovals, squares, all fine. The labels are what get you the credit. Use the checklist beside each drawing to be sure you included everything.</p>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">01</span> Draw the three body planes.</p>
+      <div class="draw-prompt">
+        <div class="draw-canvas">
+          <div class="draw-instructions">
+            <p class="head">Drawing space</p>
+            <p class="what">Sketch a simple figure (a stick person or a block body) and draw the three planes slicing through it. Label each plane and what it divides.</p>
+            <p class="abstract-ok">Abstract is fine: three squares with a plane cutting each one differently is enough.</p>
+          </div>
+          <div class="draw-area"></div>
+        </div>
+        <aside class="draw-checklist">
+          <p class="head">Self-check</p>
+          <h4>Make sure you drew &amp; labeled:</h4>
+          <ul>
+            <li>Sagittal plane</li>
+            <li>Frontal (coronal) plane</li>
+            <li>Transverse plane</li>
+            <li>An arrow showing what each plane divides</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">02</span> Draw the major body cavities.</p>
+      <div class="draw-prompt">
+        <div class="draw-canvas">
+          <div class="draw-instructions">
+            <p class="head">Drawing space</p>
+            <p class="what">Sketch the body in side view. Outline the major cavities and label each one. Add at least one organ inside each cavity to show you know what is in there.</p>
+            <p class="abstract-ok">Abstract is fine: a vertical body outline with bubbles for each cavity, labels, and an organ name in each bubble.</p>
+          </div>
+          <div class="draw-area"></div>
+        </div>
+        <aside class="draw-checklist">
+          <p class="head">Self-check</p>
+          <h4>Make sure you drew &amp; labeled:</h4>
+          <ul>
+            <li>Cranial cavity</li>
+            <li>Vertebral (spinal) cavity</li>
+            <li>Thoracic cavity</li>
+            <li>Abdominal cavity</li>
+            <li>Pelvic cavity</li>
+            <li>One organ in each</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">03</span> Draw the four abdominal quadrants.</p>
+      <div class="draw-prompt">
+        <div class="draw-canvas">
+          <div class="draw-instructions">
+            <p class="head">Drawing space</p>
+            <p class="what">Draw the abdomen as a square or oval. Divide it into four quadrants. Label each quadrant and name one organ found in each.</p>
+            <p class="abstract-ok">A square with a cross dividing it into four labeled boxes is exactly the right level of detail.</p>
+          </div>
+          <div class="draw-area"></div>
+        </div>
+        <aside class="draw-checklist">
+          <p class="head">Self-check</p>
+          <h4>Make sure you drew &amp; labeled:</h4>
+          <ul>
+            <li>Right Upper Quadrant (RUQ)</li>
+            <li>Left Upper Quadrant (LUQ)</li>
+            <li>Right Lower Quadrant (RLQ)</li>
+            <li>Left Lower Quadrant (LLQ)</li>
+            <li>One organ per quadrant</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">04</span> Draw and label the major body regions.</p>
+      <div class="draw-prompt">
+        <div class="draw-canvas">
+          <div class="draw-instructions">
+            <p class="head">Drawing space</p>
+            <p class="what">Draw a stick figure with simple boxes for the body parts (head, torso, limbs). Label each region listed in the checklist. These are the named regions clinicians use to communicate where on the body something is.</p>
+            <p class="abstract-ok">Stick figure with boxes and arrows pointing to each labeled region is the assignment. Anatomical art skill not required.</p>
+          </div>
+          <div class="draw-area"></div>
+        </div>
+        <aside class="draw-checklist">
+          <p class="head">Self-check</p>
+          <h4>Make sure you labeled:</h4>
+          <ul>
+            <li>Cephalic (head)</li>
+            <li>Cervical (neck)</li>
+            <li>Thoracic (chest)</li>
+            <li>Abdominal</li>
+            <li>Pelvic</li>
+            <li>Brachial (upper arm)</li>
+            <li>Antebrachial (forearm)</li>
+            <li>Femoral (thigh)</li>
+            <li>Crural (leg)</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: CELLS, ORGANELLES, BIOMOLECULES -->
+  <section class="trainer-section" aria-labelledby="s4-head">
+    <span class="section-tag">Section 04</span>
+    <h2 id="s4-head">Cells, Organelles &amp; Biomolecules</h2>
+    <p class="reading-cue">Read OpenStax Chapter 2, Sections 2.4 and 2.5, then Chapter 3, Sections 3.1 and 3.2.</p>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">01</span> Complete the table. For each biomolecule, give one example and one job in the body.</p>
+      <table class="qtable">
+        <thead>
+          <tr>
+            <th>Biomolecule</th>
+            <th>Example</th>
+            <th>One job in the body</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Carbohydrate</td><td></td><td></td></tr>
+          <tr><td>Lipid</td><td></td><td></td></tr>
+          <tr><td>Protein</td><td></td><td></td></tr>
+          <tr><td>Nucleic acid</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">02</span> Complete the table. For each organelle, what is it and what does it do?</p>
+      <table class="qtable">
+        <thead>
+          <tr>
+            <th>Organelle</th>
+            <th>What it is</th>
+            <th>What it does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Nucleus</td><td></td><td></td></tr>
+          <tr><td>Mitochondrion</td><td></td><td></td></tr>
+          <tr><td>Ribosome</td><td></td><td></td></tr>
+          <tr><td>Endoplasmic reticulum</td><td></td><td></td></tr>
+          <tr><td>Golgi apparatus</td><td></td><td></td></tr>
+          <tr><td>Lysosome</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">03</span> Draw a cell and label its parts.</p>
+      <div class="draw-prompt">
+        <div class="draw-canvas">
+          <div class="draw-instructions">
+            <p class="head">Drawing space</p>
+            <p class="what">A blob with labeled parts. Show the cell membrane and the six organelles from question 2.</p>
+            <p class="abstract-ok">No anatomical accuracy needed: an oval with smaller shapes inside, each labeled, is the assignment.</p>
+          </div>
+          <div class="draw-area"></div>
+        </div>
+        <aside class="draw-checklist">
+          <p class="head">Self-check</p>
+          <h4>Make sure you labeled:</h4>
+          <ul>
+            <li>Cell membrane</li>
+            <li>Nucleus</li>
+            <li>Mitochondrion</li>
+            <li>Ribosome</li>
+            <li>Endoplasmic reticulum</li>
+            <li>Golgi apparatus</li>
+            <li>Lysosome</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">04</span> Why does the cell membrane control what comes in and out? Answer in one or two sentences.</p>
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: THE FOUR TISSUE TYPES -->
+  <section class="trainer-section" aria-labelledby="s5-head">
+    <span class="section-tag">Section 05</span>
+    <h2 id="s5-head">The Four Tissue Types</h2>
+    <p class="reading-cue">Read OpenStax Chapter 4 in full before completing this section.</p>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">01</span> Complete the table. For each tissue type, give one location in the body and one function.</p>
+      <table class="qtable">
+        <thead>
+          <tr>
+            <th>Tissue type</th>
+            <th>One location in the body</th>
+            <th>One function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Epithelial</td><td></td><td></td></tr>
+          <tr><td>Connective</td><td></td><td></td></tr>
+          <tr><td>Muscle</td><td></td><td></td></tr>
+          <tr><td>Nervous</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">02</span> Connective tissue is the most diverse category. Name three different kinds of connective tissue.</p>
+      <div class="lines short">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">03</span> Name the three types of muscle tissue. For each, name one place it is found.</p>
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">04</span> Pick one organ in your body. List the four tissue types and which one(s) you would expect to find in that organ.</p>
+      <p class="prompt-help">Example: the stomach has epithelial (lining), connective (vessels and structure), muscle (churning), and nervous (signaling). All four.</p>
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: HOMEOSTASIS -->
+  <section class="trainer-section" aria-labelledby="s6-head">
+    <span class="section-tag">Section 06</span>
+    <h2 id="s6-head">Homeostasis</h2>
+    <p class="reading-cue">Read OpenStax Chapter 1, Section 1.5 before completing this section.</p>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">01</span> Define homeostasis in your own words.</p>
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">02</span> Name the three components of a homeostatic feedback loop.</p>
+      <div class="lines short">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">03</span> Draw the general homeostatic feedback loop.</p>
+      <div class="draw-prompt">
+        <div class="draw-canvas">
+          <div class="draw-instructions">
+            <p class="head">Drawing space</p>
+            <p class="what">Draw the loop showing how the body senses change and pulls back to a set point. Use boxes and arrows. Label the receptor, the control center, the effector, and the direction of the response.</p>
+            <p class="abstract-ok">Boxes connected by arrows is exactly what this should look like. No artistic skill required.</p>
+          </div>
+          <div class="draw-area"></div>
+        </div>
+        <aside class="draw-checklist">
+          <p class="head">Self-check</p>
+          <h4>Make sure you drew &amp; labeled:</h4>
+          <ul>
+            <li>Stimulus (the change)</li>
+            <li>Receptor (sensor)</li>
+            <li>Control center (integrator)</li>
+            <li>Effector (responder)</li>
+            <li>Set point or response arrow</li>
+            <li>Arrows showing the direction of the loop</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">04</span> Pick one example of homeostasis and walk through the three components for that example.</p>
+      <p class="prompt-help">Body temperature, blood glucose, and blood pressure are good examples. What is the receptor? The control center? The effector?</p>
+      <div class="lines tall">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">05</span> What is the difference between negative feedback and positive feedback? Give one example of each.</p>
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <p class="prompt-q"><span class="num">06</span> Why does homeostasis matter for someone in healthcare or a related field?</p>
+      <p class="prompt-help">One or two sentences. This is your hook. Every system in this course is a homeostasis story.</p>
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBMISSION -->
+  <aside class="submit-card" aria-label="How to submit">
+    <h3>How to submit (read carefully)</h3>
+    <p>You will submit <strong>one PDF</strong> with all your trainer pages combined in order. Not separate photos. Not multiple uploads. <strong>One PDF.</strong></p>
+
+    <p class="submit-section-head">Steps</p>
+    <ol class="submit-steps">
+      <li>Photograph each completed page with your phone, in good light, with the page flat. Make sure your handwriting is legible in the photo.</li>
+      <li>Combine the photos into a <strong>single PDF in page order</strong> (cover page first, then Section 01, Section 02, and so on).</li>
+      <li>Name the file <code>LastName_FirstName_Week1_Trainer.pdf</code> (for example: <code>Garcia_Maria_Week1_Trainer.pdf</code>).</li>
+      <li>Upload that one PDF to the Week 1 Trainer assignment in Canvas by Sunday end of day.</li>
+    </ol>
+
+    <p class="submit-section-head">If you do not know how to combine photos into a PDF</p>
+    <p>This is a skill worth learning. It will save you time in every future class and most workplaces. The simplest way:</p>
+    <ol class="submit-steps">
+      <li>Open <strong>Microsoft PowerPoint</strong> (free for students through Los Rios).</li>
+      <li>Insert your photos onto blank slides, one photo per slide, in page order.</li>
+      <li>Use <strong>File &rarr; Save As &rarr; PDF</strong>. PowerPoint converts the whole deck into a single PDF.</li>
+    </ol>
+    <p>Other options that work: Adobe Scan (free phone app, photographs and combines in one step), Google Drive (upload photos, then download as PDF), Apple Notes (scan documents on iPhone, share as PDF), or any free image-to-PDF tool online.</p>
+
+    <p class="submit-warning"><strong>Points deduction for separate photos.</strong> If you upload individual photos instead of one combined PDF, I will deduct points. This is not a courtesy request. I have to download and open each photo separately to grade you, and with a class full of students that adds hours every week. One PDF in page order keeps the grading manageable and your feedback faster.</p>
+
+    <p>Make sure your name is on the cover and your handwriting is legible. <strong>I am the grader.</strong> If a page is hard to read, I cannot give you credit for what you wrote.</p>
+    <p><strong>Handwriting only.</strong> Typed responses, handwriting fonts, and screenshots of typed text will earn a zero. The point of the trainer is the act of writing it. I check.</p>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>BIOL 304 &middot; Trainer &middot; Week 1</span>
+    <span class="version">v1</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var FRAME_ID = 'biol304_week1_trainer_v1';
+  function sendHeight() {
+    var h = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(sendHeight);
+  }
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(sendHeight).observe(document.body);
+  }
+  setTimeout(sendHeight, 100);
+  setTimeout(sendHeight, 500);
+  setTimeout(sendHeight, 1500);
+})();
+</script>
+</body>
+</html>
