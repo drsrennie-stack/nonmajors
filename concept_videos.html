@@ -885,6 +885,19 @@
   });
 
   updateStats();
+  // Allow ?week=N URL parameter to preselect a week
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const w = params.get('week');
+    if (w && /^[1-8]$/.test(w)) {
+      activeWeek = w;
+      document.querySelectorAll('.week-btn').forEach(b => {
+        const isMatch = b.dataset.week === w;
+        b.classList.toggle('active', isMatch);
+        b.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+      });
+    }
+  })();
   renderLectures();
 
   // Iframe height-sender for Kajabi embedding
