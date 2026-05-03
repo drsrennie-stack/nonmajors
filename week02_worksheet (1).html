@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 2 Worksheet · Protection &amp; Support · BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557;
+    --ocean: #2a4d6e;
+    --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5;
+    --sand-soft: #faf3e8;
+    --terra: #c44536;
+    --kelp: #5a7553;
+    --paper: #fdfbf7;
+    --line: #c9d4d8;
+    --rule: #a8b5bb;
+    --muted: #5a6b73;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .skip-link {
+    position: absolute;
+    left: -10000px; top: 0;
+    background: var(--ocean-deep);
+    color: white;
+    padding: 12px 20px;
+    z-index: 1000;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 0 0 6px 0;
+  }
+  .skip-link:focus { left: 0; top: 0; }
+
+  :focus { outline: none; }
+  :focus-visible {
+    outline: 3px solid var(--terra);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    html { scroll-behavior: auto; }
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: var(--ink);
+    background: #e8e8e0;
+    line-height: 1.55;
+    font-size: 16px;
+    padding: 30px 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 8.5in;
+    margin: 0 auto;
+    background: white;
+    padding: 0.55in 0.6in;
+    box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1);
+  }
+
+  .actions {
+    max-width: 8.5in;
+    margin: 0 auto 16px;
+    padding: 0 0.6in;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .action-info { font-size: 0.84rem; color: var(--ocean-deep); flex: 1; min-width: 280px; }
+  .action-info strong { font-weight: 600; }
+  .print-btn {
+    background: var(--ocean-deep); color: white; border: none;
+    padding: 10px 20px; border-radius: 6px;
+    font-family: inherit; font-size: 0.84rem; font-weight: 600;
+    cursor: pointer; letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .print-btn:hover { background: var(--ocean); }
+
+  .masthead {
+    border-bottom: 2.5px solid var(--ocean-deep);
+    padding-bottom: 18px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .masthead::after {
+    content: '';
+    position: absolute;
+    bottom: -6px; left: 0;
+    width: 70px; height: 2px;
+    background: var(--terra);
+  }
+  .course-line {
+    font-size: 0.74rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--terra); margin-bottom: 8px;
+  }
+  .doc-title {
+    font-family: 'Lora', serif; font-weight: 500;
+    font-size: 1.85rem; color: var(--ocean-deep);
+    line-height: 1.2; margin-bottom: 8px;
+  }
+  .doc-subtitle {
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 1rem; color: var(--ocean);
+  }
+
+  .student-block {
+    display: grid;
+    grid-template-columns: 2.4fr 1fr;
+    gap: 22px;
+    margin: 18px 0 26px;
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .field { display: flex; flex-direction: column; }
+  .field-label {
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 4px;
+  }
+  .field-line {
+    display: block;
+    border-bottom: 1.5px solid var(--ink);
+    height: 30px;
+    width: 100%;
+  }
+
+  .instructions {
+    background: var(--sand-soft);
+    border-left: 3px solid var(--terra);
+    padding: 14px 18px; margin-bottom: 30px;
+    font-size: 0.92rem;
+  }
+  .instructions h2 {
+    font-family: 'Lora', serif; font-weight: 500;
+    font-size: 1.05rem; color: var(--ocean-deep);
+    margin-bottom: 8px;
+  }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+
+  .section { margin-bottom: 32px; page-break-inside: avoid; }
+  .section-head {
+    display: flex; gap: 14px; align-items: baseline;
+    margin-bottom: 10px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-num {
+    font-family: 'Lora', serif; font-style: italic;
+    font-weight: 500; font-size: 1.5rem;
+    color: var(--terra); min-width: 32px;
+  }
+  .section-titles { flex: 1; }
+  .section-eyebrow {
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 2px;
+  }
+  .section-title {
+    font-family: 'Lora', serif; font-weight: 500;
+    font-size: 1.18rem; color: var(--ocean-deep);
+  }
+  .section-anchor {
+    font-size: 0.86rem; color: var(--ocean);
+    font-style: italic; margin-top: 4px;
+  }
+
+  .task { margin-top: 16px; page-break-inside: avoid; }
+  .task-tag {
+    display: inline-block;
+    padding: 3px 10px; border-radius: 3px;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-right: 8px; vertical-align: middle;
+    color: white;
+  }
+  .tag-build { background: var(--terra); }
+  .tag-apply { background: var(--kelp); }
+  .tag-reflect { background: var(--ocean); }
+
+  .task-prompt {
+    font-size: 0.94rem; margin: 8px 0 10px;
+    color: var(--ink); display: block;
+  }
+  .task-prompt strong { color: var(--ocean-deep); }
+  .task-letter {
+    display: inline-block;
+    font-family: 'Lora', serif; font-weight: 600;
+    color: var(--terra); margin-right: 6px;
+  }
+  .task-rubric {
+    font-size: 0.8rem; color: var(--muted);
+    font-style: italic; margin-bottom: 6px;
+  }
+
+  .ruled, .grid-box {
+    width: 100%; display: block;
+    font-family: inherit; color: var(--ink);
+    resize: vertical; border-radius: 4px;
+    background-color: white;
+  }
+  .ruled {
+    border: 1.5px solid var(--ink);
+    padding: 12px 16px;
+    font-size: 1rem; line-height: 1.7em;
+    background-image: linear-gradient(transparent calc(1.7em - 1px), var(--rule) 1px);
+    background-size: 100% 1.7em;
+  }
+  .ruled.short { min-height: 6em; }
+  .ruled.medium { min-height: 9em; }
+  .ruled.long { min-height: 13em; }
+
+  .grid-box {
+    border: 1.5px solid var(--ink);
+    padding: 12px;
+    font-size: 0.95rem; line-height: 1.5;
+    background-image:
+      linear-gradient(rgba(168, 181, 187, 0.45) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(168, 181, 187, 0.45) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .grid-box.standard { min-height: 3in; }
+  .grid-box.tall { min-height: 3.6in; }
+
+  .input-helper {
+    font-size: 0.78rem; color: var(--muted);
+    margin-top: 4px; font-style: italic;
+  }
+
+  /* MATCHING TABLE for fracture types */
+  .match-table {
+    width: 100%; border-collapse: collapse;
+    margin: 10px 0; font-size: 0.9rem;
+  }
+  .match-table th {
+    text-align: left; padding: 10px 12px;
+    background: var(--ocean-deep); color: white;
+    font-weight: 600; font-size: 0.74rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .match-table td {
+    padding: 10px 12px; border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  .match-table .match-line {
+    display: inline-block;
+    width: 100%;
+    height: 22px;
+    border-bottom: 1.5px solid var(--ink);
+  }
+
+  .submission {
+    margin-top: 36px; padding: 18px 22px;
+    background: var(--sea-glass-soft);
+    border: 1.5px solid var(--ocean-deep);
+    border-radius: 6px;
+    page-break-inside: avoid;
+  }
+  .submission h2 {
+    font-family: 'Lora', serif; font-weight: 500;
+    font-size: 1.08rem; color: var(--ocean-deep);
+    margin-bottom: 10px;
+  }
+  .submission-list { list-style: none; margin-bottom: 16px; }
+  .submission-list li {
+    padding: 5px 0; font-size: 0.88rem;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .submission-list input[type="checkbox"] {
+    width: 16px; height: 16px; margin-top: 4px;
+    accent-color: var(--ocean-deep);
+    flex-shrink: 0; cursor: pointer;
+  }
+  .submission-list label { flex: 1; cursor: pointer; }
+
+  .signature-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 18px; padding-top: 14px;
+    border-top: 1px dashed var(--ocean-deep);
+    align-items: end;
+  }
+  .integrity-statement {
+    font-size: 0.78rem; color: var(--ink);
+    font-style: italic; line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+  }
+
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link { display: none !important; }
+    .section, .task, .submission { page-break-inside: avoid; }
+    .ruled, .grid-box {
+      border-color: #000; color: #000; background-color: white;
+    }
+    .submission { background: white; }
+    @page { size: letter; margin: 0.55in 0.6in; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions" role="region" aria-label="Worksheet controls">
+  <div class="action-info">
+    <strong>Print, handwrite, scan, submit.</strong> This worksheet is designed to be printed and completed by hand. Drawings need to be drawn, and that does not work digitally.
+  </div>
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this worksheet">⎙ Print Worksheet</button>
+</div>
+
+<main id="main-content" class="sheet">
+
+  <header class="masthead">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 02 · Worksheet</p>
+    <h1 class="doc-title">Protection &amp; Support</h1>
+    <p class="doc-subtitle">Companion worksheet to the Week 2 Cognitive Trainer · Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field">
+      <span class="field-label">Name</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Date</span>
+      <span class="field-line"></span>
+    </div>
+  </div>
+
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">How this worksheet works</h2>
+    <p>BIO 304 is an online course. Work through the Week 2 Cognitive Trainer first as your study tool. This worksheet is what you turn in. It captures only the drawings, predictions, and reflections.</p>
+    <p><strong>How to complete:</strong> Click the Print button above (or use your browser's Print menu) and print the worksheet. Complete every box by hand in pen or pencil. Scan or photograph the completed pages as a single PDF. Upload that PDF to the Week 2 Worksheet assignment in Canvas.</p>
+    <p><strong>Drawing tasks (four this week):</strong> skin cross-section, osteon, synovial joint, sarcomere. Label every component listed in the prompt. An unlabeled drawing is a sketch and loses points.</p>
+    <p><strong>If you cannot print:</strong> contact Dr. Rennie or DSPS for an alternative submission format.</p>
+  </section>
+
+  <!-- SECTION 01: SKIN APPLY -->
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · Integumentary System</p>
+        <h2 class="section-title" id="s1-title">Skin function and burn evaluation</h2>
+        <p class="section-anchor">Use specific layers, strata, and structures in your answers. Generic answers lose points.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient has a sunburn with redness and pain but no blistering. Classify the burn, identify which strata are damaged, and explain how new skin will regenerate.</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A patient has a burn that is red, painful, blistered, and weeping but blanches when pressed. Classify the burn and predict the healing course. Why does this burn typically heal without grafting?</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> An older adult has reduced sweat gland function. Predict the homeostatic risk on a hot summer day, name the variable that goes out of range first, and identify the feedback response that should occur.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 02: SKIN BUILD -->
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Build · Skin Cross-Section</p>
+        <h2 class="section-title" id="s2-title">Draw a labeled cross-section of skin</h2>
+        <p class="section-anchor">A drawing without labels is a sketch. Labels are required for credit.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Draw a cross-section of thin skin showing all three layers. Label all of the following: <strong>epidermis</strong> (with at least three of the four strata named), <strong>dermis</strong> (with papillary and reticular regions), <strong>hypodermis</strong>, and at least three accessory structures from this list: hair follicle, sebaceous gland, eccrine sweat gland, sensory receptor, blood vessel, arrector pili muscle.</p>
+      <p class="task-rubric">Rubric: Three layers in correct order. Three or more strata of epidermis named. Three or more accessory structures labeled in their correct layer.</p>
+      <div class="grid-box tall"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 03: BONE BUILD + APPLY -->
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Build &amp; Apply · Bone Tissue</p>
+        <h2 class="section-title" id="s3-title">The osteon and bone cell behavior</h2>
+        <p class="section-anchor">The osteon is the structural unit of compact bone. Master it now and bone remodeling, fractures, and calcium homeostasis all become easier to reason through.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Draw a single osteon in cross-section. Label all of the following: <strong>central (Haversian) canal</strong>, <strong>concentric lamellae</strong>, <strong>lacunae</strong>, <strong>canaliculi</strong>, <strong>osteocyte</strong>, and a <strong>perforating (Volkmann) canal</strong> connecting to an adjacent osteon.</p>
+      <p class="task-rubric">Rubric: All six components present and labeled. Concentric ring structure visible. Canaliculi shown connecting lacunae.</p>
+      <div class="grid-box standard"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A postmenopausal patient is diagnosed with osteoporosis (osteoclast activity exceeds osteoblast activity). Predict the consequences for bone density, the osteon structure, and fracture risk.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> Cartilage is avascular and heals slowly. Bone is highly vascular and heals relatively well. Use the structure of the osteon to explain why bone has a built-in advantage in repair.</p>
+      <div class="ruled medium"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 04: BONE FORMATION & FRACTURES -->
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · Ossification, Fractures, Calcium</p>
+        <h2 class="section-title" id="s4-title">Bone formation, repair, and calcium control</h2>
+        <p class="section-anchor">Fracture types are core content for Lab Exam 1. The calcium homeostasis cascade returns later in the semester with the parathyroid gland.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A 7-year-old fractures the radius and is healed in three weeks. A 78-year-old fractures the same bone and the cast stays on for three months. Give two anatomical or physiological reasons for the difference.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Match task. </span><span class="task-letter" aria-hidden="true">b.</span> Match each fracture type to the correct description by writing the matching letter in each row.</p>
+      <table class="match-table">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 30%;">Fracture type</th>
+            <th scope="col" style="width: 12%;">Letter</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Greenstick</td>
+            <td><span class="match-line"></span></td>
+            <td>A. Bone breaks through skin, high infection risk</td>
+          </tr>
+          <tr>
+            <td>Comminuted</td>
+            <td><span class="match-line"></span></td>
+            <td>B. Break runs perpendicular to long axis</td>
+          </tr>
+          <tr>
+            <td>Compound (open)</td>
+            <td><span class="match-line"></span></td>
+            <td>C. Bone shatters into three or more pieces</td>
+          </tr>
+          <tr>
+            <td>Spiral</td>
+            <td><span class="match-line"></span></td>
+            <td>D. Common in vertebrae of patients with osteoporosis</td>
+          </tr>
+          <tr>
+            <td>Transverse</td>
+            <td><span class="match-line"></span></td>
+            <td>E. Incomplete break, common in children</td>
+          </tr>
+          <tr>
+            <td>Compression</td>
+            <td><span class="match-line"></span></td>
+            <td>F. Caused by rotational force, twists around bone</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A patient's blood calcium falls to 7.5 mg/dL (low). Trace the hormonal cascade that should restore calcium to the normal range. Name the hormone, the gland, the target tissues, and the net effect.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 05: JOINTS BUILD + APPLY -->
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Build &amp; Apply · Joints</p>
+        <h2 class="section-title" id="s5-title">Synovial joint structure and joint classification</h2>
+        <p class="section-anchor">Most exam questions ask you to classify a joint by both structure and function, then name the synovial subtype. Practice the dual classification.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Draw a generalized synovial joint with two articulating bones. Label all of the following: <strong>articular cartilage</strong>, <strong>joint capsule</strong> (outer fibrous and inner synovial layers), <strong>synovial fluid</strong>, <strong>joint cavity</strong>, and a <strong>reinforcing ligament</strong>.</p>
+      <p class="task-rubric">Rubric: Two bones meeting clearly drawn. All five components labeled. Capsule layers distinguished.</p>
+      <div class="grid-box standard"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> Classify each of the following joints by <strong>structure</strong>, <strong>function</strong>, and (if synovial) the <strong>synovial subtype</strong>: the elbow, the cranial sutures, the pubic symphysis, and the shoulder.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A patient with rheumatoid arthritis has chronically inflamed synovial membranes. Predict three changes in joint function and explain each, using the components of a synovial joint.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 06: MUSCLE BUILD + APPLY -->
+  <section class="section" aria-labelledby="s6-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">06</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Build &amp; Apply · Muscle Tissue</p>
+        <h2 class="section-title" id="s6-title">The sarcomere and muscle type comparison</h2>
+        <p class="section-anchor">The sarcomere is the foundation of all striated muscle physiology. Get it right now and cardiac and skeletal physiology later in the semester run smoothly.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Draw a sarcomere at rest showing the full overlap pattern of thick and thin filaments. Label all of the following: <strong>Z-line</strong> (both ends), <strong>thick filament (myosin)</strong>, <strong>thin filament (actin)</strong>, <strong>A-band</strong>, <strong>I-band</strong>, <strong>H-zone</strong>, and <strong>M-line</strong>.</p>
+      <p class="task-rubric">Rubric: Z-lines define the sarcomere. Thick and thin filaments correctly placed. All four bands and lines labeled in their correct location.</p>
+      <div class="grid-box standard"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> Compare skeletal, cardiac, and smooth muscle on the following five features: control (voluntary or involuntary), striations, number of nuclei per cell, cell shape, and one anatomical location. Use a paragraph or a small table.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A neurotoxin blocks calcium release from the sarcoplasmic reticulum in a skeletal muscle. Predict what happens to the contraction. Use the sliding filament theory and the role of troponin and tropomyosin in your explanation.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> During sarcomere contraction the I-band and H-zone shorten but the A-band stays the same length. Explain why, using the sliding filament model.</p>
+      <div class="ruled medium"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 07: REFLECTION -->
+  <section class="section" aria-labelledby="s7-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">07</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Reflect · Self-Assessment</p>
+        <h2 class="section-title" id="s7-title">Reflection on Week 2</h2>
+        <p class="section-anchor">Honesty here is graded for completeness, not correctness. Use it to plan next week.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">a.</span> This was a heavy week. Of the four major topics (skin, bone, joints, muscle), which one feels strongest right now and why?</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">b.</span> Which one concept is still cloudy? Write what you would ask Dr. Rennie or a study partner if you had thirty seconds.</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">c.</span> This week's lab includes the ABCDE melanoma self-exam. Walk through ABCDE in your own words: what does each letter stand for, and what is a clinician looking for?</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit</h2>
+    <ul class="submission-list">
+      <li><input type="checkbox" id="check1"><label for="check1">All seven sections are complete. Empty boxes lose points even on the right answer.</label></li>
+      <li><input type="checkbox" id="check2"><label for="check2">Your three drawings (skin cross-section, osteon, synovial joint, sarcomere — that's actually four this week) are labeled, not just sketched.</label></li>
+      <li><input type="checkbox" id="check3"><label for="check3">The fracture matching table is complete with one letter per row.</label></li>
+      <li><input type="checkbox" id="check4"><label for="check4">Your name is on the front page.</label></li>
+      <li><input type="checkbox" id="check5"><label for="check5">You have signed the integrity statement below.</label></li>
+    </ul>
+
+    <div class="signature-row">
+      <div>
+        <p class="integrity-statement">By signing below, I confirm this worksheet represents my own thinking. I may have studied with classmates, but the writing, drawings, and calculations on this page are mine.</p>
+        <div class="field">
+          <span class="field-label">Signature (type your full name)</span>
+          <span class="field-line"></span>
+        </div>
+      </div>
+      <div class="field">
+        <span class="field-label">Date</span>
+        <span class="field-line"></span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w02-worksheet';
+    function sendHeight() {
+      const h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight
+      );
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(sendHeight).observe(document.body);
+    }
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
