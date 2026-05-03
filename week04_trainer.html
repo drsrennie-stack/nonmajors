@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 4 Cognitive Trainer · Senses &amp; Integration · BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
+    --sand: #f5e6d3; --sand-soft: #faf3e8;
+    --terra: #c44536; --terra-soft: #e8a499;
+    --kelp: #5a7553; --paper: #fdfbf7;
+    --line: #c9d4d8; --muted: #5a6b73;
+    --shadow-sm: 0 1px 2px rgba(20, 48, 75, 0.06);
+    --radius-sm: 6px; --radius-md: 12px; --radius-lg: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1180px; margin: 0 auto; padding: 0 28px 80px; }
+  header.masthead { padding: 48px 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 36px; }
+  .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
+  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; color: var(--ocean-deep); letter-spacing: -0.01em; margin-bottom: 14px; }
+  h1.title em { font-style: italic; color: var(--terra); }
+  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.12rem; color: var(--ocean); max-width: 720px; margin-bottom: 24px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: center; font-size: 0.86rem; color: var(--muted); }
+  .meta-row strong { color: var(--ink); font-weight: 600; }
+  .meta-pill { display: inline-flex; gap: 8px; align-items: center; background: var(--sea-glass-soft); padding: 6px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 500; color: var(--ocean-deep); }
+  .meta-pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--terra); }
+  .progress-rail { position: sticky; top: 0; background: var(--paper); z-index: 50; padding: 14px 28px; margin: 0 -28px 28px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 18px; }
+  .progress-label { font-size: 0.74rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); white-space: nowrap; }
+  .progress-track { flex: 1; height: 6px; background: var(--sea-glass); border-radius: 999px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 100%); width: 0%; transition: width 0.35s ease; }
+  .progress-count { font-size: 0.84rem; font-weight: 600; color: var(--ocean-deep); min-width: 50px; text-align: right; }
+  .progress-actions { display: flex; gap: 8px; }
+  .icon-btn { border: 1px solid var(--line); background: white; color: var(--ocean-deep); width: 34px; height: 34px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.15s ease; font-size: 1rem; }
+  .icon-btn:hover { background: var(--sea-glass-soft); border-color: var(--ocean); }
+  .intro { background: linear-gradient(135deg, var(--sea-glass-soft) 0%, var(--sand-soft) 100%); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px 36px; margin-bottom: 36px; position: relative; }
+  .intro::after { content: ''; position: absolute; bottom: 0; left: 36px; right: 36px; height: 3px; background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 50%, var(--kelp) 100%); border-radius: 2px; }
+  .intro h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem; color: var(--ocean-deep); margin-bottom: 14px; }
+  .intro p { color: var(--ink); margin-bottom: 12px; max-width: 780px; }
+  .intro p:last-of-type { margin-bottom: 0; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 22px; padding-top: 22px; border-top: 1px dashed var(--line); font-size: 0.84rem; }
+  .legend-item { display: inline-flex; align-items: center; gap: 8px; }
+  .legend-chip { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .chip-retrieve { background: var(--ocean-deep); color: white; }
+  .chip-build { background: var(--terra); color: white; }
+  .chip-apply { background: var(--kelp); color: white; }
+  .section { background: white; border: 1px solid var(--line); border-radius: var(--radius-lg); margin-bottom: 32px; overflow: hidden; box-shadow: var(--shadow-sm); }
+  .section-head { display: flex; gap: 22px; align-items: flex-start; padding: 28px 32px 22px; border-bottom: 1px solid var(--line); background: var(--sand-soft); cursor: pointer; user-select: none; transition: background 0.15s ease; }
+  .section-head:hover { background: var(--sand); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 2.4rem; color: var(--terra); line-height: 1; min-width: 48px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.45rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .section-anchor { font-size: 0.92rem; color: var(--ocean); max-width: 700px; }
+  .section-toggle { font-size: 1.2rem; color: var(--ocean); transition: transform 0.25s ease; margin-top: 8px; }
+  .section.collapsed .section-toggle { transform: rotate(-90deg); }
+  .section-body { padding: 26px 32px 32px; }
+  .section.collapsed .section-body { display: none; }
+  .mode-block { margin-bottom: 28px; }
+  .mode-block:last-child { margin-bottom: 0; }
+  .mode-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .mode-tag { display: inline-block; padding: 4px 11px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .mode-name { font-family: 'Lora', serif; font-style: italic; font-size: 1.05rem; color: var(--ocean-deep); }
+  .prompt-list { list-style: none; }
+  .prompt-list li { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px dashed var(--line); align-items: flex-start; }
+  .prompt-list li:last-child { border-bottom: none; }
+  .prompt-num { font-family: 'Lora', serif; font-weight: 500; font-size: 0.95rem; color: var(--terra); min-width: 22px; }
+  .prompt-text { flex: 1; }
+  .prompt-text .reveal-btn { margin-left: 8px; background: transparent; border: 1px solid var(--line); color: var(--ocean); font-size: 0.7rem; font-weight: 600; padding: 2px 9px; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.15s ease; }
+  .prompt-text .reveal-btn:hover { background: var(--ocean); color: white; }
+  .answer { display: none; margin-top: 8px; padding: 10px 14px; background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); border-radius: 4px; font-size: 0.92rem; color: var(--ocean-deep); font-family: 'Lora', serif; }
+  .answer.show { display: block; }
+  .answer strong { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; }
+  .work-box { margin-top: 14px; background: white; border: 1.5px solid var(--ink); border-radius: var(--radius-sm); padding: 18px 20px; min-height: 120px; background-image: linear-gradient(transparent calc(1.7em - 1px), var(--line) 1px); background-size: 100% 1.7em; line-height: 1.7em; }
+  .work-box.tall { min-height: 200px; }
+  .work-box.draw { background-image: linear-gradient(rgba(201, 212, 216, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(201, 212, 216, 0.4) 1px, transparent 1px); background-size: 22px 22px; line-height: normal; min-height: 240px; }
+  .work-label { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .ref-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 14px 0; }
+  .ref-table th { text-align: left; padding: 10px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .ref-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .ref-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .ref-table .blank-cell { cursor: pointer; color: var(--muted); font-style: italic; font-family: 'Lora', serif; }
+  .ref-table .blank-cell:hover { background: var(--sea-glass-soft); }
+  .ref-table .blank-cell.revealed { color: var(--ink); font-style: normal; font-family: inherit; }
+  .check-prompt { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; }
+  .check-prompt input[type="checkbox"] { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--terra); cursor: pointer; }
+  .check-prompt label { flex: 1; cursor: pointer; font-size: 0.96rem; }
+  .section-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 26px; padding-top: 20px; border-top: 1px dashed var(--line); }
+  .complete-btn { background: white; border: 2px solid var(--ocean-deep); color: var(--ocean-deep); padding: 9px 18px; border-radius: 8px; font-family: inherit; font-weight: 600; font-size: 0.86rem; cursor: pointer; letter-spacing: 0.04em; transition: all 0.18s ease; }
+  .complete-btn:hover { background: var(--ocean-deep); color: white; }
+  .complete-btn.done { background: var(--kelp); color: white; border-color: var(--kelp); }
+  .complete-btn.done::before { content: '✓ '; }
+  .closing { background: linear-gradient(150deg, var(--ocean-deep) 0%, var(--ink) 100%); color: white; border-radius: var(--radius-lg); padding: 36px 38px; margin-top: 40px; position: relative; overflow: hidden; }
+  .closing::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: radial-gradient(circle, var(--terra) 0%, transparent 70%); opacity: 0.3; }
+  .closing h3 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem; margin-bottom: 14px; position: relative; }
+  .closing p { opacity: 0.88; max-width: 700px; margin-bottom: 14px; position: relative; }
+  .closing-steps { list-style: none; counter-reset: step; margin-top: 18px; position: relative; }
+  .closing-steps li { counter-increment: step; padding: 8px 0 8px 38px; position: relative; font-size: 0.95rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .closing-steps li::before { content: counter(step); position: absolute; left: 0; top: 6px; width: 26px; height: 26px; background: var(--terra); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; }
+  .fast-callout { background: var(--terra); color: white; padding: 16px 20px; border-radius: var(--radius-md); margin: 18px 0; }
+  .fast-callout h4 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.15rem; margin-bottom: 8px; }
+  .fast-callout p { font-size: 0.92rem; line-height: 1.5; opacity: 0.96; }
+  .fast-letters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 12px; }
+  .fast-letter { background: rgba(255,255,255,0.15); padding: 10px; border-radius: 6px; }
+  .fast-letter strong { display: block; font-size: 1.4rem; font-family: 'Lora', serif; margin-bottom: 2px; }
+  .fast-letter span { font-size: 0.82rem; opacity: 0.92; }
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .progress-rail, .icon-btn, .reveal-btn, .complete-btn, .skip-link { display: none !important; }
+    .answer.show { background: white; border-color: var(--ink); }
+    .section { break-inside: avoid; box-shadow: none; border: 1.5px solid var(--ink); page-break-inside: avoid; }
+    .section.collapsed .section-body { display: block !important; }
+    .closing, .fast-callout { background: white; color: var(--ink); border: 2px solid var(--ink); }
+    @page { size: letter; margin: 0.55in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="page" id="main-content" role="main">
+
+  <header class="masthead">
+    <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · Week 04</p>
+    <h1 class="title">Senses &amp; <em>Integration</em></h1>
+    <p class="subtitle">Special senses, central processing, brain regions, reflex arcs, and the neurological exam. Building on Week 3's foundation.</p>
+    <div class="meta-row">
+      <span class="meta-pill">OpenStax · Ch 14.1, 14.2, 14.7 · Ch 16 (all sections)</span>
+      <span><strong>Cognitive load:</strong> 3 modes across 6 sections</span>
+      <span><strong>Estimated time:</strong> 100 to 130 minutes</span>
+      <span><strong>Author:</strong> Dr. Sharilyn Rennie</span>
+    </div>
+  </header>
+
+  <div class="progress-rail">
+    <span class="progress-label" id="progress-label">Trainer Progress</span>
+    <div class="progress-track" role="progressbar" aria-labelledby="progress-label" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount" aria-live="polite" aria-atomic="true">0 / 6</span>
+    <div class="progress-actions">
+      <button class="icon-btn" id="print-btn" type="button" aria-label="Print trainer" onclick="window.print()">⎙</button>
+      <button class="icon-btn" id="reset-btn" type="button" aria-label="Reset progress for all sections">↺</button>
+    </div>
+  </div>
+
+  <div class="intro">
+    <h2>Week 4: applying nervous system anatomy to the bedside</h2>
+    <p>Last week you learned the wiring. This week you use it. Sensory perception explains how stimuli become conscious experience. Special senses cover the eye and ear in detail. Cranial nerves connect the brain to the head and neck. The neurological exam, anchored by Chapter 16, organizes all of it into a clinical assessment.</p>
+    <p>The lab this week runs the <strong>Cincinnati Prehospital Stroke Scale (FAST)</strong>. Section 5 of this trainer is your direct prep.</p>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-chip chip-retrieve">Retrieve</span> Recall the term, structure, or fact</span>
+      <span class="legend-item"><span class="legend-chip chip-build">Build</span> Draw, label, or construct the mechanism</span>
+      <span class="legend-item"><span class="legend-chip chip-apply">Apply</span> Predict or interpret</span>
+    </div>
+  </div>
+
+  <!-- SECTION 01 -->
+  <section class="section" data-section="s1">
+    <div class="section-head" onclick="toggleSection('s1')">
+      <div class="section-num">01</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 14.1</p>
+        <h2 class="section-title">Sensory Perception</h2>
+        <p class="section-anchor">Sensation starts with a stimulus, gets transduced into electrical signals, and travels to the brain where it becomes perception. The brain interprets the signal, not the stimulus directly.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Receptors and pathways</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Distinguish general senses from special senses, and give two examples of each.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>General senses</strong> are distributed throughout the body via receptors in skin, joints, muscles, and organs. Examples: touch, pressure, pain, temperature, vibration, proprioception. <strong>Special senses</strong> are localized to specific organs in the head, each with a dedicated cranial nerve. Examples: vision (CN II), hearing and equilibrium (CN VIII), taste (CN VII, IX), smell (CN I).</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Name the five sensory receptor types classified by stimulus modality, and give one example of each.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Mechanoreceptors:</strong> respond to deformation. Example: Pacinian corpuscles for vibration, hair cells in cochlea for sound. <strong>Thermoreceptors:</strong> respond to temperature. <strong>Nociceptors:</strong> respond to tissue damage (pain), triggered by chemical, mechanical, or thermal extremes. <strong>Photoreceptors:</strong> respond to light. Rods and cones in the retina. <strong>Chemoreceptors:</strong> respond to chemicals. Taste buds, olfactory receptors, blood gas sensors in the carotid bodies.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">List the steps in a generic sensory pathway from stimulus to conscious perception.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">(1) Stimulus reaches the receptor. (2) Receptor transduces the stimulus into a graded receptor potential. (3) If threshold is reached, an action potential fires in the afferent (sensory) neuron. (4) Signal travels to the spinal cord and ascends in a sensory tract. (5) Synapses in the <strong>thalamus</strong> (relay station for almost all senses). (6) Relayed to the primary sensory cortex in the postcentral gyrus, where it becomes conscious perception. <em>Exception:</em> olfaction bypasses the thalamus and reaches the cortex directly.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Define sensory adaptation. Compare tonic and phasic receptors.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Sensory adaptation: a decrease in receptor response to a sustained stimulus. <strong>Tonic (slow-adapting) receptors</strong> keep firing as long as the stimulus is present. Examples: pain, joint position, baroreceptors. Useful when continuous information matters. <strong>Phasic (fast-adapting) receptors</strong> fire briefly at stimulus onset and then quiet. Examples: touch, smell, pressure of clothing. Useful for detecting change rather than steady state.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Sensory pathway logic</span></div>
+        <div class="work-label">a. Why does the smell of a room fade quickly when you walk in, but pain from a sprained ankle persists for days? Use phasic and tonic receptors in your answer.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient has thalamic damage. Predict the effect on conscious sensation. Which sense is spared and why?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient with peripheral neuropathy has damaged afferent neurons in the legs. Predict the effect on sensation versus motor function in the legs.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 01 of 06</span><button class="complete-btn" data-complete="s1" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 -->
+  <section class="section" data-section="s2">
+    <div class="section-head" onclick="toggleSection('s2')">
+      <div class="section-num">02</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 14 · Lab anchor</p>
+        <h2 class="section-title">Special Senses: Eye and Ear</h2>
+        <p class="section-anchor">The eye and ear dominate this week's lab. You will be expected to identify structures by name and explain their function. Both organs convert physical energy (light, sound, motion) into neural signals.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Eye and ear anatomy</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Trace the path of light through the eye from the cornea to the retina.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Light passes through: <strong>cornea</strong> (refracts light) → <strong>aqueous humor</strong> (anterior chamber) → <strong>pupil</strong> (controlled by iris) → <strong>lens</strong> (further refracts, accommodates by changing shape) → <strong>vitreous humor</strong> (posterior chamber, gel) → strikes the <strong>retina</strong>, where photoreceptors (rods and cones) transduce light. Signal travels via bipolar and ganglion cells to the <strong>optic nerve (CN II)</strong>.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Distinguish the roles of rods and cones in the retina.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Rods:</strong> high sensitivity, work in low light, do not detect color. Concentrated in peripheral retina. <strong>Cones:</strong> require bright light, detect color (three subtypes for red, green, blue). Concentrated in the <strong>fovea</strong> (sharpest vision). The optic disc contains no photoreceptors and is the physiological blind spot where the optic nerve exits.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Trace the path of sound through the ear from the auricle to the cochlea.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Sound waves enter the <strong>auricle (pinna)</strong> → travel down the <strong>external auditory canal</strong> → vibrate the <strong>tympanic membrane (eardrum)</strong>. The vibration crosses three middle ear ossicles: <strong>malleus → incus → stapes</strong>. The stapes pushes on the <strong>oval window</strong>, sending pressure waves into the fluid-filled <strong>cochlea</strong>. Hair cells in the <strong>organ of Corti</strong> transduce vibration into neural signal carried by <strong>CN VIII</strong>.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Distinguish the cochlea from the semicircular canals in the inner ear.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Cochlea:</strong> spiral-shaped, contains hair cells in the organ of Corti, transduces sound. <strong>Semicircular canals (and the vestibule):</strong> three perpendicular canals filled with fluid that move with head rotation, plus the utricle and saccule that detect linear acceleration and head position relative to gravity. Both are innervated by branches of CN VIII (vestibulocochlear nerve).</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Eye and ear structure tables</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the answer.</p>
+        <table class="ref-table">
+          <thead><tr><th scope="col">Eye structure</th><th scope="col">Function</th></tr></thead>
+          <tbody>
+            <tr><td>Cornea</td><td class="blank-cell" onclick="revealCell(this, 'Transparent front layer, primary refraction of incoming light')">click to reveal</td></tr>
+            <tr><td>Iris</td><td class="blank-cell" onclick="revealCell(this, 'Pigmented muscle that controls pupil size, regulates light entering eye')">click to reveal</td></tr>
+            <tr><td>Lens</td><td class="blank-cell" onclick="revealCell(this, 'Adjustable focus via ciliary muscle, accommodation for near and far')">click to reveal</td></tr>
+            <tr><td>Retina</td><td class="blank-cell" onclick="revealCell(this, 'Contains photoreceptors (rods, cones), transduces light to neural signal')">click to reveal</td></tr>
+            <tr><td>Fovea</td><td class="blank-cell" onclick="revealCell(this, 'Cone-rich center of retina, sharpest visual acuity')">click to reveal</td></tr>
+            <tr><td>Optic disc</td><td class="blank-cell" onclick="revealCell(this, 'Where optic nerve exits eye; physiological blind spot, no photoreceptors')">click to reveal</td></tr>
+          </tbody>
+        </table>
+        <table class="ref-table" style="margin-top: 18px;">
+          <thead><tr><th scope="col">Ear structure</th><th scope="col">Function</th></tr></thead>
+          <tbody>
+            <tr><td>Tympanic membrane</td><td class="blank-cell" onclick="revealCell(this, 'Vibrates in response to sound waves, transmits to ossicles')">click to reveal</td></tr>
+            <tr><td>Ossicles (malleus, incus, stapes)</td><td class="blank-cell" onclick="revealCell(this, 'Amplify vibration, transmit from tympanic membrane to oval window')">click to reveal</td></tr>
+            <tr><td>Cochlea</td><td class="blank-cell" onclick="revealCell(this, 'Spiral organ with hair cells, transduces vibration into neural signal')">click to reveal</td></tr>
+            <tr><td>Semicircular canals</td><td class="blank-cell" onclick="revealCell(this, 'Three perpendicular canals, detect rotational head movement')">click to reveal</td></tr>
+            <tr><td>Utricle and saccule</td><td class="blank-cell" onclick="revealCell(this, 'Detect linear acceleration and head position relative to gravity')">click to reveal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Clinical reasoning</span></div>
+        <div class="work-label">a. A patient has untreated glaucoma (chronic increased intraocular pressure). Predict which eye structure is damaged and the resulting vision change.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient has chronic ear infections that scar the tympanic membrane. Predict the effect on hearing and identify whether this is conductive or sensorineural hearing loss.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient develops vertigo (room-spinning sensation) but no hearing loss. Predict which inner ear structures are involved and explain why hearing is intact.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 02 of 06</span><button class="complete-btn" data-complete="s2" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 -->
+  <section class="section" data-section="s3">
+    <div class="section-head" onclick="toggleSection('s3')">
+      <div class="section-num">03</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 14.2</p>
+        <h2 class="section-title">Central Processing: Sensory and Motor Cortex</h2>
+        <p class="section-anchor">The brain organizes sensory and motor information topographically. Body regions with the highest sensitivity or finest motor control take up the most cortical space, regardless of their actual size.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Cortex location and the homunculus</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Locate the primary somatosensory cortex and the primary motor cortex. Which lobes are they in, and which gyri?<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Primary somatosensory cortex:</strong> postcentral gyrus, parietal lobe (just behind the central sulcus). Receives general sensory information after thalamic relay. <strong>Primary motor cortex:</strong> precentral gyrus, frontal lobe (just in front of the central sulcus). Origin of voluntary motor commands. The two strips run parallel along the central sulcus.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Define the cortical homunculus and explain why it is distorted.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">The homunculus is a distorted body map representing how much cortical area is devoted to each body region. Areas with high sensitivity or fine motor control (hands, lips, face, tongue) take up disproportionately large cortical territory. Areas with coarser sensation or movement (trunk, legs) take up small territory. The distortion reflects functional importance, not anatomical size. Each hemisphere maps the contralateral body.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Define an association area, and give one example.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">An association area integrates information beyond what the primary sensory or motor cortex does alone. Example: the <strong>visual association cortex</strong> (in the occipital and temporal lobes near primary V1) integrates color, motion, and shape into recognition of objects and faces. Damage here can produce <em>visual agnosia</em>: the patient sees light and shapes but cannot recognize a familiar face or object.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Identify Broca's area and Wernicke's area, and the deficit produced by damage to each.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Broca's area:</strong> frontal lobe (typically left hemisphere). Damage produces <em>expressive aphasia</em>: comprehension preserved but speech is halting, effortful, agrammatical. The patient knows what they want to say but cannot produce fluent speech. <strong>Wernicke's area:</strong> temporal lobe (typically left hemisphere). Damage produces <em>receptive aphasia</em>: speech is fluent but nonsensical, comprehension impaired. The patient does not realize they are not making sense.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Localize the deficit</span></div>
+        <div class="work-label">a. A stroke damages the right postcentral gyrus near the area representing the hand. Predict the deficit, the side of the body affected, and why.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Why are the hands disproportionately large on the cortical homunculus, and what does this mean clinically when a small stroke affects the hand area?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient with intact primary visual cortex but damage to the visual association cortex can see light but cannot recognize their spouse's face. Name the condition and explain the dissociation.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 03 of 06</span><button class="complete-btn" data-complete="s3" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 -->
+  <section class="section" data-section="s4">
+    <div class="section-head" onclick="toggleSection('s4')">
+      <div class="section-num">04</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 14.7</p>
+        <h2 class="section-title">The Twelve Cranial Nerves</h2>
+        <p class="section-anchor">Twelve paired cranial nerves emerge from the brain. Some are pure sensory, some pure motor, some mixed. Knowing them is the basis of the cranial nerve exam in lab.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">The twelve cranial nerves</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">List the twelve cranial nerves in order from I to XII. Use a mnemonic if it helps.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">I Olfactory, II Optic, III Oculomotor, IV Trochlear, V Trigeminal, VI Abducens, VII Facial, VIII Vestibulocochlear, IX Glossopharyngeal, X Vagus, XI Accessory, XII Hypoglossal. Common mnemonic: "On Old Olympus' Towering Tops, A Finn And German Viewed Some Hops."</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Classify each cranial nerve as Sensory, Motor, or Both. Use a mnemonic if helpful.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">"Some Say Marry Money But My Brother Says Big Brains Matter More." <strong>Sensory only:</strong> I, II, VIII. <strong>Motor only:</strong> III, IV, VI, XI, XII. <strong>Both:</strong> V, VII, IX, X.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Match the major function of CN II, V, VII, VIII, X, and XII.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>CN II Optic:</strong> vision. <strong>CN V Trigeminal:</strong> sensation from the face (three branches V1, V2, V3) and motor to muscles of mastication. <strong>CN VII Facial:</strong> motor to muscles of facial expression, taste from anterior 2/3 of tongue, parasympathetic to salivary and tear glands. <strong>CN VIII Vestibulocochlear:</strong> hearing and equilibrium. <strong>CN X Vagus:</strong> parasympathetic to most thoracic and abdominal organs, also motor to pharynx/larynx and sensory from viscera. <strong>CN XII Hypoglossal:</strong> motor to tongue muscles.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Describe one bedside test for each of the following cranial nerves: II, III, V, VII, VIII, XII.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>CN II:</strong> visual acuity (Snellen chart) and visual fields by confrontation. <strong>CN III:</strong> pupillary light reflex; check pupil size and reaction. Check extraocular movements. <strong>CN V:</strong> light touch on face (V1, V2, V3 territories); jaw clench against resistance. <strong>CN VII:</strong> ask patient to smile, raise eyebrows, puff cheeks, close eyes tightly. <strong>CN VIII:</strong> whispered voice test or finger rub at each ear. <strong>CN XII:</strong> stick out tongue and look for deviation; tongue deviates toward the side of a lower motor neuron lesion.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Cranial nerve reference table</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the answer.</p>
+        <table class="ref-table">
+          <thead><tr><th scope="col">CN</th><th scope="col">Name</th><th scope="col">Type</th><th scope="col">Primary function</th></tr></thead>
+          <tbody>
+            <tr><td>I</td><td>Olfactory</td><td class="blank-cell" onclick="revealCell(this, 'Sensory')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Smell')">click to reveal</td></tr>
+            <tr><td>II</td><td>Optic</td><td class="blank-cell" onclick="revealCell(this, 'Sensory')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Vision')">click to reveal</td></tr>
+            <tr><td>III</td><td>Oculomotor</td><td class="blank-cell" onclick="revealCell(this, 'Motor')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Most eye movements, pupil constriction, eyelid')">click to reveal</td></tr>
+            <tr><td>IV</td><td>Trochlear</td><td class="blank-cell" onclick="revealCell(this, 'Motor')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Superior oblique (eye looks down and in)')">click to reveal</td></tr>
+            <tr><td>V</td><td>Trigeminal</td><td class="blank-cell" onclick="revealCell(this, 'Both')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Facial sensation, muscles of mastication')">click to reveal</td></tr>
+            <tr><td>VI</td><td>Abducens</td><td class="blank-cell" onclick="revealCell(this, 'Motor')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Lateral rectus (eye abduction)')">click to reveal</td></tr>
+            <tr><td>VII</td><td>Facial</td><td class="blank-cell" onclick="revealCell(this, 'Both')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Facial expression, taste anterior tongue, salivation, tearing')">click to reveal</td></tr>
+            <tr><td>VIII</td><td>Vestibulocochlear</td><td class="blank-cell" onclick="revealCell(this, 'Sensory')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Hearing and equilibrium')">click to reveal</td></tr>
+            <tr><td>IX</td><td>Glossopharyngeal</td><td class="blank-cell" onclick="revealCell(this, 'Both')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Taste posterior tongue, swallowing, gag reflex')">click to reveal</td></tr>
+            <tr><td>X</td><td>Vagus</td><td class="blank-cell" onclick="revealCell(this, 'Both')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Parasympathetic to thoracic and abdominal viscera, larynx, pharynx')">click to reveal</td></tr>
+            <tr><td>XI</td><td>Accessory</td><td class="blank-cell" onclick="revealCell(this, 'Motor')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Sternocleidomastoid and trapezius (head turn, shoulder shrug)')">click to reveal</td></tr>
+            <tr><td>XII</td><td>Hypoglossal</td><td class="blank-cell" onclick="revealCell(this, 'Motor')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Tongue muscles')">click to reveal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Cranial nerve clinical scenarios</span></div>
+        <div class="work-label">a. A patient cannot raise the corner of their mouth or close their eye on the left side, with no other deficits. Identify the cranial nerve and explain whether this is most likely Bell's palsy (peripheral) or a stroke (central). Hint: Bell's palsy affects the entire side of the face; a stroke spares the forehead.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient sticks out their tongue and it deviates to the right. Which cranial nerve is affected, and on which side is the lesion? Explain why.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. After surgery near the parotid gland, a patient cannot puff out their cheeks on one side. Identify the cranial nerve at risk and predict three other deficits.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 04 of 06</span><button class="complete-btn" data-complete="s4" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 05 -->
+  <section class="section" data-section="s5">
+    <div class="section-head" onclick="toggleSection('s5')">
+      <div class="section-num">05</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax Ch 16 · FAST lab anchor</p>
+        <h2 class="section-title">The Neurological Exam &amp; FAST</h2>
+        <p class="section-anchor">Chapter 16 organizes the neurological exam into five components. The Cincinnati Prehospital Stroke Scale (FAST) is a rapid 60-second screen for stroke. Time matters because stroke treatment is time-critical.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Neuro exam structure and FAST</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Name the five components of the neurological exam.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">(1) <strong>Mental status:</strong> alertness, orientation (person, place, time), attention, memory, language. (2) <strong>Cranial nerves:</strong> systematic test of CN I to XII. (3) <strong>Motor:</strong> strength (0 to 5 scale), tone, bulk, coordination. (4) <strong>Sensory:</strong> light touch, pain, temperature, vibration, proprioception, two-point discrimination. (5) <strong>Reflexes:</strong> deep tendon reflexes graded 0 to 4+, plus pathological reflexes like Babinski.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Describe what is being assessed in mental status testing.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Level of consciousness (alert, lethargic, stuporous, comatose). Orientation to person, place, and time ("oriented x3"). Attention (e.g., counting backward by 7s, spelling "world" backward). Memory (immediate recall, short-term, remote). Language (fluency, comprehension, naming, repetition). Mental status often reveals the most about cortical function.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Define the motor strength scale 0 to 5.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>0:</strong> no muscle contraction. <strong>1:</strong> visible flicker, no movement. <strong>2:</strong> active movement with gravity eliminated. <strong>3:</strong> active movement against gravity but not against resistance. <strong>4:</strong> active movement against resistance but weaker than expected. <strong>5:</strong> normal strength.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">State what FAST stands for and the action required.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>F</strong>ace: ask the patient to smile. Look for asymmetry or droop. <strong>A</strong>rms: ask the patient to raise both arms and hold for 10 seconds. Look for drift downward on one side. <strong>S</strong>peech: ask the patient to repeat a simple phrase. Listen for slurring or wrong words. <strong>T</strong>ime: if any of the above is abnormal, call 911 immediately. Note the time symptoms started. Stroke treatment windows are measured in hours.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="fast-callout">
+        <h4>FAST: Cincinnati Prehospital Stroke Scale</h4>
+        <p>One sided weakness, facial droop, and slurred speech together suggest stroke until proven otherwise. The faster a stroke patient reaches definitive care, the more brain tissue is salvageable. "Time is brain."</p>
+        <div class="fast-letters">
+          <div class="fast-letter"><strong>F</strong><span>Face droops?</span></div>
+          <div class="fast-letter"><strong>A</strong><span>Arm drifts?</span></div>
+          <div class="fast-letter"><strong>S</strong><span>Speech off?</span></div>
+          <div class="fast-letter"><strong>T</strong><span>Time to call 911</span></div>
+        </div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Apply FAST and the neuro exam</span></div>
+        <div class="work-label">a. A 64-year-old patient develops sudden right-sided facial droop, slurred speech, and weakness in the right arm one hour ago. Apply FAST. Identify the likely affected hemisphere and explain why facial droop and arm weakness are on the same side.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Why does FAST work as a screening tool? Walk through what each letter tests anatomically.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient with a cerebellar stroke fails the finger-to-nose test (their finger overshoots). Why is finger-to-nose a sensitive test for cerebellar function, and why is FAST less likely to catch a cerebellar stroke?</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 05 of 06</span><button class="complete-btn" data-complete="s5" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 06 -->
+  <section class="section" data-section="s6">
+    <div class="section-head" onclick="toggleSection('s6')">
+      <div class="section-num">06</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Self-Assessment · Reflect</p>
+        <h2 class="section-title">Self-Check &amp; Reflection</h2>
+        <p class="section-anchor">Audit what you know before the lab. The FAST lab and cranial nerve exam draw directly from this trainer.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Confidence audit</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Check the box only if you can do the action without notes, right now.</p>
+        <div class="check-prompt"><input type="checkbox" id="cf1"><label for="cf1">I can distinguish general from special senses and give two examples of each.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf2"><label for="cf2">I can name the five sensory receptor types by stimulus modality.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf3"><label for="cf3">I can trace a generic sensory pathway from stimulus to perception, including the thalamus.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf4"><label for="cf4">I can trace the path of light through the eye and the path of sound through the ear.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf5"><label for="cf5">I can name the structures of the eye and ear and the function of each.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf6"><label for="cf6">I can locate the primary somatosensory and primary motor cortex.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf7"><label for="cf7">I can explain the cortical homunculus and why the hands are disproportionately large.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf8"><label for="cf8">I can locate Broca's and Wernicke's areas and describe the deficits from damage to each.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf9"><label for="cf9">I can list the twelve cranial nerves in order.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf10"><label for="cf10">I can classify each cranial nerve as sensory, motor, or both.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf11"><label for="cf11">I can describe a bedside test for at least six cranial nerves.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf12"><label for="cf12">I can name the five components of the neurological exam.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf13"><label for="cf13">I can apply FAST and identify a likely stroke from a clinical description.</label></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Reflection prompts</span></div>
+        <div class="work-label">a. Of the five topics this week (sensory perception, special senses, central processing, cranial nerves, neuro exam and FAST), which one feels strongest right now?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Which one is still cloudy? Write what you would ask Dr. Rennie or a study partner if you had thirty seconds.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. Lab preview: in the FAST lab you will run the Cincinnati Prehospital Stroke Scale on simulated patient presentations. Predict one type of stroke presentation that FAST would catch easily, and one that FAST might miss. Explain your reasoning anatomically.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 06 of 06</span><button class="complete-btn" data-complete="s6" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <h3>Wrapping up Week 4</h3>
+    <p>This week tied last week's nervous system anatomy to the bedside. Sensory pathways, special senses, cranial nerves, and the neurological exam are the foundation for every clinical neuro assessment you will see for the rest of the course.</p>
+    <p>To submit:</p>
+    <ol class="closing-steps">
+      <li>Make sure the progress bar above shows 6 of 6 sections complete. The trainer is your study tool, not your turn-in.</li>
+      <li>Open and print the Week 4 Worksheet (companion document). Complete every box by hand in pen or pencil.</li>
+      <li>Save your <strong>completed</strong> worksheet as a single PDF (scan it or photograph it).</li>
+      <li>Upload that PDF to the Week 4 Worksheet assignment in Canvas. You only submit the completed version, not the blank one.</li>
+    </ol>
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    document.querySelectorAll('.section').forEach((section) => {
+      const head = section.querySelector('.section-head');
+      const body = section.querySelector('.section-body');
+      const sid = section.dataset.section;
+      if (head && body && sid) {
+        body.id = sid + '-body';
+        head.setAttribute('role', 'button');
+        head.setAttribute('tabindex', '0');
+        head.setAttribute('aria-expanded', 'true');
+        head.setAttribute('aria-controls', sid + '-body');
+        const num = head.querySelector('.section-num');
+        if (num) num.setAttribute('aria-hidden', 'true');
+      }
+    });
+    document.querySelectorAll('.reveal-btn').forEach((btn, i) => {
+      const ans = btn.nextElementSibling;
+      if (ans && ans.classList.contains('answer')) {
+        const id = 'reveal-ans-' + i;
+        ans.id = id;
+        btn.setAttribute('aria-controls', id);
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('type', 'button');
+      }
+    });
+    document.querySelectorAll('.blank-cell').forEach((cell) => {
+      cell.setAttribute('role', 'button');
+      cell.setAttribute('tabindex', '0');
+      cell.setAttribute('aria-label', 'Click to reveal answer');
+    });
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) {
+        e.preventDefault();
+        e.target.click();
+      }
+    });
+  })();
+
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    const isOpen = ans.classList.toggle('show');
+    btn.textContent = isOpen ? 'Hide' : 'Show';
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+  function toggleSection(id) {
+    const section = document.querySelector(`[data-section="${id}"]`);
+    if (!section) return;
+    const collapsed = section.classList.toggle('collapsed');
+    const head = section.querySelector('.section-head');
+    if (head) head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+  }
+  function revealCell(el, answer) {
+    el.textContent = answer;
+    el.classList.add('revealed');
+    el.onclick = null;
+    el.removeAttribute('role');
+    el.removeAttribute('tabindex');
+    el.setAttribute('aria-label', answer);
+  }
+
+  const STORAGE_KEY = 'bio304_w04_trainer_progress';
+  let completed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+  function updateProgress() {
+    const total = 6;
+    const count = completed.length;
+    document.getElementById('progressFill').style.width = (count / total) * 100 + '%';
+    document.getElementById('progressCount').textContent = count + ' / ' + total;
+    const track = document.querySelector('.progress-track');
+    if (track) track.setAttribute('aria-valuenow', String(count));
+  }
+  function markComplete(btn) {
+    const id = btn.getAttribute('data-complete');
+    if (completed.includes(id)) {
+      completed = completed.filter(x => x !== id);
+      btn.classList.remove('done');
+      btn.textContent = 'Mark complete';
+    } else {
+      completed.push(id);
+      btn.classList.add('done');
+      btn.textContent = 'Complete';
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+    updateProgress();
+  }
+  completed.forEach(id => {
+    const btn = document.querySelector(`[data-complete="${id}"]`);
+    if (btn) { btn.classList.add('done'); btn.textContent = 'Complete'; }
+  });
+  updateProgress();
+  document.getElementById('reset-btn').onclick = function() {
+    if (confirm('Reset all section progress for this trainer? This will not erase what you wrote in the boxes.')) {
+      completed = [];
+      localStorage.removeItem(STORAGE_KEY);
+      document.querySelectorAll('.complete-btn').forEach(btn => {
+        btn.classList.remove('done');
+        btn.textContent = 'Mark complete';
+      });
+      updateProgress();
+    }
+  };
+
+  (function() {
+    const FRAME_ID = 'bio304-w04-trainer';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
