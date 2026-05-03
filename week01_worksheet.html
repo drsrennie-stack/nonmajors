@@ -158,16 +158,11 @@
     color: var(--muted);
     margin-bottom: 4px;
   }
-  .field-input {
-    border: none;
+  .field-line {
+    display: block;
     border-bottom: 1.5px solid var(--ink);
-    background: transparent;
-    font-family: inherit;
-    font-size: 1rem;
-    padding: 4px 6px;
-    color: var(--ink);
-    width: 100%;
     height: 30px;
+    width: 100%;
   }
 
   .instructions {
@@ -272,9 +267,9 @@
     margin-bottom: 6px;
   }
 
-  textarea.ruled,
-  textarea.grid-box,
-  textarea.calc-box {
+  .ruled,
+  .grid-box,
+  .calc-box {
     width: 100%;
     display: block;
     font-family: inherit;
@@ -283,7 +278,7 @@
     border-radius: 4px;
     background-color: white;
   }
-  textarea.ruled {
+  .ruled {
     border: 1.5px solid var(--ink);
     padding: 12px 16px;
     font-size: 1rem;
@@ -291,11 +286,11 @@
     background-image: linear-gradient(transparent calc(1.7em - 1px), var(--rule) 1px);
     background-size: 100% 1.7em;
   }
-  textarea.ruled.short { min-height: 5em; }
-  textarea.ruled.medium { min-height: 7em; }
-  textarea.ruled.long { min-height: 10em; }
+  .ruled.short { min-height: 6em; }
+  .ruled.medium { min-height: 9em; }
+  .ruled.long { min-height: 13em; }
 
-  textarea.grid-box {
+  .grid-box {
     border: 1.5px solid var(--ink);
     padding: 12px;
     font-size: 0.95rem;
@@ -305,15 +300,15 @@
       linear-gradient(90deg, rgba(168, 181, 187, 0.45) 1px, transparent 1px);
     background-size: 22px 22px;
   }
-  textarea.grid-box.standard { min-height: 3in; }
-  textarea.grid-box.tall { min-height: 3.6in; }
+  .grid-box.standard { min-height: 3in; }
+  .grid-box.tall { min-height: 3.6in; }
 
-  textarea.calc-box {
+  .calc-box {
     border: 1.5px solid var(--ink);
     padding: 14px 16px;
     font-size: 0.95rem;
     line-height: 1.6;
-    min-height: 1.6in;
+    min-height: 2in;
     background-image:
       linear-gradient(rgba(168, 181, 187, 0.45) 1px, transparent 1px),
       linear-gradient(90deg, rgba(168, 181, 187, 0.45) 1px, transparent 1px);
@@ -390,7 +385,7 @@
     .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
     .actions, .skip-link { display: none !important; }
     .section, .task, .submission { page-break-inside: avoid; }
-    textarea.ruled, textarea.grid-box, textarea.calc-box {
+    .ruled, .grid-box, .calc-box {
       border-color: #000; color: #000; background-color: white;
     }
     .submission { background: white; }
@@ -404,7 +399,7 @@
 
 <div class="actions" role="region" aria-label="Worksheet controls">
   <div class="action-info">
-    <strong>Two ways to complete:</strong> Type into the boxes below and use your browser's Print to PDF, or print the blank worksheet and complete by hand.
+    <strong>Print, handwrite, scan, submit.</strong> This worksheet is designed to be printed and completed by hand. Drawings need to be drawn, and that does not work digitally.
   </div>
   <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this worksheet">⎙ Print Worksheet</button>
 </div>
@@ -419,21 +414,21 @@
 
   <div class="student-block">
     <div class="field">
-      <label class="field-label" for="student-name">Name</label>
-      <input class="field-input" type="text" id="student-name" name="student-name" autocomplete="name">
+      <span class="field-label">Name</span>
+      <span class="field-line"></span>
     </div>
     <div class="field">
-      <label class="field-label" for="student-date">Date</label>
-      <input class="field-input" type="text" id="student-date" name="student-date" placeholder="MM/DD/YYYY">
+      <span class="field-label">Date</span>
+      <span class="field-line"></span>
     </div>
   </div>
 
   <section class="instructions" aria-labelledby="how-heading">
     <h2 id="how-heading">How this worksheet works</h2>
     <p>BIO 304 is an online course. Work through the Week 1 Cognitive Trainer first as your study tool. This worksheet is what you turn in. It captures only the drawings, predictions, calculations, and reflections.</p>
-    <p><strong>To complete digitally:</strong> Type into the labeled boxes below. When finished, use your browser's Print menu and choose "Save as PDF". Submit that single PDF to Canvas.</p>
-    <p><strong>To complete by hand:</strong> Use the Print button above to print the blank worksheet, complete it in pen or pencil, then scan or photograph the pages as a single PDF and submit to Canvas.</p>
-    <p><strong>Drawing tasks:</strong> The gridded boxes accept either drawn work (if printed) or a typed description of your diagram. If you sketch on a tablet, attach the image file to your Canvas submission alongside the PDF.</p>
+    <p><strong>How to complete:</strong> Click the Print button above (or use your browser's Print menu) and print the worksheet. Complete every box by hand in pen or pencil. Scan or photograph the completed pages as a single PDF. Upload that PDF to the Week 1 Worksheet assignment in Canvas.</p>
+    <p><strong>Drawing tasks:</strong> The gridded boxes are for hand-drawn diagrams. Label every component listed in the prompt. An unlabeled drawing is a sketch and loses points.</p>
+    <p><strong>If you cannot print:</strong> contact Dr. Rennie or DSPS for an alternative submission format.</p>
   </section>
 
   <!-- SECTION 01 -->
@@ -449,20 +444,20 @@
 
     <div class="task">
       <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
-      <label class="task-prompt" for="t1a"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> Translate this sentence using anatomical terminology: "The patient has a wound on the front of the lower leg, near the ankle."</label>
-      <textarea class="ruled short" id="t1a" name="t1a" rows="3" aria-describedby="t1a-help"></textarea>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> Translate this sentence using anatomical terminology: "The patient has a wound on the front of the lower leg, near the ankle."</p>
+      <div class="ruled short"></div>
       <p class="input-helper" id="t1a-help">Use directional terms and a regional name where possible.</p>
     </div>
     <div class="task">
       <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
-      <label class="task-prompt" for="t1b"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> Translate this sentence using anatomical terminology: "The MRI was sliced into top-down images that separate the head into upper and lower portions."</label>
-      <textarea class="ruled short" id="t1b" name="t1b" rows="3" aria-describedby="t1b-help"></textarea>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> Translate this sentence using anatomical terminology: "The MRI was sliced into top-down images that separate the head into upper and lower portions."</p>
+      <div class="ruled short"></div>
       <p class="input-helper" id="t1b-help">Identify the imaging plane.</p>
     </div>
     <div class="task">
       <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
-      <label class="task-prompt" for="t1c"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> Translate this sentence using anatomical terminology: "The tumor is located deep to the skin of the abdomen, on the right side, below the diaphragm."</label>
-      <textarea class="ruled short" id="t1c" name="t1c" rows="3" aria-describedby="t1c-help"></textarea>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> Translate this sentence using anatomical terminology: "The tumor is located deep to the skin of the abdomen, on the right side, below the diaphragm."</p>
+      <div class="ruled short"></div>
       <p class="input-helper" id="t1c-help">Use directional terms and a quadrant or region name.</p>
     </div>
   </section>
@@ -480,22 +475,22 @@
 
     <div class="task">
       <span class="task-tag tag-build" aria-hidden="true">Build</span>
-      <label class="task-prompt" for="t2-build"><span class="sr-only">Build task. </span>Draw the negative feedback loop that controls body temperature when the body is <strong>too hot</strong>. Label the receptor, control center, effector, and the response. Show the arrows that close the loop. (Type a description here, sketch on this page if printed, or attach a tablet drawing.)</label>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Draw the negative feedback loop that controls body temperature when the body is <strong>too hot</strong>. Label the receptor, control center, effector, and the response. Show the arrows that close the loop. </p>
       <p class="task-rubric">Rubric: All three components labeled. At least one effector named. Arrows form a closed loop. Set point indicated.</p>
-      <textarea class="grid-box standard" id="t2-build" name="t2-build" rows="10" aria-describedby="t2-build-help"></textarea>
+      <div class="grid-box standard"></div>
       <p class="input-helper" id="t2-build-help">If sketching by hand, leave this box for your drawing. If typing, describe your loop step by step.</p>
     </div>
 
     <div class="task">
       <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
-      <label class="task-prompt" for="t2a"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient enters the emergency department with a core temperature of 35.4°C. What feedback responses should you expect to see if their thermoregulation is intact? Address all four: sweating, shivering, skin color change, behavior.</label>
-      <textarea class="ruled long" id="t2a" name="t2a" rows="6"></textarea>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient enters the emergency department with a core temperature of 35.4°C. What feedback responses should you expect to see if their thermoregulation is intact? Address all four: sweating, shivering, skin color change, behavior.</p>
+      <div class="ruled long"></div>
     </div>
 
     <div class="task">
       <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
-      <label class="task-prompt" for="t2b"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> Childbirth uses positive feedback (oxytocin and uterine contractions). Why is positive feedback the right design choice here, even though it is unstable?</label>
-      <textarea class="ruled medium" id="t2b" name="t2b" rows="4"></textarea>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> Childbirth uses positive feedback (oxytocin and uterine contractions). Why is positive feedback the right design choice here, even though it is unstable?</p>
+      <div class="ruled medium"></div>
     </div>
   </section>
 
@@ -512,8 +507,8 @@
 
     <div class="task">
       <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
-      <label class="task-prompt" for="t3a"><span class="sr-only">Apply task. </span>A patient's blood pH falls from 7.40 to 7.20. By what factor has the [H⁺] increased? What is this acid-base disturbance called? Justify both parts of your answer with the chemistry.</label>
-      <textarea class="ruled long" id="t3a" name="t3a" rows="6"></textarea>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span>A patient's blood pH falls from 7.40 to 7.20. By what factor has the [H⁺] increased? What is this acid-base disturbance called? Justify both parts of your answer with the chemistry.</p>
+      <div class="ruled long"></div>
     </div>
   </section>
 
@@ -530,27 +525,27 @@
 
     <div class="task">
       <span class="task-tag tag-build" aria-hidden="true">Build</span>
-      <label class="task-prompt" for="t4-build"><span class="sr-only">Build task. </span>Draw a section of plasma membrane. Include and label all of the following: phospholipid bilayer, hydrophilic heads, hydrophobic tails, cholesterol, an integral protein channel, a peripheral protein, and a glycoprotein. Indicate which side is extracellular and which is intracellular. (Sketch on this page if printed, or describe the structure in detail here.)</label>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Draw a section of plasma membrane. Include and label all of the following: phospholipid bilayer, hydrophilic heads, hydrophobic tails, cholesterol, an integral protein channel, a peripheral protein, and a glycoprotein. Indicate which side is extracellular and which is intracellular.</p>
       <p class="task-rubric">Rubric: All seven components present and labeled. Bilayer orientation correct. Sides correctly identified.</p>
-      <textarea class="grid-box tall" id="t4-build" name="t4-build" rows="12"></textarea>
+      <div class="grid-box tall"></div>
     </div>
 
     <div class="task">
       <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
-      <label class="task-prompt" for="t4a"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A nurse accidentally infuses a patient with pure water IV instead of saline. Predict what happens to the patient's red blood cells. What term describes this event?</label>
-      <textarea class="ruled medium" id="t4a" name="t4a" rows="4"></textarea>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A nurse accidentally infuses a patient with pure water IV instead of saline. Predict what happens to the patient's red blood cells. What term describes this event?</p>
+      <div class="ruled medium"></div>
     </div>
 
     <div class="task">
       <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
-      <label class="task-prompt" for="t4b"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A pancreatic acinar cell secretes large amounts of digestive enzymes. Predict which organelle would be unusually abundant in this cell and explain why.</label>
-      <textarea class="ruled medium" id="t4b" name="t4b" rows="4"></textarea>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A pancreatic acinar cell secretes large amounts of digestive enzymes. Predict which organelle would be unusually abundant in this cell and explain why.</p>
+      <div class="ruled medium"></div>
     </div>
 
     <div class="task">
       <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
-      <label class="task-prompt" for="t4c"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> Mature red blood cells have no nucleus and no mitochondria. Predict <strong>two</strong> consequences of these absences for RBC physiology.</label>
-      <textarea class="ruled medium" id="t4c" name="t4c" rows="4"></textarea>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> Mature red blood cells have no nucleus and no mitochondria. Predict <strong>two</strong> consequences of these absences for RBC physiology.</p>
+      <div class="ruled medium"></div>
     </div>
   </section>
 
@@ -567,27 +562,27 @@
 
     <div class="task">
       <span class="task-tag tag-build" aria-hidden="true">Build</span>
-      <label class="task-prompt" for="t5-build"><span class="sr-only">Build task. </span>Draw a simple columnar epithelium with goblet cells. Label all of the following: apical surface, basal surface, basement membrane, nucleus, goblet cell, lumen. (Sketch on this page if printed, or describe the structure in detail here.)</label>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Draw a simple columnar epithelium with goblet cells. Label all of the following: apical surface, basal surface, basement membrane, nucleus, goblet cell, lumen.</p>
       <p class="task-rubric">Rubric: Cells columnar (taller than wide). Single layer. Goblet cell distinct. All six labels present.</p>
-      <textarea class="grid-box standard" id="t5-build" name="t5-build" rows="10"></textarea>
+      <div class="grid-box standard"></div>
     </div>
 
     <div class="task">
       <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
-      <label class="task-prompt" for="t5a"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> The lining of the small intestine is simple columnar with microvilli. Justify each design choice (why simple and not stratified? why columnar and not squamous? why microvilli?).</label>
-      <textarea class="ruled long" id="t5a" name="t5a" rows="6"></textarea>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> The lining of the small intestine is simple columnar with microvilli. Justify each design choice (why simple and not stratified? why columnar and not squamous? why microvilli?).</p>
+      <div class="ruled long"></div>
     </div>
 
     <div class="task">
       <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
-      <label class="task-prompt" for="t5b"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> The esophagus is lined with stratified squamous epithelium. The stomach is lined with simple columnar. Explain why the same digestive tract uses two different epithelia.</label>
-      <textarea class="ruled long" id="t5b" name="t5b" rows="6"></textarea>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> The esophagus is lined with stratified squamous epithelium. The stomach is lined with simple columnar. Explain why the same digestive tract uses two different epithelia.</p>
+      <div class="ruled long"></div>
     </div>
 
     <div class="task">
       <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
-      <label class="task-prompt" for="t5c"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> After a deep cut, scar tissue forms instead of original tissue. What kind of tissue is scar tissue, and why does the body default to it instead of regenerating the original?</label>
-      <textarea class="ruled medium" id="t5c" name="t5c" rows="4"></textarea>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> After a deep cut, scar tissue forms instead of original tissue. What kind of tissue is scar tissue, and why does the body default to it instead of regenerating the original?</p>
+      <div class="ruled medium"></div>
     </div>
   </section>
 
@@ -604,22 +599,22 @@
 
     <div class="task">
       <span class="task-tag tag-calc" aria-hidden="true">Calculate</span>
-      <label class="task-prompt" for="t6a"><span class="sr-only">Calculation task. </span><span class="task-letter" aria-hidden="true">a.</span> Patient: 168 cm, 72 kg. Calculate BMI to one decimal place. Show the formula and units. Classify the result.</label>
-      <textarea class="calc-box" id="t6a" name="t6a" rows="6" aria-describedby="t6a-help"></textarea>
+      <p class="task-prompt"><span class="sr-only">Calculation task. </span><span class="task-letter" aria-hidden="true">a.</span> Patient: 168 cm, 72 kg. Calculate BMI to one decimal place. Show the formula and units. Classify the result.</p>
+      <div class="calc-box"></div>
       <p class="input-helper" id="t6a-help">Show your work: formula, substituted values with units, calculation, final value, classification.</p>
     </div>
 
     <div class="task">
       <span class="task-tag tag-calc" aria-hidden="true">Calculate</span>
-      <label class="task-prompt" for="t6b"><span class="sr-only">Calculation task. </span><span class="task-letter" aria-hidden="true">b.</span> Same patient. Calculate BSA using the Mosteller formula. Show your work to two decimal places.</label>
-      <textarea class="calc-box" id="t6b" name="t6b" rows="6" aria-describedby="t6b-help"></textarea>
+      <p class="task-prompt"><span class="sr-only">Calculation task. </span><span class="task-letter" aria-hidden="true">b.</span> Same patient. Calculate BSA using the Mosteller formula. Show your work to two decimal places.</p>
+      <div class="calc-box"></div>
       <p class="input-helper" id="t6b-help">Mosteller: BSA (m²) = √(height cm × weight kg / 3600).</p>
     </div>
 
     <div class="task">
       <span class="task-tag tag-calc" aria-hidden="true">Calculate</span>
-      <label class="task-prompt" for="t6c"><span class="sr-only">Calculation task. </span><span class="task-letter" aria-hidden="true">c.</span> A chemotherapy drug is dosed at 80 mg/m². Using the BSA you calculated in part b, what dose should the patient receive? Round to the nearest milligram.</label>
-      <textarea class="calc-box" id="t6c" name="t6c" rows="6"></textarea>
+      <p class="task-prompt"><span class="sr-only">Calculation task. </span><span class="task-letter" aria-hidden="true">c.</span> A chemotherapy drug is dosed at 80 mg/m². Using the BSA you calculated in part b, what dose should the patient receive? Round to the nearest milligram.</p>
+      <div class="calc-box"></div>
     </div>
   </section>
 
@@ -636,20 +631,20 @@
 
     <div class="task">
       <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
-      <label class="task-prompt" for="t7a"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">a.</span> Which one concept from this week feels strongest right now?</label>
-      <textarea class="ruled medium" id="t7a" name="t7a" rows="4"></textarea>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">a.</span> Which one concept from this week feels strongest right now?</p>
+      <div class="ruled medium"></div>
     </div>
 
     <div class="task">
       <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
-      <label class="task-prompt" for="t7b"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">b.</span> Which one concept from this week is still cloudy? Write what you would ask Dr. Rennie or a study partner if you had thirty seconds.</label>
-      <textarea class="ruled medium" id="t7b" name="t7b" rows="4"></textarea>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">b.</span> Which one concept from this week is still cloudy? Write what you would ask Dr. Rennie or a study partner if you had thirty seconds.</p>
+      <div class="ruled medium"></div>
     </div>
 
     <div class="task">
       <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
-      <label class="task-prompt" for="t7c"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">c.</span> Looking ahead: how will what you learned this week show up in next week's content?</label>
-      <textarea class="ruled medium" id="t7c" name="t7c" rows="4"></textarea>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">c.</span> Looking ahead: how will what you learned this week show up in next week's content?</p>
+      <div class="ruled medium"></div>
     </div>
   </section>
 
@@ -667,13 +662,13 @@
       <div>
         <p class="integrity-statement">By signing below, I confirm this worksheet represents my own thinking. I may have studied with classmates, but the writing, drawings, and calculations on this page are mine.</p>
         <div class="field">
-          <label class="field-label" for="signature">Signature (type your full name)</label>
-          <input class="field-input" type="text" id="signature" name="signature" autocomplete="off">
+          <span class="field-label">Signature (type your full name)</span>
+          <span class="field-line"></span>
         </div>
       </div>
       <div class="field">
-        <label class="field-label" for="sig-date">Date</label>
-        <input class="field-input" type="text" id="sig-date" name="sig-date" placeholder="MM/DD/YYYY">
+        <span class="field-label">Date</span>
+        <span class="field-line"></span>
       </div>
     </div>
   </section>
