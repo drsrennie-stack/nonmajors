@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Course Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
+    --sand: #f5e6d3; --sand-soft: #faf3e8;
+    --terra: #c44536; --terra-soft: #e8a499;
+    --kelp: #5a7553; --kelp-soft: #aabba0;
+    --paper: #fdfbf7; --line: #c9d4d8; --muted: #5a6b73;
+    --shadow-sm: 0 1px 2px rgba(20, 48, 75, 0.06);
+    --shadow-md: 0 4px 14px rgba(20, 48, 75, 0.08);
+    --shadow-lg: 0 8px 28px rgba(20, 48, 75, 0.12);
+    --radius-sm: 6px; --radius-md: 12px; --radius-lg: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1180px; margin: 0 auto; padding: 0 28px 80px; }
+
+  /* MASTHEAD */
+  header.masthead { padding: 56px 0 28px; }
+  .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
+  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(2rem, 4.4vw, 2.8rem); line-height: 1.15; color: var(--ocean-deep); letter-spacing: -0.01em; margin-bottom: 14px; }
+  h1.title em { font-style: italic; color: var(--terra); }
+  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.12rem; color: var(--ocean); max-width: 720px; margin-bottom: 0; }
+
+  /* WEEK PICKER */
+  .week-picker { margin: 28px 0 24px; }
+  .picker-heading { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.55rem; color: var(--ocean-deep); margin-bottom: 4px; }
+  .picker-helper { font-size: 0.92rem; color: var(--muted); margin-bottom: 22px; }
+  .week-card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .week-card { background: white; border: 1px solid var(--line); border-left: 4px solid var(--ocean-deep); border-radius: var(--radius-md); padding: 24px 26px 22px; cursor: pointer; text-align: left; font-family: inherit; transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease; position: relative; min-height: 156px; display: flex; flex-direction: column; gap: 8px; }
+  .week-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-left-color: var(--terra); }
+  .week-card.active { background: var(--ocean-deep); border-color: var(--ocean-deep); border-left-color: var(--terra); box-shadow: var(--shadow-lg); }
+  .week-card.active .week-num-display { color: var(--terra-soft); }
+  .week-card.active .week-title-display { color: white; }
+  .week-card.active .week-card-cue { color: var(--terra-soft); }
+  .week-num-display { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 2.4rem; color: var(--terra); line-height: 1; }
+  .week-title-display { font-size: 0.95rem; font-weight: 600; color: var(--ocean-deep); line-height: 1.3; flex: 1; }
+  .week-card-cue { position: absolute; bottom: 16px; right: 22px; font-size: 0.84rem; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; transition: transform 0.18s ease; display: inline-flex; align-items: center; gap: 4px; }
+  .week-card:hover .week-card-cue { transform: translateX(3px); color: var(--terra); }
+  .week-card.active .week-card-cue::after { content: ' ▾'; }
+  .week-card:not(.active) .week-card-cue::after { content: ' →'; }
+
+  @media (max-width: 980px) {
+    .week-card-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .week-card-grid { grid-template-columns: 1fr; }
+    .week-card { min-height: 0; }
+  }
+
+  /* WEEK CONTENT PANEL */
+  .week-content { margin: 32px 0 0; }
+  .week-content[hidden] { display: none; }
+  .week-content-header { display: flex; gap: 18px; align-items: baseline; padding-bottom: 12px; border-bottom: 1.5px solid var(--ocean-deep); margin-bottom: 18px; }
+  .week-content-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 2.4rem; color: var(--terra); line-height: 1; min-width: 60px; }
+  .week-content-titles { flex: 1; }
+  .week-content-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .week-content-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.55rem; color: var(--ocean-deep); margin-bottom: 4px; }
+  .week-content-description { font-size: 0.96rem; color: var(--ink); margin-bottom: 12px; max-width: 820px; line-height: 1.55; }
+  .week-content-reading { font-size: 0.86rem; color: var(--muted); font-style: italic; margin-bottom: 4px; }
+
+  .lab-callout { background: var(--sand-soft); border-left: 4px solid var(--terra); padding: 16px 22px; margin: 20px 0 4px; border-radius: 0 8px 8px 0; }
+  .lab-callout-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terra); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .lab-callout-label::before { content: '▣'; font-size: 0.86rem; }
+  .lab-callout-text { font-size: 0.94rem; color: var(--ink); line-height: 1.55; }
+
+  /* RESOURCE CARDS */
+  .resource-section-heading { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin: 28px 0 14px; }
+  .resource-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .resource-card { display: block; background: white; border: 1px solid var(--line); border-top: 5px solid var(--ocean-deep); border-radius: var(--radius-md); padding: 24px 24px 20px; text-decoration: none; color: var(--ink); transition: transform 0.18s ease, box-shadow 0.18s ease; position: relative; min-height: 192px; }
+  .resource-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .resource-card.trainer { border-top-color: var(--ocean-deep); }
+  .resource-card.worksheet { border-top-color: var(--terra); }
+  .resource-card.videos { border-top-color: var(--kelp); }
+  .resource-card.discussion { border-top-color: var(--ocean); }
+  .resource-letter { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 2.2rem; line-height: 1; margin-bottom: 14px; }
+  .resource-card.trainer .resource-letter { color: var(--ocean-deep); }
+  .resource-card.worksheet .resource-letter { color: var(--terra); }
+  .resource-card.videos .resource-letter { color: var(--kelp); }
+  .resource-card.discussion .resource-letter { color: var(--ocean); }
+  .resource-name { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .resource-desc { font-size: 0.88rem; color: var(--ink); line-height: 1.55; }
+  .resource-arrow { position: absolute; bottom: 20px; right: 24px; font-size: 0.96rem; font-weight: 600; color: var(--ocean-deep); letter-spacing: 0.04em; transition: transform 0.18s ease; }
+  .resource-card:hover .resource-arrow { transform: translateX(4px); }
+  .resource-card.trainer .resource-arrow { color: var(--ocean-deep); }
+  .resource-card.worksheet .resource-arrow { color: var(--terra); }
+  .resource-card.videos .resource-arrow { color: var(--kelp); }
+  .resource-card.discussion .resource-arrow { color: var(--ocean); }
+
+  @media (max-width: 980px) {
+    .resource-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .resource-grid { grid-template-columns: 1fr; }
+    .resource-card { min-height: 0; }
+  }
+
+  /* EMPTY STATE WHEN NO WEEK SELECTED */
+  .empty-state { text-align: center; padding: 50px 28px; color: var(--muted); background: var(--sea-glass-soft); border-radius: var(--radius-md); margin-top: 32px; }
+  .empty-state h3 { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.3rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .empty-state p { font-size: 0.94rem; max-width: 480px; margin: 0 auto; line-height: 1.55; }
+
+  /* HELP FOOTER */
+  .help-footer { margin-top: 56px; padding: 26px 30px; background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ink) 100%); color: white; border-radius: var(--radius-lg); position: relative; overflow: hidden; }
+  .help-footer::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: radial-gradient(circle, var(--terra) 0%, transparent 70%); opacity: 0.25; pointer-events: none; }
+  .help-footer h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.3rem; margin-bottom: 14px; position: relative; }
+  .help-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; position: relative; }
+  .help-item h3 { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1rem; color: var(--terra-soft); margin-bottom: 6px; }
+  .help-item p { font-size: 0.88rem; opacity: 0.9; line-height: 1.55; }
+  .help-item a { color: white; text-decoration: underline; text-decoration-color: var(--terra-soft); text-underline-offset: 3px; }
+  .help-item a:hover { text-decoration-color: white; }
+
+  @media (max-width: 720px) {
+    .help-grid { grid-template-columns: 1fr; }
+  }
+
+  /* INSTRUCTOR NOTE */
+  .instructor-note { background: var(--sand-soft); border-left: 4px solid var(--terra); padding: 18px 22px; margin: 32px 0 0; border-radius: 0 8px 8px 0; }
+  .instructor-note h3 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructor-note p { font-size: 0.86rem; color: var(--ink); margin-bottom: 6px; }
+  .instructor-note p:last-child { margin-bottom: 0; }
+  .instructor-note code { background: white; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.82rem; color: var(--terra); border: 1px solid var(--line); }
+
+  @media print {
+    body { background: white; }
+    .week-card, .resource-card { break-inside: avoid; box-shadow: none; }
+    .help-footer { background: white; color: var(--ink); border: 2px solid var(--ink); }
+    @page { size: letter; margin: 0.5in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="page" id="main-content" role="main">
+
+  <header class="masthead">
+    <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · Course Dashboard</p>
+    <h1 class="title">Welcome to your <em>A&amp;P course</em>.</h1>
+    <p class="subtitle">Eight weeks. Four tools per week. Pick the week you are working on, and the trainer, worksheet, video library, and discussion forum for that week appear right below.</p>
+  </header>
+
+  <section class="week-picker" aria-labelledby="picker-heading">
+    <h2 id="picker-heading" class="picker-heading">Pick your week</h2>
+    <p class="picker-helper">Tap any week below to bring up that week's resources. The active week stays highlighted.</p>
+    <div class="week-card-grid" role="group" aria-labelledby="picker-heading">
+      <button class="week-card" data-week="1" type="button" aria-pressed="false">
+        <span class="week-num-display" aria-hidden="true">01</span>
+        <span class="week-title-display">Body Basics, Cells &amp; Tissues</span>
+        <span class="week-card-cue" aria-hidden="true">Open</span>
+      </button>
+      <button class="week-card" data-week="2" type="button" aria-pressed="false">
+        <span class="week-num-display" aria-hidden="true">02</span>
+        <span class="week-title-display">Protection &amp; Support</span>
+        <span class="week-card-cue" aria-hidden="true">Open</span>
+      </button>
+      <button class="week-card" data-week="3" type="button" aria-pressed="false">
+        <span class="week-num-display" aria-hidden="true">03</span>
+        <span class="week-title-display">Control Systems</span>
+        <span class="week-card-cue" aria-hidden="true">Open</span>
+      </button>
+      <button class="week-card" data-week="4" type="button" aria-pressed="false">
+        <span class="week-num-display" aria-hidden="true">04</span>
+        <span class="week-title-display">Senses &amp; Integration</span>
+        <span class="week-card-cue" aria-hidden="true">Open</span>
+      </button>
+      <button class="week-card" data-week="5" type="button" aria-pressed="false">
+        <span class="week-num-display" aria-hidden="true">05</span>
+        <span class="week-title-display">Transport</span>
+        <span class="week-card-cue" aria-hidden="true">Open</span>
+      </button>
+      <button class="week-card" data-week="6" type="button" aria-pressed="false">
+        <span class="week-num-display" aria-hidden="true">06</span>
+        <span class="week-title-display">Gas Exchange &amp; Waste</span>
+        <span class="week-card-cue" aria-hidden="true">Open</span>
+      </button>
+      <button class="week-card" data-week="7" type="button" aria-pressed="false">
+        <span class="week-num-display" aria-hidden="true">07</span>
+        <span class="week-title-display">Nutrition</span>
+        <span class="week-card-cue" aria-hidden="true">Open</span>
+      </button>
+      <button class="week-card" data-week="8" type="button" aria-pressed="false">
+        <span class="week-num-display" aria-hidden="true">08</span>
+        <span class="week-title-display">Life Stages &amp; Final Synthesis</span>
+        <span class="week-card-cue" aria-hidden="true">Open</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="week-content" id="weekContent" aria-live="polite" aria-label="Selected week resources" hidden></section>
+
+  <div id="emptyState" class="empty-state" aria-hidden="false">
+    <h3>Pick a week above</h3>
+    <p>Tap any of the eight week cards to see that week's trainer, worksheet, videos, and discussion forum.</p>
+  </div>
+
+  <section class="help-footer" aria-labelledby="help-heading">
+    <h2 id="help-heading">Need help?</h2>
+    <div class="help-grid">
+      <div class="help-item">
+        <h3>Course questions</h3>
+        <p>Email Dr. Rennie through Canvas messages. Replies within 24 hours on weekdays, 48 on weekends.</p>
+      </div>
+      <div class="help-item">
+        <h3>Tech support</h3>
+        <p>Solano IT Help Desk for Canvas, login, or platform issues. The course content lives in Kajabi; tech links are inside Canvas.</p>
+      </div>
+      <div class="help-item">
+        <h3>Accessibility &amp; DSPS</h3>
+        <p>Contact Solano DSPS for accommodations. All course materials are designed to WCAG 2.2 AA standards.</p>
+      </div>
+    </div>
+  </section>
+
+  <aside class="instructor-note" aria-labelledby="instr-heading">
+    <h3 id="instr-heading">For Dr. Rennie: deployment notes</h3>
+    <p>The dashboard links use a base URL set at the top of the script block. Update <code>GITHUB_BASE</code> to point at the directory where the trainers, worksheets, video library, and discussion files live (e.g., <code>https://drsrennie-stack.github.io/bio304/</code>).</p>
+    <p>Help footer email and contact info are placeholder text. Edit the help section above directly to add your real Canvas messages link, IT help desk URL, and DSPS office contact.</p>
+    <p>Frame ID for Kajabi iframe embedding: <code>bio304-dashboard</code>.</p>
+  </aside>
+
+</div>
+
+<script>
+  // =============================================================================
+  // CONFIG
+  // =============================================================================
+  // Update this base URL to the directory where your BIO 304 HTML files live
+  // on GitHub Pages. Trailing slash required.
+  const GITHUB_BASE = 'https://drsrennie-stack.github.io/bio304/';
+
+  // =============================================================================
+  // WEEK DATA
+  // =============================================================================
+  const weeks = {
+    1: {
+      title: 'Body Basics, Cells &amp; Tissues',
+      description: 'Anatomical language, levels of organization, cell membrane transport, and the four primary tissue types. Vocabulary and structural foundation for the rest of the course.',
+      reading: 'OpenStax Ch 1, 4 (Read) · 2.4-2.5, 3.1-3.2 (Focus)',
+      labCallout: 'Tissue histology slide identification. Walk through the four tissue types and major subtypes through the digital slide library, then complete the Tissue Hunt at Home discussion activity.'
+    },
+    2: {
+      title: 'Protection &amp; Support',
+      description: 'Skin layers, bone tissue and remodeling, joint classification, skeletal muscle structure and excitation-contraction coupling.',
+      reading: 'OpenStax Ch 5, 10.1-10.3 (Read) · 6.3-6.5, 9.1 (Focus)',
+      labCallout: 'Skeleton walkthrough with bone mark identification. Skin and bone histology slide ID. Six synovial joint types on articulated models.'
+    },
+    3: {
+      title: 'Control Systems',
+      description: 'Neuron structure, action potential, CNS anatomy, the endocrine pancreas (COR-named), and the autonomic nervous system (COR-named). The heaviest concept week.',
+      reading: 'OpenStax Ch 12, 13, 17 (Read) · 15.1-15.3 (Focus)',
+      labCallout: 'Brain anatomy on specimen and model. Spinal cord cross-section identification. Endocrine organ identification on torso model. Cranial nerves on specimen.'
+    },
+    4: {
+      title: 'Senses &amp; Integration',
+      description: 'Sensory pathways, the eye and vision, the ear and equilibrium, the twelve cranial nerves, and the bedside neurological exam including FAST stroke screen.',
+      reading: 'OpenStax Ch 14.1, 14.2, 14.7 · Ch 16',
+      labCallout: 'Eye and ear anatomy on models. Cranial nerve testing protocols on a partner. Demonstrating FAST. Cranial nerve and special senses histology.'
+    },
+    5: {
+      title: 'Transport',
+      description: 'Blood, the heart, ECG interpretation, vessels and flow, blood pressure regulation and RAAS, and the immune response. Heaviest week of the course.',
+      reading: 'OpenStax Ch 18, 19 (Read) · 20, 21 (Focus)',
+      labCallout: 'ECG strip identification. WBC differential under microscope. Blood pressure measurement. ASCVD 10-year risk calculation. Vessel and lymphatic anatomy on models.'
+    },
+    6: {
+      title: 'Gas Exchange &amp; Waste',
+      description: 'Respiratory anatomy and mechanics, gas exchange and hemoglobin, the nephron and urine formation, acid-base balance, and the urine dipstick (COR-named).',
+      reading: 'OpenStax Ch 22, 25 (Read) · 26.1, 26.4 (Focus)',
+      labCallout: 'Urine dipstick lab activity (COR). AQI screening for your zip code. Nephron walkthrough on model. Acid-base ABG case scenarios.'
+    },
+    7: {
+      title: 'Nutrition',
+      description: 'Digestive anatomy, mechanical and chemical digestion, absorption, the liver as metabolic hub (COR-named), and TDEE plus nutrition label literacy.',
+      reading: 'OpenStax Ch 23 (Read) · Ch 24.4 (Focus)',
+      labCallout: 'TDEE calculation with Mifflin-St Jeor. Nutrition label audit using the 5%/20% rule. GI tract and accessory organ identification on torso. GI histology slide ID.'
+    },
+    8: {
+      title: 'Life Stages &amp; Final Synthesis',
+      description: 'Reproductive anatomy and hormone cycles, pregnancy and birth, lactation, aging across systems, APGAR and Naegele\'s Rule, USPSTF age-based screening, and the determination of death.',
+      reading: 'OpenStax Ch 27 (Read) · Ch 28.1, 28.4-28.6 (Focus)',
+      labCallout: 'APGAR scoring simulations. Naegele\'s Rule worked examples. USPSTF screening case practice across the lifespan. Reproductive anatomy on models. Postmortem changes reference.'
+    }
+  };
+
+  // =============================================================================
+  // RENDER
+  // =============================================================================
+  const weekContentEl = document.getElementById('weekContent');
+  const emptyStateEl = document.getElementById('emptyState');
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function buildWeekContent(weekNum) {
+    const w = weeks[weekNum];
+    if (!w) return '';
+    const padded = pad(weekNum);
+    return `
+      <header class="week-content-header">
+        <span class="week-content-num" aria-hidden="true">${padded}</span>
+        <div class="week-content-titles">
+          <p class="week-content-eyebrow">Week ${weekNum}</p>
+          <h2 class="week-content-title">${w.title}</h2>
+        </div>
+      </header>
+
+      <p class="week-content-description">${w.description}</p>
+      <p class="week-content-reading">${w.reading}</p>
+
+      <div class="lab-callout">
+        <p class="lab-callout-label">This Week's Lab</p>
+        <p class="lab-callout-text">${w.labCallout}</p>
+      </div>
+
+      <h3 class="resource-section-heading">Resources for this week</h3>
+      <div class="resource-grid">
+        <a class="resource-card trainer" href="${GITHUB_BASE}week${padded}_trainer.html" target="_blank" rel="noopener noreferrer" aria-label="Open Week ${weekNum} trainer in new tab">
+          <div class="resource-letter" aria-hidden="true">T</div>
+          <p class="resource-name">Trainer</p>
+          <p class="resource-desc">Study tool. Retrieve, build, apply across all sections of the week.</p>
+          <span class="resource-arrow" aria-hidden="true">Open →</span>
+        </a>
+        <a class="resource-card worksheet" href="${GITHUB_BASE}week${padded}_worksheet.html" target="_blank" rel="noopener noreferrer" aria-label="Open Week ${weekNum} worksheet in new tab">
+          <div class="resource-letter" aria-hidden="true">W</div>
+          <p class="resource-name">Worksheet</p>
+          <p class="resource-desc">Print, handwrite, scan, submit. Drawings and calculations turned in to Canvas.</p>
+          <span class="resource-arrow" aria-hidden="true">Open →</span>
+        </a>
+        <a class="resource-card videos" href="${GITHUB_BASE}concept_videos.html?week=${weekNum}" target="_blank" rel="noopener noreferrer" aria-label="Open Week ${weekNum} concept and lab videos in new tab">
+          <div class="resource-letter" aria-hidden="true">V</div>
+          <p class="resource-name">Videos</p>
+          <p class="resource-desc">Concept lectures and lab ID videos for this week. Watch first, then run the trainer.</p>
+          <span class="resource-arrow" aria-hidden="true">Open →</span>
+        </a>
+        <a class="resource-card discussion" href="${GITHUB_BASE}discussions.html?week=${weekNum}" target="_blank" rel="noopener noreferrer" aria-label="Open Week ${weekNum} discussion forum prompts in new tab">
+          <div class="resource-letter" aria-hidden="true">D</div>
+          <p class="resource-name">Discussion</p>
+          <p class="resource-desc">This week's prompts. Initial post by Wednesday, two replies by Sunday.</p>
+          <span class="resource-arrow" aria-hidden="true">Open →</span>
+        </a>
+      </div>
+    `;
+  }
+
+  function selectWeek(weekNum) {
+    document.querySelectorAll('.week-card').forEach(card => {
+      const isMatch = card.dataset.week === String(weekNum);
+      card.classList.toggle('active', isMatch);
+      card.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+    });
+    weekContentEl.innerHTML = buildWeekContent(weekNum);
+    weekContentEl.hidden = false;
+    emptyStateEl.hidden = true;
+    emptyStateEl.setAttribute('aria-hidden', 'true');
+    // Smooth scroll the content into view, but only if it would otherwise be off-screen
+    const rect = weekContentEl.getBoundingClientRect();
+    if (rect.top < 0 || rect.top > window.innerHeight * 0.8) {
+      weekContentEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  document.querySelectorAll('.week-card').forEach(card => {
+    card.addEventListener('click', () => {
+      selectWeek(card.dataset.week);
+    });
+  });
+
+  // Keyboard navigation between week cards (arrow keys when focused on a card)
+  document.addEventListener('keydown', (e) => {
+    if (e.target.classList.contains('week-card') && (e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
+      e.preventDefault();
+      const cards = Array.from(document.querySelectorAll('.week-card'));
+      const currentIndex = cards.indexOf(e.target);
+      let nextIndex;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextIndex = Math.min(currentIndex + 1, cards.length - 1);
+      else nextIndex = Math.max(currentIndex - 1, 0);
+      cards[nextIndex].focus();
+    }
+  });
+
+  // Allow ?week=N URL parameter to preselect a week
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const w = params.get('week');
+    if (w && /^[1-8]$/.test(w)) {
+      selectWeek(w);
+    }
+  })();
+
+  // Iframe height-sender for Kajabi embedding
+  (function() {
+    const FRAME_ID = 'bio304-dashboard';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
