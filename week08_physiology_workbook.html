@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Week 8 Physiology Workbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5; --sand-soft: #faf3e8; --sand: #f5e6d3;
+    --terra: #c44536; --kelp: #5a7553;
+    --paper: #fdfbf7; --line: #c9d4d8; --rule: #a8b5bb; --muted: #5a6b73;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #e8e8e0; line-height: 1.55; font-size: 16px; padding: 30px 0; -webkit-font-smoothing: antialiased; }
+  .sheet { max-width: 8.5in; margin: 0 auto; background: white; padding: 0.55in 0.6in; box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1); }
+  .actions { max-width: 8.5in; margin: 0 auto 16px; padding: 0 0.6in; display: flex; justify-content: flex-end; }
+  .print-btn { background: var(--ocean-deep); color: white; border: none; padding: 11px 22px; border-radius: 8px; font-family: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 8px; transition: background 0.15s ease; }
+  .print-btn:hover { background: var(--ocean); }
+  .print-btn::before { content: '⎙'; font-size: 1rem; }
+
+  .masthead { border-bottom: 2.5px solid var(--ocean-deep); padding-bottom: 18px; margin-bottom: 24px; position: relative; }
+  .masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .masthead.physiology::after { background: var(--terra); }
+  .course-line { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .doc-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.85rem; color: var(--ocean-deep); line-height: 1.2; margin-bottom: 6px; }
+  .doc-subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean); }
+
+  .student-block { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; margin: 18px 0 24px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field { display: flex; flex-direction: column; }
+  .field-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field-line { border-bottom: 1.5px solid var(--ink); height: 24px; }
+
+  .instructions { background: var(--sand-soft); border-left: 3px solid var(--terra); padding: 14px 18px; margin-bottom: 26px; font-size: 0.92rem; }
+  .instructions h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+
+  .section { margin: 22px 0; page-break-inside: avoid; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.5rem; color: var(--terra); min-width: 32px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; color: var(--ocean-deep); }
+  .section-anchor { font-size: 0.86rem; color: var(--ocean); font-style: italic; margin-top: 4px; }
+
+  .field-prompt { font-size: 0.92rem; color: var(--ink); margin: 10px 0 6px; line-height: 1.5; }
+  .field-prompt strong { color: var(--ocean-deep); }
+  .field-helper { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+
+  .ruled { background: white; border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; min-height: 5em; background-image: repeating-linear-gradient(transparent, transparent 24px, var(--rule) 24px, var(--rule) 25px); line-height: 25px; }
+  .ruled.short { min-height: 4em; }
+  .ruled.medium { min-height: 6em; }
+  .ruled.long { min-height: 9em; }
+
+  .word-bank { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 14px 18px; margin: 14px 0 18px; }
+  .word-bank-label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .word-bank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 14px; font-size: 0.86rem; color: var(--ink); }
+  .word-bank-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .word-bank-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 600px) {
+    .word-bank-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .label-exercise { margin: 16px 0; page-break-inside: avoid; }
+  .label-exercise-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.05rem; color: var(--terra); margin-bottom: 10px; }
+  .label-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .label-flex.wide-fig { grid-template-columns: 1.4fr 1fr; }
+  .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
+
+  .figure { margin: 0; }
+  .figure-imgbox { background: white; border: 2px dashed var(--ocean); border-radius: 6px; padding: 14px; position: relative; display: flex; align-items: center; justify-content: center; }
+  .figure-imgbox img { max-width: 100%; height: auto; display: block; }
+  .figure-imgbox.img-pending { background: var(--sea-glass-soft); border-color: var(--ocean); }
+  .img-pending-msg { display: none; flex-direction: column; align-items: center; gap: 6px; text-align: center; color: var(--muted); padding: 18px; }
+  .figure-imgbox.img-pending .img-pending-msg { display: flex; }
+  .img-pending-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); }
+  .img-pending-file { font-size: 0.95rem; font-weight: 600; color: var(--terra); background: white; padding: 6px 14px; border-radius: 4px; border: 1px solid var(--terra); }
+  .img-pending-alt { font-size: 0.82rem; font-style: italic; max-width: 360px; line-height: 1.4; margin-top: 4px; }
+
+  .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+  .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .key-list { list-style: none; padding: 0; margin: 0; }
+  .key-list li { padding: 5px 0; border-bottom: 1px dashed var(--line); display: flex; align-items: baseline; gap: 8px; font-size: 0.88rem; }
+  .key-list li:last-child { border-bottom: none; }
+  .key-list.compact li { padding: 3px 0; font-size: 0.84rem; }
+  .key-num { font-weight: 700; color: var(--terra); min-width: 28px; flex-shrink: 0; }
+  .key-blank { flex: 1; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+  .key-fill { flex: 1; }
+
+  @media (max-width: 700px) {
+    .label-flex { grid-template-columns: 1fr; }
+  }
+
+  .draw-box { background: white; border: 1.5px solid var(--ocean-deep); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 280px; background-image: linear-gradient(rgba(214, 228, 231, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(214, 228, 231, 0.4) 1px, transparent 1px); background-size: 24px 24px; background-position: -1px -1px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: white; padding: 1px 6px; border-radius: 2px; }
+  .draw-box.tall { min-height: 360px; }
+  .draw-box.short { min-height: 220px; }
+
+  .calc-box { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; margin: 10px 0; min-height: 80px; }
+  .calc-box-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.86rem; background: white; }
+  .data-table th { text-align: left; padding: 8px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .data-table .input-cell { background: white !important; min-width: 80px; }
+  .data-table .input-cell .cell-line { display: block; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+
+  .case { background: var(--sand-soft); border-left: 3px solid var(--terra); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 14px 0; page-break-inside: avoid; }
+  .case-label { display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; }
+  .case-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .case-body { font-size: 0.9rem; line-height: 1.55; margin-bottom: 8px; }
+  .case-body strong { color: var(--ocean-deep); }
+  .case-prompts { margin-top: 10px; }
+  .case-prompts ol { list-style: decimal; padding-left: 22px; margin: 6px 0; font-size: 0.9rem; }
+  .case-prompts ol li { margin-bottom: 6px; line-height: 1.5; }
+
+  .reference { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean-deep); padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.88rem; }
+  .reference h4 { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 0.96rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .reference p { margin-bottom: 6px; line-height: 1.55; }
+  .reference p:last-child { margin-bottom: 0; }
+  .reference strong { color: var(--terra); font-weight: 600; }
+  .reference .formula { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean-deep); padding: 8px 14px; background: white; border: 1px solid var(--line); border-radius: 4px; display: inline-block; margin: 4px 0; }
+
+  .synthesis { background: linear-gradient(150deg, var(--sand-soft), white); border: 2px solid var(--terra); border-radius: 8px; padding: 16px 20px; margin: 18px 0; page-break-inside: avoid; }
+  .synthesis-label { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 3px 10px; border-radius: 3px; margin-bottom: 8px; }
+  .synthesis-prompt { font-size: 0.96rem; line-height: 1.55; color: var(--ink); margin-bottom: 8px; }
+  .synthesis-prompt strong { color: var(--ocean-deep); }
+
+  .submission { margin-top: 30px; padding: 18px 22px; background: var(--sea-glass-soft); border: 1.5px solid var(--ocean-deep); border-radius: 6px; page-break-inside: avoid; }
+  .submission h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.08rem; color: var(--ocean-deep); margin-bottom: 10px; }
+  .submission p { font-size: 0.86rem; margin-bottom: 6px; }
+
+  /* PARTNER LINK BANNER (cross-link between anatomy & physiology workbooks) */
+  .partner-link { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 12px 16px; margin: 22px 0; font-size: 0.88rem; display: flex; align-items: center; gap: 12px; }
+  .partner-link-label { flex: 1; }
+  .partner-link-label strong { color: var(--ocean-deep); }
+  .partner-link a { color: var(--terra); text-decoration: underline; font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link, .partner-link { display: none !important; }
+    .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
+    .figure-imgbox { border-color: #888; }
+    .figure-imgbox.img-pending { background: white; }
+    @page { size: letter; margin: 0.55in 0.6in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions">
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this workbook or save as PDF">Print / Save PDF</button>
+</div>
+
+<main id="main-content" class="sheet" role="main">
+  <header class="masthead physiology">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 8 Physiology Workbook</p>
+    <h1 class="doc-title">EEG, Apnea Test &amp; Lifespan Integration</h1>
+    <p class="doc-subtitle">Physiology: read brain wave patterns, interpret brain death testing, integrate lifespan changes. Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field">
+      <span class="field-label">Name</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Section</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Date</span>
+      <span class="field-line"></span>
+    </div>
+  </div>
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">About this workbook</h2>
+    <p>This is the <strong>Physiology Workbook</strong> for Week 8, the final lab of the course. Complete the <strong>Week 8 Anatomy Workbook first</strong>. The clinical reasoning here builds on the reproductive anatomy and lifespan changes you labeled there, plus integrates content from every prior week.</p>
+    <p>EEG and brain death determination are among the most consequential clinical tests in medicine. They distinguish sleep from coma, recognize seizures, and confirm when life has ended. The lifespan integration cases at the end will ask you to apply the entire course (cell, tissue, all organ systems) across the human lifespan from pregnancy through end of life.</p>
+    <p>This is your capstone. You have learned everything you need. Trust your knowledge.</p>
+  </section>
+
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 1</p>
+        <h2 class="section-title" id="s1-title">EEG basics: the four major brainwave frequencies</h2>
+        <p class="section-anchor">Recognize the standard EEG waveforms by frequency, amplitude, and the state of consciousness each represents.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>The four major EEG frequencies (memorize)</h4>
+      <p><strong>Beta (β):</strong> 13-30 Hz, low amplitude, fast. Awake, alert, eyes open, actively thinking. Beta dominates the awake adult EEG.</p>
+      <p><strong>Alpha (α):</strong> 8-12 Hz, medium amplitude. Awake, relaxed, eyes closed. Best seen over occipital regions when eyes are closed.</p>
+      <p><strong>Theta (θ):</strong> 4-7 Hz, medium-high amplitude. Drowsy state, light sleep (NREM stage 1). In awake adults, abnormal and may suggest pathology.</p>
+      <p><strong>Delta (δ):</strong> 0.5-3 Hz, high amplitude, slow. Deep sleep (NREM stages 3-4) and pathologic states (encephalopathy, severe brain dysfunction).</p>
+    </div>
+
+    <div class="reference">
+      <h4>Sleep stage architecture (NREM and REM)</h4>
+      <p><strong>Stage N1 (light sleep):</strong> low-amplitude theta. Brief transition from wake.</p>
+      <p><strong>Stage N2:</strong> theta with sleep spindles and K-complexes. Most of the night.</p>
+      <p><strong>Stage N3 (deep / slow-wave sleep):</strong> dominant delta waves. Restorative sleep.</p>
+      <p><strong>REM sleep:</strong> low-amplitude mixed-frequency activity (resembles awake EEG), but with skeletal muscle paralysis and rapid eye movements. Dreams.</p>
+    </div>
+
+    <p class="field-prompt"><strong>For each EEG description, identify the dominant frequency band and the most likely state of consciousness:</strong></p>
+
+    <table class="data-table" aria-label="EEG pattern recognition">
+      <thead>
+        <tr>
+          <th style="width: 50%;">EEG description</th>
+          <th style="width: 25%;">Dominant frequency</th>
+          <th style="width: 25%;">State of consciousness</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Low amplitude, fast waves at ~20 Hz, recorded in a college student taking an exam.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Medium amplitude waves at 10 Hz dominant over occipital leads, patient lying with eyes closed but awake.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>High amplitude waves at 1-2 Hz across most leads, healthy adult during the night.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Low-amplitude mixed-frequency activity resembling wake, with concurrent rapid eye movements and absent skeletal muscle tone on EMG.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Diffuse slow waves at 2 Hz in an awake patient with severe liver failure and confusion.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 2</p>
+        <h2 class="section-title" id="s2-title">Pathologic EEG patterns: seizure, coma, and brain death</h2>
+        <p class="section-anchor">Recognize the EEG signatures of seizures (focal and generalized), coma states, and the isoelectric pattern of brain death.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>Seizure patterns</h4>
+      <p><strong>Focal (partial) seizure:</strong> abnormal rhythmic spikes or sharp waves localized to one brain region. The patient may have focal motor symptoms (e.g., right arm jerking) corresponding to the affected cortex.</p>
+      <p><strong>Generalized tonic-clonic seizure:</strong> high-amplitude, high-frequency rhythmic discharges across all leads simultaneously. Patient is unconscious with whole-body convulsions.</p>
+      <p><strong>Absence (petit mal) seizure:</strong> classic <strong>3 Hz spike-and-wave pattern</strong> across all leads. Brief loss of awareness without convulsions. Most common in children.</p>
+      <p><strong>Status epilepticus:</strong> continuous or recurrent seizure activity for &gt; 5 minutes (or repeated seizures without recovery between). EEG shows persistent epileptiform discharges. <strong>Medical emergency.</strong></p>
+    </div>
+
+    <div class="reference">
+      <h4>Coma and brain death EEG</h4>
+      <p><strong>Coma (reversible):</strong> slow background (delta predominant) but EEG activity is present. Some reactivity to stimuli may be seen.</p>
+      <p><strong>Burst suppression:</strong> alternating periods of high-amplitude activity ("bursts") separated by isoelectric periods ("suppression"). Seen in deep anesthesia, severe brain injury, hypothermia, or barbiturate coma.</p>
+      <p><strong>Isoelectric (electrocerebral silence):</strong> a flat line, no electrical activity from the cortex. <strong>Required for brain death determination</strong> in the presence of supportive clinical findings.</p>
+    </div>
+
+    <p class="field-prompt"><strong>For each scenario, identify the EEG pattern and clinical significance:</strong></p>
+
+    <table class="data-table" aria-label="Pathologic EEG cases">
+      <thead>
+        <tr>
+          <th style="width: 50%;">Patient scenario</th>
+          <th style="width: 25%;">EEG pattern</th>
+          <th style="width: 25%;">Clinical significance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>7-year-old who "stares off into space" 30+ times per day for ~10 seconds each. EEG: 3 Hz spike-and-wave generalized.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>32-year-old with rhythmic right arm twitching for 8 minutes. EEG: rhythmic spikes localized to left motor cortex.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>56-year-old in ICU on barbiturate coma protocol after status epilepticus. EEG: alternating high-amplitude bursts with flat periods.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>22-year-old struck by a vehicle, GCS 3, no brainstem reflexes for 36 hours, normothermic, off sedation. EEG: completely flat across all leads.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>9-month-old in the ER with continuous generalized convulsions for 25 minutes. EEG: ongoing high-amplitude rhythmic discharges across all leads.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 3</p>
+        <h2 class="section-title" id="s3-title">Brain death determination and the apnea test</h2>
+        <p class="section-anchor">Recognize the clinical and ancillary criteria for brain death, and walk the apnea test step by step.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>Clinical criteria for brain death (all required)</h4>
+      <p><strong>1. Coma</strong> with a known irreversible cause (no metabolic, toxic, or pharmacologic confounders).</p>
+      <p><strong>2. Absence of brainstem reflexes:</strong> no pupillary light response, no corneal reflex, no oculocephalic (doll's eyes) response, no oculovestibular (cold caloric) response, no gag, no cough.</p>
+      <p><strong>3. Apnea</strong> confirmed by formal apnea test.</p>
+    </div>
+
+    <div class="reference">
+      <h4>The apnea test: step by step</h4>
+      <p><strong>1. Pre-test prep:</strong> patient is normothermic (≥ 36°C), normotensive (SBP ≥ 100), euvolemic, normal electrolytes, no sedatives or paralytics on board, normal pre-test PaCO₂ (~35-45 mmHg).</p>
+      <p><strong>2. Pre-oxygenate</strong> with 100% O₂ for 10 minutes to fill lung reserves.</p>
+      <p><strong>3. Disconnect</strong> the ventilator. Provide passive O₂ via tracheal cannula at 6 L/min.</p>
+      <p><strong>4. Observe for spontaneous respiratory effort</strong> for 8-10 minutes.</p>
+      <p><strong>5. Draw repeat ABG</strong> at the end.</p>
+      <p><strong>Result interpretation:</strong></p>
+      <p><strong>Positive (consistent with brain death):</strong> <em>no</em> respiratory effort observed AND PaCO₂ rises to ≥ 60 mmHg (or rises ≥ 20 mmHg above baseline). The brainstem chemoreceptors normally trigger breathing at PaCO₂ ~ 40 mmHg; failure to breathe at 60 mmHg = brainstem is non-functional.</p>
+      <p><strong>Test must be aborted</strong> if patient becomes hypotensive, hypoxic, or has an arrhythmia. The test is reattempted later with stabilization.</p>
+    </div>
+
+    <p class="field-prompt"><strong>For each apnea test scenario, classify the result</strong> (consistent with brain death / not consistent / test must be aborted) and explain the reasoning.</p>
+
+    <table class="data-table" aria-label="Apnea test scenarios">
+      <thead>
+        <tr>
+          <th style="width: 55%;">Scenario</th>
+          <th style="width: 25%;">Result classification</th>
+          <th style="width: 20%;">Reasoning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Test runs 10 minutes. No respiratory effort. Pre-test PaCO₂ 38, post-test PaCO₂ 68. Patient remained normotensive.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>At minute 4, patient takes a single shallow breath. Test stopped.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>At minute 6, patient develops hypotension (SBP 78) and bradycardia. No respiratory effort had been seen. PaCO₂ at that point was 52.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Test runs 8 minutes. No respiratory effort. Pre-test PaCO₂ 42, post-test PaCO₂ 64. SBP 110 throughout.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Patient on midazolam infusion at the start of test. No respiratory effort, PaCO₂ rises to 70. Provider cannot determine brain death.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="field-prompt" style="margin-top: 14px;"><strong>Why does the test require the patient to be off sedatives, normothermic, and have stable electrolytes BEFORE testing?</strong> What does each potential confounder do that could mimic brain death?</p>
+    <div class="ruled medium" role="region" aria-label="Confounders answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lifespan Integration Cases</p>
+        <h2 class="section-title" id="s4-title">Apply the entire course across the human lifespan</h2>
+        <p class="section-anchor">Each case requires you to integrate physiology you learned in earlier weeks. Reference specific structures and processes by name.</p>
+      </div>
+    </header>
+
+    <div class="case">
+      <span class="case-label">Case 1 · Pregnancy</span>
+      <p class="case-title">The 36-week-pregnant patient with breathlessness</p>
+      <p class="case-body">A 32-year-old woman, 36 weeks pregnant with her second child, reports increasing shortness of breath and ankle swelling. BP 134/86, HR 96, SpO₂ 96% room air. Lungs clear. Ankle edema 2+. ABG: pH 7.45, PaCO₂ 32, HCO₃⁻ 22, PaO₂ 102. CBC: Hb 10.4 g/dL (mildly low). Glucose 124. Urine dipstick: trace protein, no glucose.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Her ABG shows mild respiratory alkalosis. Why is this normal in pregnancy? Reference progesterone's effect on the brainstem respiratory center.</li>
+          <li>Her hemoglobin is mildly low. Is this anemia of pregnancy or pathologic? Explain plasma volume expansion vs RBC mass.</li>
+          <li>Her BP is mildly elevated and she has 2+ edema with trace proteinuria. What pregnancy-specific condition should be ruled out? What organ systems does it affect?</li>
+          <li>Her glucose is 124. Does she meet criteria for gestational diabetes (you may reference Week 3 OGTT criteria)? What further test would confirm?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 1 answer space"></div>
+      <div class="ruled long" role="region" aria-label="Case 1 answer space continued"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 2 · Newborn</span>
+      <p class="case-title">The premature infant with respiratory distress</p>
+      <p class="case-body">A baby born at 30 weeks gestation, weighing 1.4 kg, develops grunting respirations, retractions, and SpO₂ 84% on room air at 30 minutes of life. Chest X-ray shows ground-glass opacities throughout both lungs.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>What anatomical structure is incompletely developed in this premature infant's lungs, and which cell normally produces what is missing? Reference the alveolar histology from Week 6.</li>
+          <li>Why does the absence of this substance cause the alveoli to collapse? Reference surface tension and the ground-glass appearance on X-ray.</li>
+          <li>The treatment is exogenous surfactant administration. How is it delivered, and what immediate physiologic improvement should you expect?</li>
+          <li>Why did the team also evaluate this baby for a patent ductus arteriosus? Reference the Week 8 anatomy fetal-circulation transition.</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 2 answer space"></div>
+      <div class="ruled long" role="region" aria-label="Case 2 answer space continued"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 3 · Adolescent</span>
+      <p class="case-title">The 14-year-old with delayed puberty</p>
+      <p class="case-body">A 14-year-old girl is brought in because she has not yet started menstruating and shows minimal breast development. Height 4'10". She reports she "always feels cold," has been increasingly tired, and her hair has thinned. Labs: low FSH, low LH, low estradiol, elevated prolactin, low T4 with high TSH.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Map her hormone results to the HPG axis you drew in the Anatomy Workbook. Where is the dysfunction (hypothalamus, pituitary, ovary, or feedback)?</li>
+          <li>The combination of cold intolerance, fatigue, hair thinning, and elevated TSH points to which other endocrine disorder? Reference Week 3 endocrine anatomy.</li>
+          <li>How can her primary thyroid disease cause low LH/FSH and delayed puberty? (Hint: TRH cross-stimulation of prolactin and impact on GnRH pulsatility.)</li>
+          <li>If treated appropriately, what would you expect to see in her LH, FSH, and estradiol over the following months?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 3 answer space"></div>
+      <div class="ruled long" role="region" aria-label="Case 3 answer space continued"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 4 · Older Adult</span>
+      <p class="case-title">The 84-year-old with multi-system decline</p>
+      <p class="case-body">An 84-year-old woman is brought in by family for evaluation. Over the past year: she has fallen 3 times, lost 10 lbs unintentionally, started forgetting names, has urinary incontinence, walks with a stooped posture, and gets short of breath climbing one flight of stairs. Vitals: BP 158/86 supine, 128/72 standing (orthostatic), HR 72. Labs: Cr 1.4 (eGFR 38), HbA1c 6.2%, TSH normal, B12 mildly low.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>For each of her findings, identify which organ system is showing age-related change and reference the specific anatomical change you noted in the Anatomy Workbook Section 09 table.</li>
+          <li>Her orthostatic hypotension is concerning. Which two age-related changes (cardiovascular AND autonomic) make her vulnerable? Reference Weeks 3 and 5.</li>
+          <li>Her eGFR is 38 (CKD stage 3b). Which medications need dose adjustment because of this? Why does this matter as you assess her current medication list?</li>
+          <li>Looking at the whole picture: what is the single most modifiable factor you would address first to reduce her fall risk?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 4 answer space"></div>
+      <div class="ruled long" role="region" aria-label="Case 4 answer space continued"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 5 · End of Life</span>
+      <p class="case-title">The brain death determination</p>
+      <p class="case-body">A 19-year-old man is admitted to the ICU after a motorcycle crash with severe traumatic brain injury. After 48 hours of supportive care, he meets clinical criteria for brain death evaluation: GCS 3, no pupillary, corneal, oculocephalic, oculovestibular, gag, or cough reflexes. Normothermic. Off all sedation for 24 hours. Pre-test labs and ABG are within normal limits. The team prepares to perform the apnea test.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Walk the apnea test step by step (referencing Section 03). What pre-test conditions must be met before the test can begin?</li>
+          <li>The test runs 9 minutes with no respiratory effort. Pre-test PaCO₂ was 40, post-test PaCO₂ is 66. What does this result mean physiologically? Reference the brainstem chemoreceptors' role in normal breathing.</li>
+          <li>The team also performs an EEG, which shows electrocerebral silence (flat across all leads). The team confirms brain death. Explain to the family in plain terms what brain death means and why it differs from "coma."</li>
+          <li>The patient's organs are donated. The heart will be transplanted. Reference Week 5 anatomy: what is happening to the heart's electrical conduction in a brain-dead donor that allows the heart to continue beating until cross-clamp?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 5 answer space"></div>
+      <div class="ruled long" role="region" aria-label="Case 5 answer space continued"></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Final Synthesis (Capstone)</p>
+        <h2 class="section-title" id="s5-title">Integrate the entire course across the lifespan</h2>
+        <p class="section-anchor">The most heavily weighted question of the entire course. Integrate your full anatomy and physiology training in one answer.</p>
+      </div>
+    </header>
+
+    <div class="synthesis">
+      <span class="synthesis-label">Capstone synthesis · Most weighted question of the course</span>
+      <p class="synthesis-prompt">A patient is born preterm at 30 weeks gestation, develops respiratory distress and a patent ductus arteriosus that resolves with treatment. As a teen, she develops Type 1 diabetes. In her thirties, she has a healthy pregnancy with well-controlled gestational diabetes monitoring. In her sixties, after 30 years of T1DM, she develops chronic kidney disease, diabetic autonomic neuropathy with orthostatic hypotension, and diabetic retinopathy. In her late seventies, she has a stroke with right-sided weakness and aphasia, recovers partially, and over the next decade develops worsening heart failure and dies peacefully at age 84.</p>
+      <p class="synthesis-prompt"><strong>In six to eight sentences, integrate the physiology of her life across at least four organ systems and at least three different weeks of this course.</strong> Your answer must integrate:</p>
+      <p class="synthesis-prompt">(1) what fetal-to-newborn circulatory transition was disrupted at her birth and which Week 8 anatomy explains the patent ductus, (2) how Type 1 diabetes develops at the cellular level (reference Week 3 islet anatomy + autoimmunity), (3) why chronic hyperglycemia damages both nephrons (reference Week 6) and autonomic nerves (reference Week 3) over decades, (4) how her stroke deficits map to a specific cerebral artery territory (reference Week 4 FAST + Circle of Willis), (5) how diabetic cardiomyopathy and CKD jointly contribute to her late-life heart failure (reference Week 5 cardiac and Week 6 renal physiology), AND (6) one age-related change from Week 8 that contributed to her final decline.</p>
+      <div class="ruled long" role="region" aria-label="Capstone synthesis answer space"></div>
+      <div class="ruled long" role="region" aria-label="Capstone synthesis answer space continued"></div>
+      <div class="ruled long" role="region" aria-label="Capstone synthesis answer space continued 2"></div>
+    </div>
+
+    <div class="reference" style="background: linear-gradient(150deg, var(--sand-soft), white); border-color: var(--terra);">
+      <h4 style="color: var(--terra);">Closing note from Dr. Rennie</h4>
+      <p>You started 8 weeks ago not knowing the difference between a phospholipid and a polypeptide. Today you can interpret an ECG, calculate cardiovascular risk, perform a neurological exam, recognize an acid-base disorder, identify brain death, and trace a patient's physiology across an entire lifespan.</p>
+      <p>Whatever comes next (BIO 430, BIO 431, nursing school, EMT, paramedic, mortuary science, or something you have not yet named), you have done what scientists do. You have built a working model of the human body in your mind. That is yours forever.</p>
+      <p>Submit this final workbook with confidence. You earned it.</p>
+    </div>
+  </section>
+  <div class="partner-link">
+    <span class="partner-link-label">Looking for structure identification? See the <strong>Week 8 Anatomy Workbook</strong>.</span>
+    <a href="week08_anatomy_workbook.html">Open →</a>
+  </div>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit (final submission of the course)</h2>
+    <p>1. The EEG frequency table (Section 01) is filled in for all five patient scenarios.</p>
+    <p>2. The pathologic EEG table (Section 02) is filled in for all five clinical scenarios.</p>
+    <p>3. The apnea test result table (Section 03) is filled in for all five scenarios plus the confounders question.</p>
+    <p>4. All five lifespan integration cases (Section 04) have answers to every numbered prompt.</p>
+    <p>5. The capstone synthesis question (Section 05) integrates all six required elements across at least four organ systems and three weeks.</p>
+    <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 8 Physiology Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
+    <p style="margin-top: 10px;"><strong>Don't forget your Self-Experimentation Final Synthesis paper</strong> is also due this week if you have not already submitted it.</p>
+  </section>
+
+</main>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w08-physiology-workbook';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
