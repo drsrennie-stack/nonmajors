@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 2 Cognitive Trainer · Protection &amp; Support · BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557;
+    --ocean: #2a4d6e;
+    --ocean-deep: #14304b;
+    --sea-glass: #d6e4e7;
+    --sea-glass-soft: #eef4f5;
+    --sand: #f5e6d3;
+    --sand-soft: #faf3e8;
+    --terra: #c44536;
+    --terra-soft: #e8a499;
+    --kelp: #5a7553;
+    --paper: #fdfbf7;
+    --line: #c9d4d8;
+    --muted: #5a6b73;
+    --shadow-sm: 0 1px 2px rgba(20, 48, 75, 0.06);
+    --shadow-md: 0 4px 14px rgba(20, 48, 75, 0.08);
+    --shadow-lg: 0 14px 40px rgba(20, 48, 75, 0.12);
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  .skip-link {
+    position: absolute;
+    left: -10000px; top: 0;
+    background: var(--ocean-deep);
+    color: white;
+    padding: 12px 20px;
+    z-index: 1000;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 0 0 6px 0;
+  }
+  .skip-link:focus { left: 0; top: 0; }
+
+  :focus { outline: none; }
+  :focus-visible {
+    outline: 3px solid var(--terra);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    html { scroll-behavior: auto; }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 28px 80px;
+  }
+
+  /* HEADER */
+  header.masthead {
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 36px;
+  }
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 14px;
+  }
+  h1.title {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    color: var(--ocean-deep);
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  h1.title em { font-style: italic; color: var(--terra); }
+  .subtitle {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.12rem;
+    color: var(--ocean);
+    max-width: 720px;
+    margin-bottom: 24px;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 32px;
+    align-items: center;
+    font-size: 0.86rem;
+    color: var(--muted);
+  }
+  .meta-row strong { color: var(--ink); font-weight: 600; }
+  .meta-pill {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    background: var(--sea-glass-soft);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--ocean-deep);
+  }
+  .meta-pill::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--terra);
+  }
+
+  /* PROGRESS BAR */
+  .progress-rail {
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    z-index: 50;
+    padding: 14px 0;
+    margin: 0 -28px 28px;
+    padding-left: 28px;
+    padding-right: 28px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .progress-label {
+    font-size: 0.74rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .progress-track {
+    flex: 1;
+    height: 6px;
+    background: var(--sea-glass);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 100%);
+    width: 0%;
+    transition: width 0.35s ease;
+  }
+  .progress-count {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--ocean-deep);
+    min-width: 50px;
+    text-align: right;
+  }
+  .progress-actions { display: flex; gap: 8px; }
+  .icon-btn {
+    border: 1px solid var(--line);
+    background: white;
+    color: var(--ocean-deep);
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    font-size: 1rem;
+  }
+  .icon-btn:hover { background: var(--sea-glass-soft); border-color: var(--ocean); }
+
+  /* INTRO */
+  .intro {
+    background: linear-gradient(135deg, var(--sea-glass-soft) 0%, var(--sand-soft) 100%);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 32px 36px;
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .intro::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 36px; right: 36px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 50%, var(--kelp) 100%);
+    border-radius: 2px;
+  }
+  .intro h2 {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--ocean-deep);
+    margin-bottom: 14px;
+  }
+  .intro p { color: var(--ink); margin-bottom: 12px; max-width: 780px; }
+  .intro p:last-of-type { margin-bottom: 0; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+    font-size: 0.84rem;
+  }
+  .legend-item { display: inline-flex; align-items: center; gap: 8px; }
+  .legend-chip {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .chip-retrieve { background: var(--ocean-deep); color: white; }
+  .chip-build { background: var(--terra); color: white; }
+  .chip-apply { background: var(--kelp); color: white; }
+
+  /* SECTIONS */
+  .section {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    margin-bottom: 32px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .section-head {
+    display: flex;
+    gap: 22px;
+    align-items: flex-start;
+    padding: 28px 32px 22px;
+    border-bottom: 1px solid var(--line);
+    background: var(--sand-soft);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s ease;
+  }
+  .section-head:hover { background: var(--sand); }
+  .section-num {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 2.4rem;
+    color: var(--terra);
+    line-height: 1;
+    min-width: 48px;
+  }
+  .section-titles { flex: 1; }
+  .section-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 1.45rem;
+    color: var(--ocean-deep);
+    margin-bottom: 8px;
+  }
+  .section-anchor {
+    font-size: 0.92rem;
+    color: var(--ocean);
+    max-width: 700px;
+  }
+  .section-toggle {
+    font-size: 1.2rem;
+    color: var(--ocean);
+    transition: transform 0.25s ease;
+    margin-top: 8px;
+  }
+  .section.collapsed .section-toggle { transform: rotate(-90deg); }
+  .section-body { padding: 26px 32px 32px; }
+  .section.collapsed .section-body { display: none; }
+
+  /* MODE BLOCKS */
+  .mode-block { margin-bottom: 28px; }
+  .mode-block:last-child { margin-bottom: 0; }
+  .mode-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .mode-tag {
+    display: inline-block;
+    padding: 4px 11px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .mode-name {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ocean-deep);
+  }
+
+  /* PROMPTS */
+  .prompt-list { list-style: none; }
+  .prompt-list li {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--line);
+    align-items: flex-start;
+  }
+  .prompt-list li:last-child { border-bottom: none; }
+  .prompt-num {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--terra);
+    min-width: 22px;
+  }
+  .prompt-text { flex: 1; }
+  .prompt-text .reveal-btn {
+    margin-left: 8px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ocean);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: all 0.15s ease;
+  }
+  .prompt-text .reveal-btn:hover { background: var(--ocean); color: white; }
+  .answer {
+    display: none;
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: var(--sea-glass-soft);
+    border-left: 3px solid var(--ocean);
+    border-radius: 4px;
+    font-size: 0.92rem;
+    color: var(--ocean-deep);
+    font-family: 'Lora', serif;
+  }
+  .answer.show { display: block; }
+  .answer strong { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; }
+
+  /* WORK BOXES */
+  .work-box {
+    margin-top: 14px;
+    background: white;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius-sm);
+    padding: 18px 20px;
+    min-height: 120px;
+    background-image: linear-gradient(transparent calc(1.7em - 1px), var(--line) 1px);
+    background-size: 100% 1.7em;
+    line-height: 1.7em;
+  }
+  .work-box.tall { min-height: 200px; }
+  .work-box.draw {
+    background-image:
+      linear-gradient(rgba(201, 212, 216, 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201, 212, 216, 0.4) 1px, transparent 1px);
+    background-size: 22px 22px;
+    line-height: normal;
+    min-height: 240px;
+  }
+  .work-label {
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  /* TABLES */
+  .ref-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin: 14px 0;
+  }
+  .ref-table th {
+    text-align: left;
+    padding: 10px 12px;
+    background: var(--ocean-deep);
+    color: white;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .ref-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  .ref-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .ref-table .blank-cell {
+    cursor: pointer;
+    color: var(--muted);
+    font-style: italic;
+    font-family: 'Lora', serif;
+  }
+  .ref-table .blank-cell:hover { background: var(--sea-glass-soft); }
+  .ref-table .blank-cell.revealed {
+    color: var(--ink);
+    font-style: normal;
+    font-family: inherit;
+  }
+
+  /* CHECKLIST */
+  .check-prompt {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 0;
+  }
+  .check-prompt input[type="checkbox"] {
+    width: 18px; height: 18px;
+    margin-top: 4px;
+    accent-color: var(--terra);
+    cursor: pointer;
+  }
+  .check-prompt label {
+    flex: 1;
+    cursor: pointer;
+    font-size: 0.96rem;
+  }
+
+  /* SECTION FOOTER */
+  .section-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--line);
+  }
+  .complete-btn {
+    background: white;
+    border: 2px solid var(--ocean-deep);
+    color: var(--ocean-deep);
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.86rem;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: all 0.18s ease;
+  }
+  .complete-btn:hover { background: var(--ocean-deep); color: white; }
+  .complete-btn.done {
+    background: var(--kelp);
+    color: white;
+    border-color: var(--kelp);
+  }
+  .complete-btn.done::before { content: '✓ '; }
+
+  /* CLOSING */
+  .closing {
+    background: linear-gradient(150deg, var(--ocean-deep) 0%, var(--ink) 100%);
+    color: white;
+    border-radius: var(--radius-lg);
+    padding: 36px 38px;
+    margin-top: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, var(--terra) 0%, transparent 70%);
+    opacity: 0.3;
+  }
+  .closing h3 {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .closing p { opacity: 0.88; max-width: 700px; margin-bottom: 14px; position: relative; }
+  .closing-steps {
+    list-style: none;
+    counter-reset: step;
+    margin-top: 18px;
+    position: relative;
+  }
+  .closing-steps li {
+    counter-increment: step;
+    padding: 8px 0 8px 38px;
+    position: relative;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .closing-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 6px;
+    width: 26px; height: 26px;
+    background: var(--terra);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .progress-rail, .icon-btn, .reveal-btn, .complete-btn, .skip-link { display: none !important; }
+    .answer.show { background: white; border-color: var(--ink); }
+    .section { break-inside: avoid; box-shadow: none; border: 1.5px solid var(--ink); page-break-inside: avoid; }
+    .section.collapsed .section-body { display: block !important; }
+    .work-box { min-height: 140px; }
+    .closing { background: white; color: var(--ink); border: 2px solid var(--ink); }
+    .closing-steps li { border-color: var(--line); }
+    @page { size: letter; margin: 0.55in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="page" id="main-content" role="main">
+
+  <header class="masthead">
+    <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · Week 02</p>
+    <h1 class="title">Protection &amp; <em>Support</em></h1>
+    <p class="subtitle">Skin, bone and joints, skeletal muscle. The structures that protect, support, and move the body.</p>
+    <div class="meta-row">
+      <span class="meta-pill">OpenStax · Ch 5, 10.1-10.3 (Read) · Ch 6.3-6.5, 9.1 (Focus)</span>
+      <span><strong>Cognitive load:</strong> 4 modes across 7 sections</span>
+      <span><strong>Estimated time:</strong> 120 to 150 minutes</span>
+      <span><strong>Author:</strong> Dr. Sharilyn Rennie</span>
+    </div>
+  </header>
+
+  <div class="progress-rail">
+    <span class="progress-label" id="progress-label">Trainer Progress</span>
+    <div class="progress-track" role="progressbar" aria-labelledby="progress-label" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount" aria-live="polite" aria-atomic="true">0 / 7</span>
+    <div class="progress-actions">
+      <button class="icon-btn" id="print-btn" type="button" aria-label="Print trainer" onclick="window.print()">⎙</button>
+      <button class="icon-btn" id="reset-btn" type="button" aria-label="Reset progress for all sections">↺</button>
+    </div>
+  </div>
+
+  <div class="intro">
+    <h2>Week 2: a heavier week, paced for online study</h2>
+    <p>BIO 304 is an online course. This week covers four major topics: the integumentary system, bone tissue and remodeling, joint classification, and muscle tissue. The OpenStax reading is split into "Read" chapters that you cover fully and "Focus" chapters where I have selected the high-yield sections. Use the trainer alongside OpenStax. Use the worksheet as your turn-in.</p>
+    <p>Plan to spread this trainer across two or three sittings. Doing it in one sitting is possible, but the material consolidates better with breaks. Mark each section complete only when you can answer the prompts without notes.</p>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-chip chip-retrieve">Retrieve</span> Recall the term, structure, or fact</span>
+      <span class="legend-item"><span class="legend-chip chip-build">Build</span> Draw, label, or construct the mechanism</span>
+      <span class="legend-item"><span class="legend-chip chip-apply">Apply</span> Predict, calculate, or interpret</span>
+    </div>
+  </div>
+
+  <!-- SECTION 01 -->
+  <section class="section" data-section="s1">
+    <div class="section-head" onclick="toggleSection('s1')">
+      <div class="section-num">01</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 5.1, 5.2</p>
+        <h2 class="section-title">Skin Architecture</h2>
+        <p class="section-anchor">The skin is the largest organ in the body. It uses all four tissues from Week 1, organized into layers that each do a specific job.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-retrieve">Retrieve</span>
+          <span class="mode-name">Layers, strata, cell types</span>
+        </div>
+        <ol class="prompt-list">
+          <li>
+            <span class="prompt-num">1.</span>
+            <div class="prompt-text">
+              Name the three major layers of skin from superficial to deep, and identify the dominant tissue type of each.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Epidermis</strong> (stratified squamous epithelium, avascular, regenerative). <strong>Dermis</strong> (dense irregular connective tissue, vascularized, contains accessory structures). <strong>Hypodermis</strong> or <strong>subcutaneous layer</strong> (loose connective tissue and adipose, anchors skin and stores fat). The hypodermis is technically not part of the skin but is included clinically.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">2.</span>
+            <div class="prompt-text">
+              List the five strata of the epidermis from deep to superficial, and note where the stratum lucidum is found.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer">Deep to superficial: <strong>stratum basale, spinosum, granulosum, lucidum, corneum</strong>. The stratum lucidum is found <em>only in thick skin</em> (palms and soles). Thin skin has only four strata. Mnemonic: "Bears Smell Garbage Like Cabbage."</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">3.</span>
+            <div class="prompt-text">
+              Name the four cell types found in the epidermis and the function of each.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Keratinocytes</strong> (most abundant, produce keratin, form the protective barrier). <strong>Melanocytes</strong> (produce melanin in stratum basale, transfer to keratinocytes for UV protection). <strong>Langerhans cells</strong> (dendritic immune cells, antigen presentation in stratum spinosum). <strong>Merkel cells</strong> (associated with sensory nerve endings in stratum basale, fine touch).</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">4.</span>
+            <div class="prompt-text">
+              Distinguish thick skin from thin skin in terms of structure, location, and function.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Thick skin:</strong> all 5 strata including stratum lucidum, very thick stratum corneum, no hair follicles. Found on palms, soles. Built for friction resistance. <strong>Thin skin:</strong> 4 strata (no lucidum), thinner stratum corneum, contains hair follicles. Covers most of the body. Built for sensation and flexibility.</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-build">Build</span>
+          <span class="mode-name">Strata reference table</span>
+        </div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the answer. Use this as a self-quiz: cover the answer with your hand, say it out loud, then click to check.</p>
+        <table class="ref-table">
+          <thead>
+            <tr><th scope="col">Stratum</th><th scope="col">Key feature</th><th scope="col">What is happening</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Basale</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Single layer of stem cells on basement membrane')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Mitosis, melanocytes and Merkel cells reside here')">click to reveal</td>
+            </tr>
+            <tr>
+              <td>Spinosum</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Several layers, spiny appearance from desmosomes')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Keratin synthesis begins, Langerhans cells reside here')">click to reveal</td>
+            </tr>
+            <tr>
+              <td>Granulosum</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Three to five layers with keratohyalin granules')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Cells flatten, organelles degrade, waterproofing lipids released')">click to reveal</td>
+            </tr>
+            <tr>
+              <td>Lucidum (thick skin only)</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Thin clear layer of dead flat keratinocytes')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Extra friction protection on palms and soles')">click to reveal</td>
+            </tr>
+            <tr>
+              <td>Corneum</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Many layers of dead anucleate cornified cells')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Final barrier, sloughs off and is replaced every 30 to 50 days')">click to reveal</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-apply">Apply</span>
+          <span class="mode-name">Predict the response</span>
+        </div>
+        <div class="work-label">a. A patient has a sunburn with redness and pain but no blistering. Which strata are most affected, and from where will new skin regenerate?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A long-distance runner develops thick calluses on the soles of the feet. Which strata thicken, and why is this protective rather than pathological?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient with vitiligo has patches of skin without melanocytes. Predict two consequences for the affected skin.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer">
+        <span style="font-size:0.84rem; color:var(--muted);">Section 01 of 07</span>
+        <button class="complete-btn" data-complete="s1" type="button" onclick="markComplete(this)">Mark complete</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 -->
+  <section class="section" data-section="s2">
+    <div class="section-head" onclick="toggleSection('s2')">
+      <div class="section-num">02</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 5.3, 5.4</p>
+        <h2 class="section-title">Skin in Homeostasis: Functions, Glands, Burns</h2>
+        <p class="section-anchor">Skin is not just a wrapper. It thermoregulates, holds in water, makes vitamin D, defends against pathogens, and tells you when something is sharp or hot. When skin fails (a burn), all of these functions fail at once.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-retrieve">Retrieve</span>
+          <span class="mode-name">Functions and accessory structures</span>
+        </div>
+        <ol class="prompt-list">
+          <li>
+            <span class="prompt-num">1.</span>
+            <div class="prompt-text">
+              List six functions of skin and pair each with the structure or feature responsible.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Protection:</strong> stratum corneum, melanin, sebum. <strong>Thermoregulation:</strong> sweat glands, dermal blood vessels, hair. <strong>Sensation:</strong> Merkel cells, free nerve endings, encapsulated receptors. <strong>Vitamin D synthesis:</strong> 7-dehydrocholesterol activated by UV in epidermis. <strong>Excretion:</strong> sweat releases small amounts of urea, salts, water. <strong>Immunity:</strong> Langerhans cells, antimicrobial sebum, intact barrier.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">2.</span>
+            <div class="prompt-text">
+              Compare eccrine and apocrine sweat glands in location, secretion, and activation.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Eccrine:</strong> distributed everywhere, especially palms, soles, forehead. Secretes watery sweat directly to skin surface. Active for thermoregulation, triggered by heat. <strong>Apocrine:</strong> located in axilla, groin, areolae. Secretes thicker, lipid-rich fluid into hair follicles. Activated at puberty by hormones, responsive to emotional stress (not heat). Body odor results from bacterial breakdown of apocrine secretions.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">3.</span>
+            <div class="prompt-text">
+              How does the skin thermoregulate when the body is too hot? When too cold?
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Too hot:</strong> dermal arterioles dilate (vasodilation, flushed appearance, more heat radiates from surface). Eccrine sweat glands activate (evaporation removes heat). <strong>Too cold:</strong> dermal arterioles constrict (vasoconstriction, pale appearance, less heat lost). Arrector pili contract (goosebumps, raises hair to trap air, vestigial in humans). Skeletal muscle shivering generates metabolic heat.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">4.</span>
+            <div class="prompt-text">
+              Define first, second, and third degree burns in terms of which layers are affected and the typical clinical presentation.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>First degree:</strong> epidermis only. Red, painful, dry, no blisters. Heals in days (stratum basale intact). Sunburn is the typical example. <strong>Second degree:</strong> epidermis and part of dermis. Red, painful, blistered, weeping. Heals in 1 to 3 weeks if accessory structures survive. <strong>Third degree:</strong> full thickness through dermis, often into hypodermis. Charred or white, painless (nerves destroyed), dry, leathery. Cannot regenerate from skin alone, requires grafting.</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-apply">Apply</span>
+          <span class="mode-name">Burn evaluation and skin function</span>
+        </div>
+        <div class="work-label">a. A patient has a burn that is red, painful, and blistered, but the skin still blanches when pressed. Classify the burn and explain how the skin will heal.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. An older adult has reduced sweat gland function. Predict the homeostatic risk on a hot summer day, and identify the variable that goes out of range first.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A burn destroys all hair follicles and sweat glands in a patch of skin. Why does the body need a graft to heal this area, instead of regenerating skin from the surrounding tissue?</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer">
+        <span style="font-size:0.84rem; color:var(--muted);">Section 02 of 07</span>
+        <button class="complete-btn" data-complete="s2" type="button" onclick="markComplete(this)">Mark complete</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 -->
+  <section class="section" data-section="s3">
+    <div class="section-head" onclick="toggleSection('s3')">
+      <div class="section-num">03</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Focus · OpenStax 6.3</p>
+        <h2 class="section-title">Bone Tissue Architecture</h2>
+        <p class="section-anchor">Bone is living tissue. It has cells, blood supply, and a metabolically active matrix that responds to mechanical stress and hormonal signals. The osteon is the structural unit of compact bone and the central concept of this section.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-retrieve">Retrieve</span>
+          <span class="mode-name">Compact and spongy bone, cells, osteon</span>
+        </div>
+        <ol class="prompt-list">
+          <li>
+            <span class="prompt-num">1.</span>
+            <div class="prompt-text">
+              Compare compact bone and spongy bone in terms of structure, location within a bone, and function.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Compact (cortical) bone:</strong> dense, organized into osteons, forms the outer shell of all bones. Provides strength against torsion and bending. <strong>Spongy (cancellous) bone:</strong> open lattice of trabeculae, no osteons, found in bone interiors and at epiphyses. Provides strength with reduced weight, houses red bone marrow, allows directional remodeling along stress lines.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">2.</span>
+            <div class="prompt-text">
+              Name the four bone cell types and the function of each. Note which one comes from a different lineage than the others.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Osteogenic (osteoprogenitor) cells:</strong> stem cells in periosteum and endosteum, divide to produce osteoblasts. <strong>Osteoblasts:</strong> bone-forming cells, secrete osteoid matrix and trigger calcification. <strong>Osteocytes:</strong> mature osteoblasts trapped in matrix, maintain bone tissue and detect mechanical stress. <strong>Osteoclasts:</strong> large multinucleated cells from monocyte (white blood cell) lineage, resorb bone via acid and enzymes. The first three are mesenchymal; osteoclasts are hematopoietic.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">3.</span>
+            <div class="prompt-text">
+              List the components of an osteon (Haversian system) and describe the path of nutrients from blood to osteocyte.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer">Components: <strong>central (Haversian) canal</strong> (contains blood vessel and nerve), concentric <strong>lamellae</strong> (rings of mineralized matrix), <strong>lacunae</strong> (small spaces housing osteocytes between lamellae), <strong>canaliculi</strong> (tiny channels connecting lacunae to each other and to the central canal). Path: blood enters the central canal → nutrients diffuse through canaliculi → reach osteocytes in lacunae. <strong>Perforating (Volkmann) canals</strong> connect adjacent osteons and link the central canals to the periosteum.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">4.</span>
+            <div class="prompt-text">
+              What are the periosteum and endosteum, and what is the role of each?
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Periosteum:</strong> double-layered membrane covering the outside of every bone except where joints articulate. Outer fibrous layer anchors tendons and ligaments. Inner cellular layer contains osteogenic cells and osteoblasts. <strong>Endosteum:</strong> thinner membrane lining the medullary cavity and the spaces of spongy bone. Contains osteogenic cells and osteoclasts. Both membranes are essential for bone growth, repair, and remodeling.</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-build">Build</span>
+          <span class="mode-name">Draw the osteon</span>
+        </div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">In the box below, draw a single osteon in cross-section. Label all of the following: central (Haversian) canal, concentric lamellae, lacunae, canaliculi, osteocyte, perforating (Volkmann) canal connecting to adjacent osteon.</p>
+        <div class="work-box draw"></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-apply">Apply</span>
+          <span class="mode-name">Predict the consequences</span>
+        </div>
+        <div class="work-label">a. A patient has osteoporosis: osteoclast activity is greater than osteoblast activity. Predict the consequence for bone density, structural integrity, and fracture risk.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. After a long bone fracture, which cells will divide first to begin the repair process? Where do they come from?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. Cartilage is avascular and heals slowly. Bone is highly vascular. How does this difference explain why fractures heal faster than torn cartilage?</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer">
+        <span style="font-size:0.84rem; color:var(--muted);">Section 03 of 07</span>
+        <button class="complete-btn" data-complete="s3" type="button" onclick="markComplete(this)">Mark complete</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 -->
+  <section class="section" data-section="s4">
+    <div class="section-head" onclick="toggleSection('s4')">
+      <div class="section-num">04</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Focus · OpenStax 6.4, 6.5</p>
+        <h2 class="section-title">Bone Formation, Remodeling, and Fractures</h2>
+        <p class="section-anchor">Bones rebuild themselves continuously. The same cells that make bone in development repair fractures in adulthood. Calcium homeostasis runs through this section because bone is the body's calcium reservoir.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-retrieve">Retrieve</span>
+          <span class="mode-name">Ossification, repair, calcium control</span>
+        </div>
+        <ol class="prompt-list">
+          <li>
+            <span class="prompt-num">1.</span>
+            <div class="prompt-text">
+              Compare intramembranous and endochondral ossification. Which bones form by each process?
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Intramembranous ossification:</strong> bone forms directly from mesenchymal connective tissue, no cartilage intermediate. Produces flat bones of the skull, the mandible, and most of the clavicle. <strong>Endochondral ossification:</strong> bone replaces a hyaline cartilage model. Produces all long bones and most of the rest of the skeleton. Continues at the epiphyseal plate (growth plate) until adolescence, when the plate ossifies and longitudinal growth ends.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">2.</span>
+            <div class="prompt-text">
+              Name the four stages of bone repair after a fracture, in order.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer">(1) <strong>Hematoma formation</strong>: blood clot forms at fracture site, inflammation begins, dead bone tissue is cleared. (2) <strong>Fibrocartilaginous (soft) callus formation</strong>: fibroblasts and chondroblasts deposit collagen and cartilage to bridge the fracture. (3) <strong>Bony (hard) callus formation</strong>: osteoblasts replace the soft callus with woven bone over several weeks. (4) <strong>Bone remodeling</strong>: osteoclasts and osteoblasts reshape the callus into mature compact and spongy bone, often months to years.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">3.</span>
+            <div class="prompt-text">
+              Explain how parathyroid hormone (PTH) and calcitonin regulate blood calcium.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>PTH:</strong> released by the parathyroid glands when blood Ca²⁺ falls. Stimulates osteoclasts (bone resorption releases Ca²⁺), increases renal Ca²⁺ reabsorption, and activates vitamin D for intestinal Ca²⁺ absorption. Net effect: raises blood calcium. <strong>Calcitonin:</strong> released by thyroid C cells when blood Ca²⁺ is high. Inhibits osteoclasts and promotes osteoblast deposition of Ca²⁺ into bone. Net effect: lowers blood calcium. The two hormones form a classic antagonistic feedback pair around the calcium set point.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">4.</span>
+            <div class="prompt-text">
+              State Wolff's law.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer">Wolff's law: bone remodels in response to the mechanical loads placed on it. Bone exposed to greater stress becomes denser and stronger; bone with reduced stress loses density. This explains why weight-bearing exercise builds bone, why dominant arms have denser bone than the non-dominant arm, and why astronauts and bedridden patients lose bone mass.</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-build">Build</span>
+          <span class="mode-name">Fracture types reference</span>
+        </div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the fracture description. These types are core content for Lab Exam 1.</p>
+        <table class="ref-table">
+          <thead>
+            <tr><th scope="col">Fracture type</th><th scope="col">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Transverse</td><td class="blank-cell" onclick="revealCell(this, 'Break runs perpendicular to the long axis of the bone')">click to reveal</td></tr>
+            <tr><td>Oblique</td><td class="blank-cell" onclick="revealCell(this, 'Break runs at an angle across the bone')">click to reveal</td></tr>
+            <tr><td>Spiral</td><td class="blank-cell" onclick="revealCell(this, 'Break twists around the bone, caused by a rotational force')">click to reveal</td></tr>
+            <tr><td>Comminuted</td><td class="blank-cell" onclick="revealCell(this, 'Bone shatters into three or more fragments')">click to reveal</td></tr>
+            <tr><td>Greenstick</td><td class="blank-cell" onclick="revealCell(this, 'Incomplete break, one side bends and the other cracks; common in children')">click to reveal</td></tr>
+            <tr><td>Compound (open)</td><td class="blank-cell" onclick="revealCell(this, 'Bone breaks through the skin; high infection risk')">click to reveal</td></tr>
+            <tr><td>Impacted</td><td class="blank-cell" onclick="revealCell(this, 'One bone fragment is driven into the other')">click to reveal</td></tr>
+            <tr><td>Compression</td><td class="blank-cell" onclick="revealCell(this, 'Bone is crushed; common in vertebrae of patients with osteoporosis')">click to reveal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-apply">Apply</span>
+          <span class="mode-name">Predict and trace</span>
+        </div>
+        <div class="work-label">a. A child fractures the radius and recovers in three weeks. An older adult fractures the same bone and takes three months. Give two reasons for the difference.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. An astronaut returns from six months on the International Space Station with reduced bone density. Use Wolff's law to explain.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. Blood calcium falls to 7.5 mg/dL (low). Trace the hormonal cascade that should restore it to the normal range.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer">
+        <span style="font-size:0.84rem; color:var(--muted);">Section 04 of 07</span>
+        <button class="complete-btn" data-complete="s4" type="button" onclick="markComplete(this)">Mark complete</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 05 -->
+  <section class="section" data-section="s5">
+    <div class="section-head" onclick="toggleSection('s5')">
+      <div class="section-num">05</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Focus · OpenStax 9.1</p>
+        <h2 class="section-title">Joint Classification</h2>
+        <p class="section-anchor">Joints are classified two ways: by structure (what they are made of) and by function (how much they move). Most exam questions ask you to do both for the same joint.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-retrieve">Retrieve</span>
+          <span class="mode-name">Structural and functional categories</span>
+        </div>
+        <ol class="prompt-list">
+          <li>
+            <span class="prompt-num">1.</span>
+            <div class="prompt-text">
+              Name the three structural categories of joints and give one example of each.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Fibrous:</strong> bones connected by dense connective tissue, no joint cavity. Example: skull sutures, gomphoses (teeth in sockets), syndesmoses (distal tib-fib). <strong>Cartilaginous:</strong> bones connected by cartilage, no cavity. Example: pubic symphysis, intervertebral discs, epiphyseal plates. <strong>Synovial:</strong> bones separated by a fluid-filled cavity enclosed in a capsule. Example: knee, shoulder, elbow, hip. Most joints in the body are synovial.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">2.</span>
+            <div class="prompt-text">
+              Name the three functional categories of joints based on the degree of movement allowed.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Synarthrosis:</strong> immovable. Example: skull sutures, gomphoses. <strong>Amphiarthrosis:</strong> slightly movable. Example: pubic symphysis, intervertebral discs. <strong>Diarthrosis:</strong> freely movable. All synovial joints are diarthroses.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">3.</span>
+            <div class="prompt-text">
+              List the six structural components of a typical synovial joint.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer">(1) <strong>Articular cartilage</strong> (hyaline, covers bone ends, low-friction surface). (2) <strong>Joint capsule</strong> (outer fibrous + inner synovial membrane). (3) <strong>Synovial fluid</strong> (lubricates, nourishes cartilage, removes debris). (4) <strong>Joint cavity</strong> (potential space inside capsule). (5) <strong>Reinforcing ligaments</strong> (bone-to-bone, restrict abnormal motion). (6) <strong>Sensory nerves and blood vessels</strong> (in the capsule and surrounding ligaments). Some synovial joints also have menisci, fat pads, or bursae.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">4.</span>
+            <div class="prompt-text">
+              Name the six subtypes of synovial joints, the type of motion each allows, and one example of each.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Plane (gliding):</strong> flat surfaces slide. Intercarpal joints. <strong>Hinge:</strong> motion in one plane, like a door. Elbow, knee. <strong>Pivot:</strong> rotation around an axis. Atlantoaxial (C1 on C2), proximal radioulnar. <strong>Condyloid (ellipsoid):</strong> two planes, no rotation. Wrist (radiocarpal), metacarpophalangeal joints. <strong>Saddle:</strong> two planes plus limited rotation. First carpometacarpal (thumb base). <strong>Ball-and-socket:</strong> three planes, full range of motion. Shoulder, hip.</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-build">Build</span>
+          <span class="mode-name">Draw the synovial joint</span>
+        </div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">In the box below, draw a generalized synovial joint showing the long axes of two bones meeting. Label all of the following: articular cartilage, joint capsule (outer fibrous and inner synovial layers), synovial fluid, joint cavity, reinforcing ligament.</p>
+        <div class="work-box draw"></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-apply">Apply</span>
+          <span class="mode-name">Classify and predict</span>
+        </div>
+        <div class="work-label">a. Classify the elbow by both structure and function. Specify the synovial subtype.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Classify the cranial sutures by both structure and function. Why is this design appropriate for the skull?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient with rheumatoid arthritis has inflamed synovial membranes. Predict three changes in joint function and explain each.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer">
+        <span style="font-size:0.84rem; color:var(--muted);">Section 05 of 07</span>
+        <button class="complete-btn" data-complete="s5" type="button" onclick="markComplete(this)">Mark complete</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 06 -->
+  <section class="section" data-section="s6">
+    <div class="section-head" onclick="toggleSection('s6')">
+      <div class="section-num">06</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 10.1, 10.2, 10.3</p>
+        <h2 class="section-title">Muscle Tissue</h2>
+        <p class="section-anchor">Three muscle types do three different jobs. Skeletal moves bones. Cardiac pumps blood. Smooth lines hollow organs. The sarcomere is the contractile unit of striated muscle and the foundation for everything that follows in muscle physiology.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-retrieve">Retrieve</span>
+          <span class="mode-name">Three muscle types and the sarcomere</span>
+        </div>
+        <ol class="prompt-list">
+          <li>
+            <span class="prompt-num">1.</span>
+            <div class="prompt-text">
+              Compare the three muscle types on these features: control, striations, nuclei per cell, cell shape, and one location.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Skeletal:</strong> voluntary, striated, multinucleated, long cylindrical fibers, attaches to bones. <strong>Cardiac:</strong> involuntary, striated, usually one (sometimes two) central nuclei, branched cells joined by intercalated discs, found only in heart. <strong>Smooth:</strong> involuntary, non-striated, single central nucleus, spindle-shaped cells, walls of hollow organs (GI tract, vessels, uterus, bladder).</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">2.</span>
+            <div class="prompt-text">
+              Define a sarcomere and name its boundaries.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer">A sarcomere is the basic contractile unit of striated muscle, defined as the region between two adjacent <strong>Z-discs (Z-lines)</strong>. Each sarcomere contains overlapping thick (myosin) and thin (actin) filaments arranged in a precise pattern that produces the striated appearance.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">3.</span>
+            <div class="prompt-text">
+              Identify each band and zone of the sarcomere: A-band, I-band, H-zone, M-line.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>A-band:</strong> dark band, length of thick (myosin) filaments. Includes regions where thin and thick overlap. Does not change length during contraction. <strong>I-band:</strong> light band, contains only thin filaments. Spans across the Z-line between adjacent sarcomeres. Shortens during contraction. <strong>H-zone:</strong> central region of A-band containing only thick filaments. Shortens during contraction. <strong>M-line:</strong> middle of the sarcomere, anchors thick filaments.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">4.</span>
+            <div class="prompt-text">
+              State the sliding filament theory in one sentence and identify the role of calcium.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer">Sliding filament theory: muscle contracts when myosin heads pull thin (actin) filaments toward the M-line, shortening each sarcomere. The thick and thin filaments themselves do not change length. <strong>Calcium</strong> released from the sarcoplasmic reticulum binds troponin on the thin filament, which moves tropomyosin off the actin binding sites, exposing them for myosin attachment. No calcium, no cross-bridge formation, no contraction.</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-build">Build</span>
+          <span class="mode-name">Draw the sarcomere</span>
+        </div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">In the box below, draw a sarcomere at rest (showing the full overlap pattern). Label all of the following: Z-line (both ends), thick filament (myosin), thin filament (actin), A-band, I-band, H-zone, M-line.</p>
+        <div class="work-box draw"></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-apply">Apply</span>
+          <span class="mode-name">Predict the response</span>
+        </div>
+        <div class="work-label">a. A toxin blocks calcium release from the sarcoplasmic reticulum in skeletal muscle. Predict what happens to muscle contraction and why.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Cardiac muscle cells are joined by intercalated discs. Why is this design essential for the heart but unnecessary for skeletal muscle?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. During sarcomere contraction, the I-band and H-zone shorten but the A-band does not. Explain why, using the sliding filament model.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer">
+        <span style="font-size:0.84rem; color:var(--muted);">Section 06 of 07</span>
+        <button class="complete-btn" data-complete="s6" type="button" onclick="markComplete(this)">Mark complete</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 07 -->
+  <section class="section" data-section="s7">
+    <div class="section-head" onclick="toggleSection('s7')">
+      <div class="section-num">07</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Self-Assessment · Reflect</p>
+        <h2 class="section-title">Self-Check &amp; Reflection</h2>
+        <p class="section-anchor">Before you submit, audit what you actually know. This week's lab includes the EWG Skin Deep product audit and ABCDE melanoma self-exam, both of which pull from skin content above.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-retrieve">Retrieve</span>
+          <span class="mode-name">Confidence audit</span>
+        </div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Check the box only if you can do the action without notes, right now.</p>
+        <div class="check-prompt"><input type="checkbox" id="cf1"><label for="cf1">I can name the three skin layers, the five strata of the epidermis, and the four cell types in the epidermis.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf2"><label for="cf2">I can list six functions of skin and pair each with the responsible structure.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf3"><label for="cf3">I can classify a burn as first, second, or third degree from a clinical description.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf4"><label for="cf4">I can compare compact and spongy bone in structure and function.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf5"><label for="cf5">I can name the four bone cell types and identify the one with a different lineage.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf6"><label for="cf6">I can draw an osteon with all components labeled.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf7"><label for="cf7">I can compare intramembranous and endochondral ossification.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf8"><label for="cf8">I can list the four stages of fracture repair in order.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf9"><label for="cf9">I can explain how PTH and calcitonin regulate blood calcium.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf10"><label for="cf10">I can identify common fracture types from a description.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf11"><label for="cf11">I can classify a joint by both structure and function and name the synovial subtype.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf12"><label for="cf12">I can draw a sarcomere and name the bands, lines, and zones.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf13"><label for="cf13">I can compare the three muscle types on control, striations, nuclei, and location.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf14"><label for="cf14">I can explain why sarcomere I-band and H-zone shorten but the A-band does not.</label></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-apply">Apply</span>
+          <span class="mode-name">Reflection prompts</span>
+        </div>
+        <div class="work-label">a. Which one concept from this week feels strongest right now?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Which one concept from this week is still cloudy? Write what you would ask Dr. Rennie or a study partner if you had thirty seconds.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. This week's lab includes the ABCDE melanoma self-exam. Looking at your own skin, name one mole or feature you would want to evaluate using the ABCDE criteria.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer">
+        <span style="font-size:0.84rem; color:var(--muted);">Section 07 of 07</span>
+        <button class="complete-btn" data-complete="s7" type="button" onclick="markComplete(this)">Mark complete</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <h3>Wrapping up Week 2</h3>
+    <p>Four major topics: skin, bone, joints, muscle. Each one will reappear later in the course. The integumentary system shows up again with sensory neurons. Bone returns with calcium homeostasis when we cover the parathyroid gland. Joints connect to muscle attachments. The sarcomere becomes the foundation for cardiac and smooth muscle later in the semester.</p>
+    <p>To submit:</p>
+    <ol class="closing-steps">
+      <li>Make sure the progress bar above shows 7 of 7 sections complete. The trainer is your study tool, not your turn-in.</li>
+      <li>Open the Week 2 Worksheet (companion document). Print it and complete it by hand, or fill it in digitally on a tablet.</li>
+      <li>Save your <strong>completed</strong> worksheet as a single PDF (scan it, photograph it, or export from your tablet).</li>
+      <li>Upload that PDF to the Week 2 Worksheet assignment in Canvas. You only submit the completed version, not the blank one.</li>
+    </ol>
+  </div>
+
+</div>
+
+<script>
+  // ============== ACCESSIBILITY INITIALIZATION ==============
+  (function() {
+    document.querySelectorAll('.section').forEach((section) => {
+      const head = section.querySelector('.section-head');
+      const body = section.querySelector('.section-body');
+      const sid = section.dataset.section;
+      if (head && body && sid) {
+        body.id = sid + '-body';
+        head.setAttribute('role', 'button');
+        head.setAttribute('tabindex', '0');
+        head.setAttribute('aria-expanded', 'true');
+        head.setAttribute('aria-controls', sid + '-body');
+        const num = head.querySelector('.section-num');
+        if (num) num.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    document.querySelectorAll('.reveal-btn').forEach((btn, i) => {
+      const ans = btn.nextElementSibling;
+      if (ans && ans.classList.contains('answer')) {
+        const id = 'reveal-ans-' + i;
+        ans.id = id;
+        btn.setAttribute('aria-controls', id);
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('type', 'button');
+      }
+    });
+
+    document.querySelectorAll('.blank-cell').forEach((cell) => {
+      cell.setAttribute('role', 'button');
+      cell.setAttribute('tabindex', '0');
+      cell.setAttribute('aria-label', 'Click to reveal answer');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) {
+        e.preventDefault();
+        e.target.click();
+      }
+    });
+  })();
+
+  // ============== ANSWER REVEAL ==============
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    const isOpen = ans.classList.toggle('show');
+    btn.textContent = isOpen ? 'Hide' : 'Show';
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+
+  function toggleSection(id) {
+    const section = document.querySelector(`[data-section="${id}"]`);
+    if (!section) return;
+    const collapsed = section.classList.toggle('collapsed');
+    const head = section.querySelector('.section-head');
+    if (head) head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+  }
+
+  function revealCell(el, answer) {
+    el.textContent = answer;
+    el.classList.add('revealed');
+    el.onclick = null;
+    el.removeAttribute('role');
+    el.removeAttribute('tabindex');
+    el.setAttribute('aria-label', answer);
+  }
+
+  // ============== PROGRESS ==============
+  const STORAGE_KEY = 'bio304_w02_trainer_progress';
+  let completed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+  function updateProgress() {
+    const total = 7;
+    const count = completed.length;
+    const pct = (count / total) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressCount').textContent = count + ' / ' + total;
+    const track = document.querySelector('.progress-track');
+    if (track) track.setAttribute('aria-valuenow', String(count));
+  }
+
+  function markComplete(btn) {
+    const id = btn.getAttribute('data-complete');
+    if (completed.includes(id)) {
+      completed = completed.filter(x => x !== id);
+      btn.classList.remove('done');
+      btn.textContent = 'Mark complete';
+    } else {
+      completed.push(id);
+      btn.classList.add('done');
+      btn.textContent = 'Complete';
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+    updateProgress();
+  }
+
+  completed.forEach(id => {
+    const btn = document.querySelector(`[data-complete="${id}"]`);
+    if (btn) {
+      btn.classList.add('done');
+      btn.textContent = 'Complete';
+    }
+  });
+  updateProgress();
+
+  document.getElementById('reset-btn').onclick = function() {
+    if (confirm('Reset all section progress for this trainer? This will not erase what you wrote in the boxes.')) {
+      completed = [];
+      localStorage.removeItem(STORAGE_KEY);
+      document.querySelectorAll('.complete-btn').forEach(btn => {
+        btn.classList.remove('done');
+        btn.textContent = 'Mark complete';
+      });
+      updateProgress();
+    }
+  };
+
+  // ============== IFRAME HEIGHT SENDER ==============
+  (function() {
+    const FRAME_ID = 'bio304-w02-trainer';
+    function sendHeight() {
+      const h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight
+      );
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(sendHeight).observe(document.body);
+    }
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
