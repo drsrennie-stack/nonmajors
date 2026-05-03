@@ -30,9 +30,56 @@
     --radius-lg: 18px;
   }
 
+  /* ACCESSIBILITY: --muted darkened from #6b7d85 to #5a6b73 for WCAG AA contrast */
+  :root { --muted: #5a6b73; }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { scroll-behavior: smooth; }
+
+  /* SKIP LINK */
+  .skip-link {
+    position: absolute;
+    left: -10000px;
+    top: 0;
+    background: var(--ocean-deep);
+    color: white;
+    padding: 12px 20px;
+    z-index: 1000;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 0 0 6px 0;
+  }
+  .skip-link:focus { left: 0; top: 0; }
+
+  /* VISIBLE FOCUS INDICATORS */
+  :focus { outline: none; }
+  :focus-visible {
+    outline: 3px solid var(--terra);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* REDUCED MOTION */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    html { scroll-behavior: auto; }
+  }
+
+  /* SCREEN-READER ONLY */
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
 
   body {
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
@@ -624,11 +671,12 @@
 </style>
 </head>
 <body>
-<div class="page">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="page" id="main-content" role="main">
 
   <!-- MASTHEAD -->
   <header class="masthead">
-    <div class="eyebrow">BIO 431 · Human Anatomy &amp; Physiology · Week 01</div>
+    <div class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · Week 01</div>
     <h1 class="title">Body Basics, <em>Cells &amp; Tissues</em></h1>
     <p class="subtitle">The foundation week. You learn the language, the levels, the molecules of life, the cell, and the four tissues that build every organ in the body.</p>
     <div class="meta-row">
@@ -641,20 +689,20 @@
 
   <!-- PROGRESS BAR -->
   <div class="progress-rail">
-    <span class="progress-label">Trainer Progress</span>
-    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-    <span class="progress-count" id="progressCount">0 / 7</span>
+    <span class="progress-label" id="progress-label">Trainer Progress</span>
+    <div class="progress-track" role="progressbar" aria-labelledby="progress-label" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount" aria-live="polite" aria-atomic="true">0 / 7</span>
     <div class="progress-actions">
-      <button class="icon-btn" id="print-btn" title="Print" onclick="window.print()">⎙</button>
-      <button class="icon-btn" id="reset-btn" title="Reset progress">↺</button>
+      <button class="icon-btn" id="print-btn" type="button" aria-label="Print trainer" onclick="window.print()">⎙</button>
+      <button class="icon-btn" id="reset-btn" type="button" aria-label="Reset progress for all sections">↺</button>
     </div>
   </div>
 
   <!-- INTRO -->
   <div class="intro">
     <h2>How this trainer works</h2>
-    <p>Every weekly trainer in BIO 431 cycles you through three cognitive modes, plus a clinical apply step. The point is not to memorize. The point is to retrieve, build, and use. You will move through the chapter the way a clinician moves through a patient: language first, then mechanism, then judgment.</p>
-    <p>This trainer is your <strong>study tool</strong>. Use it as you read OpenStax. Click to reveal answers, run the quiz, play with the calculators. The companion <strong>Week 1 Worksheet</strong> is what you turn in. It captures only the drawings, predictions, calculations, and reflections. Print the worksheet, work through it as you study, and submit it when the trainer's progress bar shows 7 of 7 sections complete.</p>
+    <p>Every weekly trainer in BIO 304 cycles you through three cognitive modes, plus a clinical apply step. The point is not to memorize. The point is to retrieve, build, and use. You will move through the chapter the way a clinician moves through a patient: language first, then mechanism, then judgment.</p>
+    <p>BIO 304 is an online course. This trainer is your <strong>study tool</strong>. Use it as you read OpenStax. Click to reveal answers, run the quiz, play with the calculators. The companion <strong>Week 1 Worksheet</strong> is what you turn in. It captures only the drawings, predictions, calculations, and reflections. Open both files, work through them together, and submit the completed worksheet when the trainer's progress bar shows 7 of 7 sections complete.</p>
     <div class="legend">
       <span class="legend-item"><span class="legend-chip chip-retrieve">Retrieve</span> Recall the term, structure, or fact</span>
       <span class="legend-item"><span class="legend-chip chip-build">Build</span> Draw, label, or construct the mechanism</span>
@@ -1328,7 +1376,7 @@
         </div>
         <div class="work-label">a. Which one concept from this week feels strongest right now?</div>
         <div class="work-box"></div>
-        <div class="work-label" style="margin-top:14px;">b. Which one concept from this week is still cloudy? Write what you would ask Dr. Rennie or your TBL team if you had thirty seconds.</div>
+        <div class="work-label" style="margin-top:14px;">b. Which one concept from this week is still cloudy? Write what you would ask Dr. Rennie or a study partner if you had thirty seconds.</div>
         <div class="work-box"></div>
         <div class="work-label" style="margin-top:14px;">c. Looking ahead: how will what you learned this week show up in next week's content?</div>
         <div class="work-box"></div>
@@ -1348,10 +1396,9 @@
     <p>To submit:</p>
     <ol class="closing-steps">
       <li>Make sure the progress bar above shows 7 of 7 sections complete. The trainer is your study tool, not your turn-in.</li>
-      <li>Open and print the <strong>Week 1 Worksheet</strong> (companion document). Complete the drawings, predictions, calculations, and reflections by hand.</li>
-      <li>Scan or photograph your completed worksheet as a single PDF.</li>
-      <li>Upload the PDF to the Week 1 Worksheet assignment in Canvas.</li>
-      <li>Bring your completed worksheet with you to Thursday's TBL session for team discussion.</li>
+      <li>Open the Week 1 Worksheet (companion document). Print it and complete it by hand, or fill it in digitally on a tablet.</li>
+      <li>Save your <strong>completed</strong> worksheet as a single PDF (scan it, photograph it, or export from your tablet).</li>
+      <li>Upload that PDF to the Week 1 Worksheet assignment in Canvas. You only submit the completed version, not the blank one.</li>
     </ol>
   </div>
 
@@ -1359,6 +1406,78 @@
 
 <script src="cognitive_quiz.js"></script>
 <script>
+  // ============== ACCESSIBILITY INITIALIZATION ==============
+  (function() {
+    // Section toggles: ARIA buttons with keyboard support
+    document.querySelectorAll('.section').forEach((section) => {
+      const head = section.querySelector('.section-head');
+      const body = section.querySelector('.section-body');
+      const sid = section.dataset.section;
+      if (head && body && sid) {
+        body.id = sid + '-body';
+        head.setAttribute('role', 'button');
+        head.setAttribute('tabindex', '0');
+        head.setAttribute('aria-expanded', 'true');
+        head.setAttribute('aria-controls', sid + '-body');
+        // Hide decorative chevron from AT
+        const chev = head.querySelector('.section-toggle');
+        if (chev) chev.setAttribute('aria-hidden', 'true');
+        // Hide decorative section number from AT (announced by heading)
+        const num = head.querySelector('.section-num');
+        if (num) num.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // Reveal answer buttons
+    document.querySelectorAll('.reveal-btn').forEach((btn, i) => {
+      const ans = btn.nextElementSibling;
+      if (ans && ans.classList.contains('answer')) {
+        const id = 'reveal-ans-' + i;
+        ans.id = id;
+        btn.setAttribute('aria-controls', id);
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('type', 'button');
+      }
+    });
+
+    // Click-to-reveal table cells: convert div role behavior
+    document.querySelectorAll('.blank-cell').forEach((cell) => {
+      cell.setAttribute('role', 'button');
+      cell.setAttribute('tabindex', '0');
+      cell.setAttribute('aria-label', 'Click to reveal answer');
+    });
+
+    // Calculator label/input association
+    ['phInput', 'bmiHeight', 'bmiWeight', 'bmiHeightUnit', 'bmiWeightUnit',
+     'bsaHeight', 'bsaWeight', 'bsaHeightUnit', 'bsaWeightUnit'].forEach((id) => {
+      const input = document.getElementById(id);
+      if (input) {
+        const grp = input.parentElement;
+        const label = grp ? grp.querySelector('label') : null;
+        if (label && !label.getAttribute('for')) {
+          label.setAttribute('for', id);
+        }
+      }
+    });
+
+    // Calculator outputs: aria-live for screen reader announcements
+    ['phResult', 'phInterp', 'bmiResult', 'bmiInterp', 'bsaResult', 'bsaInterp'].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.setAttribute('aria-live', 'polite');
+        el.setAttribute('aria-atomic', 'true');
+      }
+    });
+
+    // Keyboard support for all role="button" elements
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) {
+        e.preventDefault();
+        e.target.click();
+      }
+    });
+  })();
+
   // ============== TERMINOLOGY QUIZ (Week 1) ==============
   const week1Terms = [
     { q: "The wrist is _____ to the elbow.", options: ["Proximal", "Distal", "Medial", "Superficial"], correct: 1, why: "Distal means farther from the trunk attachment. The wrist is farther from the shoulder than the elbow is." },
@@ -1383,22 +1502,30 @@
     el.textContent = answer;
     el.classList.add('revealed');
     el.onclick = null;
+    el.removeAttribute('role');
+    el.removeAttribute('tabindex');
+    el.setAttribute('aria-label', answer);
   }
 
   // ============== ANSWER REVEAL ==============
   function toggleAnswer(btn) {
     const ans = btn.nextElementSibling;
-    ans.classList.toggle('show');
-    btn.textContent = ans.classList.contains('show') ? 'Hide' : 'Show';
+    const isOpen = ans.classList.toggle('show');
+    btn.textContent = isOpen ? 'Hide' : 'Show';
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   }
 
   // ============== SECTION COLLAPSE ==============
   function toggleSection(id) {
-    document.querySelector(`[data-section="${id}"]`).classList.toggle('collapsed');
+    const section = document.querySelector(`[data-section="${id}"]`);
+    if (!section) return;
+    const collapsed = section.classList.toggle('collapsed');
+    const head = section.querySelector('.section-head');
+    if (head) head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
   }
 
   // ============== PROGRESS TRACKING ==============
-  const STORAGE_KEY = 'bio431_w01_trainer_progress';
+  const STORAGE_KEY = 'bio304_w01_trainer_progress';
   let completed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
   function updateProgress() {
@@ -1407,6 +1534,8 @@
     const pct = (count / total) * 100;
     document.getElementById('progressFill').style.width = pct + '%';
     document.getElementById('progressCount').textContent = count + ' / ' + total;
+    const track = document.querySelector('.progress-track');
+    if (track) track.setAttribute('aria-valuenow', String(count));
   }
 
   function markComplete(btn) {
@@ -1518,7 +1647,7 @@
 
   // ============== IFRAME HEIGHT SENDER ==============
   (function() {
-    const FRAME_ID = 'bio431-w01-trainer';
+    const FRAME_ID = 'bio304-w01-trainer';
     function sendHeight() {
       const h = Math.max(
         document.body.scrollHeight,
