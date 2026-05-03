@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Week 3 Anatomy Workbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5; --sand-soft: #faf3e8; --sand: #f5e6d3;
+    --terra: #c44536; --kelp: #5a7553;
+    --paper: #fdfbf7; --line: #c9d4d8; --rule: #a8b5bb; --muted: #5a6b73;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #e8e8e0; line-height: 1.55; font-size: 16px; padding: 30px 0; -webkit-font-smoothing: antialiased; }
+  .sheet { max-width: 8.5in; margin: 0 auto; background: white; padding: 0.55in 0.6in; box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1); }
+  .actions { max-width: 8.5in; margin: 0 auto 16px; padding: 0 0.6in; display: flex; justify-content: flex-end; }
+  .print-btn { background: var(--ocean-deep); color: white; border: none; padding: 11px 22px; border-radius: 8px; font-family: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 8px; transition: background 0.15s ease; }
+  .print-btn:hover { background: var(--ocean); }
+  .print-btn::before { content: '⎙'; font-size: 1rem; }
+
+  .masthead { border-bottom: 2.5px solid var(--ocean-deep); padding-bottom: 18px; margin-bottom: 24px; position: relative; }
+  .masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .masthead.physiology::after { background: var(--terra); }
+  .course-line { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .doc-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.85rem; color: var(--ocean-deep); line-height: 1.2; margin-bottom: 6px; }
+  .doc-subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean); }
+
+  .student-block { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; margin: 18px 0 24px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field { display: flex; flex-direction: column; }
+  .field-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field-line { border-bottom: 1.5px solid var(--ink); height: 24px; }
+
+  .instructions { background: var(--sand-soft); border-left: 3px solid var(--terra); padding: 14px 18px; margin-bottom: 26px; font-size: 0.92rem; }
+  .instructions h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+
+  .section { margin: 22px 0; page-break-inside: avoid; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.5rem; color: var(--terra); min-width: 32px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; color: var(--ocean-deep); }
+  .section-anchor { font-size: 0.86rem; color: var(--ocean); font-style: italic; margin-top: 4px; }
+
+  .field-prompt { font-size: 0.92rem; color: var(--ink); margin: 10px 0 6px; line-height: 1.5; }
+  .field-prompt strong { color: var(--ocean-deep); }
+  .field-helper { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+
+  .ruled { background: white; border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; min-height: 5em; background-image: repeating-linear-gradient(transparent, transparent 24px, var(--rule) 24px, var(--rule) 25px); line-height: 25px; }
+  .ruled.short { min-height: 4em; }
+  .ruled.medium { min-height: 6em; }
+  .ruled.long { min-height: 9em; }
+
+  .word-bank { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 14px 18px; margin: 14px 0 18px; }
+  .word-bank-label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .word-bank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 14px; font-size: 0.86rem; color: var(--ink); }
+  .word-bank-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .word-bank-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 600px) {
+    .word-bank-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .label-exercise { margin: 16px 0; page-break-inside: avoid; }
+  .label-exercise-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.05rem; color: var(--terra); margin-bottom: 10px; }
+  .label-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .label-flex.wide-fig { grid-template-columns: 1.4fr 1fr; }
+  .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
+
+  .figure { margin: 0; }
+  .figure-imgbox { background: white; border: 2px dashed var(--ocean); border-radius: 6px; padding: 14px; position: relative; display: flex; align-items: center; justify-content: center; }
+  .figure-imgbox img { max-width: 100%; height: auto; display: block; }
+  .figure-imgbox.img-pending { background: var(--sea-glass-soft); border-color: var(--ocean); }
+  .img-pending-msg { display: none; flex-direction: column; align-items: center; gap: 6px; text-align: center; color: var(--muted); padding: 18px; }
+  .figure-imgbox.img-pending .img-pending-msg { display: flex; }
+  .img-pending-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); }
+  .img-pending-file { font-size: 0.95rem; font-weight: 600; color: var(--terra); background: white; padding: 6px 14px; border-radius: 4px; border: 1px solid var(--terra); }
+  .img-pending-alt { font-size: 0.82rem; font-style: italic; max-width: 360px; line-height: 1.4; margin-top: 4px; }
+
+  .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+  .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .key-list { list-style: none; padding: 0; margin: 0; }
+  .key-list li { padding: 5px 0; border-bottom: 1px dashed var(--line); display: flex; align-items: baseline; gap: 8px; font-size: 0.88rem; }
+  .key-list li:last-child { border-bottom: none; }
+  .key-list.compact li { padding: 3px 0; font-size: 0.84rem; }
+  .key-num { font-weight: 700; color: var(--terra); min-width: 28px; flex-shrink: 0; }
+  .key-blank { flex: 1; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+  .key-fill { flex: 1; }
+
+  @media (max-width: 700px) {
+    .label-flex { grid-template-columns: 1fr; }
+  }
+
+  .draw-box { background: white; border: 1.5px solid var(--ocean-deep); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 280px; background-image: linear-gradient(rgba(214, 228, 231, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(214, 228, 231, 0.4) 1px, transparent 1px); background-size: 24px 24px; background-position: -1px -1px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: white; padding: 1px 6px; border-radius: 2px; }
+  .draw-box.tall { min-height: 360px; }
+  .draw-box.short { min-height: 220px; }
+
+  .calc-box { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; margin: 10px 0; min-height: 80px; }
+  .calc-box-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.86rem; background: white; }
+  .data-table th { text-align: left; padding: 8px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .data-table .input-cell { background: white !important; min-width: 80px; }
+  .data-table .input-cell .cell-line { display: block; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+
+  .case { background: var(--sand-soft); border-left: 3px solid var(--terra); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 14px 0; page-break-inside: avoid; }
+  .case-label { display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; }
+  .case-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .case-body { font-size: 0.9rem; line-height: 1.55; margin-bottom: 8px; }
+  .case-body strong { color: var(--ocean-deep); }
+  .case-prompts { margin-top: 10px; }
+  .case-prompts ol { list-style: decimal; padding-left: 22px; margin: 6px 0; font-size: 0.9rem; }
+  .case-prompts ol li { margin-bottom: 6px; line-height: 1.5; }
+
+  .reference { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean-deep); padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.88rem; }
+  .reference h4 { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 0.96rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .reference p { margin-bottom: 6px; line-height: 1.55; }
+  .reference p:last-child { margin-bottom: 0; }
+  .reference strong { color: var(--terra); font-weight: 600; }
+  .reference .formula { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean-deep); padding: 8px 14px; background: white; border: 1px solid var(--line); border-radius: 4px; display: inline-block; margin: 4px 0; }
+
+  .synthesis { background: linear-gradient(150deg, var(--sand-soft), white); border: 2px solid var(--terra); border-radius: 8px; padding: 16px 20px; margin: 18px 0; page-break-inside: avoid; }
+  .synthesis-label { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 3px 10px; border-radius: 3px; margin-bottom: 8px; }
+  .synthesis-prompt { font-size: 0.96rem; line-height: 1.55; color: var(--ink); margin-bottom: 8px; }
+  .synthesis-prompt strong { color: var(--ocean-deep); }
+
+  .submission { margin-top: 30px; padding: 18px 22px; background: var(--sea-glass-soft); border: 1.5px solid var(--ocean-deep); border-radius: 6px; page-break-inside: avoid; }
+  .submission h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.08rem; color: var(--ocean-deep); margin-bottom: 10px; }
+  .submission p { font-size: 0.86rem; margin-bottom: 6px; }
+
+  /* PARTNER LINK BANNER (cross-link between anatomy & physiology workbooks) */
+  .partner-link { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 12px 16px; margin: 22px 0; font-size: 0.88rem; display: flex; align-items: center; gap: 12px; }
+  .partner-link-label { flex: 1; }
+  .partner-link-label strong { color: var(--ocean-deep); }
+  .partner-link a { color: var(--terra); text-decoration: underline; font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link, .partner-link { display: none !important; }
+    .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
+    .figure-imgbox { border-color: #888; }
+    .figure-imgbox.img-pending { background: white; }
+    @page { size: letter; margin: 0.55in 0.6in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions">
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this workbook or save as PDF">Print / Save PDF</button>
+</div>
+
+<main id="main-content" class="sheet" role="main">
+  <header class="masthead anatomy">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 3 Anatomy Workbook</p>
+    <h1 class="doc-title">Control Systems</h1>
+    <p class="doc-subtitle">Anatomy: nervous system and endocrine system. Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field">
+      <span class="field-label">Name</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Section</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Date</span>
+      <span class="field-line"></span>
+    </div>
+  </div>
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">How this workbook works</h2>
+    <p><strong>Print, handwrite, scan, submit.</strong> This is the <strong>Anatomy Workbook</strong> for Week 3. Complete this first, then move to the Physiology Workbook for the OGTT &amp; ANS reflex dry lab.</p>
+    <p><strong>This week, the word banks are gone.</strong> Recall structures from memory. If you cannot name a structure, leave the line blank, then check it against the trainer afterward and study the gaps. Honest blanks teach you more than guessed labels.</p>
+    <p><strong>Drawing tasks and synthesis questions are weighted heavily</strong> because they cannot be copied from AI.</p>
+  </section>
+
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 1</p>
+        <h2 class="section-title" id="s1-title">Multipolar neuron and synapse</h2>
+        <p class="section-anchor">Identify the parts of a typical motor neuron and the synaptic terminal where it connects to its target.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <p class="label-exercise-title">Multipolar neuron</p>
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 380px;">
+          <img src="" alt="Multipolar motor neuron showing dendrites, cell body (soma) with nucleus and Nissl bodies, axon hillock, axon, myelin sheath formed by Schwann cells, nodes of Ranvier, axon terminals (synaptic boutons), with 9 numbered arrows" data-pending="multipolar_neuron.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">multipolar_neuron.png</span>
+            <span class="img-pending-alt">Multipolar motor neuron showing dendrites, cell body (soma) with nucleus and Nissl bodies, axon hillock, axon, myelin sheath formed by Schwann cells, nodes of Ranvier, axon terminals (synaptic boutons), with 9 numbered arrows</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="neuron-key-title">
+        <p class="key-title" id="neuron-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <div class="label-exercise" style="margin-top: 22px;">
+      <p class="label-exercise-title">Chemical synapse (close-up)</p>
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 320px;">
+          <img src="" alt="Chemical synapse showing presynaptic axon terminal with synaptic vesicles containing neurotransmitter, voltage-gated calcium channels, synaptic cleft, neurotransmitter molecules in the cleft, postsynaptic membrane with receptor proteins, and the postsynaptic cell, with 7 numbered arrows" data-pending="synapse.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">synapse.png</span>
+            <span class="img-pending-alt">Chemical synapse showing presynaptic axon terminal with synaptic vesicles containing neurotransmitter, voltage-gated calcium channels, synaptic cleft, neurotransmitter molecules in the cleft, postsynaptic membrane with receptor proteins, and the postsynaptic cell, with 7 numbered arrows</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="synapse-key-title">
+        <p class="key-title" id="synapse-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 2</p>
+        <h2 class="section-title" id="s2-title">Glial cells of the CNS and PNS</h2>
+        <p class="section-anchor">Identify the six types of glial cells. Note which are CNS-only and which are PNS-only.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 360px;">
+          <img src="" alt="Six types of glial cells shown side by side: astrocytes wrapping a capillary (CNS), oligodendrocyte myelinating multiple axons (CNS), microglia (CNS), ependymal cells lining a ventricle (CNS), Schwann cell wrapping a single axon (PNS), satellite cells around a ganglion neuron (PNS), with 6 numbered arrows" data-pending="glial_cells.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">glial_cells.png</span>
+            <span class="img-pending-alt">Six types of glial cells shown side by side: astrocytes wrapping a capillary (CNS), oligodendrocyte myelinating multiple axons (CNS), microglia (CNS), ependymal cells lining a ventricle (CNS), Schwann cell wrapping a single axon (PNS), satellite cells around a ganglion neuron (PNS), with 6 numbered arrows</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="glia-key-title">
+        <p class="key-title" id="glia-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>For each glial cell labeled above, write its primary function in one sentence:</strong></p>
+    <table class="data-table" aria-label="Glial cell functions">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Glial cell</th>
+          <th style="width: 15%;">CNS or PNS?</th>
+          <th style="width: 60%;">Primary function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Astrocyte</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Oligodendrocyte</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Microglia</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Ependymal cell</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Schwann cell</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Satellite cell</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 3</p>
+        <h2 class="section-title" id="s3-title">Brain external anatomy</h2>
+        <p class="section-anchor">Identify cerebral lobes, major sulci, gyri, and surface structures from a lateral view.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 360px;">
+          <img src="" alt="Lateral view of the brain showing frontal lobe, parietal lobe, temporal lobe, occipital lobe, central sulcus separating frontal and parietal, lateral sulcus separating temporal from frontal/parietal, precentral gyrus (primary motor cortex), postcentral gyrus (primary somatosensory cortex), cerebellum, brainstem, with 10 numbered arrows" data-pending="brain_lateral.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">brain_lateral.png</span>
+            <span class="img-pending-alt">Lateral view of the brain showing frontal lobe, parietal lobe, temporal lobe, occipital lobe, central sulcus separating frontal and parietal, lateral sulcus separating temporal from frontal/parietal, precentral gyrus (primary motor cortex), postcentral gyrus (primary somatosensory cortex), cerebellum, brainstem, with 10 numbered arrows</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="brain-lat-key-title">
+        <p class="key-title" id="brain-lat-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">10.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 4</p>
+        <h2 class="section-title" id="s4-title">Brain sagittal section</h2>
+        <p class="section-anchor">Identify deep brain structures, ventricles, and brainstem regions visible from a midsagittal cut.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 380px;">
+          <img src="" alt="Midsagittal section of the brain showing corpus callosum, thalamus, hypothalamus, pineal gland, pituitary gland, midbrain, pons, medulla oblongata, cerebellum, fourth ventricle, lateral ventricle, third ventricle, cerebral aqueduct, with 12 numbered arrows" data-pending="brain_sagittal.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">brain_sagittal.png</span>
+            <span class="img-pending-alt">Midsagittal section of the brain showing corpus callosum, thalamus, hypothalamus, pineal gland, pituitary gland, midbrain, pons, medulla oblongata, cerebellum, fourth ventricle, lateral ventricle, third ventricle, cerebral aqueduct, with 12 numbered arrows</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="brain-sag-key-title">
+        <p class="key-title" id="brain-sag-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">10.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">11.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">12.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>Three meninges of the CNS:</strong> name them in order from outermost to innermost, and state the function of each.</p>
+    <table class="data-table" aria-label="Three meninges">
+      <thead>
+        <tr>
+          <th style="width: 30%;">Layer (outer to inner)</th>
+          <th style="width: 70%;">Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 5</p>
+        <h2 class="section-title" id="s5-title">Spinal cord cross-section</h2>
+        <p class="section-anchor">Identify gray matter horns, white matter columns, and the spinal nerve roots.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 380px;">
+          <img src="" alt="Cross-section of the spinal cord showing the H-shaped (butterfly) gray matter with anterior (ventral) horn, posterior (dorsal) horn, lateral horn, central canal at center, white matter divided into anterior column, lateral column, and posterior column, plus the dorsal root with dorsal root ganglion, ventral root, and spinal nerve, with 9 numbered arrows" data-pending="spinal_cord_cross.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">spinal_cord_cross.png</span>
+            <span class="img-pending-alt">Cross-section of the spinal cord showing the H-shaped (butterfly) gray matter with anterior (ventral) horn, posterior (dorsal) horn, lateral horn, central canal at center, white matter divided into anterior column, lateral column, and posterior column, plus the dorsal root with dorsal root ganglion, ventral root, and spinal nerve, with 9 numbered arrows</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="cord-key-title">
+        <p class="key-title" id="cord-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>What functional category of neurons travels through each root?</strong></p>
+    <p class="field-helper" style="font-size:0.86rem;">Dorsal root carries: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 320px; height: 18px;"></span></p>
+    <p class="field-helper" style="font-size:0.86rem;">Ventral root carries: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 320px; height: 18px;"></span></p>
+  </section>
+
+  <section class="section" aria-labelledby="s6-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">06</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 6</p>
+        <h2 class="section-title" id="s6-title">Twelve cranial nerves on brain (inferior view)</h2>
+        <p class="section-anchor">Identify all twelve cranial nerves in numerical order from the underside of the brain.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 420px;">
+          <img src="" alt="Inferior view of the brain showing all 12 cranial nerves emerging from the brain in numerical order: I olfactory, II optic with optic chiasm, III oculomotor, IV trochlear, V trigeminal, VI abducens, VII facial, VIII vestibulocochlear, IX glossopharyngeal, X vagus, XI accessory, XII hypoglossal, with 12 numbered arrows" data-pending="cranial_nerves.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">cranial_nerves.png</span>
+            <span class="img-pending-alt">Inferior view of the brain showing all 12 cranial nerves emerging from the brain in numerical order: I olfactory, II optic with optic chiasm, III oculomotor, IV trochlear, V trigeminal, VI abducens, VII facial, VIII vestibulocochlear, IX glossopharyngeal, X vagus, XI accessory, XII hypoglossal, with 12 numbered arrows</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="cn-key-title">
+        <p class="key-title" id="cn-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">10.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">11.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">12.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>For each cranial nerve, identify whether it is sensory only (S), motor only (M), or both (B), and state its primary function:</strong></p>
+    <table class="data-table" aria-label="Cranial nerves with function and category">
+      <thead>
+        <tr>
+          <th style="width: 8%;">CN</th>
+          <th style="width: 22%;">Name</th>
+          <th style="width: 12%;">S, M, or B?</th>
+          <th style="width: 58%;">Primary function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>I</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>II</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>III</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>IV</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>V</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>VI</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>VII</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>VIII</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>IX</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>X</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>XI</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>XII</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s7-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">07</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 7</p>
+        <h2 class="section-title" id="s7-title">Endocrine organs on torso</h2>
+        <p class="section-anchor">Identify all major endocrine organs in their anatomical positions in the body.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 480px;">
+          <img src="" alt="Anterior view of the body showing all major endocrine organs in position: pineal gland in brain, hypothalamus and pituitary gland in brain, thyroid gland anterior to trachea, parathyroid glands posterior to thyroid, thymus in mediastinum, adrenal glands on top of kidneys, pancreas in abdomen, ovaries (in female) or testes (in male), with 9 numbered arrows" data-pending="endocrine_torso.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">endocrine_torso.png</span>
+            <span class="img-pending-alt">Anterior view of the body showing all major endocrine organs in position: pineal gland in brain, hypothalamus and pituitary gland in brain, thyroid gland anterior to trachea, parathyroid glands posterior to thyroid, thymus in mediastinum, adrenal glands on top of kidneys, pancreas in abdomen, ovaries (in female) or testes (in male), with 9 numbered arrows</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="endo-organ-key-title">
+        <p class="key-title" id="endo-organ-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>For each endocrine organ, list at least one major hormone it secretes and the primary function of that hormone:</strong></p>
+    <table class="data-table" aria-label="Endocrine organs and their hormones">
+      <thead>
+        <tr>
+          <th style="width: 22%;">Organ</th>
+          <th style="width: 28%;">Hormone</th>
+          <th style="width: 50%;">Primary function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Hypothalamus</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Anterior pituitary</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Posterior pituitary</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Pineal gland</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Thyroid gland</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Parathyroid glands</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Adrenal cortex</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Adrenal medulla</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Pancreas (islets)</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s8-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">08</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 8</p>
+        <h2 class="section-title" id="s8-title">Endocrine histology: thyroid, adrenal, pancreatic islets</h2>
+        <p class="section-anchor">Identify microscopic structures in three key endocrine glands.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <p class="label-exercise-title">Thyroid follicles</p>
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 300px;">
+          <img src="" alt="Thyroid histology slide showing thyroid follicles with simple cuboidal follicular cells surrounding a colloid-filled lumen, parafollicular (C) cells between follicles, and capillaries in the connective tissue, with 4 numbered arrows" data-pending="thyroid_histology.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">thyroid_histology.png</span>
+            <span class="img-pending-alt">Thyroid histology slide showing thyroid follicles with simple cuboidal follicular cells surrounding a colloid-filled lumen, parafollicular (C) cells between follicles, and capillaries in the connective tissue, with 4 numbered arrows</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="thyroid-key-title">
+        <p class="key-title" id="thyroid-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <div class="label-exercise" style="margin-top: 22px;">
+      <p class="label-exercise-title">Adrenal cortex zones</p>
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 320px;">
+          <img src="" alt="Adrenal gland histology showing the three zones of the adrenal cortex from outside to inside: zona glomerulosa (outermost, glomerular cell clusters), zona fasciculata (middle, columns of cells), zona reticularis (innermost, branching network), and the adrenal medulla in the center, with 4 numbered arrows" data-pending="adrenal_histology.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">adrenal_histology.png</span>
+            <span class="img-pending-alt">Adrenal gland histology showing the three zones of the adrenal cortex from outside to inside: zona glomerulosa (outermost, glomerular cell clusters), zona fasciculata (middle, columns of cells), zona reticularis (innermost, branching network), and the adrenal medulla in the center, with 4 numbered arrows</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="adrenal-key-title">
+        <p class="key-title" id="adrenal-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <div class="label-exercise" style="margin-top: 22px;">
+      <p class="label-exercise-title">Pancreatic islet (Islet of Langerhans)</p>
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 300px;">
+          <img src="" alt="Pancreatic islet of Langerhans surrounded by exocrine acinar tissue, showing alpha cells (peripheral, larger), beta cells (central, smaller, most numerous), delta cells, and the surrounding acinar cells of the exocrine pancreas, with 4 numbered arrows" data-pending="pancreas_islet.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">pancreas_islet.png</span>
+            <span class="img-pending-alt">Pancreatic islet of Langerhans surrounded by exocrine acinar tissue, showing alpha cells (peripheral, larger), beta cells (central, smaller, most numerous), delta cells, and the surrounding acinar cells of the exocrine pancreas, with 4 numbered arrows</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="islet-key-title">
+        <p class="key-title" id="islet-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>Match the adrenal cortex zone to the hormone it secretes:</strong></p>
+    <table class="data-table" aria-label="Adrenal cortex hormones">
+      <thead>
+        <tr>
+          <th style="width: 30%;">Zone</th>
+          <th style="width: 35%;">Hormone secreted</th>
+          <th style="width: 35%;">Primary function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Zona glomerulosa</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Zona fasciculata</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Zona reticularis</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="field-prompt"><strong>Match the pancreatic islet cell to its hormone:</strong></p>
+    <p class="field-helper" style="font-size:0.86rem;">Alpha cells secrete: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 280px; height: 18px;"></span></p>
+    <p class="field-helper" style="font-size:0.86rem;">Beta cells secrete: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 280px; height: 18px;"></span></p>
+    <p class="field-helper" style="font-size:0.86rem;">Delta cells secrete: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 280px; height: 18px;"></span></p>
+  </section>
+
+  <section class="section" aria-labelledby="s9-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">09</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 9</p>
+        <h2 class="section-title" id="s9-title">Autonomic nervous system: sympathetic vs parasympathetic</h2>
+        <p class="section-anchor">Identify the two-neuron chain pattern, neurotransmitters at each synapse, and CNS exit points for each division. (COR-named: ANS)</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 420px;">
+          <img src="" alt="Overview comparing sympathetic and parasympathetic divisions: sympathetic chain originating from thoracolumbar T1-L2 with short preganglionic fibers and long postganglionic fibers; parasympathetic origin from craniosacral (CN III, VII, IX, X and S2-S4) with long preganglionic and short postganglionic fibers; ganglia locations differ, with 6 numbered arrows pointing to preganglionic and postganglionic fibers in each division and ganglia" data-pending="ans_overview.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">ans_overview.png</span>
+            <span class="img-pending-alt">Overview comparing sympathetic and parasympathetic divisions: sympathetic chain originating from thoracolumbar T1-L2 with short preganglionic fibers and long postganglionic fibers; parasympathetic origin from craniosacral (CN III, VII, IX, X and S2-S4) with long preganglionic and short postganglionic fibers; ganglia locations differ, with 6 numbered arrows pointing to preganglionic and postganglionic fibers in each division and ganglia</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="ans-key-title">
+        <p class="key-title" id="ans-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>Fill in the neurotransmitter and receptor at each synapse:</strong></p>
+    <table class="data-table" aria-label="ANS neurotransmitters and receptors">
+      <thead>
+        <tr>
+          <th style="width: 30%;">Synapse location</th>
+          <th style="width: 35%;">Neurotransmitter released</th>
+          <th style="width: 35%;">Receptor type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Sympathetic preganglionic → ganglion</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Sympathetic postganglionic → most target organs</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Sympathetic postganglionic → sweat glands</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Parasympathetic preganglionic → ganglion</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Parasympathetic postganglionic → target organ</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Sympathetic preganglionic → adrenal medulla</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s10-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">10</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Drawing from Memory</p>
+        <h2 class="section-title" id="s10-title">Action potential and ANS organ effects</h2>
+        <p class="section-anchor">Without referencing figures above, draw two diagrams. Label every component.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>Drawing 1: Action potential graph</h4>
+      <p>Plot membrane potential (mV) vs time (ms) showing all five phases of an action potential: <strong>resting potential, depolarization, repolarization, hyperpolarization, return to rest</strong>. Label which ion channels open and close at each phase (Na⁺ voltage-gated, K⁺ voltage-gated). Mark the threshold value (typically -55 mV) and the peak (typically +30 mV). Indicate the absolute and relative refractory periods.</p>
+    </div>
+
+    <div class="draw-box tall" role="region" aria-label="Action potential graph drawing space">
+      <span class="draw-box-label">Drawing space: action potential graph</span>
+    </div>
+
+    <div class="reference" style="margin-top: 18px;">
+      <h4>Drawing 2: ANS effects on three organs</h4>
+      <p>For three organs (heart, lungs, GI tract) draw a simple diagram showing the effect of <strong>sympathetic activation</strong> (left side) and <strong>parasympathetic activation</strong> (right side). For each effect, write the receptor type involved (alpha-1, beta-1, beta-2, M3) and what the effect is in plain English.</p>
+    </div>
+
+    <div class="draw-box tall" role="region" aria-label="ANS organ effects drawing space">
+      <span class="draw-box-label">Drawing space: ANS effects on heart, lungs, GI tract</span>
+    </div>
+
+    <div class="synthesis">
+      <span class="synthesis-label">Synthesis question</span>
+      <p class="synthesis-prompt">A patient with severe asthma is given epinephrine. Trace what happens at the receptor level in the lungs and the heart. <strong>Explain why epinephrine relieves the asthma but also causes the patient's heart to race.</strong> Reference specific receptor subtypes (alpha-1, beta-1, beta-2) from your drawing above.</p>
+      <div class="ruled medium" role="region" aria-label="Epinephrine synthesis answer space"></div>
+    </div>
+  </section>
+  <div class="partner-link">
+    <span class="partner-link-label">When you finish this workbook, continue to the <strong>Week 3 Physiology Workbook</strong>.</span>
+    <a href="week03_physiology_workbook.html">Open →</a>
+  </div>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit</h2>
+    <p>1. All nine labeling exercises (Sections 01-09) have a name in every numbered blank, and tables filled in for glial cells, cranial nerves, endocrine hormones, adrenal zones, islet cells, and ANS neurotransmitters.</p>
+    <p>2. Both drawings (Section 10) have every required component drawn AND labeled.</p>
+    <p>3. The epinephrine synthesis question (Section 10) is answered referencing specific receptor subtypes.</p>
+    <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 3 Anatomy Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
+    <p style="margin-top: 10px;"><strong>Then continue to the Week 3 Physiology Workbook</strong> (OGTT &amp; ANS reflex testing dry lab).</p>
+  </section>
+
+</main>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w03-anatomy-workbook';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>

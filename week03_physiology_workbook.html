@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Week 3 Physiology Workbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5; --sand-soft: #faf3e8; --sand: #f5e6d3;
+    --terra: #c44536; --kelp: #5a7553;
+    --paper: #fdfbf7; --line: #c9d4d8; --rule: #a8b5bb; --muted: #5a6b73;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #e8e8e0; line-height: 1.55; font-size: 16px; padding: 30px 0; -webkit-font-smoothing: antialiased; }
+  .sheet { max-width: 8.5in; margin: 0 auto; background: white; padding: 0.55in 0.6in; box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1); }
+  .actions { max-width: 8.5in; margin: 0 auto 16px; padding: 0 0.6in; display: flex; justify-content: flex-end; }
+  .print-btn { background: var(--ocean-deep); color: white; border: none; padding: 11px 22px; border-radius: 8px; font-family: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 8px; transition: background 0.15s ease; }
+  .print-btn:hover { background: var(--ocean); }
+  .print-btn::before { content: '⎙'; font-size: 1rem; }
+
+  .masthead { border-bottom: 2.5px solid var(--ocean-deep); padding-bottom: 18px; margin-bottom: 24px; position: relative; }
+  .masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .masthead.physiology::after { background: var(--terra); }
+  .course-line { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .doc-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.85rem; color: var(--ocean-deep); line-height: 1.2; margin-bottom: 6px; }
+  .doc-subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean); }
+
+  .student-block { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; margin: 18px 0 24px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field { display: flex; flex-direction: column; }
+  .field-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field-line { border-bottom: 1.5px solid var(--ink); height: 24px; }
+
+  .instructions { background: var(--sand-soft); border-left: 3px solid var(--terra); padding: 14px 18px; margin-bottom: 26px; font-size: 0.92rem; }
+  .instructions h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+
+  .section { margin: 22px 0; page-break-inside: avoid; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.5rem; color: var(--terra); min-width: 32px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; color: var(--ocean-deep); }
+  .section-anchor { font-size: 0.86rem; color: var(--ocean); font-style: italic; margin-top: 4px; }
+
+  .field-prompt { font-size: 0.92rem; color: var(--ink); margin: 10px 0 6px; line-height: 1.5; }
+  .field-prompt strong { color: var(--ocean-deep); }
+  .field-helper { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+
+  .ruled { background: white; border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; min-height: 5em; background-image: repeating-linear-gradient(transparent, transparent 24px, var(--rule) 24px, var(--rule) 25px); line-height: 25px; }
+  .ruled.short { min-height: 4em; }
+  .ruled.medium { min-height: 6em; }
+  .ruled.long { min-height: 9em; }
+
+  .word-bank { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 14px 18px; margin: 14px 0 18px; }
+  .word-bank-label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .word-bank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 14px; font-size: 0.86rem; color: var(--ink); }
+  .word-bank-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .word-bank-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 600px) {
+    .word-bank-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .label-exercise { margin: 16px 0; page-break-inside: avoid; }
+  .label-exercise-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.05rem; color: var(--terra); margin-bottom: 10px; }
+  .label-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .label-flex.wide-fig { grid-template-columns: 1.4fr 1fr; }
+  .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
+
+  .figure { margin: 0; }
+  .figure-imgbox { background: white; border: 2px dashed var(--ocean); border-radius: 6px; padding: 14px; position: relative; display: flex; align-items: center; justify-content: center; }
+  .figure-imgbox img { max-width: 100%; height: auto; display: block; }
+  .figure-imgbox.img-pending { background: var(--sea-glass-soft); border-color: var(--ocean); }
+  .img-pending-msg { display: none; flex-direction: column; align-items: center; gap: 6px; text-align: center; color: var(--muted); padding: 18px; }
+  .figure-imgbox.img-pending .img-pending-msg { display: flex; }
+  .img-pending-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); }
+  .img-pending-file { font-size: 0.95rem; font-weight: 600; color: var(--terra); background: white; padding: 6px 14px; border-radius: 4px; border: 1px solid var(--terra); }
+  .img-pending-alt { font-size: 0.82rem; font-style: italic; max-width: 360px; line-height: 1.4; margin-top: 4px; }
+
+  .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+  .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .key-list { list-style: none; padding: 0; margin: 0; }
+  .key-list li { padding: 5px 0; border-bottom: 1px dashed var(--line); display: flex; align-items: baseline; gap: 8px; font-size: 0.88rem; }
+  .key-list li:last-child { border-bottom: none; }
+  .key-list.compact li { padding: 3px 0; font-size: 0.84rem; }
+  .key-num { font-weight: 700; color: var(--terra); min-width: 28px; flex-shrink: 0; }
+  .key-blank { flex: 1; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+  .key-fill { flex: 1; }
+
+  @media (max-width: 700px) {
+    .label-flex { grid-template-columns: 1fr; }
+  }
+
+  .draw-box { background: white; border: 1.5px solid var(--ocean-deep); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 280px; background-image: linear-gradient(rgba(214, 228, 231, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(214, 228, 231, 0.4) 1px, transparent 1px); background-size: 24px 24px; background-position: -1px -1px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: white; padding: 1px 6px; border-radius: 2px; }
+  .draw-box.tall { min-height: 360px; }
+  .draw-box.short { min-height: 220px; }
+
+  .calc-box { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; margin: 10px 0; min-height: 80px; }
+  .calc-box-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.86rem; background: white; }
+  .data-table th { text-align: left; padding: 8px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .data-table .input-cell { background: white !important; min-width: 80px; }
+  .data-table .input-cell .cell-line { display: block; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+
+  .case { background: var(--sand-soft); border-left: 3px solid var(--terra); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 14px 0; page-break-inside: avoid; }
+  .case-label { display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; }
+  .case-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .case-body { font-size: 0.9rem; line-height: 1.55; margin-bottom: 8px; }
+  .case-body strong { color: var(--ocean-deep); }
+  .case-prompts { margin-top: 10px; }
+  .case-prompts ol { list-style: decimal; padding-left: 22px; margin: 6px 0; font-size: 0.9rem; }
+  .case-prompts ol li { margin-bottom: 6px; line-height: 1.5; }
+
+  .reference { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean-deep); padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.88rem; }
+  .reference h4 { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 0.96rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .reference p { margin-bottom: 6px; line-height: 1.55; }
+  .reference p:last-child { margin-bottom: 0; }
+  .reference strong { color: var(--terra); font-weight: 600; }
+  .reference .formula { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean-deep); padding: 8px 14px; background: white; border: 1px solid var(--line); border-radius: 4px; display: inline-block; margin: 4px 0; }
+
+  .synthesis { background: linear-gradient(150deg, var(--sand-soft), white); border: 2px solid var(--terra); border-radius: 8px; padding: 16px 20px; margin: 18px 0; page-break-inside: avoid; }
+  .synthesis-label { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 3px 10px; border-radius: 3px; margin-bottom: 8px; }
+  .synthesis-prompt { font-size: 0.96rem; line-height: 1.55; color: var(--ink); margin-bottom: 8px; }
+  .synthesis-prompt strong { color: var(--ocean-deep); }
+
+  .submission { margin-top: 30px; padding: 18px 22px; background: var(--sea-glass-soft); border: 1.5px solid var(--ocean-deep); border-radius: 6px; page-break-inside: avoid; }
+  .submission h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.08rem; color: var(--ocean-deep); margin-bottom: 10px; }
+  .submission p { font-size: 0.86rem; margin-bottom: 6px; }
+
+  /* PARTNER LINK BANNER (cross-link between anatomy & physiology workbooks) */
+  .partner-link { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 12px 16px; margin: 22px 0; font-size: 0.88rem; display: flex; align-items: center; gap: 12px; }
+  .partner-link-label { flex: 1; }
+  .partner-link-label strong { color: var(--ocean-deep); }
+  .partner-link a { color: var(--terra); text-decoration: underline; font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link, .partner-link { display: none !important; }
+    .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
+    .figure-imgbox { border-color: #888; }
+    .figure-imgbox.img-pending { background: white; }
+    @page { size: letter; margin: 0.55in 0.6in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions">
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this workbook or save as PDF">Print / Save PDF</button>
+</div>
+
+<main id="main-content" class="sheet" role="main">
+  <header class="masthead physiology">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 3 Physiology Workbook</p>
+    <h1 class="doc-title">Glucose Tolerance &amp; ANS Reflex Testing</h1>
+    <p class="doc-subtitle">Physiology: interpret OGTT curves, predict autonomic reflexes, integrate diabetes and ANS dysfunction. Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field">
+      <span class="field-label">Name</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Section</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Date</span>
+      <span class="field-line"></span>
+    </div>
+  </div>
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">About this workbook</h2>
+    <p>This is the <strong>Physiology Workbook</strong> for Week 3. Complete the <strong>Week 3 Anatomy Workbook first</strong>. The clinical reasoning here builds on the endocrine pancreas and autonomic nervous system anatomy you labeled and drew there.</p>
+    <p>Two of this week's most important physiology topics are COR-named: the <strong>endocrine pancreas</strong> (insulin, glucagon, diabetes) and the <strong>autonomic nervous system</strong> (sympathetic vs parasympathetic balance). This dry lab integrates them into clinical practice. You will interpret oral glucose tolerance test (OGTT) curves to diagnose diabetes, predict and analyze autonomic reflex responses (Valsalva and cold pressor), and apply both to patients whose diabetes is silently damaging their ANS.</p>
+    <p>Diabetic autonomic neuropathy is one of the most common complications of long-standing diabetes and one of the most missed. By the end of this lab, you will know how to detect it before it kills someone.</p>
+  </section>
+
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 1</p>
+        <h2 class="section-title" id="s1-title">Interpret oral glucose tolerance test (OGTT) curves</h2>
+        <p class="section-anchor">Read 2-hour glucose curves and classify glucose tolerance: normal, impaired (IGT), Type 2 diabetes, or gestational diabetes.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>OGTT basics</h4>
+      <p>The <strong>oral glucose tolerance test</strong> measures blood glucose at fasting (time 0) and 2 hours after the patient drinks 75 g of glucose. The shape of the curve and the 2-hour value tell you how well the pancreas can produce insulin and how well tissues can use it.</p>
+      <p><strong>Normal:</strong> fasting &lt; 100 mg/dL, 2-hour &lt; 140 mg/dL. Beta cells respond fast, peripheral cells take up glucose efficiently.</p>
+      <p><strong>Impaired Glucose Tolerance (IGT, prediabetes):</strong> fasting 100-125 mg/dL OR 2-hour 140-199 mg/dL. Beta cells can still respond but insulin sensitivity is decreased.</p>
+      <p><strong>Type 2 Diabetes:</strong> fasting ≥ 126 mg/dL OR 2-hour ≥ 200 mg/dL. Beta cell dysfunction plus insulin resistance.</p>
+      <p><strong>Gestational Diabetes (GDM, 1-step 75 g):</strong> any one of: fasting ≥ 92 mg/dL, 1-hour ≥ 180 mg/dL, 2-hour ≥ 153 mg/dL. Placental hormones cause insulin resistance.</p>
+      <p><strong>HbA1c</strong> is also commonly used to diagnose diabetes (≥ 6.5%) and prediabetes (5.7-6.4%). It reflects average glucose over the prior 2-3 months.</p>
+    </div>
+
+    <p class="field-prompt"><strong>For each OGTT result, classify glucose tolerance and explain the underlying physiology in one sentence.</strong></p>
+
+    <table class="data-table" aria-label="OGTT classification cases">
+      <thead>
+        <tr>
+          <th style="width: 18%;">Patient</th>
+          <th style="width: 14%;">Fasting (mg/dL)</th>
+          <th style="width: 14%;">1-hour (mg/dL)</th>
+          <th style="width: 14%;">2-hour (mg/dL)</th>
+          <th style="width: 18%;">Classification</th>
+          <th style="width: 22%;">One-sentence physiology</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>A</strong> (45M, asymptomatic)</td>
+          <td>92</td>
+          <td>148</td>
+          <td>132</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>B</strong> (52F, BMI 32, fatigue)</td>
+          <td>114</td>
+          <td>198</td>
+          <td>176</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>C</strong> (60M, polyuria, polydipsia)</td>
+          <td>168</td>
+          <td>284</td>
+          <td>252</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>D</strong> (28F, 28 weeks pregnant)</td>
+          <td>96</td>
+          <td>192</td>
+          <td>158</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>E</strong> (33F, healthy, routine screen)</td>
+          <td>82</td>
+          <td>118</td>
+          <td>96</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="field-prompt" style="margin-top: 16px;"><strong>HbA1c interpretation:</strong> for each HbA1c value, classify the patient and estimate average glucose. Use the rough formula: <em>average glucose (mg/dL) ≈ (28.7 × A1c) - 46.7</em>.</p>
+
+    <table class="data-table" aria-label="HbA1c interpretation">
+      <thead>
+        <tr>
+          <th style="width: 25%;">HbA1c (%)</th>
+          <th style="width: 35%;">Classification</th>
+          <th style="width: 40%;">Estimated average glucose (mg/dL)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>5.4%</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>6.1%</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>7.5%</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>10.2%</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 2</p>
+        <h2 class="section-title" id="s2-title">Valsalva maneuver and the four phases of the autonomic response</h2>
+        <p class="section-anchor">Predict the heart rate and blood pressure changes during the four classic phases of the Valsalva response.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>The Valsalva maneuver</h4>
+      <p>The patient takes a deep breath and bears down (forced expiration against a closed glottis) for about 15 seconds. This raises intrathoracic pressure, which has predictable cascading effects on venous return, blood pressure, and heart rate. Real cardiologists use this at the bedside to test autonomic function and to terminate certain arrhythmias.</p>
+    </div>
+
+    <div class="reference">
+      <h4>The four phases (in order)</h4>
+      <p><strong>Phase I (initial strain):</strong> intrathoracic pressure rises sharply. The aorta is mechanically squeezed, transiently <em>raising</em> blood pressure. Lasts about 1-2 seconds.</p>
+      <p><strong>Phase II (sustained strain):</strong> high intrathoracic pressure compresses the vena cava, dropping venous return to the right heart. Stroke volume falls, blood pressure starts dropping. Baroreceptors detect the drop and trigger a sympathetic surge: heart rate rises, vasoconstriction begins. Lasts the rest of the strain (~10-15 seconds).</p>
+      <p><strong>Phase III (release):</strong> patient releases the breath. Intrathoracic pressure drops. Briefly, before venous return rebounds, blood pressure dips further.</p>
+      <p><strong>Phase IV (overshoot):</strong> venous return surges back into a peripherally vasoconstricted system. Blood pressure overshoots normal. Baroreceptors detect the overshoot and trigger a parasympathetic response: heart rate drops below baseline (overshoot bradycardia).</p>
+    </div>
+
+    <p class="field-prompt"><strong>Predict the heart rate and blood pressure direction in each phase, then identify which ANS branch is dominant.</strong></p>
+
+    <table class="data-table" aria-label="Valsalva phase predictions">
+      <thead>
+        <tr>
+          <th style="width: 18%;">Phase</th>
+          <th style="width: 22%;">BP direction (↑ ↓ →)</th>
+          <th style="width: 22%;">HR direction (↑ ↓ →)</th>
+          <th style="width: 38%;">ANS branch dominant + brief reason</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Phase I (initial strain)</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Phase II (sustained strain)</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Phase III (release)</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Phase IV (overshoot)</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="field-prompt"><strong>Sketch the predicted blood pressure curve across the full Valsalva maneuver.</strong> Y-axis: BP. X-axis: time. Mark the four phases on your curve.</p>
+    <div class="draw-box short" role="region" aria-label="Valsalva BP curve drawing space">
+      <span class="draw-box-label">Drawing space: BP curve</span>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 3</p>
+        <h2 class="section-title" id="s3-title">Cold pressor test</h2>
+        <p class="section-anchor">Predict the cardiovascular response to immersion of the hand in ice water and identify the receptor pathway.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>The cold pressor test</h4>
+      <p>The patient immerses one hand (up to the wrist) in ice water (0-4°C) for 60-90 seconds. Cold and pain receptors in the skin trigger a strong sympathetic response. This is a classic test of sympathetic reactivity and is also a research tool for studying pain and stress.</p>
+      <p>The expected response in a healthy adult: blood pressure rises 15-20 mmHg systolic within the first minute. Heart rate may rise mildly or stay flat (not the dominant feature). The response should resolve within 1-2 minutes after rewarming.</p>
+    </div>
+
+    <p class="field-prompt"><strong>Walk the cold pressor response from receptor to organ effect.</strong> Fill in each step in the chain:</p>
+    <table class="data-table" aria-label="Cold pressor signal cascade">
+      <thead>
+        <tr>
+          <th style="width: 30%;">Step in cascade</th>
+          <th style="width: 70%;">My answer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1. Sensory receptors triggered</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>2. CNS structure that integrates the signal</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>3. ANS output: which division activated?</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>4. Postganglionic neurotransmitter released</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>5. Receptor on vascular smooth muscle</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>6. Effect on vessel diameter</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>7. Net effect on blood pressure</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="field-prompt" style="margin-top: 14px;"><strong>Why does the heart rate often NOT rise much during the cold pressor test, even though the rest of the sympathetic system is firing?</strong> (Hint: think about baroreceptor counter-regulation.)</p>
+    <div class="ruled medium" role="region" aria-label="HR explanation answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Clinical Reasoning Cases</p>
+        <h2 class="section-title" id="s4-title">Apply OGTT and ANS testing to real patient scenarios</h2>
+        <p class="section-anchor">Each case integrates endocrine pancreas physiology with autonomic nervous system function.</p>
+      </div>
+    </header>
+
+    <div class="case">
+      <span class="case-label">Case 1</span>
+      <p class="case-title">The newly diagnosed Type 2 diabetic</p>
+      <p class="case-body">A 52-year-old woman with BMI 32 comes in for a routine physical. She reports increased thirst over the past 6 months and getting up twice a night to urinate. Her fasting glucose is 142 mg/dL. HbA1c is 7.8%. She has no prior diabetes history.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Classify her diagnosis based on the criteria from Section 01.</li>
+          <li>Estimate her average blood glucose using the HbA1c formula. Show your work.</li>
+          <li>Explain her polyuria and polydipsia at the cellular level. Why does high blood glucose cause her to urinate frequently? (Reference renal glucose threshold and osmotic diuresis.)</li>
+          <li>Beta cells and alpha cells of the islet have different roles in T2DM. Predict whether each is functioning normally, hyperactive, or hypoactive in this patient. Reference the Week 3 Anatomy Workbook islet labeling.</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 1 answer space"></div>
+      <div class="ruled long" role="region" aria-label="Case 1 answer space continued"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 2</span>
+      <p class="case-title">The diabetic with autonomic neuropathy</p>
+      <p class="case-body">A 64-year-old man with 18-year history of Type 2 diabetes (HbA1c 8.9% over the past year) presents with episodes of dizziness when standing. His cardiologist orders bedside ANS testing.</p>
+      <p class="case-body"><strong>Findings:</strong> When the patient performs a Valsalva maneuver, his heart rate barely changes during Phase II (no sympathetic surge) and there is NO bradycardic overshoot in Phase IV. When he stands from supine, his BP drops 25 mmHg systolic but his HR only rises 4 bpm.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>What is happening to his autonomic nervous system? Be specific about which ANS branches are damaged.</li>
+          <li>How does chronic hyperglycemia damage autonomic nerves? (Reference sorbitol pathway, glycation, vasa nervorum injury, or oxidative stress, any one is enough.)</li>
+          <li>Why is his HR response to standing inadequate? Trace the failed baroreflex pathway from receptor to heart rate change.</li>
+          <li>What sudden-death risk does diabetic autonomic neuropathy carry? (Hint: silent MI, abnormal HRV, prolonged QT.)</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 2 answer space"></div>
+      <div class="ruled long" role="region" aria-label="Case 2 answer space continued"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 3</span>
+      <p class="case-title">The pregnant patient with gestational diabetes</p>
+      <p class="case-body">A 30-year-old woman, 28 weeks pregnant, completes routine OGTT screening. Fasting 95 mg/dL, 1-hour 188 mg/dL, 2-hour 162 mg/dL.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Does she meet criteria for gestational diabetes? Which value(s) qualify?</li>
+          <li>Explain why pregnancy promotes insulin resistance. Reference placental hormones (specifically: human placental lactogen, cortisol, growth hormone, progesterone).</li>
+          <li>What is the likely course after delivery? Will she still have diabetes? What is her lifetime risk for Type 2?</li>
+          <li>What are the fetal risks of uncontrolled gestational diabetes? Name at least three.</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 3 answer space"></div>
+      <div class="ruled long" role="region" aria-label="Case 3 answer space continued"></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Final Synthesis</p>
+        <h2 class="section-title" id="s5-title">Integrate endocrine pancreas, ANS, and clinical assessment</h2>
+        <p class="section-anchor">The most heavily weighted question in the workbook. Integrate everything you learned this week.</p>
+      </div>
+    </header>
+
+    <div class="synthesis">
+      <span class="synthesis-label">Synthesis question · Most weighted</span>
+      <p class="synthesis-prompt">A 70-year-old man with poorly controlled Type 2 diabetes (HbA1c 9.4% for the past 3 years) is brought in by family. He had a fall last week. He says he stood up too fast. The team performs orthostatic vital signs: BP 142/86 supine, 108/72 standing (drop of 34/14). HR 72 supine, 76 standing.</p>
+      <p class="synthesis-prompt"><strong>In four to six sentences, explain why this patient cannot mount a normal cardiovascular response to standing, integrating diabetes, ANS, and the baroreflex.</strong> Your answer must integrate:</p>
+      <p class="synthesis-prompt">(1) why long-standing hyperglycemia damages autonomic nerve fibers, (2) which specific ANS branch fails first in diabetic autonomic neuropathy, (3) the normal baroreflex sequence (starting from baroreceptors in the carotid sinus and aortic arch), (4) which step in the baroreflex is failing in this patient, (5) the clinical name for this finding and one specific safety risk it creates beyond falls.</p>
+      <div class="ruled long" role="region" aria-label="Final synthesis answer space"></div>
+      <div class="ruled long" role="region" aria-label="Final synthesis answer space continued"></div>
+    </div>
+  </section>
+  <div class="partner-link">
+    <span class="partner-link-label">Looking for structure identification? See the <strong>Week 3 Anatomy Workbook</strong>.</span>
+    <a href="week03_anatomy_workbook.html">Open →</a>
+  </div>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit</h2>
+    <p>1. The OGTT classification table (Section 01) is filled in for all five patients with both classification and physiology, plus the HbA1c table.</p>
+    <p>2. The Valsalva phase table (Section 02) is filled in with BP direction, HR direction, and ANS branch for all four phases, plus the BP curve sketch.</p>
+    <p>3. The cold pressor cascade (Section 03) is filled in for all seven steps, plus the HR explanation.</p>
+    <p>4. All three clinical cases (Section 04) have answers to every numbered prompt.</p>
+    <p>5. The final synthesis question (Section 05) integrates all five required elements.</p>
+    <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 3 Physiology Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
+  </section>
+
+</main>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w03-physiology-workbook';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
