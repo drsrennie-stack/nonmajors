@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 3 Worksheet · Control Systems · BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5; --sand-soft: #faf3e8;
+    --terra: #c44536; --kelp: #5a7553;
+    --paper: #fdfbf7; --line: #c9d4d8; --rule: #a8b5bb; --muted: #5a6b73;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #e8e8e0; line-height: 1.55; font-size: 16px; padding: 30px 0; -webkit-font-smoothing: antialiased; }
+  .sheet { max-width: 8.5in; margin: 0 auto; background: white; padding: 0.55in 0.6in; box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1); }
+  .actions { max-width: 8.5in; margin: 0 auto 16px; padding: 0 0.6in; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .action-info { font-size: 0.84rem; color: var(--ocean-deep); flex: 1; min-width: 280px; }
+  .action-info strong { font-weight: 600; }
+  .print-btn { background: var(--ocean-deep); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-family: inherit; font-size: 0.84rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; text-transform: uppercase; }
+  .print-btn:hover { background: var(--ocean); }
+  .masthead { border-bottom: 2.5px solid var(--ocean-deep); padding-bottom: 18px; margin-bottom: 24px; position: relative; }
+  .masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .course-line { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .doc-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.85rem; color: var(--ocean-deep); line-height: 1.2; margin-bottom: 8px; }
+  .doc-subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean); }
+  .student-block { display: grid; grid-template-columns: 2.4fr 1fr; gap: 22px; margin: 18px 0 26px; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field { display: flex; flex-direction: column; }
+  .field-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field-line { display: block; border-bottom: 1.5px solid var(--ink); height: 30px; width: 100%; }
+  .instructions { background: var(--sand-soft); border-left: 3px solid var(--terra); padding: 14px 18px; margin-bottom: 30px; font-size: 0.92rem; }
+  .instructions h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+  .section { margin-bottom: 32px; page-break-inside: avoid; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.5rem; color: var(--terra); min-width: 32px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; color: var(--ocean-deep); }
+  .section-anchor { font-size: 0.86rem; color: var(--ocean); font-style: italic; margin-top: 4px; }
+  .cor-flag { display: inline-block; padding: 2px 8px; background: var(--terra); color: white; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .task { margin-top: 16px; page-break-inside: avoid; }
+  .task-tag { display: inline-block; padding: 3px 10px; border-radius: 3px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-right: 8px; vertical-align: middle; color: white; }
+  .tag-build { background: var(--terra); }
+  .tag-apply { background: var(--kelp); }
+  .tag-reflect { background: var(--ocean); }
+  .task-prompt { font-size: 0.94rem; margin: 8px 0 10px; color: var(--ink); display: block; }
+  .task-prompt strong { color: var(--ocean-deep); }
+  .task-letter { display: inline-block; font-family: 'Lora', serif; font-weight: 600; color: var(--terra); margin-right: 6px; }
+  .task-rubric { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+  .ruled, .grid-box { width: 100%; display: block; color: var(--ink); border-radius: 4px; background-color: white; }
+  .ruled { border: 1.5px solid var(--ink); padding: 12px 16px; line-height: 1.7em; background-image: linear-gradient(transparent calc(1.7em - 1px), var(--rule) 1px); background-size: 100% 1.7em; }
+  .ruled.short { min-height: 6em; }
+  .ruled.medium { min-height: 9em; }
+  .ruled.long { min-height: 13em; }
+  .grid-box { border: 1.5px solid var(--ink); padding: 12px; background-image: linear-gradient(rgba(168, 181, 187, 0.45) 1px, transparent 1px), linear-gradient(90deg, rgba(168, 181, 187, 0.45) 1px, transparent 1px); background-size: 22px 22px; }
+  .grid-box.standard { min-height: 3in; }
+  .grid-box.tall { min-height: 3.6in; }
+  .compare-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.88rem; }
+  .compare-table th { text-align: left; padding: 8px 10px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .compare-table td { padding: 8px 10px; border: 1px solid var(--ink); vertical-align: top; height: 1in; }
+  .compare-table .label-col { background: var(--sand-soft); font-weight: 600; width: 25%; }
+  .submission { margin-top: 36px; padding: 18px 22px; background: var(--sea-glass-soft); border: 1.5px solid var(--ocean-deep); border-radius: 6px; page-break-inside: avoid; }
+  .submission h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.08rem; color: var(--ocean-deep); margin-bottom: 10px; }
+  .submission-list { list-style: none; margin-bottom: 16px; }
+  .submission-list li { padding: 5px 0; font-size: 0.88rem; display: flex; align-items: flex-start; gap: 10px; }
+  .submission-list input[type="checkbox"] { width: 16px; height: 16px; margin-top: 4px; accent-color: var(--ocean-deep); flex-shrink: 0; cursor: pointer; }
+  .submission-list label { flex: 1; cursor: pointer; }
+  .signature-row { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; padding-top: 14px; border-top: 1px dashed var(--ocean-deep); align-items: end; }
+  .integrity-statement { font-size: 0.78rem; color: var(--ink); font-style: italic; line-height: 1.5; margin-bottom: 8px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link { display: none !important; }
+    .section, .task, .submission { page-break-inside: avoid; }
+    .ruled, .grid-box { border-color: #000; color: #000; background-color: white; }
+    .submission { background: white; }
+    @page { size: letter; margin: 0.55in 0.6in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions" role="region" aria-label="Worksheet controls">
+  <div class="action-info"><strong>Print, handwrite, scan, submit.</strong> This worksheet is designed to be printed and completed by hand. Drawings need to be drawn, and that does not work digitally.</div>
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this worksheet">⎙ Print Worksheet</button>
+</div>
+
+<main id="main-content" class="sheet">
+  <header class="masthead">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 03 · Worksheet</p>
+    <h1 class="doc-title">Control Systems</h1>
+    <p class="doc-subtitle">Companion worksheet to the Week 3 Cognitive Trainer · Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field"><span class="field-label">Name</span><span class="field-line"></span></div>
+    <div class="field"><span class="field-label">Date</span><span class="field-line"></span></div>
+  </div>
+
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">How this worksheet works</h2>
+    <p>BIO 304 is an online course. Work through the Week 3 Cognitive Trainer first as your study tool. This worksheet is what you turn in. It captures only the drawings, predictions, and reflections.</p>
+    <p><strong>How to complete:</strong> Print the worksheet. Complete every box by hand in pen or pencil. Scan or photograph the completed pages as a single PDF. Upload that PDF to the Week 3 Worksheet assignment in Canvas.</p>
+    <p><strong>Drawing tasks (three this week):</strong> action potential graph, blood glucose feedback loop, sympathetic vs parasympathetic comparison. Label every component listed in the prompt. An unlabeled drawing is a sketch and loses points.</p>
+    <p><strong>Two sections cover COR-named content</strong> (endocrine pancreas in Section 5, autonomic-somatic split in Section 6). These will be tested directly on Lab Exam 2. Spend extra time on those.</p>
+    <p><strong>If you cannot print:</strong> contact Dr. Rennie or DSPS for an alternative submission format.</p>
+  </section>
+
+  <!-- SECTION 01 -->
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · Neuron Structure</p>
+        <h2 class="section-title" id="s1-title">Glial cells and neuron architecture</h2>
+        <p class="section-anchor">Use specific cell types and structures in your answers. Generic answers lose points.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> Multiple sclerosis destroys oligodendrocytes. Predict the effect on action potential conduction in the CNS, and explain why peripheral nerves are spared.</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> After a cut peripheral nerve, axons can sometimes regenerate. After a CNS spinal cord injury, regeneration is poor. Identify the glial cell that supports peripheral regeneration, and explain why CNS regeneration fails.</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A tumor compresses motor neurons specifically at the axon hillock. Predict the effect on muscle activation and explain why this location matters more than compression of dendrites.</p>
+      <div class="ruled medium"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 -->
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Build &amp; Apply · Action Potential</p>
+        <h2 class="section-title" id="s2-title">The action potential and synaptic transmission</h2>
+        <p class="section-anchor">Graphs are required to be labeled. A curve without phase labels and millivolt values is incomplete.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Draw a graph of an action potential with <strong>time</strong> on the x-axis and <strong>membrane potential (mV)</strong> on the y-axis. Mark the threshold (-55 mV), resting potential (-70 mV), and peak (~+30 mV). Label all five phases: <strong>resting, depolarization, repolarization, hyperpolarization, return to rest</strong>.</p>
+      <p class="task-rubric">Rubric: x-axis and y-axis labeled with units. Threshold and resting potential marked. All five phases labeled at the correct location on the curve.</p>
+      <div class="grid-box standard"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> Tetrodotoxin from pufferfish blocks voltage-gated sodium channels. Predict the effect on action potentials, and explain at which phase the block matters most.</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A toxin blocks voltage-gated calcium channels at axon terminals. The action potential reaches the terminal but no signal crosses to the next neuron. Explain why, using the steps of synaptic transmission.</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> Curare blocks acetylcholine receptors at the neuromuscular junction. Predict the effect on muscle contraction, and explain why the action potential in the motor neuron is unaffected.</p>
+      <div class="ruled medium"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 -->
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · CNS Anatomy</p>
+        <h2 class="section-title" id="s3-title">Localizing damage in the CNS</h2>
+        <p class="section-anchor">Match the deficit to the region. Specify which lobe, which side, and which structures.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient has a stroke affecting the left motor cortex. Predict which side of the body has motor weakness, and explain why the deficit is contralateral.</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A patient has cerebellar damage. Predict three motor signs they would show on a neurological exam, and identify the side of the body affected (ipsilateral or contralateral to the lesion).</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A patient has hydrocephalus due to a blockage at the cerebral aqueduct. Trace the normal CSF pathway from production to reabsorption, and identify which ventricles will dilate behind the blockage.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 -->
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · Endocrine Signaling</p>
+        <h2 class="section-title" id="s4-title">Hormone classes and feedback</h2>
+        <p class="section-anchor">Use the chemical class (steroid, peptide, amine), the receptor location, and the time course in your reasoning.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> Cortisol (steroid) and insulin (peptide) reach a target cell at the same time. Which produces a measurable effect first, and why? Use the receptor location and mechanism in your answer.</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A patient has a pituitary tumor secreting excess TSH. Predict the effect on the thyroid gland, on circulating thyroid hormone, and on TRH release from the hypothalamus. Explain via negative feedback.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A patient takes oral corticosteroids long-term for an autoimmune disease. Predict what happens to the patient's own adrenal cortisol production. Explain via negative feedback, and predict why the patient must taper off slowly rather than stopping abruptly.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 05 - COR -->
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Build &amp; Apply · Endocrine Pancreas <span class="cor-flag">COR</span></p>
+        <h2 class="section-title" id="s5-title">Blood glucose regulation and diabetes</h2>
+        <p class="section-anchor">COR-named clinical anchor. Insulin, glucagon, and the pancreatic islets show up directly on Lab Exam 2.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Draw the negative feedback loop that maintains blood glucose. Show <strong>both arms</strong> (high glucose response and low glucose response). Label the <strong>islet cell type</strong> for each arm, the <strong>hormone</strong> released, and the <strong>target tissues</strong> with their actions. Indicate clearly whether each arm is raising or lowering blood glucose.</p>
+      <p class="task-rubric">Rubric: Both feedback arms shown. Alpha and beta cells correctly identified. Insulin and glucagon correctly assigned. At least one target tissue per arm with the correct action.</p>
+      <div class="grid-box tall"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient with Type 1 diabetes forgets to take insulin for two days. Predict their blood glucose level and the insulin/glucagon ratio. What metabolic emergency are they at risk for, and why does it happen specifically in Type 1 and not Type 2?</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> After a high-carbohydrate meal, predict the action of insulin on three target tissues: <strong>skeletal muscle</strong>, <strong>liver</strong>, and <strong>adipose tissue</strong>. Be specific about what happens to glucose in each tissue.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A patient has hypoglycemia (blood glucose 50 mg/dL) and is sweaty, tremulous, and confused. For each symptom, identify whether it is due to <strong>autonomic activation</strong> (sympathetic response to low glucose) or <strong>inadequate glucose supply to the brain</strong>.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 06 - COR -->
+  <section class="section" aria-labelledby="s6-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">06</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Build &amp; Apply · Autonomic Nervous System <span class="cor-flag">COR</span></p>
+        <h2 class="section-title" id="s6-title">Sympathetic vs parasympathetic</h2>
+        <p class="section-anchor">COR-named clinical anchor. The autonomic-somatic split shows up directly on Lab Exam 2.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Fill in the comparison table below. For each organ, write the <strong>sympathetic effect</strong> and the <strong>parasympathetic effect</strong>. Use action words (increases, decreases, dilates, constricts, contracts, relaxes).</p>
+      <table class="compare-table">
+        <thead><tr><th scope="col" style="width:25%;">Organ / function</th><th scope="col" style="width:37%;">Sympathetic effect</th><th scope="col" style="width:38%;">Parasympathetic effect</th></tr></thead>
+        <tbody>
+          <tr><td class="label-col">Heart rate</td><td></td><td></td></tr>
+          <tr><td class="label-col">Bronchioles</td><td></td><td></td></tr>
+          <tr><td class="label-col">GI motility</td><td></td><td></td></tr>
+          <tr><td class="label-col">Pupil</td><td></td><td></td></tr>
+          <tr><td class="label-col">Salivation</td><td></td><td></td></tr>
+          <tr><td class="label-col">Bladder detrusor</td><td></td><td></td></tr>
+          <tr><td class="label-col">Liver glycogen</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A startled student has a "fight or flight" response. Predict the autonomic changes in <strong>heart rate, breathing, pupils, GI activity, and sweating</strong>, and identify which neurotransmitter and receptor mediate each effect.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> After a relaxed meal at home, the student is in a "rest and digest" state. Predict the autonomic changes in the same five organs and identify the neurotransmitter and receptor for each.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> Atropine blocks muscarinic receptors. Predict its effect on <strong>heart rate, salivation, and pupil size</strong>. Explain the mechanism for each, and identify which division of the ANS is being blocked.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 07 -->
+  <section class="section" aria-labelledby="s7-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">07</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Reflect · Self-Assessment</p>
+        <h2 class="section-title" id="s7-title">Reflection on Week 3</h2>
+        <p class="section-anchor">Heaviest week of the semester. Honesty here is graded for completeness, not correctness.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">a.</span> Of the six topics this week (neurons, action potentials, CNS anatomy, endocrine basics, pancreas, ANS), which one feels strongest right now and why?</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">b.</span> Which one is still cloudy? Write what you would ask Dr. Rennie or a study partner if you had thirty seconds.</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">c.</span> Lab preview: the Glasgow Coma Scale (GCS) scores eye opening, verbal response, and motor response to assess level of consciousness. Why might a patient with brainstem damage produce a different GCS pattern than a patient with cortical damage? Use what you learned about CNS anatomy this week.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit</h2>
+    <ul class="submission-list">
+      <li><input type="checkbox" id="check1"><label for="check1">All seven sections are complete. Empty boxes lose points even on the right answer.</label></li>
+      <li><input type="checkbox" id="check2"><label for="check2">Your three drawings (action potential graph, blood glucose feedback loop, ANS comparison table) are labeled and complete.</label></li>
+      <li><input type="checkbox" id="check3"><label for="check3">The two COR-named sections (5 and 6) are answered with extra care.</label></li>
+      <li><input type="checkbox" id="check4"><label for="check4">Your name is on the front page.</label></li>
+      <li><input type="checkbox" id="check5"><label for="check5">You have signed the integrity statement below.</label></li>
+    </ul>
+    <div class="signature-row">
+      <div>
+        <p class="integrity-statement">By signing below, I confirm this worksheet represents my own thinking. I may have studied with classmates, but the writing, drawings, and table entries on this page are mine.</p>
+        <div class="field"><span class="field-label">Signature</span><span class="field-line"></span></div>
+      </div>
+      <div class="field"><span class="field-label">Date</span><span class="field-line"></span></div>
+    </div>
+  </section>
+</main>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w03-worksheet';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>

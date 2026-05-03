@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 3 Cognitive Trainer · Control Systems · BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
+    --sand: #f5e6d3; --sand-soft: #faf3e8;
+    --terra: #c44536; --terra-soft: #e8a499;
+    --kelp: #5a7553; --paper: #fdfbf7;
+    --line: #c9d4d8; --muted: #5a6b73;
+    --shadow-sm: 0 1px 2px rgba(20, 48, 75, 0.06);
+    --shadow-md: 0 4px 14px rgba(20, 48, 75, 0.08);
+    --radius-sm: 6px; --radius-md: 12px; --radius-lg: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1180px; margin: 0 auto; padding: 0 28px 80px; }
+  header.masthead { padding: 48px 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 36px; }
+  .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
+  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; color: var(--ocean-deep); letter-spacing: -0.01em; margin-bottom: 14px; }
+  h1.title em { font-style: italic; color: var(--terra); }
+  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.12rem; color: var(--ocean); max-width: 720px; margin-bottom: 24px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: center; font-size: 0.86rem; color: var(--muted); }
+  .meta-row strong { color: var(--ink); font-weight: 600; }
+  .meta-pill { display: inline-flex; gap: 8px; align-items: center; background: var(--sea-glass-soft); padding: 6px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 500; color: var(--ocean-deep); }
+  .meta-pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--terra); }
+  .progress-rail { position: sticky; top: 0; background: var(--paper); z-index: 50; padding: 14px 28px; margin: 0 -28px 28px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 18px; }
+  .progress-label { font-size: 0.74rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); white-space: nowrap; }
+  .progress-track { flex: 1; height: 6px; background: var(--sea-glass); border-radius: 999px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 100%); width: 0%; transition: width 0.35s ease; }
+  .progress-count { font-size: 0.84rem; font-weight: 600; color: var(--ocean-deep); min-width: 50px; text-align: right; }
+  .progress-actions { display: flex; gap: 8px; }
+  .icon-btn { border: 1px solid var(--line); background: white; color: var(--ocean-deep); width: 34px; height: 34px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.15s ease; font-size: 1rem; }
+  .icon-btn:hover { background: var(--sea-glass-soft); border-color: var(--ocean); }
+  .intro { background: linear-gradient(135deg, var(--sea-glass-soft) 0%, var(--sand-soft) 100%); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px 36px; margin-bottom: 36px; position: relative; }
+  .intro::after { content: ''; position: absolute; bottom: 0; left: 36px; right: 36px; height: 3px; background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 50%, var(--kelp) 100%); border-radius: 2px; }
+  .intro h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem; color: var(--ocean-deep); margin-bottom: 14px; }
+  .intro p { color: var(--ink); margin-bottom: 12px; max-width: 780px; }
+  .intro p:last-of-type { margin-bottom: 0; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 22px; padding-top: 22px; border-top: 1px dashed var(--line); font-size: 0.84rem; }
+  .legend-item { display: inline-flex; align-items: center; gap: 8px; }
+  .legend-chip { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .chip-retrieve { background: var(--ocean-deep); color: white; }
+  .chip-build { background: var(--terra); color: white; }
+  .chip-apply { background: var(--kelp); color: white; }
+  .section { background: white; border: 1px solid var(--line); border-radius: var(--radius-lg); margin-bottom: 32px; overflow: hidden; box-shadow: var(--shadow-sm); }
+  .section-head { display: flex; gap: 22px; align-items: flex-start; padding: 28px 32px 22px; border-bottom: 1px solid var(--line); background: var(--sand-soft); cursor: pointer; user-select: none; transition: background 0.15s ease; }
+  .section-head:hover { background: var(--sand); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 2.4rem; color: var(--terra); line-height: 1; min-width: 48px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.45rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .section-anchor { font-size: 0.92rem; color: var(--ocean); max-width: 700px; }
+  .section-toggle { font-size: 1.2rem; color: var(--ocean); transition: transform 0.25s ease; margin-top: 8px; }
+  .section.collapsed .section-toggle { transform: rotate(-90deg); }
+  .section-body { padding: 26px 32px 32px; }
+  .section.collapsed .section-body { display: none; }
+  .mode-block { margin-bottom: 28px; }
+  .mode-block:last-child { margin-bottom: 0; }
+  .mode-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .mode-tag { display: inline-block; padding: 4px 11px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .mode-name { font-family: 'Lora', serif; font-style: italic; font-size: 1.05rem; color: var(--ocean-deep); }
+  .prompt-list { list-style: none; }
+  .prompt-list li { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px dashed var(--line); align-items: flex-start; }
+  .prompt-list li:last-child { border-bottom: none; }
+  .prompt-num { font-family: 'Lora', serif; font-weight: 500; font-size: 0.95rem; color: var(--terra); min-width: 22px; }
+  .prompt-text { flex: 1; }
+  .prompt-text .reveal-btn { margin-left: 8px; background: transparent; border: 1px solid var(--line); color: var(--ocean); font-size: 0.7rem; font-weight: 600; padding: 2px 9px; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.15s ease; }
+  .prompt-text .reveal-btn:hover { background: var(--ocean); color: white; }
+  .answer { display: none; margin-top: 8px; padding: 10px 14px; background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); border-radius: 4px; font-size: 0.92rem; color: var(--ocean-deep); font-family: 'Lora', serif; }
+  .answer.show { display: block; }
+  .answer strong { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; }
+  .work-box { margin-top: 14px; background: white; border: 1.5px solid var(--ink); border-radius: var(--radius-sm); padding: 18px 20px; min-height: 120px; background-image: linear-gradient(transparent calc(1.7em - 1px), var(--line) 1px); background-size: 100% 1.7em; line-height: 1.7em; }
+  .work-box.tall { min-height: 200px; }
+  .work-box.draw { background-image: linear-gradient(rgba(201, 212, 216, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(201, 212, 216, 0.4) 1px, transparent 1px); background-size: 22px 22px; line-height: normal; min-height: 240px; }
+  .work-label { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .ref-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 14px 0; }
+  .ref-table th { text-align: left; padding: 10px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .ref-table td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .ref-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .ref-table .blank-cell { cursor: pointer; color: var(--muted); font-style: italic; font-family: 'Lora', serif; }
+  .ref-table .blank-cell:hover { background: var(--sea-glass-soft); }
+  .ref-table .blank-cell.revealed { color: var(--ink); font-style: normal; font-family: inherit; }
+  .check-prompt { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; }
+  .check-prompt input[type="checkbox"] { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--terra); cursor: pointer; }
+  .check-prompt label { flex: 1; cursor: pointer; font-size: 0.96rem; }
+  .section-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 26px; padding-top: 20px; border-top: 1px dashed var(--line); }
+  .complete-btn { background: white; border: 2px solid var(--ocean-deep); color: var(--ocean-deep); padding: 9px 18px; border-radius: 8px; font-family: inherit; font-weight: 600; font-size: 0.86rem; cursor: pointer; letter-spacing: 0.04em; transition: all 0.18s ease; }
+  .complete-btn:hover { background: var(--ocean-deep); color: white; }
+  .complete-btn.done { background: var(--kelp); color: white; border-color: var(--kelp); }
+  .complete-btn.done::before { content: '✓ '; }
+  .closing { background: linear-gradient(150deg, var(--ocean-deep) 0%, var(--ink) 100%); color: white; border-radius: var(--radius-lg); padding: 36px 38px; margin-top: 40px; position: relative; overflow: hidden; }
+  .closing::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: radial-gradient(circle, var(--terra) 0%, transparent 70%); opacity: 0.3; }
+  .closing h3 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem; margin-bottom: 14px; position: relative; }
+  .closing p { opacity: 0.88; max-width: 700px; margin-bottom: 14px; position: relative; }
+  .closing-steps { list-style: none; counter-reset: step; margin-top: 18px; position: relative; }
+  .closing-steps li { counter-increment: step; padding: 8px 0 8px 38px; position: relative; font-size: 0.95rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .closing-steps li::before { content: counter(step); position: absolute; left: 0; top: 6px; width: 26px; height: 26px; background: var(--terra); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; }
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .progress-rail, .icon-btn, .reveal-btn, .complete-btn, .skip-link { display: none !important; }
+    .answer.show { background: white; border-color: var(--ink); }
+    .section { break-inside: avoid; box-shadow: none; border: 1.5px solid var(--ink); page-break-inside: avoid; }
+    .section.collapsed .section-body { display: block !important; }
+    .closing { background: white; color: var(--ink); border: 2px solid var(--ink); }
+    @page { size: letter; margin: 0.55in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="page" id="main-content" role="main">
+
+  <header class="masthead">
+    <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · Week 03</p>
+    <h1 class="title">Control <em>Systems</em></h1>
+    <p class="subtitle">Nervous and endocrine basics. Fast electrical signaling, slower chemical signaling, and how the two coordinate the body.</p>
+    <div class="meta-row">
+      <span class="meta-pill">OpenStax · Ch 12, 13, 17 (Read) · Ch 15.1-15.3 (Focus)</span>
+      <span><strong>Cognitive load:</strong> 4 modes across 7 sections</span>
+      <span><strong>Estimated time:</strong> 150 to 180 minutes</span>
+      <span><strong>Author:</strong> Dr. Sharilyn Rennie</span>
+    </div>
+  </header>
+
+  <div class="progress-rail">
+    <span class="progress-label" id="progress-label">Trainer Progress</span>
+    <div class="progress-track" role="progressbar" aria-labelledby="progress-label" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount" aria-live="polite" aria-atomic="true">0 / 7</span>
+    <div class="progress-actions">
+      <button class="icon-btn" id="print-btn" type="button" aria-label="Print trainer" onclick="window.print()">⎙</button>
+      <button class="icon-btn" id="reset-btn" type="button" aria-label="Reset progress for all sections">↺</button>
+    </div>
+  </div>
+
+  <div class="intro">
+    <h2>Week 3: the heaviest week of the course</h2>
+    <p>This week introduces three control systems: the nervous system (with neurons, action potentials, and CNS anatomy), the endocrine system (hormones and the pancreas), and the autonomic nervous system (the bridge between the two). Plan to spread this trainer across three or four sittings. Doing it in one is not realistic.</p>
+    <p>Two sections in this trainer cover <strong>COR-named content</strong>: Section 5 on the endocrine pancreas (insulin, glucagon, diabetes) and Section 6 on the autonomic-somatic split. These will be tested directly. Spend extra time there.</p>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-chip chip-retrieve">Retrieve</span> Recall the term, structure, or fact</span>
+      <span class="legend-item"><span class="legend-chip chip-build">Build</span> Draw, label, or construct the mechanism</span>
+      <span class="legend-item"><span class="legend-chip chip-apply">Apply</span> Predict or interpret</span>
+    </div>
+  </div>
+
+  <!-- SECTION 01 -->
+  <section class="section" data-section="s1">
+    <div class="section-head" onclick="toggleSection('s1')">
+      <div class="section-num">01</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 12.1-12.3</p>
+        <h2 class="section-title">Neuron Structure &amp; Glial Support</h2>
+        <p class="section-anchor">Neurons are the body's fast signaling cells. They receive, integrate, and transmit information through electrical and chemical signals. Glial cells outnumber neurons ten to one and provide essential support.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Neurons and glia</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Name the three functional types of neurons and the role of each.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Sensory (afferent):</strong> carry information from sensory receptors to the CNS. <strong>Motor (efferent):</strong> carry commands from the CNS to effectors (muscles and glands). <strong>Interneurons:</strong> located entirely within the CNS, integrate sensory input with motor output. By far the most numerous type.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">List the parts of a typical neuron and the role of each.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Dendrites:</strong> branched extensions that receive incoming signals. <strong>Soma (cell body):</strong> contains the nucleus and most organelles, integrates incoming signals. <strong>Axon hillock:</strong> trigger zone where the action potential is initiated if threshold is reached. <strong>Axon:</strong> conducts the action potential away from the cell body. <strong>Myelin sheath:</strong> insulates the axon, increases conduction speed. <strong>Axon terminals:</strong> release neurotransmitter at the synapse.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Name the six types of glial cells, their location (CNS or PNS), and the function of each.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>CNS:</strong> Astrocytes (form blood-brain barrier, provide structural and metabolic support). Microglia (immune defense, phagocytic). Oligodendrocytes (myelinate multiple axons in CNS). Ependymal cells (line ventricles, produce and circulate CSF). <strong>PNS:</strong> Schwann cells (each one myelinates one segment of one axon). Satellite cells (surround and support neuron cell bodies in ganglia).</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">State the resting membrane potential and explain what maintains it.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Resting membrane potential is approximately <strong>-70 mV</strong> (cell interior negative compared to exterior). Maintained by: (1) the <strong>Na⁺/K⁺ ATPase pump</strong> (3 Na⁺ out, 2 K⁺ in per ATP), creating concentration gradients; (2) selective <strong>K⁺ leak channels</strong> that allow K⁺ to diffuse out, leaving the inside more negative; and (3) large <strong>negatively charged proteins</strong> trapped inside the cell.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Glial cell reference table</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the answer.</p>
+        <table class="ref-table">
+          <thead><tr><th scope="col">Glial cell</th><th scope="col">Location</th><th scope="col">Primary function</th></tr></thead>
+          <tbody>
+            <tr><td>Astrocyte</td><td class="blank-cell" onclick="revealCell(this, 'CNS')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'BBB, structural and metabolic support')">click to reveal</td></tr>
+            <tr><td>Microglia</td><td class="blank-cell" onclick="revealCell(this, 'CNS')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Phagocytic immune defense')">click to reveal</td></tr>
+            <tr><td>Oligodendrocyte</td><td class="blank-cell" onclick="revealCell(this, 'CNS')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Myelinates multiple CNS axons')">click to reveal</td></tr>
+            <tr><td>Ependymal cell</td><td class="blank-cell" onclick="revealCell(this, 'CNS')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Lines ventricles, produces and circulates CSF')">click to reveal</td></tr>
+            <tr><td>Schwann cell</td><td class="blank-cell" onclick="revealCell(this, 'PNS')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Myelinates one segment of one PNS axon')">click to reveal</td></tr>
+            <tr><td>Satellite cell</td><td class="blank-cell" onclick="revealCell(this, 'PNS')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Supports cell bodies in PNS ganglia')">click to reveal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Predict the consequences</span></div>
+        <div class="work-label">a. Multiple sclerosis destroys oligodendrocytes. Predict the effect on action potential conduction in the CNS, and explain why peripheral nerves are spared.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. After a cut peripheral nerve, axons can sometimes regenerate along Schwann cell pathways. After a CNS spinal cord injury, regeneration is poor. Why?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A tumor compresses motor neurons specifically at the axon hillock. Predict the effect on muscle activation, and explain why this location matters more than compression of the dendrites.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 01 of 07</span><button class="complete-btn" data-complete="s1" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 -->
+  <section class="section" data-section="s2">
+    <div class="section-head" onclick="toggleSection('s2')">
+      <div class="section-num">02</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 12.4-12.6</p>
+        <h2 class="section-title">Action Potentials and Synaptic Transmission</h2>
+        <p class="section-anchor">An action potential is an all-or-nothing electrical event that travels down an axon. At the end, it triggers a chemical handoff at the synapse. Two events, both essential for the nervous system to do anything.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Action potential mechanics</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Describe the five phases of an action potential, including which channels open or close and which ions move at each phase.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>1. Resting state</strong> (-70 mV): voltage-gated channels closed. <strong>2. Depolarization</strong>: stimulus reaches threshold (~-55 mV), voltage-gated Na⁺ channels open, Na⁺ rushes in, membrane reverses to ~+30 mV. <strong>3. Repolarization</strong>: Na⁺ channels inactivate, voltage-gated K⁺ channels open, K⁺ rushes out, membrane returns toward negative. <strong>4. Hyperpolarization</strong>: K⁺ channels stay open briefly, membrane drops below -70 mV. <strong>5. Return to rest</strong>: K⁺ channels close, Na⁺/K⁺ pump restores ion gradients.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Define threshold, the all-or-nothing principle, and the absolute and relative refractory periods.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Threshold:</strong> approximately -55 mV. The membrane potential at which voltage-gated Na⁺ channels open in sufficient numbers to trigger an AP. <strong>All-or-nothing:</strong> either the AP fires fully or it does not fire at all. There is no partial AP. <strong>Absolute refractory period:</strong> no AP can be triggered (Na⁺ channels are inactivated). Sets the maximum firing rate. <strong>Relative refractory period:</strong> a stronger-than-normal stimulus is required because the membrane is hyperpolarized below the resting state.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Define saltatory conduction and explain why myelinated axons conduct faster than unmyelinated axons.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">In myelinated axons, the action potential "jumps" from one node of Ranvier to the next, skipping the myelinated segments. This is <strong>saltatory conduction</strong>. It is faster than continuous conduction because depolarization only has to occur at the nodes, where ion channels are concentrated. Unmyelinated axons require AP regeneration along the entire length, which is slower.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">List the steps of synaptic transmission from action potential arrival to postsynaptic effect.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">(1) AP arrives at axon terminal. (2) Voltage-gated <strong>Ca²⁺ channels</strong> open, Ca²⁺ enters terminal. (3) Ca²⁺ triggers vesicle fusion with the presynaptic membrane. (4) <strong>Neurotransmitter</strong> released into the synaptic cleft. (5) NT binds to postsynaptic receptors. (6) Receptor activation produces an EPSP (excitatory) or IPSP (inhibitory). (7) NT is removed by reuptake, enzymatic degradation, or diffusion away.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Graph the action potential</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Draw a graph of an action potential with time on the x-axis and membrane potential (mV) on the y-axis. Mark the threshold (~-55 mV), resting potential (-70 mV), and peak (~+30 mV). Label all five phases.</p>
+        <div class="work-box draw"></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Predict the response</span></div>
+        <div class="work-label">a. Tetrodotoxin from pufferfish blocks voltage-gated sodium channels. Predict the effect on action potentials, and explain at which phase the block matters most.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A toxin blocks voltage-gated calcium channels at axon terminals. The action potential reaches the terminal but no signal crosses to the next neuron. Explain why.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. Curare blocks acetylcholine receptors at the neuromuscular junction. Predict the effect on muscle contraction, and explain why the action potential in the motor neuron is unaffected.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 02 of 07</span><button class="complete-btn" data-complete="s2" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 -->
+  <section class="section" data-section="s3">
+    <div class="section-head" onclick="toggleSection('s3')">
+      <div class="section-num">03</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 13.1-13.4</p>
+        <h2 class="section-title">CNS Anatomy: Brain &amp; Spinal Cord</h2>
+        <p class="section-anchor">Knowing the major brain regions is the foundation for neurological assessment. Damage to a specific region produces a specific deficit. The same is true for the spinal cord.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Brain regions and spinal cord</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Name the major brain regions and the core function of each.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Cerebrum:</strong> higher cognition, sensory perception, voluntary motor. Divided into four lobes (frontal, parietal, temporal, occipital). <strong>Cerebellum:</strong> motor coordination, balance, fine movement. <strong>Brainstem</strong> (midbrain, pons, medulla): vital functions including breathing, heart rate, swallow, eye reflexes. <strong>Diencephalon:</strong> thalamus (sensory relay) and hypothalamus (autonomic control, endocrine output, homeostasis).</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Match each cerebral lobe to its primary functions.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Frontal:</strong> voluntary motor (primary motor cortex), executive function, personality, Broca's area (speech production). <strong>Parietal:</strong> somatosensory cortex, spatial awareness, body schema. <strong>Temporal:</strong> hearing, memory, language comprehension (Wernicke's area). <strong>Occipital:</strong> vision (primary visual cortex).</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Describe a cross-section of the spinal cord. Where is gray matter, where is white matter, and what enters and exits at the dorsal and ventral roots?<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Gray matter</strong> is in the center (H-shaped or butterfly-shaped) and contains cell bodies and synapses. <strong>White matter</strong> is on the outside and contains myelinated tracts. <strong>Dorsal (posterior) horns</strong>: receive sensory input. <strong>Ventral (anterior) horns</strong>: contain motor neuron cell bodies. <strong>Dorsal root</strong>: sensory neurons enter the cord (cell bodies in dorsal root ganglion, just outside the cord). <strong>Ventral root</strong>: motor neurons exit the cord. The dorsal and ventral roots merge into a mixed spinal nerve.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Name the three meninges from outer to inner, and trace the production and circulation of cerebrospinal fluid (CSF).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Meninges from outer to inner: <strong>dura mater</strong> (tough outer), <strong>arachnoid mater</strong> (web-like middle, with subarachnoid space below), <strong>pia mater</strong> (thin inner, hugs brain surface). CSF is made by the <strong>choroid plexus</strong> in the lateral, third, and fourth ventricles. It flows: lateral ventricles → third ventricle → cerebral aqueduct → fourth ventricle → out into the subarachnoid space → reabsorbed by arachnoid villi into venous blood.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Brain region functions</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the answer.</p>
+        <table class="ref-table">
+          <thead><tr><th scope="col">Region</th><th scope="col">Core function</th><th scope="col">Damage produces</th></tr></thead>
+          <tbody>
+            <tr><td>Frontal lobe</td><td class="blank-cell" onclick="revealCell(this, 'Voluntary motor, executive function, speech production')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Contralateral motor weakness, expressive aphasia (Broca)')">click to reveal</td></tr>
+            <tr><td>Parietal lobe</td><td class="blank-cell" onclick="revealCell(this, 'Somatosensation, spatial awareness')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Contralateral sensory loss, neglect syndrome')">click to reveal</td></tr>
+            <tr><td>Temporal lobe</td><td class="blank-cell" onclick="revealCell(this, 'Hearing, memory, language comprehension')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Receptive aphasia (Wernicke), memory deficits')">click to reveal</td></tr>
+            <tr><td>Occipital lobe</td><td class="blank-cell" onclick="revealCell(this, 'Vision')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Visual field deficits, cortical blindness')">click to reveal</td></tr>
+            <tr><td>Cerebellum</td><td class="blank-cell" onclick="revealCell(this, 'Motor coordination, balance')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Ataxia, intention tremor, ipsilateral deficits')">click to reveal</td></tr>
+            <tr><td>Brainstem</td><td class="blank-cell" onclick="revealCell(this, 'Breathing, heart rate, swallow, eye reflexes')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Loss of vital functions, often fatal')">click to reveal</td></tr>
+            <tr><td>Hypothalamus</td><td class="blank-cell" onclick="revealCell(this, 'Autonomic control, endocrine output, homeostasis')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Temperature, hunger, thirst, hormone dysregulation')">click to reveal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Localize the lesion</span></div>
+        <div class="work-label">a. A patient has a stroke affecting the left motor cortex. Predict which side of the body has motor weakness, and explain why the deficit is contralateral.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient has cerebellar damage. Predict three motor signs they will show on a neurological exam.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient has hydrocephalus due to a blockage at the cerebral aqueduct. Trace the normal CSF pathway and identify which ventricles will dilate.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 03 of 07</span><button class="complete-btn" data-complete="s3" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 -->
+  <section class="section" data-section="s4">
+    <div class="section-head" onclick="toggleSection('s4')">
+      <div class="section-num">04</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 17.1-17.4</p>
+        <h2 class="section-title">Endocrine Signaling Basics</h2>
+        <p class="section-anchor">Hormones are chemical messengers that travel in blood. They are slower than nerves but reach every cell in the body. Speed and reach are tradeoffs in how the body sends signals.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Hormone classes and signaling</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Name the three classes of hormones, an example of each, and the key chemical feature.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Amine:</strong> derived from an amino acid (tyrosine or tryptophan). Examples: epinephrine, norepinephrine, thyroid hormones, melatonin. <strong>Peptide / protein:</strong> chains of amino acids. Examples: insulin, ADH, growth hormone, oxytocin. The largest class. Water-soluble. <strong>Steroid:</strong> derived from cholesterol. Examples: cortisol, aldosterone, testosterone, estrogen. Lipid-soluble.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Explain why steroid hormones cross the cell membrane but peptide hormones do not, and how this affects their mechanism of action.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Steroids</strong> are lipid-soluble and pass directly through the phospholipid bilayer. They bind <strong>intracellular receptors</strong> (cytoplasmic or nuclear), and the hormone-receptor complex acts on DNA to alter gene transcription. Slow onset, long duration. <strong>Peptides</strong> are water-soluble and cannot cross the bilayer. They bind <strong>surface receptors</strong> and trigger intracellular second messenger cascades (cAMP, IP3, etc.) that modify existing proteins. Fast onset, short duration.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Describe the hypothalamus-pituitary axis. How are anterior and posterior pituitary different in their relationship to the hypothalamus?<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">The <strong>hypothalamus</strong> sits above the pituitary and controls it. <strong>Anterior pituitary</strong>: the hypothalamus releases regulating hormones (releasing or inhibiting) into the hypophyseal portal system, which carries them to the anterior pituitary. The anterior pituitary then releases tropic hormones (TSH, ACTH, FSH, LH, GH, prolactin) into general circulation. <strong>Posterior pituitary</strong>: hormones (ADH and oxytocin) are made by hypothalamic neurons whose axons terminate in the posterior pituitary. The posterior pituitary stores and releases these hormones; it does not synthesize them.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Explain how negative feedback maintains hormone set points, using the thyroid axis as an example.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">In the thyroid axis: hypothalamus releases TRH → anterior pituitary releases TSH → thyroid releases T3 and T4. When circulating T3/T4 rises, it inhibits both the hypothalamus (less TRH) and the pituitary (less TSH). With less stimulation, the thyroid releases less hormone, and T3/T4 returns to set point. Most endocrine axes use this same loop design.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Compare and predict</span></div>
+        <div class="work-label">a. Cortisol (steroid) and insulin (peptide) reach a target cell at the same time. Which produces a measurable effect first, and why?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient has a pituitary tumor secreting excess TSH. Predict the effect on the thyroid gland, circulating thyroid hormone, and TRH from the hypothalamus.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient takes oral corticosteroids long-term for an autoimmune disease. Predict what happens to the patient's own adrenal cortisol production and explain via negative feedback.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 04 of 07</span><button class="complete-btn" data-complete="s4" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 05 - COR -->
+  <section class="section" data-section="s5">
+    <div class="section-head" onclick="toggleSection('s5')">
+      <div class="section-num">05</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Focus · OpenStax 17.9 · COR-named content</p>
+        <h2 class="section-title">Endocrine Pancreas: Insulin, Glucagon, Diabetes</h2>
+        <p class="section-anchor">Blood glucose has a tight set point because brain cells depend on it. Insulin and glucagon are antagonists that maintain that set point. Diabetes is what happens when this system fails. The COR for this course names this section as a key clinical anchor.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Pancreas, hormones, diabetes types</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Name the three pancreatic islet cell types and the hormone each one secretes.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Alpha cells:</strong> secrete <strong>glucagon</strong> (raises blood glucose). <strong>Beta cells:</strong> secrete <strong>insulin</strong> (lowers blood glucose). Most numerous islet cell. <strong>Delta cells:</strong> secrete <strong>somatostatin</strong>, which modulates both insulin and glucagon release and inhibits growth hormone. Islets of Langerhans are clusters scattered throughout the exocrine pancreas.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">List the major actions of insulin and identify when it is released.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Insulin is released by beta cells when <strong>blood glucose rises</strong> (after a meal). Actions: (1) increases glucose uptake by skeletal muscle and adipose tissue (via GLUT4 transporters); (2) promotes glycogen synthesis in the liver and muscle; (3) promotes triglyceride synthesis and storage in adipose; (4) promotes protein synthesis. Net effect: lowers blood glucose, builds energy stores. The brain and red blood cells take up glucose without needing insulin.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">List the major actions of glucagon and identify when it is released.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Glucagon is released by alpha cells when <strong>blood glucose falls</strong> (fasting state, between meals). Actions in the liver: (1) <strong>glycogenolysis</strong> (breakdown of glycogen to glucose); (2) <strong>gluconeogenesis</strong> (making new glucose from amino acids and lactate); (3) promotes lipolysis in adipose. Net effect: raises blood glucose.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Compare Type 1 and Type 2 diabetes in terms of cause, typical age of onset, and treatment.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Type 1:</strong> autoimmune destruction of beta cells. The pancreas makes little or no insulin. Typical onset childhood or adolescence. Always insulin-dependent. High risk of diabetic ketoacidosis (DKA) without insulin. <strong>Type 2:</strong> insulin resistance (target cells respond poorly to insulin), often combined with relative insulin deficiency over time. Typical onset adulthood, strong association with obesity and metabolic syndrome. Initially treated with lifestyle change and oral medications; many patients eventually need insulin.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Draw the blood glucose feedback loop</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Draw the negative feedback loop that maintains blood glucose. Show both arms (high glucose response and low glucose response). Label the islet cell type, the hormone released, and the target tissues. Indicate whether each arm is raising or lowering blood glucose.</p>
+        <div class="work-box draw"></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Diabetes scenarios</span></div>
+        <div class="work-label">a. A patient with Type 1 diabetes forgets to take insulin for two days. Predict their blood glucose level and the insulin/glucagon ratio. What metabolic emergency are they at risk for?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. After a high-carbohydrate meal, predict the action of insulin on three target tissues: skeletal muscle, liver, and adipose tissue.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient has hypoglycemia (blood glucose 50 mg/dL) and is sweaty, tremulous, and confused. Identify which symptoms are autonomic (sympathetic) and which are due to inadequate glucose supply to the brain.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 05 of 07</span><button class="complete-btn" data-complete="s5" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 06 - COR -->
+  <section class="section" data-section="s6">
+    <div class="section-head" onclick="toggleSection('s6')">
+      <div class="section-num">06</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Focus · OpenStax 15.1-15.3 · COR-named content</p>
+        <h2 class="section-title">The Autonomic Nervous System</h2>
+        <p class="section-anchor">The ANS controls visceral functions you do not think about. The autonomic-somatic split is COR-named content for this course. Two divisions, one purpose: maintain physiological homeostasis under varying conditions.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">ANS architecture and divisions</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Compare the somatic nervous system and the autonomic nervous system. This is COR-named content.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Somatic:</strong> voluntary control. Single neuron from CNS to skeletal muscle. ACh at the neuromuscular junction. Always excitatory at the muscle. <strong>Autonomic:</strong> involuntary control. Two-neuron chain (preganglionic from CNS to ganglion, postganglionic from ganglion to target). Targets smooth muscle, cardiac muscle, glands, and adipose. Can be excitatory or inhibitory depending on the receptor on the target.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Compare the anatomical origins of the sympathetic and parasympathetic divisions, including the length of pre- and postganglionic neurons.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Sympathetic = thoracolumbar:</strong> preganglionic neurons originate in T1 to L2 spinal segments. Short preganglionic axons synapse in the sympathetic chain ganglia (alongside spinal cord). Long postganglionic axons travel to targets. <strong>Parasympathetic = craniosacral:</strong> preganglionic neurons originate in cranial nerves III, VII, IX, X (the vagus is huge, supplying most thoracic and abdominal organs) and sacral segments S2 to S4. Long preganglionic axons travel to ganglia near or within the target organ. Short postganglionic axons.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Identify the neurotransmitter at each ANS synapse: preganglionic, sympathetic postganglionic, and parasympathetic postganglionic.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>All preganglionic neurons</strong> (sympathetic and parasympathetic) release <strong>ACh</strong>, which binds <strong>nicotinic receptors</strong> on the postganglionic neuron. <strong>Sympathetic postganglionic</strong> releases <strong>norepinephrine (NE)</strong>, which binds <strong>adrenergic receptors</strong> on the target. <strong>Parasympathetic postganglionic</strong> releases <strong>ACh</strong>, which binds <strong>muscarinic receptors</strong> on the target. Exception: sympathetic postganglionic neurons to sweat glands release ACh (muscarinic), not NE.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Compare the effects of sympathetic and parasympathetic stimulation on the heart, lungs, GI tract, pupils, and bladder.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Heart:</strong> sympathetic increases HR and contractility; parasympathetic (vagus) decreases HR. <strong>Lungs:</strong> sympathetic dilates bronchioles; parasympathetic constricts. <strong>GI tract:</strong> sympathetic decreases motility and secretion; parasympathetic increases both (rest and digest). <strong>Pupils:</strong> sympathetic dilates (mydriasis); parasympathetic constricts (miosis). <strong>Bladder:</strong> sympathetic relaxes the detrusor (retains urine); parasympathetic contracts the detrusor (voiding).</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">ANS effector responses table</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the answer.</p>
+        <table class="ref-table">
+          <thead><tr><th scope="col">Organ</th><th scope="col">Sympathetic effect</th><th scope="col">Parasympathetic effect</th></tr></thead>
+          <tbody>
+            <tr><td>Heart rate</td><td class="blank-cell" onclick="revealCell(this, 'Increases')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Decreases')">click to reveal</td></tr>
+            <tr><td>Bronchioles</td><td class="blank-cell" onclick="revealCell(this, 'Dilate')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Constrict')">click to reveal</td></tr>
+            <tr><td>GI motility</td><td class="blank-cell" onclick="revealCell(this, 'Decreases')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Increases')">click to reveal</td></tr>
+            <tr><td>Pupil</td><td class="blank-cell" onclick="revealCell(this, 'Dilates (mydriasis)')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Constricts (miosis)')">click to reveal</td></tr>
+            <tr><td>Salivary glands</td><td class="blank-cell" onclick="revealCell(this, 'Decrease (thick secretions)')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Increase (watery secretions)')">click to reveal</td></tr>
+            <tr><td>Sweat glands</td><td class="blank-cell" onclick="revealCell(this, 'Increase (via ACh exception)')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'No major effect')">click to reveal</td></tr>
+            <tr><td>Bladder detrusor</td><td class="blank-cell" onclick="revealCell(this, 'Relaxes (retains urine)')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Contracts (voids urine)')">click to reveal</td></tr>
+            <tr><td>Liver glycogen</td><td class="blank-cell" onclick="revealCell(this, 'Glycogenolysis (raises blood glucose)')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'No major effect')">click to reveal</td></tr>
+            <tr><td>Adrenal medulla</td><td class="blank-cell" onclick="revealCell(this, 'Releases epinephrine (amplifies SNS)')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'No effect')">click to reveal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">ANS in real situations</span></div>
+        <div class="work-label">a. A startled student has a "fight or flight" response. Predict the autonomic changes in heart rate, breathing, pupils, GI activity, and sweating.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. After a relaxed meal at home, the student is in a "rest and digest" state. Predict the autonomic changes in the same five organs.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. Atropine blocks muscarinic receptors. Predict the effect on heart rate, salivation, and pupil size, and explain the mechanism for each.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 06 of 07</span><button class="complete-btn" data-complete="s6" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 07 -->
+  <section class="section" data-section="s7">
+    <div class="section-head" onclick="toggleSection('s7')">
+      <div class="section-num">07</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Self-Assessment · Reflect</p>
+        <h2 class="section-title">Self-Check &amp; Reflection</h2>
+        <p class="section-anchor">Heaviest week of the semester. Audit what you actually know. The lab uses the Glasgow Coma Scale, which builds on this week's CNS anatomy and is previewed in the reflection prompts below.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Confidence audit</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Check the box only if you can do the action without notes, right now.</p>
+        <div class="check-prompt"><input type="checkbox" id="cf1"><label for="cf1">I can name three functional types of neurons and the parts of a typical neuron.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf2"><label for="cf2">I can name the six glial cells, locate them in CNS or PNS, and state their functions.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf3"><label for="cf3">I can graph an action potential with all five phases labeled.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf4"><label for="cf4">I can trace synaptic transmission from axon terminal to postsynaptic effect.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf5"><label for="cf5">I can name the major brain regions and the function of each cerebral lobe.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf6"><label for="cf6">I can describe spinal cord cross-section anatomy (gray, white, dorsal, ventral).</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf7"><label for="cf7">I can compare the three classes of hormones (amine, peptide, steroid) and their mechanisms.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf8"><label for="cf8">I can describe the hypothalamus-pituitary axis (anterior vs posterior).</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf9"><label for="cf9">I can identify the three pancreatic islet cells and the actions of insulin and glucagon. (COR)</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf10"><label for="cf10">I can compare Type 1 and Type 2 diabetes. (COR)</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf11"><label for="cf11">I can compare the somatic and autonomic nervous systems. (COR)</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf12"><label for="cf12">I can compare sympathetic (thoracolumbar) and parasympathetic (craniosacral) divisions.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf13"><label for="cf13">I can identify the neurotransmitter at every ANS synapse.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf14"><label for="cf14">I can predict sympathetic and parasympathetic effects on at least eight target organs.</label></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Reflection prompts</span></div>
+        <div class="work-label">a. Of the six topics this week (neurons, action potentials, CNS anatomy, endocrine basics, pancreas, ANS), which one feels strongest right now?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Which one is still cloudy? Write what you would ask Dr. Rennie or a study partner if you had thirty seconds.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. Lab preview: the Glasgow Coma Scale (GCS) scores eye opening, verbal response, and motor response to assess level of consciousness. Why might a patient with brainstem damage produce a different GCS pattern than a patient with cortical damage?</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 07 of 07</span><button class="complete-btn" data-complete="s7" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <h3>Wrapping up Week 3</h3>
+    <p>Six major topics, two flagged as COR-named content. The endocrine pancreas and the autonomic-somatic split will reappear all semester: in cardiovascular regulation, in respiratory drive, in renal water balance, in stress response. Get them solid this week.</p>
+    <p>To submit:</p>
+    <ol class="closing-steps">
+      <li>Make sure the progress bar above shows 7 of 7 sections complete. The trainer is your study tool, not your turn-in.</li>
+      <li>Open and print the Week 3 Worksheet (companion document). Complete every box by hand in pen or pencil.</li>
+      <li>Save your <strong>completed</strong> worksheet as a single PDF (scan it or photograph it).</li>
+      <li>Upload that PDF to the Week 3 Worksheet assignment in Canvas. You only submit the completed version, not the blank one.</li>
+    </ol>
+  </div>
+
+</div>
+
+<script>
+  // ACCESSIBILITY INIT
+  (function() {
+    document.querySelectorAll('.section').forEach((section) => {
+      const head = section.querySelector('.section-head');
+      const body = section.querySelector('.section-body');
+      const sid = section.dataset.section;
+      if (head && body && sid) {
+        body.id = sid + '-body';
+        head.setAttribute('role', 'button');
+        head.setAttribute('tabindex', '0');
+        head.setAttribute('aria-expanded', 'true');
+        head.setAttribute('aria-controls', sid + '-body');
+        const num = head.querySelector('.section-num');
+        if (num) num.setAttribute('aria-hidden', 'true');
+      }
+    });
+    document.querySelectorAll('.reveal-btn').forEach((btn, i) => {
+      const ans = btn.nextElementSibling;
+      if (ans && ans.classList.contains('answer')) {
+        const id = 'reveal-ans-' + i;
+        ans.id = id;
+        btn.setAttribute('aria-controls', id);
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('type', 'button');
+      }
+    });
+    document.querySelectorAll('.blank-cell').forEach((cell) => {
+      cell.setAttribute('role', 'button');
+      cell.setAttribute('tabindex', '0');
+      cell.setAttribute('aria-label', 'Click to reveal answer');
+    });
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) {
+        e.preventDefault();
+        e.target.click();
+      }
+    });
+  })();
+
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    const isOpen = ans.classList.toggle('show');
+    btn.textContent = isOpen ? 'Hide' : 'Show';
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+  function toggleSection(id) {
+    const section = document.querySelector(`[data-section="${id}"]`);
+    if (!section) return;
+    const collapsed = section.classList.toggle('collapsed');
+    const head = section.querySelector('.section-head');
+    if (head) head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+  }
+  function revealCell(el, answer) {
+    el.textContent = answer;
+    el.classList.add('revealed');
+    el.onclick = null;
+    el.removeAttribute('role');
+    el.removeAttribute('tabindex');
+    el.setAttribute('aria-label', answer);
+  }
+
+  const STORAGE_KEY = 'bio304_w03_trainer_progress';
+  let completed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+  function updateProgress() {
+    const total = 7;
+    const count = completed.length;
+    document.getElementById('progressFill').style.width = (count / total) * 100 + '%';
+    document.getElementById('progressCount').textContent = count + ' / ' + total;
+    const track = document.querySelector('.progress-track');
+    if (track) track.setAttribute('aria-valuenow', String(count));
+  }
+  function markComplete(btn) {
+    const id = btn.getAttribute('data-complete');
+    if (completed.includes(id)) {
+      completed = completed.filter(x => x !== id);
+      btn.classList.remove('done');
+      btn.textContent = 'Mark complete';
+    } else {
+      completed.push(id);
+      btn.classList.add('done');
+      btn.textContent = 'Complete';
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+    updateProgress();
+  }
+  completed.forEach(id => {
+    const btn = document.querySelector(`[data-complete="${id}"]`);
+    if (btn) { btn.classList.add('done'); btn.textContent = 'Complete'; }
+  });
+  updateProgress();
+  document.getElementById('reset-btn').onclick = function() {
+    if (confirm('Reset all section progress for this trainer? This will not erase what you wrote in the boxes.')) {
+      completed = [];
+      localStorage.removeItem(STORAGE_KEY);
+      document.querySelectorAll('.complete-btn').forEach(btn => {
+        btn.classList.remove('done');
+        btn.textContent = 'Mark complete';
+      });
+      updateProgress();
+    }
+  };
+
+  // IFRAME HEIGHT
+  (function() {
+    const FRAME_ID = 'bio304-w03-trainer';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
