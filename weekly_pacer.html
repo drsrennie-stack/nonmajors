@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Weekly Pacer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
+    --sand: #f5e6d3; --sand-soft: #faf3e8;
+    --terra: #c44536; --terra-soft: #e8a499;
+    --kelp: #5a7553; --kelp-soft: #aabba0;
+    --paper: #fdfbf7; --line: #c9d4d8; --muted: #5a6b73;
+    --shadow-md: 0 4px 14px rgba(20, 48, 75, 0.08);
+    --radius-md: 12px; --radius-lg: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 0 28px 80px; }
+
+  header.masthead { padding: 48px 0 24px; border-bottom: 2.5px solid var(--ocean-deep); margin-bottom: 36px; position: relative; }
+  header.masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
+  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(2rem, 4vw, 2.6rem); line-height: 1.15; color: var(--ocean-deep); letter-spacing: -0.01em; margin-bottom: 14px; }
+  h1.title em { font-style: italic; color: var(--terra); }
+  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.1rem; color: var(--ocean); max-width: 720px; }
+
+  /* CONTEXT BANNER */
+  .context-banner {
+    background: var(--sea-glass-soft);
+    border-left: 4px solid var(--ocean);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 18px 24px;
+    margin: 0 0 36px;
+  }
+  .context-banner h2 {
+    font-family: 'Lora', serif; font-weight: 500; font-style: italic;
+    font-size: 1.15rem; color: var(--ocean-deep); margin-bottom: 8px;
+  }
+  .context-banner p { color: var(--ink); margin-bottom: 6px; }
+  .context-banner p:last-child { margin-bottom: 0; }
+
+  /* DAY CARD */
+  .day-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    margin: 14px 0;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+  .day-header {
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: 18px;
+    align-items: center;
+    padding: 16px 22px;
+    background: var(--sand-soft);
+    border-bottom: 1px solid var(--line);
+  }
+  .day-name {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem;
+    color: var(--ocean-deep); line-height: 1;
+  }
+  .day-name em { font-style: italic; color: var(--terra); }
+  .day-focus {
+    font-family: 'Lora', serif; font-style: italic; font-weight: 500;
+    font-size: 1.05rem; color: var(--ocean);
+  }
+  .day-time {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--terra);
+    background: white; padding: 6px 12px; border-radius: 4px;
+    border: 1px solid var(--terra-soft);
+    white-space: nowrap;
+  }
+  .day-time-num {
+    font-family: 'Lora', serif; font-style: italic; font-weight: 500;
+    font-size: 0.95rem; color: var(--terra);
+    text-transform: none; letter-spacing: 0;
+    margin-right: 4px;
+  }
+
+  .day-body { padding: 18px 22px; }
+
+  .task-list { list-style: none; padding: 0; margin: 0; }
+  .task-item {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--line);
+    align-items: start;
+  }
+  .task-item:last-child { border-bottom: none; }
+  .task-checkbox {
+    width: 18px; height: 18px;
+    border: 2px solid var(--ocean);
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+  .task-content { padding-top: 1px; }
+  .task-name {
+    font-weight: 600; color: var(--ocean-deep); margin-bottom: 2px;
+  }
+  .task-desc { font-size: 0.9rem; line-height: 1.5; color: var(--ink); }
+  .task-desc.muted { color: var(--muted); font-style: italic; }
+  .task-tag {
+    display: inline-block;
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 8px; border-radius: 3px;
+    margin-right: 6px; vertical-align: middle;
+  }
+  .task-tag.video { background: var(--sea-glass-soft); color: var(--ocean-deep); border: 1px solid var(--ocean); }
+  .task-tag.trainer { background: var(--sea-glass-soft); color: var(--ocean-deep); border: 1px solid var(--ocean); }
+  .task-tag.workbook { background: var(--sand-soft); color: var(--terra); border: 1px solid var(--terra-soft); }
+  .task-tag.discussion { background: var(--sand-soft); color: var(--ocean-deep); border: 1px solid var(--line); }
+  .task-tag.quiz { background: var(--ocean-deep); color: white; }
+  .task-tag.project { background: var(--terra); color: white; }
+
+  /* KEY DEADLINE BAR */
+  .deadline-bar {
+    background: linear-gradient(150deg, var(--ocean-deep) 0%, var(--ink) 100%);
+    color: white;
+    border-radius: var(--radius-lg);
+    padding: 22px 28px;
+    margin: 36px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .deadline-bar::before {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, var(--terra) 0%, transparent 70%);
+    opacity: 0.3; pointer-events: none;
+  }
+  .deadline-bar h2 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.3rem;
+    margin-bottom: 14px; position: relative;
+  }
+  .deadline-bar h2 em { font-style: italic; color: var(--terra-soft); }
+  .deadline-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    position: relative;
+  }
+  .deadline-item {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 14px 16px; border-radius: 8px;
+    backdrop-filter: blur(4px);
+  }
+  .deadline-day {
+    font-family: 'Lora', serif; font-style: italic; font-weight: 500;
+    font-size: 1.05rem; color: var(--terra-soft); margin-bottom: 4px;
+  }
+  .deadline-task { font-size: 0.92rem; color: white; line-height: 1.4; }
+  .deadline-task strong { color: white; }
+
+  @media (max-width: 720px) {
+    .deadline-grid { grid-template-columns: 1fr; }
+  }
+
+  /* TIME BUDGET */
+  .budget {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 22px 26px;
+    margin: 36px 0;
+  }
+  .budget h2 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.3rem;
+    color: var(--ocean-deep); margin-bottom: 14px;
+  }
+  .budget h2 em { font-style: italic; color: var(--terra); }
+  .budget-row {
+    display: grid;
+    grid-template-columns: 1fr 100px 100px;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: center;
+  }
+  .budget-row:last-child { border-bottom: none; font-weight: 700; background: var(--sea-glass-soft); margin: 0 -10px; padding: 12px 10px; border-radius: 6px; }
+  .budget-component { color: var(--ink); }
+  .budget-hours { color: var(--terra); text-align: right; font-family: 'Lora', serif; font-style: italic; }
+  .budget-pct { color: var(--muted); font-size: 0.86rem; text-align: right; }
+
+  /* TIPS GRID */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 36px 0;
+  }
+  .tip-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 20px 22px;
+  }
+  .tip-card.do { border-top: 4px solid var(--kelp); }
+  .tip-card.dont { border-top: 4px solid var(--terra); }
+  .tip-eyebrow {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .tip-card.do .tip-eyebrow { color: var(--kelp); }
+  .tip-card.dont .tip-eyebrow { color: var(--terra); }
+  .tip-title {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.1rem;
+    color: var(--ocean-deep); margin-bottom: 12px;
+  }
+  .tip-list { list-style: none; padding: 0; margin: 0; }
+  .tip-list li {
+    padding: 6px 0 6px 22px; position: relative;
+    font-size: 0.9rem; line-height: 1.55;
+  }
+  .tip-list li::before {
+    position: absolute; left: 0; top: 6px;
+    font-weight: 700;
+  }
+  .tip-card.do .tip-list li::before { content: '✓'; color: var(--kelp); }
+  .tip-card.dont .tip-list li::before { content: '✗'; color: var(--terra); }
+
+  @media (max-width: 720px) {
+    .tips-grid { grid-template-columns: 1fr; }
+    .day-header { grid-template-columns: 1fr; gap: 8px; }
+    .day-time { justify-self: start; }
+  }
+
+  /* CLOSING */
+  .closing {
+    background: var(--sand-soft);
+    border-left: 4px solid var(--terra);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 22px 28px;
+    margin: 36px 0 0;
+  }
+  .closing h2 {
+    font-family: 'Lora', serif; font-style: italic; font-weight: 500;
+    font-size: 1.2rem; color: var(--ocean-deep); margin-bottom: 10px;
+  }
+  .closing p { line-height: 1.65; }
+  .closing p:not(:last-child) { margin-bottom: 10px; }
+
+  /* PRINT BUTTON */
+  .print-btn-floating {
+    position: fixed; bottom: 24px; right: 24px;
+    background: var(--ocean-deep); color: white; border: none;
+    padding: 14px 22px; border-radius: 999px;
+    font-family: inherit; font-size: 0.88rem; font-weight: 600;
+    cursor: pointer; letter-spacing: 0.04em;
+    box-shadow: 0 4px 16px rgba(20, 48, 75, 0.25);
+    z-index: 50;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.15s ease, transform 0.18s ease;
+  }
+  .print-btn-floating:hover { background: var(--ocean); transform: translateY(-2px); }
+  .print-btn-floating::before { content: '⎙'; font-size: 1.05rem; }
+
+  @media (max-width: 720px) {
+    .print-btn-floating { bottom: 16px; right: 16px; padding: 12px 18px; font-size: 0.82rem; }
+  }
+
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .skip-link, .print-btn-floating { display: none !important; }
+    .day-card, .deadline-bar, .budget, .tip-card, .closing { break-inside: avoid; box-shadow: none; }
+    .deadline-bar { background: white; color: var(--ink); border: 2px solid var(--ink); }
+    .deadline-bar h2 em { color: var(--terra); }
+    .deadline-day { color: var(--terra); }
+    .deadline-task { color: var(--ink); }
+    @page { size: letter; margin: 0.5in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<button class="print-btn-floating" type="button" onclick="window.print()" aria-label="Print this page or save as PDF">Print / Save PDF</button>
+
+<div class="page" id="main-content" role="main">
+
+  <header class="masthead">
+    <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · Weekly Pacer</p>
+    <h1 class="title">A typical <em>week</em> in this course.</h1>
+    <p class="subtitle">Day-by-day rhythm with realistic time estimates. Use this template every week to stay on pace in the 8-week intensive.</p>
+  </header>
+
+  <div class="context-banner">
+    <h2>Why pacing matters in this course</h2>
+    <p>This course covers in 8 weeks what a standard semester course covers in 16. You will need <strong>14 to 18 hours per week</strong> for course work outside of synchronous time. Falling one week behind in this format is roughly equivalent to falling two weeks behind in a regular semester.</p>
+    <p>This pacer is the rhythm of students who succeed. Adjust to your schedule, but try not to compress more than 2 days into a single push.</p>
+  </div>
+
+  <!-- =========== DAY CARDS =========== -->
+
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Monday</div>
+      <div class="day-focus">Set the foundation</div>
+      <div class="day-time"><span class="day-time-num">2</span>hours</div>
+    </div>
+    <div class="day-body">
+      <ul class="task-list">
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag video">Videos</span>Watch concept lectures for the week</div>
+            <div class="task-desc">All concept videos for the week, in order. Take rough notes. Do not try to memorize.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag video">Videos</span>Watch lab ID videos</div>
+            <div class="task-desc">Identify structures you will see on lab exams. Pause and rewind freely.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag trainer">Trainer</span>First pass through the trainer</div>
+            <div class="task-desc">Get oriented to the layout. Don't try to master everything yet.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Tuesday</div>
+      <div class="day-focus">Build retrieval</div>
+      <div class="day-time"><span class="day-time-num">2.5</span>hours</div>
+    </div>
+    <div class="day-body">
+      <ul class="task-list">
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag trainer">Trainer</span>Second trainer session</div>
+            <div class="task-desc">Now actively retrieve. Try to answer before checking. Track which sections feel weakest.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag video">Reading</span>OpenStax reading for any weak sections</div>
+            <div class="task-desc">Re-watch concept videos for sections that felt weak in the trainer.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag project">Project</span>Self-experimentation journal (Weeks 1, 2, 4, 5, 7)</div>
+            <div class="task-desc muted">Open the weekly journal form. Begin tracking time data and confidence ratings as the week progresses.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Wednesday</div>
+      <div class="day-focus">Engage and discuss</div>
+      <div class="day-time"><span class="day-time-num">2</span>hours</div>
+    </div>
+    <div class="day-body">
+      <ul class="task-list">
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag discussion">Discussion</span>Post initial discussion response</div>
+            <div class="task-desc"><strong>Initial post due Wednesday 11:59 PM.</strong> Substantive, evidence-based, your own words.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag trainer">Trainer</span>Third trainer session</div>
+            <div class="task-desc">Focus on weak areas identified Tuesday. Repetition matters more than length.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag project">Project</span>Experiment design (Weeks 3 and 6 only)</div>
+            <div class="task-desc muted">Submit experiment design by end of day if it is Week 3 or Week 6.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Thursday</div>
+      <div class="day-focus">Anatomy workbook</div>
+      <div class="day-time"><span class="day-time-num">3.5</span>hours</div>
+    </div>
+    <div class="day-body">
+      <ul class="task-list">
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag workbook">Anatomy</span>Print the anatomy workbook</div>
+            <div class="task-desc">Have it printed before you start. Handwriting matters. Have pen, pencil, and ruler ready.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag workbook">Anatomy</span>Complete labeling exercises</div>
+            <div class="task-desc">Label every numbered structure on every figure. If a label blank is empty, leave it blank rather than guessing.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag workbook">Anatomy</span>Complete drawings from memory</div>
+            <div class="task-desc"><strong>Heavily weighted.</strong> Draw structures by hand without referencing the figures. Label every component.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag workbook">Anatomy</span>Answer synthesis questions</div>
+            <div class="task-desc"><strong>Heavily weighted.</strong> Use evidence from the anatomy you drew. AI-resistant by design.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Friday</div>
+      <div class="day-focus">Physiology workbook</div>
+      <div class="day-time"><span class="day-time-num">3</span>hours</div>
+    </div>
+    <div class="day-body">
+      <ul class="task-list">
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag workbook">Physiology</span>Print the physiology workbook</div>
+            <div class="task-desc">Read the introduction and the reference boxes before starting calculations.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag workbook">Physiology</span>Work through lab skill sections</div>
+            <div class="task-desc">Calculations, data tables, lab interpretation. Show your work in the work boxes provided.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag workbook">Physiology</span>Complete clinical cases</div>
+            <div class="task-desc">3–5 patient cases per week. Apply lab skills to specific patients. Reference anatomy from the partner anatomy workbook.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag workbook">Physiology</span>Final synthesis question</div>
+            <div class="task-desc"><strong>Most heavily weighted question of the week.</strong> Integrates 4–6 specific elements named in the prompt.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Saturday</div>
+      <div class="day-focus">Review and reply</div>
+      <div class="day-time"><span class="day-time-num">2</span>hours</div>
+    </div>
+    <div class="day-body">
+      <ul class="task-list">
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag discussion">Discussion</span>Reply to two peers</div>
+            <div class="task-desc">Substantive replies that build on or respectfully challenge their thinking. Cite evidence.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag trainer">Trainer</span>Final trainer session as quiz prep</div>
+            <div class="task-desc">Focus on the sections that gave you trouble in the workbook. Strengthen weak spots.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag workbook">Workbooks</span>Scan and review your workbooks</div>
+            <div class="task-desc">Make sure every section is complete. Scan to PDF. Save filenames as <em>LastName_Week_N_Anatomy.pdf</em> and <em>LastName_Week_N_Physiology.pdf</em>.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">Sunday</div>
+      <div class="day-focus">Submit and finish</div>
+      <div class="day-time"><span class="day-time-num">1.5</span>hours</div>
+    </div>
+    <div class="day-body">
+      <ul class="task-list">
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag workbook">Workbooks</span>Submit both workbooks to Canvas</div>
+            <div class="task-desc"><strong>Anatomy and Physiology workbooks both due 11:59 PM.</strong> Upload to the matching Canvas assignments.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag quiz">Quiz</span>Take the weekly quiz</div>
+            <div class="task-desc"><strong>Honorlock proctored. 20 questions. 20 minutes. One attempt.</strong> Set up your environment before launching.</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-checkbox" aria-hidden="true"></div>
+          <div class="task-content">
+            <div class="task-name"><span class="task-tag project">Project</span>Submit weekly journal (Weeks 1, 2, 4, 5, 7)</div>
+            <div class="task-desc muted">Wrap up the journal you started Tuesday. Submit before 11:59 PM.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- KEY DEADLINES BAR -->
+  <div class="deadline-bar">
+    <h2>The three <em>hard deadlines</em> every week</h2>
+    <div class="deadline-grid">
+      <div class="deadline-item">
+        <div class="deadline-day">Wednesday 11:59 PM</div>
+        <div class="deadline-task"><strong>Initial discussion post</strong></div>
+      </div>
+      <div class="deadline-item">
+        <div class="deadline-day">Sunday 11:59 PM</div>
+        <div class="deadline-task"><strong>Both workbooks + quiz + 2 discussion replies</strong></div>
+      </div>
+      <div class="deadline-item">
+        <div class="deadline-day">No exceptions</div>
+        <div class="deadline-task"><strong>Late work earns zero points.</strong> DSPS accommodations honored if registered before week 1.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIME BUDGET -->
+  <div class="budget">
+    <h2>Weekly <em>time budget</em></h2>
+    <div class="budget-row">
+      <span class="budget-component">Concept and lab videos</span>
+      <span class="budget-hours">2 hrs</span>
+      <span class="budget-pct">~12%</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-component">Cognitive trainer (3–4 sessions)</span>
+      <span class="budget-hours">4 hrs</span>
+      <span class="budget-pct">~25%</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-component">Anatomy workbook</span>
+      <span class="budget-hours">3.5 hrs</span>
+      <span class="budget-pct">~22%</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-component">Physiology workbook</span>
+      <span class="budget-hours">3 hrs</span>
+      <span class="budget-pct">~19%</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-component">Discussion (post + 2 replies)</span>
+      <span class="budget-hours">1.5 hrs</span>
+      <span class="budget-pct">~9%</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-component">Quiz prep + quiz</span>
+      <span class="budget-hours">1 hr</span>
+      <span class="budget-pct">~6%</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-component">Project deliverables (variable)</span>
+      <span class="budget-hours">1 hr</span>
+      <span class="budget-pct">~6%</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-component">Total weekly course time</span>
+      <span class="budget-hours">~16 hrs</span>
+      <span class="budget-pct">100%</span>
+    </div>
+  </div>
+
+  <!-- TIPS -->
+  <div class="tips-grid">
+    <div class="tip-card do">
+      <p class="tip-eyebrow">Do</p>
+      <h3 class="tip-title">Habits of students who succeed</h3>
+      <ul class="tip-list">
+        <li>Block specific hours on your calendar for course work and protect them like work shifts.</li>
+        <li>Run the trainer in 30–45 minute sessions. More sessions, less length each.</li>
+        <li>Print workbooks BEFORE you sit down to do them. Don't break flow to print.</li>
+        <li>Take the quiz fresh, not exhausted. Schedule it earlier on Sunday if possible.</li>
+        <li>Email Dr. Rennie BEFORE missing a deadline if life is hitting hard. Solutions exist before the deadline, not after.</li>
+        <li>Use the Self-Experimentation Project as your built-in feedback loop. Honest journals catch problems early.</li>
+      </ul>
+    </div>
+    <div class="tip-card dont">
+      <p class="tip-eyebrow">Don't</p>
+      <h3 class="tip-title">Patterns that hurt students in this format</h3>
+      <ul class="tip-list">
+        <li>Don't try to do all 16 hours in one weekend. Spaced practice is core to retention.</li>
+        <li>Don't skip the trainer to "save time" before the workbook. The workbook builds on the trainer.</li>
+        <li>Don't leave the quiz for late Sunday night. Honorlock issues happen at the worst times.</li>
+        <li>Don't paste AI text into discussion posts or synthesis answers. They are designed to be detectable.</li>
+        <li>Don't treat the workbook as a fill-in-the-blanks. The drawings and synthesis questions are where points come from.</li>
+        <li>Don't assume "I'll catch up next week." In an 8-week course, falling behind compounds fast.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <h2>One last thing</h2>
+    <p>This pacer is a template, not a contract. If you have a baseline that works (early-morning study, weekend study, late-night study), keep it. The hours and the order of operations matter more than the specific days. Whatever schedule you set, write it down somewhere visible.</p>
+    <p>The students who do best in this course are not the ones who are smartest. They are the ones who built and protected a weekly rhythm. You can do this.</p>
+  </div>
+
+</div>
+
+<script>
+  // Iframe height-sender for Kajabi embedding
+  (function () {
+    const FRAME_ID = 'bio304-weekly-pacer';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
