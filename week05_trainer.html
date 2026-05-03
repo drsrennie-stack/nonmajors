@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 5 Cognitive Trainer · Transport · BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
+    --sand: #f5e6d3; --sand-soft: #faf3e8;
+    --terra: #c44536; --terra-soft: #e8a499;
+    --kelp: #5a7553; --paper: #fdfbf7;
+    --line: #c9d4d8; --muted: #5a6b73;
+    --shadow-sm: 0 1px 2px rgba(20, 48, 75, 0.06);
+    --radius-sm: 6px; --radius-md: 12px; --radius-lg: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1180px; margin: 0 auto; padding: 0 28px 80px; }
+  header.masthead { padding: 48px 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 36px; }
+  .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
+  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; color: var(--ocean-deep); letter-spacing: -0.01em; margin-bottom: 14px; }
+  h1.title em { font-style: italic; color: var(--terra); }
+  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.12rem; color: var(--ocean); max-width: 720px; margin-bottom: 24px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: center; font-size: 0.86rem; color: var(--muted); }
+  .meta-row strong { color: var(--ink); font-weight: 600; }
+  .meta-pill { display: inline-flex; gap: 8px; align-items: center; background: var(--sea-glass-soft); padding: 6px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 500; color: var(--ocean-deep); }
+  .meta-pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--terra); }
+  .heaviest-flag { display: inline-block; padding: 4px 10px; background: var(--terra); color: white; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 4px; }
+  .progress-rail { position: sticky; top: 0; background: var(--paper); z-index: 50; padding: 14px 28px; margin: 0 -28px 28px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 18px; }
+  .progress-label { font-size: 0.74rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); white-space: nowrap; }
+  .progress-track { flex: 1; height: 6px; background: var(--sea-glass); border-radius: 999px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 100%); width: 0%; transition: width 0.35s ease; }
+  .progress-count { font-size: 0.84rem; font-weight: 600; color: var(--ocean-deep); min-width: 50px; text-align: right; }
+  .progress-actions { display: flex; gap: 8px; }
+  .icon-btn { border: 1px solid var(--line); background: white; color: var(--ocean-deep); width: 34px; height: 34px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.15s ease; font-size: 1rem; }
+  .icon-btn:hover { background: var(--sea-glass-soft); border-color: var(--ocean); }
+  .intro { background: linear-gradient(135deg, var(--sea-glass-soft) 0%, var(--sand-soft) 100%); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px 36px; margin-bottom: 36px; position: relative; }
+  .intro::after { content: ''; position: absolute; bottom: 0; left: 36px; right: 36px; height: 3px; background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 50%, var(--kelp) 100%); border-radius: 2px; }
+  .intro h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem; color: var(--ocean-deep); margin-bottom: 14px; }
+  .intro p { color: var(--ink); margin-bottom: 12px; max-width: 780px; }
+  .intro p:last-of-type { margin-bottom: 0; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 22px; padding-top: 22px; border-top: 1px dashed var(--line); font-size: 0.84rem; }
+  .legend-item { display: inline-flex; align-items: center; gap: 8px; }
+  .legend-chip { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .chip-retrieve { background: var(--ocean-deep); color: white; }
+  .chip-build { background: var(--terra); color: white; }
+  .chip-apply { background: var(--kelp); color: white; }
+  .section { background: white; border: 1px solid var(--line); border-radius: var(--radius-lg); margin-bottom: 32px; overflow: hidden; box-shadow: var(--shadow-sm); }
+  .section-head { display: flex; gap: 22px; align-items: flex-start; padding: 28px 32px 22px; border-bottom: 1px solid var(--line); background: var(--sand-soft); cursor: pointer; user-select: none; transition: background 0.15s ease; }
+  .section-head:hover { background: var(--sand); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 2.4rem; color: var(--terra); line-height: 1; min-width: 48px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.45rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .section-anchor { font-size: 0.92rem; color: var(--ocean); max-width: 700px; }
+  .section-toggle { font-size: 1.2rem; color: var(--ocean); transition: transform 0.25s ease; margin-top: 8px; }
+  .section.collapsed .section-toggle { transform: rotate(-90deg); }
+  .section-body { padding: 26px 32px 32px; }
+  .section.collapsed .section-body { display: none; }
+  .mode-block { margin-bottom: 28px; }
+  .mode-block:last-child { margin-bottom: 0; }
+  .mode-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .mode-tag { display: inline-block; padding: 4px 11px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .mode-name { font-family: 'Lora', serif; font-style: italic; font-size: 1.05rem; color: var(--ocean-deep); }
+  .prompt-list { list-style: none; }
+  .prompt-list li { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px dashed var(--line); align-items: flex-start; }
+  .prompt-list li:last-child { border-bottom: none; }
+  .prompt-num { font-family: 'Lora', serif; font-weight: 500; font-size: 0.95rem; color: var(--terra); min-width: 22px; }
+  .prompt-text { flex: 1; }
+  .prompt-text .reveal-btn { margin-left: 8px; background: transparent; border: 1px solid var(--line); color: var(--ocean); font-size: 0.7rem; font-weight: 600; padding: 2px 9px; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.15s ease; }
+  .prompt-text .reveal-btn:hover { background: var(--ocean); color: white; }
+  .answer { display: none; margin-top: 8px; padding: 10px 14px; background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); border-radius: 4px; font-size: 0.92rem; color: var(--ocean-deep); font-family: 'Lora', serif; }
+  .answer.show { display: block; }
+  .answer strong { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; }
+  .work-box { margin-top: 14px; background: white; border: 1.5px solid var(--ink); border-radius: var(--radius-sm); padding: 18px 20px; min-height: 120px; background-image: linear-gradient(transparent calc(1.7em - 1px), var(--line) 1px); background-size: 100% 1.7em; line-height: 1.7em; }
+  .work-box.draw { background-image: linear-gradient(rgba(201, 212, 216, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(201, 212, 216, 0.4) 1px, transparent 1px); background-size: 22px 22px; line-height: normal; min-height: 240px; }
+  .work-label { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .ref-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 14px 0; }
+  .ref-table th { text-align: left; padding: 10px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .ref-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .ref-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .ref-table .blank-cell { cursor: pointer; color: var(--muted); font-style: italic; font-family: 'Lora', serif; }
+  .ref-table .blank-cell:hover { background: var(--sea-glass-soft); }
+  .ref-table .blank-cell.revealed { color: var(--ink); font-style: normal; font-family: inherit; }
+  .check-prompt { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; }
+  .check-prompt input[type="checkbox"] { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--terra); cursor: pointer; }
+  .check-prompt label { flex: 1; cursor: pointer; font-size: 0.96rem; }
+  .section-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 26px; padding-top: 20px; border-top: 1px dashed var(--line); }
+  .complete-btn { background: white; border: 2px solid var(--ocean-deep); color: var(--ocean-deep); padding: 9px 18px; border-radius: 8px; font-family: inherit; font-weight: 600; font-size: 0.86rem; cursor: pointer; letter-spacing: 0.04em; transition: all 0.18s ease; }
+  .complete-btn:hover { background: var(--ocean-deep); color: white; }
+  .complete-btn.done { background: var(--kelp); color: white; border-color: var(--kelp); }
+  .complete-btn.done::before { content: '✓ '; }
+  .closing { background: linear-gradient(150deg, var(--ocean-deep) 0%, var(--ink) 100%); color: white; border-radius: var(--radius-lg); padding: 36px 38px; margin-top: 40px; position: relative; overflow: hidden; }
+  .closing::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: radial-gradient(circle, var(--terra) 0%, transparent 70%); opacity: 0.3; }
+  .closing h3 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem; margin-bottom: 14px; position: relative; }
+  .closing p { opacity: 0.88; max-width: 700px; margin-bottom: 14px; position: relative; }
+  .closing-steps { list-style: none; counter-reset: step; margin-top: 18px; position: relative; }
+  .closing-steps li { counter-increment: step; padding: 8px 0 8px 38px; position: relative; font-size: 0.95rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .closing-steps li::before { content: counter(step); position: absolute; left: 0; top: 6px; width: 26px; height: 26px; background: var(--terra); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; }
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .progress-rail, .icon-btn, .reveal-btn, .complete-btn, .skip-link { display: none !important; }
+    .answer.show { background: white; border-color: var(--ink); }
+    .section { break-inside: avoid; box-shadow: none; border: 1.5px solid var(--ink); page-break-inside: avoid; }
+    .section.collapsed .section-body { display: block !important; }
+    .closing { background: white; color: var(--ink); border: 2px solid var(--ink); }
+    @page { size: letter; margin: 0.55in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="page" id="main-content" role="main">
+
+  <header class="masthead">
+    <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · Week 05 · <span class="heaviest-flag">Heaviest Week</span></p>
+    <h1 class="title">Transport: Heart, Vessels, <em>Blood</em></h1>
+    <p class="subtitle">The cardiovascular system, lymphatic drainage, and immune defense. Plan to spread this trainer across four sittings minimum.</p>
+    <div class="meta-row">
+      <span class="meta-pill">OpenStax · Ch 18, 19 (Read) · Ch 20, 21 (Focus)</span>
+      <span><strong>Cognitive load:</strong> 3 modes across 8 sections</span>
+      <span><strong>Estimated time:</strong> 180 to 220 minutes</span>
+      <span><strong>Author:</strong> Dr. Sharilyn Rennie</span>
+    </div>
+  </header>
+
+  <div class="progress-rail">
+    <span class="progress-label" id="progress-label">Trainer Progress</span>
+    <div class="progress-track" role="progressbar" aria-labelledby="progress-label" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount" aria-live="polite" aria-atomic="true">0 / 8</span>
+    <div class="progress-actions">
+      <button class="icon-btn" id="print-btn" type="button" aria-label="Print trainer" onclick="window.print()">⎙</button>
+      <button class="icon-btn" id="reset-btn" type="button" aria-label="Reset progress for all sections">↺</button>
+    </div>
+  </div>
+
+  <div class="intro">
+    <h2>Week 5: the heaviest week of the course</h2>
+    <p>Six major topics this week: blood composition, heart anatomy, cardiac electrical activity, blood vessels, blood pressure regulation, and the lymphatic and immune systems. The instructor has flagged this week as the heaviest. Plan four sittings, not one.</p>
+    <p><strong>Two sections directly anchor the lab:</strong> Section 3 (cardiac electrical activity) underpins the ECG lab. Section 5 (BP regulation) underpins the ASCVD 10-year risk calculation lab.</p>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-chip chip-retrieve">Retrieve</span> Recall the term, structure, or fact</span>
+      <span class="legend-item"><span class="legend-chip chip-build">Build</span> Draw, label, or construct the mechanism</span>
+      <span class="legend-item"><span class="legend-chip chip-apply">Apply</span> Predict or interpret</span>
+    </div>
+  </div>
+
+  <!-- SECTION 01 -->
+  <section class="section" data-section="s1">
+    <div class="section-head" onclick="toggleSection('s1')">
+      <div class="section-num">01</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 18</p>
+        <h2 class="section-title">Blood Composition &amp; Hemostasis</h2>
+        <p class="section-anchor">Blood is a connective tissue: cells suspended in a plasma matrix. The lab will require identifying blood cell types under the microscope.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Cells, plasma, hemostasis, ABO</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Name the three components of blood by volume, and identify what makes up plasma.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Whole blood separates into <strong>plasma (~55%)</strong> on top, a thin <strong>buffy coat (~1%, WBCs and platelets)</strong> in the middle, and <strong>erythrocytes (~45%, hematocrit)</strong> at the bottom. Plasma is ~92% water with dissolved proteins (albumin, globulins, fibrinogen), electrolytes, nutrients, gases, hormones, and waste products.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Name the three formed elements and the basic function of each. List the five WBC types from most to least abundant.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Erythrocytes (RBCs):</strong> O₂ and CO₂ transport via hemoglobin, biconcave, no nucleus, lifespan ~120 days. <strong>Leukocytes (WBCs):</strong> immune defense. <strong>Platelets (thrombocytes):</strong> cell fragments, hemostasis. WBC types most to least: <strong>Neutrophils &gt; Lymphocytes &gt; Monocytes &gt; Eosinophils &gt; Basophils.</strong> Mnemonic: "Never Let Monkeys Eat Bananas."</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">List the four steps of hemostasis in order.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">(1) <strong>Vascular spasm:</strong> damaged vessel constricts immediately. (2) <strong>Platelet plug formation:</strong> platelets adhere to exposed collagen, become activated, recruit more platelets. (3) <strong>Coagulation cascade:</strong> intrinsic and extrinsic pathways converge to convert prothrombin to thrombin, which converts fibrinogen to fibrin (a mesh that traps the plug). (4) <strong>Clot retraction and fibrinolysis:</strong> clot tightens, then plasmin breaks it down once vessel heals.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Compare the four ABO blood types in terms of antigens, antibodies, and donor/recipient compatibility. Also note the role of Rh.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Type A:</strong> A antigen on RBCs, anti-B antibodies in plasma. <strong>Type B:</strong> B antigen, anti-A antibodies. <strong>Type AB:</strong> both A and B antigens, no antibodies (universal recipient for RBCs). <strong>Type O:</strong> no antigens, both anti-A and anti-B antibodies (universal donor for RBCs). <strong>Rh:</strong> Rh+ has D antigen, Rh- does not. Rh- mothers carrying an Rh+ fetus can develop anti-Rh antibodies that attack a future Rh+ fetus (hemolytic disease of the newborn). Prevented with RhoGAM.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">WBC reference table</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the answer.</p>
+        <table class="ref-table">
+          <thead><tr><th scope="col">WBC type</th><th scope="col">% of WBCs</th><th scope="col">Primary function</th></tr></thead>
+          <tbody>
+            <tr><td>Neutrophil</td><td class="blank-cell" onclick="revealCell(this, '50-70%')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Phagocytosis of bacteria, first responder')">click to reveal</td></tr>
+            <tr><td>Lymphocyte</td><td class="blank-cell" onclick="revealCell(this, '20-40%')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Adaptive immunity (T cells, B cells, NK cells)')">click to reveal</td></tr>
+            <tr><td>Monocyte</td><td class="blank-cell" onclick="revealCell(this, '2-8%')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Differentiates into macrophages, phagocytosis, antigen presentation')">click to reveal</td></tr>
+            <tr><td>Eosinophil</td><td class="blank-cell" onclick="revealCell(this, '1-4%')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Parasitic worm defense, allergic response modulation')">click to reveal</td></tr>
+            <tr><td>Basophil</td><td class="blank-cell" onclick="revealCell(this, 'Less than 1%')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Releases histamine in allergic and inflammatory responses')">click to reveal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Blood scenarios</span></div>
+        <div class="work-label">a. A patient has anemia with hemoglobin 8 g/dL (normal ~13 to 16). Predict the effect on oxygen-carrying capacity, and identify two compensatory responses the body might mount.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient on chemotherapy has thrombocytopenia (platelet count 20,000; normal 150,000 to 450,000). Predict their bleeding risk and identify which step of hemostasis is impaired.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A Type A patient accidentally receives Type B blood. Predict the immediate reaction. Identify which antibody attacks which antigen.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 01 of 08</span><button class="complete-btn" data-complete="s1" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 -->
+  <section class="section" data-section="s2">
+    <div class="section-head" onclick="toggleSection('s2')">
+      <div class="section-num">02</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 19.1</p>
+        <h2 class="section-title">Heart Anatomy &amp; Coronary Circulation</h2>
+        <p class="section-anchor">Four chambers, four valves, two pumps in series. The lab will test heart anatomy on a model.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Chambers, valves, layers, coronary</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Name the four chambers and the three layers of the heart wall.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Chambers: <strong>right atrium, right ventricle, left atrium, left ventricle</strong>. The right side handles deoxygenated blood and pumps to the lungs. The left side handles oxygenated blood and pumps to the body. Wall layers from outside to inside: <strong>epicardium</strong> (visceral pericardium), <strong>myocardium</strong> (cardiac muscle, thickest in left ventricle), <strong>endocardium</strong> (inner lining continuous with vessel endothelium).</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Trace the path of blood through the heart, naming all four valves in order.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Deoxygenated blood enters via <strong>superior and inferior vena cavae</strong> → <strong>right atrium</strong> → <strong>tricuspid valve</strong> → <strong>right ventricle</strong> → <strong>pulmonary semilunar valve</strong> → <strong>pulmonary trunk and arteries</strong> → lungs. Oxygenated blood returns via <strong>pulmonary veins</strong> → <strong>left atrium</strong> → <strong>mitral (bicuspid) valve</strong> → <strong>left ventricle</strong> → <strong>aortic semilunar valve</strong> → <strong>aorta</strong> → systemic circulation.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Name the major coronary arteries and the regions of the heart they supply.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Two main coronary arteries arise from the aortic root just above the aortic valve. <strong>Left coronary artery (LCA)</strong> branches into the <strong>left anterior descending (LAD)</strong> (supplies anterior left ventricle and interventricular septum) and the <strong>circumflex</strong> (supplies left atrium and lateral left ventricle). <strong>Right coronary artery (RCA)</strong> supplies right atrium, right ventricle, SA and AV nodes in most people, and the posterior left ventricle (via the posterior descending artery in right-dominant circulation).</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Describe the pericardium and the role of pericardial fluid.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">The pericardium has an <strong>outer fibrous layer</strong> that anchors the heart, and an <strong>inner serous layer</strong> with two parts: <strong>parietal pericardium</strong> (lines the fibrous layer) and <strong>visceral pericardium / epicardium</strong> (covers the heart). Between the two serous layers is the <strong>pericardial cavity</strong> with a thin film of <strong>serous fluid</strong> that lubricates and reduces friction during contraction.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Draw the heart</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Draw a cross-section of the heart showing all four chambers and four valves. Label all chambers, valves, the great vessels (SVC, IVC, pulmonary trunk, pulmonary veins, aorta), and indicate direction of blood flow with arrows.</p>
+        <div class="work-box draw"></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Heart pathology</span></div>
+        <div class="work-label">a. A patient has mitral valve regurgitation (the valve leaks during ventricular systole). Predict the effect on left atrial pressure and pulmonary circulation.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient has an LAD occlusion (heart attack). Which wall of the heart is most affected, and why might the SA node still function normally despite this occlusion?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient has a large pericardial effusion (fluid in pericardial cavity). Predict the effect on cardiac filling and cardiac output. What is this emergency called?</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 02 of 08</span><button class="complete-btn" data-complete="s2" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 ECG LAB ANCHOR -->
+  <section class="section" data-section="s3">
+    <div class="section-head" onclick="toggleSection('s3')">
+      <div class="section-num">03</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 19.2 · ECG Lab anchor</p>
+        <h2 class="section-title">Cardiac Electrical Activity &amp; the ECG</h2>
+        <p class="section-anchor">The heart has its own electrical system. Sequential depolarization produces the heartbeat and the ECG. The lab will require you to identify rate and rhythm from a tracing.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Conduction system and ECG</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Trace the conduction pathway through the heart from pacemaker to ventricular contraction.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>SA node</strong> (sinoatrial, in right atrium, pacemaker, ~60-100 bpm) → spreads across atria → <strong>AV node</strong> (atrioventricular, brief delay allows atrial contraction to complete) → <strong>bundle of His</strong> → <strong>right and left bundle branches</strong> (down the interventricular septum) → <strong>Purkinje fibers</strong> (rapid conduction throughout ventricles) → ventricular contraction.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Define the three special properties of cardiac muscle that distinguish it from skeletal muscle.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Automaticity (autorhythmicity):</strong> SA node depolarizes spontaneously without nervous input. Intrinsic rate ~60-100 bpm; modulated by ANS. <strong>Functional syncytium:</strong> cardiac cells are connected by intercalated discs with gap junctions, so electrical signal spreads rapidly across the entire myocardium as a unit. <strong>Long absolute refractory period:</strong> prevents tetanic contraction (which would prevent filling).</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Identify the three main waves of an ECG and what each represents.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>P wave:</strong> atrial depolarization (just before atrial contraction). <strong>QRS complex:</strong> ventricular depolarization (just before ventricular contraction). Atrial repolarization happens here too but is hidden by the QRS. <strong>T wave:</strong> ventricular repolarization. <strong>PR interval:</strong> time from atrial to ventricular depolarization (delay at AV node). <strong>ST segment:</strong> ventricles fully depolarized.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Describe how to estimate heart rate from an ECG using the "300 method" and what defines a regular rhythm.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>300 method:</strong> count the number of large boxes between two consecutive R waves and divide 300 by that number. (e.g., 4 large boxes = 75 bpm). <strong>Regular rhythm:</strong> R-to-R intervals are equal across the strip. <strong>Sinus rhythm:</strong> a P wave precedes every QRS, and every QRS is preceded by a P, with normal PR interval (0.12 to 0.20 seconds).</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Draw an ECG tracing</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Draw one cardiac cycle of an ECG. Label the P wave, QRS complex, and T wave. Mark the PR interval and ST segment. Indicate which event each wave represents (atrial depolarization, ventricular depolarization, ventricular repolarization).</p>
+        <div class="work-box draw"></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">ECG interpretation</span></div>
+        <div class="work-label">a. A patient's SA node fails. Predict the heart rate and identify the backup pacemaker. What rate would you expect?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient has third-degree AV block (no signal reaches the ventricles from the atria). Predict what the ECG would show, and predict the patient's symptoms.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient has atrial fibrillation. Predict the appearance of P waves and the rhythm regularity, and explain why this is dangerous.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 03 of 08</span><button class="complete-btn" data-complete="s3" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 -->
+  <section class="section" data-section="s4">
+    <div class="section-head" onclick="toggleSection('s4')">
+      <div class="section-num">04</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Focus · OpenStax 20.1, 20.2</p>
+        <h2 class="section-title">Blood Vessels: Structure, Flow, Resistance</h2>
+        <p class="section-anchor">Vessels have three layers, but each vessel type is built for a different job. Flow depends on the pressure gradient and the resistance.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Vessel layers, types, flow equation</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Name the three tunics (layers) of a typical blood vessel and the dominant tissue in each.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Tunica intima:</strong> innermost. Endothelium (simple squamous epithelium) lining the lumen, plus a thin connective tissue basement membrane. <strong>Tunica media:</strong> middle. Smooth muscle and elastic fibers. The thickest layer in arteries; controls vasoconstriction and vasodilation. <strong>Tunica externa (adventitia):</strong> outermost. Connective tissue (collagen) that anchors the vessel.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Compare arteries, veins, and capillaries on key features: layer thickness, pressure, valves, and primary function.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Arteries:</strong> thick tunica media, no valves, high pressure (systolic ~120 mmHg), carry blood away from heart. Designed to withstand and dampen pressure. <strong>Veins:</strong> thinner tunica media, valves to prevent backflow, low pressure (~5-10 mmHg in venules), carry blood to heart. Reservoir function (~60% of blood volume). <strong>Capillaries:</strong> single endothelial cell layer (tunica intima only), no valves, very low pressure, designed for exchange. Diameter just wider than one RBC.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">State the equation for blood flow and identify the units of each variable.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>F = ΔP / R</strong>: flow equals pressure gradient divided by resistance. F is in mL/min, ΔP is the pressure difference between two points (mmHg), R is resistance. This is Ohm's law applied to blood. The most important driver of flow is the pressure gradient. Resistance reduces flow.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">List the three factors that determine vascular resistance, and identify which has the largest effect.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">(1) <strong>Vessel radius (diameter)</strong>: by far the largest effect. Resistance is proportional to <em>1/r⁴</em>. Halving the radius increases resistance 16-fold. This is why vasoconstriction and vasodilation are such powerful regulators. (2) <strong>Vessel length:</strong> longer vessels = more resistance. Relatively fixed. (3) <strong>Blood viscosity:</strong> thicker blood = more resistance. Increased in dehydration and polycythemia.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Vessel comparison reference</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the answer.</p>
+        <table class="ref-table">
+          <thead><tr><th scope="col">Feature</th><th scope="col">Artery</th><th scope="col">Vein</th><th scope="col">Capillary</th></tr></thead>
+          <tbody>
+            <tr><td>Tunica media</td><td class="blank-cell" onclick="revealCell(this, 'Thick, smooth muscle and elastic')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Thin')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Absent (just endothelium)')">click to reveal</td></tr>
+            <tr><td>Pressure</td><td class="blank-cell" onclick="revealCell(this, 'High (~120/80 mmHg)')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Low (~5-10 mmHg)')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Very low (~30-15 mmHg)')">click to reveal</td></tr>
+            <tr><td>Valves</td><td class="blank-cell" onclick="revealCell(this, 'No')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Yes (prevent backflow)')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'No')">click to reveal</td></tr>
+            <tr><td>Function</td><td class="blank-cell" onclick="revealCell(this, 'Carry blood from heart, withstand pressure')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Return blood to heart, blood reservoir')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Exchange of gases, nutrients, wastes')">click to reveal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Predict the response</span></div>
+        <div class="work-label">a. Atherosclerosis narrows coronary arteries to half their original diameter. Predict the effect on resistance and on coronary blood flow, using the resistance-radius relationship.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Veins are low-pressure but still return blood to the heart. Identify three mechanisms that drive venous return.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. Capillaries have only an endothelial layer. Justify this design in terms of their function. What would happen if capillaries had a thick tunica media?</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 04 of 08</span><button class="complete-btn" data-complete="s4" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 05 ASCVD LAB ANCHOR -->
+  <section class="section" data-section="s5">
+    <div class="section-head" onclick="toggleSection('s5')">
+      <div class="section-num">05</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Focus · OpenStax 20.4 · ASCVD Lab anchor</p>
+        <h2 class="section-title">Blood Pressure Regulation &amp; ASCVD Risk</h2>
+        <p class="section-anchor">Blood pressure must stay within a narrow range. Short-term regulation comes from baroreceptors and the sympathetic nervous system. Long-term regulation comes from the kidneys via RAAS. The lab applies the ASCVD 10-year risk calculator.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">BP equation, baroreceptor reflex, RAAS, ASCVD inputs</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">State the equation for blood pressure and define mean arterial pressure (MAP).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>BP = CO × SVR.</strong> Cardiac output (CO = HR × stroke volume) times systemic vascular resistance. Anything that increases either CO or SVR raises BP. <strong>MAP = diastolic + 1/3 (systolic - diastolic)</strong>, normal ~70 to 105 mmHg. MAP must be ≥ 60 to perfuse vital organs.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Trace the baroreceptor reflex when blood pressure rises suddenly.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">High BP stretches <strong>baroreceptors</strong> in the carotid sinus and aortic arch → afferent signal via <strong>CN IX (glossopharyngeal)</strong> and <strong>CN X (vagus)</strong> → <strong>medullary cardiovascular centers</strong> integrate → <strong>decreased sympathetic, increased parasympathetic</strong> output → decreased heart rate, decreased contractility, vasodilation → BP returns toward set point. The opposite happens when BP falls.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Trace the renin-angiotensin-aldosterone system (RAAS) cascade.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Low BP, low Na⁺, or sympathetic stimulation triggers <strong>juxtaglomerular cells in the kidney</strong> to release <strong>renin</strong>. Renin converts <strong>angiotensinogen</strong> (from liver) to <strong>angiotensin I</strong>. <strong>ACE</strong> (angiotensin converting enzyme, in lung capillaries) converts angiotensin I to <strong>angiotensin II</strong>. Angiotensin II: (a) potent vasoconstrictor, raises SVR; (b) stimulates <strong>aldosterone</strong> release from adrenal cortex, which increases renal Na⁺ and water reabsorption; (c) stimulates ADH release. Net effect: raises BP via volume and resistance.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">List the inputs to the ASCVD 10-year risk calculator and explain what it estimates.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">ASCVD (Atherosclerotic Cardiovascular Disease) 10-year risk uses the Pooled Cohort Equations. Inputs: <strong>age, sex, race, total cholesterol, HDL cholesterol, systolic blood pressure, on BP medication (yes/no), diabetes (yes/no), current smoker (yes/no)</strong>. Output is the 10-year probability (%) of having a heart attack or stroke. Used clinically to guide statin therapy decisions: ≥7.5% generally meets threshold for recommendation.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">BP regulation in scenarios</span></div>
+        <div class="work-label">a. A patient stands up quickly from lying down. BP transiently falls. Trace the baroreceptor reflex and predict what would happen if the reflex failed (orthostatic hypotension and syncope).</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient with congestive heart failure has fluid retention and edema. Explain via the RAAS cascade why this happens and why ACE inhibitors are useful.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A 55-year-old male, non-Hispanic white, total cholesterol 220, HDL 40, SBP 140, no BP meds, non-diabetic, non-smoker. Without calculating, identify the modifiable risk factors. Which lifestyle change would most affect his ASCVD risk?</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 05 of 08</span><button class="complete-btn" data-complete="s5" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 06 -->
+  <section class="section" data-section="s6">
+    <div class="section-head" onclick="toggleSection('s6')">
+      <div class="section-num">06</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Focus · OpenStax 20.5, 21.1</p>
+        <h2 class="section-title">Circulatory Pathways &amp; Lymphatic Anatomy</h2>
+        <p class="section-anchor">Two parallel circulations: pulmonary (heart to lungs) and systemic (heart to rest of body). The lymphatic system runs alongside, draining tissue fluid and transporting immune cells.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Circulation and lymphatics</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Compare pulmonary and systemic circulation: where each starts, where it ends, and what each carries.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Pulmonary circulation:</strong> right ventricle → pulmonary trunk → pulmonary arteries → lung capillaries → pulmonary veins → left atrium. Carries deoxygenated blood to the lungs and returns oxygenated blood. Note: pulmonary <em>arteries</em> carry deoxygenated blood (the only arteries that do). <strong>Systemic circulation:</strong> left ventricle → aorta → systemic arteries → systemic capillaries → systemic veins → SVC/IVC → right atrium. Delivers oxygenated blood to tissues and returns deoxygenated blood.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Name the major arteries that branch from the aortic arch and the major veins that drain into the SVC and IVC.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Aortic arch branches: <strong>brachiocephalic trunk</strong> (which splits into right common carotid and right subclavian), <strong>left common carotid</strong>, <strong>left subclavian</strong>. Major SVC tributaries: <strong>jugular veins</strong> (head/neck) and <strong>subclavian veins</strong> (arms). Major IVC tributaries: <strong>iliac veins</strong> (legs and pelvis), <strong>renal veins</strong> (kidneys), <strong>hepatic veins</strong> (liver, after hepatic portal system).</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Trace the path of lymph from a tissue space back to the bloodstream.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Tissue fluid leaks into <strong>lymphatic capillaries</strong> (blind-end vessels with overlapping endothelial flaps acting as one-way valves) → <strong>collecting lymphatic vessels</strong> (with valves) → <strong>lymphatic trunks</strong> → two main ducts: the <strong>thoracic duct</strong> (drains everything below the diaphragm and the left upper body into the left subclavian vein) and the <strong>right lymphatic duct</strong> (drains the right upper body into the right subclavian vein). Lymph nodes filter the fluid along the way.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Distinguish primary and secondary lymphoid organs and name the major organs in each category.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Primary lymphoid organs</strong> (where lymphocytes are produced and mature): <strong>red bone marrow</strong> (B cells mature here, T cells originate here) and <strong>thymus</strong> (T cells mature here). <strong>Secondary lymphoid organs</strong> (where mature lymphocytes encounter antigens): <strong>lymph nodes</strong> (filter lymph), <strong>spleen</strong> (filters blood, breaks down old RBCs), <strong>tonsils</strong>, and <strong>mucosa-associated lymphoid tissue (MALT)</strong> including Peyer's patches in the gut.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Vessel and lymphatic clinical reasoning</span></div>
+        <div class="work-label">a. A patient has a finger infection and the lymph nodes in the axilla become swollen and tender. Explain the anatomical pathway and identify why these specific nodes are affected.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. After breast cancer surgery, axillary lymph nodes are removed and the patient develops chronic arm swelling (lymphedema). Explain why this happens.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient has hepatic portal hypertension. Trace why this affects circulation in the GI tract and explain why fluid leaks into the abdominal cavity (ascites).</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 06 of 08</span><button class="complete-btn" data-complete="s6" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 07 -->
+  <section class="section" data-section="s7">
+    <div class="section-head" onclick="toggleSection('s7')">
+      <div class="section-num">07</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Focus · OpenStax 21.2, 21.3</p>
+        <h2 class="section-title">Innate &amp; Adaptive Immunity</h2>
+        <p class="section-anchor">Innate immunity is fast and non-specific. Adaptive immunity is slow but specific and remembers. Both work together.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Innate, adaptive, antibodies, memory</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">List the components of innate immunity (barriers and cells) and the cardinal signs of inflammation.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Barriers:</strong> intact skin, mucous membranes, secretions (lysozyme in tears/saliva, gastric acid, mucus). <strong>Cellular innate:</strong> <strong>phagocytes</strong> (neutrophils, macrophages), <strong>natural killer (NK) cells</strong> (kill virally infected and tumor cells), eosinophils, basophils. <strong>Inflammation</strong> cardinal signs: <strong>rubor</strong> (redness), <strong>calor</strong> (heat), <strong>tumor</strong> (swelling), <strong>dolor</strong> (pain), <strong>functio laesa</strong> (loss of function).</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Distinguish helper T cells, cytotoxic T cells, and B cells in their roles in adaptive immunity.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Helper T cells (CD4+):</strong> coordinator of the adaptive response. Activated by antigen-presenting cells (via MHC II), then secrete cytokines that activate B cells and cytotoxic T cells. The cell HIV destroys. <strong>Cytotoxic T cells (CD8+):</strong> directly kill infected or abnormal cells (via MHC I). <strong>B cells:</strong> when activated, differentiate into <strong>plasma cells</strong> that produce antibodies, or <strong>memory B cells</strong> that respond rapidly on re-exposure.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Name the five classes of antibodies (immunoglobulins) and the unique role of each.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>IgG:</strong> most abundant, primary antibody of secondary response. Crosses placenta to give passive immunity to fetus. <strong>IgM:</strong> first antibody produced in primary response. Pentameric structure. <strong>IgA:</strong> secreted into mucosal surfaces (saliva, tears, breast milk, gut). Mucosal immunity. <strong>IgE:</strong> binds mast cells and basophils, triggers allergic and parasitic responses. <strong>IgD:</strong> functions as B cell antigen receptor; minor role in serum.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Compare primary and secondary immune responses, and distinguish active and passive immunity.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Primary response:</strong> first exposure. Slow (5-10 days to peak), IgM dominant, weaker. Generates memory. <strong>Secondary response:</strong> re-exposure. Fast (1-3 days), IgG dominant, much stronger. This is why vaccination works. <strong>Active immunity:</strong> body produces its own antibodies. Acquired by infection or vaccination. Long-lasting due to memory cells. <strong>Passive immunity:</strong> antibodies received from another source. Examples: maternal IgG across placenta, breast milk IgA, immunoglobulin injection. Immediate but temporary (no memory).</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Immunity scenarios</span></div>
+        <div class="work-label">a. HIV destroys CD4+ T cells. Predict the consequences for adaptive immunity, and explain why HIV patients develop opportunistic infections rather than typical infections.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient receives the flu vaccine. Trace what happens in the immune system and explain why protection lasts months but not lifelong (and why a booster might be needed).</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A child gets chickenpox at age 6 and is severely ill for two weeks. As an adult, the same child is exposed to chickenpox again and has no symptoms. Explain in terms of primary versus secondary response.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 07 of 08</span><button class="complete-btn" data-complete="s7" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 08 -->
+  <section class="section" data-section="s8">
+    <div class="section-head" onclick="toggleSection('s8')">
+      <div class="section-num">08</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Self-Assessment · Reflect</p>
+        <h2 class="section-title">Self-Check &amp; Reflection</h2>
+        <p class="section-anchor">The heaviest week of the course. Audit what you know before the lab. The ECG and ASCVD activities draw directly from this trainer.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Confidence audit</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Check the box only if you can do the action without notes, right now.</p>
+        <div class="check-prompt"><input type="checkbox" id="cf1"><label for="cf1">I can name the three components of blood and the five WBC types in order of abundance.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf2"><label for="cf2">I can list the four steps of hemostasis and the four ABO blood types with their antibodies.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf3"><label for="cf3">I can name the four heart chambers, four valves, and three wall layers.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf4"><label for="cf4">I can trace blood through the heart and identify the major coronary arteries.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf5"><label for="cf5">I can trace the conduction pathway from SA node to Purkinje fibers.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf6"><label for="cf6">I can identify P, QRS, and T waves on an ECG and calculate rate using the 300 method.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf7"><label for="cf7">I can compare arteries, veins, and capillaries on layers, pressure, valves, and function.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf8"><label for="cf8">I can state the flow equation and identify which factor most affects resistance.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf9"><label for="cf9">I can trace the baroreceptor reflex when BP rises or falls.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf10"><label for="cf10">I can trace the RAAS cascade and identify where ACE inhibitors act.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf11"><label for="cf11">I can list the nine ASCVD risk inputs.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf12"><label for="cf12">I can compare pulmonary and systemic circulation and trace lymph back to the bloodstream.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf13"><label for="cf13">I can identify the cardinal signs of inflammation and the major innate immune cells.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf14"><label for="cf14">I can compare CD4+ helper T, CD8+ cytotoxic T, and B cells in their roles.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf15"><label for="cf15">I can name the five antibody classes and distinguish primary vs secondary response.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf16"><label for="cf16">I can distinguish active and passive immunity.</label></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Reflection prompts</span></div>
+        <div class="work-label">a. Of the seven major topics this week, which one feels strongest right now?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Which one is still cloudy? Write what you would ask Dr. Rennie or a study partner if you had thirty seconds.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. Lab preview: in lab you will identify ECG rate and rhythm and calculate ASCVD 10-year risk. Predict one ECG finding that would change your clinical concern, and one ASCVD modifiable factor that would most reduce risk.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 08 of 08</span><button class="complete-btn" data-complete="s8" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <h3>Wrapping up Week 5</h3>
+    <p>Seven major topics, all interconnected. Blood feeds the heart. The heart pumps through vessels. Vessels are regulated by neural and hormonal feedback. Lymphatics drain what leaks out. Immune cells circulate through both. Master this and the rest of the course is downhill.</p>
+    <p>To submit:</p>
+    <ol class="closing-steps">
+      <li>Make sure the progress bar above shows 8 of 8 sections complete. The trainer is your study tool, not your turn-in.</li>
+      <li>Open and print the Week 5 Worksheet (companion document). Complete every box by hand in pen or pencil.</li>
+      <li>Save your <strong>completed</strong> worksheet as a single PDF (scan it or photograph it).</li>
+      <li>Upload that PDF to the Week 5 Worksheet assignment in Canvas.</li>
+    </ol>
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    document.querySelectorAll('.section').forEach((section) => {
+      const head = section.querySelector('.section-head');
+      const body = section.querySelector('.section-body');
+      const sid = section.dataset.section;
+      if (head && body && sid) {
+        body.id = sid + '-body';
+        head.setAttribute('role', 'button');
+        head.setAttribute('tabindex', '0');
+        head.setAttribute('aria-expanded', 'true');
+        head.setAttribute('aria-controls', sid + '-body');
+        const num = head.querySelector('.section-num');
+        if (num) num.setAttribute('aria-hidden', 'true');
+      }
+    });
+    document.querySelectorAll('.reveal-btn').forEach((btn, i) => {
+      const ans = btn.nextElementSibling;
+      if (ans && ans.classList.contains('answer')) {
+        const id = 'reveal-ans-' + i;
+        ans.id = id;
+        btn.setAttribute('aria-controls', id);
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('type', 'button');
+      }
+    });
+    document.querySelectorAll('.blank-cell').forEach((cell) => {
+      cell.setAttribute('role', 'button');
+      cell.setAttribute('tabindex', '0');
+      cell.setAttribute('aria-label', 'Click to reveal answer');
+    });
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) {
+        e.preventDefault();
+        e.target.click();
+      }
+    });
+  })();
+
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    const isOpen = ans.classList.toggle('show');
+    btn.textContent = isOpen ? 'Hide' : 'Show';
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+  function toggleSection(id) {
+    const section = document.querySelector(`[data-section="${id}"]`);
+    if (!section) return;
+    const collapsed = section.classList.toggle('collapsed');
+    const head = section.querySelector('.section-head');
+    if (head) head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+  }
+  function revealCell(el, answer) {
+    el.textContent = answer;
+    el.classList.add('revealed');
+    el.onclick = null;
+    el.removeAttribute('role');
+    el.removeAttribute('tabindex');
+    el.setAttribute('aria-label', answer);
+  }
+
+  const STORAGE_KEY = 'bio304_w05_trainer_progress';
+  let completed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  function updateProgress() {
+    const total = 8;
+    const count = completed.length;
+    document.getElementById('progressFill').style.width = (count / total) * 100 + '%';
+    document.getElementById('progressCount').textContent = count + ' / ' + total;
+    const track = document.querySelector('.progress-track');
+    if (track) track.setAttribute('aria-valuenow', String(count));
+  }
+  function markComplete(btn) {
+    const id = btn.getAttribute('data-complete');
+    if (completed.includes(id)) {
+      completed = completed.filter(x => x !== id);
+      btn.classList.remove('done');
+      btn.textContent = 'Mark complete';
+    } else {
+      completed.push(id);
+      btn.classList.add('done');
+      btn.textContent = 'Complete';
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+    updateProgress();
+  }
+  completed.forEach(id => {
+    const btn = document.querySelector(`[data-complete="${id}"]`);
+    if (btn) { btn.classList.add('done'); btn.textContent = 'Complete'; }
+  });
+  updateProgress();
+  document.getElementById('reset-btn').onclick = function() {
+    if (confirm('Reset all section progress for this trainer? This will not erase what you wrote in the boxes.')) {
+      completed = [];
+      localStorage.removeItem(STORAGE_KEY);
+      document.querySelectorAll('.complete-btn').forEach(btn => {
+        btn.classList.remove('done');
+        btn.textContent = 'Mark complete';
+      });
+      updateProgress();
+    }
+  };
+
+  (function() {
+    const FRAME_ID = 'bio304-w05-trainer';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>

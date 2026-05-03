@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 5 Worksheet · Transport · BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5; --sand-soft: #faf3e8;
+    --terra: #c44536; --kelp: #5a7553;
+    --paper: #fdfbf7; --line: #c9d4d8; --rule: #a8b5bb; --muted: #5a6b73;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #e8e8e0; line-height: 1.55; font-size: 16px; padding: 30px 0; -webkit-font-smoothing: antialiased; }
+  .sheet { max-width: 8.5in; margin: 0 auto; background: white; padding: 0.55in 0.6in; box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1); }
+  .actions { max-width: 8.5in; margin: 0 auto 16px; padding: 0 0.6in; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .action-info { font-size: 0.84rem; color: var(--ocean-deep); flex: 1; min-width: 280px; }
+  .action-info strong { font-weight: 600; }
+  .print-btn { background: var(--ocean-deep); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-family: inherit; font-size: 0.84rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; text-transform: uppercase; }
+  .print-btn:hover { background: var(--ocean); }
+  .masthead { border-bottom: 2.5px solid var(--ocean-deep); padding-bottom: 18px; margin-bottom: 24px; position: relative; }
+  .masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .course-line { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .doc-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.85rem; color: var(--ocean-deep); line-height: 1.2; margin-bottom: 8px; }
+  .doc-subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean); }
+  .heaviest-flag { display: inline-block; padding: 2px 8px; background: var(--terra); color: white; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .student-block { display: grid; grid-template-columns: 2.4fr 1fr; gap: 22px; margin: 18px 0 26px; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field { display: flex; flex-direction: column; }
+  .field-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field-line { display: block; border-bottom: 1.5px solid var(--ink); height: 30px; width: 100%; }
+  .instructions { background: var(--sand-soft); border-left: 3px solid var(--terra); padding: 14px 18px; margin-bottom: 30px; font-size: 0.92rem; }
+  .instructions h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+  .section { margin-bottom: 32px; page-break-inside: avoid; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.5rem; color: var(--terra); min-width: 32px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; color: var(--ocean-deep); }
+  .section-anchor { font-size: 0.86rem; color: var(--ocean); font-style: italic; margin-top: 4px; }
+  .lab-flag { display: inline-block; padding: 2px 8px; background: var(--ocean-deep); color: white; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .task { margin-top: 16px; page-break-inside: avoid; }
+  .task-tag { display: inline-block; padding: 3px 10px; border-radius: 3px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-right: 8px; vertical-align: middle; color: white; }
+  .tag-build { background: var(--terra); }
+  .tag-apply { background: var(--kelp); }
+  .tag-reflect { background: var(--ocean); }
+  .task-prompt { font-size: 0.94rem; margin: 8px 0 10px; color: var(--ink); display: block; }
+  .task-prompt strong { color: var(--ocean-deep); }
+  .task-letter { display: inline-block; font-family: 'Lora', serif; font-weight: 600; color: var(--terra); margin-right: 6px; }
+  .task-rubric { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+  .ruled, .grid-box { width: 100%; display: block; color: var(--ink); border-radius: 4px; background-color: white; }
+  .ruled { border: 1.5px solid var(--ink); padding: 12px 16px; line-height: 1.7em; background-image: linear-gradient(transparent calc(1.7em - 1px), var(--rule) 1px); background-size: 100% 1.7em; }
+  .ruled.short { min-height: 6em; }
+  .ruled.medium { min-height: 9em; }
+  .ruled.long { min-height: 13em; }
+  .grid-box { border: 1.5px solid var(--ink); padding: 12px; background-image: linear-gradient(rgba(168, 181, 187, 0.45) 1px, transparent 1px), linear-gradient(90deg, rgba(168, 181, 187, 0.45) 1px, transparent 1px); background-size: 22px 22px; }
+  .grid-box.standard { min-height: 3in; }
+  .grid-box.tall { min-height: 3.6in; }
+  .compare-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.86rem; }
+  .compare-table th { text-align: left; padding: 8px 10px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .compare-table td { padding: 8px 10px; border: 1px solid var(--ink); vertical-align: top; height: 0.85in; }
+  .compare-table .label-col { background: var(--sand-soft); font-weight: 600; width: 22%; }
+  .submission { margin-top: 36px; padding: 18px 22px; background: var(--sea-glass-soft); border: 1.5px solid var(--ocean-deep); border-radius: 6px; page-break-inside: avoid; }
+  .submission h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.08rem; color: var(--ocean-deep); margin-bottom: 10px; }
+  .submission-list { list-style: none; margin-bottom: 16px; }
+  .submission-list li { padding: 5px 0; font-size: 0.88rem; display: flex; align-items: flex-start; gap: 10px; }
+  .submission-list input[type="checkbox"] { width: 16px; height: 16px; margin-top: 4px; accent-color: var(--ocean-deep); flex-shrink: 0; cursor: pointer; }
+  .submission-list label { flex: 1; cursor: pointer; }
+  .signature-row { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; padding-top: 14px; border-top: 1px dashed var(--ocean-deep); align-items: end; }
+  .integrity-statement { font-size: 0.78rem; color: var(--ink); font-style: italic; line-height: 1.5; margin-bottom: 8px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link { display: none !important; }
+    .section, .task, .submission { page-break-inside: avoid; }
+    .ruled, .grid-box { border-color: #000; color: #000; background-color: white; }
+    .submission { background: white; }
+    @page { size: letter; margin: 0.55in 0.6in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions" role="region" aria-label="Worksheet controls">
+  <div class="action-info"><strong>Print, handwrite, scan, submit.</strong> This worksheet is designed to be printed and completed by hand. Drawings need to be drawn, and that does not work digitally.</div>
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this worksheet">⎙ Print Worksheet</button>
+</div>
+
+<main id="main-content" class="sheet">
+  <header class="masthead">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 05 · Worksheet <span class="heaviest-flag">Heaviest Week</span></p>
+    <h1 class="doc-title">Transport: Heart, Vessels, Blood</h1>
+    <p class="doc-subtitle">Companion worksheet to the Week 5 Cognitive Trainer · Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field"><span class="field-label">Name</span><span class="field-line"></span></div>
+    <div class="field"><span class="field-label">Date</span><span class="field-line"></span></div>
+  </div>
+
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">How this worksheet works</h2>
+    <p>BIO 304 is an online course. Work through the Week 5 Cognitive Trainer first as your study tool. This worksheet is what you turn in. It captures only the drawings, predictions, and reflections.</p>
+    <p><strong>How to complete:</strong> Print the worksheet. Complete every box by hand in pen or pencil. Scan or photograph the completed pages as a single PDF. Upload that PDF to the Week 5 Worksheet assignment in Canvas.</p>
+    <p><strong>Drawing tasks (three this week):</strong> heart anatomy, ECG tracing, and a vessel comparison table. Label every component. An unlabeled drawing is a sketch and loses points.</p>
+    <p><strong>Two sections directly anchor lab activities:</strong> Section 3 (ECG) and Section 5 (BP regulation and ASCVD). Spend extra time on those.</p>
+    <p><strong>This is the heaviest week of the course.</strong> Plan four sittings, not one. Estimated 8 to 10 printed pages.</p>
+    <p><strong>If you cannot print:</strong> contact Dr. Rennie or DSPS for an alternative submission format.</p>
+  </section>
+
+  <!-- SECTION 01 -->
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · Blood Composition</p>
+        <h2 class="section-title" id="s1-title">Blood scenarios</h2>
+        <p class="section-anchor">Use specific cell types, normal lab values, and the steps of hemostasis in your reasoning.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient has anemia with hemoglobin 8 g/dL (normal ~13 to 16). Predict the effect on oxygen-carrying capacity, and identify two compensatory responses the body might mount.</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A patient on chemotherapy has thrombocytopenia (platelet count 20,000; normal 150,000 to 450,000). Predict their bleeding risk and identify which step of hemostasis is impaired.</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A Type A patient accidentally receives Type B blood. Predict the immediate reaction. Identify which antibody attacks which antigen, and explain why this is life-threatening.</p>
+      <div class="ruled medium"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 -->
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Build &amp; Apply · Heart Anatomy</p>
+        <h2 class="section-title" id="s2-title">Heart structure and pathology</h2>
+        <p class="section-anchor">Drawings must be labeled to count.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Draw a cross-section of the heart showing all four chambers. Label all of the following: <strong>right atrium, right ventricle, left atrium, left ventricle</strong>; <strong>tricuspid valve, pulmonary semilunar valve, mitral (bicuspid) valve, aortic semilunar valve</strong>; <strong>superior vena cava, inferior vena cava, pulmonary trunk, pulmonary veins, aorta</strong>. Use arrows to show the direction of blood flow.</p>
+      <p class="task-rubric">Rubric: Four chambers labeled. Four valves labeled in correct positions. Five great vessels labeled. Arrows show blood path correctly (right side carries deoxygenated, left side carries oxygenated).</p>
+      <div class="grid-box tall"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient has mitral valve regurgitation (the valve leaks during ventricular systole). Predict the effect on left atrial pressure and on pulmonary circulation. What symptom would the patient most likely report?</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A patient has an LAD (left anterior descending) occlusion (heart attack). Identify which wall of the heart is most affected and predict whether contractility on that side will increase or decrease. Why might the SA node still function normally despite this occlusion?</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A patient has a large pericardial effusion (fluid in pericardial cavity). Predict the effect on cardiac filling and cardiac output. Name this emergency and explain why pericardiocentesis is treatment.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 ECG -->
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Build &amp; Apply · Cardiac Electrical Activity <span class="lab-flag">ECG Lab</span></p>
+        <h2 class="section-title" id="s3-title">The ECG and clinical interpretation</h2>
+        <p class="section-anchor">Lab anchor. The ECG lab will require you to identify rate and rhythm from a tracing.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Draw one cardiac cycle of an ECG tracing. Label the <strong>P wave</strong>, <strong>QRS complex</strong>, and <strong>T wave</strong>. Mark the <strong>PR interval</strong> and <strong>ST segment</strong>. Below the tracing, write what each wave represents (atrial depolarization, ventricular depolarization, ventricular repolarization).</p>
+      <p class="task-rubric">Rubric: Three waves drawn in correct order with correct relative shape (small P, large narrow QRS, rounded T). All three waves labeled. PR interval and ST segment marked. Three event labels correct.</p>
+      <div class="grid-box standard"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient's SA node fails. Predict the heart rate and identify the backup pacemaker. What rate range would you expect, and why is it slower than the SA node's intrinsic rate?</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A patient has third-degree AV block (no signal reaches the ventricles from the atria). Predict what the ECG would show in terms of P waves, QRS complexes, and their relationship. Predict the patient's symptoms.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A patient has atrial fibrillation. Predict the appearance of P waves and the rhythm regularity, and explain why this rhythm increases the risk of stroke.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 -->
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Build &amp; Apply · Blood Vessels</p>
+        <h2 class="section-title" id="s4-title">Vessel structure, flow, resistance</h2>
+        <p class="section-anchor">Use the resistance equation and the radius-fourth-power relationship in your reasoning.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Fill in the vessel comparison table below. For each feature, write the description for arteries, veins, and capillaries.</p>
+      <table class="compare-table">
+        <thead><tr><th scope="col" style="width:22%;">Feature</th><th scope="col" style="width:26%;">Artery</th><th scope="col" style="width:26%;">Vein</th><th scope="col" style="width:26%;">Capillary</th></tr></thead>
+        <tbody>
+          <tr><td class="label-col">Tunica media (thickness, content)</td><td></td><td></td><td></td></tr>
+          <tr><td class="label-col">Pressure (approximate)</td><td></td><td></td><td></td></tr>
+          <tr><td class="label-col">Valves present?</td><td></td><td></td><td></td></tr>
+          <tr><td class="label-col">Primary function</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> Atherosclerosis narrows a coronary artery to half its original diameter. Using the resistance-radius relationship (R proportional to 1/r⁴), calculate how much resistance changes, and predict the effect on coronary blood flow at the same driving pressure.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> Veins are low-pressure but still return blood to the heart. Identify three mechanisms that drive venous return, and predict what happens to venous return during prolonged standing without movement.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> Capillaries have only a single endothelial layer. Justify this design in terms of their function. Predict what would happen to gas exchange if capillaries had a thick tunica media like arteries.</p>
+      <div class="ruled medium"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 05 ASCVD -->
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · BP Regulation <span class="lab-flag">ASCVD Lab</span></p>
+        <h2 class="section-title" id="s5-title">Blood pressure and cardiovascular risk</h2>
+        <p class="section-anchor">Lab anchor. Use the baroreceptor reflex and RAAS in your reasoning.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient stands up quickly from lying down. BP transiently falls. Trace the baroreceptor reflex from baroreceptor activation to the BP response. Predict what would happen if the reflex failed (orthostatic hypotension and syncope) and identify one population at risk.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A patient with congestive heart failure has fluid retention and pitting edema. Explain via the RAAS cascade why this happens, and explain why ACE inhibitors and aldosterone antagonists are mainstays of treatment. Identify which step each drug class blocks.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A 55-year-old male, non-Hispanic white, total cholesterol 220, HDL 40, SBP 140, no BP medications, non-diabetic, non-smoker. Without calculating ASCVD risk, identify all <strong>modifiable</strong> risk factors. Rank in order which lifestyle change would most affect his 10-year risk and justify the ranking.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 06 -->
+  <section class="section" aria-labelledby="s6-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">06</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · Circulation &amp; Lymphatics</p>
+        <h2 class="section-title" id="s6-title">Circulatory and lymphatic clinical reasoning</h2>
+        <p class="section-anchor">Trace the anatomy. Identify which vessels and which nodes are involved in each scenario.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient has a finger infection on their right hand and the lymph nodes in the right axilla become swollen and tender. Explain the anatomical pathway from the infected finger to the axillary nodes, and identify why these specific nodes (rather than left axillary or inguinal) are affected.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> After breast cancer surgery with axillary lymph node dissection, the patient develops chronic arm swelling (lymphedema). Explain why this happens anatomically and why the swelling does not resolve quickly.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A patient with cirrhosis develops portal hypertension. Trace why this affects circulation in the GI tract and explain why fluid leaks into the abdominal cavity (ascites) rather than returning normally to the heart.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 07 -->
+  <section class="section" aria-labelledby="s7-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">07</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · Innate &amp; Adaptive Immunity</p>
+        <h2 class="section-title" id="s7-title">Immune scenarios</h2>
+        <p class="section-anchor">Use specific cell types (CD4+, CD8+, B cell, plasma cell, memory cell) and antibody classes in your reasoning.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> HIV destroys CD4+ helper T cells. Predict the consequences for both T cell and B cell responses, and explain why HIV patients develop opportunistic infections (with organisms most people clear easily) rather than typical infections.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A patient receives the flu vaccine. Trace what happens in the immune system step by step (antigen presentation through memory). Identify whether this is active or passive immunity, and explain why protection lasts months but not lifelong.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A child gets chickenpox at age 6 and is severely ill for two weeks. As an adult, the same child is exposed to chickenpox again and has no symptoms. Explain in terms of primary versus secondary response, identify which antibody dominates each response, and identify which cells make memory possible.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 08 -->
+  <section class="section" aria-labelledby="s8-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">08</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Reflect · Self-Assessment</p>
+        <h2 class="section-title" id="s8-title">Reflection on Week 5</h2>
+        <p class="section-anchor">The heaviest week of the course. Honesty here is graded for completeness, not correctness.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">a.</span> Of the seven topics this week (blood, heart anatomy, ECG, vessels, BP regulation, lymphatics, immunity), which one feels strongest right now and why?</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">b.</span> Which one is still cloudy? Write what you would ask Dr. Rennie or a study partner if you had thirty seconds.</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">c.</span> Lab preview: in lab you will identify ECG rate and rhythm and calculate ASCVD 10-year risk on simulated patients. Predict <strong>one</strong> ECG finding that would change your level of clinical concern, and <strong>one</strong> ASCVD modifiable factor that would most reduce risk over a 10-year horizon. Justify both.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit</h2>
+    <ul class="submission-list">
+      <li><input type="checkbox" id="check1"><label for="check1">All eight sections are complete. Empty boxes lose points even on the right answer.</label></li>
+      <li><input type="checkbox" id="check2"><label for="check2">All three drawings (heart anatomy, ECG tracing, vessel comparison table) are complete and labeled.</label></li>
+      <li><input type="checkbox" id="check3"><label for="check3">The two lab anchor sections (3 and 5) are answered with extra care.</label></li>
+      <li><input type="checkbox" id="check4"><label for="check4">Your name is on the front page.</label></li>
+      <li><input type="checkbox" id="check5"><label for="check5">You have signed the integrity statement below.</label></li>
+    </ul>
+    <div class="signature-row">
+      <div>
+        <p class="integrity-statement">By signing below, I confirm this worksheet represents my own thinking. I may have studied with classmates, but the writing, drawings, and table entries on this page are mine.</p>
+        <div class="field"><span class="field-label">Signature</span><span class="field-line"></span></div>
+      </div>
+      <div class="field"><span class="field-label">Date</span><span class="field-line"></span></div>
+    </div>
+  </section>
+</main>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w05-worksheet';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
