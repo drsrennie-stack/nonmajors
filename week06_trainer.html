@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 6 Cognitive Trainer · Gas Exchange &amp; Waste · BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
+    --sand: #f5e6d3; --sand-soft: #faf3e8;
+    --terra: #c44536; --terra-soft: #e8a499;
+    --kelp: #5a7553; --paper: #fdfbf7;
+    --line: #c9d4d8; --muted: #5a6b73;
+    --shadow-sm: 0 1px 2px rgba(20, 48, 75, 0.06);
+    --radius-sm: 6px; --radius-md: 12px; --radius-lg: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1180px; margin: 0 auto; padding: 0 28px 80px; }
+  header.masthead { padding: 48px 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 36px; }
+  .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
+  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; color: var(--ocean-deep); letter-spacing: -0.01em; margin-bottom: 14px; }
+  h1.title em { font-style: italic; color: var(--terra); }
+  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.12rem; color: var(--ocean); max-width: 720px; margin-bottom: 24px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: center; font-size: 0.86rem; color: var(--muted); }
+  .meta-row strong { color: var(--ink); font-weight: 600; }
+  .meta-pill { display: inline-flex; gap: 8px; align-items: center; background: var(--sea-glass-soft); padding: 6px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 500; color: var(--ocean-deep); }
+  .meta-pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--terra); }
+  .progress-rail { position: sticky; top: 0; background: var(--paper); z-index: 50; padding: 14px 28px; margin: 0 -28px 28px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 18px; }
+  .progress-label { font-size: 0.74rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); white-space: nowrap; }
+  .progress-track { flex: 1; height: 6px; background: var(--sea-glass); border-radius: 999px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 100%); width: 0%; transition: width 0.35s ease; }
+  .progress-count { font-size: 0.84rem; font-weight: 600; color: var(--ocean-deep); min-width: 50px; text-align: right; }
+  .progress-actions { display: flex; gap: 8px; }
+  .icon-btn { border: 1px solid var(--line); background: white; color: var(--ocean-deep); width: 34px; height: 34px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.15s ease; font-size: 1rem; }
+  .icon-btn:hover { background: var(--sea-glass-soft); border-color: var(--ocean); }
+  .intro { background: linear-gradient(135deg, var(--sea-glass-soft) 0%, var(--sand-soft) 100%); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px 36px; margin-bottom: 36px; position: relative; }
+  .intro::after { content: ''; position: absolute; bottom: 0; left: 36px; right: 36px; height: 3px; background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 50%, var(--kelp) 100%); border-radius: 2px; }
+  .intro h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem; color: var(--ocean-deep); margin-bottom: 14px; }
+  .intro p { color: var(--ink); margin-bottom: 12px; max-width: 780px; }
+  .intro p:last-of-type { margin-bottom: 0; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 22px; padding-top: 22px; border-top: 1px dashed var(--line); font-size: 0.84rem; }
+  .legend-item { display: inline-flex; align-items: center; gap: 8px; }
+  .legend-chip { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .chip-retrieve { background: var(--ocean-deep); color: white; }
+  .chip-build { background: var(--terra); color: white; }
+  .chip-apply { background: var(--kelp); color: white; }
+  .section { background: white; border: 1px solid var(--line); border-radius: var(--radius-lg); margin-bottom: 32px; overflow: hidden; box-shadow: var(--shadow-sm); }
+  .section-head { display: flex; gap: 22px; align-items: flex-start; padding: 28px 32px 22px; border-bottom: 1px solid var(--line); background: var(--sand-soft); cursor: pointer; user-select: none; transition: background 0.15s ease; }
+  .section-head:hover { background: var(--sand); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 2.4rem; color: var(--terra); line-height: 1; min-width: 48px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.45rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .section-anchor { font-size: 0.92rem; color: var(--ocean); max-width: 700px; }
+  .section-toggle { font-size: 1.2rem; color: var(--ocean); transition: transform 0.25s ease; margin-top: 8px; }
+  .section.collapsed .section-toggle { transform: rotate(-90deg); }
+  .section-body { padding: 26px 32px 32px; }
+  .section.collapsed .section-body { display: none; }
+  .mode-block { margin-bottom: 28px; }
+  .mode-block:last-child { margin-bottom: 0; }
+  .mode-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .mode-tag { display: inline-block; padding: 4px 11px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .mode-name { font-family: 'Lora', serif; font-style: italic; font-size: 1.05rem; color: var(--ocean-deep); }
+  .prompt-list { list-style: none; }
+  .prompt-list li { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px dashed var(--line); align-items: flex-start; }
+  .prompt-list li:last-child { border-bottom: none; }
+  .prompt-num { font-family: 'Lora', serif; font-weight: 500; font-size: 0.95rem; color: var(--terra); min-width: 22px; }
+  .prompt-text { flex: 1; }
+  .prompt-text .reveal-btn { margin-left: 8px; background: transparent; border: 1px solid var(--line); color: var(--ocean); font-size: 0.7rem; font-weight: 600; padding: 2px 9px; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.15s ease; }
+  .prompt-text .reveal-btn:hover { background: var(--ocean); color: white; }
+  .answer { display: none; margin-top: 8px; padding: 10px 14px; background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); border-radius: 4px; font-size: 0.92rem; color: var(--ocean-deep); font-family: 'Lora', serif; }
+  .answer.show { display: block; }
+  .answer strong { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; }
+  .work-box { margin-top: 14px; background: white; border: 1.5px solid var(--ink); border-radius: var(--radius-sm); padding: 18px 20px; min-height: 120px; background-image: linear-gradient(transparent calc(1.7em - 1px), var(--line) 1px); background-size: 100% 1.7em; line-height: 1.7em; }
+  .work-box.draw { background-image: linear-gradient(rgba(201, 212, 216, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(201, 212, 216, 0.4) 1px, transparent 1px); background-size: 22px 22px; line-height: normal; min-height: 240px; }
+  .work-label { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .ref-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 14px 0; }
+  .ref-table th { text-align: left; padding: 10px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .ref-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .ref-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .ref-table .blank-cell { cursor: pointer; color: var(--muted); font-style: italic; font-family: 'Lora', serif; }
+  .ref-table .blank-cell:hover { background: var(--sea-glass-soft); }
+  .ref-table .blank-cell.revealed { color: var(--ink); font-style: normal; font-family: inherit; }
+  .check-prompt { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; }
+  .check-prompt input[type="checkbox"] { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--terra); cursor: pointer; }
+  .check-prompt label { flex: 1; cursor: pointer; font-size: 0.96rem; }
+  .section-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 26px; padding-top: 20px; border-top: 1px dashed var(--line); }
+  .complete-btn { background: white; border: 2px solid var(--ocean-deep); color: var(--ocean-deep); padding: 9px 18px; border-radius: 8px; font-family: inherit; font-weight: 600; font-size: 0.86rem; cursor: pointer; letter-spacing: 0.04em; transition: all 0.18s ease; }
+  .complete-btn:hover { background: var(--ocean-deep); color: white; }
+  .complete-btn.done { background: var(--kelp); color: white; border-color: var(--kelp); }
+  .complete-btn.done::before { content: '✓ '; }
+  .closing { background: linear-gradient(150deg, var(--ocean-deep) 0%, var(--ink) 100%); color: white; border-radius: var(--radius-lg); padding: 36px 38px; margin-top: 40px; position: relative; overflow: hidden; }
+  .closing::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: radial-gradient(circle, var(--terra) 0%, transparent 70%); opacity: 0.3; }
+  .closing h3 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem; margin-bottom: 14px; position: relative; }
+  .closing p { opacity: 0.88; max-width: 700px; margin-bottom: 14px; position: relative; }
+  .closing-steps { list-style: none; counter-reset: step; margin-top: 18px; position: relative; }
+  .closing-steps li { counter-increment: step; padding: 8px 0 8px 38px; position: relative; font-size: 0.95rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .closing-steps li::before { content: counter(step); position: absolute; left: 0; top: 6px; width: 26px; height: 26px; background: var(--terra); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; }
+  .aqi-strip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; margin: 14px 0; font-size: 0.74rem; }
+  .aqi-cell { padding: 8px 6px; border-radius: 4px; color: white; text-align: center; line-height: 1.3; }
+  .aqi-cell strong { display: block; font-size: 0.92rem; margin-bottom: 2px; }
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .progress-rail, .icon-btn, .reveal-btn, .complete-btn, .skip-link { display: none !important; }
+    .answer.show { background: white; border-color: var(--ink); }
+    .section { break-inside: avoid; box-shadow: none; border: 1.5px solid var(--ink); page-break-inside: avoid; }
+    .section.collapsed .section-body { display: block !important; }
+    .closing { background: white; color: var(--ink); border: 2px solid var(--ink); }
+    @page { size: letter; margin: 0.55in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="page" id="main-content" role="main">
+
+  <header class="masthead">
+    <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · Week 06</p>
+    <h1 class="title">Gas Exchange &amp; <em>Waste</em></h1>
+    <p class="subtitle">Respiratory and urinary systems, fluid and electrolyte balance, acid-base regulation, and the bedside tools that read them.</p>
+    <div class="meta-row">
+      <span class="meta-pill">OpenStax · Ch 22, 25 (Read) · Ch 26.1, 26.4 (Focus)</span>
+      <span><strong>Cognitive load:</strong> 3 modes across 7 sections</span>
+      <span><strong>Estimated time:</strong> 130 to 160 minutes</span>
+      <span><strong>Author:</strong> Dr. Sharilyn Rennie</span>
+    </div>
+  </header>
+
+  <div class="progress-rail">
+    <span class="progress-label" id="progress-label">Trainer Progress</span>
+    <div class="progress-track" role="progressbar" aria-labelledby="progress-label" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount" aria-live="polite" aria-atomic="true">0 / 7</span>
+    <div class="progress-actions">
+      <button class="icon-btn" id="print-btn" type="button" aria-label="Print trainer" onclick="window.print()">⎙</button>
+      <button class="icon-btn" id="reset-btn" type="button" aria-label="Reset progress for all sections">↺</button>
+    </div>
+  </div>
+
+  <div class="intro">
+    <h2>Week 6: how the body trades gases and disposes of waste</h2>
+    <p>The lungs and kidneys work as a pair. The lungs handle CO₂ (a volatile acid) on a breath-by-breath timescale. The kidneys handle bicarbonate, fixed acids, water, and electrolytes on a slower timescale. Together they keep arterial pH between 7.35 and 7.45.</p>
+    <p>One section in this trainer covers <strong>COR-named content</strong>: Section 6 on the urine dipstick. The same section covers the regional extension on AirNow AQI and wildfire smoke, which is a real respiratory exposure for Northern California students.</p>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-chip chip-retrieve">Retrieve</span> Recall the term, structure, or fact</span>
+      <span class="legend-item"><span class="legend-chip chip-build">Build</span> Draw, label, or construct the mechanism</span>
+      <span class="legend-item"><span class="legend-chip chip-apply">Apply</span> Predict or interpret</span>
+    </div>
+  </div>
+
+  <!-- SECTION 01 -->
+  <section class="section" data-section="s1">
+    <div class="section-head" onclick="toggleSection('s1')">
+      <div class="section-num">01</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 22.1-22.3</p>
+        <h2 class="section-title">Respiratory Anatomy &amp; Ventilation</h2>
+        <p class="section-anchor">Two functional zones: a conducting zone that filters and humidifies air, and a respiratory zone where gas exchange happens. Breathing is a mechanical pump driven by pressure differences.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Airways, lungs, mechanics, volumes</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Distinguish the conducting zone from the respiratory zone of the airway, and trace air from the nose to an alveolus.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Conducting zone</strong> warms, humidifies, and filters air. No gas exchange. <strong>Respiratory zone</strong> is where gas exchange occurs. Path: nose/mouth → pharynx → larynx → trachea → primary bronchi → secondary and tertiary bronchi → bronchioles → terminal bronchioles (end of conducting zone) → respiratory bronchioles → alveolar ducts → alveoli (respiratory zone).</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Describe the lungs and the alveolar wall, including the cell types in alveoli.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Right lung has 3 lobes; left lung has 2 lobes (cardiac notch accommodates the heart). Each lung is wrapped in <strong>visceral pleura</strong>, the chest wall is lined with <strong>parietal pleura</strong>, and a thin film of <strong>pleural fluid</strong> sits between them. Alveolar wall has three cell types: <strong>Type I pneumocytes</strong> (thin squamous, gas exchange), <strong>Type II pneumocytes</strong> (cuboidal, secrete surfactant to reduce surface tension), <strong>alveolar macrophages</strong> (clear debris and pathogens). About 300 million alveoli per lung.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Explain the mechanics of inspiration and expiration. Identify which is active and which is passive.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Inspiration is active.</strong> Diaphragm contracts (flattens) and external intercostals lift the ribs → thoracic volume increases → intrapulmonary pressure drops below atmospheric → air flows in down the gradient. <strong>Expiration at rest is passive.</strong> Inspiratory muscles relax, the lungs and chest wall recoil → thoracic volume decreases → intrapulmonary pressure rises above atmospheric → air flows out. Forced expiration adds active contraction of internal intercostals and abdominal muscles.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Define the four primary lung volumes (TV, IRV, ERV, RV) and the two main capacities (VC, TLC).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Tidal volume (TV):</strong> normal breath volume, ~500 mL. <strong>Inspiratory reserve volume (IRV):</strong> extra air you can inhale after a normal breath in, ~3000 mL. <strong>Expiratory reserve volume (ERV):</strong> extra air you can exhale after a normal breath out, ~1100 mL. <strong>Residual volume (RV):</strong> air left in lungs after maximum exhalation, ~1200 mL. Cannot be measured by spirometry. <strong>Vital capacity (VC) = TV + IRV + ERV</strong>, ~4600 mL. <strong>Total lung capacity (TLC) = VC + RV</strong>, ~5800 mL.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Lung volumes reference</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the answer.</p>
+        <table class="ref-table">
+          <thead><tr><th scope="col">Volume / capacity</th><th scope="col">Approximate value</th><th scope="col">What it measures</th></tr></thead>
+          <tbody>
+            <tr><td>Tidal volume (TV)</td><td class="blank-cell" onclick="revealCell(this, '~500 mL')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Volume of one normal breath')">click to reveal</td></tr>
+            <tr><td>Inspiratory reserve (IRV)</td><td class="blank-cell" onclick="revealCell(this, '~3000 mL')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Extra air inhaled beyond normal TV')">click to reveal</td></tr>
+            <tr><td>Expiratory reserve (ERV)</td><td class="blank-cell" onclick="revealCell(this, '~1100 mL')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Extra air exhaled beyond normal TV')">click to reveal</td></tr>
+            <tr><td>Residual volume (RV)</td><td class="blank-cell" onclick="revealCell(this, '~1200 mL')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Air left after maximum exhalation; keeps alveoli open')">click to reveal</td></tr>
+            <tr><td>Vital capacity (VC)</td><td class="blank-cell" onclick="revealCell(this, '~4600 mL')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'TV + IRV + ERV; max usable air')">click to reveal</td></tr>
+            <tr><td>Total lung capacity (TLC)</td><td class="blank-cell" onclick="revealCell(this, '~5800 mL')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'VC + RV; total lung air at full inspiration')">click to reveal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Predict the breathing pattern</span></div>
+        <div class="work-label">a. A patient develops a pneumothorax (air enters the pleural cavity through a chest wall puncture). Predict the effect on lung expansion on the affected side and explain why.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A COPD patient has chronic mucus and damaged alveolar elastic tissue. Predict the effect on inspiration and on expiration. Why is expiration disproportionately impaired?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A pulmonary fibrosis patient has stiff, non-compliant lungs. Predict the effect on lung volumes (specifically TLC and VC) and on the work of breathing.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 01 of 07</span><button class="complete-btn" data-complete="s1" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 -->
+  <section class="section" data-section="s2">
+    <div class="section-head" onclick="toggleSection('s2')">
+      <div class="section-num">02</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 22.4-22.5</p>
+        <h2 class="section-title">Gas Exchange &amp; Transport</h2>
+        <p class="section-anchor">Gas moves down partial pressure gradients. Hemoglobin makes O₂ delivery possible at the volume the body needs. CO₂ travels in three forms.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">External and internal respiration, hemoglobin, CO₂, V/Q</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Distinguish external and internal respiration in terms of location and direction of gas movement.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>External respiration:</strong> at the alveolar-capillary interface in the lungs. O₂ diffuses from alveoli (high PO₂) into pulmonary capillaries; CO₂ diffuses from capillaries into alveoli. Both move down their partial pressure gradients. <strong>Internal respiration:</strong> at the tissue-capillary interface throughout the body. O₂ diffuses from systemic capillaries into tissue cells; CO₂ diffuses from cells into capillaries.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Describe how hemoglobin transports O₂ and what the Bohr effect is.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Hemoglobin has four heme groups, each carrying one O₂ molecule. One Hb carries up to 4 O₂. Binding is <strong>cooperative</strong>: the first O₂ makes binding the next ones easier, producing a sigmoidal saturation curve. <strong>Bohr effect:</strong> in tissues, low pH, high CO₂, high temperature, and high 2,3-BPG shift the curve right, decreasing Hb's O₂ affinity and releasing O₂ where the tissues need it most.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">List the three forms in which CO₂ travels in blood, with approximate percentages.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">(1) <strong>Bicarbonate (HCO₃⁻) in plasma: ~70%.</strong> CO₂ + H₂O ⇌ H₂CO₃ ⇌ H⁺ + HCO₃⁻ (catalyzed by carbonic anhydrase in RBCs). The HCO₃⁻ leaves the RBC; this is the chloride shift. (2) <strong>Carbaminohemoglobin: ~23%.</strong> CO₂ binds the protein portion of Hb (not the heme). (3) <strong>Dissolved in plasma: ~7%.</strong> Direct dissolution.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Define ventilation-perfusion (V/Q) matching. Compare a low V/Q (shunt) with a high V/Q (dead space).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Optimal V/Q ≈ 1: ventilation matches perfusion in each lung region, so all blood gets oxygenated. <strong>Low V/Q (shunt):</strong> perfusion without ventilation. Blood passes through unventilated alveoli (e.g., pneumonia, atelectasis) and stays deoxygenated. Causes hypoxemia. <strong>High V/Q (dead space):</strong> ventilation without perfusion. Air reaches alveoli but no blood is there to pick up O₂ (e.g., pulmonary embolism). Wasted ventilation.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Gas exchange clinical scenarios</span></div>
+        <div class="work-label">a. Carbon monoxide (CO) binds hemoglobin with much greater affinity than O₂. Predict the effect on O₂ saturation, O₂ delivery to tissues, and PaO₂. Why is pulse oximetry misleading in CO poisoning?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A pulmonary embolism (PE) blocks a pulmonary artery. Identify whether this creates a shunt or dead space and predict the effect on PaO₂ and PaCO₂.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient hyperventilates due to anxiety. Predict the effect on PaCO₂ and on blood pH. Identify the resulting acid-base disorder.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 02 of 07</span><button class="complete-btn" data-complete="s2" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 -->
+  <section class="section" data-section="s3">
+    <div class="section-head" onclick="toggleSection('s3')">
+      <div class="section-num">03</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 25.1-25.3</p>
+        <h2 class="section-title">Urinary Anatomy &amp; the Nephron</h2>
+        <p class="section-anchor">The kidneys filter ~180 L of plasma per day and return ~178 L to circulation. The nephron is the functional unit that does all of this.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Gross anatomy and the nephron</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Name the four organs of the urinary system and describe the gross internal anatomy of the kidney.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Two <strong>kidneys</strong> filter blood. Two <strong>ureters</strong> transport urine to the bladder. The <strong>urinary bladder</strong> stores urine. The <strong>urethra</strong> conducts urine to the outside. Internal kidney layers: <strong>cortex</strong> (outer, contains glomeruli), <strong>medulla</strong> (inner, organized into pyramids; loops of Henle and collecting ducts live here), <strong>renal pelvis</strong> (collects urine from minor and major calyces and funnels it to the ureter).</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">List the parts of the nephron in the order filtrate flows through them.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+          <div class="answer">(1) <strong>Renal corpuscle</strong> = glomerulus + Bowman's capsule (filtration occurs here). (2) <strong>Proximal convoluted tubule (PCT)</strong>: bulk reabsorption. (3) <strong>Loop of Henle</strong>: descending limb (water permeable), then ascending limb (solute permeable). (4) <strong>Distal convoluted tubule (DCT)</strong>: regulated reabsorption and secretion. (5) <strong>Collecting duct</strong>: final water and Na⁺ adjustments under hormonal control.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Compare cortical and juxtamedullary nephrons.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Cortical nephrons</strong> (~85%) sit mostly in the cortex with short loops of Henle that barely dip into the medulla. Handle routine filtration. <strong>Juxtamedullary nephrons</strong> (~15%) sit at the cortex-medulla border with long loops of Henle that descend deep into the medulla. They establish the medullary osmotic gradient that allows the kidney to concentrate urine.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Trace blood flow through the kidney from renal artery to renal vein, naming the key vessels around the nephron.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Renal artery → segmental artery → interlobar artery → arcuate artery → cortical radiate artery → <strong>afferent arteriole</strong> → <strong>glomerulus</strong> (filtration) → <strong>efferent arteriole</strong> → <strong>peritubular capillaries</strong> (around PCT and DCT, reabsorption) or <strong>vasa recta</strong> (around loop of Henle in juxtamedullary nephrons) → cortical radiate vein → arcuate vein → interlobar vein → renal vein.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Draw a labeled nephron</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Draw a single nephron with its blood supply. Label the renal corpuscle (glomerulus and Bowman's capsule), proximal convoluted tubule, loop of Henle (descending and ascending limbs), distal convoluted tubule, and collecting duct. Include the afferent and efferent arterioles and the peritubular capillaries.</p>
+        <div class="work-box draw"></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Predict the consequence</span></div>
+        <div class="work-label">a. Renal artery stenosis (narrowing) reduces blood flow to one kidney. Predict the effect on filtration in that kidney and on systemic blood pressure via RAAS.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient has bilateral acute kidney injury after a major hemorrhage. Predict three immediate consequences in the first 24 hours.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient lives at high altitude and has higher than normal hematocrit and concentrated urine. Connect the role of juxtamedullary nephrons to their ability to retain water at altitude.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 03 of 07</span><button class="complete-btn" data-complete="s3" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 -->
+  <section class="section" data-section="s4">
+    <div class="section-head" onclick="toggleSection('s4')">
+      <div class="section-num">04</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 25.6-25.10</p>
+        <h2 class="section-title">Urine Formation: Filtration, Reabsorption, Secretion</h2>
+        <p class="section-anchor">Three processes determine what ends up in urine. Filtration loads the tubule. Reabsorption reclaims what the body needs. Secretion adds what the body wants to dump.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">The three processes and the hormones that regulate them</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Describe glomerular filtration. Identify the filtration membrane, what it excludes, and the normal GFR.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Hydrostatic pressure in the glomerulus pushes plasma through a three-layer <strong>filtration membrane</strong>: (1) fenestrated capillary endothelium, (2) basement membrane, (3) podocyte filtration slits. Excludes blood cells and most plasma proteins. Net filtration pressure ≈ glomerular hydrostatic pressure − blood osmotic pressure − capsular hydrostatic pressure. <strong>Normal GFR ≈ 125 mL/min</strong> (~180 L/day). The body filters its plasma volume many times a day.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Describe what is reabsorbed in the PCT and the concept of transport maximum (Tm).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">The <strong>PCT reabsorbs ~65% of the filtrate</strong>. Returns essentially 100% of glucose and amino acids, ~65% of Na⁺ and water, most bicarbonate, much of K⁺ and Cl⁻. Transport relies on Na⁺/K⁺ ATPase on the basolateral side, creating gradients that pull other solutes via cotransport. <strong>Transport maximum (Tm):</strong> each transporter saturates at a maximum rate. When plasma glucose exceeds the renal threshold (~180 mg/dL), transporters saturate and glucose spills into urine.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Describe the countercurrent multiplier in the loop of Henle and why it matters.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Descending limb:</strong> permeable to water but not solute. Water leaves into the increasingly concentrated medulla, so the filtrate becomes more concentrated. <strong>Ascending limb:</strong> permeable to solute (active Na⁺/K⁺/2Cl⁻ pumping) but impermeable to water. Solute leaves but water cannot follow, so the filtrate becomes dilute. The two limbs together build a medullary gradient from ~300 mOsm at the cortex-medulla border to ~1200 mOsm at the deepest medulla. This gradient allows the collecting duct to concentrate urine when ADH is present.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Name three major hormones that regulate urine output and their primary actions.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>ADH (antidiuretic hormone, vasopressin):</strong> released from posterior pituitary in response to high plasma osmolarity or low BP. Increases collecting duct water permeability via aquaporin insertion. Result: more water reabsorbed, concentrated urine. <strong>Aldosterone:</strong> released from adrenal cortex (RAAS). Increases Na⁺ reabsorption and K⁺ secretion in DCT and collecting duct. Result: more Na⁺ and water retained, raises BP. <strong>ANP (atrial natriuretic peptide):</strong> released from atrial cells when stretched (high blood volume). Increases Na⁺ excretion. Result: lowers blood volume and BP. Opposes RAAS.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Urine formation in disease and drugs</span></div>
+        <div class="work-label">a. A patient with uncontrolled diabetes has a plasma glucose of 300 mg/dL. Predict whether their urine will contain glucose, and explain via the transport maximum.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Furosemide (Lasix) is a loop diuretic that blocks the Na⁺/K⁺/2Cl⁻ cotransporter in the ascending limb of the loop of Henle. Predict the effect on urine output, urine concentration, and blood pressure.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient with central diabetes insipidus produces no ADH. Predict their urine volume, urine concentration, and predict what happens to plasma osmolarity if they cannot drink enough water.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 04 of 07</span><button class="complete-btn" data-complete="s4" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 05 -->
+  <section class="section" data-section="s5">
+    <div class="section-head" onclick="toggleSection('s5')">
+      <div class="section-num">05</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Focus · OpenStax 26.1, 26.4</p>
+        <h2 class="section-title">Fluid, Electrolyte &amp; Acid-Base Balance</h2>
+        <p class="section-anchor">Total body water is 60% of body weight, distributed across compartments. The lungs and kidneys regulate pH together, on different timescales.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Compartments, electrolytes, buffers, disorders</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Describe the body fluid compartments and their approximate fractions of body weight.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Total body water ≈ 60% of body weight (lower in females and the elderly because of higher fat fraction). <strong>Intracellular fluid (ICF): ~40%</strong> of body weight, the largest compartment. <strong>Extracellular fluid (ECF): ~20%</strong> of body weight. ECF subdivides into <strong>interstitial fluid (~15%)</strong> and <strong>plasma (~5%)</strong>. Membranes between compartments allow water to follow osmotic gradients.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Identify the major cation in the ICF and the major cation in the ECF, and state the normal plasma values for Na⁺ and K⁺.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Major ICF cation: K⁺</strong> (~140 mEq/L inside cells, ~3.5 to 5.0 mEq/L in plasma). <strong>Major ECF cation: Na⁺</strong> (~135 to 145 mEq/L in plasma, only ~10 mEq/L inside cells). The Na⁺/K⁺ ATPase maintains these gradients. Other key electrolytes: Cl⁻ and HCO₃⁻ are major ECF anions; phosphate and proteins are major ICF anions; Ca²⁺ is mostly ECF and bone.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">State the normal arterial pH range and identify the three buffer systems that defend pH.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Normal arterial pH: <strong>7.35 to 7.45</strong>. Three buffer systems: (1) <strong>Bicarbonate buffer</strong> in plasma (extracellular). Fast. CO₂ + H₂O ⇌ H₂CO₃ ⇌ H⁺ + HCO₃⁻. Lungs control PCO₂; kidneys control HCO₃⁻. (2) <strong>Phosphate buffer</strong> in urine and intracellular. (3) <strong>Protein buffers</strong>, especially hemoglobin in RBCs and proteins inside cells. Intracellular.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Compare the four primary acid-base disorders and identify how the body compensates.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Respiratory acidosis:</strong> high PCO₂ (hypoventilation, COPD, drug overdose). pH low. Renal compensation: kidneys retain HCO₃⁻ (slow, days). <strong>Respiratory alkalosis:</strong> low PCO₂ (hyperventilation, anxiety, high altitude). pH high. Renal compensation: kidneys excrete HCO₃⁻. <strong>Metabolic acidosis:</strong> low HCO₃⁻ (DKA, lactic acidosis, diarrhea). pH low. Respiratory compensation: hyperventilation lowers PCO₂ (fast, minutes). <strong>Metabolic alkalosis:</strong> high HCO₃⁻ (vomiting, diuretics). pH high. Respiratory compensation: hypoventilation raises PCO₂. Lungs compensate fast; kidneys compensate slowly.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Acid-base scenarios</span></div>
+        <div class="work-label">a. A patient has severe diarrhea for three days. Predict the acid-base disorder, the change in HCO₃⁻ and pH, and the expected respiratory compensation.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient with Type 1 diabetes presents in DKA with rapid deep breathing (Kussmaul respirations). Identify the acid-base disorder, explain why ketones cause it, and explain why the breathing pattern is the body's compensation.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient has an anxiety attack with rapid shallow breathing. They report tingling around the mouth and in the fingers. Identify the acid-base disorder and explain why the symptoms occur.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 05 of 07</span><button class="complete-btn" data-complete="s5" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 06 - COR & AirNow -->
+  <section class="section" data-section="s6">
+    <div class="section-head" onclick="toggleSection('s6')">
+      <div class="section-num">06</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Lab anchor · Urine Dipstick (COR-named) &amp; AirNow AQI</p>
+        <h2 class="section-title">Bedside Tools: Dipstick &amp; Air Quality</h2>
+        <p class="section-anchor">Two clinical tools for this week's lab. The urine dipstick is COR-named content. The AirNow AQI is a regional extension because Northern California air quality during wildfire season directly affects respiratory health.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Dipstick parameters and AQI categories</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">List the parameters on a standard urine dipstick and what each indicates when abnormal.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Specific gravity:</strong> urine concentration (1.005 to 1.030). High = concentrated/dehydrated. <strong>pH:</strong> 4.5 to 8.0. <strong>Glucose:</strong> normally negative; positive in diabetes mellitus once renal threshold (~180 mg/dL plasma) is exceeded. <strong>Ketones:</strong> normally negative; positive in DKA, starvation, low-carb diet. <strong>Protein:</strong> normally negative; positive in glomerular damage. <strong>Blood:</strong> normally negative; positive in UTI, kidney stones, glomerular disease. <strong>Leukocyte esterase:</strong> positive when WBCs present (UTI). <strong>Nitrites:</strong> positive when gram-negative bacteria reduce dietary nitrate (UTI). <strong>Bilirubin / urobilinogen:</strong> liver and biliary function.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Identify the typical dipstick patterns for diabetes mellitus, urinary tract infection, and glomerulonephritis.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Uncontrolled diabetes mellitus:</strong> glucose positive, ketones positive (especially in DKA), often acidic pH. Specific gravity often elevated. <strong>UTI:</strong> leukocyte esterase positive, nitrites positive (when gram-negative organism), often blood trace, sometimes alkaline pH. <strong>Glomerulonephritis:</strong> protein positive (often heavy), blood positive (microscopic or gross hematuria). Hyaline or RBC casts on microscopy.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Identify the six AirNow Air Quality Index (AQI) categories with their numeric ranges and the populations affected at each level.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+          <div class="answer"><strong>0 to 50: Good</strong> (green). Air quality satisfactory; minimal risk. <strong>51 to 100: Moderate</strong> (yellow). Unusually sensitive people may have symptoms. <strong>101 to 150: Unhealthy for Sensitive Groups</strong> (orange). Children, elderly, those with heart or lung disease, and pregnant people should reduce outdoor activity. <strong>151 to 200: Unhealthy</strong> (red). Everyone may experience effects; sensitive groups more serious. <strong>201 to 300: Very Unhealthy</strong> (purple). Everyone should reduce outdoor activity; health alert. <strong>301+: Hazardous</strong> (maroon). Emergency conditions; everyone should avoid outdoor activity.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Explain why PM2.5 from wildfire smoke is particularly harmful and which clinical conditions worsen during high-AQI days.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>PM2.5</strong> = fine particulate matter, less than 2.5 micrometers in diameter. Small enough to bypass nasal filtering and reach the alveoli, where it triggers inflammation, crosses into systemic circulation, and contributes to cardiovascular events. Conditions that worsen during high-AQI days: <strong>asthma exacerbations, COPD flares, increased risk of heart attack and stroke, decreased exercise tolerance in healthy people</strong>. Effects are dose-dependent, so brief exposure at moderate levels is much less harmful than prolonged exposure at unhealthy levels.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="aqi-strip" aria-label="AQI categories visual reference">
+        <div class="aqi-cell" style="background:#00e400;color:#003"><strong>0-50</strong>Good</div>
+        <div class="aqi-cell" style="background:#ffff00;color:#553"><strong>51-100</strong>Moderate</div>
+        <div class="aqi-cell" style="background:#ff7e00"><strong>101-150</strong>Sensitive Groups</div>
+        <div class="aqi-cell" style="background:#ff0000"><strong>151-200</strong>Unhealthy</div>
+        <div class="aqi-cell" style="background:#8f3f97"><strong>201-300</strong>Very Unhealthy</div>
+        <div class="aqi-cell" style="background:#7e0023"><strong>301+</strong>Hazardous</div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Interpret dipstick and AQI scenarios</span></div>
+        <div class="work-label">a. A patient brings in this dipstick: glucose ++, ketones ++, pH 5.0, specific gravity 1.025. Identify the most likely diagnosis and one immediate next step.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A 28-year-old female presents with dysuria and frequency. Dipstick: leukocyte esterase positive, nitrites positive, blood trace, pH 7.5. Identify the most likely diagnosis and explain how each finding fits.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. The local AQI is 175 due to nearby wildfire smoke. Your patient has moderate persistent asthma. Counsel them on outdoor activity, mask use, and rescue inhaler readiness today.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 06 of 07</span><button class="complete-btn" data-complete="s6" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 07 -->
+  <section class="section" data-section="s7">
+    <div class="section-head" onclick="toggleSection('s7')">
+      <div class="section-num">07</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Self-Assessment · Reflect</p>
+        <h2 class="section-title">Self-Check &amp; Reflection</h2>
+        <p class="section-anchor">The lungs and kidneys are connected. Audit how well you can move between them.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Confidence audit</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Check the box only if you can do the action without notes, right now.</p>
+        <div class="check-prompt"><input type="checkbox" id="cf1"><label for="cf1">I can distinguish conducting from respiratory zones and trace air to an alveolus.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf2"><label for="cf2">I can identify the three alveolar cell types and the role of surfactant.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf3"><label for="cf3">I can explain the mechanics of inspiration and expiration.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf4"><label for="cf4">I can define the four lung volumes and two main capacities.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf5"><label for="cf5">I can distinguish external and internal respiration.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf6"><label for="cf6">I can explain hemoglobin O₂ binding and the Bohr effect.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf7"><label for="cf7">I can list the three forms of CO₂ transport with approximate percentages.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf8"><label for="cf8">I can compare V/Q shunt and V/Q dead space.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf9"><label for="cf9">I can name the parts of the nephron in order and trace blood through the kidney.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf10"><label for="cf10">I can describe glomerular filtration and the filtration membrane.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf11"><label for="cf11">I can explain the countercurrent multiplier in the loop of Henle.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf12"><label for="cf12">I can describe the actions of ADH, aldosterone, and ANP.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf13"><label for="cf13">I can identify ICF and ECF major cations and normal Na⁺ and K⁺ ranges.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf14"><label for="cf14">I can compare the four primary acid-base disorders and how the body compensates.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf15"><label for="cf15">I can interpret a urine dipstick and identify common patterns. (COR)</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf16"><label for="cf16">I can identify the AirNow AQI categories and counsel on activity at each level.</label></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Reflection prompts</span></div>
+        <div class="work-label">a. Of the topics this week (respiratory anatomy and ventilation, gas exchange, urinary anatomy, urine formation, fluid/electrolyte/acid-base, dipstick and AQI), which one feels strongest right now?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Which one is still cloudy? Write what you would ask Dr. Rennie or a study partner if you had thirty seconds.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. Lab preview: in lab you will interpret urine dipsticks and check the local AirNow AQI to make activity recommendations. Predict one dipstick pattern that would worry you most, and explain how you would advise an asthmatic neighbor on a 175-AQI smoke day.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 07 of 07</span><button class="complete-btn" data-complete="s7" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <h3>Wrapping up Week 6</h3>
+    <p>The respiratory and urinary systems are the body's two main waste managers. Together they regulate pH, blood volume, and electrolyte balance on different timescales. The dipstick reads urine; the AQI reads the air. Both come up in lab this week.</p>
+    <p>To submit:</p>
+    <ol class="closing-steps">
+      <li>Make sure the progress bar above shows 7 of 7 sections complete. The trainer is your study tool, not your turn-in.</li>
+      <li>Open and print the Week 6 Worksheet (companion document). Complete every box by hand in pen or pencil.</li>
+      <li>Save your <strong>completed</strong> worksheet as a single PDF (scan it or photograph it).</li>
+      <li>Upload that PDF to the Week 6 Worksheet assignment in Canvas.</li>
+    </ol>
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    document.querySelectorAll('.section').forEach((section) => {
+      const head = section.querySelector('.section-head');
+      const body = section.querySelector('.section-body');
+      const sid = section.dataset.section;
+      if (head && body && sid) {
+        body.id = sid + '-body';
+        head.setAttribute('role', 'button');
+        head.setAttribute('tabindex', '0');
+        head.setAttribute('aria-expanded', 'true');
+        head.setAttribute('aria-controls', sid + '-body');
+        const num = head.querySelector('.section-num');
+        if (num) num.setAttribute('aria-hidden', 'true');
+      }
+    });
+    document.querySelectorAll('.reveal-btn').forEach((btn, i) => {
+      const ans = btn.nextElementSibling;
+      if (ans && ans.classList.contains('answer')) {
+        const id = 'reveal-ans-' + i;
+        ans.id = id;
+        btn.setAttribute('aria-controls', id);
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('type', 'button');
+      }
+    });
+    document.querySelectorAll('.blank-cell').forEach((cell) => {
+      cell.setAttribute('role', 'button');
+      cell.setAttribute('tabindex', '0');
+      cell.setAttribute('aria-label', 'Click to reveal answer');
+    });
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) {
+        e.preventDefault();
+        e.target.click();
+      }
+    });
+  })();
+
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    const isOpen = ans.classList.toggle('show');
+    btn.textContent = isOpen ? 'Hide' : 'Show';
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+  function toggleSection(id) {
+    const section = document.querySelector(`[data-section="${id}"]`);
+    if (!section) return;
+    const collapsed = section.classList.toggle('collapsed');
+    const head = section.querySelector('.section-head');
+    if (head) head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+  }
+  function revealCell(el, answer) {
+    el.textContent = answer;
+    el.classList.add('revealed');
+    el.onclick = null;
+    el.removeAttribute('role');
+    el.removeAttribute('tabindex');
+    el.setAttribute('aria-label', answer);
+  }
+
+  const STORAGE_KEY = 'bio304_w06_trainer_progress';
+  let completed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  function updateProgress() {
+    const total = 7;
+    const count = completed.length;
+    document.getElementById('progressFill').style.width = (count / total) * 100 + '%';
+    document.getElementById('progressCount').textContent = count + ' / ' + total;
+    const track = document.querySelector('.progress-track');
+    if (track) track.setAttribute('aria-valuenow', String(count));
+  }
+  function markComplete(btn) {
+    const id = btn.getAttribute('data-complete');
+    if (completed.includes(id)) {
+      completed = completed.filter(x => x !== id);
+      btn.classList.remove('done');
+      btn.textContent = 'Mark complete';
+    } else {
+      completed.push(id);
+      btn.classList.add('done');
+      btn.textContent = 'Complete';
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+    updateProgress();
+  }
+  completed.forEach(id => {
+    const btn = document.querySelector(`[data-complete="${id}"]`);
+    if (btn) { btn.classList.add('done'); btn.textContent = 'Complete'; }
+  });
+  updateProgress();
+  document.getElementById('reset-btn').onclick = function() {
+    if (confirm('Reset all section progress for this trainer? This will not erase what you wrote in the boxes.')) {
+      completed = [];
+      localStorage.removeItem(STORAGE_KEY);
+      document.querySelectorAll('.complete-btn').forEach(btn => {
+        btn.classList.remove('done');
+        btn.textContent = 'Mark complete';
+      });
+      updateProgress();
+    }
+  };
+
+  (function() {
+    const FRAME_ID = 'bio304-w06-trainer';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
