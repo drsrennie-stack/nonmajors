@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Week 1 Anatomy Workbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5; --sand-soft: #faf3e8; --sand: #f5e6d3;
+    --terra: #c44536; --kelp: #5a7553;
+    --paper: #fdfbf7; --line: #c9d4d8; --rule: #a8b5bb; --muted: #5a6b73;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #e8e8e0; line-height: 1.55; font-size: 16px; padding: 30px 0; -webkit-font-smoothing: antialiased; }
+  .sheet { max-width: 8.5in; margin: 0 auto; background: white; padding: 0.55in 0.6in; box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1); }
+  .actions { max-width: 8.5in; margin: 0 auto 16px; padding: 0 0.6in; display: flex; justify-content: flex-end; }
+  .print-btn { background: var(--ocean-deep); color: white; border: none; padding: 11px 22px; border-radius: 8px; font-family: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 8px; transition: background 0.15s ease; }
+  .print-btn:hover { background: var(--ocean); }
+  .print-btn::before { content: '⎙'; font-size: 1rem; }
+
+  .masthead { border-bottom: 2.5px solid var(--ocean-deep); padding-bottom: 18px; margin-bottom: 24px; position: relative; }
+  .masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .masthead.physiology::after { background: var(--terra); }
+  .course-line { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .doc-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.85rem; color: var(--ocean-deep); line-height: 1.2; margin-bottom: 6px; }
+  .doc-subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean); }
+
+  .student-block { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; margin: 18px 0 24px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field { display: flex; flex-direction: column; }
+  .field-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field-line { border-bottom: 1.5px solid var(--ink); height: 24px; }
+
+  .instructions { background: var(--sand-soft); border-left: 3px solid var(--terra); padding: 14px 18px; margin-bottom: 26px; font-size: 0.92rem; }
+  .instructions h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+
+  .section { margin: 22px 0; page-break-inside: avoid; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.5rem; color: var(--terra); min-width: 32px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; color: var(--ocean-deep); }
+  .section-anchor { font-size: 0.86rem; color: var(--ocean); font-style: italic; margin-top: 4px; }
+
+  .field-prompt { font-size: 0.92rem; color: var(--ink); margin: 10px 0 6px; line-height: 1.5; }
+  .field-prompt strong { color: var(--ocean-deep); }
+  .field-helper { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+
+  .ruled { background: white; border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; min-height: 5em; background-image: repeating-linear-gradient(transparent, transparent 24px, var(--rule) 24px, var(--rule) 25px); line-height: 25px; }
+  .ruled.short { min-height: 4em; }
+  .ruled.medium { min-height: 6em; }
+  .ruled.long { min-height: 9em; }
+
+  .word-bank { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 14px 18px; margin: 14px 0 18px; }
+  .word-bank-label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .word-bank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 14px; font-size: 0.86rem; color: var(--ink); }
+  .word-bank-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .word-bank-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 600px) {
+    .word-bank-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .label-exercise { margin: 16px 0; page-break-inside: avoid; }
+  .label-exercise-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.05rem; color: var(--terra); margin-bottom: 10px; }
+  .label-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .label-flex.wide-fig { grid-template-columns: 1.4fr 1fr; }
+  .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
+
+  .figure { margin: 0; }
+  .figure-imgbox { background: white; border: 2px dashed var(--ocean); border-radius: 6px; padding: 14px; position: relative; display: flex; align-items: center; justify-content: center; }
+  .figure-imgbox img { max-width: 100%; height: auto; display: block; }
+  .figure-imgbox.img-pending { background: var(--sea-glass-soft); border-color: var(--ocean); }
+  .img-pending-msg { display: none; flex-direction: column; align-items: center; gap: 6px; text-align: center; color: var(--muted); padding: 18px; }
+  .figure-imgbox.img-pending .img-pending-msg { display: flex; }
+  .img-pending-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); }
+  .img-pending-file { font-size: 0.95rem; font-weight: 600; color: var(--terra); background: white; padding: 6px 14px; border-radius: 4px; border: 1px solid var(--terra); }
+  .img-pending-alt { font-size: 0.82rem; font-style: italic; max-width: 360px; line-height: 1.4; margin-top: 4px; }
+
+  .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+  .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .key-list { list-style: none; padding: 0; margin: 0; }
+  .key-list li { padding: 5px 0; border-bottom: 1px dashed var(--line); display: flex; align-items: baseline; gap: 8px; font-size: 0.88rem; }
+  .key-list li:last-child { border-bottom: none; }
+  .key-list.compact li { padding: 3px 0; font-size: 0.84rem; }
+  .key-num { font-weight: 700; color: var(--terra); min-width: 28px; flex-shrink: 0; }
+  .key-blank { flex: 1; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+  .key-fill { flex: 1; }
+
+  @media (max-width: 700px) {
+    .label-flex { grid-template-columns: 1fr; }
+  }
+
+  .draw-box { background: white; border: 1.5px solid var(--ocean-deep); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 280px; background-image: linear-gradient(rgba(214, 228, 231, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(214, 228, 231, 0.4) 1px, transparent 1px); background-size: 24px 24px; background-position: -1px -1px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: white; padding: 1px 6px; border-radius: 2px; }
+  .draw-box.tall { min-height: 360px; }
+  .draw-box.short { min-height: 220px; }
+
+  .calc-box { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; margin: 10px 0; min-height: 80px; }
+  .calc-box-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.86rem; background: white; }
+  .data-table th { text-align: left; padding: 8px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .data-table .input-cell { background: white !important; min-width: 80px; }
+  .data-table .input-cell .cell-line { display: block; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+
+  .case { background: var(--sand-soft); border-left: 3px solid var(--terra); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 14px 0; page-break-inside: avoid; }
+  .case-label { display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; }
+  .case-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .case-body { font-size: 0.9rem; line-height: 1.55; margin-bottom: 8px; }
+  .case-body strong { color: var(--ocean-deep); }
+  .case-prompts { margin-top: 10px; }
+  .case-prompts ol { list-style: decimal; padding-left: 22px; margin: 6px 0; font-size: 0.9rem; }
+  .case-prompts ol li { margin-bottom: 6px; line-height: 1.5; }
+
+  .reference { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean-deep); padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.88rem; }
+  .reference h4 { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 0.96rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .reference p { margin-bottom: 6px; line-height: 1.55; }
+  .reference p:last-child { margin-bottom: 0; }
+  .reference strong { color: var(--terra); font-weight: 600; }
+  .reference .formula { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean-deep); padding: 8px 14px; background: white; border: 1px solid var(--line); border-radius: 4px; display: inline-block; margin: 4px 0; }
+
+  .synthesis { background: linear-gradient(150deg, var(--sand-soft), white); border: 2px solid var(--terra); border-radius: 8px; padding: 16px 20px; margin: 18px 0; page-break-inside: avoid; }
+  .synthesis-label { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 3px 10px; border-radius: 3px; margin-bottom: 8px; }
+  .synthesis-prompt { font-size: 0.96rem; line-height: 1.55; color: var(--ink); margin-bottom: 8px; }
+  .synthesis-prompt strong { color: var(--ocean-deep); }
+
+  .submission { margin-top: 30px; padding: 18px 22px; background: var(--sea-glass-soft); border: 1.5px solid var(--ocean-deep); border-radius: 6px; page-break-inside: avoid; }
+  .submission h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.08rem; color: var(--ocean-deep); margin-bottom: 10px; }
+  .submission p { font-size: 0.86rem; margin-bottom: 6px; }
+
+  /* PARTNER LINK BANNER (cross-link between anatomy & physiology workbooks) */
+  .partner-link { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 12px 16px; margin: 22px 0; font-size: 0.88rem; display: flex; align-items: center; gap: 12px; }
+  .partner-link-label { flex: 1; }
+  .partner-link-label strong { color: var(--ocean-deep); }
+  .partner-link a { color: var(--terra); text-decoration: underline; font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link, .partner-link { display: none !important; }
+    .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
+    .figure-imgbox { border-color: #888; }
+    .figure-imgbox.img-pending { background: white; }
+    @page { size: letter; margin: 0.55in 0.6in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions">
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this workbook or save as PDF">Print / Save PDF</button>
+</div>
+
+<main id="main-content" class="sheet" role="main">
+  <header class="masthead anatomy">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 1 Anatomy Workbook</p>
+    <h1 class="doc-title">Body Basics, Cells &amp; Tissues</h1>
+    <p class="doc-subtitle">Anatomy: identify every structure. Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field">
+      <span class="field-label">Name</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Section</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Date</span>
+      <span class="field-line"></span>
+    </div>
+  </div>
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">How this workbook works</h2>
+    <p><strong>Print, handwrite, scan, submit.</strong> This is the <strong>Anatomy Workbook</strong> for Week 1. Complete this first, then move to the Physiology Workbook for the dry lab.</p>
+    <p><strong>Drawing tasks and synthesis questions are weighted heavily</strong> because they cannot be copied from AI. Numbered labels on figures check that you can identify. Drawings and synthesis questions check that you can build and integrate.</p>
+    <p><strong>Word banks scaffold this first week.</strong> Starting Week 3 you will recall structures from memory without word banks.</p>
+  </section>
+
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 1</p>
+        <h2 class="section-title" id="s1-title">Label the animal cell</h2>
+        <p class="section-anchor">Match each numbered structure on the figure with its name. Use the word bank.</p>
+      </div>
+    </header>
+
+    <div class="word-bank" aria-labelledby="cell-bank-label">
+      <p class="word-bank-label" id="cell-bank-label">Word Bank · Animal Cell Structures</p>
+      <div class="word-bank-grid">
+        <span>Centrosome (centrioles)</span>
+        <span>Cytoplasm (cytosol)</span>
+        <span>Free ribosomes</span>
+        <span>Golgi apparatus</span>
+        <span>Lysosome</span>
+        <span>Mitochondrion</span>
+        <span>Nuclear envelope / nucleus</span>
+        <span>Nucleolus</span>
+        <span>Plasma (cell) membrane</span>
+        <span>Rough endoplasmic reticulum</span>
+        <span>Smooth endoplasmic reticulum</span>
+        <span>Vesicle</span>
+      </div>
+    </div>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 380px;">
+          <img src="" alt="Generic animal cell with 12 numbered structures including nucleus, organelles, and membrane components" data-pending="animal_cell.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">animal_cell.png</span>
+            <span class="img-pending-alt">Generic animal cell with 12 numbered structures including nucleus, organelles, and membrane components</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="cell-key-title">
+        <p class="key-title" id="cell-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">10.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">11.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">12.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 2</p>
+        <h2 class="section-title" id="s2-title">Anatomical position, directional terms, and body planes</h2>
+        <p class="section-anchor">Identify directional terms relative to the body, plus the three body planes.</p>
+      </div>
+    </header>
+
+    <div class="word-bank" aria-labelledby="pos-bank-label">
+      <p class="word-bank-label" id="pos-bank-label">Word Bank · Directional Terms and Planes</p>
+      <div class="word-bank-grid">
+        <span>Anterior (ventral)</span>
+        <span>Distal</span>
+        <span>Frontal (coronal) plane</span>
+        <span>Inferior (caudal)</span>
+        <span>Lateral</span>
+        <span>Medial</span>
+        <span>Posterior (dorsal)</span>
+        <span>Proximal</span>
+        <span>Sagittal plane (midsagittal)</span>
+        <span>Superior (cranial)</span>
+        <span>Transverse (horizontal) plane</span>
+      </div>
+    </div>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 420px;">
+          <img src="" alt="Person standing in anatomical position (palms facing forward) with 11 numbered arrows pointing to directional terms and body planes" data-pending="anatomical_position.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">anatomical_position.png</span>
+            <span class="img-pending-alt">Person standing in anatomical position (palms facing forward) with 11 numbered arrows pointing to directional terms and body planes</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="pos-key-title">
+        <p class="key-title" id="pos-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">10.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">11.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 3</p>
+        <h2 class="section-title" id="s3-title">Body cavities (sagittal section)</h2>
+        <p class="section-anchor">Identify both dorsal cavity divisions and all ventral cavity subdivisions.</p>
+      </div>
+    </header>
+
+    <div class="word-bank" aria-labelledby="cav-bank-label">
+      <p class="word-bank-label" id="cav-bank-label">Word Bank · Body Cavities</p>
+      <div class="word-bank-grid">
+        <span>Abdominal cavity</span>
+        <span>Abdominopelvic cavity</span>
+        <span>Cranial cavity</span>
+        <span>Diaphragm</span>
+        <span>Mediastinum</span>
+        <span>Pelvic cavity</span>
+        <span>Pericardial cavity</span>
+        <span>Pleural cavity</span>
+        <span>Thoracic cavity</span>
+        <span>Vertebral (spinal) cavity</span>
+      </div>
+    </div>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 420px;">
+          <img src="" alt="Sagittal section of the body showing all major cavities including cranial, vertebral, thoracic, abdominal, and pelvic cavities with subdivisions, with 10 numbered arrows" data-pending="body_cavities.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">body_cavities.png</span>
+            <span class="img-pending-alt">Sagittal section of the body showing all major cavities including cranial, vertebral, thoracic, abdominal, and pelvic cavities with subdivisions, with 10 numbered arrows</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="cav-key-title">
+        <p class="key-title" id="cav-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">10.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 4</p>
+        <h2 class="section-title" id="s4-title">Identify the four tissue types and their key features</h2>
+        <p class="section-anchor">Side-by-side comparison. Identify the tissue type AND the distinguishing feature for each numbered structure.</p>
+      </div>
+    </header>
+
+    <div class="word-bank" aria-labelledby="tis-bank-label">
+      <p class="word-bank-label" id="tis-bank-label">Word Bank · Tissue Types and Features</p>
+      <div class="word-bank-grid">
+        <span>Axon</span>
+        <span>Basement membrane</span>
+        <span>Cell body (soma)</span>
+        <span>Connective tissue</span>
+        <span>Epithelial tissue</span>
+        <span>Fibers in matrix (collagen)</span>
+        <span>Multiple peripheral nuclei</span>
+        <span>Muscle tissue</span>
+        <span>Nervous tissue</span>
+        <span>Sparse cells, abundant matrix</span>
+        <span>Striations</span>
+        <span>Tightly packed cells</span>
+      </div>
+    </div>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 440px;">
+          <img src="" alt="Four-quadrant comparison showing epithelial (top-left), connective (top-right), muscle (bottom-left), and nervous (bottom-right) tissue, each with numbered features pointing to identifying characteristics" data-pending="four_tissues.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">four_tissues.png</span>
+            <span class="img-pending-alt">Four-quadrant comparison showing epithelial (top-left), connective (top-right), muscle (bottom-left), and nervous (bottom-right) tissue, each with numbered features pointing to identifying characteristics</span>
+          </div>
+        </div>
+      </figure>
+        <aside class="label-key" aria-labelledby="tis-key-title">
+        <p class="key-title" id="tis-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">10.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">11.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">12.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>Tissue identification synthesis:</strong> in two sentences each, explain what visual feature most reliably identifies each of the four tissue types when you look at a histology slide.</p>
+    <div class="ruled long" role="region" aria-label="Tissue identification synthesis answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Drawing from Memory</p>
+        <h2 class="section-title" id="s5-title">Build the cell membrane from scratch</h2>
+        <p class="section-anchor">Without referencing the figures above, draw a section of plasma membrane showing all components below. Label every component.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>Required components in your drawing</h4>
+      <p>Phospholipid bilayer (with hydrophilic heads and hydrophobic tails clearly distinguished) · integral (transmembrane) protein · peripheral protein · cholesterol · glycoprotein (with carbohydrate chain) · channel protein · extracellular fluid label · cytoplasm label.</p>
+    </div>
+
+    <div class="draw-box tall" role="region" aria-label="Cell membrane drawing space">
+      <span class="draw-box-label">Drawing space</span>
+    </div>
+
+    <div class="synthesis">
+      <span class="synthesis-label">Synthesis question</span>
+      <p class="synthesis-prompt">A patient is given a medication that disrupts cholesterol in their cell membranes. <strong>Predict two physiological consequences</strong> based on what cholesterol does in the membrane. Reference at least one specific structural function from your drawing above.</p>
+      <div class="ruled medium" role="region" aria-label="Cholesterol disruption synthesis answer space"></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s6-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">06</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Tissue Drawings</p>
+        <h2 class="section-title" id="s6-title">Draw simple squamous and stratified squamous epithelium</h2>
+        <p class="section-anchor">From memory. Show the basement membrane, cell shape, layering pattern. Label every component.</p>
+      </div>
+    </header>
+
+    <div class="label-flex">
+      <div>
+        <p class="label-exercise-title">Simple squamous epithelium</p>
+        <div class="draw-box short" role="region" aria-label="Simple squamous epithelium drawing space">
+          <span class="draw-box-label">Drawing space</span>
+        </div>
+        <p class="field-prompt" style="font-size:0.86rem;"><strong>One location in the body where this is found:</strong></p>
+        <div class="ruled short" role="region" aria-label="Location answer space"></div>
+      </div>
+      <div>
+        <p class="label-exercise-title">Stratified squamous epithelium</p>
+        <div class="draw-box short" role="region" aria-label="Stratified squamous epithelium drawing space">
+          <span class="draw-box-label">Drawing space</span>
+        </div>
+        <p class="field-prompt" style="font-size:0.86rem;"><strong>One location in the body where this is found:</strong></p>
+        <div class="ruled short" role="region" aria-label="Location answer space 2"></div>
+      </div>
+    </div>
+
+    <div class="synthesis">
+      <span class="synthesis-label">Synthesis question</span>
+      <p class="synthesis-prompt">In two to three sentences, explain <strong>why simple squamous epithelium lines the alveoli but stratified squamous epithelium lines the esophagus</strong>. Connect cell shape and layering to function in each location.</p>
+      <div class="ruled medium" role="region" aria-label="Tissue function synthesis answer space"></div>
+    </div>
+  </section>
+  <div class="partner-link">
+    <span class="partner-link-label">When you finish this workbook, continue to the <strong>Week 1 Physiology Workbook</strong>.</span>
+    <a href="week01_physiology_workbook.html">Open →</a>
+  </div>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit</h2>
+    <p>1. All four labeling exercises (Sections 01-04) have a name in every numbered blank.</p>
+    <p>2. The tissue identification synthesis paragraph (Section 04) addresses all four tissue types.</p>
+    <p>3. Both drawings (Sections 05-06) have every required component drawn AND labeled.</p>
+    <p>4. Both synthesis questions are answered in full sentences.</p>
+    <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 1 Anatomy Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
+    <p style="margin-top: 10px;"><strong>Then continue to the Week 1 Physiology Workbook</strong> (Tonicity &amp; Burn Resuscitation dry lab).</p>
+  </section>
+
+</main>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w01-anatomy-workbook';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
