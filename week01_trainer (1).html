@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 1 Cognitive Trainer · Body Basics, Cells &amp; Tissues</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557;
+    --ocean: #2a4d6e;
+    --ocean-deep: #14304b;
+    --sea-glass: #d6e4e7;
+    --sea-glass-soft: #eef4f5;
+    --sand: #f5e6d3;
+    --sand-soft: #faf3e8;
+    --terra: #c44536;
+    --terra-soft: #e8a499;
+    --kelp: #5a7553;
+    --paper: #fdfbf7;
+    --line: #c9d4d8;
+    --muted: #6b7d85;
+    --shadow-sm: 0 1px 2px rgba(20, 48, 75, 0.06);
+    --shadow-md: 0 4px 14px rgba(20, 48, 75, 0.08);
+    --shadow-lg: 0 14px 40px rgba(20, 48, 75, 0.12);
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 28px 80px;
+  }
+
+  /* HEADER */
+  header.masthead {
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 36px;
+  }
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 14px;
+  }
+  h1.title {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    color: var(--ocean-deep);
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  h1.title em { font-style: italic; color: var(--terra); }
+  .subtitle {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.12rem;
+    color: var(--ocean);
+    max-width: 720px;
+    margin-bottom: 24px;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 32px;
+    align-items: center;
+    font-size: 0.86rem;
+    color: var(--muted);
+  }
+  .meta-row strong { color: var(--ink); font-weight: 600; }
+  .meta-pill {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    background: var(--sea-glass-soft);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--ocean-deep);
+  }
+  .meta-pill::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--terra);
+  }
+
+  /* PROGRESS BAR */
+  .progress-rail {
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    z-index: 50;
+    padding: 14px 0;
+    margin: 0 -28px 28px;
+    padding-left: 28px;
+    padding-right: 28px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .progress-label {
+    font-size: 0.74rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .progress-track {
+    flex: 1;
+    height: 6px;
+    background: var(--sea-glass);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 100%);
+    width: 0%;
+    transition: width 0.35s ease;
+  }
+  .progress-count {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--ocean-deep);
+    min-width: 50px;
+    text-align: right;
+  }
+  .progress-actions { display: flex; gap: 8px; }
+  .icon-btn {
+    border: 1px solid var(--line);
+    background: white;
+    color: var(--ocean-deep);
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+  }
+  .icon-btn:hover { background: var(--sea-glass-soft); border-color: var(--ocean); }
+
+  /* INTRO PANEL */
+  .intro {
+    background: linear-gradient(135deg, var(--sea-glass-soft) 0%, var(--sand-soft) 100%);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 32px 36px;
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .intro::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 36px; right: 36px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 50%, var(--kelp) 100%);
+    border-radius: 2px;
+  }
+  .intro h2 {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--ocean-deep);
+    margin-bottom: 14px;
+  }
+  .intro p { color: var(--ink); margin-bottom: 12px; max-width: 780px; }
+  .intro p:last-of-type { margin-bottom: 0; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+    font-size: 0.84rem;
+  }
+  .legend-item { display: inline-flex; align-items: center; gap: 8px; }
+  .legend-chip {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .chip-retrieve { background: var(--ocean-deep); color: white; }
+  .chip-build { background: var(--terra); color: white; }
+  .chip-apply { background: var(--kelp); color: white; }
+
+  /* SECTION CARDS */
+  .section {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    margin-bottom: 32px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .section-head {
+    display: flex;
+    gap: 22px;
+    align-items: flex-start;
+    padding: 28px 32px 22px;
+    border-bottom: 1px solid var(--line);
+    background: var(--sand-soft);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s ease;
+  }
+  .section-head:hover { background: var(--sand); }
+  .section-num {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 2.4rem;
+    color: var(--terra);
+    line-height: 1;
+    min-width: 48px;
+  }
+  .section-titles { flex: 1; }
+  .section-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 1.45rem;
+    color: var(--ocean-deep);
+    margin-bottom: 8px;
+  }
+  .section-anchor {
+    font-size: 0.92rem;
+    color: var(--ocean);
+    max-width: 700px;
+  }
+  .section-toggle {
+    font-size: 1.2rem;
+    color: var(--ocean);
+    transition: transform 0.25s ease;
+    margin-top: 8px;
+  }
+  .section.collapsed .section-toggle { transform: rotate(-90deg); }
+  .section-body { padding: 26px 32px 32px; }
+  .section.collapsed .section-body { display: none; }
+
+  /* MODE BLOCKS */
+  .mode-block { margin-bottom: 28px; }
+  .mode-block:last-child { margin-bottom: 0; }
+  .mode-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .mode-tag {
+    display: inline-block;
+    padding: 4px 11px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .mode-name {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ocean-deep);
+  }
+
+  /* PROMPTS */
+  .prompt-list { list-style: none; }
+  .prompt-list li {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--line);
+    align-items: flex-start;
+  }
+  .prompt-list li:last-child { border-bottom: none; }
+  .prompt-num {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--terra);
+    min-width: 22px;
+  }
+  .prompt-text { flex: 1; }
+  .prompt-text .reveal-btn {
+    margin-left: 8px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ocean);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: all 0.15s ease;
+  }
+  .prompt-text .reveal-btn:hover { background: var(--ocean); color: white; }
+  .answer {
+    display: none;
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: var(--sea-glass-soft);
+    border-left: 3px solid var(--ocean);
+    border-radius: 4px;
+    font-size: 0.92rem;
+    color: var(--ocean-deep);
+    font-family: 'Lora', serif;
+  }
+  .answer.show { display: block; }
+  .answer strong { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; }
+
+  /* DRAWING/WRITING BOXES */
+  .work-box {
+    margin-top: 14px;
+    background: white;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius-sm);
+    padding: 18px 20px;
+    min-height: 120px;
+    background-image: linear-gradient(transparent calc(1.7em - 1px), var(--line) 1px);
+    background-size: 100% 1.7em;
+    line-height: 1.7em;
+  }
+  .work-box.tall { min-height: 200px; }
+  .work-box.draw {
+    background-image:
+      linear-gradient(rgba(201, 212, 216, 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201, 212, 216, 0.4) 1px, transparent 1px);
+    background-size: 22px 22px;
+    line-height: normal;
+    min-height: 240px;
+  }
+  .work-label {
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  /* TWO-COLUMN GRID */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  /* CALCULATOR WIDGETS */
+  .calc-card {
+    background: linear-gradient(155deg, var(--ocean-deep) 0%, var(--ocean) 100%);
+    color: white;
+    border-radius: var(--radius-md);
+    padding: 24px 26px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow-md);
+  }
+  .calc-card h4 {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 1.18rem;
+    margin-bottom: 4px;
+  }
+  .calc-card .calc-sub {
+    font-size: 0.82rem;
+    opacity: 0.78;
+    margin-bottom: 18px;
+  }
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .calc-grid label {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+    opacity: 0.8;
+  }
+  .calc-grid input, .calc-grid select {
+    width: 100%;
+    padding: 9px 12px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+  }
+  .calc-grid input:focus, .calc-grid select:focus {
+    outline: none;
+    border-color: var(--terra-soft);
+    background: rgba(255,255,255,0.18);
+  }
+  .calc-grid input::placeholder { color: rgba(255,255,255,0.4); }
+  .calc-grid select option { color: var(--ink); }
+  .calc-result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    margin-top: 8px;
+  }
+  .calc-result-label {
+    font-size: 0.78rem;
+    opacity: 0.78;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .calc-result-value {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 1.65rem;
+  }
+  .calc-result-value .unit { font-size: 0.85rem; opacity: 0.7; margin-left: 4px; }
+  .calc-interp {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 6px;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    min-height: 38px;
+  }
+  .calc-interp em { font-style: normal; color: var(--terra-soft); font-weight: 600; }
+
+  /* TISSUE TABLE */
+  .tissue-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin: 14px 0;
+  }
+  .tissue-table th {
+    text-align: left;
+    padding: 10px 12px;
+    background: var(--ocean-deep);
+    color: white;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .tissue-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  .tissue-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .tissue-table .blank-cell {
+    cursor: pointer;
+    color: var(--muted);
+    font-style: italic;
+    font-family: 'Lora', serif;
+  }
+  .tissue-table .blank-cell:hover { background: var(--sea-glass-soft); }
+  .tissue-table .blank-cell.revealed {
+    color: var(--ink);
+    font-style: normal;
+    font-family: inherit;
+  }
+
+  /* CHECKLIST */
+  .check-prompt {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 0;
+  }
+  .check-prompt input[type="checkbox"] {
+    width: 18px; height: 18px;
+    margin-top: 4px;
+    accent-color: var(--terra);
+    cursor: pointer;
+  }
+  .check-prompt label {
+    flex: 1;
+    cursor: pointer;
+    font-size: 0.96rem;
+  }
+
+  /* COMPLETION FOOTER */
+  .section-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--line);
+  }
+  .complete-btn {
+    background: white;
+    border: 2px solid var(--ocean-deep);
+    color: var(--ocean-deep);
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.86rem;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: all 0.18s ease;
+  }
+  .complete-btn:hover { background: var(--ocean-deep); color: white; }
+  .complete-btn.done {
+    background: var(--kelp);
+    color: white;
+    border-color: var(--kelp);
+  }
+  .complete-btn.done::before { content: '✓ '; }
+
+  /* CLOSING / SUBMISSION */
+  .closing {
+    background: linear-gradient(150deg, var(--ocean-deep) 0%, var(--ink) 100%);
+    color: white;
+    border-radius: var(--radius-lg);
+    padding: 36px 38px;
+    margin-top: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, var(--terra) 0%, transparent 70%);
+    opacity: 0.3;
+  }
+  .closing h3 {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .closing p { opacity: 0.88; max-width: 700px; margin-bottom: 14px; position: relative; }
+  .closing-steps {
+    list-style: none;
+    counter-reset: step;
+    margin-top: 18px;
+    position: relative;
+  }
+  .closing-steps li {
+    counter-increment: step;
+    padding: 8px 0 8px 38px;
+    position: relative;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .closing-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 6px;
+    width: 26px; height: 26px;
+    background: var(--terra);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  /* PRINT STYLES */
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .progress-rail, .icon-btn, .reveal-btn, .term-options button, .term-next, .complete-btn, #print-btn { display: none !important; }
+    .answer.show { background: white; border-color: var(--ink); }
+    .section { break-inside: avoid; box-shadow: none; border: 1.5px solid var(--ink); page-break-inside: avoid; }
+    .section.collapsed .section-body { display: block !important; }
+    .calc-card { background: white; color: var(--ink); border: 1.5px solid var(--ink); }
+    .calc-card input { background: white; color: var(--ink); border: 1px solid var(--ink); }
+    .work-box { min-height: 140px; }
+    .closing { background: white; color: var(--ink); border: 2px solid var(--ink); }
+    .closing-steps li { border-color: var(--line); }
+    @page { size: letter; margin: 0.55in; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="eyebrow">BIO 431 · Human Anatomy &amp; Physiology · Week 01</div>
+    <h1 class="title">Body Basics, <em>Cells &amp; Tissues</em></h1>
+    <p class="subtitle">The foundation week. You learn the language, the levels, the molecules of life, the cell, and the four tissues that build every organ in the body.</p>
+    <div class="meta-row">
+      <span class="meta-pill">OpenStax · Ch 1, 4 (Read) · Ch 2, 3 (Focus)</span>
+      <span><strong>Cognitive load:</strong> 5 modes across 7 sections</span>
+      <span><strong>Estimated time:</strong> 90 to 120 minutes</span>
+      <span><strong>Author:</strong> Dr. Sharilyn Rennie</span>
+    </div>
+  </header>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-rail">
+    <span class="progress-label">Trainer Progress</span>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount">0 / 7</span>
+    <div class="progress-actions">
+      <button class="icon-btn" id="print-btn" title="Print" onclick="window.print()">⎙</button>
+      <button class="icon-btn" id="reset-btn" title="Reset progress">↺</button>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <h2>How this trainer works</h2>
+    <p>Every weekly trainer in BIO 431 cycles you through three cognitive modes, plus a clinical apply step. The point is not to memorize. The point is to retrieve, build, and use. You will move through the chapter the way a clinician moves through a patient: language first, then mechanism, then judgment.</p>
+    <p>This trainer is your <strong>study tool</strong>. Use it as you read OpenStax. Click to reveal answers, run the quiz, play with the calculators. The companion <strong>Week 1 Worksheet</strong> is what you turn in. It captures only the drawings, predictions, calculations, and reflections. Print the worksheet, work through it as you study, and submit it when the trainer's progress bar shows 7 of 7 sections complete.</p>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-chip chip-retrieve">Retrieve</span> Recall the term, structure, or fact</span>
+      <span class="legend-item"><span class="legend-chip chip-build">Build</span> Draw, label, or construct the mechanism</span>
+      <span class="legend-item"><span class="legend-chip chip-apply">Apply</span> Predict, calculate, or interpret</span>
+    </div>
+  </div>
+
+  <!-- SECTION 01 — ANATOMICAL LANGUAGE -->
+  <section class="section" data-section="s1">
+    <div class="section-head" onclick="toggleSection('s1')">
+      <div class="section-num">01</div>
+      <div class="section-titles">
+        <div class="section-eyebrow">Orientation · OpenStax 1.6</div>
+        <h3 class="section-title">Anatomical Language: Position, Planes, Cavities, Directions</h3>
+        <p class="section-anchor">Anatomy is a language with rules. Before you can describe a structure or a finding, you have to know how to locate it on the body. Every clinical chart you ever read assumes you speak this language fluently.</p>
+      </div>
+      <div class="section-toggle">▾</div>
+    </div>
+    <div class="section-body">
+
+      <!-- Retrieve -->
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-retrieve">Retrieve</span>
+          <span class="mode-name">Recall the language</span>
+        </div>
+        <ol class="prompt-list">
+          <li>
+            <span class="prompt-num">1.</span>
+            <div class="prompt-text">
+              Define <strong>anatomical position</strong>. Why does every directional term in anatomy assume the body is in this position?
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer">Anatomical position: standing erect, feet parallel and slightly apart, eyes facing forward, arms at the sides, palms facing forward (supinated), thumbs pointing away from the body. All directional terms (medial, lateral, anterior, posterior) reference this position so that descriptions are unambiguous regardless of how the patient is currently oriented.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">2.</span>
+            <div class="prompt-text">
+              List the three primary anatomical planes and the kind of section each one produces.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Sagittal:</strong> divides body into left and right portions (midsagittal = equal halves). <strong>Frontal (coronal):</strong> divides body into anterior and posterior portions. <strong>Transverse (horizontal, axial):</strong> divides body into superior and inferior portions. Imaging studies almost always reference one of these three planes.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">3.</span>
+            <div class="prompt-text">
+              Name the two major body cavities and identify which one houses the heart, lungs, and digestive organs.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Dorsal cavity</strong> (cranial + vertebral) houses the brain and spinal cord. <strong>Ventral cavity</strong> (thoracic + abdominopelvic) houses the heart, lungs, digestive organs, and reproductive organs. The diaphragm separates thoracic from abdominopelvic.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">4.</span>
+            <div class="prompt-text">
+              Define each pair: <em>proximal / distal</em>, <em>superficial / deep</em>, <em>medial / lateral</em>, <em>anterior / posterior</em>.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Proximal / distal:</strong> closer to / farther from the trunk attachment (used for limbs). <strong>Superficial / deep:</strong> closer to / farther from the body surface. <strong>Medial / lateral:</strong> closer to / farther from the body midline. <strong>Anterior (ventral) / posterior (dorsal):</strong> toward the front / toward the back.</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Build (interactive game) -->
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-build">Build</span>
+          <span class="mode-name">Terminology lab (interactive)</span>
+        </div>
+        <div id="termQuiz"></div>
+      </div>
+
+      <!-- Apply -->
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-apply">Apply</span>
+          <span class="mode-name">Translate clinical descriptions</span>
+        </div>
+        <p style="margin-bottom: 12px; color: var(--ocean);">For each clinical sentence below, rewrite it using precise anatomical terminology. Use directional terms, planes, and cavity names where appropriate.</p>
+        <div class="work-label">a. "The patient has a wound on the front of the lower leg, near the ankle."</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. "The MRI was sliced into top-down images that separate the head into upper and lower portions."</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. "The tumor is located deep to the skin of the abdomen, on the right side, below the diaphragm."</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer">
+        <span style="font-size:0.84rem; color:var(--muted);">Section 01 of 07</span>
+        <button class="complete-btn" data-complete="s1" onclick="markComplete(this)">Mark complete</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 — LEVELS OF ORGANIZATION & HOMEOSTASIS -->
+  <section class="section" data-section="s2">
+    <div class="section-head" onclick="toggleSection('s2')">
+      <div class="section-num">02</div>
+      <div class="section-titles">
+        <div class="section-eyebrow">Concept Map · OpenStax 1.2, 1.5</div>
+        <h3 class="section-title">Levels of Organization &amp; Homeostasis</h3>
+        <p class="section-anchor">Every system in this course is built from the same six structural levels and the same regulatory logic. Get this right in week one and the rest of the semester compounds in your favor.</p>
+      </div>
+      <div class="section-toggle">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-retrieve">Retrieve</span>
+          <span class="mode-name">The six levels</span>
+        </div>
+        <ol class="prompt-list">
+          <li>
+            <span class="prompt-num">1.</span>
+            <div class="prompt-text">
+              List the six levels of structural organization, smallest to largest. Give one example of each.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Chemical</strong> (atoms, molecules, e.g., water, glucose) → <strong>Cellular</strong> (e.g., red blood cell, hepatocyte) → <strong>Tissue</strong> (e.g., simple squamous epithelium) → <strong>Organ</strong> (e.g., heart, kidney) → <strong>Organ system</strong> (e.g., cardiovascular) → <strong>Organism</strong> (the human body integrated as a whole).</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">2.</span>
+            <div class="prompt-text">
+              Define <strong>homeostasis</strong>. Why is it described as <em>dynamic</em>, not static?
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer">Homeostasis is the maintenance of relatively stable internal conditions despite continuous changes inside and outside the body. It is dynamic because regulated variables (temperature, pH, glucose, blood pressure) constantly fluctuate around a set point. The body does not hold a fixed value, it corrects deviations through feedback loops in real time.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">3.</span>
+            <div class="prompt-text">
+              Identify the three components of any feedback loop, and give the standard sequence of steps.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Receptor</strong> (sensor) detects a change in the regulated variable → <strong>Control center</strong> (often the brain or an endocrine gland) compares input to the set point and decides on a response → <strong>Effector</strong> (muscle or gland) carries out the response that returns the variable toward the set point.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">4.</span>
+            <div class="prompt-text">
+              Distinguish <strong>negative feedback</strong> from <strong>positive feedback</strong>. Which one maintains homeostasis, and why?
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Negative feedback</strong> reverses the change in the variable, restoring it toward the set point. This is the dominant mode of homeostasis (e.g., body temperature regulation, blood glucose). <strong>Positive feedback</strong> amplifies the change, driving the variable further from the starting point. It is used for events that need to complete rapidly and definitively (e.g., labor contractions, blood clotting, action potentials).</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-build">Build</span>
+          <span class="mode-name">Draw a feedback loop</span>
+        </div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">In the box below, draw the negative feedback loop that controls body temperature when you are <em>too hot</em>. Label the receptor, control center, effector, and the response. Show the arrows that close the loop.</p>
+        <div class="work-box draw"></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-apply">Apply</span>
+          <span class="mode-name">Predict the outcome</span>
+        </div>
+        <div class="work-label">a. A patient enters the emergency department with a core temperature of 35.4°C. What feedback responses should you expect to see if their thermoregulation is intact? (Sweating? Shivering? Skin color change? Behavioral?)</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Childbirth uses positive feedback (oxytocin and uterine contractions). Why is positive feedback the right design choice here, even though it is unstable?</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer">
+        <span style="font-size:0.84rem; color:var(--muted);">Section 02 of 07</span>
+        <button class="complete-btn" data-complete="s2" onclick="markComplete(this)">Mark complete</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 — CHEMICAL LEVEL -->
+  <section class="section" data-section="s3">
+    <div class="section-head" onclick="toggleSection('s3')">
+      <div class="section-num">03</div>
+      <div class="section-titles">
+        <div class="section-eyebrow">Focus · OpenStax 2.4, 2.5</div>
+        <h3 class="section-title">Chemical Foundations: Water, pH, Biomolecules</h3>
+        <p class="section-anchor">You do not need to memorize every electron orbital. You do need to know the chemistry that drives physiology: why water is special, what pH does to proteins, and how the four biomolecules show up in the body.</p>
+      </div>
+      <div class="section-toggle">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-retrieve">Retrieve</span>
+          <span class="mode-name">Inorganic and organic compounds</span>
+        </div>
+        <ol class="prompt-list">
+          <li>
+            <span class="prompt-num">1.</span>
+            <div class="prompt-text">
+              Name four properties of water that make it essential to physiology, and explain why each one matters in the body.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Polarity</strong> (universal solvent, dissolves ions and many biomolecules); <strong>high specific heat</strong> (resists temperature changes, stabilizes core temperature); <strong>cohesion / surface tension</strong> (alveolar fluid behavior, blood column integrity); <strong>participates as a reactant</strong> in hydrolysis and dehydration synthesis (every digestive reaction, every protein synthesis step). Water also lubricates (synovial fluid, serous membranes) and cushions (CSF, amniotic fluid).</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">2.</span>
+            <div class="prompt-text">
+              Define pH. What is the normal pH of arterial blood, and what is the difference between an acid and a base?
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer">pH is the negative log of the hydrogen ion concentration. Lower pH = more H⁺ = more acidic. Normal arterial blood pH is 7.35 to 7.45, slightly basic. An <strong>acid</strong> donates H⁺ (raises [H⁺], lowers pH). A <strong>base</strong> accepts H⁺ (lowers [H⁺], raises pH). A <strong>buffer</strong> (e.g., bicarbonate) resists pH change by absorbing or releasing H⁺ as conditions shift.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">3.</span>
+            <div class="prompt-text">
+              List the four classes of organic biomolecules. For each, give the building block (monomer) and one major physiological role.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Carbohydrates:</strong> monomer = monosaccharide (glucose). Role: primary fuel, glycogen storage, glycoproteins on cell surfaces. <strong>Lipids:</strong> "monomer" varies (fatty acids + glycerol; cholesterol). Role: membrane bilayer (phospholipids), long-term energy (triglycerides), steroid hormones (cholesterol-derived). <strong>Proteins:</strong> monomer = amino acid. Role: enzymes, structural fibers (collagen, keratin), receptors, transporters, antibodies, contractile machinery. <strong>Nucleic acids:</strong> monomer = nucleotide. Role: information storage (DNA), protein synthesis (RNA), energy currency (ATP).</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">4.</span>
+            <div class="prompt-text">
+              What does it mean for a protein to be <strong>denatured</strong>? Name two physiological conditions that can denature proteins.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer">Denaturation is the loss of a protein's three-dimensional shape, which destroys its function (because protein function depends on shape). Causes include extreme temperature (high fever above 41°C, severe hypothermia), extreme pH (gastric acid, severe acidosis), and certain chemicals or heavy metals. Once denatured, most proteins cannot refold and the cell either repairs or degrades them.</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-build">Build</span>
+          <span class="mode-name">Macromolecule comparison</span>
+        </div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell below to reveal the answer. Use this as a self-quiz: cover the answer with your hand, say it out loud, then click to check.</p>
+        <table class="tissue-table">
+          <thead>
+            <tr><th>Biomolecule</th><th>Monomer</th><th>Bond linking monomers</th><th>Major function</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Carbohydrate</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Monosaccharide')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Glycosidic bond')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Energy, structural support')">click to reveal</td>
+            </tr>
+            <tr>
+              <td>Lipid (triglyceride)</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Glycerol + 3 fatty acids')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Ester bond')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Long-term energy storage, insulation')">click to reveal</td>
+            </tr>
+            <tr>
+              <td>Protein</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Amino acid')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Peptide bond')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Enzymes, structure, transport, signaling')">click to reveal</td>
+            </tr>
+            <tr>
+              <td>Nucleic acid</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Nucleotide')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Phosphodiester bond')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Information storage and transfer')">click to reveal</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-apply">Apply</span>
+          <span class="mode-name">pH calculator</span>
+        </div>
+        <p style="margin-bottom: 12px; color: var(--ocean);">Use the live calculator to compare hydrogen ion concentration at different pH values. Notice the logarithmic scale: a one-unit drop in pH is a tenfold increase in [H⁺].</p>
+        <div class="calc-card">
+          <h4>pH and [H⁺] converter</h4>
+          <div class="calc-sub">Enter a pH value to see the corresponding hydrogen ion concentration.</div>
+          <div class="calc-grid" style="grid-template-columns: 1fr;">
+            <div>
+              <label>pH value</label>
+              <input type="number" id="phInput" step="0.01" min="0" max="14" placeholder="e.g., 7.40" oninput="calcPH()">
+            </div>
+          </div>
+          <div class="calc-result">
+            <span class="calc-result-label">[H⁺] concentration</span>
+            <span class="calc-result-value" id="phResult">— <span class="unit">mol/L</span></span>
+          </div>
+          <div class="calc-interp" id="phInterp">Enter a pH value to see the interpretation.</div>
+        </div>
+        <div class="work-label">Predict: A patient's blood pH falls from 7.40 to 7.20. By what factor has the [H⁺] increased? What is this acid base disturbance called?</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer">
+        <span style="font-size:0.84rem; color:var(--muted);">Section 03 of 07</span>
+        <button class="complete-btn" data-complete="s3" onclick="markComplete(this)">Mark complete</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 — CELLULAR LEVEL -->
+  <section class="section" data-section="s4">
+    <div class="section-head" onclick="toggleSection('s4')">
+      <div class="section-num">04</div>
+      <div class="section-titles">
+        <div class="section-eyebrow">Focus · OpenStax 3.1, 3.2</div>
+        <h3 class="section-title">Cellular Architecture: Membrane, Transport, Organelles</h3>
+        <p class="section-anchor">The plasma membrane is the most heavily tested concept in this section because it is the gatekeeper of every physiological process. Master it now. Every chapter we cover from week 2 forward depends on it.</p>
+      </div>
+      <div class="section-toggle">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-retrieve">Retrieve</span>
+          <span class="mode-name">Membrane and organelle essentials</span>
+        </div>
+        <ol class="prompt-list">
+          <li>
+            <span class="prompt-num">1.</span>
+            <div class="prompt-text">
+              Describe the <strong>fluid mosaic model</strong> of the plasma membrane. What are the four molecular components and where is each one located?
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer">A phospholipid bilayer with hydrophilic phosphate heads facing the extracellular and intracellular fluids and hydrophobic fatty acid tails facing inward. Embedded in the bilayer: <strong>cholesterol</strong> (stabilizes fluidity), <strong>integral proteins</strong> (span the bilayer, function as channels, carriers, receptors), <strong>peripheral proteins</strong> (attached to one side, often anchor cytoskeleton or signal), and <strong>glycoproteins / glycolipids</strong> (carbohydrate chains on the extracellular side, function in cell recognition).</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">2.</span>
+            <div class="prompt-text">
+              Compare <strong>passive</strong> and <strong>active</strong> transport. Which one requires ATP and why?
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Passive transport</strong> (simple diffusion, facilitated diffusion, osmosis) moves substances <em>down</em> their concentration gradient. No ATP required; the gradient itself provides the energy. <strong>Active transport</strong> moves substances <em>against</em> their concentration gradient. ATP is required because work must be done to push molecules from low to high concentration. The Na⁺/K⁺ pump is the classic example: 3 Na⁺ out, 2 K⁺ in, per ATP hydrolyzed.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">3.</span>
+            <div class="prompt-text">
+              Define <strong>tonicity</strong>. What happens to a red blood cell placed in a hypertonic solution versus a hypotonic solution?
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer">Tonicity is the relative solute concentration of a solution compared to the inside of the cell, and it predicts which way water will move by osmosis. <strong>Hypertonic</strong> (more solute outside): water leaves the cell, the cell shrinks (crenation in RBCs). <strong>Hypotonic</strong> (less solute outside): water enters the cell, the cell swells and may burst (hemolysis in RBCs). <strong>Isotonic:</strong> no net water movement, cell stays the same size. This principle is why IV fluids are matched to plasma osmolarity.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">4.</span>
+            <div class="prompt-text">
+              Match each organelle to its main job: <em>mitochondrion, rough ER, smooth ER, Golgi apparatus, lysosome, ribosome, nucleus</em>.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Nucleus:</strong> houses DNA, controls gene expression. <strong>Ribosome:</strong> protein synthesis (free ribosomes make cytosolic proteins; bound ribosomes make secreted/membrane proteins). <strong>Rough ER:</strong> ribosome-studded, synthesizes and folds proteins for export. <strong>Smooth ER:</strong> lipid synthesis, detoxification, calcium storage (especially in muscle). <strong>Golgi apparatus:</strong> modifies, sorts, and packages proteins/lipids for secretion or delivery. <strong>Lysosome:</strong> digestive sac with hydrolytic enzymes; breaks down debris and worn organelles. <strong>Mitochondrion:</strong> ATP production via oxidative phosphorylation (the cell's power plant).</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-build">Build</span>
+          <span class="mode-name">Draw the membrane</span>
+        </div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Draw a section of plasma membrane in the box below. Include and label: phospholipid bilayer, hydrophilic heads, hydrophobic tails, cholesterol, an integral protein channel, a peripheral protein, and a glycoprotein. Indicate which side is extracellular and which is intracellular.</p>
+        <div class="work-box draw"></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-apply">Apply</span>
+          <span class="mode-name">Predict the response</span>
+        </div>
+        <div class="work-label">a. A nurse accidentally infuses a patient with pure water IV instead of saline. Predict what happens to the patient's red blood cells. What term describes this event?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A pancreatic acinar cell secretes large amounts of digestive enzymes. Predict which organelle would be unusually abundant in this cell and explain why.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. Mature red blood cells have no nucleus and no mitochondria. Predict two consequences of these absences for RBC physiology.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer">
+        <span style="font-size:0.84rem; color:var(--muted);">Section 04 of 07</span>
+        <button class="complete-btn" data-complete="s4" onclick="markComplete(this)">Mark complete</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 05 — TISSUES -->
+  <section class="section" data-section="s5">
+    <div class="section-head" onclick="toggleSection('s5')">
+      <div class="section-num">05</div>
+      <div class="section-titles">
+        <div class="section-eyebrow">Read · OpenStax Ch 4</div>
+        <h3 class="section-title">The Four Tissue Types</h3>
+        <p class="section-anchor">Every organ in the body is built from some combination of these four tissues. Lab Exam 1 will require you to identify them under the microscope and name their functions. Spend time here.</p>
+      </div>
+      <div class="section-toggle">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-retrieve">Retrieve</span>
+          <span class="mode-name">Tissue catalog</span>
+        </div>
+        <ol class="prompt-list">
+          <li>
+            <span class="prompt-num">1.</span>
+            <div class="prompt-text">
+              List the four primary tissue types and the general function of each one.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Epithelial:</strong> covers, lines, secretes. Forms barriers and glands. <strong>Connective:</strong> binds, supports, protects, transports. Most diverse tissue type (includes blood, bone, fat). <strong>Muscle:</strong> contracts to produce movement. Three subtypes (skeletal, cardiac, smooth). <strong>Nervous:</strong> generates and conducts electrical signals for rapid communication. Includes neurons and glial cells.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">2.</span>
+            <div class="prompt-text">
+              Epithelial tissue is classified by two features. Name them and give the categories within each.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Number of cell layers:</strong> simple (one layer), stratified (multiple layers), pseudostratified (one layer that looks multilayered). <strong>Cell shape:</strong> squamous (flat), cuboidal (cube-shaped), columnar (taller than wide). Combinations describe specific epithelia: simple squamous (alveoli, capillaries), stratified squamous (skin, esophagus), simple columnar (most of GI tract), pseudostratified ciliated columnar (respiratory tract).</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">3.</span>
+            <div class="prompt-text">
+              What three things does <strong>connective tissue proper</strong> always contain? Why is the matrix the defining feature of connective tissue?
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer">Every connective tissue contains <strong>cells</strong> (often relatively few), <strong>protein fibers</strong> (collagen, elastic, reticular), and <strong>ground substance</strong> (the fluid, gel, or solid that fills the space between cells and fibers). Together fibers and ground substance make the <strong>extracellular matrix</strong>. The matrix, not the cells, gives each connective tissue its mechanical properties: bone is hard because its matrix is calcified, blood is fluid because its matrix is plasma, tendon is tough because its matrix is dense regular collagen.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">4.</span>
+            <div class="prompt-text">
+              Compare the three types of muscle tissue on these features: voluntary or involuntary, striated or non-striated, single or multiple nuclei, and one location example.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>Skeletal:</strong> voluntary, striated, multinucleated, attached to bones (e.g., biceps brachii). <strong>Cardiac:</strong> involuntary, striated, usually one (sometimes two) central nuclei, intercalated discs, found only in the heart. <strong>Smooth:</strong> involuntary, non-striated, single central nucleus, spindle-shaped, found in walls of hollow organs (GI tract, blood vessels, uterus, bladder).</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-build">Build</span>
+          <span class="mode-name">Tissue identification chart</span>
+        </div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the example tissue. Practice this until you can name all four columns without looking.</p>
+        <table class="tissue-table">
+          <thead>
+            <tr><th>Need a barrier?</th><th>Need to connect?</th><th>Need to move?</th><th>Need to signal?</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Epithelial</strong></td>
+              <td><strong>Connective</strong></td>
+              <td><strong>Muscle</strong></td>
+              <td><strong>Nervous</strong></td>
+            </tr>
+            <tr>
+              <td class="blank-cell" onclick="revealCell(this, 'Skin epidermis')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Bone, blood, tendon, fat')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Skeletal, cardiac, smooth')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Brain, spinal cord, nerves')">click to reveal</td>
+            </tr>
+            <tr>
+              <td class="blank-cell" onclick="revealCell(this, 'Polarity, avascular, regenerative')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Defining matrix, vascularized')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Excitable, contractile')">click to reveal</td>
+              <td class="blank-cell" onclick="revealCell(this, 'Excitable, non-mitotic')">click to reveal</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top: 18px;">
+          <div class="work-label">Draw a simple columnar epithelium with goblet cells. Label the apical surface, basal surface, basement membrane, nucleus, and goblet cell.</div>
+          <div class="work-box draw"></div>
+        </div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-apply">Apply</span>
+          <span class="mode-name">Tissue logic</span>
+        </div>
+        <div class="work-label">a. The lining of the small intestine is simple columnar with microvilli. Justify each design choice (why not stratified? why columnar? why microvilli?).</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. The esophagus is lined with stratified squamous epithelium. The stomach is lined with simple columnar. Explain why the same digestive tract uses two different epithelia.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. After a deep cut, scar tissue forms instead of original tissue. What kind of tissue is scar tissue, and why does the body default to it instead of regenerating the original?</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer">
+        <span style="font-size:0.84rem; color:var(--muted);">Section 05 of 07</span>
+        <button class="complete-btn" data-complete="s5" onclick="markComplete(this)">Mark complete</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 06 — CLINICAL CALCULATORS -->
+  <section class="section" data-section="s6">
+    <div class="section-head" onclick="toggleSection('s6')">
+      <div class="section-num">06</div>
+      <div class="section-titles">
+        <div class="section-eyebrow">Lab Apply · Measure, Calculate, Interpret</div>
+        <h3 class="section-title">Clinical Calculators: BMI &amp; Body Surface Area</h3>
+        <p class="section-anchor">This week your lab introduces the measure, calculate, interpret pattern. Two calculations show up everywhere in clinical practice. Use the live tools below to learn the formulas, then run the apply problems by hand.</p>
+      </div>
+      <div class="section-toggle">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-retrieve">Retrieve</span>
+          <span class="mode-name">Why we calculate</span>
+        </div>
+        <ol class="prompt-list">
+          <li>
+            <span class="prompt-num">1.</span>
+            <div class="prompt-text">
+              Write the formula for BMI in metric units. What does BMI estimate?
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>BMI = weight (kg) / height (m)²</strong>. BMI estimates body fat indirectly using height and weight. It is a screening tool, not a diagnosis. It does not distinguish lean mass from fat mass, so muscular athletes and frail older adults can have misleading values.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">2.</span>
+            <div class="prompt-text">
+              Write the Mosteller formula for Body Surface Area. Why is BSA used instead of weight alone for many medications?
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer"><strong>BSA (m²) = √(height in cm × weight in kg / 3600)</strong>. BSA correlates better than body weight with metabolic rate, blood volume, and cardiac output. Many chemotherapy and pediatric drugs are dosed per m² of BSA so that dose scales with physiological size, not just mass.</div>
+            </div>
+          </li>
+          <li>
+            <span class="prompt-num">3.</span>
+            <div class="prompt-text">
+              List the standard adult BMI categories.
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+              <div class="answer">Underweight: less than 18.5. Normal: 18.5 to 24.9. Overweight: 25.0 to 29.9. Obesity class I: 30.0 to 34.9. Obesity class II: 35.0 to 39.9. Obesity class III: 40.0 or greater. (CDC and WHO adult criteria.)</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-apply">Apply</span>
+          <span class="mode-name">Live calculators</span>
+        </div>
+
+        <div class="grid-2">
+          <!-- BMI -->
+          <div class="calc-card">
+            <h4>BMI Calculator</h4>
+            <div class="calc-sub">Measure, calculate, interpret. Enter height and weight in any common unit.</div>
+            <div class="calc-grid">
+              <div>
+                <label>Height</label>
+                <input type="number" id="bmiHeight" step="0.1" placeholder="e.g., 165" oninput="calcBMI()">
+              </div>
+              <div>
+                <label>Height unit</label>
+                <select id="bmiHeightUnit" onchange="calcBMI()">
+                  <option value="cm">cm</option>
+                  <option value="m">m</option>
+                  <option value="in">inches</option>
+                </select>
+              </div>
+              <div>
+                <label>Weight</label>
+                <input type="number" id="bmiWeight" step="0.1" placeholder="e.g., 60" oninput="calcBMI()">
+              </div>
+              <div>
+                <label>Weight unit</label>
+                <select id="bmiWeightUnit" onchange="calcBMI()">
+                  <option value="kg">kg</option>
+                  <option value="lb">lb</option>
+                </select>
+              </div>
+            </div>
+            <div class="calc-result">
+              <span class="calc-result-label">BMI</span>
+              <span class="calc-result-value" id="bmiResult">— <span class="unit">kg/m²</span></span>
+            </div>
+            <div class="calc-interp" id="bmiInterp">Enter height and weight to calculate.</div>
+          </div>
+
+          <!-- BSA -->
+          <div class="calc-card">
+            <h4>BSA Calculator (Mosteller)</h4>
+            <div class="calc-sub">BSA = √(height cm × weight kg / 3600). Used for dosing, fluid resuscitation, and scaling.</div>
+            <div class="calc-grid">
+              <div>
+                <label>Height</label>
+                <input type="number" id="bsaHeight" step="0.1" placeholder="e.g., 165" oninput="calcBSA()">
+              </div>
+              <div>
+                <label>Height unit</label>
+                <select id="bsaHeightUnit" onchange="calcBSA()">
+                  <option value="cm">cm</option>
+                  <option value="in">inches</option>
+                </select>
+              </div>
+              <div>
+                <label>Weight</label>
+                <input type="number" id="bsaWeight" step="0.1" placeholder="e.g., 60" oninput="calcBSA()">
+              </div>
+              <div>
+                <label>Weight unit</label>
+                <select id="bsaWeightUnit" onchange="calcBSA()">
+                  <option value="kg">kg</option>
+                  <option value="lb">lb</option>
+                </select>
+              </div>
+            </div>
+            <div class="calc-result">
+              <span class="calc-result-label">BSA (Mosteller)</span>
+              <span class="calc-result-value" id="bsaResult">— <span class="unit">m²</span></span>
+            </div>
+            <div class="calc-interp" id="bsaInterp">Average adult BSA is about 1.6 to 2.0 m².</div>
+          </div>
+        </div>
+
+        <p style="margin: 22px 0 12px; font-weight: 600; color: var(--ocean-deep);">Hand calculation practice (do not use the calculators above):</p>
+        <div class="work-label">a. Patient: 168 cm, 72 kg. Calculate BMI to one decimal place. Show the formula and units. Classify the result.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Same patient. Calculate BSA using Mosteller. Show your work to two decimal places.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A chemotherapy drug is dosed at 80 mg/m². Using the BSA you calculated in part b, what dose should the patient receive? Round to the nearest milligram.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer">
+        <span style="font-size:0.84rem; color:var(--muted);">Section 06 of 07</span>
+        <button class="complete-btn" data-complete="s6" onclick="markComplete(this)">Mark complete</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 07 — REFLECTION -->
+  <section class="section" data-section="s7">
+    <div class="section-head" onclick="toggleSection('s7')">
+      <div class="section-num">07</div>
+      <div class="section-titles">
+        <div class="section-eyebrow">Self-Assessment · Reflect</div>
+        <h3 class="section-title">Self-Check &amp; Reflection</h3>
+        <p class="section-anchor">Before you submit, take five minutes to track what you actually know versus what you still need to circle back on. Honesty here saves you on Lab Exam 1.</p>
+      </div>
+      <div class="section-toggle">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-retrieve">Retrieve</span>
+          <span class="mode-name">Confidence audit</span>
+        </div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Check the box only if you can do the action without notes, right now.</p>
+        <div class="check-prompt"><input type="checkbox" id="cf1"><label for="cf1">I can describe anatomical position and use ten directional terms correctly.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf2"><label for="cf2">I can name the three planes and the two body cavities.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf3"><label for="cf3">I can list the six levels of organization with one example of each.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf4"><label for="cf4">I can draw a negative feedback loop and label all three components.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf5"><label for="cf5">I can name the four biomolecules, their monomers, and one role for each.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf6"><label for="cf6">I can sketch the plasma membrane and identify the components from memory.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf7"><label for="cf7">I can predict water movement when a cell is placed in a hyper-, hypo-, or isotonic solution.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf8"><label for="cf8">I can name the four tissues and identify the function of each.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf9"><label for="cf9">I can classify epithelial tissues by layer and shape.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf10"><label for="cf10">I can calculate BMI and BSA by hand and interpret the values clinically.</label></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header">
+          <span class="mode-tag chip-apply">Apply</span>
+          <span class="mode-name">Reflection prompts</span>
+        </div>
+        <div class="work-label">a. Which one concept from this week feels strongest right now?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Which one concept from this week is still cloudy? Write what you would ask Dr. Rennie or your TBL team if you had thirty seconds.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. Looking ahead: how will what you learned this week show up in next week's content?</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer">
+        <span style="font-size:0.84rem; color:var(--muted);">Section 07 of 07</span>
+        <button class="complete-btn" data-complete="s7" onclick="markComplete(this)">Mark complete</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <h3>Wrapping up Week 1</h3>
+    <p>You have just covered the language of anatomy, the levels of organization, the chemistry that runs the cell, the cell itself, the four tissues, and the first two clinical calculations. That is a lot. The reason this trainer felt heavy is that everything we do for the next twelve weeks compounds on what you did this week.</p>
+    <p>To submit:</p>
+    <ol class="closing-steps">
+      <li>Make sure the progress bar above shows 7 of 7 sections complete. The trainer is your study tool, not your turn-in.</li>
+      <li>Open and print the <strong>Week 1 Worksheet</strong> (companion document). Complete the drawings, predictions, calculations, and reflections by hand.</li>
+      <li>Scan or photograph your completed worksheet as a single PDF.</li>
+      <li>Upload the PDF to the Week 1 Worksheet assignment in Canvas.</li>
+      <li>Bring your completed worksheet with you to Thursday's TBL session for team discussion.</li>
+    </ol>
+  </div>
+
+</div>
+
+<script src="cognitive_quiz.js"></script>
+<script>
+  // ============== TERMINOLOGY QUIZ (Week 1) ==============
+  const week1Terms = [
+    { q: "The wrist is _____ to the elbow.", options: ["Proximal", "Distal", "Medial", "Superficial"], correct: 1, why: "Distal means farther from the trunk attachment. The wrist is farther from the shoulder than the elbow is." },
+    { q: "Which plane divides the body into anterior and posterior halves?", options: ["Sagittal", "Transverse", "Frontal", "Oblique"], correct: 2, why: "The frontal (coronal) plane separates front from back." },
+    { q: "The skin is _____ to the muscles.", options: ["Deep", "Superficial", "Inferior", "Lateral"], correct: 1, why: "Superficial means closer to the surface." },
+    { q: "The heart sits in which cavity?", options: ["Cranial", "Abdominal", "Pelvic", "Thoracic"], correct: 3, why: "The heart is in the mediastinum of the thoracic cavity." },
+    { q: "The umbilicus is _____ to the sternum.", options: ["Superior", "Inferior", "Lateral", "Posterior"], correct: 1, why: "Inferior means lower; the navel is below the breastbone." },
+    { q: "An MRI sliced into superior and inferior parts uses which plane?", options: ["Frontal", "Sagittal", "Transverse", "Midsagittal"], correct: 2, why: "Transverse (horizontal, axial) cuts produce top-and-bottom sections." },
+    { q: "The lungs are _____ to the heart.", options: ["Medial", "Lateral", "Inferior", "Deep"], correct: 1, why: "The lungs flank the heart on both sides, lateral to it." },
+    { q: "The brain is housed in the _____ cavity.", options: ["Vertebral", "Cranial", "Thoracic", "Abdominopelvic"], correct: 1, why: "Cranial cavity = inside the skull, part of the dorsal body cavity." },
+    { q: "The radius is _____ to the ulna in anatomical position.", options: ["Medial", "Lateral", "Posterior", "Distal"], correct: 1, why: "In anatomical position (palms forward), the radius is on the thumb side, lateral to the ulna." },
+    { q: "Which plane divides the body into equal left and right halves?", options: ["Parasagittal", "Midsagittal", "Frontal", "Transverse"], correct: 1, why: "Midsagittal = the exact midline cut producing equal halves." }
+  ];
+  CognitiveQuiz.init('termQuiz', week1Terms, {
+    title: 'Terminology Lab',
+    intro: 'Click the option you think is correct. The component scores you and explains the reasoning. Use Restart at the end to run it again.'
+  });
+</script>
+<script>
+  // ============== REVEAL CELLS ==============
+  function revealCell(el, answer) {
+    el.textContent = answer;
+    el.classList.add('revealed');
+    el.onclick = null;
+  }
+
+  // ============== ANSWER REVEAL ==============
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    ans.classList.toggle('show');
+    btn.textContent = ans.classList.contains('show') ? 'Hide' : 'Show';
+  }
+
+  // ============== SECTION COLLAPSE ==============
+  function toggleSection(id) {
+    document.querySelector(`[data-section="${id}"]`).classList.toggle('collapsed');
+  }
+
+  // ============== PROGRESS TRACKING ==============
+  const STORAGE_KEY = 'bio431_w01_trainer_progress';
+  let completed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+  function updateProgress() {
+    const total = 7;
+    const count = completed.length;
+    const pct = (count / total) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressCount').textContent = count + ' / ' + total;
+  }
+
+  function markComplete(btn) {
+    const id = btn.getAttribute('data-complete');
+    if (completed.includes(id)) {
+      completed = completed.filter(x => x !== id);
+      btn.classList.remove('done');
+      btn.textContent = 'Mark complete';
+    } else {
+      completed.push(id);
+      btn.classList.add('done');
+      btn.textContent = 'Complete';
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+    updateProgress();
+  }
+
+  // Restore button states on load
+  completed.forEach(id => {
+    const btn = document.querySelector(`[data-complete="${id}"]`);
+    if (btn) {
+      btn.classList.add('done');
+      btn.textContent = 'Complete';
+    }
+  });
+  updateProgress();
+
+  // Reset
+  document.getElementById('reset-btn').onclick = function() {
+    if (confirm('Reset all section progress for this trainer? This will not erase what you wrote in the boxes.')) {
+      completed = [];
+      localStorage.removeItem(STORAGE_KEY);
+      document.querySelectorAll('.complete-btn').forEach(btn => {
+        btn.classList.remove('done');
+        btn.textContent = 'Mark complete';
+      });
+      updateProgress();
+    }
+  };
+
+  // ============== pH CALCULATOR ==============
+  function calcPH() {
+    const ph = parseFloat(document.getElementById('phInput').value);
+    if (isNaN(ph) || ph < 0 || ph > 14) {
+      document.getElementById('phResult').innerHTML = '— <span class="unit">mol/L</span>';
+      document.getElementById('phInterp').textContent = 'Enter a pH between 0 and 14.';
+      return;
+    }
+    const h = Math.pow(10, -ph);
+    document.getElementById('phResult').innerHTML = h.toExponential(2) + ' <span class="unit">mol/L</span>';
+    let interp = '';
+    if (ph < 7.35) interp = 'Acidemia. Below normal arterial pH (7.35 to 7.45). The body would mount respiratory and renal compensation.';
+    else if (ph > 7.45) interp = 'Alkalemia. Above normal arterial pH. Alkalosis can cause hyperexcitable nerves and tetany.';
+    else if (ph >= 7.35 && ph <= 7.45) interp = 'Within normal arterial blood range. Buffers are doing their job.';
+    else if (ph < 1) interp = 'Extremely acidic. Beyond physiological range, this would denature proteins.';
+    else interp = 'Outside normal blood range but within environmental range.';
+    document.getElementById('phInterp').innerHTML = interp;
+  }
+
+  // ============== BMI CALCULATOR ==============
+  function calcBMI() {
+    let h = parseFloat(document.getElementById('bmiHeight').value);
+    let w = parseFloat(document.getElementById('bmiWeight').value);
+    const hu = document.getElementById('bmiHeightUnit').value;
+    const wu = document.getElementById('bmiWeightUnit').value;
+    if (isNaN(h) || isNaN(w) || h <= 0 || w <= 0) {
+      document.getElementById('bmiResult').innerHTML = '— <span class="unit">kg/m²</span>';
+      document.getElementById('bmiInterp').textContent = 'Enter height and weight to calculate.';
+      return;
+    }
+    // Convert to meters and kg
+    let hm = hu === 'cm' ? h / 100 : hu === 'in' ? h * 0.0254 : h;
+    let wkg = wu === 'lb' ? w * 0.453592 : w;
+    const bmi = wkg / (hm * hm);
+    document.getElementById('bmiResult').innerHTML = bmi.toFixed(1) + ' <span class="unit">kg/m²</span>';
+    let cat = '';
+    if (bmi < 18.5) cat = '<em>Underweight.</em> Below 18.5 kg/m².';
+    else if (bmi < 25) cat = '<em>Normal weight.</em> 18.5 to 24.9 kg/m².';
+    else if (bmi < 30) cat = '<em>Overweight.</em> 25.0 to 29.9 kg/m².';
+    else if (bmi < 35) cat = '<em>Obesity class I.</em> 30.0 to 34.9 kg/m².';
+    else if (bmi < 40) cat = '<em>Obesity class II.</em> 35.0 to 39.9 kg/m².';
+    else cat = '<em>Obesity class III.</em> 40.0 kg/m² or greater.';
+    document.getElementById('bmiInterp').innerHTML = cat + ' Remember: BMI is a screening tool, not a diagnosis.';
+  }
+
+  // ============== BSA CALCULATOR (Mosteller) ==============
+  function calcBSA() {
+    let h = parseFloat(document.getElementById('bsaHeight').value);
+    let w = parseFloat(document.getElementById('bsaWeight').value);
+    const hu = document.getElementById('bsaHeightUnit').value;
+    const wu = document.getElementById('bsaWeightUnit').value;
+    if (isNaN(h) || isNaN(w) || h <= 0 || w <= 0) {
+      document.getElementById('bsaResult').innerHTML = '— <span class="unit">m²</span>';
+      document.getElementById('bsaInterp').textContent = 'Average adult BSA is about 1.6 to 2.0 m².';
+      return;
+    }
+    let hcm = hu === 'in' ? h * 2.54 : h;
+    let wkg = wu === 'lb' ? w * 0.453592 : w;
+    const bsa = Math.sqrt((hcm * wkg) / 3600);
+    document.getElementById('bsaResult').innerHTML = bsa.toFixed(2) + ' <span class="unit">m²</span>';
+    let interp = '';
+    if (bsa < 1.4) interp = 'Smaller than typical adult. Pediatric or small-bodied adult range.';
+    else if (bsa < 1.6) interp = 'Below average adult range.';
+    else if (bsa <= 2.0) interp = 'Within typical adult range (about <em>1.6 to 2.0 m²</em>).';
+    else if (bsa <= 2.4) interp = 'Above average adult range.';
+    else interp = 'Significantly above typical adult range.';
+    document.getElementById('bsaInterp').innerHTML = interp + ' Used for chemotherapy and pediatric drug dosing.';
+  }
+
+  // ============== IFRAME HEIGHT SENDER ==============
+  (function() {
+    const FRAME_ID = 'bio431-w01-trainer';
+    function sendHeight() {
+      const h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight
+      );
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(sendHeight).observe(document.body);
+    }
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
