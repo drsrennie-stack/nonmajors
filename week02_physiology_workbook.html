@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Week 2 Physiology Workbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5; --sand-soft: #faf3e8; --sand: #f5e6d3;
+    --terra: #c44536; --kelp: #5a7553;
+    --paper: #fdfbf7; --line: #c9d4d8; --rule: #a8b5bb; --muted: #5a6b73;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #e8e8e0; line-height: 1.55; font-size: 16px; padding: 30px 0; -webkit-font-smoothing: antialiased; }
+  .sheet { max-width: 8.5in; margin: 0 auto; background: white; padding: 0.55in 0.6in; box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1); }
+  .actions { max-width: 8.5in; margin: 0 auto 16px; padding: 0 0.6in; display: flex; justify-content: flex-end; }
+  .print-btn { background: var(--ocean-deep); color: white; border: none; padding: 11px 22px; border-radius: 8px; font-family: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 8px; transition: background 0.15s ease; }
+  .print-btn:hover { background: var(--ocean); }
+  .print-btn::before { content: '⎙'; font-size: 1rem; }
+
+  .masthead { border-bottom: 2.5px solid var(--ocean-deep); padding-bottom: 18px; margin-bottom: 24px; position: relative; }
+  .masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .masthead.physiology::after { background: var(--terra); }
+  .course-line { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .doc-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.85rem; color: var(--ocean-deep); line-height: 1.2; margin-bottom: 6px; }
+  .doc-subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean); }
+
+  .student-block { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; margin: 18px 0 24px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field { display: flex; flex-direction: column; }
+  .field-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field-line { border-bottom: 1.5px solid var(--ink); height: 24px; }
+
+  .instructions { background: var(--sand-soft); border-left: 3px solid var(--terra); padding: 14px 18px; margin-bottom: 26px; font-size: 0.92rem; }
+  .instructions h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+
+  .section { margin: 22px 0; page-break-inside: avoid; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.5rem; color: var(--terra); min-width: 32px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; color: var(--ocean-deep); }
+  .section-anchor { font-size: 0.86rem; color: var(--ocean); font-style: italic; margin-top: 4px; }
+
+  .field-prompt { font-size: 0.92rem; color: var(--ink); margin: 10px 0 6px; line-height: 1.5; }
+  .field-prompt strong { color: var(--ocean-deep); }
+  .field-helper { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+
+  .ruled { background: white; border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; min-height: 5em; background-image: repeating-linear-gradient(transparent, transparent 24px, var(--rule) 24px, var(--rule) 25px); line-height: 25px; }
+  .ruled.short { min-height: 4em; }
+  .ruled.medium { min-height: 6em; }
+  .ruled.long { min-height: 9em; }
+
+  .word-bank { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 14px 18px; margin: 14px 0 18px; }
+  .word-bank-label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .word-bank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 14px; font-size: 0.86rem; color: var(--ink); }
+  .word-bank-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .word-bank-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 600px) {
+    .word-bank-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .label-exercise { margin: 16px 0; page-break-inside: avoid; }
+  .label-exercise-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.05rem; color: var(--terra); margin-bottom: 10px; }
+  .label-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .label-flex.wide-fig { grid-template-columns: 1.4fr 1fr; }
+  .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
+
+  .figure { margin: 0; }
+  .figure-imgbox { background: white; border: 2px dashed var(--ocean); border-radius: 6px; padding: 14px; position: relative; display: flex; align-items: center; justify-content: center; }
+  .figure-imgbox img { max-width: 100%; height: auto; display: block; }
+  .figure-imgbox.img-pending { background: var(--sea-glass-soft); border-color: var(--ocean); }
+  .img-pending-msg { display: none; flex-direction: column; align-items: center; gap: 6px; text-align: center; color: var(--muted); padding: 18px; }
+  .figure-imgbox.img-pending .img-pending-msg { display: flex; }
+  .img-pending-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); }
+  .img-pending-file { font-size: 0.95rem; font-weight: 600; color: var(--terra); background: white; padding: 6px 14px; border-radius: 4px; border: 1px solid var(--terra); }
+  .img-pending-alt { font-size: 0.82rem; font-style: italic; max-width: 360px; line-height: 1.4; margin-top: 4px; }
+
+  .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+  .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .key-list { list-style: none; padding: 0; margin: 0; }
+  .key-list li { padding: 5px 0; border-bottom: 1px dashed var(--line); display: flex; align-items: baseline; gap: 8px; font-size: 0.88rem; }
+  .key-list li:last-child { border-bottom: none; }
+  .key-list.compact li { padding: 3px 0; font-size: 0.84rem; }
+  .key-num { font-weight: 700; color: var(--terra); min-width: 28px; flex-shrink: 0; }
+  .key-blank { flex: 1; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+  .key-fill { flex: 1; }
+
+  @media (max-width: 700px) {
+    .label-flex { grid-template-columns: 1fr; }
+  }
+
+  .draw-box { background: white; border: 1.5px solid var(--ocean-deep); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 280px; background-image: linear-gradient(rgba(214, 228, 231, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(214, 228, 231, 0.4) 1px, transparent 1px); background-size: 24px 24px; background-position: -1px -1px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: white; padding: 1px 6px; border-radius: 2px; }
+  .draw-box.tall { min-height: 360px; }
+  .draw-box.short { min-height: 220px; }
+
+  .calc-box { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; margin: 10px 0; min-height: 80px; }
+  .calc-box-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.86rem; background: white; }
+  .data-table th { text-align: left; padding: 8px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .data-table .input-cell { background: white !important; min-width: 80px; }
+  .data-table .input-cell .cell-line { display: block; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+
+  .case { background: var(--sand-soft); border-left: 3px solid var(--terra); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 14px 0; page-break-inside: avoid; }
+  .case-label { display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; }
+  .case-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .case-body { font-size: 0.9rem; line-height: 1.55; margin-bottom: 8px; }
+  .case-body strong { color: var(--ocean-deep); }
+  .case-prompts { margin-top: 10px; }
+  .case-prompts ol { list-style: decimal; padding-left: 22px; margin: 6px 0; font-size: 0.9rem; }
+  .case-prompts ol li { margin-bottom: 6px; line-height: 1.5; }
+
+  .reference { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean-deep); padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.88rem; }
+  .reference h4 { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 0.96rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .reference p { margin-bottom: 6px; line-height: 1.55; }
+  .reference p:last-child { margin-bottom: 0; }
+  .reference strong { color: var(--terra); font-weight: 600; }
+  .reference .formula { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean-deep); padding: 8px 14px; background: white; border: 1px solid var(--line); border-radius: 4px; display: inline-block; margin: 4px 0; }
+
+  .synthesis { background: linear-gradient(150deg, var(--sand-soft), white); border: 2px solid var(--terra); border-radius: 8px; padding: 16px 20px; margin: 18px 0; page-break-inside: avoid; }
+  .synthesis-label { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 3px 10px; border-radius: 3px; margin-bottom: 8px; }
+  .synthesis-prompt { font-size: 0.96rem; line-height: 1.55; color: var(--ink); margin-bottom: 8px; }
+  .synthesis-prompt strong { color: var(--ocean-deep); }
+
+  .submission { margin-top: 30px; padding: 18px 22px; background: var(--sea-glass-soft); border: 1.5px solid var(--ocean-deep); border-radius: 6px; page-break-inside: avoid; }
+  .submission h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.08rem; color: var(--ocean-deep); margin-bottom: 10px; }
+  .submission p { font-size: 0.86rem; margin-bottom: 6px; }
+
+  /* PARTNER LINK BANNER (cross-link between anatomy & physiology workbooks) */
+  .partner-link { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 12px 16px; margin: 22px 0; font-size: 0.88rem; display: flex; align-items: center; gap: 12px; }
+  .partner-link-label { flex: 1; }
+  .partner-link-label strong { color: var(--ocean-deep); }
+  .partner-link a { color: var(--terra); text-decoration: underline; font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link, .partner-link { display: none !important; }
+    .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
+    .figure-imgbox { border-color: #888; }
+    .figure-imgbox.img-pending { background: white; }
+    @page { size: letter; margin: 0.55in 0.6in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions">
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this workbook or save as PDF">Print / Save PDF</button>
+</div>
+
+<main id="main-content" class="sheet" role="main">
+  <header class="masthead physiology">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 2 Physiology Workbook</p>
+    <h1 class="doc-title">DEXA &amp; Bone Health Assessment</h1>
+    <p class="doc-subtitle">Physiology: interpret bone density scans, calculate fracture risk, design intervention plans. Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field">
+      <span class="field-label">Name</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Section</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Date</span>
+      <span class="field-line"></span>
+    </div>
+  </div>
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">About this workbook</h2>
+    <p>This is the <strong>Physiology Workbook</strong> for Week 2. Complete the <strong>Week 2 Anatomy Workbook first</strong>. The clinical reasoning here builds on the bone remodeling and skeletal muscle physiology you labeled and drew there.</p>
+    <p>Bone density scans (DEXA) and fracture risk calculations (FRAX) are everywhere in primary care. Nurses, physicians, paramedics, and physical therapists all need to recognize when a patient's bones are at risk before something breaks. This dry lab teaches you to read a DEXA report, calculate fracture risk, and design an evidence-based intervention plan.</p>
+    <p>By the end of this workbook, you will know who needs treatment, who needs lifestyle change only, and why specific medications target specific cell types from the anatomy workbook.</p>
+  </section>
+
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 1</p>
+        <h2 class="section-title" id="s1-title">Interpret DEXA scan results</h2>
+        <p class="section-anchor">Read T-score and Z-score values, classify bone density, and recognize when each is appropriate.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>DEXA scan basics</h4>
+      <p><strong>DEXA</strong> (dual-energy X-ray absorptiometry) measures bone mineral density (BMD) at the spine and femoral neck. It is the gold standard for diagnosing osteoporosis.</p>
+      <p><strong>T-score:</strong> compares the patient's BMD to a healthy young adult of the same sex. <strong>Used for postmenopausal women and men over 50.</strong></p>
+      <p><strong>Z-score:</strong> compares the patient's BMD to age-matched and sex-matched peers. <strong>Used for premenopausal women, men under 50, and children.</strong> Z-score below -2.0 prompts secondary cause workup.</p>
+    </div>
+
+    <div class="reference">
+      <h4>WHO classification (T-score)</h4>
+      <p><strong>Normal:</strong> T-score ≥ -1.0</p>
+      <p><strong>Osteopenia (low bone mass):</strong> T-score between -1.0 and -2.5</p>
+      <p><strong>Osteoporosis:</strong> T-score ≤ -2.5</p>
+      <p><strong>Severe (established) osteoporosis:</strong> T-score ≤ -2.5 PLUS one or more fragility fractures</p>
+    </div>
+
+    <p class="field-prompt"><strong>For each patient below, classify the bone density</strong> (normal / osteopenia / osteoporosis / severe osteoporosis) and decide whether T-score or Z-score is appropriate to use.</p>
+
+    <table class="data-table" aria-label="DEXA interpretation cases">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Patient</th>
+          <th style="width: 18%;">T-score</th>
+          <th style="width: 18%;">Z-score</th>
+          <th style="width: 19%;">Use T or Z?</th>
+          <th style="width: 20%;">Classification</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>62F postmenopausal, history of wrist fracture from a fall</strong></td>
+          <td>-2.7</td>
+          <td>-1.3</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>55M smoker, daily prednisone for RA</strong></td>
+          <td>-1.8</td>
+          <td>-1.5</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>32F amenorrhea (3 yr), restrictive eating history</strong></td>
+          <td>-2.4</td>
+          <td>-2.3</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>70F no fracture history, healthy</strong></td>
+          <td>-0.8</td>
+          <td>+0.4</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>48M malabsorption from celiac disease</strong></td>
+          <td>-1.6</td>
+          <td>-2.2</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="field-prompt"><strong>For the 32F amenorrhea patient:</strong> her Z-score is -2.3. What does that signal beyond the bone density itself, and what next step would you recommend?</p>
+    <div class="ruled medium" role="region" aria-label="Z-score signal answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 2</p>
+        <h2 class="section-title" id="s2-title">FRAX 10-year fracture risk</h2>
+        <p class="section-anchor">Calculate 10-year risk of major osteoporotic fracture and hip fracture using clinical risk factors.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>The FRAX tool</h4>
+      <p>FRAX integrates 11 clinical risk factors with femoral neck BMD to predict 10-year fracture risk. The actual tool is online (sheffield.ac.uk/FRAX) and uses country-specific population data. For this lab, you will work with simplified case profiles to predict whether risk meets the National Osteoporosis Foundation (NOF) treatment threshold.</p>
+      <p><strong>FRAX inputs:</strong> age · sex · weight · height (used to calculate BMI) · prior fragility fracture · parental hip fracture · current smoking · long-term glucocorticoid use · rheumatoid arthritis · secondary osteoporosis cause · alcohol intake (3+ units/day) · femoral neck T-score</p>
+    </div>
+
+    <div class="reference">
+      <h4>NOF treatment thresholds</h4>
+      <p>Pharmacologic treatment is recommended when:</p>
+      <p><strong>10-year hip fracture risk ≥ 3%</strong> &nbsp;OR&nbsp; <strong>10-year major osteoporotic fracture risk ≥ 20%</strong></p>
+      <p>Major osteoporotic fracture sites: hip, spine, wrist, proximal humerus.</p>
+      <p>Treatment is also indicated for any patient with: T-score ≤ -2.5 at hip or spine, OR a prior fragility fracture of hip or spine regardless of T-score.</p>
+    </div>
+
+    <p class="field-prompt"><strong>For each patient, identify the FRAX risk factors present</strong> (count and list them), <strong>predict whether they meet NOF treatment threshold</strong>, and <strong>state your reasoning</strong>.</p>
+
+    <div class="case">
+      <span class="case-label">Patient A</span>
+      <p class="case-title">Margaret, 68F</p>
+      <p class="case-body">Postmenopausal at age 51 (natural). Mother had a hip fracture at age 78. Margaret has not smoked. Drinks 1 glass of wine most evenings (under 3 units/day). No glucocorticoids, no RA. No prior fracture. BMI 24. T-score at femoral neck: <strong>-2.6</strong>.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>List the FRAX risk factors present.</li>
+          <li>Does she meet NOF treatment threshold? Explain.</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Patient A answer space"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Patient B</span>
+      <p class="case-title">Robert, 72M</p>
+      <p class="case-body">Active smoker (1 pack per day for 50 years). Daily prednisone 10 mg for COPD x 8 years. No prior fracture. No parental hip fracture history. BMI 22. T-score at femoral neck: <strong>-2.3</strong>.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>List the FRAX risk factors present.</li>
+          <li>His T-score is in the osteopenia range (not osteoporosis). Does he still meet NOF treatment threshold? Explain.</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Patient B answer space"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Patient C</span>
+      <p class="case-title">Linda, 58F</p>
+      <p class="case-body">Postmenopausal at 53. No fractures, no parental hip fracture. Non-smoker, no alcohol use. Healthy weight. No glucocorticoids, no RA. T-score at femoral neck: <strong>-1.4</strong>.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>List the FRAX risk factors present.</li>
+          <li>Does she meet NOF treatment threshold? What would you recommend instead?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Patient C answer space"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Patient D</span>
+      <p class="case-title">Anita, 70F</p>
+      <p class="case-body">Postmenopausal at 49. Spine fracture at age 67 from a low-impact fall. RA on methotrexate. Mother had a hip fracture at 75. Non-smoker, no alcohol. T-score at femoral neck: <strong>-2.1</strong>.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>List the FRAX risk factors present.</li>
+          <li>Two specific criteria each independently qualify her for treatment. Identify both.</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Patient D answer space"></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 3</p>
+        <h2 class="section-title" id="s3-title">Design an osteoporosis intervention plan</h2>
+        <p class="section-anchor">For one patient who meets treatment criteria, build a complete plan covering pharmacology, nutrition, exercise, and fall prevention.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>Pharmacologic options</h4>
+      <p><strong>Bisphosphonates (alendronate, risedronate, zoledronic acid):</strong> first-line for most postmenopausal osteoporosis. Inhibit osteoclasts, reducing bone resorption. Oral or IV. <strong>Caution:</strong> not used in patients planning pregnancy (long bone half-life), severe esophageal disease, hypocalcemia, or significant CKD.</p>
+      <p><strong>SERMs (raloxifene):</strong> selective estrogen receptor modulators. Mimic estrogen's bone-protective effect without breast/uterine stimulation. Used in postmenopausal women who cannot tolerate bisphosphonates. <strong>Caution:</strong> increased VTE risk.</p>
+      <p><strong>Denosumab:</strong> RANK ligand inhibitor. Subcutaneous injection every 6 months. Inhibits osteoclast formation and survival. Used when bisphosphonates fail or are contraindicated. <strong>Caution:</strong> rebound bone loss if stopped without follow-on therapy.</p>
+      <p><strong>Teriparatide / abaloparatide:</strong> PTH analogs. Anabolic agents that stimulate osteoblasts (rare among osteoporosis drugs). Used in severe osteoporosis. Daily injection, limited to 2 years.</p>
+    </div>
+
+    <div class="reference">
+      <h4>Nutrition targets</h4>
+      <p><strong>Calcium:</strong> 1,200 mg/day for postmenopausal women and men over 70 (1,000 mg/day for younger adults). Diet first, supplement only as needed. Sources: dairy, fortified plant milks, leafy greens, sardines, tofu set with calcium.</p>
+      <p><strong>Vitamin D:</strong> 800 to 1,000 IU/day for adults over 50, more if deficient (target serum 25-OH D ≥ 30 ng/mL). Required for calcium absorption.</p>
+      <p><strong>Protein:</strong> 1.0 to 1.2 g/kg/day to support bone matrix and muscle mass.</p>
+    </div>
+
+    <div class="reference">
+      <h4>Exercise prescription</h4>
+      <p><strong>Weight-bearing aerobic:</strong> 30 min × 4-5 days/week (walking, jogging, dancing, stair climbing). Bone responds to mechanical load.</p>
+      <p><strong>Resistance training:</strong> 2-3 days/week, all major muscle groups. Muscle pull on bone is what drives bone remodeling.</p>
+      <p><strong>Balance and posture:</strong> daily. Tai chi, yoga, balance drills. Reduces fall risk.</p>
+      <p><strong>Avoid:</strong> high-impact activities for patients with severe osteoporosis or vertebral fractures (e.g., heavy spinal flexion).</p>
+    </div>
+
+    <div class="reference">
+      <h4>Fall prevention</h4>
+      <p>Most osteoporotic fractures happen during falls. Comprehensive fall prevention includes: home hazard removal (rugs, cords, poor lighting), vision check, medication review (sedating drugs, polypharmacy), footwear, vitamin D adequacy, and assistive devices when appropriate.</p>
+    </div>
+
+    <p class="field-prompt"><strong>Pick ONE patient from Section 02 (A, B, C, or D) who meets treatment criteria.</strong> Build their complete intervention plan below. Reference specific cell types and physiology from your anatomy workbook.</p>
+
+    <p class="field-prompt"><strong>Patient I selected:</strong></p>
+    <div class="ruled short" role="region" aria-label="Patient selection answer space"></div>
+
+    <p class="field-prompt"><strong>1. Pharmacologic recommendation</strong> (specific drug, route, frequency). Reference whether the drug targets osteoblasts or osteoclasts and explain why that matters for this patient.</p>
+    <div class="ruled long" role="region" aria-label="Pharmacologic answer space"></div>
+
+    <p class="field-prompt"><strong>2. Nutrition plan</strong> (specific calcium and vitamin D targets, food sources, supplement recommendation if needed):</p>
+    <div class="ruled medium" role="region" aria-label="Nutrition answer space"></div>
+
+    <p class="field-prompt"><strong>3. Exercise prescription</strong> (specific weekly schedule of weight-bearing aerobic, resistance, and balance work):</p>
+    <div class="ruled medium" role="region" aria-label="Exercise answer space"></div>
+
+    <p class="field-prompt"><strong>4. Fall prevention plan</strong> (at least 3 specific items relevant to this patient):</p>
+    <div class="ruled medium" role="region" aria-label="Fall prevention answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Clinical Reasoning Cases</p>
+        <h2 class="section-title" id="s4-title">Apply bone remodeling physiology to two complex cases</h2>
+        <p class="section-anchor">Each case requires you to reason from cellular physiology to clinical decision.</p>
+      </div>
+    </header>
+
+    <div class="case">
+      <span class="case-label">Case 1</span>
+      <p class="case-title">The pregnant patient with severe osteoporosis</p>
+      <p class="case-body">A 35-year-old woman with severe osteoporosis from anorexia nervosa during her teens (now in recovery, BMI 22) is planning pregnancy in the next year. T-score at femoral neck is -3.2. Her doctor wants to delay pregnancy to treat first.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Bisphosphonates are first-line for severe osteoporosis but contraindicated in this patient. Why? Reference the drug's effect on bone matrix and the long half-life.</li>
+          <li>What alternative could the doctor consider, and what is the timeline before she could safely conceive?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 1 answer space"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 2</span>
+      <p class="case-title">The chronic kidney disease patient</p>
+      <p class="case-body">A 64-year-old woman with stage 4 chronic kidney disease (eGFR 22) presents with progressive bone pain. Labs: elevated PTH (220 pg/mL), low serum calcium (8.0 mg/dL), low calcitriol (active vitamin D). Bone imaging shows decreased density.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Why is her PTH so high? Walk through the chain: kidney function → vitamin D activation → calcium absorption → PTH response. (Reference your bone remodeling drawing from the Anatomy Workbook.)</li>
+          <li>Explain what is happening to her bone matrix as a result of chronically elevated PTH. Specifically address osteoclast and osteoblast activity.</li>
+          <li>Why would simple calcium supplementation not be enough to fix this?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 2 answer space"></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Final Synthesis</p>
+        <h2 class="section-title" id="s5-title">Integrate bone tissue, remodeling physiology, and pharmacology</h2>
+        <p class="section-anchor">The most heavily weighted question in the workbook. Integrate everything you learned this week.</p>
+      </div>
+    </header>
+
+    <div class="synthesis">
+      <span class="synthesis-label">Synthesis question · Most weighted</span>
+      <p class="synthesis-prompt">Bone is constantly being remodeled by osteoblasts (which build) and osteoclasts (which break down). In healthy adults, these cells are in balance. In postmenopausal osteoporosis, the balance shifts.</p>
+      <p class="synthesis-prompt"><strong>In four to six sentences, explain why bisphosphonates are first-line for postmenopausal osteoporosis but problematic for younger women planning pregnancy.</strong> Your answer must integrate:</p>
+      <p class="synthesis-prompt">(1) what happens to estrogen at menopause and how that disrupts the osteoblast-osteoclast balance, (2) the specific cellular target of bisphosphonates, (3) why this restores balance in the postmenopausal patient, (4) the half-life property that makes bisphosphonates problematic in pregnancy planning, (5) what risk this poses to a developing fetus.</p>
+      <div class="ruled long" role="region" aria-label="Final synthesis answer space"></div>
+      <div class="ruled long" role="region" aria-label="Final synthesis answer space continued"></div>
+    </div>
+  </section>
+  <div class="partner-link">
+    <span class="partner-link-label">Looking for structure identification? See the <strong>Week 2 Anatomy Workbook</strong>.</span>
+    <a href="week02_anatomy_workbook.html">Open →</a>
+  </div>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit</h2>
+    <p>1. The DEXA classification table (Section 01) is filled in for all five patients with both T/Z choice and classification.</p>
+    <p>2. All four FRAX patients (Section 02) have risk factors listed and treatment threshold reasoning.</p>
+    <p>3. The intervention plan (Section 03) covers all four areas: pharmacology, nutrition, exercise, fall prevention.</p>
+    <p>4. Both clinical reasoning cases (Section 04) have answers to every numbered prompt.</p>
+    <p>5. The final synthesis question (Section 05) integrates all five required elements.</p>
+    <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 2 Physiology Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
+  </section>
+
+</main>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w02-physiology-workbook';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
