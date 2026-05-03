@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 8 Worksheet · Life Stages &amp; Final Synthesis · BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5; --sand-soft: #faf3e8;
+    --terra: #c44536; --kelp: #5a7553;
+    --paper: #fdfbf7; --line: #c9d4d8; --rule: #a8b5bb; --muted: #5a6b73;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #e8e8e0; line-height: 1.55; font-size: 16px; padding: 30px 0; -webkit-font-smoothing: antialiased; }
+  .sheet { max-width: 8.5in; margin: 0 auto; background: white; padding: 0.55in 0.6in; box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1); }
+  .actions { max-width: 8.5in; margin: 0 auto 16px; padding: 0 0.6in; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .action-info { font-size: 0.84rem; color: var(--ocean-deep); flex: 1; min-width: 280px; }
+  .action-info strong { font-weight: 600; }
+  .print-btn { background: var(--ocean-deep); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-family: inherit; font-size: 0.84rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; text-transform: uppercase; }
+  .print-btn:hover { background: var(--ocean); }
+  .masthead { border-bottom: 2.5px solid var(--ocean-deep); padding-bottom: 18px; margin-bottom: 24px; position: relative; }
+  .masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .course-line { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .doc-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.85rem; color: var(--ocean-deep); line-height: 1.2; margin-bottom: 8px; }
+  .doc-subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean); }
+  .final-flag { display: inline-block; padding: 2px 8px; background: var(--ocean-deep); color: white; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .student-block { display: grid; grid-template-columns: 2.4fr 1fr; gap: 22px; margin: 18px 0 26px; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field { display: flex; flex-direction: column; }
+  .field-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field-line { display: block; border-bottom: 1.5px solid var(--ink); height: 30px; width: 100%; }
+  .instructions { background: var(--sand-soft); border-left: 3px solid var(--terra); padding: 14px 18px; margin-bottom: 30px; font-size: 0.92rem; }
+  .instructions h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+  .section { margin-bottom: 32px; page-break-inside: avoid; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.5rem; color: var(--terra); min-width: 32px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; color: var(--ocean-deep); }
+  .section-anchor { font-size: 0.86rem; color: var(--ocean); font-style: italic; margin-top: 4px; }
+  .lab-flag { display: inline-block; padding: 2px 8px; background: var(--ocean-deep); color: white; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .task { margin-top: 16px; page-break-inside: avoid; }
+  .task-tag { display: inline-block; padding: 3px 10px; border-radius: 3px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-right: 8px; vertical-align: middle; color: white; }
+  .tag-build { background: var(--terra); }
+  .tag-apply { background: var(--kelp); }
+  .tag-calc { background: var(--ocean-deep); }
+  .tag-reflect { background: var(--ocean); }
+  .task-prompt { font-size: 0.94rem; margin: 8px 0 10px; color: var(--ink); display: block; }
+  .task-prompt strong { color: var(--ocean-deep); }
+  .task-letter { display: inline-block; font-family: 'Lora', serif; font-weight: 600; color: var(--terra); margin-right: 6px; }
+  .task-rubric { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+  .ruled, .grid-box, .calc-box { width: 100%; display: block; color: var(--ink); border-radius: 4px; background-color: white; }
+  .ruled { border: 1.5px solid var(--ink); padding: 12px 16px; line-height: 1.7em; background-image: linear-gradient(transparent calc(1.7em - 1px), var(--rule) 1px); background-size: 100% 1.7em; }
+  .ruled.short { min-height: 6em; }
+  .ruled.medium { min-height: 9em; }
+  .ruled.long { min-height: 13em; }
+  .ruled.xlong { min-height: 16em; }
+  .grid-box { border: 1.5px solid var(--ink); padding: 12px; background-image: linear-gradient(rgba(168, 181, 187, 0.45) 1px, transparent 1px), linear-gradient(90deg, rgba(168, 181, 187, 0.45) 1px, transparent 1px); background-size: 22px 22px; }
+  .grid-box.standard { min-height: 3in; }
+  .grid-box.tall { min-height: 3.6in; }
+  .calc-box { border: 1.5px solid var(--ink); padding: 14px 18px; min-height: 6em; background-image: linear-gradient(rgba(168, 181, 187, 0.45) 1px, transparent 1px), linear-gradient(90deg, rgba(168, 181, 187, 0.45) 1px, transparent 1px); background-size: 22px 22px; }
+  .formula-card { background: var(--sea-glass-soft); border: 1.5px solid var(--ocean); border-radius: 6px; padding: 12px 16px; margin: 10px 0; font-family: 'Lora', serif; font-size: 0.9rem; }
+  .formula-card strong { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--ocean-deep); }
+  .compare-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.84rem; }
+  .compare-table th { text-align: left; padding: 8px 10px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .compare-table td { padding: 8px 10px; border: 1px solid var(--ink); vertical-align: top; height: 0.7in; }
+  .compare-table .label-col { background: var(--sand-soft); font-weight: 600; width: 22%; }
+  .apgar-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.84rem; }
+  .apgar-table th { text-align: left; padding: 8px 10px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .apgar-table td { padding: 6px 10px; border: 1px solid var(--ink); vertical-align: top; }
+  .apgar-table .crit-col { background: var(--sand-soft); font-weight: 600; width: 22%; }
+  .apgar-table .total-row { background: var(--sea-glass-soft); font-weight: 700; }
+  .patient-card { border: 1.5px solid var(--ocean-deep); border-radius: 6px; padding: 12px 16px; margin: 12px 0; background: var(--sand-soft); }
+  .patient-card h4 { font-family: 'Lora', serif; font-weight: 500; font-size: 1rem; color: var(--ocean-deep); margin-bottom: 4px; }
+  .patient-card .case { font-size: 0.86rem; margin-bottom: 8px; line-height: 1.5; }
+  .closing-note { background: linear-gradient(150deg, var(--ocean-deep) 0%, var(--ink) 100%); color: white; border-radius: 8px; padding: 18px 24px; margin: 30px 0; font-size: 0.95rem; line-height: 1.6; page-break-inside: avoid; }
+  .closing-note p { margin-bottom: 8px; }
+  .closing-note p:last-child { margin-bottom: 0; }
+  .closing-note em { font-style: italic; opacity: 0.92; }
+  .submission { margin-top: 36px; padding: 18px 22px; background: var(--sea-glass-soft); border: 1.5px solid var(--ocean-deep); border-radius: 6px; page-break-inside: avoid; }
+  .submission h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.08rem; color: var(--ocean-deep); margin-bottom: 10px; }
+  .submission-list { list-style: none; margin-bottom: 16px; }
+  .submission-list li { padding: 5px 0; font-size: 0.88rem; display: flex; align-items: flex-start; gap: 10px; }
+  .submission-list input[type="checkbox"] { width: 16px; height: 16px; margin-top: 4px; accent-color: var(--ocean-deep); flex-shrink: 0; cursor: pointer; }
+  .submission-list label { flex: 1; cursor: pointer; }
+  .signature-row { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; padding-top: 14px; border-top: 1px dashed var(--ocean-deep); align-items: end; }
+  .integrity-statement { font-size: 0.78rem; color: var(--ink); font-style: italic; line-height: 1.5; margin-bottom: 8px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link { display: none !important; }
+    .section, .task, .submission, .patient-card, .formula-card, .closing-note { page-break-inside: avoid; }
+    .ruled, .grid-box, .calc-box { border-color: #000; color: #000; background-color: white; }
+    .submission, .formula-card, .patient-card { background: white; }
+    .closing-note { background: white; color: #000; border: 2px solid #000; }
+    @page { size: letter; margin: 0.55in 0.6in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions" role="region" aria-label="Worksheet controls">
+  <div class="action-info"><strong>Print, handwrite, scan, submit.</strong> The final worksheet of the course.</div>
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this worksheet">⎙ Print Worksheet</button>
+</div>
+
+<main id="main-content" class="sheet">
+  <header class="masthead">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 08 · Worksheet <span class="final-flag">Final Synthesis</span></p>
+    <h1 class="doc-title">Life Stages &amp; Final Synthesis</h1>
+    <p class="doc-subtitle">Companion worksheet to the Week 8 Cognitive Trainer · Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field"><span class="field-label">Name</span><span class="field-line"></span></div>
+    <div class="field"><span class="field-label">Date</span><span class="field-line"></span></div>
+  </div>
+
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">How this worksheet works</h2>
+    <p>Last worksheet of the course. Work through the Week 8 Cognitive Trainer first as your study tool. This worksheet is what you turn in.</p>
+    <p><strong>How to complete:</strong> Print the worksheet. Complete every box by hand in pen or pencil. Scan or photograph the completed pages as a single PDF. Upload that PDF to the Week 8 Worksheet assignment in Canvas.</p>
+    <p><strong>Drawing tasks (two this week):</strong> female reproductive anatomy and male reproductive anatomy. Label every component listed in the prompt.</p>
+    <p><strong>Sections 5 and 6 anchor the lab.</strong> APGAR scoring, Naegele's Rule, and USPSTF age-based screening. Spend extra time there.</p>
+    <p><strong>Section 7 covers death, dying, and brain death determination.</strong> Especially relevant for mortuary science students.</p>
+    <p><strong>Section 8 is the final synthesis.</strong> Reflection across all eight weeks of the course.</p>
+    <p><strong>If you cannot print:</strong> contact Dr. Rennie or DSPS for an alternative submission format.</p>
+  </section>
+
+  <!-- SECTION 01 -->
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Build &amp; Apply · Reproductive Anatomy</p>
+        <h2 class="section-title" id="s1-title">Reproductive systems, both sexes</h2>
+        <p class="section-anchor">Drawings must be labeled to count.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Draw a sagittal view of the <strong>female</strong> reproductive system. Label all of the following: <strong>ovary, fallopian tube (with fimbriae), uterus (label the three layers: perimetrium, myometrium, endometrium), cervix, vagina</strong>. Use an arrow to show the path of an oocyte from ovary to uterus.</p>
+      <p class="task-rubric">Rubric: All structures labeled in correct anatomical position. Three uterine layers labeled. Oocyte path arrow drawn correctly.</p>
+      <div class="grid-box standard"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Draw a sagittal view of the <strong>male</strong> reproductive system. Label all of the following: <strong>testis, epididymis, vas (ductus) deferens, ejaculatory duct, prostate gland, seminal vesicle, bulbourethral gland, urethra (3 parts: prostatic, membranous, spongy), penis</strong>. Use arrows to show the path of sperm from production to exit.</p>
+      <p class="task-rubric">Rubric: All structures labeled in correct anatomical position. Three urethral segments labeled. Sperm path arrows drawn correctly.</p>
+      <div class="grid-box standard"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient takes oral contraceptives (synthetic estrogen and progesterone). Trace via negative feedback how this prevents ovulation, and identify which pituitary hormone surge is suppressed.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 -->
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · Pregnancy &amp; Birth</p>
+        <h2 class="section-title" id="s2-title">Fertilization through adjustments at birth</h2>
+        <p class="section-anchor">Use specific hormones, fetal shunts, and labor stages in your reasoning.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient has a positive home pregnancy test (urine hCG) but ultrasound shows no fetus in the uterus. Identify the diagnosis at risk, predict the most common implantation site, and explain why this condition is a medical emergency.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A newborn has cyanosis that does not improve with supplemental oxygen, and a continuous heart murmur. Identify which fetal shunt most likely failed to close, predict the consequence on circulation, and identify the prostaglandin-related management.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A 39-week-pregnant patient has been in stage 1 labor for 14 hours but is only 5 cm dilated. Identify what stage 1 progress should look like, predict what would happen if labor stalls, and identify one drug that augments uterine contractions.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 -->
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · Lactation</p>
+        <h2 class="section-title" id="s3-title">Milk production, ejection, and immunity</h2>
+        <p class="section-anchor">Use prolactin, oxytocin, and the immune components of breast milk in your reasoning.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A new mother reports that her milk does not seem to "let down" when feeding. Identify the hormone responsible for milk ejection and predict three things that might inhibit the let-down reflex.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A premature infant is fed donor breast milk specifically because of immune protection. Identify the major immune components of breast milk and explain why this passive immunity matters more in a preemie than in a full-term infant.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A breastfeeding patient assumes she cannot get pregnant. Identify the conditions under which lactational amenorrhea is most reliable, and identify why this contraceptive effect becomes unreliable as feedings space out.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 - AGING -->
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Build &amp; Apply · Aging Across Systems</p>
+        <h2 class="section-title" id="s4-title">The aging matrix</h2>
+        <p class="section-anchor">Loss of reserve is the unifying principle. Function is adequate at rest; the buffer for stress shrinks.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Fill in the aging matrix below. For each system, write the <strong>key aging change</strong> and the most important <strong>clinical consequence</strong>.</p>
+      <table class="compare-table">
+        <thead><tr><th scope="col" style="width:18%;">System</th><th scope="col" style="width:41%;">Key aging change</th><th scope="col" style="width:41%;">Clinical consequence</th></tr></thead>
+        <tbody>
+          <tr><td class="label-col">Cardiovascular</td><td></td><td></td></tr>
+          <tr><td class="label-col">Respiratory</td><td></td><td></td></tr>
+          <tr><td class="label-col">Renal</td><td></td><td></td></tr>
+          <tr><td class="label-col">Bone</td><td></td><td></td></tr>
+          <tr><td class="label-col">Nervous</td><td></td><td></td></tr>
+          <tr><td class="label-col">Endocrine</td><td></td><td></td></tr>
+          <tr><td class="label-col">Immune</td><td></td><td></td></tr>
+          <tr><td class="label-col">Special senses</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> An 80-year-old patient stands up, becomes lightheaded, and falls. Identify two aging changes that explain this episode (one cardiovascular and one nervous), and connect both to the loss-of-reserve principle.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A 70-year-old is prescribed a normal adult dose of an oral medication and develops drug toxicity within a week. Identify two aging changes that contribute (one hepatic, one renal), and explain why the same dose is safe in a 30-year-old.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 05 - APGAR & NAEGELE LAB -->
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Calc · APGAR &amp; Naegele's Rule <span class="lab-flag">Lab</span></p>
+        <h2 class="section-title" id="s5-title">Newborn scoring and pregnancy dating</h2>
+        <p class="section-anchor">Lab anchor. Show your work.</p>
+      </div>
+    </header>
+
+    <div class="formula-card">
+      <strong>APGAR scoring:</strong> A (color), P (pulse), G (grimace/reflex), A (activity/tone), R (respiration). Each scored 0/1/2. Total 0-10.<br>
+      <strong>Naegele's Rule:</strong> EDD = LMP + 7 days − 3 months + 1 year (= LMP + 280 days)
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-calc" aria-hidden="true">Calc</span>
+      <p class="task-prompt"><span class="sr-only">Calculation task. </span><span class="task-letter" aria-hidden="true">a.</span> Score the APGAR for <strong>Newborn 1</strong> at 1 minute. Fill in the table and total.</p>
+      <p class="task-prompt" style="font-style:italic; font-size:0.88rem; color:var(--muted);">Newborn 1: pink body with blue hands and feet (acrocyanosis); heart rate 130; cries vigorously when suctioned; active flexion of all extremities; strong cry with regular breathing.</p>
+      <table class="apgar-table">
+        <thead><tr><th scope="col">Criterion</th><th scope="col">Observation</th><th scope="col">Score (0/1/2)</th></tr></thead>
+        <tbody>
+          <tr><td class="crit-col">A: Appearance (color)</td><td></td><td></td></tr>
+          <tr><td class="crit-col">P: Pulse</td><td></td><td></td></tr>
+          <tr><td class="crit-col">G: Grimace (reflex)</td><td></td><td></td></tr>
+          <tr><td class="crit-col">A: Activity (tone)</td><td></td><td></td></tr>
+          <tr><td class="crit-col">R: Respiration</td><td></td><td></td></tr>
+          <tr class="total-row"><td class="crit-col">TOTAL (0-10)</td><td>Interpretation:</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-calc" aria-hidden="true">Calc</span>
+      <p class="task-prompt"><span class="sr-only">Calculation task. </span><span class="task-letter" aria-hidden="true">b.</span> Score the APGAR for <strong>Newborn 2</strong> at 1 minute. Fill in the table and total.</p>
+      <p class="task-prompt" style="font-style:italic; font-size:0.88rem; color:var(--muted);">Newborn 2: bluish all over; heart rate 80; no response to nasal suction; limp with no movement; weak irregular gasps.</p>
+      <table class="apgar-table">
+        <thead><tr><th scope="col">Criterion</th><th scope="col">Observation</th><th scope="col">Score (0/1/2)</th></tr></thead>
+        <tbody>
+          <tr><td class="crit-col">A: Appearance (color)</td><td></td><td></td></tr>
+          <tr><td class="crit-col">P: Pulse</td><td></td><td></td></tr>
+          <tr><td class="crit-col">G: Grimace (reflex)</td><td></td><td></td></tr>
+          <tr><td class="crit-col">A: Activity (tone)</td><td></td><td></td></tr>
+          <tr><td class="crit-col">R: Respiration</td><td></td><td></td></tr>
+          <tr class="total-row"><td class="crit-col">TOTAL (0-10)</td><td>Immediate clinical action:</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-calc" aria-hidden="true">Calc</span>
+      <p class="task-prompt"><span class="sr-only">Calculation task. </span><span class="task-letter" aria-hidden="true">c.</span> A patient's last menstrual period (LMP) began on July 10, 2026. Apply Naegele's Rule to estimate the due date. Show all three steps (add 7 days, subtract 3 months, add 1 year).</p>
+      <div class="calc-box"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-calc" aria-hidden="true">Calc</span>
+      <p class="task-prompt"><span class="sr-only">Calculation task. </span><span class="task-letter" aria-hidden="true">d.</span> A second patient's LMP began on December 22, 2026. Apply Naegele's Rule. Show your work and identify any rollover into the following year.</p>
+      <div class="calc-box"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 06 - USPSTF SYNTHESIS -->
+  <section class="section" aria-labelledby="s6-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">06</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Build &amp; Apply · USPSTF Screening <span class="lab-flag">Lab</span></p>
+        <h2 class="section-title" id="s6-title">Age-based screening across the lifespan</h2>
+        <p class="section-anchor">Lab anchor and 8-week synthesis. For each patient, list USPSTF Grade A or B screenings they should receive at this visit, and connect each screening to the relevant week of this course.</p>
+      </div>
+    </header>
+
+    <div class="patient-card">
+      <h4>Patient A</h4>
+      <p class="case">52-year-old female. 25-pack-year smoking history (quit 5 years ago). BMI 27. No personal cancer history. Annual wellness visit.</p>
+    </div>
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span><span class="task-letter" aria-hidden="true">a.</span> List four USPSTF Grade A or B screenings that apply to Patient A. For each, identify the relevant week of this course.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="patient-card">
+      <h4>Patient B</h4>
+      <p class="case">68-year-old male. Lifelong smoker (40 pack-years). BMI 30. History of hypertension on medication. Comes in for annual exam.</p>
+    </div>
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span><span class="task-letter" aria-hidden="true">b.</span> List four USPSTF Grade A or B screenings that apply to Patient B. Identify any that depend specifically on his smoking history, and connect each screening to the relevant week of this course.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="patient-card">
+      <h4>Patient C</h4>
+      <p class="case">35-year-old female. BMI 32. Family history of type 2 diabetes (mother and maternal grandmother). No tobacco use. Sexually active. New patient establishing care.</p>
+    </div>
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span><span class="task-letter" aria-hidden="true">c.</span> List two USPSTF Grade A or B screenings that apply to Patient C now. Identify one screening she does not yet qualify for but will at age 40, and one she will qualify for at age 45. Connect each to the relevant week of this course.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 07 - DEATH AND DYING (for funeral science / mortuary students) -->
+  <section class="section" aria-labelledby="s7-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">07</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Build &amp; Apply · Death, Dying &amp; Brain Death</p>
+        <h2 class="section-title" id="s7-title">End of the lifespan</h2>
+        <p class="section-anchor">For pre-nursing and mortuary science students. Postmortem changes have forensic and embalming significance. Brain death has a specific clinical exam protocol.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span>Fill in the postmortem changes timeline below. For each change, write the <strong>onset / timing</strong> and the <strong>mechanism</strong>.</p>
+      <table class="compare-table">
+        <thead><tr><th scope="col" style="width:22%;">Postmortem change</th><th scope="col" style="width:34%;">Onset / timing</th><th scope="col" style="width:44%;">Mechanism</th></tr></thead>
+        <tbody>
+          <tr><td class="label-col">Pallor mortis</td><td></td><td></td></tr>
+          <tr><td class="label-col">Algor mortis</td><td></td><td></td></tr>
+          <tr><td class="label-col">Livor mortis</td><td></td><td></td></tr>
+          <tr><td class="label-col">Rigor mortis</td><td></td><td></td></tr>
+          <tr><td class="label-col">Decomposition</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient is found dead in their home approximately 6 hours after a witnessed cardiac arrest. The body was found face-down on the bedroom floor. Predict where livor mortis would be visible, whether rigor mortis would be present, and what the body temperature would be relative to ambient room temperature. Explain each prediction.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A patient is unresponsive 48 hours after a severe traumatic brain injury, on a ventilator. The neurologist documents fixed and dilated pupils, absent corneal reflex, absent oculocephalic response, and absent gag reflex. Identify the next required test before brain death can be declared, identify two confounders that would invalidate the brain death exam, and explain why hypothermia must be ruled out first.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A family asks how their loved one can still have a heartbeat if the doctor has declared them brain dead. Explain in plain language: the difference between cardiopulmonary death and brain death, the role of the brainstem in spontaneous breathing, and why mechanical ventilation can sustain heart function temporarily even after the brain has died.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 08 - FINAL REFLECTION -->
+  <section class="section" aria-labelledby="s8-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">08</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Reflect · Final Synthesis</p>
+        <h2 class="section-title" id="s8-title">Eight weeks of A&amp;P, in your own words</h2>
+        <p class="section-anchor">The final reflection. Honesty here is graded for completeness, not correctness.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">a.</span> Of the eight weeks of this course, which week's content feels strongest right now? Identify one concept you would feel comfortable teaching to a friend with no biology background.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">b.</span> Which week's content is still cloudy? Identify the specific concept you would want to revisit before a future course (microbiology, nursing fundamentals, pathophysiology, pharmacology).</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">c.</span> Pick <strong>one</strong> concept from Week 1 (body systems, tissues, anatomical language, homeostasis) and trace how it shows up again in Week 8 (lifespan, screening, aging). Show the integration in a few sentences.</p>
+      <div class="ruled xlong"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">d.</span> Lab preview: in the final lab you will run APGAR, calculate due dates, and review USPSTF screening for sample patients. Identify which of the three lab tools you feel readiest for and which one you would most benefit from practicing further.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="closing-note">
+      <p>You have studied every system of the human body and the bedside tools clinicians use to assess it. You read action potentials, calculated blood glucose feedback loops, traced sound through the inner ear, screened for stroke with FAST, audited a nutrition label, interpreted a urine dipstick, scored a newborn, and learned how to recognize the determination of death.</p>
+      <p>The body is no longer a stranger to you.</p>
+      <p><em>Whatever you study next, A&amp;P is the floor everything else stands on. Thank you for the work you have put in.</em></p>
+    </div>
+  </section>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit</h2>
+    <ul class="submission-list">
+      <li><input type="checkbox" id="check1"><label for="check1">All seven sections are complete. Empty boxes lose points even on the right answer.</label></li>
+      <li><input type="checkbox" id="check2"><label for="check2">Both reproductive drawings (female and male) are complete and labeled.</label></li>
+      <li><input type="checkbox" id="check3"><label for="check3">The aging matrix table has all eight system rows filled in.</label></li>
+      <li><input type="checkbox" id="check4"><label for="check4">Both APGAR scoring tables are complete with totals and interpretations.</label></li>
+      <li><input type="checkbox" id="check5"><label for="check5">Both Naegele's Rule calculations show all three steps.</label></li>
+      <li><input type="checkbox" id="check6"><label for="check6">All three USPSTF patient cases have screening recommendations with course-week connections.</label></li>
+      <li><input type="checkbox" id="check7"><label for="check7">The postmortem changes timeline is filled in, and all three death/brain death applies are answered.</label></li>
+      <li><input type="checkbox" id="check8"><label for="check8">Your name is on the front page.</label></li>
+      <li><input type="checkbox" id="check9"><label for="check9">You have signed the integrity statement below.</label></li>
+    </ul>
+    <div class="signature-row">
+      <div>
+        <p class="integrity-statement">By signing below, I confirm this worksheet represents my own thinking. I may have studied with classmates, but the writing, drawings, calculations, and reflections on this page are mine.</p>
+        <div class="field"><span class="field-label">Signature</span><span class="field-line"></span></div>
+      </div>
+      <div class="field"><span class="field-label">Date</span><span class="field-line"></span></div>
+    </div>
+  </section>
+</main>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w08-worksheet';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>

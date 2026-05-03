@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 8 Cognitive Trainer · Life Stages &amp; Final Synthesis · BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
+    --sand: #f5e6d3; --sand-soft: #faf3e8;
+    --terra: #c44536; --terra-soft: #e8a499;
+    --kelp: #5a7553; --paper: #fdfbf7;
+    --line: #c9d4d8; --muted: #5a6b73;
+    --shadow-sm: 0 1px 2px rgba(20, 48, 75, 0.06);
+    --radius-sm: 6px; --radius-md: 12px; --radius-lg: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1180px; margin: 0 auto; padding: 0 28px 80px; }
+  header.masthead { padding: 48px 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 36px; }
+  .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
+  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; color: var(--ocean-deep); letter-spacing: -0.01em; margin-bottom: 14px; }
+  h1.title em { font-style: italic; color: var(--terra); }
+  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.12rem; color: var(--ocean); max-width: 720px; margin-bottom: 24px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: center; font-size: 0.86rem; color: var(--muted); }
+  .meta-row strong { color: var(--ink); font-weight: 600; }
+  .meta-pill { display: inline-flex; gap: 8px; align-items: center; background: var(--sea-glass-soft); padding: 6px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 500; color: var(--ocean-deep); }
+  .meta-pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--terra); }
+  .final-flag { display: inline-block; padding: 4px 10px; background: var(--ocean-deep); color: white; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 4px; }
+  .progress-rail { position: sticky; top: 0; background: var(--paper); z-index: 50; padding: 14px 28px; margin: 0 -28px 28px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 18px; }
+  .progress-label { font-size: 0.74rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); white-space: nowrap; }
+  .progress-track { flex: 1; height: 6px; background: var(--sea-glass); border-radius: 999px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 100%); width: 0%; transition: width 0.35s ease; }
+  .progress-count { font-size: 0.84rem; font-weight: 600; color: var(--ocean-deep); min-width: 50px; text-align: right; }
+  .progress-actions { display: flex; gap: 8px; }
+  .icon-btn { border: 1px solid var(--line); background: white; color: var(--ocean-deep); width: 34px; height: 34px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.15s ease; font-size: 1rem; }
+  .icon-btn:hover { background: var(--sea-glass-soft); border-color: var(--ocean); }
+  .intro { background: linear-gradient(135deg, var(--sea-glass-soft) 0%, var(--sand-soft) 100%); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px 36px; margin-bottom: 36px; position: relative; }
+  .intro::after { content: ''; position: absolute; bottom: 0; left: 36px; right: 36px; height: 3px; background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 50%, var(--kelp) 100%); border-radius: 2px; }
+  .intro h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem; color: var(--ocean-deep); margin-bottom: 14px; }
+  .intro p { color: var(--ink); margin-bottom: 12px; max-width: 780px; }
+  .intro p:last-of-type { margin-bottom: 0; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 22px; padding-top: 22px; border-top: 1px dashed var(--line); font-size: 0.84rem; }
+  .legend-item { display: inline-flex; align-items: center; gap: 8px; }
+  .legend-chip { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .chip-retrieve { background: var(--ocean-deep); color: white; }
+  .chip-build { background: var(--terra); color: white; }
+  .chip-apply { background: var(--kelp); color: white; }
+  .section { background: white; border: 1px solid var(--line); border-radius: var(--radius-lg); margin-bottom: 32px; overflow: hidden; box-shadow: var(--shadow-sm); }
+  .section-head { display: flex; gap: 22px; align-items: flex-start; padding: 28px 32px 22px; border-bottom: 1px solid var(--line); background: var(--sand-soft); cursor: pointer; user-select: none; transition: background 0.15s ease; }
+  .section-head:hover { background: var(--sand); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 2.4rem; color: var(--terra); line-height: 1; min-width: 48px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.45rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .section-anchor { font-size: 0.92rem; color: var(--ocean); max-width: 700px; }
+  .section-toggle { font-size: 1.2rem; color: var(--ocean); transition: transform 0.25s ease; margin-top: 8px; }
+  .section.collapsed .section-toggle { transform: rotate(-90deg); }
+  .section-body { padding: 26px 32px 32px; }
+  .section.collapsed .section-body { display: none; }
+  .mode-block { margin-bottom: 28px; }
+  .mode-block:last-child { margin-bottom: 0; }
+  .mode-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .mode-tag { display: inline-block; padding: 4px 11px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .mode-name { font-family: 'Lora', serif; font-style: italic; font-size: 1.05rem; color: var(--ocean-deep); }
+  .prompt-list { list-style: none; }
+  .prompt-list li { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px dashed var(--line); align-items: flex-start; }
+  .prompt-list li:last-child { border-bottom: none; }
+  .prompt-num { font-family: 'Lora', serif; font-weight: 500; font-size: 0.95rem; color: var(--terra); min-width: 22px; }
+  .prompt-text { flex: 1; }
+  .prompt-text .reveal-btn { margin-left: 8px; background: transparent; border: 1px solid var(--line); color: var(--ocean); font-size: 0.7rem; font-weight: 600; padding: 2px 9px; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.15s ease; }
+  .prompt-text .reveal-btn:hover { background: var(--ocean); color: white; }
+  .answer { display: none; margin-top: 8px; padding: 10px 14px; background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); border-radius: 4px; font-size: 0.92rem; color: var(--ocean-deep); font-family: 'Lora', serif; }
+  .answer.show { display: block; }
+  .answer strong { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; }
+  .work-box { margin-top: 14px; background: white; border: 1.5px solid var(--ink); border-radius: var(--radius-sm); padding: 18px 20px; min-height: 120px; background-image: linear-gradient(transparent calc(1.7em - 1px), var(--line) 1px); background-size: 100% 1.7em; line-height: 1.7em; }
+  .work-label { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .ref-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; margin: 14px 0; }
+  .ref-table th { text-align: left; padding: 10px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .ref-table td { padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .ref-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .ref-table .blank-cell { cursor: pointer; color: var(--muted); font-style: italic; font-family: 'Lora', serif; }
+  .ref-table .blank-cell:hover { background: var(--sea-glass-soft); }
+  .ref-table .blank-cell.revealed { color: var(--ink); font-style: normal; font-family: inherit; }
+  .check-prompt { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; }
+  .check-prompt input[type="checkbox"] { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--terra); cursor: pointer; }
+  .check-prompt label { flex: 1; cursor: pointer; font-size: 0.96rem; }
+  .section-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 26px; padding-top: 20px; border-top: 1px dashed var(--line); }
+  .complete-btn { background: white; border: 2px solid var(--ocean-deep); color: var(--ocean-deep); padding: 9px 18px; border-radius: 8px; font-family: inherit; font-weight: 600; font-size: 0.86rem; cursor: pointer; letter-spacing: 0.04em; transition: all 0.18s ease; }
+  .complete-btn:hover { background: var(--ocean-deep); color: white; }
+  .complete-btn.done { background: var(--kelp); color: white; border-color: var(--kelp); }
+  .complete-btn.done::before { content: '✓ '; }
+  .closing { background: linear-gradient(150deg, var(--ocean-deep) 0%, var(--ink) 100%); color: white; border-radius: var(--radius-lg); padding: 36px 38px; margin-top: 40px; position: relative; overflow: hidden; }
+  .closing::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: radial-gradient(circle, var(--terra) 0%, transparent 70%); opacity: 0.3; }
+  .closing h3 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem; margin-bottom: 14px; position: relative; }
+  .closing p { opacity: 0.92; max-width: 720px; margin-bottom: 14px; position: relative; }
+  .closing-steps { list-style: none; counter-reset: step; margin-top: 18px; position: relative; }
+  .closing-steps li { counter-increment: step; padding: 8px 0 8px 38px; position: relative; font-size: 0.95rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .closing-steps li::before { content: counter(step); position: absolute; left: 0; top: 6px; width: 26px; height: 26px; background: var(--terra); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; }
+  .formula-card { background: var(--sea-glass-soft); border: 1.5px solid var(--ocean); border-radius: 8px; padding: 14px 18px; margin: 14px 0; font-family: 'Lora', serif; font-size: 0.92rem; }
+  .formula-card strong { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--ocean-deep); }
+  .lifespan-strip { background: var(--sand-soft); border-left: 4px solid var(--terra); padding: 14px 18px; margin: 14px 0; font-size: 0.9rem; }
+  .lifespan-strip h4 { font-family: 'Lora', serif; font-weight: 500; font-size: 1rem; color: var(--ocean-deep); margin-bottom: 6px; font-style: italic; }
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .progress-rail, .icon-btn, .reveal-btn, .complete-btn, .skip-link { display: none !important; }
+    .answer.show { background: white; border-color: var(--ink); }
+    .section { break-inside: avoid; box-shadow: none; border: 1.5px solid var(--ink); page-break-inside: avoid; }
+    .section.collapsed .section-body { display: block !important; }
+    .closing { background: white; color: var(--ink); border: 2px solid var(--ink); }
+    @page { size: letter; margin: 0.55in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="page" id="main-content" role="main">
+
+  <header class="masthead">
+    <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · Week 08 · <span class="final-flag">Final Synthesis</span></p>
+    <h1 class="title">Life Stages &amp; <em>Final Synthesis</em></h1>
+    <p class="subtitle">Reproductive anatomy, pregnancy and birth, lactation, aging across systems, and the clinical tools that frame the lifespan.</p>
+    <div class="meta-row">
+      <span class="meta-pill">OpenStax · Ch 27 (Read) · Ch 28.1, 28.4-28.6 (Focus)</span>
+      <span><strong>Cognitive load:</strong> 3 modes across 8 sections</span>
+      <span><strong>Estimated time:</strong> 150 to 180 minutes</span>
+      <span><strong>Author:</strong> Dr. Sharilyn Rennie</span>
+    </div>
+  </header>
+
+  <div class="progress-rail">
+    <span class="progress-label" id="progress-label">Trainer Progress</span>
+    <div class="progress-track" role="progressbar" aria-labelledby="progress-label" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount" aria-live="polite" aria-atomic="true">0 / 8</span>
+    <div class="progress-actions">
+      <button class="icon-btn" id="print-btn" type="button" aria-label="Print trainer" onclick="window.print()">⎙</button>
+      <button class="icon-btn" id="reset-btn" type="button" aria-label="Reset progress for all sections">↺</button>
+    </div>
+  </div>
+
+  <div class="intro">
+    <h2>Week 8: from gametes to geriatrics</h2>
+    <p>This week takes the eight weeks of A&amp;P content and lays them across a human lifespan. Reproduction creates the next body. Pregnancy and birth are the most dramatic physiological transitions any organism makes. Aging changes every system you have already studied. The lab tools (APGAR, Naegele's Rule, USPSTF screening) are how clinicians act on this lifespan view at the bedside.</p>
+    <p>Three lab tools anchor this week: Section 5 covers <strong>APGAR scoring and Naegele's Rule</strong> (newborn and pregnancy dating). Section 6 covers <strong>USPSTF age-based screening</strong>, which intentionally ties back to nearly every prior week of this course.</p>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-chip chip-retrieve">Retrieve</span> Recall the term, structure, or fact</span>
+      <span class="legend-item"><span class="legend-chip chip-build">Build</span> Draw, label, or construct the mechanism</span>
+      <span class="legend-item"><span class="legend-chip chip-apply">Apply</span> Predict or interpret</span>
+    </div>
+  </div>
+
+  <!-- SECTION 01 -->
+  <section class="section" data-section="s1">
+    <div class="section-head" onclick="toggleSection('s1')">
+      <div class="section-num">01</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 27</p>
+        <h2 class="section-title">Reproductive Anatomy: Both Sexes</h2>
+        <p class="section-anchor">Two systems built around the same goal: producing gametes and providing for fertilization. The lab quiz will require identification of structures in both sexes.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Male and female anatomy and hormones</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Trace the path of sperm from production to ejaculation, naming each duct and accessory gland.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Sperm produced in <strong>seminiferous tubules</strong> of the testes → <strong>rete testis</strong> → <strong>epididymis</strong> (maturation and storage) → <strong>vas (ductus) deferens</strong> → <strong>ejaculatory duct</strong> (joined by seminal vesicle duct) → <strong>prostatic urethra</strong> → <strong>membranous urethra</strong> → <strong>spongy (penile) urethra</strong> → exit. Accessory glands: <strong>seminal vesicles</strong> (fructose, prostaglandins, ~60% of semen volume), <strong>prostate gland</strong> (alkaline fluid, ~30%), <strong>bulbourethral (Cowper's) glands</strong> (pre-ejaculate mucus).</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Name the three layers of the uterus and trace the path of an oocyte from ovary to uterus.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Uterine layers from outer to inner: <strong>perimetrium</strong> (serosa), <strong>myometrium</strong> (smooth muscle, contracts during labor), <strong>endometrium</strong> (mucosa, sheds during menstruation). Ovum path: oocyte released from <strong>ovarian follicle</strong> at ovulation → swept into <strong>fimbriae</strong> of the <strong>fallopian (uterine) tube</strong> → travels via cilia and peristalsis along the tube → fertilization typically occurs in the <strong>ampulla</strong> → zygote enters the uterus and implants in the endometrium.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Trace the male hormonal axis from hypothalamus to testicular hormone output.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Hypothalamus releases <strong>GnRH</strong> → anterior pituitary releases <strong>LH</strong> and <strong>FSH</strong>. <strong>LH</strong> acts on <strong>Leydig cells</strong> (interstitial cells) → produce <strong>testosterone</strong>. <strong>FSH</strong> acts on <strong>Sertoli cells</strong> in the seminiferous tubules → support <strong>spermatogenesis</strong>. Negative feedback: testosterone inhibits hypothalamus and pituitary; inhibin (from Sertoli cells) selectively inhibits FSH.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Describe the female ovarian cycle (follicular, ovulation, luteal phases) and the corresponding uterine cycle.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Ovarian cycle:</strong> <em>Follicular phase</em> (days 1-13): FSH stimulates follicle growth; the dominant follicle produces estrogen. <em>Ovulation</em> (~day 14): LH surge ruptures the follicle, releasing the oocyte. <em>Luteal phase</em> (days 14-28): the ruptured follicle becomes the <strong>corpus luteum</strong>, which produces progesterone and estrogen. If no fertilization, corpus luteum degenerates and hormones drop. <strong>Uterine cycle:</strong> <em>Menstrual phase</em> (days 1-5): endometrium sheds. <em>Proliferative phase</em> (days 6-14): estrogen rebuilds the endometrium. <em>Secretory phase</em> (days 15-28): progesterone makes endometrium glandular and receptive.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Hormone reference</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the answer.</p>
+        <table class="ref-table">
+          <thead><tr><th scope="col">Hormone</th><th scope="col">Source</th><th scope="col">Primary action</th></tr></thead>
+          <tbody>
+            <tr><td>GnRH</td><td class="blank-cell" onclick="revealCell(this, 'Hypothalamus')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Stimulates anterior pituitary to release LH and FSH')">click to reveal</td></tr>
+            <tr><td>FSH</td><td class="blank-cell" onclick="revealCell(this, 'Anterior pituitary')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Female: follicle growth. Male: spermatogenesis via Sertoli cells')">click to reveal</td></tr>
+            <tr><td>LH</td><td class="blank-cell" onclick="revealCell(this, 'Anterior pituitary')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Female: ovulation surge. Male: testosterone via Leydig cells')">click to reveal</td></tr>
+            <tr><td>Estrogen</td><td class="blank-cell" onclick="revealCell(this, 'Ovarian follicle, then corpus luteum, then placenta')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Endometrial proliferation, secondary sex characteristics, bone density')">click to reveal</td></tr>
+            <tr><td>Progesterone</td><td class="blank-cell" onclick="revealCell(this, 'Corpus luteum, then placenta')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Maintains endometrium and pregnancy, suppresses uterine contractions')">click to reveal</td></tr>
+            <tr><td>Testosterone</td><td class="blank-cell" onclick="revealCell(this, 'Leydig cells of testes')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Spermatogenesis, secondary sex characteristics, libido')">click to reveal</td></tr>
+            <tr><td>hCG</td><td class="blank-cell" onclick="revealCell(this, 'Trophoblast / early placenta')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Maintains corpus luteum in early pregnancy; basis of pregnancy tests')">click to reveal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Reproductive scenarios</span></div>
+        <div class="work-label">a. A 35-year-old female is having difficulty conceiving. She has irregular menstrual cycles. Predict which hormonal axis is most likely affected and identify what bloodwork would clarify ovulation status.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A male patient with a pituitary tumor producing excess prolactin develops decreased libido and infertility. Trace why prolactin disrupts the male reproductive axis.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient takes oral contraceptives (synthetic estrogen and progesterone). Trace via negative feedback how this prevents ovulation.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 01 of 08</span><button class="complete-btn" data-complete="s1" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 -->
+  <section class="section" data-section="s2">
+    <div class="section-head" onclick="toggleSection('s2')">
+      <div class="section-num">02</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Focus · OpenStax 28.1, 28.4, 28.5</p>
+        <h2 class="section-title">Fertilization, Pregnancy &amp; Adjustments at Birth</h2>
+        <p class="section-anchor">Fertilization, implantation, and the dramatic physiological transitions of birth. Deep embryonic and fetal staging are optional in this course.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Fertilization to birth</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Describe fertilization, the first week after fertilization, and where implantation occurs.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Fertilization typically happens in the <strong>ampulla of the fallopian tube</strong> within ~24 hours of ovulation. One sperm penetrates the zona pellucida and fuses with the oocyte to form a <strong>zygote</strong> (diploid). Over 6 to 7 days, the zygote undergoes <strong>cleavage</strong> (mitotic divisions without growth) → <strong>morula</strong> (16+ cell ball) → <strong>blastocyst</strong> (hollow ball with inner cell mass and trophoblast). The blastocyst <strong>implants</strong> in the <strong>endometrium of the uterus</strong>, typically in the upper posterior wall, around day 6 to 9 post-fertilization.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Name the major hormones of pregnancy and explain how the hormonal source shifts during the first trimester.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Early pregnancy: the trophoblast secretes <strong>hCG (human chorionic gonadotropin)</strong>, which mimics LH and keeps the <strong>corpus luteum</strong> alive past its normal lifespan. The corpus luteum produces estrogen and progesterone to maintain the endometrium. Around weeks 8 to 12, the <strong>placenta</strong> takes over hormone production, secreting <strong>estrogen, progesterone</strong>, and <strong>human placental lactogen (hPL)</strong>. hCG drops after the first trimester. hCG is the basis of urine and blood pregnancy tests.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Describe the three stages of labor.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Stage 1: Dilation.</strong> Cervix effaces and dilates from 0 to 10 cm. Begins with regular contractions; ends when cervix is fully dilated. Longest stage (6 to 12+ hours in first pregnancy). <strong>Stage 2: Expulsion.</strong> Mother actively pushes; baby moves through birth canal and is delivered. Typically 30 minutes to 2 hours. <strong>Stage 3: Placental.</strong> Placenta detaches and is expelled, usually within 30 minutes after birth. Uterine contractions help control postpartum bleeding.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Describe the four major adjustments at birth as the newborn transitions to extrauterine life.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">(1) <strong>First breath:</strong> umbilical cord clamping ends placental gas exchange; CO₂ rises. The newborn takes a strong negative-pressure breath, expanding the lungs for the first time. (2) <strong>Foramen ovale closes:</strong> increased left atrial pressure (now that the lungs have blood flow) pushes the flap closed; eventually fuses to become the <strong>fossa ovalis</strong>. (3) <strong>Ductus arteriosus closes:</strong> rising arterial O₂ and falling prostaglandins trigger constriction; eventually fibroses to become the <strong>ligamentum arteriosum</strong>. (4) <strong>Ductus venosus closes:</strong> blood now passes through the liver; remnant becomes the <strong>ligamentum venosum</strong>. The hepatic portal circulation activates.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Pregnancy and birth scenarios</span></div>
+        <div class="work-label">a. A patient has a positive home pregnancy test (urine hCG) but ultrasound shows no fetus in the uterus. Identify the diagnosis at risk, predict where the embryo most commonly implants in this case, and explain the danger.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A newborn has cyanosis that does not resolve with oxygen, and a continuous heart murmur. Identify which fetal shunt most likely failed to close, predict the consequence on circulation, and identify the prostaglandin manipulation used to manage this.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A 39-week-pregnant patient is in stage 1 labor for 14 hours but is only 5 cm dilated. Identify what stage 1 progress should look like, predict what would happen if labor stalls, and identify one drug that augments uterine contractions.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 02 of 08</span><button class="complete-btn" data-complete="s2" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 -->
+  <section class="section" data-section="s3">
+    <div class="section-head" onclick="toggleSection('s3')">
+      <div class="section-num">03</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Focus · OpenStax 28.6</p>
+        <h2 class="section-title">Lactation</h2>
+        <p class="section-anchor">Mammary glands produce milk under hormonal control. Two distinct hormones do two distinct jobs: synthesis and ejection.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Hormones, composition, immunity</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Identify the two key hormones of lactation and the distinct role of each.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Prolactin</strong> (anterior pituitary) drives <strong>milk synthesis</strong>. Estrogen and progesterone during pregnancy prepare the breasts but inhibit prolactin's action; the drop in those hormones after delivery releases prolactin's effect. Suckling stimulates ongoing prolactin release. <strong>Oxytocin</strong> (posterior pituitary) drives <strong>milk ejection / let-down</strong> by causing contraction of myoepithelial cells around the alveoli. Released by neuroendocrine reflex when the infant suckles or sometimes when the mother hears the baby cry.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Compare colostrum and mature milk in composition and timing.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Colostrum:</strong> first ~3 days after delivery. Yellowish, thick, low in volume but high in protein, especially <strong>secretory IgA</strong>. Provides passive immunity and seeds gut microbiome. Lower in fat and lactose than mature milk. <strong>Mature milk:</strong> appears around day 3 to 5. Higher fat and lactose for energy, lower protein concentration. Continues to contain IgA, lactoferrin, lysozyme, and live immune cells. The composition shifts within a single feed too (foremilk thinner, hindmilk fattier).</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">List the major immune components of breast milk and explain why breastfeeding is described as passive immunity.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Breast milk contains <strong>secretory IgA</strong> (binds pathogens at mucosal surfaces in the infant gut), <strong>lactoferrin</strong> (binds iron, starving bacteria), <strong>lysozyme</strong> (degrades bacterial cell walls), and live <strong>maternal leukocytes</strong> (macrophages, lymphocytes). Because these are pre-formed antibodies and cells from the mother (not produced by the infant's own immune system), this is <strong>passive immunity</strong>. It is immediate but temporary: it only lasts as long as breastfeeding continues, and the infant must develop its own active immunity over time.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Explain why breastfeeding can suppress ovulation.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Frequent suckling maintains high <strong>prolactin</strong> levels. Prolactin inhibits hypothalamic <strong>GnRH</strong> release, which suppresses LH and FSH from the anterior pituitary. Without an LH surge, ovulation does not occur. This is called <strong>lactational amenorrhea</strong>. It is most reliable in the first six months when feeding is exclusive, on demand, and frequent. Less reliable as feedings space out.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Lactation scenarios</span></div>
+        <div class="work-label">a. A new mother reports that her milk does not seem to "let down" when feeding. Identify the hormone responsible for milk ejection and predict three things that might inhibit the let-down reflex.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A premature infant is fed donor breast milk specifically because of the immune protection. Identify the major immune components and explain why this matters more in a preemie than in a full-term infant.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A breastfeeding patient mistakenly assumes she cannot get pregnant. Identify the conditions under which lactational amenorrhea is most reliable, and explain why combined oral contraceptives are sometimes avoided in breastfeeding.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 03 of 08</span><button class="complete-btn" data-complete="s3" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 - AGING SYNTHESIS -->
+  <section class="section" data-section="s4">
+    <div class="section-head" onclick="toggleSection('s4')">
+      <div class="section-num">04</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Synthesis · Aging across systems</p>
+        <h2 class="section-title">Aging Physiology Across Systems</h2>
+        <p class="section-anchor">Every system you have studied this term changes with age. The pattern is loss of reserve: function is adequate at rest but the buffer for stress shrinks. This section pulls prior weeks back through an aging lens.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Aging changes by system</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Describe major aging changes in skin, bone, and skeletal muscle (Weeks 1-2 systems).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Skin:</strong> thinner epidermis, less elastin and collagen (wrinkles), decreased sebum and sweat (dryness, heat intolerance), slower wound healing, decreased melanocyte function (graying, more burn risk). <strong>Bone:</strong> osteoblast activity declines while osteoclast activity does not, so bone density falls. Postmenopausal estrogen drop accelerates loss in females (osteoporosis). Hip and vertebral fracture risk rises. <strong>Muscle:</strong> sarcopenia (loss of muscle mass and strength), partly due to motor neuron loss, decreased anabolic hormones, and reduced activity. Strength training partially preserves it.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Describe major aging changes in nervous, special senses, and endocrine systems (Weeks 3-4 systems).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Nervous:</strong> brain volume slowly decreases; processing speed slows; some memory consolidation declines (though crystallized intelligence is preserved). Risk of dementia rises with age. Autonomic responses blunted (orthostatic hypotension more common). <strong>Special senses:</strong> <em>presbyopia</em> (lens stiffens, near vision worsens); <em>presbycusis</em> (high-frequency hearing loss); reduced taste and smell sensitivity; reduced proprioception (fall risk). <strong>Endocrine:</strong> menopause (ovarian estrogen drops abruptly around age 50); andropause (testosterone gradually declines); thyroid hormone metabolism slows; insulin resistance often increases.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Describe major aging changes in cardiovascular, respiratory, and renal systems (Weeks 5-6 systems).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Cardiovascular:</strong> arterial stiffening (raises systolic BP, isolated systolic hypertension), maximum heart rate decreases (~220 minus age), atherosclerosis progresses, baroreceptor reflex blunts (orthostatic intolerance). <strong>Respiratory:</strong> chest wall stiffens; alveolar elastic recoil decreases; vital capacity falls; residual volume rises; cough reflex weakens (aspiration and pneumonia risk). <strong>Renal:</strong> nephrons are lost; <strong>GFR declines</strong> by ~1 mL/min per year after age 40; concentrating ability falls (dehydration risk); drug clearance decreases (medication dosing must adjust).</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Describe major aging changes in digestive, immune, and reproductive systems (Weeks 7-8 systems).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Digestive:</strong> reduced saliva, reduced stomach acid (lower B₁₂ absorption, more bacterial overgrowth), slower GI motility (constipation), reduced liver mass and CYP450 activity (slower drug metabolism). <strong>Immune:</strong> <em>immunosenescence</em>: thymic involution, reduced naive T cells, blunted antibody response to new antigens (why vaccines work less well in elderly), increased autoimmunity. <strong>Reproductive:</strong> female menopause around age 45 to 55 with abrupt estrogen drop and end of fertility; male testosterone declines slowly with age, fertility preserved into late life but reduced; both have reduced sexual response, vaginal atrophy, and erectile changes.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Aging changes reference</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the answer.</p>
+        <table class="ref-table">
+          <thead><tr><th scope="col">System</th><th scope="col">Key aging change</th><th scope="col">Clinical consequence</th></tr></thead>
+          <tbody>
+            <tr><td>Cardiovascular</td><td class="blank-cell" onclick="revealCell(this, 'Arterial stiffening, blunted baroreflex, lower max HR')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Isolated systolic hypertension, orthostatic hypotension')">click to reveal</td></tr>
+            <tr><td>Respiratory</td><td class="blank-cell" onclick="revealCell(this, 'Decreased elastic recoil and vital capacity')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Reduced exercise tolerance, increased pneumonia risk')">click to reveal</td></tr>
+            <tr><td>Renal</td><td class="blank-cell" onclick="revealCell(this, 'GFR declines, concentrating ability falls')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Dehydration risk, drug dose adjustments needed')">click to reveal</td></tr>
+            <tr><td>Bone</td><td class="blank-cell" onclick="revealCell(this, 'Bone density falls, accelerated postmenopause')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Osteoporosis, hip and vertebral fractures')">click to reveal</td></tr>
+            <tr><td>Nervous</td><td class="blank-cell" onclick="revealCell(this, 'Slower processing, reduced autonomic reflexes')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Fall risk, polypharmacy interactions, dementia risk')">click to reveal</td></tr>
+            <tr><td>Endocrine</td><td class="blank-cell" onclick="revealCell(this, 'Menopause, andropause, increased insulin resistance')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Type 2 diabetes risk, hot flashes, low libido')">click to reveal</td></tr>
+            <tr><td>Immune</td><td class="blank-cell" onclick="revealCell(this, 'Immunosenescence, thymic involution')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Reduced vaccine response, more severe infections')">click to reveal</td></tr>
+            <tr><td>Special senses</td><td class="blank-cell" onclick="revealCell(this, 'Presbyopia, presbycusis, reduced taste/smell')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Reading difficulty, hearing aids needed, appetite loss')">click to reveal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Aging in real patients</span></div>
+        <div class="work-label">a. An 80-year-old patient stands up from a chair, becomes lightheaded, and falls. Identify two aging changes that explain this episode (one cardiovascular, one nervous), and connect both to the loss-of-reserve principle.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A 75-year-old patient receives the standard adult flu vaccine but has a weak antibody response and gets influenza despite vaccination. Identify the aging change that explains this and identify what high-dose senior flu vaccines try to overcome.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A 70-year-old patient is prescribed a normal adult dose of an oral medication and develops drug toxicity within a week. Identify two aging changes that contribute, and explain why the same dose is safe in a 30-year-old.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 04 of 08</span><button class="complete-btn" data-complete="s4" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 05 - APGAR & NAEGELE -->
+  <section class="section" data-section="s5">
+    <div class="section-head" onclick="toggleSection('s5')">
+      <div class="section-num">05</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Lab anchor · APGAR &amp; Naegele's Rule</p>
+        <h2 class="section-title">Newborn Scoring &amp; Pregnancy Dating</h2>
+        <p class="section-anchor">Two clinical tools used in this week's lab. APGAR scores newborn condition at one and five minutes. Naegele's Rule estimates due date from last menstrual period.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">APGAR components and Naegele's Rule</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Identify the five components of APGAR and the score for each (0, 1, or 2).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>A</strong>ppearance (color): 0 blue/pale, 1 pink body with blue extremities (acrocyanosis), 2 completely pink. <strong>P</strong>ulse: 0 absent, 1 less than 100, 2 greater than 100. <strong>G</strong>rimace (reflex irritability to nasal suction): 0 no response, 1 grimace, 2 cough/sneeze/cry. <strong>A</strong>ctivity (muscle tone): 0 limp, 1 some flexion, 2 active motion. <strong>R</strong>espiratory effort: 0 absent, 1 weak/irregular, 2 strong cry. Total 0 to 10.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">State the timing of APGAR scoring and the score ranges for routine, fairly low, and critically low.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Scored at <strong>1 minute</strong> after birth (reflects intrapartum status) and <strong>5 minutes</strong> after birth (reflects response to resuscitation). If the 5-minute score is below 7, scoring is repeated every 5 minutes until 20 minutes. <strong>7 to 10:</strong> generally normal, routine care. <strong>4 to 6:</strong> moderately depressed, may need stimulation, suction, or oxygen. <strong>0 to 3:</strong> critically depressed, immediate resuscitation indicated. APGAR is a tool to flag and monitor, not a predictor of long-term outcome.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">State Naegele's Rule for estimating the due date and explain its assumptions.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Naegele's Rule:</strong> Estimated date of delivery (EDD) = first day of last menstrual period (LMP) + 7 days - 3 months + 1 year. Equivalent to LMP + 280 days. <strong>Assumptions:</strong> regular 28-day cycles with ovulation on day 14, fertilization shortly after, and pregnancy of about 40 weeks gestation from LMP. The rule overestimates pregnancy length for someone with a longer cycle and underestimates for a shorter cycle. Ultrasound dating in the first trimester is more accurate.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Describe how trimesters are defined and what milestone happens at each.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>First trimester:</strong> weeks 1 to 12. Most organogenesis completes by end of week 8 (especially weeks 3 to 8). Highest risk of teratogenic injury and miscarriage. <strong>Second trimester:</strong> weeks 13 to 27. Quickening (felt fetal movement) around 18 to 22 weeks. <strong>Viability threshold</strong> typically around 24 weeks. <strong>Third trimester:</strong> weeks 28 to 40. Major fetal growth, lung surfactant production, brain development. Term: 37 to 42 weeks. Preterm: before 37 weeks.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="formula-card">
+        <strong>Naegele's Rule:</strong> EDD = LMP + 7 days − 3 months + 1 year (= LMP + 280 days)<br>
+        <strong>APGAR:</strong> A (color), P (pulse), G (grimace), A (activity), R (respiration). Each scored 0/1/2. Total 0-10. Done at 1 min and 5 min.
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Score and date</span></div>
+        <div class="work-label">a. A newborn at 1 minute is pink with blue hands and feet, has a heart rate of 130, cries vigorously when suctioned, has active flexion, and is breathing strongly with a loud cry. Calculate the APGAR score by component and total. Interpret the score.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A newborn at 1 minute is bluish all over, heart rate 80, no response to suction, limp, with weak irregular gasps. Calculate the APGAR score and identify the immediate clinical action.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient's last menstrual period began on July 10, 2026. Apply Naegele's Rule to estimate her due date. Show your work.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 05 of 08</span><button class="complete-btn" data-complete="s5" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 06 - USPSTF SYNTHESIS -->
+  <section class="section" data-section="s6">
+    <div class="section-head" onclick="toggleSection('s6')">
+      <div class="section-num">06</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Lab anchor · USPSTF age-based screening · Eight-week synthesis</p>
+        <h2 class="section-title">USPSTF Age-Based Screening</h2>
+        <p class="section-anchor">The US Preventive Services Task Force recommends evidence-based screenings by age. This is where the eight weeks of A&amp;P content show up at the bedside, and where prevention happens.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Major USPSTF age-based screenings</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Identify the USPSTF letter grades A, B, C, D, and I, and what each means for screening recommendations.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>A:</strong> high certainty of substantial net benefit. Recommended. <strong>B:</strong> high certainty of moderate, or moderate certainty of moderate to substantial, net benefit. Recommended. <strong>C:</strong> small net benefit. Selectively offer based on individual circumstances. <strong>D:</strong> no benefit or harms outweigh benefits. Recommend against. <strong>I:</strong> insufficient evidence. Cannot make a recommendation. Most clinical screening guidelines fall under A or B.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Identify the USPSTF age ranges and methods for cervical, breast, and colorectal cancer screening (Grade A or B recommendations).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Cervical cancer:</strong> ages 21 to 29 cytology every 3 years; ages 30 to 65 hrHPV alone every 5 years, co-testing every 5 years, or cytology every 3 years; stop at 65 with adequate prior screening. <strong>Breast cancer:</strong> biennial mammography for women ages 40 to 74 (updated recommendation lowering start age to 40). <strong>Colorectal cancer:</strong> ages 45 to 75. Multiple options: colonoscopy every 10 years, FIT annually, stool DNA every 3 years, flexible sigmoidoscopy plus FIT, or CT colonography every 5 years.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Identify the USPSTF criteria for lung cancer, abdominal aortic aneurysm (AAA), and osteoporosis screening.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Lung cancer:</strong> annual low-dose CT (LDCT) for adults ages 50 to 80 with a 20+ pack-year smoking history, currently smoking or quit within 15 years. <strong>AAA:</strong> one-time abdominal ultrasound for men ages 65 to 75 who have ever smoked. Selective consideration for never-smoking men in this age range. <strong>Osteoporosis:</strong> DEXA bone density for women age 65 and older, and for postmenopausal women under 65 at increased fracture risk based on tools like FRAX.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Identify the USPSTF screening for hypertension, diabetes (type 2), and the use of statins for primary prevention. Connect each to a prior week of this course.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Hypertension:</strong> screen all adults age 18+ with office BP measurement, with confirmatory readings outside the office before starting treatment. Connects to <em>Week 5</em> (BP regulation, baroreceptor reflex, RAAS). <strong>Type 2 diabetes:</strong> screen adults ages 35 to 70 who are overweight or obese. Connects to <em>Week 3</em> (insulin/glucagon, COR-named) and <em>Week 7</em> (nutrition, TDEE). <strong>Statins for primary prevention:</strong> ages 40 to 75 with at least one cardiovascular risk factor and 10-year ASCVD risk of 10% or higher. Connects to <em>Week 5</em> (ASCVD calculator).</div></div></li>
+        </ol>
+      </div>
+
+      <div class="lifespan-strip">
+        <h4>The eight-week ribbon</h4>
+        <p>USPSTF screening pulls every prior week into one clinical view. Cervical and breast cancer screening (Week 8 reproductive). Colorectal screening (Week 7 digestive). Lung cancer screening (Week 6 respiratory). Hypertension and statins (Week 5 cardiovascular). Diabetes screening (Week 3 endocrine, Week 7 nutrition). Osteoporosis screening (Week 2 skeletal, Week 8 menopause). The body you have studied for eight weeks is the body the screening guidelines were built to protect.</p>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Patient screening recommendations</span></div>
+        <div class="work-label">a. A 52-year-old female with a 25-pack-year smoking history (quit 5 years ago) comes in for a wellness visit. List four USPSTF Grade A or B screenings she is now eligible for, and connect each to a prior week's content.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A 68-year-old male, lifelong smoker (40 pack-years), presents for an annual exam. List four USPSTF Grade A or B screenings he should receive, and identify any that depend specifically on his smoking history.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A 35-year-old female with a BMI of 32 and family history of type 2 diabetes asks what screenings are recommended at her age. List two USPSTF Grade A or B screenings she should receive, and identify one that she does not yet qualify for but will at age 40.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 06 of 08</span><button class="complete-btn" data-complete="s6" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 07 - DEATH, DYING & BRAIN DEATH (for funeral science / mortuary students) -->
+  <section class="section" data-section="s7">
+    <div class="section-head" onclick="toggleSection('s7')">
+      <div class="section-num">07</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Synthesis · Death, Dying &amp; Brain Death</p>
+        <h2 class="section-title">End of the Lifespan</h2>
+        <p class="section-anchor">The lifespan ends. This section serves both pre-nursing and mortuary science students. Two definitions of death are recognized in US law. The body undergoes predictable postmortem changes that have forensic and embalming significance. Brain death has a specific clinical exam protocol.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Definitions, postmortem changes, brain death exam</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">State the two legally recognized definitions of death under the Uniform Determination of Death Act (UDDA), and identify what evidence is required for each.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">The <strong>Uniform Determination of Death Act (1981)</strong>, adopted in some form by all 50 states, recognizes <strong>two legal definitions of death</strong>. (1) <strong>Cardiopulmonary death:</strong> irreversible cessation of circulatory and respiratory functions. Confirmed at the bedside by absent pulse, absent spontaneous respiration, and unresponsiveness, with confirmation that resuscitation will not restore function. (2) <strong>Brain death:</strong> irreversible cessation of all functions of the entire brain, including the brainstem. Either definition is sufficient to declare legal death. Brain death matters most when the patient is on mechanical ventilation, because the heart can keep beating even after brain function is gone.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Name the five major postmortem changes in order, with approximate timing.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Pallor mortis:</strong> paleness within 15 to 20 minutes after circulatory arrest as blood drains from skin capillaries. <strong>Algor mortis:</strong> body cooling, approximately 1.5°F per hour at room temperature, slower in obese or clothed bodies and faster in lean or unclothed ones. Continues until body temperature equilibrates with the environment. <strong>Livor mortis:</strong> purple-red discoloration in dependent areas as blood pools by gravity. Onset 1 to 2 hours, becomes <em>fixed</em> (will not blanch with pressure or shift with repositioning) by 8 to 12 hours. <strong>Rigor mortis:</strong> stiffening of muscles. Onset 2 to 6 hours, peaks around 12 hours, resolves over 24 to 48 hours. <strong>Decomposition:</strong> autolysis and bacterial putrefaction begin within 24 to 72 hours at room temperature, accelerated by heat and humidity.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Describe the prerequisites for a brain death exam and the three clinical findings required to declare brain death.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Prerequisites</strong> (must be met before exam): (a) known cause of catastrophic and irreversible brain injury (e.g., severe TBI, anoxic injury, massive stroke), confirmed by imaging; (b) no <em>confounders</em> that could mimic brain death: body temperature ≥36°C (no hypothermia), no sedating drugs or paralytics on board, no severe metabolic derangement, no severe hypotension. <strong>Three required clinical findings:</strong> (1) <strong>Coma</strong> with no responsiveness to noxious stimuli. (2) <strong>Absent brainstem reflexes:</strong> fixed pupils, absent corneal reflex, absent oculocephalic (doll's eyes) and oculovestibular (cold caloric) responses, absent gag and cough reflexes. (3) <strong>Apnea</strong> documented by a formal apnea test.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Describe how the apnea test is performed and what ancillary tests are used when the clinical exam cannot be completed.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Apnea test:</strong> the patient is preoxygenated, then disconnected from the ventilator while supplemental O₂ is delivered via a tracheal cannula. The clinician watches for any spontaneous respiratory effort while PaCO₂ rises (a powerful stimulus to any preserved brainstem respiratory center). The test is <strong>positive for brain death</strong> when there is no respiratory effort at all despite PaCO₂ ≥60 mmHg or 20+ mmHg above the patient's baseline. <strong>Ancillary tests</strong> are used when the clinical exam or apnea test cannot be completed (severe facial trauma, severe pulmonary disease, suspected drug effect): <strong>EEG</strong> showing electrocerebral silence, or <strong>cerebral blood flow studies</strong> (nuclear medicine, transcranial Doppler, or CT angiography) showing no blood flow above the foramen magnum. <strong>Two clinical exams</strong> separated by an observation interval are typically required (interval and details vary by state, hospital policy, and patient age).</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Postmortem changes reference</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the answer.</p>
+        <table class="ref-table">
+          <thead><tr><th scope="col">Postmortem change</th><th scope="col">Onset / timing</th><th scope="col">Mechanism</th></tr></thead>
+          <tbody>
+            <tr><td>Pallor mortis</td><td class="blank-cell" onclick="revealCell(this, '15 to 20 minutes after circulatory arrest')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Loss of circulation drains blood from skin capillaries')">click to reveal</td></tr>
+            <tr><td>Algor mortis</td><td class="blank-cell" onclick="revealCell(this, 'Begins immediately, ~1.5°F per hour')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Cessation of metabolic heat production; body equilibrates with environment')">click to reveal</td></tr>
+            <tr><td>Livor mortis</td><td class="blank-cell" onclick="revealCell(this, 'Onset 1 to 2 hr, fixed by 8 to 12 hr')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Gravity-driven pooling of blood in dependent areas')">click to reveal</td></tr>
+            <tr><td>Rigor mortis</td><td class="blank-cell" onclick="revealCell(this, 'Onset 2 to 6 hr, peaks ~12 hr, resolves 24 to 48 hr')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'ATP depletion, sustained calcium-actin-myosin binding in muscle')">click to reveal</td></tr>
+            <tr><td>Decomposition</td><td class="blank-cell" onclick="revealCell(this, '24 to 72 hr at room temperature')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Autolysis (cellular self-digestion) plus bacterial putrefaction')">click to reveal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Postmortem and brain death scenarios</span></div>
+        <div class="work-label">a. A patient is found dead in their home approximately 6 hours after a witnessed cardiac arrest. The body was found face-down on the bedroom floor. Predict where livor mortis would be visible, whether rigor mortis would be present, and what the body temperature would be relative to ambient room temperature.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient is unresponsive 48 hours after a severe traumatic brain injury and is on a ventilator. The neurologist documents fixed and dilated pupils, absent corneal reflex, absent oculocephalic response, and absent gag reflex. Identify the next required test before brain death can be declared, identify two confounders that would invalidate the brain death exam, and explain why hypothermia must be ruled out first.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A family asks how their loved one can still have a heartbeat if the doctor has declared them brain dead. Explain in plain language: the difference between cardiopulmonary death and brain death, the role of the brainstem in spontaneous breathing, and why mechanical ventilation can sustain heart function temporarily even after the brain has died.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 07 of 08</span><button class="complete-btn" data-complete="s7" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 08 - FINAL SYNTHESIS -->
+  <section class="section" data-section="s8">
+    <div class="section-head" onclick="toggleSection('s8')">
+      <div class="section-num">08</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Final Synthesis · Self-Check · Reflection</p>
+        <h2 class="section-title">Eight Weeks of Anatomy &amp; Physiology</h2>
+        <p class="section-anchor">The last section of the last week. Audit what you can do across the entire course, then reflect on what you have built.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Eight-week confidence audit</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Check the box only if you can do the action without notes, right now. One item per week, plus three from this week.</p>
+        <div class="check-prompt"><input type="checkbox" id="cf1"><label for="cf1"><strong>Week 1:</strong> I can identify the eleven body systems and the four primary tissue types, and use anatomical position language correctly.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf2"><label for="cf2"><strong>Week 2:</strong> I can describe the structure of the skin, bone, and skeletal muscle, including how each repairs and heals.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf3"><label for="cf3"><strong>Week 3:</strong> I can graph an action potential, trace the autonomic nervous system, and explain insulin and glucagon (COR).</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf4"><label for="cf4"><strong>Week 4:</strong> I can identify the twelve cranial nerves and apply FAST to a stroke scenario.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf5"><label for="cf5"><strong>Week 5:</strong> I can identify P, QRS, and T waves, and explain BP regulation via the baroreceptor reflex and RAAS.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf6"><label for="cf6"><strong>Week 6:</strong> I can describe gas exchange, urine formation, and the four primary acid-base disorders, and interpret a urine dipstick (COR).</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf7"><label for="cf7"><strong>Week 7:</strong> I can describe the liver as metabolic hub (COR), apply the Mifflin-St Jeor formula, and audit a nutrition label.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf8"><label for="cf8"><strong>Week 8:</strong> I can describe female and male reproductive anatomy and the major hormones of each cycle.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf9"><label for="cf9"><strong>Week 8:</strong> I can describe fertilization, the three stages of labor, and the four major adjustments at birth.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf10"><label for="cf10"><strong>Week 8:</strong> I can score APGAR, apply Naegele's Rule, and identify USPSTF Grade A/B screenings by age.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf11"><label for="cf11"><strong>Week 8:</strong> I can distinguish cardiopulmonary death from brain death and identify the three required clinical findings for brain death determination.</label></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Final reflection</span></div>
+        <div class="work-label">a. Of the eight weeks of this course, which week's content feels strongest right now? Identify what you would teach a friend if they had no biology background.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Which week's content is still cloudy, and what concept specifically would you want to revisit before a future course (microbiology, nursing fundamentals, pathophysiology)?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. Pick one concept from Week 1 (body systems, tissues, anatomical language) and trace how it shows up again in Week 8 (lifespan, screening, aging). The point of this question is to see the integration.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">d. Lab preview: in the final lab you will run APGAR on simulated newborn presentations, calculate due dates from sample LMPs, and review USPSTF screening for sample patients across the lifespan. Identify which of the three lab tools you feel readiest for and which one you would practice the most.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 08 of 08</span><button class="complete-btn" data-complete="s8" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <h3>Eight weeks of A&amp;P, in your hands</h3>
+    <p>You have studied every system of the human body and the bedside tools clinicians use to assess it. You have read action potentials, calculated blood glucose feedback, traced sound through the inner ear, screened for stroke with FAST, audited a nutrition label, interpreted a urine dipstick, scored a newborn, and learned how to recognize the determination of death. The body is no longer a stranger to you.</p>
+    <p>To submit:</p>
+    <ol class="closing-steps">
+      <li>Make sure the progress bar above shows 7 of 7 sections complete.</li>
+      <li>Open and print the Week 8 Worksheet (companion document). Complete every box by hand in pen or pencil.</li>
+      <li>Save your <strong>completed</strong> worksheet as a single PDF.</li>
+      <li>Upload that PDF to the Week 8 Worksheet assignment in Canvas.</li>
+    </ol>
+    <p style="margin-top: 18px; font-style: italic; opacity: 0.94;">Thank you for the work you have put in. Whatever you study next, A&amp;P will be the floor everything else stands on.</p>
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    document.querySelectorAll('.section').forEach((section) => {
+      const head = section.querySelector('.section-head');
+      const body = section.querySelector('.section-body');
+      const sid = section.dataset.section;
+      if (head && body && sid) {
+        body.id = sid + '-body';
+        head.setAttribute('role', 'button');
+        head.setAttribute('tabindex', '0');
+        head.setAttribute('aria-expanded', 'true');
+        head.setAttribute('aria-controls', sid + '-body');
+        const num = head.querySelector('.section-num');
+        if (num) num.setAttribute('aria-hidden', 'true');
+      }
+    });
+    document.querySelectorAll('.reveal-btn').forEach((btn, i) => {
+      const ans = btn.nextElementSibling;
+      if (ans && ans.classList.contains('answer')) {
+        const id = 'reveal-ans-' + i;
+        ans.id = id;
+        btn.setAttribute('aria-controls', id);
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('type', 'button');
+      }
+    });
+    document.querySelectorAll('.blank-cell').forEach((cell) => {
+      cell.setAttribute('role', 'button');
+      cell.setAttribute('tabindex', '0');
+      cell.setAttribute('aria-label', 'Click to reveal answer');
+    });
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) {
+        e.preventDefault();
+        e.target.click();
+      }
+    });
+  })();
+
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    const isOpen = ans.classList.toggle('show');
+    btn.textContent = isOpen ? 'Hide' : 'Show';
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+  function toggleSection(id) {
+    const section = document.querySelector(`[data-section="${id}"]`);
+    if (!section) return;
+    const collapsed = section.classList.toggle('collapsed');
+    const head = section.querySelector('.section-head');
+    if (head) head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+  }
+  function revealCell(el, answer) {
+    el.textContent = answer;
+    el.classList.add('revealed');
+    el.onclick = null;
+    el.removeAttribute('role');
+    el.removeAttribute('tabindex');
+    el.setAttribute('aria-label', answer);
+  }
+
+  const STORAGE_KEY = 'bio304_w08_trainer_progress';
+  let completed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  function updateProgress() {
+    const total = 8;
+    const count = completed.length;
+    document.getElementById('progressFill').style.width = (count / total) * 100 + '%';
+    document.getElementById('progressCount').textContent = count + ' / ' + total;
+    const track = document.querySelector('.progress-track');
+    if (track) track.setAttribute('aria-valuenow', String(count));
+  }
+  function markComplete(btn) {
+    const id = btn.getAttribute('data-complete');
+    if (completed.includes(id)) {
+      completed = completed.filter(x => x !== id);
+      btn.classList.remove('done');
+      btn.textContent = 'Mark complete';
+    } else {
+      completed.push(id);
+      btn.classList.add('done');
+      btn.textContent = 'Complete';
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+    updateProgress();
+  }
+  completed.forEach(id => {
+    const btn = document.querySelector(`[data-complete="${id}"]`);
+    if (btn) { btn.classList.add('done'); btn.textContent = 'Complete'; }
+  });
+  updateProgress();
+  document.getElementById('reset-btn').onclick = function() {
+    if (confirm('Reset all section progress for this trainer? This will not erase what you wrote in the boxes.')) {
+      completed = [];
+      localStorage.removeItem(STORAGE_KEY);
+      document.querySelectorAll('.complete-btn').forEach(btn => {
+        btn.classList.remove('done');
+        btn.textContent = 'Mark complete';
+      });
+      updateProgress();
+    }
+  };
+
+  (function() {
+    const FRAME_ID = 'bio304-w08-trainer';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
