@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 7 Cognitive Trainer · Nutrition · BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
+    --sand: #f5e6d3; --sand-soft: #faf3e8;
+    --terra: #c44536; --terra-soft: #e8a499;
+    --kelp: #5a7553; --paper: #fdfbf7;
+    --line: #c9d4d8; --muted: #5a6b73;
+    --shadow-sm: 0 1px 2px rgba(20, 48, 75, 0.06);
+    --radius-sm: 6px; --radius-md: 12px; --radius-lg: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1180px; margin: 0 auto; padding: 0 28px 80px; }
+  header.masthead { padding: 48px 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 36px; }
+  .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
+  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; color: var(--ocean-deep); letter-spacing: -0.01em; margin-bottom: 14px; }
+  h1.title em { font-style: italic; color: var(--terra); }
+  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.12rem; color: var(--ocean); max-width: 720px; margin-bottom: 24px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: center; font-size: 0.86rem; color: var(--muted); }
+  .meta-row strong { color: var(--ink); font-weight: 600; }
+  .meta-pill { display: inline-flex; gap: 8px; align-items: center; background: var(--sea-glass-soft); padding: 6px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 500; color: var(--ocean-deep); }
+  .meta-pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--terra); }
+  .progress-rail { position: sticky; top: 0; background: var(--paper); z-index: 50; padding: 14px 28px; margin: 0 -28px 28px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 18px; }
+  .progress-label { font-size: 0.74rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); white-space: nowrap; }
+  .progress-track { flex: 1; height: 6px; background: var(--sea-glass); border-radius: 999px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 100%); width: 0%; transition: width 0.35s ease; }
+  .progress-count { font-size: 0.84rem; font-weight: 600; color: var(--ocean-deep); min-width: 50px; text-align: right; }
+  .progress-actions { display: flex; gap: 8px; }
+  .icon-btn { border: 1px solid var(--line); background: white; color: var(--ocean-deep); width: 34px; height: 34px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.15s ease; font-size: 1rem; }
+  .icon-btn:hover { background: var(--sea-glass-soft); border-color: var(--ocean); }
+  .intro { background: linear-gradient(135deg, var(--sea-glass-soft) 0%, var(--sand-soft) 100%); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px 36px; margin-bottom: 36px; position: relative; }
+  .intro::after { content: ''; position: absolute; bottom: 0; left: 36px; right: 36px; height: 3px; background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 50%, var(--kelp) 100%); border-radius: 2px; }
+  .intro h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem; color: var(--ocean-deep); margin-bottom: 14px; }
+  .intro p { color: var(--ink); margin-bottom: 12px; max-width: 780px; }
+  .intro p:last-of-type { margin-bottom: 0; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 22px; padding-top: 22px; border-top: 1px dashed var(--line); font-size: 0.84rem; }
+  .legend-item { display: inline-flex; align-items: center; gap: 8px; }
+  .legend-chip { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .chip-retrieve { background: var(--ocean-deep); color: white; }
+  .chip-build { background: var(--terra); color: white; }
+  .chip-apply { background: var(--kelp); color: white; }
+  .section { background: white; border: 1px solid var(--line); border-radius: var(--radius-lg); margin-bottom: 32px; overflow: hidden; box-shadow: var(--shadow-sm); }
+  .section-head { display: flex; gap: 22px; align-items: flex-start; padding: 28px 32px 22px; border-bottom: 1px solid var(--line); background: var(--sand-soft); cursor: pointer; user-select: none; transition: background 0.15s ease; }
+  .section-head:hover { background: var(--sand); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 2.4rem; color: var(--terra); line-height: 1; min-width: 48px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.45rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .section-anchor { font-size: 0.92rem; color: var(--ocean); max-width: 700px; }
+  .section-toggle { font-size: 1.2rem; color: var(--ocean); transition: transform 0.25s ease; margin-top: 8px; }
+  .section.collapsed .section-toggle { transform: rotate(-90deg); }
+  .section-body { padding: 26px 32px 32px; }
+  .section.collapsed .section-body { display: none; }
+  .mode-block { margin-bottom: 28px; }
+  .mode-block:last-child { margin-bottom: 0; }
+  .mode-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .mode-tag { display: inline-block; padding: 4px 11px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .mode-name { font-family: 'Lora', serif; font-style: italic; font-size: 1.05rem; color: var(--ocean-deep); }
+  .prompt-list { list-style: none; }
+  .prompt-list li { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px dashed var(--line); align-items: flex-start; }
+  .prompt-list li:last-child { border-bottom: none; }
+  .prompt-num { font-family: 'Lora', serif; font-weight: 500; font-size: 0.95rem; color: var(--terra); min-width: 22px; }
+  .prompt-text { flex: 1; }
+  .prompt-text .reveal-btn { margin-left: 8px; background: transparent; border: 1px solid var(--line); color: var(--ocean); font-size: 0.7rem; font-weight: 600; padding: 2px 9px; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.15s ease; }
+  .prompt-text .reveal-btn:hover { background: var(--ocean); color: white; }
+  .answer { display: none; margin-top: 8px; padding: 10px 14px; background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); border-radius: 4px; font-size: 0.92rem; color: var(--ocean-deep); font-family: 'Lora', serif; }
+  .answer.show { display: block; }
+  .answer strong { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; }
+  .work-box { margin-top: 14px; background: white; border: 1.5px solid var(--ink); border-radius: var(--radius-sm); padding: 18px 20px; min-height: 120px; background-image: linear-gradient(transparent calc(1.7em - 1px), var(--line) 1px); background-size: 100% 1.7em; line-height: 1.7em; }
+  .work-box.draw { background-image: linear-gradient(rgba(201, 212, 216, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(201, 212, 216, 0.4) 1px, transparent 1px); background-size: 22px 22px; line-height: normal; min-height: 240px; }
+  .work-label { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .ref-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 14px 0; }
+  .ref-table th { text-align: left; padding: 10px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .ref-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .ref-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .ref-table .blank-cell { cursor: pointer; color: var(--muted); font-style: italic; font-family: 'Lora', serif; }
+  .ref-table .blank-cell:hover { background: var(--sea-glass-soft); }
+  .ref-table .blank-cell.revealed { color: var(--ink); font-style: normal; font-family: inherit; }
+  .check-prompt { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; }
+  .check-prompt input[type="checkbox"] { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--terra); cursor: pointer; }
+  .check-prompt label { flex: 1; cursor: pointer; font-size: 0.96rem; }
+  .section-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 26px; padding-top: 20px; border-top: 1px dashed var(--line); }
+  .complete-btn { background: white; border: 2px solid var(--ocean-deep); color: var(--ocean-deep); padding: 9px 18px; border-radius: 8px; font-family: inherit; font-weight: 600; font-size: 0.86rem; cursor: pointer; letter-spacing: 0.04em; transition: all 0.18s ease; }
+  .complete-btn:hover { background: var(--ocean-deep); color: white; }
+  .complete-btn.done { background: var(--kelp); color: white; border-color: var(--kelp); }
+  .complete-btn.done::before { content: '✓ '; }
+  .closing { background: linear-gradient(150deg, var(--ocean-deep) 0%, var(--ink) 100%); color: white; border-radius: var(--radius-lg); padding: 36px 38px; margin-top: 40px; position: relative; overflow: hidden; }
+  .closing::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: radial-gradient(circle, var(--terra) 0%, transparent 70%); opacity: 0.3; }
+  .closing h3 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem; margin-bottom: 14px; position: relative; }
+  .closing p { opacity: 0.88; max-width: 700px; margin-bottom: 14px; position: relative; }
+  .closing-steps { list-style: none; counter-reset: step; margin-top: 18px; position: relative; }
+  .closing-steps li { counter-increment: step; padding: 8px 0 8px 38px; position: relative; font-size: 0.95rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .closing-steps li::before { content: counter(step); position: absolute; left: 0; top: 6px; width: 26px; height: 26px; background: var(--terra); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; }
+  .formula-card { background: var(--sea-glass-soft); border: 1.5px solid var(--ocean); border-radius: 8px; padding: 14px 18px; margin: 14px 0; font-family: 'Lora', serif; font-size: 0.95rem; }
+  .formula-card strong { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--ocean-deep); }
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .progress-rail, .icon-btn, .reveal-btn, .complete-btn, .skip-link { display: none !important; }
+    .answer.show { background: white; border-color: var(--ink); }
+    .section { break-inside: avoid; box-shadow: none; border: 1.5px solid var(--ink); page-break-inside: avoid; }
+    .section.collapsed .section-body { display: block !important; }
+    .closing { background: white; color: var(--ink); border: 2px solid var(--ink); }
+    @page { size: letter; margin: 0.55in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="page" id="main-content" role="main">
+
+  <header class="masthead">
+    <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · Week 07</p>
+    <h1 class="title">Nutrition: Digestion, Absorption, <em>Metabolism</em></h1>
+    <p class="subtitle">Digestive anatomy, mechanical and chemical breakdown, absorption, the liver as metabolic hub, and dietary recommendations.</p>
+    <div class="meta-row">
+      <span class="meta-pill">OpenStax · Ch 23 (Read) · Ch 24.4 (Focus) · 24.1 skim only</span>
+      <span><strong>Cognitive load:</strong> 3 modes across 7 sections</span>
+      <span><strong>Estimated time:</strong> 130 to 160 minutes</span>
+      <span><strong>Author:</strong> Dr. Sharilyn Rennie</span>
+    </div>
+  </header>
+
+  <div class="progress-rail">
+    <span class="progress-label" id="progress-label">Trainer Progress</span>
+    <div class="progress-track" role="progressbar" aria-labelledby="progress-label" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount" aria-live="polite" aria-atomic="true">0 / 7</span>
+    <div class="progress-actions">
+      <button class="icon-btn" id="print-btn" type="button" aria-label="Print trainer" onclick="window.print()">⎙</button>
+      <button class="icon-btn" id="reset-btn" type="button" aria-label="Reset progress for all sections">↺</button>
+    </div>
+  </div>
+
+  <div class="intro">
+    <h2>Week 7: how the body breaks down food and uses it</h2>
+    <p>The GI tract is one continuous tube about nine meters long. Food enters at the mouth, gets mechanically and chemically broken down along the way, and leaves at the anus. The accessory organs (liver, gallbladder, pancreas, salivary glands) sit alongside and contribute enzymes, bile, and metabolic processing.</p>
+    <p>One section in this trainer covers <strong>COR-named content</strong>: Section 4 on the liver as metabolic hub. The lab anchors are TDEE calculation using Mifflin-St Jeor and a nutrition label audit, both of which Section 6 prepares you for.</p>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-chip chip-retrieve">Retrieve</span> Recall the term, structure, or fact</span>
+      <span class="legend-item"><span class="legend-chip chip-build">Build</span> Draw, label, or construct the mechanism</span>
+      <span class="legend-item"><span class="legend-chip chip-apply">Apply</span> Predict or interpret</span>
+    </div>
+  </div>
+
+  <!-- SECTION 01 -->
+  <section class="section" data-section="s1">
+    <div class="section-head" onclick="toggleSection('s1')">
+      <div class="section-num">01</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 23.1-23.5</p>
+        <h2 class="section-title">Digestive Tract Anatomy</h2>
+        <p class="section-anchor">One continuous tube from mouth to anus, with a four-layer wall throughout. Accessory organs deliver enzymes and bile through ducts. The lab quiz will require identification of every major structure.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">GI tract organs and wall layers</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">List the organs of the alimentary canal in order from mouth to anus.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Mouth (oral cavity)</strong> → <strong>pharynx</strong> → <strong>esophagus</strong> → <strong>stomach</strong> → <strong>small intestine</strong> (duodenum, jejunum, ileum) → <strong>large intestine</strong> (cecum, ascending colon, transverse colon, descending colon, sigmoid colon, rectum) → <strong>anal canal</strong> and anus. Total length about 9 meters in the cadaver, shorter in life because of muscle tone.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Name the four layers of the GI tract wall from inside to outside, and identify what each layer contains.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Mucosa:</strong> innermost, three sublayers (epithelium, lamina propria, muscularis mucosae). Absorption and secretion happen here. <strong>Submucosa:</strong> dense connective tissue with blood vessels, nerves (submucosal plexus), and glands. <strong>Muscularis externa:</strong> smooth muscle with two layers (inner circular, outer longitudinal) that produce peristalsis and segmentation. The myenteric plexus sits between them. <strong>Serosa:</strong> outermost, visceral peritoneum (or adventitia where the organ is retroperitoneal).</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Name the four accessory digestive organs and what each contributes.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Salivary glands</strong> (parotid, submandibular, sublingual): secrete saliva with amylase (carbohydrate digestion) and lysozyme. <strong>Liver:</strong> produces bile (emulsifies fats) and processes nutrients absorbed from the GI tract via the hepatic portal vein. <strong>Gallbladder:</strong> stores and concentrates bile, releases it into the duodenum after a fatty meal. <strong>Pancreas:</strong> exocrine cells secrete pancreatic juice (amylase, lipase, proteases, bicarbonate) into the duodenum; endocrine islets secrete insulin and glucagon.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Describe the peritoneum and distinguish intraperitoneal from retroperitoneal organs.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">The peritoneum is a serous membrane lining the abdominal cavity. <strong>Parietal peritoneum</strong> lines the body wall; <strong>visceral peritoneum</strong> covers organs. The space between contains a thin film of serous fluid for lubrication. <strong>Mesentery</strong> is a double layer of peritoneum that anchors organs to the body wall and carries vessels and nerves. <strong>Intraperitoneal</strong> organs (stomach, small intestine, transverse colon) hang from a mesentery. <strong>Retroperitoneal</strong> organs (kidneys, pancreas, ascending and descending colon, duodenum) sit behind the parietal peritoneum.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">GI organ scenarios</span></div>
+        <div class="work-label">a. A patient with cirrhosis (liver damage) develops impaired bile production. Predict the effect on fat digestion in the small intestine.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient has a cholecystectomy (gallbladder removal). Predict the effect on bile delivery and on tolerance for high-fat meals.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient with chronic pancreatitis has reduced pancreatic enzyme secretion. Predict three nutrient categories that will be malabsorbed and explain why.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 01 of 07</span><button class="complete-btn" data-complete="s1" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 -->
+  <section class="section" data-section="s2">
+    <div class="section-head" onclick="toggleSection('s2')">
+      <div class="section-num">02</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 23.5</p>
+        <h2 class="section-title">Mechanical &amp; Chemical Digestion</h2>
+        <p class="section-anchor">Mechanical digestion breaks food physically. Chemical digestion uses enzymes to break macromolecules into absorbable units. Each location handles a different macronutrient.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Where digestion happens and which enzymes</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Identify the major site of mechanical digestion at each location: mouth, stomach, and small intestine.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Mouth:</strong> mastication (chewing) by teeth and tongue. Mixing with saliva forms a bolus. <strong>Stomach:</strong> churning by smooth muscle of three layers (longitudinal, circular, oblique). Combines with gastric juice to form chyme. <strong>Small intestine:</strong> segmentation, a back-and-forth chopping motion that mixes chyme with bile and pancreatic enzymes. Peristalsis moves material forward more slowly here.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Trace carbohydrate digestion from polysaccharides to absorbable monosaccharides, naming each enzyme and its location.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">(1) <strong>Salivary amylase</strong> (in mouth) begins breakdown of starch to disaccharides. Inactivated by stomach acid. (2) <strong>Pancreatic amylase</strong> (in duodenum) continues, producing disaccharides. (3) <strong>Brush border enzymes</strong> on small intestine microvilli finish the job: <strong>maltase</strong> (maltose to 2 glucose), <strong>sucrase</strong> (sucrose to glucose + fructose), <strong>lactase</strong> (lactose to glucose + galactose). Final products absorbed: glucose, galactose, fructose.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Trace protein digestion from intact protein to absorbable amino acids, naming each enzyme and its location.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">(1) <strong>Pepsin</strong> in the stomach (activated from pepsinogen by HCl) breaks proteins into peptides. (2) <strong>Pancreatic proteases</strong> in the duodenum (<strong>trypsin, chymotrypsin, carboxypeptidase</strong>) further fragment peptides. Secreted as inactive zymogens; trypsin activated by enterokinase, then trypsin activates the others. (3) <strong>Brush border peptidases</strong> finish breakdown to single amino acids and small peptides. Absorbed as amino acids primarily.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Trace lipid digestion, noting why fats need extra preparation before enzymatic breakdown.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Lipids are not water-soluble, so enzymes (which are in aqueous fluid) cannot easily access them. (1) <strong>Bile</strong> from the liver and gallbladder <strong>emulsifies</strong> large fat droplets into many tiny droplets, increasing surface area. (2) <strong>Pancreatic lipase</strong> then breaks triglycerides into monoglycerides and free fatty acids. (3) These products combine with bile salts to form <strong>micelles</strong>, which deliver the lipids to the brush border for absorption. Inside the enterocyte, lipids are repackaged into <strong>chylomicrons</strong> that enter <strong>lacteals</strong> (lymph vessels), bypassing the hepatic portal circulation.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Predict the deficiency</span></div>
+        <div class="work-label">a. A patient is lactose intolerant. Identify the missing enzyme, its location, and explain why undigested lactose causes diarrhea and gas.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient has bile duct obstruction (gallstone in the common bile duct). Predict the effect on fat digestion and on stool color (steatorrhea).</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient has Zollinger-Ellison syndrome with severely high gastric acid. Predict the effect on pepsin activity, on the duodenal mucosa, and on the function of pancreatic enzymes that arrive in the duodenum.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 02 of 07</span><button class="complete-btn" data-complete="s2" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 -->
+  <section class="section" data-section="s3">
+    <div class="section-head" onclick="toggleSection('s3')">
+      <div class="section-num">03</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 23.5</p>
+        <h2 class="section-title">Absorption in the Small Intestine</h2>
+        <p class="section-anchor">The small intestine is where almost all absorption happens. Three structural amplifiers boost surface area roughly 600-fold.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Surface area, transport mechanisms, vitamins</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Name the three structural features that amplify small intestinal surface area, and the approximate fold increase from each.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Circular folds (plicae circulares):</strong> permanent ridges in the inner wall, ~3-fold. <strong>Villi:</strong> finger-like projections of the mucosa, each ~1 mm tall, ~10-fold. <strong>Microvilli:</strong> brush border on each enterocyte, ~20-fold. Together about 600-fold increase, yielding ~200 m² of absorptive surface.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Compare the absorption mechanisms for glucose, fructose, and amino acids at the apical (luminal) membrane of the enterocyte.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Glucose and galactose:</strong> <em>secondary active transport</em> via the SGLT1 cotransporter, coupled with Na⁺. <strong>Fructose:</strong> <em>facilitated diffusion</em> via GLUT5. <strong>Amino acids:</strong> mostly secondary active transport coupled with Na⁺ via family-specific transporters. All exit the basolateral side via passive carriers (GLUT2 for sugars) into capillaries that drain into the hepatic portal vein.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Trace fat absorption from the lumen to the lymphatic system.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Monoglycerides and free fatty acids form <strong>micelles</strong> with bile salts → micelles ferry lipids to the brush border → lipids diffuse across the apical membrane into the enterocyte → reassembled into triglycerides → packaged with cholesterol and apoproteins into <strong>chylomicrons</strong> → exit the basolateral side into <strong>lacteals</strong> (lymphatic capillaries in the villi) → travel via the thoracic duct into the left subclavian vein. Fats bypass the liver on first pass.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Distinguish water-soluble and fat-soluble vitamin absorption, and identify why vitamin B₁₂ has a special requirement.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Water-soluble vitamins (B vitamins, vitamin C):</strong> absorbed by simple or facilitated diffusion across the small intestine, into capillaries with the rest of the water-soluble nutrients. <strong>Fat-soluble vitamins (A, D, E, K):</strong> absorbed with dietary fat in chylomicrons via the lymphatic system. Require fat in the meal and adequate bile. <strong>Vitamin B₁₂:</strong> requires <em>intrinsic factor</em>, a glycoprotein secreted by parietal cells in the stomach. The B₁₂-IF complex is absorbed in the <em>distal ileum</em>. Deficiency causes pernicious anemia and neurologic symptoms.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Malabsorption scenarios</span></div>
+        <div class="work-label">a. A patient with Crohn's disease has chronic inflammation of the distal ileum. Predict which specific nutrient deficiency is most likely and explain the mechanism.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient with celiac disease has flattened villi due to autoimmune damage. Predict the effect on overall nutrient absorption and identify two specific deficiencies likely to develop.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient with cystic fibrosis has pancreatic exocrine insufficiency (low lipase). Predict their fat-soluble vitamin status and explain why this is a chronic problem.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 03 of 07</span><button class="complete-btn" data-complete="s3" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 - COR -->
+  <section class="section" data-section="s4">
+    <div class="section-head" onclick="toggleSection('s4')">
+      <div class="section-num">04</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Read · OpenStax 23.6 · COR-named content</p>
+        <h2 class="section-title">The Liver as Metabolic Hub</h2>
+        <p class="section-anchor">Almost everything absorbed from the GI tract goes through the liver before reaching the rest of the body. The liver processes nutrients, makes plasma proteins and bile, detoxifies drugs and hormones, and manages blood glucose. Section 23.6 is COR-named for this course.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Portal circulation and the liver's many jobs</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Trace the hepatic portal circulation and explain the first-pass effect.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Capillaries in the GI tract → <strong>hepatic portal vein</strong> → liver sinusoids (a second capillary bed) → <strong>hepatic veins</strong> → IVC → right heart. This means everything absorbed from the gut (except fats in chylomicrons) reaches the liver before circulating to the rest of the body. <strong>First-pass effect:</strong> the liver can metabolize, store, or detoxify substances before they reach systemic circulation. This is why oral drug doses are often higher than IV doses, and why the liver is the first to be exposed to oral toxins.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">List the liver's major roles in carbohydrate, protein, and lipid metabolism.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Carbohydrates:</strong> glycogenesis (storage when blood glucose is high), glycogenolysis (release when low), gluconeogenesis (making new glucose from amino acids and lactate during fasting). The liver is the central blood glucose regulator. <strong>Proteins:</strong> synthesizes most plasma proteins (albumin, clotting factors I-V-VII-IX-X, and others); deaminates amino acids; runs the urea cycle to detoxify ammonia. <strong>Lipids:</strong> synthesizes cholesterol and lipoproteins (VLDL, HDL); produces bile salts from cholesterol; performs ketogenesis during prolonged fasting.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Describe bile production and storage. Identify the components and the function of bile.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">The liver produces ~600 to 1000 mL of bile per day. Bile is stored and concentrated in the <strong>gallbladder</strong> between meals. After a fatty meal, CCK from the duodenum triggers gallbladder contraction, releasing bile into the duodenum. <strong>Components:</strong> bile salts (made from cholesterol, the active ingredient for fat emulsification), bilirubin (from RBC breakdown, the brown-yellow pigment), cholesterol, and electrolytes. <strong>Function:</strong> emulsifies fats; eliminates bilirubin and excess cholesterol.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Describe the liver's detoxification roles, including drugs, hormones, and bilirubin handling.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Drugs and toxins:</strong> the cytochrome P450 system in hepatocytes oxidizes drugs (Phase I), then conjugates them (Phase II) to make them water-soluble for excretion in bile or urine. <strong>Hormones:</strong> the liver clears circulating insulin, thyroid hormone, sex hormones, and others. <strong>Bilirubin:</strong> when RBCs are broken down (in the spleen), heme is converted to unconjugated (indirect) bilirubin. The liver conjugates it (adds glucuronic acid) and excretes it in bile. Failure at any step causes <strong>jaundice</strong>: pre-hepatic (hemolysis), hepatic (liver disease), or post-hepatic (biliary obstruction).</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Liver as metabolic hub reference</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the answer.</p>
+        <table class="ref-table">
+          <thead><tr><th scope="col">Liver function category</th><th scope="col">Specific role</th><th scope="col">What fails when liver fails</th></tr></thead>
+          <tbody>
+            <tr><td>Carbohydrate metabolism</td><td class="blank-cell" onclick="revealCell(this, 'Glycogenesis, glycogenolysis, gluconeogenesis')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Hypoglycemia between meals')">click to reveal</td></tr>
+            <tr><td>Protein synthesis</td><td class="blank-cell" onclick="revealCell(this, 'Albumin, clotting factors, plasma proteins')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Edema (low albumin), bleeding (low clotting factors)')">click to reveal</td></tr>
+            <tr><td>Urea cycle</td><td class="blank-cell" onclick="revealCell(this, 'Converts ammonia to urea for renal excretion')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Hyperammonemia, hepatic encephalopathy')">click to reveal</td></tr>
+            <tr><td>Bile production</td><td class="blank-cell" onclick="revealCell(this, 'Bile salts emulsify fats; bilirubin excretion')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Fat malabsorption, jaundice, pruritus')">click to reveal</td></tr>
+            <tr><td>Lipid handling</td><td class="blank-cell" onclick="revealCell(this, 'Cholesterol synthesis, VLDL/HDL production, ketogenesis')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Lipid imbalance, fatty liver progression')">click to reveal</td></tr>
+            <tr><td>Detoxification</td><td class="blank-cell" onclick="revealCell(this, 'CYP450 metabolism of drugs, hormones, toxins')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Drug accumulation, hormonal imbalance')">click to reveal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Liver in failure</span></div>
+        <div class="work-label">a. A patient with end-stage liver failure presents with jaundice, ascites, easy bruising, and confusion. Match each finding to the failed liver function (one finding per function).</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient takes an oral medication that has high first-pass metabolism. Explain why a higher oral dose is needed than the IV equivalent, and predict what would happen if the patient developed cirrhosis.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A newborn develops jaundice on day 3 of life with elevated unconjugated bilirubin. Identify whether this is pre-hepatic, hepatic, or post-hepatic, and explain why the newborn liver is particularly vulnerable.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 04 of 07</span><button class="complete-btn" data-complete="s4" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 05 -->
+  <section class="section" data-section="s5">
+    <div class="section-head" onclick="toggleSection('s5')">
+      <div class="section-num">05</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Focus · OpenStax 24.4</p>
+        <h2 class="section-title">Macronutrients &amp; Micronutrients</h2>
+        <p class="section-anchor">Macronutrients (carbohydrates, fats, proteins) provide energy. Micronutrients (vitamins, minerals) support enzyme and structural functions in trace amounts. Both have dietary recommendations.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Macronutrients, AMDR, vitamins, minerals</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">State the energy value (kcal/g) of carbohydrates, proteins, fats, and alcohol.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Carbohydrate: 4 kcal/g.</strong> <strong>Protein: 4 kcal/g.</strong> <strong>Fat: 9 kcal/g</strong> (more than twice as energy-dense as carb or protein). <strong>Alcohol: 7 kcal/g</strong> (provides energy but no other nutrients, so often called "empty calories"). Knowing these lets you reverse-engineer caloric content from a nutrition label.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">State the Acceptable Macronutrient Distribution Ranges (AMDRs) and explain what they represent.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Carbohydrates: 45 to 65%</strong> of total calories. <strong>Fat: 20 to 35%</strong> (with limits on saturated and trans fat). <strong>Protein: 10 to 35%</strong>. AMDRs are the percentage ranges associated with reduced risk of chronic disease while providing essential nutrients. They define a flexible target rather than a single optimal value.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Distinguish essential and non-essential amino acids and fatty acids, and explain why "essential" matters for diet planning.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">"Essential" means the body cannot synthesize it from other compounds, so it must come from food. <strong>Nine essential amino acids</strong> (e.g., lysine, methionine, leucine, valine). Animal proteins are "complete" because they contain all nine; plant proteins often miss one or more, so vegetarians need protein variety. <strong>Two essential fatty acids:</strong> linoleic acid (omega-6) and alpha-linolenic acid (omega-3). Found in plant oils, nuts, seeds, fatty fish.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Match three vitamin or mineral deficiencies to the disease they cause: vitamin C, vitamin D, iron.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Vitamin C deficiency:</strong> <em>scurvy</em> (impaired collagen synthesis, bleeding gums, poor wound healing, joint pain). <strong>Vitamin D deficiency:</strong> <em>rickets</em> in children (soft, deformed bones), <em>osteomalacia</em> in adults (bone pain, weakness). Reduced calcium absorption is the underlying mechanism. <strong>Iron deficiency:</strong> <em>microcytic hypochromic anemia</em> (small, pale RBCs because hemoglobin synthesis is impaired). Symptoms: fatigue, pallor, shortness of breath.</div></div></li>
+        </ol>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Diet and deficiency reasoning</span></div>
+        <div class="work-label">a. A vegan patient eats only plant proteins. Identify the nutritional concern, name two amino acids most commonly limiting in plant diets, and explain the strategy of "complementary proteins."</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A patient on a very low-fat diet (less than 10% of calories from fat) develops night vision problems and easy bruising over six months. Identify the deficiency category and the mechanism.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient drinks heavily and obtains 30% of their calories from alcohol. Predict the consequence for vitamin status and overall nutrition, and explain why "empty calories" is a fitting description.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 05 of 07</span><button class="complete-btn" data-complete="s5" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 06 - LAB ANCHOR -->
+  <section class="section" data-section="s6">
+    <div class="section-head" onclick="toggleSection('s6')">
+      <div class="section-num">06</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Lab anchor · TDEE &amp; Nutrition Label Audit</p>
+        <h2 class="section-title">TDEE Calculation &amp; Reading Nutrition Labels</h2>
+        <p class="section-anchor">Two clinical tools for this week's lab. Mifflin-St Jeor estimates BMR, then activity multiplier scales to TDEE. Nutrition labels follow a standard format with Daily Values for comparison.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Formula, factors, label structure</span></div>
+        <ol class="prompt-list">
+          <li><span class="prompt-num">1.</span><div class="prompt-text">State the Mifflin-St Jeor equation for basal metabolic rate (BMR) for males and females.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Inputs: weight (W) in kilograms, height (H) in centimeters, age (A) in years.<br><strong>Male BMR = (10 × W) + (6.25 × H) - (5 × A) + 5</strong><br><strong>Female BMR = (10 × W) + (6.25 × H) - (5 × A) - 161</strong><br>This is the number of kilocalories the body burns at rest in 24 hours just to maintain basic functions. Mifflin-St Jeor is the most widely used and accurate equation for healthy adults.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">List the standard activity multipliers used to convert BMR to TDEE (total daily energy expenditure).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>1.2 Sedentary:</strong> little to no exercise, desk job. <strong>1.375 Lightly active:</strong> light exercise 1 to 3 days per week. <strong>1.55 Moderately active:</strong> moderate exercise 3 to 5 days per week. <strong>1.725 Very active:</strong> hard exercise 6 to 7 days per week. <strong>1.9 Extremely active:</strong> very hard daily exercise plus physical job or training twice per day. <strong>TDEE = BMR × activity factor.</strong></div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">List the major elements of a US nutrition label, in order from top to bottom.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">(1) <strong>Serving size and servings per container</strong> at the top. Read this first; portions can be deceiving. (2) <strong>Calories per serving</strong> (large font since 2016). (3) <strong>Macronutrients with %DV:</strong> total fat (saturated, trans), cholesterol, sodium, total carbohydrate (dietary fiber, total sugars including added sugars), protein. (4) <strong>Micronutrients with %DV:</strong> vitamin D, calcium, iron, potassium (these four are required since 2016). (5) <strong>Footnote:</strong> "% Daily Values are based on a 2000 calorie diet."</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Identify the four most useful red flags to audit on a packaged food label.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Added sugars:</strong> Daily Value cap is 50 g (10% of calories). One 20-oz soda has more than this. <strong>Saturated fat:</strong> DV cap 20 g. <strong>Sodium:</strong> DV cap 2300 mg. Many processed foods exceed 30% DV per serving. <strong>Fiber:</strong> DV target 28 g (more is better). General rule: %DV ≤ 5% is low; ≥ 20% is high. Aim for low %DV on the cap nutrients (added sugar, saturated fat, sodium) and high %DV on the target nutrients (fiber, vitamin D, calcium, iron, potassium).</div></div></li>
+        </ol>
+      </div>
+
+      <div class="formula-card">
+        <strong>Mifflin-St Jeor formulas:</strong><br>
+        Male BMR = (10 × kg) + (6.25 × cm) - (5 × years) + 5<br>
+        Female BMR = (10 × kg) + (6.25 × cm) - (5 × years) - 161<br>
+        <strong>TDEE = BMR × activity factor</strong> (1.2 to 1.9)
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Calculate and audit</span></div>
+        <div class="work-label">a. Calculate the TDEE of a 30-year-old female, 65 kg, 165 cm tall, sedentary office worker. Show your work step by step.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. A label shows: serving size 1 cup, calories 250, total fat 12 g (saturated 4 g), sodium 480 mg, total carbs 30 g (added sugars 18 g, fiber 1 g), protein 5 g. Identify the red flags using the 5%/20% rule of thumb (assume 2000 kcal/day). Identify two label features that are nutritionally appropriate.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. A patient eats two servings of the food in part b. Recalculate the calories, added sugars, and sodium consumed, and predict whether they have exceeded any of the daily caps in this single snack.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 06 of 07</span><button class="complete-btn" data-complete="s6" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 07 -->
+  <section class="section" data-section="s7">
+    <div class="section-head" onclick="toggleSection('s7')">
+      <div class="section-num">07</div>
+      <div class="section-titles">
+        <p class="section-eyebrow">Self-Assessment · Reflect</p>
+        <h2 class="section-title">Self-Check &amp; Reflection</h2>
+        <p class="section-anchor">Audit before the lab. The TDEE and label audit activities draw directly from Section 6.</p>
+      </div>
+      <div class="section-toggle" aria-hidden="true">▾</div>
+    </div>
+    <div class="section-body">
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Confidence audit</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Check the box only if you can do the action without notes, right now.</p>
+        <div class="check-prompt"><input type="checkbox" id="cf1"><label for="cf1">I can name the alimentary canal organs in order from mouth to anus.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf2"><label for="cf2">I can name the four GI wall layers and what each contains.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf3"><label for="cf3">I can name the four accessory organs and their contributions.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf4"><label for="cf4">I can trace carbohydrate, protein, and lipid digestion from intact macromolecule to absorbable unit.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf5"><label for="cf5">I can name three structural amplifiers of small intestinal surface area.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf6"><label for="cf6">I can compare absorption mechanisms for glucose, fructose, amino acids, and fats.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf7"><label for="cf7">I can explain why vitamin B₁₂ requires intrinsic factor and where it is absorbed.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf8"><label for="cf8">I can trace the hepatic portal circulation and explain the first-pass effect. (COR)</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf9"><label for="cf9">I can list six major liver functions and what fails when each fails. (COR)</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf10"><label for="cf10">I can describe bile components and the pathway of bilirubin handling. (COR)</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf11"><label for="cf11">I can state the energy density (kcal/g) of carbs, protein, fat, and alcohol.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf12"><label for="cf12">I can state the AMDR ranges and explain what they represent.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf13"><label for="cf13">I can apply the Mifflin-St Jeor equation and an activity factor to find TDEE.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf14"><label for="cf14">I can read a nutrition label and apply the 5%/20% rule to identify red flags.</label></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Reflection prompts</span></div>
+        <div class="work-label">a. Of the topics this week (digestive anatomy, mechanical/chemical digestion, absorption, liver as metabolic hub, macronutrients/micronutrients, TDEE/labels), which one feels strongest right now?</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">b. Which one is still cloudy? Write what you would ask Dr. Rennie or a study partner if you had thirty seconds.</div>
+        <div class="work-box"></div>
+        <div class="work-label" style="margin-top:14px;">c. Lab preview: in lab you will calculate your own TDEE and audit a real nutrition label from your kitchen. Predict one habit you might change after running these numbers, and one thing you expect the label of your favorite snack to reveal.</div>
+        <div class="work-box"></div>
+      </div>
+
+      <div class="section-footer"><span style="font-size:0.84rem; color:var(--muted);">Section 07 of 07</span><button class="complete-btn" data-complete="s7" type="button" onclick="markComplete(this)">Mark complete</button></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <h3>Wrapping up Week 7</h3>
+    <p>Digestion is mechanical, then chemical, then absorptive. The liver is the metabolic hub everything passes through. Nutrition is the system view, with TDEE and labels as the bedside tools you actually use.</p>
+    <p>To submit:</p>
+    <ol class="closing-steps">
+      <li>Make sure the progress bar above shows 7 of 7 sections complete. The trainer is your study tool, not your turn-in.</li>
+      <li>Open and print the Week 7 Worksheet (companion document). Complete every box by hand in pen or pencil.</li>
+      <li>Save your <strong>completed</strong> worksheet as a single PDF (scan it or photograph it).</li>
+      <li>Upload that PDF to the Week 7 Worksheet assignment in Canvas.</li>
+    </ol>
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    document.querySelectorAll('.section').forEach((section) => {
+      const head = section.querySelector('.section-head');
+      const body = section.querySelector('.section-body');
+      const sid = section.dataset.section;
+      if (head && body && sid) {
+        body.id = sid + '-body';
+        head.setAttribute('role', 'button');
+        head.setAttribute('tabindex', '0');
+        head.setAttribute('aria-expanded', 'true');
+        head.setAttribute('aria-controls', sid + '-body');
+        const num = head.querySelector('.section-num');
+        if (num) num.setAttribute('aria-hidden', 'true');
+      }
+    });
+    document.querySelectorAll('.reveal-btn').forEach((btn, i) => {
+      const ans = btn.nextElementSibling;
+      if (ans && ans.classList.contains('answer')) {
+        const id = 'reveal-ans-' + i;
+        ans.id = id;
+        btn.setAttribute('aria-controls', id);
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('type', 'button');
+      }
+    });
+    document.querySelectorAll('.blank-cell').forEach((cell) => {
+      cell.setAttribute('role', 'button');
+      cell.setAttribute('tabindex', '0');
+      cell.setAttribute('aria-label', 'Click to reveal answer');
+    });
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) {
+        e.preventDefault();
+        e.target.click();
+      }
+    });
+  })();
+
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    const isOpen = ans.classList.toggle('show');
+    btn.textContent = isOpen ? 'Hide' : 'Show';
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+  function toggleSection(id) {
+    const section = document.querySelector(`[data-section="${id}"]`);
+    if (!section) return;
+    const collapsed = section.classList.toggle('collapsed');
+    const head = section.querySelector('.section-head');
+    if (head) head.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+  }
+  function revealCell(el, answer) {
+    el.textContent = answer;
+    el.classList.add('revealed');
+    el.onclick = null;
+    el.removeAttribute('role');
+    el.removeAttribute('tabindex');
+    el.setAttribute('aria-label', answer);
+  }
+
+  const STORAGE_KEY = 'bio304_w07_trainer_progress';
+  let completed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  function updateProgress() {
+    const total = 7;
+    const count = completed.length;
+    document.getElementById('progressFill').style.width = (count / total) * 100 + '%';
+    document.getElementById('progressCount').textContent = count + ' / ' + total;
+    const track = document.querySelector('.progress-track');
+    if (track) track.setAttribute('aria-valuenow', String(count));
+  }
+  function markComplete(btn) {
+    const id = btn.getAttribute('data-complete');
+    if (completed.includes(id)) {
+      completed = completed.filter(x => x !== id);
+      btn.classList.remove('done');
+      btn.textContent = 'Mark complete';
+    } else {
+      completed.push(id);
+      btn.classList.add('done');
+      btn.textContent = 'Complete';
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+    updateProgress();
+  }
+  completed.forEach(id => {
+    const btn = document.querySelector(`[data-complete="${id}"]`);
+    if (btn) { btn.classList.add('done'); btn.textContent = 'Complete'; }
+  });
+  updateProgress();
+  document.getElementById('reset-btn').onclick = function() {
+    if (confirm('Reset all section progress for this trainer? This will not erase what you wrote in the boxes.')) {
+      completed = [];
+      localStorage.removeItem(STORAGE_KEY);
+      document.querySelectorAll('.complete-btn').forEach(btn => {
+        btn.classList.remove('done');
+        btn.textContent = 'Mark complete';
+      });
+      updateProgress();
+    }
+  };
+
+  (function() {
+    const FRAME_ID = 'bio304-w07-trainer';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>

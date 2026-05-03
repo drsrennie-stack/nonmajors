@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 7 Worksheet · Nutrition · BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5; --sand-soft: #faf3e8;
+    --terra: #c44536; --kelp: #5a7553;
+    --paper: #fdfbf7; --line: #c9d4d8; --rule: #a8b5bb; --muted: #5a6b73;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #e8e8e0; line-height: 1.55; font-size: 16px; padding: 30px 0; -webkit-font-smoothing: antialiased; }
+  .sheet { max-width: 8.5in; margin: 0 auto; background: white; padding: 0.55in 0.6in; box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1); }
+  .actions { max-width: 8.5in; margin: 0 auto 16px; padding: 0 0.6in; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .action-info { font-size: 0.84rem; color: var(--ocean-deep); flex: 1; min-width: 280px; }
+  .action-info strong { font-weight: 600; }
+  .print-btn { background: var(--ocean-deep); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-family: inherit; font-size: 0.84rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; text-transform: uppercase; }
+  .print-btn:hover { background: var(--ocean); }
+  .masthead { border-bottom: 2.5px solid var(--ocean-deep); padding-bottom: 18px; margin-bottom: 24px; position: relative; }
+  .masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .course-line { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .doc-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.85rem; color: var(--ocean-deep); line-height: 1.2; margin-bottom: 8px; }
+  .doc-subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean); }
+  .student-block { display: grid; grid-template-columns: 2.4fr 1fr; gap: 22px; margin: 18px 0 26px; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field { display: flex; flex-direction: column; }
+  .field-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field-line { display: block; border-bottom: 1.5px solid var(--ink); height: 30px; width: 100%; }
+  .instructions { background: var(--sand-soft); border-left: 3px solid var(--terra); padding: 14px 18px; margin-bottom: 30px; font-size: 0.92rem; }
+  .instructions h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+  .section { margin-bottom: 32px; page-break-inside: avoid; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.5rem; color: var(--terra); min-width: 32px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; color: var(--ocean-deep); }
+  .section-anchor { font-size: 0.86rem; color: var(--ocean); font-style: italic; margin-top: 4px; }
+  .cor-flag { display: inline-block; padding: 2px 8px; background: var(--terra); color: white; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .lab-flag { display: inline-block; padding: 2px 8px; background: var(--ocean-deep); color: white; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .task { margin-top: 16px; page-break-inside: avoid; }
+  .task-tag { display: inline-block; padding: 3px 10px; border-radius: 3px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-right: 8px; vertical-align: middle; color: white; }
+  .tag-build { background: var(--terra); }
+  .tag-apply { background: var(--kelp); }
+  .tag-calc { background: var(--ocean-deep); }
+  .tag-reflect { background: var(--ocean); }
+  .task-prompt { font-size: 0.94rem; margin: 8px 0 10px; color: var(--ink); display: block; }
+  .task-prompt strong { color: var(--ocean-deep); }
+  .task-letter { display: inline-block; font-family: 'Lora', serif; font-weight: 600; color: var(--terra); margin-right: 6px; }
+  .task-rubric { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+  .ruled, .grid-box, .calc-box { width: 100%; display: block; color: var(--ink); border-radius: 4px; background-color: white; }
+  .ruled { border: 1.5px solid var(--ink); padding: 12px 16px; line-height: 1.7em; background-image: linear-gradient(transparent calc(1.7em - 1px), var(--rule) 1px); background-size: 100% 1.7em; }
+  .ruled.short { min-height: 6em; }
+  .ruled.medium { min-height: 9em; }
+  .ruled.long { min-height: 13em; }
+  .calc-box { border: 1.5px solid var(--ink); padding: 14px 18px; min-height: 7em; background-image: linear-gradient(rgba(168, 181, 187, 0.45) 1px, transparent 1px), linear-gradient(90deg, rgba(168, 181, 187, 0.45) 1px, transparent 1px); background-size: 22px 22px; }
+  .formula-card { background: var(--sea-glass-soft); border: 1.5px solid var(--ocean); border-radius: 6px; padding: 12px 16px; margin: 10px 0; font-family: 'Lora', serif; font-size: 0.9rem; }
+  .formula-card strong { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--ocean-deep); }
+  .label-card { border: 2px solid var(--ink); border-radius: 4px; padding: 14px 18px; margin: 12px 0; font-family: 'Plus Jakarta Sans', sans-serif; max-width: 4.5in; }
+  .label-card .nf-title { font-size: 1.4rem; font-weight: 800; border-bottom: 7px solid var(--ink); padding-bottom: 4px; margin-bottom: 6px; letter-spacing: -0.02em; }
+  .label-card .nf-serv { font-size: 0.78rem; padding-bottom: 6px; border-bottom: 1.5px solid var(--ink); }
+  .label-card .nf-cal { display: flex; justify-content: space-between; align-items: baseline; padding: 4px 0; border-bottom: 6px solid var(--ink); }
+  .label-card .nf-cal-lbl { font-size: 0.72rem; font-weight: 700; }
+  .label-card .nf-cal-num { font-size: 1.6rem; font-weight: 800; }
+  .label-card .nf-row { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px solid var(--ink); font-size: 0.78rem; }
+  .label-card .nf-row.indent { padding-left: 12px; }
+  .label-card .nf-row.indent2 { padding-left: 24px; }
+  .label-card .nf-row strong { font-weight: 800; }
+  .label-card .nf-dv-head { display: flex; justify-content: flex-end; font-size: 0.7rem; font-weight: 700; padding: 2px 0; }
+  .label-card .nf-foot { font-size: 0.7rem; padding-top: 6px; border-top: 4px solid var(--ink); margin-top: 4px; line-height: 1.4; }
+  .submission { margin-top: 36px; padding: 18px 22px; background: var(--sea-glass-soft); border: 1.5px solid var(--ocean-deep); border-radius: 6px; page-break-inside: avoid; }
+  .submission h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.08rem; color: var(--ocean-deep); margin-bottom: 10px; }
+  .submission-list { list-style: none; margin-bottom: 16px; }
+  .submission-list li { padding: 5px 0; font-size: 0.88rem; display: flex; align-items: flex-start; gap: 10px; }
+  .submission-list input[type="checkbox"] { width: 16px; height: 16px; margin-top: 4px; accent-color: var(--ocean-deep); flex-shrink: 0; cursor: pointer; }
+  .submission-list label { flex: 1; cursor: pointer; }
+  .signature-row { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; padding-top: 14px; border-top: 1px dashed var(--ocean-deep); align-items: end; }
+  .integrity-statement { font-size: 0.78rem; color: var(--ink); font-style: italic; line-height: 1.5; margin-bottom: 8px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link { display: none !important; }
+    .section, .task, .submission, .label-card, .formula-card { page-break-inside: avoid; }
+    .ruled, .grid-box, .calc-box { border-color: #000; color: #000; background-color: white; }
+    .submission, .formula-card { background: white; }
+    @page { size: letter; margin: 0.55in 0.6in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions" role="region" aria-label="Worksheet controls">
+  <div class="action-info"><strong>Print, handwrite, scan, submit.</strong> This worksheet is designed to be printed and completed by hand.</div>
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this worksheet">⎙ Print Worksheet</button>
+</div>
+
+<main id="main-content" class="sheet">
+  <header class="masthead">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 07 · Worksheet</p>
+    <h1 class="doc-title">Nutrition: Digestion, Absorption, Metabolism</h1>
+    <p class="doc-subtitle">Companion worksheet to the Week 7 Cognitive Trainer · Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field"><span class="field-label">Name</span><span class="field-line"></span></div>
+    <div class="field"><span class="field-label">Date</span><span class="field-line"></span></div>
+  </div>
+
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">How this worksheet works</h2>
+    <p>BIO 304 is an online course. Work through the Week 7 Cognitive Trainer first as your study tool. This worksheet is what you turn in. It captures only the predictions, calculations, and reflections.</p>
+    <p><strong>How to complete:</strong> Print the worksheet. Complete every box by hand in pen or pencil. Scan or photograph the completed pages as a single PDF. Upload that PDF to the Week 7 Worksheet assignment in Canvas.</p>
+    <p><strong>Section 4 covers COR-named content</strong> (the liver as metabolic hub). Section 6 anchors the lab (TDEE calculation and nutrition label audit). Spend extra time on both.</p>
+    <p><strong>If you cannot print:</strong> contact Dr. Rennie or DSPS for an alternative submission format.</p>
+  </section>
+
+  <!-- SECTION 01 -->
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · Digestive Anatomy</p>
+        <h2 class="section-title" id="s1-title">GI organs and accessory contributions</h2>
+        <p class="section-anchor">Use specific organs and the substance they contribute (enzyme, bile, etc.) in your reasoning.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient with cirrhosis has impaired bile production. Predict the effect on fat digestion in the small intestine, identify which fat-soluble vitamins are most likely to be deficient, and explain the connection.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A patient has had a cholecystectomy (gallbladder removal). Predict the effect on bile delivery to the duodenum, on tolerance for high-fat meals, and explain why most patients adapt over time.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A patient with chronic pancreatitis has reduced pancreatic enzyme secretion. Predict three nutrient categories that will be malabsorbed, and explain the mechanism for each.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 -->
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · Mechanical &amp; Chemical Digestion</p>
+        <h2 class="section-title" id="s2-title">Enzymes and locations</h2>
+        <p class="section-anchor">Name the missing enzyme and its location in your reasoning.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient is lactose intolerant. Identify the missing enzyme and its location, and explain why undigested lactose causes gas, bloating, and osmotic diarrhea.</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A patient has bile duct obstruction (gallstone in the common bile duct). Predict the effect on fat digestion and on stool color, and explain why bilirubin in skin causes jaundice.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A patient with Zollinger-Ellison syndrome has severely high gastric acid. Predict the effect on pepsin activity, on the duodenal mucosa, and on how well pancreatic enzymes work in the duodenum.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 -->
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · Absorption</p>
+        <h2 class="section-title" id="s3-title">Malabsorption scenarios</h2>
+        <p class="section-anchor">Localize the deficiency to a specific site or transporter in your reasoning.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient with Crohn's disease has chronic inflammation of the distal ileum. Predict which specific vitamin deficiency is most likely, explain the mechanism, and identify the clinical consequence (anemia type and neurologic effects).</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A patient with celiac disease has flattened villi. Predict the effect on overall nutrient absorption (in terms of surface area), and identify two specific deficiencies likely to develop.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A patient with cystic fibrosis has pancreatic exocrine insufficiency (low lipase). Predict their fat-soluble vitamin status, and explain why pancreatic enzyme replacement therapy with meals improves it.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 - COR -->
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · Liver as Metabolic Hub <span class="cor-flag">COR</span></p>
+        <h2 class="section-title" id="s4-title">Liver functions in disease</h2>
+        <p class="section-anchor">COR-named clinical anchor. Connect each clinical finding to the failed liver function.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A patient with end-stage liver failure presents with the following findings. For each finding, identify the failed liver function that explains it.</p>
+      <div class="ruled" style="min-height:11em;">
+        <span style="display:block; margin-bottom:8px;"><strong>Jaundice:</strong></span>
+        <span style="display:block; margin-bottom:8px;"><strong>Ascites and edema:</strong></span>
+        <span style="display:block; margin-bottom:8px;"><strong>Easy bruising and bleeding:</strong></span>
+        <span style="display:block; margin-bottom:8px;"><strong>Confusion and asterixis (hepatic encephalopathy):</strong></span>
+        <span style="display:block;"><strong>Hypoglycemia between meals:</strong></span>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A medication has high first-pass hepatic metabolism. Explain why a higher oral dose is required than the IV dose, and predict what would happen to the effective dose if the patient developed cirrhosis. Predict the danger of using the same dose in cirrhosis.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A newborn develops jaundice on day 3 of life with elevated unconjugated bilirubin. Identify whether this is pre-hepatic, hepatic, or post-hepatic, explain why the newborn liver is particularly vulnerable, and explain the rationale for phototherapy.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 05 -->
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Apply · Macronutrients &amp; Micronutrients</p>
+        <h2 class="section-title" id="s5-title">Diet and deficiency reasoning</h2>
+        <p class="section-anchor">Use specific macronutrient roles, energy density, and vitamin/mineral functions in your reasoning.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">a.</span> A vegan patient eats only plant proteins. Identify the nutritional concern, name two amino acids most commonly limiting in plant diets, and explain the strategy of complementary proteins (e.g., rice and beans).</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">b.</span> A patient on a very low-fat diet (less than 10% of calories from fat) develops night vision problems and easy bruising over six months. Identify the deficiency category, the specific vitamins most likely deficient, and the absorption mechanism that fails.</p>
+      <div class="ruled long"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-apply" aria-hidden="true">Apply</span>
+      <p class="task-prompt"><span class="sr-only">Apply task. </span><span class="task-letter" aria-hidden="true">c.</span> A patient drinks heavily and obtains 30% of their calories from alcohol. Predict the consequence for vitamin status and overall nutrition, and explain why "empty calories" is a fitting description.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 06 - LAB ANCHOR -->
+  <section class="section" aria-labelledby="s6-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">06</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Calc &amp; Build · TDEE and Label <span class="lab-flag">Lab</span></p>
+        <h2 class="section-title" id="s6-title">TDEE calculation and nutrition label audit</h2>
+        <p class="section-anchor">Lab anchor. Show your work. Round to nearest whole number for kcal values.</p>
+      </div>
+    </header>
+
+    <div class="formula-card">
+      <strong>Mifflin-St Jeor formulas:</strong><br>
+      Male BMR = (10 × kg) + (6.25 × cm) - (5 × years) + 5<br>
+      Female BMR = (10 × kg) + (6.25 × cm) - (5 × years) - 161<br>
+      <strong>TDEE = BMR × activity factor</strong> (1.2 sedentary · 1.375 light · 1.55 moderate · 1.725 very active · 1.9 extra)
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-calc" aria-hidden="true">Calc</span>
+      <p class="task-prompt"><span class="sr-only">Calculation task. </span><span class="task-letter" aria-hidden="true">a.</span> Calculate the TDEE of a 30-year-old female, 65 kg, 165 cm tall, sedentary office worker. Show each step (BMR formula substitution, BMR result, activity factor multiplication, TDEE result).</p>
+      <div class="calc-box"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-calc" aria-hidden="true">Calc</span>
+      <p class="task-prompt"><span class="sr-only">Calculation task. </span><span class="task-letter" aria-hidden="true">b.</span> Calculate your own TDEE. Use your real values (or estimates if you prefer not to share). Show all work.</p>
+      <div class="calc-box"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-build" aria-hidden="true">Build</span>
+      <p class="task-prompt"><span class="sr-only">Build task. </span><span class="task-letter" aria-hidden="true">c.</span> Audit the nutrition label below. Apply the 5%/20% rule (≤5% DV is low; ≥20% DV is high). Circle each value that is a red flag (high DV on cap nutrients: added sugar, saturated fat, sodium) and underline each value that is appropriate (high DV on target nutrients: fiber, protein, vitamins, minerals).</p>
+
+      <div class="label-card">
+        <div class="nf-title">Nutrition Facts</div>
+        <div class="nf-serv">8 servings per container<br><strong>Serving size:</strong> 1 cup (228g)</div>
+        <div class="nf-cal"><span class="nf-cal-lbl">Amount per serving<br>Calories</span><span class="nf-cal-num">250</span></div>
+        <div class="nf-dv-head">% Daily Value*</div>
+        <div class="nf-row"><span><strong>Total Fat</strong> 12g</span><span><strong>15%</strong></span></div>
+        <div class="nf-row indent"><span>Saturated Fat 4g</span><span><strong>20%</strong></span></div>
+        <div class="nf-row indent"><span>Trans Fat 0g</span><span></span></div>
+        <div class="nf-row"><span><strong>Cholesterol</strong> 30mg</span><span><strong>10%</strong></span></div>
+        <div class="nf-row"><span><strong>Sodium</strong> 480mg</span><span><strong>21%</strong></span></div>
+        <div class="nf-row"><span><strong>Total Carbohydrate</strong> 30g</span><span><strong>11%</strong></span></div>
+        <div class="nf-row indent"><span>Dietary Fiber 1g</span><span><strong>4%</strong></span></div>
+        <div class="nf-row indent"><span>Total Sugars 22g</span><span></span></div>
+        <div class="nf-row indent2"><span>Includes 18g Added Sugars</span><span><strong>36%</strong></span></div>
+        <div class="nf-row"><span><strong>Protein</strong> 5g</span><span></span></div>
+        <div class="nf-row"><span>Vitamin D 0mcg</span><span><strong>0%</strong></span></div>
+        <div class="nf-row"><span>Calcium 80mg</span><span><strong>6%</strong></span></div>
+        <div class="nf-row"><span>Iron 1mg</span><span><strong>6%</strong></span></div>
+        <div class="nf-row" style="border-bottom:none;"><span>Potassium 240mg</span><span><strong>5%</strong></span></div>
+        <div class="nf-foot">*The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2000 calories a day is used for general nutrition advice.</div>
+      </div>
+
+      <p class="task-prompt"><span class="task-letter" aria-hidden="true">d.</span> In two to three sentences, summarize this label's nutritional profile and identify the worst single offender. Would you recommend this food as a regular snack? Justify.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 07 -->
+  <section class="section" aria-labelledby="s7-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">07</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Reflect · Self-Assessment</p>
+        <h2 class="section-title" id="s7-title">Reflection on Week 7</h2>
+        <p class="section-anchor">Honesty here is graded for completeness, not correctness.</p>
+      </div>
+    </header>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">a.</span> Of the topics this week (digestive anatomy, mechanical/chemical digestion, absorption, liver as metabolic hub, macros/micros, TDEE/labels), which one feels strongest right now?</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">b.</span> Which one is still cloudy? Write what you would ask Dr. Rennie or a study partner if you had thirty seconds.</p>
+      <div class="ruled medium"></div>
+    </div>
+
+    <div class="task">
+      <span class="task-tag tag-reflect" aria-hidden="true">Reflect</span>
+      <p class="task-prompt"><span class="sr-only">Reflection task. </span><span class="task-letter" aria-hidden="true">c.</span> After running your own TDEE in part 6b and auditing a real label, identify <strong>one</strong> habit you would consider changing and explain how the numbers from this week's lab informed that decision.</p>
+      <div class="ruled long"></div>
+    </div>
+  </section>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit</h2>
+    <ul class="submission-list">
+      <li><input type="checkbox" id="check1"><label for="check1">All seven sections are complete. Empty boxes lose points even on the right answer.</label></li>
+      <li><input type="checkbox" id="check2"><label for="check2">The COR-named liver section (4) is answered with the five-finding match completed.</label></li>
+      <li><input type="checkbox" id="check3"><label for="check3">Both TDEE calculations show full work (BMR step, activity factor, TDEE).</label></li>
+      <li><input type="checkbox" id="check4"><label for="check4">The label audit has red flags circled and target nutrients underlined.</label></li>
+      <li><input type="checkbox" id="check5"><label for="check5">Your name is on the front page.</label></li>
+      <li><input type="checkbox" id="check6"><label for="check6">You have signed the integrity statement below.</label></li>
+    </ul>
+    <div class="signature-row">
+      <div>
+        <p class="integrity-statement">By signing below, I confirm this worksheet represents my own thinking. I may have studied with classmates, but the writing, calculations, and audits on this page are mine.</p>
+        <div class="field"><span class="field-label">Signature</span><span class="field-line"></span></div>
+      </div>
+      <div class="field"><span class="field-label">Date</span><span class="field-line"></span></div>
+    </div>
+  </section>
+</main>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w07-worksheet';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
