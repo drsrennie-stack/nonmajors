@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Week 4 Physiology Workbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5; --sand-soft: #faf3e8; --sand: #f5e6d3;
+    --terra: #c44536; --kelp: #5a7553;
+    --paper: #fdfbf7; --line: #c9d4d8; --rule: #a8b5bb; --muted: #5a6b73;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #e8e8e0; line-height: 1.55; font-size: 16px; padding: 30px 0; -webkit-font-smoothing: antialiased; }
+  .sheet { max-width: 8.5in; margin: 0 auto; background: white; padding: 0.55in 0.6in; box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1); }
+  .actions { max-width: 8.5in; margin: 0 auto 16px; padding: 0 0.6in; display: flex; justify-content: flex-end; }
+  .print-btn { background: var(--ocean-deep); color: white; border: none; padding: 11px 22px; border-radius: 8px; font-family: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 8px; transition: background 0.15s ease; }
+  .print-btn:hover { background: var(--ocean); }
+  .print-btn::before { content: '⎙'; font-size: 1rem; }
+
+  .masthead { border-bottom: 2.5px solid var(--ocean-deep); padding-bottom: 18px; margin-bottom: 24px; position: relative; }
+  .masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .masthead.physiology::after { background: var(--terra); }
+  .course-line { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .doc-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.85rem; color: var(--ocean-deep); line-height: 1.2; margin-bottom: 6px; }
+  .doc-subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean); }
+
+  .student-block { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; margin: 18px 0 24px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field { display: flex; flex-direction: column; }
+  .field-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field-line { border-bottom: 1.5px solid var(--ink); height: 24px; }
+
+  .instructions { background: var(--sand-soft); border-left: 3px solid var(--terra); padding: 14px 18px; margin-bottom: 26px; font-size: 0.92rem; }
+  .instructions h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+
+  .section { margin: 22px 0; page-break-inside: avoid; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.5rem; color: var(--terra); min-width: 32px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; color: var(--ocean-deep); }
+  .section-anchor { font-size: 0.86rem; color: var(--ocean); font-style: italic; margin-top: 4px; }
+
+  .field-prompt { font-size: 0.92rem; color: var(--ink); margin: 10px 0 6px; line-height: 1.5; }
+  .field-prompt strong { color: var(--ocean-deep); }
+  .field-helper { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+
+  .ruled { background: white; border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; min-height: 5em; background-image: repeating-linear-gradient(transparent, transparent 24px, var(--rule) 24px, var(--rule) 25px); line-height: 25px; }
+  .ruled.short { min-height: 4em; }
+  .ruled.medium { min-height: 6em; }
+  .ruled.long { min-height: 9em; }
+
+  .word-bank { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 14px 18px; margin: 14px 0 18px; }
+  .word-bank-label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .word-bank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 14px; font-size: 0.86rem; color: var(--ink); }
+  .word-bank-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .word-bank-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 600px) {
+    .word-bank-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .label-exercise { margin: 16px 0; page-break-inside: avoid; }
+  .label-exercise-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.05rem; color: var(--terra); margin-bottom: 10px; }
+  .label-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .label-flex.wide-fig { grid-template-columns: 1.4fr 1fr; }
+  .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
+
+  .figure { margin: 0; }
+  .figure-imgbox { background: white; border: 2px dashed var(--ocean); border-radius: 6px; padding: 14px; position: relative; display: flex; align-items: center; justify-content: center; }
+  .figure-imgbox img { max-width: 100%; height: auto; display: block; }
+  .figure-imgbox.img-pending { background: var(--sea-glass-soft); border-color: var(--ocean); }
+  .img-pending-msg { display: none; flex-direction: column; align-items: center; gap: 6px; text-align: center; color: var(--muted); padding: 18px; }
+  .figure-imgbox.img-pending .img-pending-msg { display: flex; }
+  .img-pending-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); }
+  .img-pending-file { font-size: 0.95rem; font-weight: 600; color: var(--terra); background: white; padding: 6px 14px; border-radius: 4px; border: 1px solid var(--terra); }
+  .img-pending-alt { font-size: 0.82rem; font-style: italic; max-width: 360px; line-height: 1.4; margin-top: 4px; }
+
+  .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+  .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .key-list { list-style: none; padding: 0; margin: 0; }
+  .key-list li { padding: 5px 0; border-bottom: 1px dashed var(--line); display: flex; align-items: baseline; gap: 8px; font-size: 0.88rem; }
+  .key-list li:last-child { border-bottom: none; }
+  .key-list.compact li { padding: 3px 0; font-size: 0.84rem; }
+  .key-num { font-weight: 700; color: var(--terra); min-width: 28px; flex-shrink: 0; }
+  .key-blank { flex: 1; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+  .key-fill { flex: 1; }
+
+  @media (max-width: 700px) {
+    .label-flex { grid-template-columns: 1fr; }
+  }
+
+  .draw-box { background: white; border: 1.5px solid var(--ocean-deep); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 280px; background-image: linear-gradient(rgba(214, 228, 231, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(214, 228, 231, 0.4) 1px, transparent 1px); background-size: 24px 24px; background-position: -1px -1px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: white; padding: 1px 6px; border-radius: 2px; }
+  .draw-box.tall { min-height: 360px; }
+  .draw-box.short { min-height: 220px; }
+
+  .calc-box { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; margin: 10px 0; min-height: 80px; }
+  .calc-box-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.86rem; background: white; }
+  .data-table th { text-align: left; padding: 8px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .data-table .input-cell { background: white !important; min-width: 80px; }
+  .data-table .input-cell .cell-line { display: block; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+
+  .case { background: var(--sand-soft); border-left: 3px solid var(--terra); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 14px 0; page-break-inside: avoid; }
+  .case-label { display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; }
+  .case-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .case-body { font-size: 0.9rem; line-height: 1.55; margin-bottom: 8px; }
+  .case-body strong { color: var(--ocean-deep); }
+  .case-prompts { margin-top: 10px; }
+  .case-prompts ol { list-style: decimal; padding-left: 22px; margin: 6px 0; font-size: 0.9rem; }
+  .case-prompts ol li { margin-bottom: 6px; line-height: 1.5; }
+
+  .reference { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean-deep); padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.88rem; }
+  .reference h4 { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 0.96rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .reference p { margin-bottom: 6px; line-height: 1.55; }
+  .reference p:last-child { margin-bottom: 0; }
+  .reference strong { color: var(--terra); font-weight: 600; }
+  .reference .formula { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean-deep); padding: 8px 14px; background: white; border: 1px solid var(--line); border-radius: 4px; display: inline-block; margin: 4px 0; }
+
+  .synthesis { background: linear-gradient(150deg, var(--sand-soft), white); border: 2px solid var(--terra); border-radius: 8px; padding: 16px 20px; margin: 18px 0; page-break-inside: avoid; }
+  .synthesis-label { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 3px 10px; border-radius: 3px; margin-bottom: 8px; }
+  .synthesis-prompt { font-size: 0.96rem; line-height: 1.55; color: var(--ink); margin-bottom: 8px; }
+  .synthesis-prompt strong { color: var(--ocean-deep); }
+
+  .submission { margin-top: 30px; padding: 18px 22px; background: var(--sea-glass-soft); border: 1.5px solid var(--ocean-deep); border-radius: 6px; page-break-inside: avoid; }
+  .submission h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.08rem; color: var(--ocean-deep); margin-bottom: 10px; }
+  .submission p { font-size: 0.86rem; margin-bottom: 6px; }
+
+  /* PARTNER LINK BANNER (cross-link between anatomy & physiology workbooks) */
+  .partner-link { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 12px 16px; margin: 22px 0; font-size: 0.88rem; display: flex; align-items: center; gap: 12px; }
+  .partner-link-label { flex: 1; }
+  .partner-link-label strong { color: var(--ocean-deep); }
+  .partner-link a { color: var(--terra); text-decoration: underline; font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link, .partner-link { display: none !important; }
+    .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
+    .figure-imgbox { border-color: #888; }
+    .figure-imgbox.img-pending { background: white; }
+    @page { size: letter; margin: 0.55in 0.6in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions">
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this workbook or save as PDF">Print / Save PDF</button>
+</div>
+
+<main id="main-content" class="sheet" role="main">
+  <header class="masthead physiology">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 4 Physiology Workbook</p>
+    <h1 class="doc-title">The Full Neurological Exam</h1>
+    <p class="doc-subtitle">Physiology: bedside neuro exam, MRC strength scale, GCS, stroke and TBI assessment. Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field">
+      <span class="field-label">Name</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Section</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Date</span>
+      <span class="field-line"></span>
+    </div>
+  </div>
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">About this workbook</h2>
+    <p>This is the <strong>Physiology Workbook</strong> for Week 4. Complete the <strong>Week 4 Anatomy Workbook first</strong>. The clinical reasoning here builds on the eye, ear, cranial nerve, and FAST stroke anatomy you labeled and drew there.</p>
+    <p>Every nurse, paramedic, EMT, and physician learns to perform a neurological exam. It is fast, requires no equipment beyond a penlight and reflex hammer, and can identify a stroke, traumatic brain injury, or evolving neurological emergency in minutes. This dry lab teaches the five components of the standard neuro exam, then walks you through three real-world cases to apply it.</p>
+    <p>By the end, you will know how to grade strength on the MRC scale, document a Glasgow Coma Scale, recognize stroke patterns by deficit, and decide when a patient needs imaging immediately.</p>
+  </section>
+
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 1</p>
+        <h2 class="section-title" id="s1-title">The five components of the bedside neurological exam</h2>
+        <p class="section-anchor">Identify and document each component. This is the standard order used in clinical practice.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>The five components (in order)</h4>
+      <p><strong>1. Mental status:</strong> alert and oriented to person, place, time, situation (A&amp;Ox4). Speech fluency, comprehension, repetition, naming.</p>
+      <p><strong>2. Cranial nerves:</strong> selectively or all 12, depending on context. ER and bedside exams typically test II through XII.</p>
+      <p><strong>3. Motor system:</strong> tone, bulk, strength (MRC 0-5), pronator drift.</p>
+      <p><strong>4. Sensory system:</strong> light touch, pinprick (pain), proprioception, vibration. Sensory dermatomes if focal.</p>
+      <p><strong>5. Reflexes and coordination:</strong> deep tendon reflexes (DTRs) graded 0-4+, Babinski sign, finger-to-nose, heel-to-shin, Romberg, gait.</p>
+    </div>
+
+    <p class="field-prompt"><strong>Document the bedside test for each component below.</strong> Be specific about the action you ask the patient to do.</p>
+
+    <table class="data-table" aria-label="Neuro exam components and tests">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Component</th>
+          <th style="width: 75%;">Two specific bedside tests for this component</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1. Mental status</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>2. Cranial nerves</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>3. Motor system</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>4. Sensory system</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>5. Reflexes and coordination</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 2</p>
+        <h2 class="section-title" id="s2-title">Medical Research Council (MRC) strength scale</h2>
+        <p class="section-anchor">Grade muscle strength from 0 to 5 across patient scenarios.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>MRC Strength Scale (0 to 5)</h4>
+      <p><strong>0:</strong> No muscle contraction visible at all.</p>
+      <p><strong>1:</strong> Flicker or trace of contraction, no movement at the joint.</p>
+      <p><strong>2:</strong> Active movement only with gravity eliminated (e.g., across a table, not against gravity).</p>
+      <p><strong>3:</strong> Active movement against gravity but not against any added resistance.</p>
+      <p><strong>4:</strong> Active movement against gravity AND against some resistance, but weaker than the other side or expected normal.</p>
+      <p><strong>5:</strong> Normal strength against full resistance.</p>
+      <p><em>Many clinicians use 4-, 4, and 4+ to refine grade 4. Document strength bilaterally.</em></p>
+    </div>
+
+    <p class="field-prompt"><strong>Grade each finding on the MRC scale (0-5).</strong> If the finding is in only one limb, also document the contralateral side as expected normal (5/5).</p>
+
+    <table class="data-table" aria-label="MRC strength grading scenarios">
+      <thead>
+        <tr>
+          <th style="width: 65%;">Patient finding</th>
+          <th style="width: 15%;">My grade</th>
+          <th style="width: 20%;">Brief reasoning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Patient asked to lift right arm against examiner pushing down. Patient holds firm. Lifts equal to left side.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Patient asked to lift right arm. Lifts off the bed but cannot resist any downward push.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Patient cannot lift right arm against gravity but can slide it across the bed sheet.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>You see the right biceps twitch when patient is asked to flex elbow, but no actual movement.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Patient asked to flex right hip against resistance. Lifts leg but is noticeably weaker than left, can be overcome with steady push.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Patient asked to extend right knee. No movement, no contraction visible.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="field-prompt" style="margin-top: 14px;"><strong>Pronator drift test:</strong> patient holds both arms straight out, palms up, eyes closed, for 20-30 seconds. What does it mean if the right arm slowly pronates and drifts down?</p>
+    <div class="ruled medium" role="region" aria-label="Pronator drift answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 3</p>
+        <h2 class="section-title" id="s3-title">Deep tendon reflexes (DTRs) and Babinski sign</h2>
+        <p class="section-anchor">Grade reflex responses and recognize upper motor neuron findings.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>DTR grading scale (0 to 4+)</h4>
+      <p><strong>0:</strong> Absent. <strong>1+:</strong> Diminished (hypoactive). <strong>2+:</strong> Normal. <strong>3+:</strong> Brisker than average (hyperactive but no clonus). <strong>4+:</strong> Hyperactive with clonus.</p>
+      <p><strong>Common reflexes tested:</strong> biceps (C5-C6), triceps (C7), brachioradialis (C5-C6), patellar / knee jerk (L2-L4), Achilles / ankle jerk (S1-S2).</p>
+    </div>
+
+    <div class="reference">
+      <h4>Babinski sign</h4>
+      <p>Stroke the lateral sole of the foot from heel to little toe, then medially across the ball of the foot.</p>
+      <p><strong>Normal in adults:</strong> toes flex (curl downward, "down-going").</p>
+      <p><strong>Abnormal (positive Babinski) in adults:</strong> big toe extends (dorsiflexes, "up-going") and other toes fan out. This indicates an upper motor neuron lesion.</p>
+      <p><em>Babinski is normal in infants under approximately 12 months because their corticospinal tract is not yet fully myelinated.</em></p>
+    </div>
+
+    <p class="field-prompt"><strong>Grade each DTR finding:</strong></p>
+
+    <table class="data-table" aria-label="DTR grading scenarios">
+      <thead>
+        <tr>
+          <th style="width: 55%;">Patient finding</th>
+          <th style="width: 15%;">Grade (0-4+)</th>
+          <th style="width: 30%;">Upper motor neuron (UMN) or lower motor neuron (LMN) sign?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Patellar tap produces sharp knee extension, leg swings up vigorously, sustained beating at the ankle when foot is dorsiflexed.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Patellar tap produces brisk knee extension. No clonus.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>No response at the patellar tendon despite multiple attempts.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Patellar tap produces a normal swing of the lower leg.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="field-prompt" style="margin-top: 14px;"><strong>A 45-year-old patient has 3+ DTRs in the right leg, an up-going Babinski on the right, and weakness in the right leg.</strong> Are these findings UMN, LMN, or both? Where (anatomically) could the lesion be?</p>
+    <div class="ruled medium" role="region" aria-label="UMN vs LMN reasoning answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 4</p>
+        <h2 class="section-title" id="s4-title">Glasgow Coma Scale (GCS)</h2>
+        <p class="section-anchor">Score eye opening, verbal response, and motor response. Recognize TBI severity.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>Glasgow Coma Scale (GCS)</h4>
+      <p>Scored on three components: <strong>Eye opening (1-4)</strong>, <strong>Verbal response (1-5)</strong>, <strong>Motor response (1-6)</strong>. Total range: 3 to 15. Higher = better.</p>
+
+      <p style="margin-top: 8px;"><strong>Eye opening (E):</strong></p>
+      <p>4 = Spontaneous · 3 = To speech · 2 = To pain · 1 = None</p>
+
+      <p style="margin-top: 8px;"><strong>Verbal response (V):</strong></p>
+      <p>5 = Oriented · 4 = Confused conversation · 3 = Inappropriate words · 2 = Incomprehensible sounds · 1 = None</p>
+
+      <p style="margin-top: 8px;"><strong>Motor response (M):</strong></p>
+      <p>6 = Obeys commands · 5 = Localizes pain · 4 = Withdraws from pain · 3 = Abnormal flexion (decorticate) · 2 = Abnormal extension (decerebrate) · 1 = None</p>
+
+      <p style="margin-top: 8px;"><strong>TBI severity by total GCS:</strong></p>
+      <p>Mild: 13-15 · Moderate: 9-12 · Severe: 8 or below (intubation typically considered)</p>
+    </div>
+
+    <p class="field-prompt"><strong>Score each patient's GCS</strong> by component (E + V + M = Total) and classify the TBI severity.</p>
+
+    <table class="data-table" aria-label="GCS scoring scenarios">
+      <thead>
+        <tr>
+          <th style="width: 38%;">Patient presentation</th>
+          <th style="width: 10%;">E</th>
+          <th style="width: 10%;">V</th>
+          <th style="width: 10%;">M</th>
+          <th style="width: 12%;">Total</th>
+          <th style="width: 20%;">Severity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Patient opens eyes when you walk in. Asks where they are. Follows command to lift left hand.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Patient eyes closed. Opens to loud voice. Mumbles incomprehensibly. Withdraws from sternal rub.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Patient eyes closed. No response to voice. Opens eyes to pinch. No verbal response. Brings hand toward the painful stimulus.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Patient eyes closed, no response to voice or pain. No verbal response. To sternal rub: arms flex at elbow, wrists flex inward (decorticate posturing).</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Patient eyes closed, no response. No verbal response. To pain: arms extend rigidly with internal rotation (decerebrate posturing).</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="field-prompt" style="margin-top: 14px;"><strong>What is the difference between decorticate (flexion) and decerebrate (extension) posturing in terms of brain lesion location, and which is more concerning?</strong></p>
+    <div class="ruled medium" role="region" aria-label="Posturing answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Clinical Reasoning Cases</p>
+        <h2 class="section-title" id="s5-title">Apply the full neuro exam to four patients</h2>
+        <p class="section-anchor">Each case integrates cranial nerve assessment, motor and reflex testing, GCS, and stroke recognition.</p>
+      </div>
+    </header>
+
+    <div class="case">
+      <span class="case-label">Case 1</span>
+      <p class="case-title">The right MCA stroke</p>
+      <p class="case-body">A 68-year-old woman is brought in by family. She was last seen well 2 hours ago. On exam: left facial droop (forehead spared), 0/5 strength in left arm and 2/5 strength in left leg, slurred speech, neglect of left visual field, and gaze deviation to the right. GCS 14 (E4 V4 M6).</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Which cerebral artery is most likely affected? Justify based on the deficit pattern.</li>
+          <li>Why is the forehead spared on the affected side? (Reference CN VII innervation pattern.)</li>
+          <li>Calculate the time window for tPA. Is she still eligible?</li>
+          <li>What three additional bedside tests would you do right now to refine the picture?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 1 answer space"></div>
+      <div class="ruled long" role="region" aria-label="Case 1 answer space continued"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 2</span>
+      <p class="case-title">The motorcycle crash</p>
+      <p class="case-body">A 24-year-old man, helmeted, struck a vehicle on his motorcycle. EMS finds him unconscious. On scene: eyes closed, opens to painful stimulus, mumbles incomprehensible sounds, decerebrate posturing to sternal rub. Pupils 6 mm bilaterally, sluggishly reactive. BP 158/92, HR 56, irregular respirations.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Calculate his GCS. Classify the TBI severity.</li>
+          <li>The combination of hypertension, bradycardia, and irregular breathing has a name. What is it called and what does it indicate?</li>
+          <li>Pupils are 6 mm and sluggish bilaterally. What CN is involved and what does this suggest about brainstem involvement?</li>
+          <li>What is the most urgent next step in management?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 2 answer space"></div>
+      <div class="ruled long" role="region" aria-label="Case 2 answer space continued"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 3</span>
+      <p class="case-title">The basilar territory ischemia</p>
+      <p class="case-body">A 71-year-old man with hypertension and atrial fibrillation comes in 30 minutes after sudden vertigo, double vision, and difficulty walking. Exam: cannot abduct the left eye (eye stays midline when asked to look left), unsteady gait, dysarthria, intact strength bilaterally, intact mental status.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Which cranial nerve is involved on the left? What action does it normally control?</li>
+          <li>The combination of cranial nerve deficits + cerebellar findings (gait, dysarthria) without major motor weakness points to what arterial territory?</li>
+          <li>Why does atrial fibrillation predispose to this kind of stroke? (Reference clot origin and embolic path.)</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 3 answer space"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 4</span>
+      <p class="case-title">The peripheral facial palsy</p>
+      <p class="case-body">A 40-year-old healthy woman wakes up with right-sided facial droop. She cannot raise her right eyebrow, cannot close her right eye fully, and her right corner of the mouth droops. Mental status is normal. Strength is 5/5 in all four limbs. No sensory deficits. No speech changes.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Is this a stroke or a peripheral cranial nerve lesion (Bell's palsy)? Explain how the forehead involvement helps you decide.</li>
+          <li>Which CN is affected, and what is the difference in CN innervation between the upper and lower face that makes this distinction possible?</li>
+          <li>If this were a stroke, what facial findings would you expect instead?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 4 answer space"></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s6-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">06</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Final Synthesis</p>
+        <h2 class="section-title" id="s6-title">Integrate the full neuro exam in a stroke recognition protocol</h2>
+        <p class="section-anchor">The most heavily weighted question in the workbook. Integrate everything you learned this week.</p>
+      </div>
+    </header>
+
+    <div class="synthesis">
+      <span class="synthesis-label">Synthesis question · Most weighted</span>
+      <p class="synthesis-prompt">A patient comes to the ER with sudden right-sided weakness, slurred speech, and right-sided facial droop. Time of last known well is 2 hours ago. The team is considering tPA.</p>
+      <p class="synthesis-prompt"><strong>In four to six sentences, walk through how the bedside neurological exam confirms a stroke and rules out mimics, integrating exam findings, anatomy, and time-critical decision making.</strong> Your answer must integrate:</p>
+      <p class="synthesis-prompt">(1) which two FAST components are positive in this patient and what brain region each implicates, (2) which cerebral artery territory is most likely involved and why, (3) which two additional bedside neuro exam findings (beyond FAST) would strengthen the stroke diagnosis, (4) what one finding might suggest a stroke mimic (e.g., Bell's palsy, hypoglycemia, post-ictal Todd's paralysis), (5) the time window for tPA and what point in the patient's history determines that window.</p>
+      <div class="ruled long" role="region" aria-label="Final synthesis answer space"></div>
+      <div class="ruled long" role="region" aria-label="Final synthesis answer space continued"></div>
+    </div>
+  </section>
+  <div class="partner-link">
+    <span class="partner-link-label">Looking for structure identification? See the <strong>Week 4 Anatomy Workbook</strong>.</span>
+    <a href="week04_anatomy_workbook.html">Open →</a>
+  </div>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit</h2>
+    <p>1. Sections 01-04 (5 components, MRC scale, DTRs, GCS) all have completed tables.</p>
+    <p>2. The pronator drift, UMN-vs-LMN reasoning, and posturing prompts are answered.</p>
+    <p>3. All four clinical cases (Section 05) have answers to every numbered prompt.</p>
+    <p>4. The final synthesis question (Section 06) integrates all five required elements.</p>
+    <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 4 Physiology Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
+  </section>
+
+</main>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w04-physiology-workbook';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>

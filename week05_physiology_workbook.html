@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Week 5 Physiology Workbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5; --sand-soft: #faf3e8; --sand: #f5e6d3;
+    --terra: #c44536; --kelp: #5a7553;
+    --paper: #fdfbf7; --line: #c9d4d8; --rule: #a8b5bb; --muted: #5a6b73;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #e8e8e0; line-height: 1.55; font-size: 16px; padding: 30px 0; -webkit-font-smoothing: antialiased; }
+  .sheet { max-width: 8.5in; margin: 0 auto; background: white; padding: 0.55in 0.6in; box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1); }
+  .actions { max-width: 8.5in; margin: 0 auto 16px; padding: 0 0.6in; display: flex; justify-content: flex-end; }
+  .print-btn { background: var(--ocean-deep); color: white; border: none; padding: 11px 22px; border-radius: 8px; font-family: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 8px; transition: background 0.15s ease; }
+  .print-btn:hover { background: var(--ocean); }
+  .print-btn::before { content: '⎙'; font-size: 1rem; }
+
+  .masthead { border-bottom: 2.5px solid var(--ocean-deep); padding-bottom: 18px; margin-bottom: 24px; position: relative; }
+  .masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .masthead.physiology::after { background: var(--terra); }
+  .course-line { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .doc-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.85rem; color: var(--ocean-deep); line-height: 1.2; margin-bottom: 6px; }
+  .doc-subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean); }
+
+  .student-block { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; margin: 18px 0 24px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field { display: flex; flex-direction: column; }
+  .field-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field-line { border-bottom: 1.5px solid var(--ink); height: 24px; }
+
+  .instructions { background: var(--sand-soft); border-left: 3px solid var(--terra); padding: 14px 18px; margin-bottom: 26px; font-size: 0.92rem; }
+  .instructions h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+
+  .section { margin: 22px 0; page-break-inside: avoid; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.5rem; color: var(--terra); min-width: 32px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; color: var(--ocean-deep); }
+  .section-anchor { font-size: 0.86rem; color: var(--ocean); font-style: italic; margin-top: 4px; }
+
+  .field-prompt { font-size: 0.92rem; color: var(--ink); margin: 10px 0 6px; line-height: 1.5; }
+  .field-prompt strong { color: var(--ocean-deep); }
+  .field-helper { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+
+  .ruled { background: white; border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; min-height: 5em; background-image: repeating-linear-gradient(transparent, transparent 24px, var(--rule) 24px, var(--rule) 25px); line-height: 25px; }
+  .ruled.short { min-height: 4em; }
+  .ruled.medium { min-height: 6em; }
+  .ruled.long { min-height: 9em; }
+
+  .word-bank { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 14px 18px; margin: 14px 0 18px; }
+  .word-bank-label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .word-bank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 14px; font-size: 0.86rem; color: var(--ink); }
+  .word-bank-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .word-bank-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 600px) {
+    .word-bank-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .label-exercise { margin: 16px 0; page-break-inside: avoid; }
+  .label-exercise-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.05rem; color: var(--terra); margin-bottom: 10px; }
+  .label-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .label-flex.wide-fig { grid-template-columns: 1.4fr 1fr; }
+  .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
+
+  .figure { margin: 0; }
+  .figure-imgbox { background: white; border: 2px dashed var(--ocean); border-radius: 6px; padding: 14px; position: relative; display: flex; align-items: center; justify-content: center; }
+  .figure-imgbox img { max-width: 100%; height: auto; display: block; }
+  .figure-imgbox.img-pending { background: var(--sea-glass-soft); border-color: var(--ocean); }
+  .img-pending-msg { display: none; flex-direction: column; align-items: center; gap: 6px; text-align: center; color: var(--muted); padding: 18px; }
+  .figure-imgbox.img-pending .img-pending-msg { display: flex; }
+  .img-pending-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); }
+  .img-pending-file { font-size: 0.95rem; font-weight: 600; color: var(--terra); background: white; padding: 6px 14px; border-radius: 4px; border: 1px solid var(--terra); }
+  .img-pending-alt { font-size: 0.82rem; font-style: italic; max-width: 360px; line-height: 1.4; margin-top: 4px; }
+
+  .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+  .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .key-list { list-style: none; padding: 0; margin: 0; }
+  .key-list li { padding: 5px 0; border-bottom: 1px dashed var(--line); display: flex; align-items: baseline; gap: 8px; font-size: 0.88rem; }
+  .key-list li:last-child { border-bottom: none; }
+  .key-list.compact li { padding: 3px 0; font-size: 0.84rem; }
+  .key-num { font-weight: 700; color: var(--terra); min-width: 28px; flex-shrink: 0; }
+  .key-blank { flex: 1; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+  .key-fill { flex: 1; }
+
+  @media (max-width: 700px) {
+    .label-flex { grid-template-columns: 1fr; }
+  }
+
+  .draw-box { background: white; border: 1.5px solid var(--ocean-deep); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 280px; background-image: linear-gradient(rgba(214, 228, 231, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(214, 228, 231, 0.4) 1px, transparent 1px); background-size: 24px 24px; background-position: -1px -1px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: white; padding: 1px 6px; border-radius: 2px; }
+  .draw-box.tall { min-height: 360px; }
+  .draw-box.short { min-height: 220px; }
+
+  .calc-box { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; margin: 10px 0; min-height: 80px; }
+  .calc-box-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.86rem; background: white; }
+  .data-table th { text-align: left; padding: 8px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .data-table .input-cell { background: white !important; min-width: 80px; }
+  .data-table .input-cell .cell-line { display: block; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+
+  .case { background: var(--sand-soft); border-left: 3px solid var(--terra); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 14px 0; page-break-inside: avoid; }
+  .case-label { display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; }
+  .case-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .case-body { font-size: 0.9rem; line-height: 1.55; margin-bottom: 8px; }
+  .case-body strong { color: var(--ocean-deep); }
+  .case-prompts { margin-top: 10px; }
+  .case-prompts ol { list-style: decimal; padding-left: 22px; margin: 6px 0; font-size: 0.9rem; }
+  .case-prompts ol li { margin-bottom: 6px; line-height: 1.5; }
+
+  .reference { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean-deep); padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.88rem; }
+  .reference h4 { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 0.96rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .reference p { margin-bottom: 6px; line-height: 1.55; }
+  .reference p:last-child { margin-bottom: 0; }
+  .reference strong { color: var(--terra); font-weight: 600; }
+  .reference .formula { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean-deep); padding: 8px 14px; background: white; border: 1px solid var(--line); border-radius: 4px; display: inline-block; margin: 4px 0; }
+
+  .synthesis { background: linear-gradient(150deg, var(--sand-soft), white); border: 2px solid var(--terra); border-radius: 8px; padding: 16px 20px; margin: 18px 0; page-break-inside: avoid; }
+  .synthesis-label { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 3px 10px; border-radius: 3px; margin-bottom: 8px; }
+  .synthesis-prompt { font-size: 0.96rem; line-height: 1.55; color: var(--ink); margin-bottom: 8px; }
+  .synthesis-prompt strong { color: var(--ocean-deep); }
+
+  .submission { margin-top: 30px; padding: 18px 22px; background: var(--sea-glass-soft); border: 1.5px solid var(--ocean-deep); border-radius: 6px; page-break-inside: avoid; }
+  .submission h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.08rem; color: var(--ocean-deep); margin-bottom: 10px; }
+  .submission p { font-size: 0.86rem; margin-bottom: 6px; }
+
+  /* PARTNER LINK BANNER (cross-link between anatomy & physiology workbooks) */
+  .partner-link { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 12px 16px; margin: 22px 0; font-size: 0.88rem; display: flex; align-items: center; gap: 12px; }
+  .partner-link-label { flex: 1; }
+  .partner-link-label strong { color: var(--ocean-deep); }
+  .partner-link a { color: var(--terra); text-decoration: underline; font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link, .partner-link { display: none !important; }
+    .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
+    .figure-imgbox { border-color: #888; }
+    .figure-imgbox.img-pending { background: white; }
+    @page { size: letter; margin: 0.55in 0.6in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions">
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this workbook or save as PDF">Print / Save PDF</button>
+</div>
+
+<main id="main-content" class="sheet" role="main">
+  <header class="masthead physiology">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 5 Physiology Workbook</p>
+    <h1 class="doc-title">ECG Interpretation &amp; ASCVD Risk</h1>
+    <p class="doc-subtitle">Physiology: read 12-lead ECG strips, calculate cardiovascular risk, integrate cardiac cases. Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field">
+      <span class="field-label">Name</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Section</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Date</span>
+      <span class="field-line"></span>
+    </div>
+  </div>
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">About this workbook</h2>
+    <p>This is the <strong>Physiology Workbook</strong> for Week 5. Complete the <strong>Week 5 Anatomy Workbook first</strong>. Two of this week's most important physiology topics are COR-named: <strong>ECG interpretation</strong> and <strong>ASCVD 10-year cardiovascular risk</strong>. Both are integrated below.</p>
+    <p>Reading an ECG is the single most-tested clinical skill on the NCLEX-RN, on EMT/paramedic certifying exams, and at the bedside. ASCVD risk drives statin and antihypertensive treatment decisions in primary care. By the end of this workbook, you will be able to identify normal sinus rhythm, calculate heart rate from a strip, recognize the most common arrhythmias, and predict cardiovascular risk for several patient profiles.</p>
+  </section>
+
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 1</p>
+        <h2 class="section-title" id="s1-title">ECG basics: paper, intervals, and rate calculation</h2>
+        <p class="section-anchor">Understand ECG paper grid, normal interval values, and learn the two methods to calculate heart rate from a strip.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>ECG paper basics</h4>
+      <p><strong>Small box:</strong> 1 mm × 1 mm = 0.04 seconds wide × 0.1 mV tall.</p>
+      <p><strong>Large box (5 small):</strong> 5 mm × 5 mm = 0.20 seconds wide × 0.5 mV tall.</p>
+      <p><strong>Standard speed:</strong> 25 mm/sec. <strong>Standard amplitude:</strong> 10 mm/mV.</p>
+    </div>
+
+    <div class="reference">
+      <h4>Normal interval values</h4>
+      <p><strong>P wave duration:</strong> &lt; 0.12 sec (3 small boxes). <strong>PR interval:</strong> 0.12-0.20 sec (3-5 small boxes). <strong>QRS duration:</strong> &lt; 0.12 sec (3 small boxes). <strong>QT interval:</strong> &lt; 0.44 sec (varies with heart rate, often corrected as QTc).</p>
+    </div>
+
+    <div class="reference">
+      <h4>Two methods to calculate heart rate</h4>
+      <p><strong>Method 1 (regular rhythms): 300 method.</strong> Count the number of large boxes between two consecutive R waves. Divide 300 by that number. <em>Memory line:</em> 300, 150, 100, 75, 60, 50 (R-R intervals of 1, 2, 3, 4, 5, 6 large boxes).</p>
+      <p><strong>Method 2 (irregular rhythms): 6-second method.</strong> Count R waves in a 6-second strip (30 large boxes). Multiply by 10 for beats per minute.</p>
+    </div>
+
+    <p class="field-prompt"><strong>Practice rate calculation</strong> for each scenario:</p>
+
+    <table class="data-table" aria-label="ECG rate calculation practice">
+      <thead>
+        <tr>
+          <th style="width: 50%;">Scenario</th>
+          <th style="width: 25%;">My calculation</th>
+          <th style="width: 25%;">Heart rate (bpm)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Regular rhythm. R-R interval is exactly 4 large boxes.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Regular rhythm. R-R interval is exactly 3 large boxes.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Regular rhythm. R-R interval is exactly 6 large boxes.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Irregular rhythm. 8 R waves in a 6-second strip.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Irregular rhythm. 16 R waves in a 6-second strip.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 2</p>
+        <h2 class="section-title" id="s2-title">The 5-step ECG interpretation method</h2>
+        <p class="section-anchor">Apply a systematic 5-step method to every ECG you read. This sequence prevents missed findings.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>The 5 steps (in order)</h4>
+      <p><strong>1. Rate.</strong> Calculate using one of the two methods above. Normal: 60-100 bpm. Bradycardia: &lt; 60. Tachycardia: &gt; 100.</p>
+      <p><strong>2. Rhythm.</strong> Regular or irregular? Check R-R intervals. Pattern can be regularly irregular (predictable) or irregularly irregular (no pattern).</p>
+      <p><strong>3. P waves.</strong> Present? One before every QRS? Same shape every time? Upright in lead II?</p>
+      <p><strong>4. PR interval.</strong> Within 0.12-0.20 sec? Constant? Lengthening progressively?</p>
+      <p><strong>5. QRS.</strong> Width &lt; 0.12 sec? Same shape each time? Anything before or after looks abnormal (ST elevation/depression, T wave inversion)?</p>
+    </div>
+
+    <p class="field-prompt"><strong>Practice the 5-step method on the strip below.</strong> For each step, document your finding.</p>
+
+    <div class="label-exercise">
+      <p class="label-exercise-title">Practice strip 1: Identify this rhythm</p>
+      <figure class="figure">
+        <div class="figure-imgbox" style="min-height: 180px;">
+          <img src="" alt="A 6-second ECG rhythm strip showing normal sinus rhythm: regular R-R intervals approximately 4 large boxes apart, upright P wave before each QRS in lead II, PR interval 4 small boxes, narrow QRS, normal T waves" data-pending="ecg_practice_1.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
+          <div class="img-pending-msg" aria-hidden="true">
+            <span class="img-pending-label">Image placeholder</span>
+            <span class="img-pending-file">ecg_practice_1.png</span>
+            <span class="img-pending-alt">A 6-second ECG rhythm strip showing normal sinus rhythm: regular R-R intervals approximately 4 large boxes apart, upright P wave before each QRS in lead II, PR interval 4 small boxes, narrow QRS, normal T waves</span>
+          </div>
+        </div>
+      </figure>
+    </div>
+
+    <table class="data-table" aria-label="ECG 5-step interpretation">
+      <thead>
+        <tr>
+          <th style="width: 30%;">Step</th>
+          <th style="width: 70%;">My finding</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>1. Rate</strong></td><td class="input-cell"><span class="cell-line"></span></td></tr>
+        <tr><td><strong>2. Rhythm</strong></td><td class="input-cell"><span class="cell-line"></span></td></tr>
+        <tr><td><strong>3. P waves</strong></td><td class="input-cell"><span class="cell-line"></span></td></tr>
+        <tr><td><strong>4. PR interval</strong></td><td class="input-cell"><span class="cell-line"></span></td></tr>
+        <tr><td><strong>5. QRS</strong></td><td class="input-cell"><span class="cell-line"></span></td></tr>
+        <tr><td><strong>Final interpretation</strong></td><td class="input-cell"><span class="cell-line"></span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 3</p>
+        <h2 class="section-title" id="s3-title">Common cardiac rhythms: identification criteria</h2>
+        <p class="section-anchor">For each common rhythm, learn the diagnostic criteria. Use this section as your reference for the case strips that follow.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>Normal sinus rhythm (NSR)</h4>
+      <p>Rate 60-100. Regular. P before every QRS, QRS after every P. PR 0.12-0.20 sec. QRS &lt; 0.12 sec.</p>
+    </div>
+
+    <div class="reference">
+      <h4>Sinus tachycardia and sinus bradycardia</h4>
+      <p><strong>Sinus tach:</strong> all NSR criteria except rate &gt; 100. Common causes: pain, fever, anxiety, hypovolemia, hypoxia, exercise.</p>
+      <p><strong>Sinus brad:</strong> all NSR criteria except rate &lt; 60. Common in athletes (normal). Pathologic causes: hypothyroidism, hypothermia, increased ICP, MI of the SA node, beta-blocker overdose.</p>
+    </div>
+
+    <div class="reference">
+      <h4>Atrial fibrillation (A-fib)</h4>
+      <p><strong>Rhythm: irregularly irregular.</strong> No discernible P waves. Replaced by chaotic fibrillatory waves on the baseline. QRS narrow (originates above ventricles). Rate often 100-180 if untreated. <strong>Major risk: stroke from atrial clot formation.</strong></p>
+    </div>
+
+    <div class="reference">
+      <h4>Atrial flutter</h4>
+      <p>Sawtooth flutter waves (F waves) replace P waves. Atrial rate ~250-350. Ventricular rate depends on AV conduction ratio (e.g., 2:1 block gives ventricular rate ~150). Rhythm often regular.</p>
+    </div>
+
+    <div class="reference">
+      <h4>AV blocks</h4>
+      <p><strong>1st degree:</strong> PR interval &gt; 0.20 sec but every P is followed by a QRS. Stable.</p>
+      <p><strong>2nd degree Mobitz I (Wenckebach):</strong> PR progressively lengthens until a QRS is dropped, then resets. Often benign.</p>
+      <p><strong>2nd degree Mobitz II:</strong> Constant PR, but occasional dropped QRS. More dangerous, often progresses to 3rd degree.</p>
+      <p><strong>3rd degree (complete heart block):</strong> P waves and QRS complexes are independent. Atrial rate and ventricular rate are different. Ventricles fire from a junctional or ventricular escape rhythm. <strong>Emergency: requires pacemaker.</strong></p>
+    </div>
+
+    <div class="reference">
+      <h4>PVCs and ventricular tachycardia</h4>
+      <p><strong>Premature ventricular contraction (PVC):</strong> wide bizarre QRS, no preceding P, often with compensatory pause. Single PVCs are usually benign.</p>
+      <p><strong>Ventricular tachycardia (V-tach):</strong> 3 or more PVCs in a row. Wide QRS, no P waves, rate &gt; 100. <strong>Emergency: pulseless V-tach is treated like cardiac arrest.</strong></p>
+      <p><strong>Ventricular fibrillation (V-fib):</strong> chaotic, no organized QRS. <strong>Cardiac arrest. Defibrillate immediately.</strong></p>
+    </div>
+
+    <p class="field-prompt"><strong>Match each strip description to the rhythm name.</strong></p>
+
+    <table class="data-table" aria-label="Match strip to rhythm">
+      <thead>
+        <tr>
+          <th style="width: 70%;">Strip description</th>
+          <th style="width: 30%;">Rhythm</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Regular. Rate 110. P before every QRS. PR 0.16. QRS narrow.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Irregularly irregular. No P waves. Wavy baseline. QRS narrow. Rate ~140.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Regular. Rate 75. P before every QRS. PR 0.28 sec.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>P waves at rate of 88, QRS complexes at rate of 38, completely independent of each other. Wide QRS.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Regular wide-complex tachycardia at rate 180. No discernible P waves. Patient is unresponsive with no pulse.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Sawtooth pattern at atrial rate 300, ventricular rate exactly half. Regular.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td>Regular. Rate 48. P before every QRS. PR 0.16. QRS narrow. Patient is asymptomatic athletic 22-year-old.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 4</p>
+        <h2 class="section-title" id="s4-title">ASCVD 10-year cardiovascular risk</h2>
+        <p class="section-anchor">Calculate 10-year risk of MI or stroke using the Pooled Cohort Equation inputs and decide on treatment.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>The ASCVD risk score (Pooled Cohort Equation)</h4>
+      <p>Predicts 10-year risk of a hard ASCVD event (heart attack or stroke) in adults 40-75 years without existing cardiovascular disease.</p>
+      <p><strong>Inputs:</strong> age, sex, race, total cholesterol, HDL cholesterol, systolic BP, BP medication use (yes/no), diabetes (yes/no), smoking (yes/no).</p>
+    </div>
+
+    <div class="reference">
+      <h4>Treatment thresholds (2018 AHA/ACC guidelines, simplified)</h4>
+      <p><strong>&lt; 5%:</strong> Low risk. Lifestyle counseling.</p>
+      <p><strong>5 to &lt; 7.5%:</strong> Borderline. Selective statin if risk-enhancing factors present (family history early MI, chronic inflammatory conditions, etc.).</p>
+      <p><strong>7.5 to &lt; 20%:</strong> Intermediate. Moderate-intensity statin recommended after risk discussion.</p>
+      <p><strong>≥ 20%:</strong> High risk. High-intensity statin recommended.</p>
+      <p><em>Patients with existing ASCVD, LDL &ge; 190, or diabetes (40-75y) get statin therapy regardless of calculated 10-year risk.</em></p>
+    </div>
+
+    <p class="field-prompt"><strong>For each patient, identify the major risk factors present and predict the likely risk category</strong> (low / borderline / intermediate / high). Reasoning matters more than an exact percentage.</p>
+
+    <div class="case">
+      <span class="case-label">Patient 1</span>
+      <p class="case-title">Mark, 55M</p>
+      <p class="case-body">Non-Hispanic white. Total cholesterol 220, HDL 38, BP 148/88 (not on BP meds), no diabetes, current smoker (1 pack/day for 30 years). No prior cardiovascular events.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>List the modifiable and non-modifiable risk factors present.</li>
+          <li>Predict his ASCVD risk category and explain.</li>
+          <li>Which lifestyle change would most lower his 10-year risk, and why?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Patient 1 answer space"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Patient 2</span>
+      <p class="case-title">Diane, 60F</p>
+      <p class="case-body">African American. Total cholesterol 195, HDL 62, BP 128/78 (not on meds), no diabetes, never smoker. Walks 30 minutes daily.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>List risk factors and protective factors.</li>
+          <li>Predict her ASCVD risk category.</li>
+          <li>Should she start a statin based on these numbers? Justify.</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Patient 2 answer space"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Patient 3</span>
+      <p class="case-title">Carlos, 65M</p>
+      <p class="case-body">Hispanic. Total cholesterol 248, HDL 32, BP 162/96 (on lisinopril), Type 2 diabetes (HbA1c 8.1%), former smoker (quit 2 years ago, 25 pack-year history).</p>
+      <div class="case-prompts">
+        <ol>
+          <li>List the major risk factors.</li>
+          <li>Why does diabetes alone, regardless of his calculated ASCVD score, qualify him for statin therapy?</li>
+          <li>Which intensity of statin would be recommended (moderate vs high)?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Patient 3 answer space"></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 5</p>
+        <h2 class="section-title" id="s5-title">BP regulation and the RAAS pathway</h2>
+        <p class="section-anchor">Apply the renin-angiotensin-aldosterone system to clinical scenarios.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>The RAAS cascade (memorize the order)</h4>
+      <p><strong>Trigger:</strong> drop in renal perfusion (low BP, low Na+, sympathetic activation).</p>
+      <p><strong>1.</strong> Juxtaglomerular cells (kidney) release <strong>renin</strong>.</p>
+      <p><strong>2.</strong> Renin cleaves <strong>angiotensinogen</strong> (from liver) → <strong>angiotensin I</strong>.</p>
+      <p><strong>3.</strong> Angiotensin-converting enzyme (<strong>ACE</strong>, mostly in lungs) converts angiotensin I → <strong>angiotensin II</strong>.</p>
+      <p><strong>4.</strong> Angiotensin II causes systemic vasoconstriction (raising BP) AND stimulates the adrenal cortex to release <strong>aldosterone</strong>.</p>
+      <p><strong>5.</strong> Aldosterone causes the kidneys to retain sodium and water (raising BP).</p>
+    </div>
+
+    <p class="field-prompt"><strong>For each medication or scenario, identify the step in the RAAS cascade that is targeted or affected.</strong></p>
+
+    <table class="data-table" aria-label="RAAS targets">
+      <thead>
+        <tr>
+          <th style="width: 40%;">Medication or condition</th>
+          <th style="width: 60%;">Step in RAAS affected + brief mechanism</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Lisinopril</strong> (ACE inhibitor)</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Losartan</strong> (angiotensin II receptor blocker, ARB)</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Spironolactone</strong> (aldosterone antagonist)</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Renal artery stenosis</strong> (narrowed renal artery)</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Severe blood loss / hypovolemia</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s6-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">06</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Clinical Reasoning Cases</p>
+        <h2 class="section-title" id="s6-title">Apply ECG interpretation, ASCVD risk, and BP regulation to four patients</h2>
+        <p class="section-anchor">Each case integrates multiple lab skills from above.</p>
+      </div>
+    </header>
+
+    <div class="case">
+      <span class="case-label">Case 1</span>
+      <p class="case-title">The new-onset palpitations</p>
+      <p class="case-body">A 72-year-old woman with hypertension and prior CHF comes in with palpitations and dizziness for 6 hours. Vitals: HR 142, BP 96/64. ECG: <strong>irregularly irregular rhythm, no discernible P waves, fibrillatory baseline, narrow QRS</strong>. She is alert and conversant.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>What is the ECG diagnosis?</li>
+          <li>Why is her blood pressure low?</li>
+          <li>What is her single largest long-term complication risk from this rhythm, and why? (Reference atrial physiology and clot formation.)</li>
+          <li>Why might a new-onset arrhythmia like this cause CHF exacerbation in this patient?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 1 answer space"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 2</span>
+      <p class="case-title">The hypertensive emergency</p>
+      <p class="case-body">A 58-year-old man with poorly controlled HTN presents with severe headache, blurred vision, and chest pain. BP 218/124. Labs show acute kidney injury (creatinine rise from 1.0 to 2.1) and a small troponin elevation. ECG shows ST depression in the lateral leads.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>His severely elevated BP is causing damage in three organs. Identify the three organs and the specific damage in each.</li>
+          <li>The team starts an IV antihypertensive. Which medication class would lower his BP within minutes by blocking RAAS at the angiotensin II receptor? (Hint: it is the IV form of one of the drugs in Section 05.)</li>
+          <li>If they instead used spironolactone, why would it not bring his BP down quickly enough?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 2 answer space"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 3</span>
+      <p class="case-title">The asymptomatic high-risk patient</p>
+      <p class="case-body">A 62-year-old man with no symptoms comes in for annual physical. Father had MI at 52. Patient: BMI 28, BP 142/84, total cholesterol 248, HDL 35, LDL 168, HbA1c 5.9% (prediabetes), non-smoker. No known cardiovascular disease.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Calculate (qualitatively) his ASCVD risk category.</li>
+          <li>Identify which of his findings are modifiable risk factors and which are non-modifiable.</li>
+          <li>If he were started on a statin, what would the goal LDL reduction be (typically a percentage decrease)?</li>
+          <li>His prediabetes is a strong predictor of progression. Name two interventions that have been shown to reduce both ASCVD risk AND progression to T2DM.</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 3 answer space"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 4</span>
+      <p class="case-title">The complete heart block</p>
+      <p class="case-body">An 80-year-old woman with new-onset confusion, dizziness, and a near-syncope episode. ECG: <strong>P wave rate 90, QRS rate 32, P waves and QRS complexes completely independent of each other.</strong> QRS is wide. Vitals: HR 32, BP 78/50.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>What is the ECG diagnosis?</li>
+          <li>Reference your Week 5 Anatomy Workbook conduction system labeling. What is firing the ventricles at 32 bpm if the SA node signal cannot reach them?</li>
+          <li>What is the definitive treatment?</li>
+          <li>Why is her blood pressure low? Reference cardiac output = stroke volume × heart rate.</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 4 answer space"></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s7-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">07</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Final Synthesis</p>
+        <h2 class="section-title" id="s7-title">Integrate cardiac anatomy, ECG, and ASCVD risk in a single clinical scenario</h2>
+        <p class="section-anchor">The most heavily weighted question in the workbook. Integrate everything you learned this week.</p>
+      </div>
+    </header>
+
+    <div class="synthesis">
+      <span class="synthesis-label">Synthesis question · Most weighted</span>
+      <p class="synthesis-prompt">A 68-year-old man with hypertension, type 2 diabetes, hyperlipidemia, and a 40 pack-year smoking history (still smoking) presents with crushing chest pain radiating down the left arm. He is diaphoretic and short of breath. ECG shows: <strong>regular rhythm, rate 96, ST elevation in leads II, III, and aVF</strong>. Troponin is positive at 4.2 ng/mL.</p>
+      <p class="synthesis-prompt"><strong>In four to six sentences, integrate cardiac anatomy, ECG interpretation, and ASCVD risk in your answer.</strong> Your answer must integrate:</p>
+      <p class="synthesis-prompt">(1) what the ST elevation in II, III, aVF indicates about the location of the MI and which coronary artery is most likely occluded, (2) which cardiac region (chamber/wall) is at risk and why this matters for hemodynamic complications, (3) which of his ASCVD risk factors are modifiable and were directly contributing to the plaque rupture, (4) why high-intensity statin and antiplatelet therapy will be started immediately even before discharge, (5) what specific ECG finding would worsen his prognosis dramatically (suggesting evolution into a more dangerous rhythm).</p>
+      <div class="ruled long" role="region" aria-label="Final synthesis answer space"></div>
+      <div class="ruled long" role="region" aria-label="Final synthesis answer space continued"></div>
+    </div>
+  </section>
+  <div class="partner-link">
+    <span class="partner-link-label">Looking for structure identification? See the <strong>Week 5 Anatomy Workbook</strong>.</span>
+    <a href="week05_anatomy_workbook.html">Open →</a>
+  </div>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit</h2>
+    <p>1. Rate calculation table (Section 01) is complete for all five scenarios.</p>
+    <p>2. The 5-step ECG interpretation (Section 02) is filled in for the practice strip.</p>
+    <p>3. The rhythm match table (Section 03) is completed for all 7 strip descriptions.</p>
+    <p>4. ASCVD patient cases (Section 04) all have answers to every numbered prompt.</p>
+    <p>5. RAAS cascade table (Section 05) is filled in for all 5 scenarios.</p>
+    <p>6. All four integrated cases (Section 06) have answers to every numbered prompt.</p>
+    <p>7. Final synthesis question (Section 07) integrates all five required elements.</p>
+    <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 5 Physiology Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
+  </section>
+
+</main>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w05-physiology-workbook';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
