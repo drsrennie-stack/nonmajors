@@ -82,14 +82,6 @@
   .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
 
   .figure { margin: 0; }
-  .figure-imgbox { background: white; border: 2px dashed var(--ocean); border-radius: 6px; padding: 14px; position: relative; display: flex; align-items: center; justify-content: center; }
-  .figure-imgbox img { max-width: 100%; height: auto; display: block; }
-  .figure-imgbox.img-pending { background: var(--sea-glass-soft); border-color: var(--ocean); }
-  .img-pending-msg { display: none; flex-direction: column; align-items: center; gap: 6px; text-align: center; color: var(--muted); padding: 18px; }
-  .figure-imgbox.img-pending .img-pending-msg { display: flex; }
-  .img-pending-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); }
-  .img-pending-file { font-size: 0.95rem; font-weight: 600; color: var(--terra); background: white; padding: 6px 14px; border-radius: 4px; border: 1px solid var(--terra); }
-  .img-pending-alt { font-size: 0.82rem; font-style: italic; max-width: 360px; line-height: 1.4; margin-top: 4px; }
 
   .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
   .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
@@ -105,8 +97,8 @@
     .label-flex { grid-template-columns: 1fr; }
   }
 
-  .draw-box { background: white; border: 1.5px solid var(--ocean-deep); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 280px; background-image: linear-gradient(rgba(214, 228, 231, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(214, 228, 231, 0.4) 1px, transparent 1px); background-size: 24px 24px; background-position: -1px -1px; position: relative; page-break-inside: avoid; }
-  .draw-box-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: white; padding: 1px 6px; border-radius: 2px; }
+  .draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 320px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
   .draw-box.tall { min-height: 360px; }
   .draw-box.short { min-height: 220px; }
 
@@ -156,10 +148,15 @@
     .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
     .actions, .skip-link, .partner-link { display: none !important; }
     .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
-    .figure-imgbox { border-color: #888; }
-    .figure-imgbox.img-pending { background: white; }
-    @page { size: letter; margin: 0.55in 0.6in; }
+        @page { size: letter; margin: 0.55in 0.6in; }
   }
+
+  .ref-draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; min-height: 380px; position: relative; page-break-inside: avoid; }
+  .ref-draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
+  .ref-instruction { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); padding: 10px 14px; margin: 10px 0 12px; font-size: 0.88rem; line-height: 1.5; border-radius: 0 4px 4px 0; }
+  .ref-instruction strong { color: var(--ocean-deep); }
+  .ref-instruction em { color: var(--terra); font-style: italic; }
+
 </style>
 </head>
 <body>
@@ -192,10 +189,10 @@
   </div>
   <section class="instructions" aria-labelledby="how-heading">
     <h2 id="how-heading">How this workbook works</h2>
-    <p><strong>Print, handwrite, scan, submit.</strong> This is the <strong>Anatomy Workbook</strong> for Week 2. Complete this first, then move to the Physiology Workbook for the DEXA &amp; bone health dry lab.</p>
-    <p><strong>This is your heaviest anatomy week.</strong> Bones, bone marks, joints, and muscle organization. The lab exam will test bone identification heavily, so each numbered structure here is exam-relevant.</p>
-    <p><strong>Word banks scaffold this week.</strong> They are large because the structure list is large. Starting Week 3 you will recall structures from memory without word banks.</p>
-    <p><strong>Drawing tasks and synthesis questions are weighted heavily</strong> because they cannot be copied from AI.</p>
+    <p><strong>Print, handwrite, scan, submit.</strong> Complete every section. Drawings, labeling, tables, and clinical reasoning all earn points.</p>
+    <p><strong>About the drawings in this workbook.</strong> For each drawing, find a clear reference in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas. You may either (a) draw it by hand in the workbook box, or (b) build it digitally in Google Docs, Google Drawings, Word, or PowerPoint using shapes, lines, and text labels, then attach the file to your Canvas submission.</p>
+    <p><strong>If you build digitally, you must submit revision history</strong> showing you built the diagram in stages over time. In Google Docs and Google Drawings: File &rarr; Version history &rarr; See version history. A flat image with no revision history does not meet this requirement.</p>
+    <p><strong>Either way, you must build it yourself, structure by structure.</strong> Copying a finished image (from Google Images, an AI tool, or a peer) earns zero on the assignment and is reported as academic dishonesty. Submission to Canvas certifies the work as your own.</p>
   </section>
 
   <section class="section" aria-labelledby="s1-title">
@@ -233,14 +230,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 450px;">
-          <img src="" alt="Cross-section of thick skin showing all 5 epidermal layers, papillary and reticular dermis, hypodermis, hair follicle with shaft and arrector pili, sebaceous gland, sweat gland, and tactile receptors (Meissner and Pacinian corpuscles), with 16 numbered arrows" data-pending="skin_cross_section.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">skin_cross_section.png</span>
-            <span class="img-pending-alt">Cross-section of thick skin showing all 5 epidermal layers, papillary and reticular dermis, hypodermis, hair follicle with shaft and arrector pili, sebaceous gland, sweat gland, and tactile receptors (Meissner and Pacinian corpuscles), with 16 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>skin cross section</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: cross-section of thick skin showing all 5 epidermal layers, papillary and reticular dermis, hypodermis, hair follicle with shaft and arrector pili, sebaceous gland, sweat gland, and tactile receptors (meissner and pacinian corpuscles), with 16 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="skin-key-title">
         <p class="key-title" id="skin-key-title">Identify each numbered structure</p>
@@ -307,14 +298,8 @@
       <p class="label-exercise-title">Anterior view</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Anterior view of the skull with 11 numbered arrows pointing to frontal, parietal, temporal, sphenoid, ethmoid, nasal, lacrimal, zygomatic, maxilla, mandible, vomer, and the coronal suture" data-pending="skull_anterior.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">skull_anterior.png</span>
-            <span class="img-pending-alt">Anterior view of the skull with 11 numbered arrows pointing to frontal, parietal, temporal, sphenoid, ethmoid, nasal, lacrimal, zygomatic, maxilla, mandible, vomer, and the coronal suture</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>skull anterior</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior view of the skull with 11 numbered arrows pointing to frontal, parietal, temporal, sphenoid, ethmoid, nasal, lacrimal, zygomatic, maxilla, mandible, vomer, and the coronal suture.</p>
       </figure>
         <aside class="label-key" aria-labelledby="skull-ant-key-title">
         <p class="key-title" id="skull-ant-key-title">Identify each numbered structure</p>
@@ -339,14 +324,8 @@
       <p class="label-exercise-title">Lateral view</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Lateral view of the skull with 12 numbered arrows pointing to frontal, parietal, temporal, occipital, sphenoid, zygomatic, maxilla, mandible, mastoid process, styloid process, external auditory meatus, mental foramen, zygomatic arch, and the coronal, squamous, and lambdoid sutures" data-pending="skull_lateral.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">skull_lateral.png</span>
-            <span class="img-pending-alt">Lateral view of the skull with 12 numbered arrows pointing to frontal, parietal, temporal, occipital, sphenoid, zygomatic, maxilla, mandible, mastoid process, styloid process, external auditory meatus, mental foramen, zygomatic arch, and the coronal, squamous, and lambdoid sutures</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>skull lateral</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: lateral view of the skull with 12 numbered arrows pointing to frontal, parietal, temporal, occipital, sphenoid, zygomatic, maxilla, mandible, mastoid process, styloid process, external auditory meatus, mental foramen, zygomatic arch, and the coronal, squamous, and lambdoid sutures.</p>
       </figure>
         <aside class="label-key" aria-labelledby="skull-lat-key-title">
         <p class="key-title" id="skull-lat-key-title">Identify each numbered structure</p>
@@ -398,14 +377,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Inferior view (base) of the skull showing the foramen magnum, occipital condyles, jugular foramen, foramen lacerum, foramen ovale, foramen spinosum, carotid canal, stylomastoid foramen, mastoid process, and hard palate with 10 numbered arrows" data-pending="skull_base.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">skull_base.png</span>
-            <span class="img-pending-alt">Inferior view (base) of the skull showing the foramen magnum, occipital condyles, jugular foramen, foramen lacerum, foramen ovale, foramen spinosum, carotid canal, stylomastoid foramen, mastoid process, and hard palate with 10 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>skull base</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: inferior view (base) of the skull showing the foramen magnum, occipital condyles, jugular foramen, foramen lacerum, foramen ovale, foramen spinosum, carotid canal, stylomastoid foramen, mastoid process, and hard palate with 10 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="skull-base-key-title">
         <p class="key-title" id="skull-base-key-title">Identify each numbered structure</p>
@@ -462,14 +435,8 @@
       <p class="label-exercise-title">Vertebral column (lateral view, full spine)</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 480px;">
-          <img src="" alt="Lateral view of the entire vertebral column showing 5 cervical (with atlas C1 and axis C2), 12 thoracic, 5 lumbar vertebrae, plus sacrum and coccyx with 7 numbered arrows pointing to each region and to atlas and axis specifically" data-pending="vertebral_column.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">vertebral_column.png</span>
-            <span class="img-pending-alt">Lateral view of the entire vertebral column showing 5 cervical (with atlas C1 and axis C2), 12 thoracic, 5 lumbar vertebrae, plus sacrum and coccyx with 7 numbered arrows pointing to each region and to atlas and axis specifically</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>vertebral column</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: lateral view of the entire vertebral column showing 5 cervical (with atlas c1 and axis c2), 12 thoracic, 5 lumbar vertebrae, plus sacrum and coccyx with 7 numbered arrows pointing to each region and to atlas and axis specifically.</p>
       </figure>
         <aside class="label-key" aria-labelledby="spine-full-key-title">
         <p class="key-title" id="spine-full-key-title">Identify each numbered structure</p>
@@ -490,14 +457,8 @@
       <p class="label-exercise-title">Typical vertebra (superior view)</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 320px;">
-          <img src="" alt="Superior view of a typical thoracic vertebra showing body, pedicle, lamina, transverse process, spinous process, vertebral foramen, and superior articular facet with 7 numbered arrows" data-pending="typical_vertebra.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">typical_vertebra.png</span>
-            <span class="img-pending-alt">Superior view of a typical thoracic vertebra showing body, pedicle, lamina, transverse process, spinous process, vertebral foramen, and superior articular facet with 7 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>typical vertebra</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: superior view of a typical thoracic vertebra showing body, pedicle, lamina, transverse process, spinous process, vertebral foramen, and superior articular facet with 7 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="vert-typ-key-title">
         <p class="key-title" id="vert-typ-key-title">Identify each numbered structure</p>
@@ -518,14 +479,8 @@
       <p class="label-exercise-title">Atlas (C1) and axis (C2)</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 300px;">
-          <img src="" alt="Atlas (C1) and axis (C2) shown side by side, highlighting the unique features: atlas with no body and large vertebral foramen, axis with the dens (odontoid process), with 4 numbered arrows" data-pending="atlas_axis.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">atlas_axis.png</span>
-            <span class="img-pending-alt">Atlas (C1) and axis (C2) shown side by side, highlighting the unique features: atlas with no body and large vertebral foramen, axis with the dens (odontoid process), with 4 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>atlas axis</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: atlas (c1) and axis (c2) shown side by side, highlighting the unique features: atlas with no body and large vertebral foramen, axis with the dens (odontoid process), with 4 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="atlas-axis-key-title">
         <p class="key-title" id="atlas-axis-key-title">Identify each numbered structure</p>
@@ -567,14 +522,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 400px;">
-          <img src="" alt="Anterior view of the thoracic cage showing the sternum (manubrium, sternal angle, body, xiphoid process), true ribs 1 to 7, false ribs 8 to 10, floating ribs 11 to 12, and costal cartilages with 8 numbered arrows" data-pending="thoracic_cage.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">thoracic_cage.png</span>
-            <span class="img-pending-alt">Anterior view of the thoracic cage showing the sternum (manubrium, sternal angle, body, xiphoid process), true ribs 1 to 7, false ribs 8 to 10, floating ribs 11 to 12, and costal cartilages with 8 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>thoracic cage</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior view of the thoracic cage showing the sternum (manubrium, sternal angle, body, xiphoid process), true ribs 1 to 7, false ribs 8 to 10, floating ribs 11 to 12, and costal cartilages with 8 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="thoracic-key-title">
         <p class="key-title" id="thoracic-key-title">Identify each numbered structure</p>
@@ -642,14 +591,8 @@
       <p class="label-exercise-title">Scapula (posterior view) and clavicle</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 320px;">
-          <img src="" alt="Posterior view of the scapula showing acromion, coracoid process, glenoid cavity, spine of scapula, supraspinous fossa, infraspinous fossa, plus the clavicle alongside, with 7 numbered arrows" data-pending="scapula_clavicle.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">scapula_clavicle.png</span>
-            <span class="img-pending-alt">Posterior view of the scapula showing acromion, coracoid process, glenoid cavity, spine of scapula, supraspinous fossa, infraspinous fossa, plus the clavicle alongside, with 7 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>scapula clavicle</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: posterior view of the scapula showing acromion, coracoid process, glenoid cavity, spine of scapula, supraspinous fossa, infraspinous fossa, plus the clavicle alongside, with 7 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="scapula-key-title">
         <p class="key-title" id="scapula-key-title">Identify each numbered structure</p>
@@ -670,14 +613,8 @@
       <p class="label-exercise-title">Humerus (anterior view)</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 420px;">
-          <img src="" alt="Anterior view of the humerus showing the head, greater tubercle, lesser tubercle, deltoid tuberosity, capitulum, trochlea, medial epicondyle, lateral epicondyle, coronoid fossa, and olecranon fossa (visible from the back) with 10 numbered arrows" data-pending="humerus.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">humerus.png</span>
-            <span class="img-pending-alt">Anterior view of the humerus showing the head, greater tubercle, lesser tubercle, deltoid tuberosity, capitulum, trochlea, medial epicondyle, lateral epicondyle, coronoid fossa, and olecranon fossa (visible from the back) with 10 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>humerus</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior view of the humerus showing the head, greater tubercle, lesser tubercle, deltoid tuberosity, capitulum, trochlea, medial epicondyle, lateral epicondyle, coronoid fossa, and olecranon fossa (visible from the back) with 10 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="humerus-key-title">
         <p class="key-title" id="humerus-key-title">Identify each numbered structure</p>
@@ -701,14 +638,8 @@
       <p class="label-exercise-title">Radius and ulna</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Anterior view of the radius and ulna together showing head of radius, radial tuberosity, styloid process of radius, olecranon, coronoid process, trochlear notch, and styloid process of ulna with 7 numbered arrows" data-pending="radius_ulna.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">radius_ulna.png</span>
-            <span class="img-pending-alt">Anterior view of the radius and ulna together showing head of radius, radial tuberosity, styloid process of radius, olecranon, coronoid process, trochlear notch, and styloid process of ulna with 7 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>radius ulna</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior view of the radius and ulna together showing head of radius, radial tuberosity, styloid process of radius, olecranon, coronoid process, trochlear notch, and styloid process of ulna with 7 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="radius-ulna-key-title">
         <p class="key-title" id="radius-ulna-key-title">Identify each numbered structure</p>
@@ -729,14 +660,8 @@
       <p class="label-exercise-title">Hand: carpals, metacarpals, phalanges</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Anterior view of the right hand showing the 8 carpal bones (scaphoid, lunate, triquetrum, pisiform, trapezium, trapezoid, capitate, hamate), 5 metacarpals, and 14 phalanges (proximal, middle, distal) with 5 numbered arrows for the categories" data-pending="hand_bones.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">hand_bones.png</span>
-            <span class="img-pending-alt">Anterior view of the right hand showing the 8 carpal bones (scaphoid, lunate, triquetrum, pisiform, trapezium, trapezoid, capitate, hamate), 5 metacarpals, and 14 phalanges (proximal, middle, distal) with 5 numbered arrows for the categories</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>hand bones</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior view of the right hand showing the 8 carpal bones (scaphoid, lunate, triquetrum, pisiform, trapezium, trapezoid, capitate, hamate), 5 metacarpals, and 14 phalanges (proximal, middle, distal) with 5 numbered arrows for the categories.</p>
       </figure>
         <aside class="label-key" aria-labelledby="hand-key-title">
         <p class="key-title" id="hand-key-title">Identify each numbered structure</p>
@@ -804,14 +729,8 @@
       <p class="label-exercise-title">Pelvis (anterior view)</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Anterior view of the pelvis showing ilium, ischium, pubis, iliac crest, ASIS, PSIS, ischial spine, ischial tuberosity, pubic symphysis, obturator foramen, and acetabulum with 11 numbered arrows" data-pending="pelvis.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">pelvis.png</span>
-            <span class="img-pending-alt">Anterior view of the pelvis showing ilium, ischium, pubis, iliac crest, ASIS, PSIS, ischial spine, ischial tuberosity, pubic symphysis, obturator foramen, and acetabulum with 11 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>pelvis</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior view of the pelvis showing ilium, ischium, pubis, iliac crest, asis, psis, ischial spine, ischial tuberosity, pubic symphysis, obturator foramen, and acetabulum with 11 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="pelvis-key-title">
         <p class="key-title" id="pelvis-key-title">Identify each numbered structure</p>
@@ -836,14 +755,8 @@
       <p class="label-exercise-title">Femur (anterior and posterior views)</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 440px;">
-          <img src="" alt="Anterior and posterior views of the femur showing the head, neck, greater trochanter, lesser trochanter, linea aspera (posterior), medial condyle, lateral condyle, intercondylar fossa, and patellar surface with 9 numbered arrows" data-pending="femur.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">femur.png</span>
-            <span class="img-pending-alt">Anterior and posterior views of the femur showing the head, neck, greater trochanter, lesser trochanter, linea aspera (posterior), medial condyle, lateral condyle, intercondylar fossa, and patellar surface with 9 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>femur</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior and posterior views of the femur showing the head, neck, greater trochanter, lesser trochanter, linea aspera (posterior), medial condyle, lateral condyle, intercondylar fossa, and patellar surface with 9 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="femur-key-title">
         <p class="key-title" id="femur-key-title">Identify each numbered structure</p>
@@ -866,14 +779,8 @@
       <p class="label-exercise-title">Tibia, fibula, and patella</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 420px;">
-          <img src="" alt="Anterior view of the patella, tibia, and fibula together showing patella, medial condyle of tibia, lateral condyle of tibia, tibial tuberosity, medial malleolus, head of fibula, and lateral malleolus with 7 numbered arrows" data-pending="tibia_fibula.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">tibia_fibula.png</span>
-            <span class="img-pending-alt">Anterior view of the patella, tibia, and fibula together showing patella, medial condyle of tibia, lateral condyle of tibia, tibial tuberosity, medial malleolus, head of fibula, and lateral malleolus with 7 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>tibia fibula</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior view of the patella, tibia, and fibula together showing patella, medial condyle of tibia, lateral condyle of tibia, tibial tuberosity, medial malleolus, head of fibula, and lateral malleolus with 7 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="tibia-fibula-key-title">
         <p class="key-title" id="tibia-fibula-key-title">Identify each numbered structure</p>
@@ -894,14 +801,8 @@
       <p class="label-exercise-title">Foot: tarsals, metatarsals, phalanges</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Superior view of the right foot showing 7 tarsal bones (with talus and calcaneus highlighted), 5 metatarsals, and 14 phalanges (proximal, middle, distal) with 5 numbered arrows" data-pending="foot_bones.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">foot_bones.png</span>
-            <span class="img-pending-alt">Superior view of the right foot showing 7 tarsal bones (with talus and calcaneus highlighted), 5 metatarsals, and 14 phalanges (proximal, middle, distal) with 5 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>foot bones</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: superior view of the right foot showing 7 tarsal bones (with talus and calcaneus highlighted), 5 metatarsals, and 14 phalanges (proximal, middle, distal) with 5 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="foot-key-title">
         <p class="key-title" id="foot-key-title">Identify each numbered structure</p>
@@ -948,14 +849,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 440px;">
-          <img src="" alt="Long-section of a long bone (femur) showing proximal epiphysis, diaphysis, distal epiphysis, metaphysis, epiphyseal line, articular cartilage, periosteum, endosteum, medullary cavity, compact bone, spongy bone, and nutrient foramen with 12 numbered arrows" data-pending="long_bone_gross.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">long_bone_gross.png</span>
-            <span class="img-pending-alt">Long-section of a long bone (femur) showing proximal epiphysis, diaphysis, distal epiphysis, metaphysis, epiphyseal line, articular cartilage, periosteum, endosteum, medullary cavity, compact bone, spongy bone, and nutrient foramen with 12 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>long bone gross</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: long-section of a long bone (femur) showing proximal epiphysis, diaphysis, distal epiphysis, metaphysis, epiphyseal line, articular cartilage, periosteum, endosteum, medullary cavity, compact bone, spongy bone, and nutrient foramen with 12 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="long-bone-key-title">
         <p class="key-title" id="long-bone-key-title">Identify each numbered structure</p>
@@ -1003,14 +898,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Cross-section of an osteon (Haversian system) showing central canal with blood vessels, perforating canal connecting to adjacent osteons, concentric lamellae of bone matrix, lacunae containing osteocytes, and canaliculi connecting the lacunae, with 6 numbered arrows" data-pending="osteon.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">osteon.png</span>
-            <span class="img-pending-alt">Cross-section of an osteon (Haversian system) showing central canal with blood vessels, perforating canal connecting to adjacent osteons, concentric lamellae of bone matrix, lacunae containing osteocytes, and canaliculi connecting the lacunae, with 6 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>osteon</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: cross-section of an osteon (haversian system) showing central canal with blood vessels, perforating canal connecting to adjacent osteons, concentric lamellae of bone matrix, lacunae containing osteocytes, and canaliculi connecting the lacunae, with 6 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="osteon-key-title">
         <p class="key-title" id="osteon-key-title">Identify each numbered structure</p>
@@ -1060,14 +949,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Generic synovial joint cross-section showing two articulating bones with periosteum, articular cartilage on each end, joint cavity filled with synovial fluid, synovial membrane lining the inner capsule, fibrous joint capsule, supporting ligament, bursa adjacent to the joint, and a meniscus between the bones with 8 numbered arrows" data-pending="synovial_joint.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">synovial_joint.png</span>
-            <span class="img-pending-alt">Generic synovial joint cross-section showing two articulating bones with periosteum, articular cartilage on each end, joint cavity filled with synovial fluid, synovial membrane lining the inner capsule, fibrous joint capsule, supporting ligament, bursa adjacent to the joint, and a meniscus between the bones with 8 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>synovial joint</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: generic synovial joint cross-section showing two articulating bones with periosteum, articular cartilage on each end, joint cavity filled with synovial fluid, synovial membrane lining the inner capsule, fibrous joint capsule, supporting ligament, bursa adjacent to the joint, and a meniscus between the bones with 8 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="joint-key-title">
         <p class="key-title" id="joint-key-title">Identify each numbered structure</p>
@@ -1164,14 +1047,8 @@
       <p class="label-exercise-title">Whole muscle to fiber organization</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Skeletal muscle hierarchical organization showing whole muscle wrapped in epimysium, fascicles wrapped in perimysium, individual muscle fibers wrapped in endomysium, with myofibrils inside each fiber, plus the tendon connecting muscle to bone, with 6 numbered arrows" data-pending="muscle_organization.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">muscle_organization.png</span>
-            <span class="img-pending-alt">Skeletal muscle hierarchical organization showing whole muscle wrapped in epimysium, fascicles wrapped in perimysium, individual muscle fibers wrapped in endomysium, with myofibrils inside each fiber, plus the tendon connecting muscle to bone, with 6 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>muscle organization</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: skeletal muscle hierarchical organization showing whole muscle wrapped in epimysium, fascicles wrapped in perimysium, individual muscle fibers wrapped in endomysium, with myofibrils inside each fiber, plus the tendon connecting muscle to bone, with 6 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="muscle-org-key-title">
         <p class="key-title" id="muscle-org-key-title">Identify each numbered structure</p>
@@ -1191,14 +1068,8 @@
       <p class="label-exercise-title">Sarcomere structure</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 320px;">
-          <img src="" alt="A single sarcomere showing Z discs at each end, A band (dark band of overlapping thin and thick filaments), I band (light band of thin filaments only), H zone (center area of A band with thick filaments only), M line at the center, plus thin filaments (actin) and thick filaments (myosin), with 8 numbered arrows" data-pending="sarcomere.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">sarcomere.png</span>
-            <span class="img-pending-alt">A single sarcomere showing Z discs at each end, A band (dark band of overlapping thin and thick filaments), I band (light band of thin filaments only), H zone (center area of A band with thick filaments only), M line at the center, plus thin filaments (actin) and thick filaments (myosin), with 8 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>sarcomere</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: a single sarcomere showing z discs at each end, a band (dark band of overlapping thin and thick filaments), i band (light band of thin filaments only), h zone (center area of a band with thick filaments only), m line at the center, plus thin filaments (actin) and thick filaments (myosin), with 8 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="sarcomere-key-title">
         <p class="key-title" id="sarcomere-key-title">Identify each numbered structure</p>
@@ -1221,7 +1092,7 @@
     <header class="section-head">
       <span class="section-num" aria-hidden="true">12</span>
       <div class="section-titles">
-        <p class="section-eyebrow">Anatomy · Drawing from Memory</p>
+        <p class="section-eyebrow">Anatomy · Drawing from Reference</p>
         <h2 class="section-title" id="s12-title">Bone remodeling and sarcomere contraction</h2>
         <p class="section-anchor">Without referencing figures above, draw two processes in detail. Label every component.</p>
       </div>
@@ -1233,7 +1104,7 @@
     </div>
 
     <div class="draw-box tall" role="region" aria-label="Bone remodeling drawing space">
-      <span class="draw-box-label">Drawing space: bone remodeling</span>
+      <span class="draw-box-label">Drawing space</span>
     </div>
 
     <div class="reference" style="margin-top: 18px;">
@@ -1242,7 +1113,7 @@
     </div>
 
     <div class="draw-box tall" role="region" aria-label="Sarcomere relaxed vs contracted drawing space">
-      <span class="draw-box-label">Drawing space: sarcomere relaxed vs contracted</span>
+      <span class="draw-box-label">Drawing space</span>
     </div>
 
     <div class="synthesis">
@@ -1262,11 +1133,33 @@
     <p>2. The six synovial joint examples (Section 10) are filled in.</p>
     <p>3. Both drawings (Section 12) have every required component drawn AND labeled.</p>
     <p>4. The osteon synthesis question (Section 09) and the bone remodeling synthesis question (Section 12) are answered in full sentences.</p>
+        <p style="margin-top: 8px; font-size: 0.92rem; color: var(--ocean);"><strong>If any drawings were built digitally:</strong> attach the file (Google Doc / Drawing / Word / PowerPoint) to your Canvas submission AND share the revision history link. Drawings without revision history will not receive credit.</p>
+
     <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 2 Anatomy Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
     <p style="margin-top: 10px;"><strong>Then continue to the Week 2 Physiology Workbook</strong> (DEXA &amp; Bone Health Assessment dry lab).</p>
   </section>
 
 </main>
+
+
+<script>
+  // Auto-load images from data-pending attribute
+  // To customize image folder, change IMAGE_FOLDER below.
+  // Examples:
+  //   IMAGE_FOLDER = '';           // images in same folder as HTML (default)
+  //   IMAGE_FOLDER = 'images/';    // images in a subfolder named "images"
+  //   IMAGE_FOLDER = 'bio304_images/';  // any other subfolder name
+  (function () {
+    const IMAGE_FOLDER = '';
+    const imgs = document.querySelectorAll('img[data-pending]');
+    imgs.forEach(function (img) {
+      const filename = img.getAttribute('data-pending');
+      if (filename && !img.getAttribute('src')) {
+        img.src = IMAGE_FOLDER + filename;
+      }
+    });
+  })();
+</script>
 
 <script>
   (function () {
