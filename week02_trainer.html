@@ -6,7 +6,7 @@
 <title>Week 2 Cognitive Trainer · Protection &amp; Support · BIO 304</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #1d3557;
@@ -19,7 +19,7 @@
     --terra: #c44536;
     --terra-soft: #e8a499;
     --kelp: #5a7553;
-    --paper: #fdfbf7;
+    --paper: #ffffff;
     --line: #c9d4d8;
     --muted: #5a6b73;
     --shadow-sm: 0 1px 2px rgba(20, 48, 75, 0.06);
@@ -75,7 +75,7 @@
   body {
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     color: var(--ink);
-    background: var(--paper);
+    background: #ffffff;
     line-height: 1.6;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
@@ -102,7 +102,7 @@
     margin-bottom: 14px;
   }
   h1.title {
-    font-family: 'Lora', serif;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     font-weight: 500;
     font-size: clamp(2rem, 4vw, 3rem);
     line-height: 1.15;
@@ -112,7 +112,7 @@
   }
   h1.title em { font-style: italic; color: var(--terra); }
   .subtitle {
-    font-family: 'Lora', serif;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     font-style: italic;
     font-size: 1.12rem;
     color: var(--ocean);
@@ -132,7 +132,7 @@
     display: inline-flex;
     gap: 8px;
     align-items: center;
-    background: var(--sea-glass-soft);
+    background: #ffffff;
     padding: 6px 12px;
     border-radius: 999px;
     font-size: 0.78rem;
@@ -150,7 +150,7 @@
   .progress-rail {
     position: sticky;
     top: 0;
-    background: var(--paper);
+    background: #ffffff;
     z-index: 50;
     padding: 14px 0;
     margin: 0 -28px 28px;
@@ -203,11 +203,11 @@
     transition: all 0.15s ease;
     font-size: 1rem;
   }
-  .icon-btn:hover { background: var(--sea-glass-soft); border-color: var(--ocean); }
+  .icon-btn:hover { background: #ffffff; border-color: var(--ocean); }
 
   /* INTRO */
   .intro {
-    background: linear-gradient(135deg, var(--sea-glass-soft) 0%, var(--sand-soft) 100%);
+    background: #ffffff;
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     padding: 32px 36px;
@@ -223,7 +223,7 @@
     border-radius: 2px;
   }
   .intro h2 {
-    font-family: 'Lora', serif;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     font-weight: 500;
     font-size: 1.5rem;
     color: var(--ocean-deep);
@@ -270,14 +270,14 @@
     align-items: flex-start;
     padding: 28px 32px 22px;
     border-bottom: 1px solid var(--line);
-    background: var(--sand-soft);
+    background: #ffffff;
     cursor: pointer;
     user-select: none;
     transition: background 0.15s ease;
   }
-  .section-head:hover { background: var(--sand); }
+  .section-head:hover { background: #ffffff; }
   .section-num {
-    font-family: 'Lora', serif;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     font-style: italic;
     font-weight: 500;
     font-size: 2.4rem;
@@ -295,7 +295,7 @@
     margin-bottom: 6px;
   }
   .section-title {
-    font-family: 'Lora', serif;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     font-weight: 500;
     font-size: 1.45rem;
     color: var(--ocean-deep);
@@ -335,7 +335,7 @@
     text-transform: uppercase;
   }
   .mode-name {
-    font-family: 'Lora', serif;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     font-style: italic;
     font-size: 1.05rem;
     color: var(--ocean-deep);
@@ -352,7 +352,7 @@
   }
   .prompt-list li:last-child { border-bottom: none; }
   .prompt-num {
-    font-family: 'Lora', serif;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     font-weight: 500;
     font-size: 0.95rem;
     color: var(--terra);
@@ -378,12 +378,12 @@
     display: none;
     margin-top: 8px;
     padding: 10px 14px;
-    background: var(--sea-glass-soft);
+    background: #ffffff;
     border-left: 3px solid var(--ocean);
     border-radius: 4px;
     font-size: 0.92rem;
     color: var(--ocean-deep);
-    font-family: 'Lora', serif;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   }
   .answer.show { display: block; }
   .answer strong { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; }
@@ -440,14 +440,14 @@
     border-bottom: 1px solid var(--line);
     vertical-align: top;
   }
-  .ref-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .ref-table tr:nth-child(even) td { background: #ffffff; }
   .ref-table .blank-cell {
     cursor: pointer;
     color: var(--muted);
     font-style: italic;
-    font-family: 'Lora', serif;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   }
-  .ref-table .blank-cell:hover { background: var(--sea-glass-soft); }
+  .ref-table .blank-cell:hover { background: #ffffff; }
   .ref-table .blank-cell.revealed {
     color: var(--ink);
     font-style: normal;
@@ -522,7 +522,7 @@
     opacity: 0.3;
   }
   .closing h3 {
-    font-family: 'Lora', serif;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     font-weight: 500;
     font-size: 1.5rem;
     margin-bottom: 14px;
@@ -567,6 +567,12 @@
     .closing { background: white; color: var(--ink); border: 2px solid var(--ink); }
     .closing-steps li { border-color: var(--line); }
     @page { size: letter; margin: 0.55in; }
+  }
+
+  /* PRINTER-FRIENDLY OVERRIDES */
+  @media print {
+    * { background: #ffffff !important; background-color: #ffffff !important; background-image: none !important; box-shadow: none !important; }
+    body, html { background: #ffffff !important; }
   }
 </style>
 </head>
