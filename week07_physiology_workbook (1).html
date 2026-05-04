@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Week 7 Physiology Workbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5; --sand-soft: #faf3e8; --sand: #f5e6d3;
+    --terra: #c44536; --kelp: #5a7553;
+    --paper: #fdfbf7; --line: #c9d4d8; --rule: #a8b5bb; --muted: #5a6b73;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #e8e8e0; line-height: 1.55; font-size: 16px; padding: 30px 0; -webkit-font-smoothing: antialiased; }
+  .sheet { max-width: 8.5in; margin: 0 auto; background: white; padding: 0.55in 0.6in; box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1); }
+  .actions { max-width: 8.5in; margin: 0 auto 16px; padding: 0 0.6in; display: flex; justify-content: flex-end; }
+  .print-btn { background: var(--ocean-deep); color: white; border: none; padding: 11px 22px; border-radius: 8px; font-family: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 8px; transition: background 0.15s ease; }
+  .print-btn:hover { background: var(--ocean); }
+  .print-btn::before { content: '⎙'; font-size: 1rem; }
+
+  .masthead { border-bottom: 2.5px solid var(--ocean-deep); padding-bottom: 18px; margin-bottom: 24px; position: relative; }
+  .masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .masthead.physiology::after { background: var(--terra); }
+  .course-line { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .doc-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.85rem; color: var(--ocean-deep); line-height: 1.2; margin-bottom: 6px; }
+  .doc-subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean); }
+
+  .student-block { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; margin: 18px 0 24px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field { display: flex; flex-direction: column; }
+  .field-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field-line { border-bottom: 1.5px solid var(--ink); height: 24px; }
+
+  .instructions { background: var(--sand-soft); border-left: 3px solid var(--terra); padding: 14px 18px; margin-bottom: 26px; font-size: 0.92rem; }
+  .instructions h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+
+  .section { margin: 22px 0; page-break-inside: avoid; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.5rem; color: var(--terra); min-width: 32px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; color: var(--ocean-deep); }
+  .section-anchor { font-size: 0.86rem; color: var(--ocean); font-style: italic; margin-top: 4px; }
+
+  .field-prompt { font-size: 0.92rem; color: var(--ink); margin: 10px 0 6px; line-height: 1.5; }
+  .field-prompt strong { color: var(--ocean-deep); }
+  .field-helper { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+
+  .ruled { background: white; border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; min-height: 5em; background-image: repeating-linear-gradient(transparent, transparent 24px, var(--rule) 24px, var(--rule) 25px); line-height: 25px; }
+  .ruled.short { min-height: 4em; }
+  .ruled.medium { min-height: 6em; }
+  .ruled.long { min-height: 9em; }
+
+  .word-bank { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 14px 18px; margin: 14px 0 18px; }
+  .word-bank-label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .word-bank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 14px; font-size: 0.86rem; color: var(--ink); }
+  .word-bank-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .word-bank-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 600px) {
+    .word-bank-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .label-exercise { margin: 16px 0; page-break-inside: avoid; }
+  .label-exercise-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.05rem; color: var(--terra); margin-bottom: 10px; }
+  .label-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .label-flex.wide-fig { grid-template-columns: 1.4fr 1fr; }
+  .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
+
+  .figure { margin: 0; }
+
+  .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+  .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .key-list { list-style: none; padding: 0; margin: 0; }
+  .key-list li { padding: 5px 0; border-bottom: 1px dashed var(--line); display: flex; align-items: baseline; gap: 8px; font-size: 0.88rem; }
+  .key-list li:last-child { border-bottom: none; }
+  .key-list.compact li { padding: 3px 0; font-size: 0.84rem; }
+  .key-num { font-weight: 700; color: var(--terra); min-width: 28px; flex-shrink: 0; }
+  .key-blank { flex: 1; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+  .key-fill { flex: 1; }
+
+  @media (max-width: 700px) {
+    .label-flex { grid-template-columns: 1fr; }
+  }
+
+  .draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 320px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
+  .draw-box.tall { min-height: 360px; }
+  .draw-box.short { min-height: 220px; }
+
+  .calc-box { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; margin: 10px 0; min-height: 80px; }
+  .calc-box-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.86rem; background: white; }
+  .data-table th { text-align: left; padding: 8px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .data-table .input-cell { background: white !important; min-width: 80px; }
+  .data-table .input-cell .cell-line { display: block; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+
+  .case { background: var(--sand-soft); border-left: 3px solid var(--terra); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 14px 0; page-break-inside: avoid; }
+  .case-label { display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; }
+  .case-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .case-body { font-size: 0.9rem; line-height: 1.55; margin-bottom: 8px; }
+  .case-body strong { color: var(--ocean-deep); }
+  .case-prompts { margin-top: 10px; }
+  .case-prompts ol { list-style: decimal; padding-left: 22px; margin: 6px 0; font-size: 0.9rem; }
+  .case-prompts ol li { margin-bottom: 6px; line-height: 1.5; }
+
+  .reference { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean-deep); padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.88rem; }
+  .reference h4 { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 0.96rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .reference p { margin-bottom: 6px; line-height: 1.55; }
+  .reference p:last-child { margin-bottom: 0; }
+  .reference strong { color: var(--terra); font-weight: 600; }
+  .reference .formula { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean-deep); padding: 8px 14px; background: white; border: 1px solid var(--line); border-radius: 4px; display: inline-block; margin: 4px 0; }
+
+  .synthesis { background: linear-gradient(150deg, var(--sand-soft), white); border: 2px solid var(--terra); border-radius: 8px; padding: 16px 20px; margin: 18px 0; page-break-inside: avoid; }
+  .synthesis-label { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 3px 10px; border-radius: 3px; margin-bottom: 8px; }
+  .synthesis-prompt { font-size: 0.96rem; line-height: 1.55; color: var(--ink); margin-bottom: 8px; }
+  .synthesis-prompt strong { color: var(--ocean-deep); }
+
+  .submission { margin-top: 30px; padding: 18px 22px; background: var(--sea-glass-soft); border: 1.5px solid var(--ocean-deep); border-radius: 6px; page-break-inside: avoid; }
+  .submission h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.08rem; color: var(--ocean-deep); margin-bottom: 10px; }
+  .submission p { font-size: 0.86rem; margin-bottom: 6px; }
+
+  /* PARTNER LINK BANNER (cross-link between anatomy & physiology workbooks) */
+  .partner-link { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 12px 16px; margin: 22px 0; font-size: 0.88rem; display: flex; align-items: center; gap: 12px; }
+  .partner-link-label { flex: 1; }
+  .partner-link-label strong { color: var(--ocean-deep); }
+  .partner-link a { color: var(--terra); text-decoration: underline; font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link, .partner-link { display: none !important; }
+    .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
+        @page { size: letter; margin: 0.55in 0.6in; }
+  }
+
+  .ref-draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; min-height: 380px; position: relative; page-break-inside: avoid; }
+  .ref-draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
+  .ref-instruction { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); padding: 10px 14px; margin: 10px 0 12px; font-size: 0.88rem; line-height: 1.5; border-radius: 0 4px 4px 0; }
+  .ref-instruction strong { color: var(--ocean-deep); }
+  .ref-instruction em { color: var(--terra); font-style: italic; }
+
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions">
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this workbook or save as PDF">Print / Save PDF</button>
+</div>
+
+<main id="main-content" class="sheet" role="main">
+  <header class="masthead physiology">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 7 Physiology Workbook</p>
+    <h1 class="doc-title">LFTs, Lipid Panel &amp; Nutrition Audit</h1>
+    <p class="doc-subtitle">Physiology: interpret liver enzymes, read lipid panels, recalculate ASCVD risk, audit nutrition labels. Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field">
+      <span class="field-label">Name</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Section</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Date</span>
+      <span class="field-line"></span>
+    </div>
+  </div>
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">How this workbook works</h2>
+    <p><strong>Print, handwrite, scan, submit.</strong> Complete every section. Drawings, labeling, tables, and clinical reasoning all earn points.</p>
+    <p><strong>About the drawings in this workbook.</strong> For each drawing, find a clear reference in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas. You may either (a) draw it by hand in the workbook box, or (b) build it digitally in Google Docs, Google Drawings, Word, or PowerPoint using shapes, lines, and text labels, then attach the file to your Canvas submission.</p>
+    <p><strong>If you build digitally, you must submit revision history</strong> showing you built the diagram in stages over time. In Google Docs and Google Drawings: File &rarr; Version history &rarr; See version history. A flat image with no revision history does not meet this requirement.</p>
+    <p><strong>Either way, you must build it yourself, structure by structure.</strong> Copying a finished image (from Google Images, an AI tool, or a peer) earns zero on the assignment and is reported as academic dishonesty. Submission to Canvas certifies the work as your own.</p>
+  </section>
+
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 1</p>
+        <h2 class="section-title" id="s1-title">Liver function panel (LFTs): hepatocellular vs cholestatic patterns</h2>
+        <p class="section-anchor">Distinguish hepatocellular injury from biliary obstruction using AST, ALT, ALP, GGT, and bilirubin patterns.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>The five standard LFT components</h4>
+      <p><strong>AST (aspartate aminotransferase):</strong> normal &lt; 40 U/L. Found in liver, heart, skeletal muscle, kidney. Less liver-specific than ALT.</p>
+      <p><strong>ALT (alanine aminotransferase):</strong> normal &lt; 40 U/L. Highly liver-specific. The most useful single marker of hepatocyte injury.</p>
+      <p><strong>ALP (alkaline phosphatase):</strong> normal 44-147 U/L. Found in bile ducts, bone, placenta. Elevated in cholestasis (biliary obstruction) and bone disease.</p>
+      <p><strong>GGT (gamma-glutamyl transferase):</strong> normal &lt; 50 U/L. Confirms ALP elevation is from liver/biliary tree, not bone. Also elevated in alcohol-related liver injury.</p>
+      <p><strong>Total bilirubin:</strong> normal 0.2-1.2 mg/dL. Elevated in hemolysis (indirect/unconjugated) or biliary obstruction (direct/conjugated).</p>
+    </div>
+
+    <div class="reference">
+      <h4>Two main patterns of LFT abnormality</h4>
+      <p><strong>Hepatocellular injury:</strong> AST and ALT are dominantly elevated (often &gt; 5x upper limit). ALP and bilirubin may be mildly elevated or normal. Causes: viral hepatitis, drug-induced liver injury (acetaminophen, alcohol, statins), ischemia.</p>
+      <p><strong>Cholestatic / biliary obstruction:</strong> ALP and GGT are dominantly elevated. Bilirubin elevated (mostly direct). AST/ALT mildly elevated. Causes: gallstones, cholangiocarcinoma, primary biliary cholangitis, drug-induced cholestasis.</p>
+      <p><strong>AST &gt; ALT (ratio &gt; 2:1)</strong> with both modestly elevated suggests <strong>alcoholic liver disease</strong>.</p>
+      <p><strong>ALT &gt; AST</strong> in a patient with elevated transaminases suggests viral hepatitis or NAFLD (non-alcoholic fatty liver disease).</p>
+    </div>
+
+    <p class="field-prompt"><strong>For each LFT panel, classify the pattern</strong> (hepatocellular / cholestatic / mixed / normal) and <strong>identify one likely cause</strong>.</p>
+
+    <table class="data-table" aria-label="LFT pattern classification">
+      <thead>
+        <tr>
+          <th style="width: 12%;">Patient</th>
+          <th style="width: 11%;">AST</th>
+          <th style="width: 11%;">ALT</th>
+          <th style="width: 11%;">ALP</th>
+          <th style="width: 11%;">GGT</th>
+          <th style="width: 13%;">Bilirubin</th>
+          <th style="width: 16%;">Pattern</th>
+          <th style="width: 15%;">Likely cause</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>A</strong></td>
+          <td>820</td>
+          <td>1240</td>
+          <td>180</td>
+          <td>62</td>
+          <td>3.4</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>B</strong></td>
+          <td>62</td>
+          <td>54</td>
+          <td>620</td>
+          <td>340</td>
+          <td>5.8</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>C</strong></td>
+          <td>180</td>
+          <td>72</td>
+          <td>140</td>
+          <td>320</td>
+          <td>1.6</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>D</strong></td>
+          <td>32</td>
+          <td>28</td>
+          <td>92</td>
+          <td>38</td>
+          <td>0.8</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>E</strong></td>
+          <td>4200</td>
+          <td>5800</td>
+          <td>220</td>
+          <td>180</td>
+          <td>4.2</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>F</strong></td>
+          <td>78</td>
+          <td>96</td>
+          <td>108</td>
+          <td>54</td>
+          <td>1.0</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="field-prompt" style="margin-top: 14px;"><strong>Direct vs indirect bilirubin.</strong> Why does cholestatic disease primarily elevate direct (conjugated) bilirubin, while hemolysis primarily elevates indirect (unconjugated) bilirubin? Reference the Week 7 Anatomy Workbook bile pathway:</p>
+    <div class="ruled medium" role="region" aria-label="Bilirubin types answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 2</p>
+        <h2 class="section-title" id="s2-title">Lipid panel interpretation and ASCVD risk recalculation</h2>
+        <p class="section-anchor">Read total cholesterol, LDL, HDL, and triglycerides. Apply to ASCVD risk and statin decisions.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>The standard lipid panel (fasting or non-fasting)</h4>
+      <p><strong>Total cholesterol:</strong> goal &lt; 200 mg/dL. Borderline 200-239. High ≥ 240.</p>
+      <p><strong>LDL ("bad" cholesterol):</strong> goal varies by ASCVD risk. &lt; 100 optimal for most. &lt; 70 for established cardiovascular disease.</p>
+      <p><strong>HDL ("good" cholesterol):</strong> protective. ≥ 60 mg/dL is favorable. &lt; 40 in men or &lt; 50 in women is a risk factor.</p>
+      <p><strong>Triglycerides:</strong> &lt; 150 normal. 150-499 elevated. ≥ 500 high risk for pancreatitis.</p>
+      <p><strong>Friedewald estimate:</strong> LDL ≈ TC − HDL − (TG/5). Valid only when TG &lt; 400 mg/dL.</p>
+    </div>
+
+    <div class="reference">
+      <h4>Statin treatment decisions (recap from Week 5)</h4>
+      <p><strong>Automatic statin candidates</strong> (regardless of ASCVD score): existing ASCVD, LDL &ge; 190 mg/dL, diabetes (age 40-75) with LDL &ge; 70.</p>
+      <p><strong>By 10-year ASCVD risk:</strong> &ge; 20% high-intensity statin. 7.5-20% moderate-intensity statin. 5-7.5% borderline (consider risk enhancers). &lt; 5% lifestyle only.</p>
+      <p><strong>Statin intensity:</strong> moderate-intensity expected to lower LDL by 30-49%. High-intensity expected to lower LDL by &ge; 50%.</p>
+    </div>
+
+    <p class="field-prompt"><strong>For each patient, calculate the LDL using the Friedewald formula, classify the lipid panel, and recommend statin or lifestyle.</strong></p>
+
+    <table class="data-table" aria-label="Lipid panel cases">
+      <thead>
+        <tr>
+          <th style="width: 14%;">Patient</th>
+          <th style="width: 11%;">TC</th>
+          <th style="width: 11%;">HDL</th>
+          <th style="width: 11%;">TG</th>
+          <th style="width: 16%;">Calculated LDL</th>
+          <th style="width: 37%;">Classification + recommendation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>A</strong> (52M, smoker, BP 142/88, no DM)</td>
+          <td>248</td>
+          <td>34</td>
+          <td>180</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>B</strong> (45F, T2DM, HbA1c 7.6%)</td>
+          <td>192</td>
+          <td>52</td>
+          <td>140</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>C</strong> (38M, asymptomatic, family hx early MI)</td>
+          <td>312</td>
+          <td>40</td>
+          <td>110</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>D</strong> (60F, prior MI 3 years ago, on statin)</td>
+          <td>148</td>
+          <td>58</td>
+          <td>120</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>E</strong> (28F, BMI 22, runner)</td>
+          <td>176</td>
+          <td>72</td>
+          <td>78</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>F</strong> (50M, BMI 38, sedentary, prediabetes)</td>
+          <td>260</td>
+          <td>32</td>
+          <td>620</td>
+          <td>Friedewald NOT valid here. Why?</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="field-prompt" style="margin-top: 14px;"><strong>For Patient F</strong> with TG = 620, the Friedewald formula does not apply. What is the major short-term risk at this triglyceride level (besides cardiovascular), and what dietary and pharmacologic interventions are first-line?</p>
+    <div class="ruled medium" role="region" aria-label="High triglycerides answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 3</p>
+        <h2 class="section-title" id="s3-title">Nutrition label audit</h2>
+        <p class="section-anchor">Read a Nutrition Facts label and evaluate it for cardiovascular and metabolic health.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>Nutrition Facts label key thresholds</h4>
+      <p><strong>Serving size:</strong> always check first. The values that follow apply to one serving, not the whole package.</p>
+      <p><strong>Sodium:</strong> &lt; 140 mg per serving = low sodium. &gt; 480 mg per serving = high sodium. Daily limit is &lt; 2,300 mg (ideally &lt; 1,500 mg in hypertension).</p>
+      <p><strong>Saturated fat:</strong> goal &lt; 6% of daily calories (about &lt; 13 g/day on a 2000 kcal diet). Trans fat: zero is the only acceptable amount.</p>
+      <p><strong>Added sugars:</strong> goal &lt; 10% of daily calories (about &lt; 50 g/day on a 2000 kcal diet, &lt; 25-36 g recommended by AHA).</p>
+      <p><strong>Fiber:</strong> ≥ 5g per serving = high fiber. Daily goal: 25-38 g.</p>
+      <p><strong>% Daily Value (%DV):</strong> 5% or less is "low," 20% or more is "high."</p>
+    </div>
+
+    <div class="reference">
+      <h4>Sample Nutrition Facts label (instant ramen, 1 package)</h4>
+      <p><strong>Serving size:</strong> 1/2 package (43g) <strong>·</strong> <strong>Servings per container:</strong> 2</p>
+      <p><strong>Calories:</strong> 190 per serving</p>
+      <p><strong>Total fat:</strong> 7g (9% DV) <strong>·</strong> <strong>Saturated fat:</strong> 3.5g (18% DV) <strong>·</strong> <strong>Trans fat:</strong> 0g</p>
+      <p><strong>Sodium:</strong> 830 mg (36% DV)</p>
+      <p><strong>Total carbohydrate:</strong> 26g (9% DV) <strong>·</strong> <strong>Dietary fiber:</strong> 1g (4% DV) <strong>·</strong> <strong>Added sugars:</strong> 0g</p>
+      <p><strong>Protein:</strong> 4g</p>
+    </div>
+
+    <p class="field-prompt"><strong>Audit the sample label above</strong> for each criterion. Is it favorable, neutral, or unfavorable for someone with hypertension, prediabetes, or hyperlipidemia?</p>
+
+    <table class="data-table" aria-label="Nutrition label audit">
+      <thead>
+        <tr>
+          <th style="width: 30%;">Component</th>
+          <th style="width: 22%;">Per serving</th>
+          <th style="width: 22%;">Per package (2 servings)</th>
+          <th style="width: 26%;">Concern? (yes/no + brief reason)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Sodium</strong></td>
+          <td>830 mg</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Saturated fat</strong></td>
+          <td>3.5 g</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Fiber</strong></td>
+          <td>1 g</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Added sugars</strong></td>
+          <td>0 g</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Calories</strong></td>
+          <td>190</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="field-prompt" style="margin-top: 14px;"><strong>If the patient eats the entire package in one sitting (which is common with instant ramen), what percentage of the day's sodium limit have they consumed?</strong> Show your math:</p>
+    <div class="calc-box">
+      <p class="calc-box-label">Sodium math</p>
+    </div>
+
+    <p class="field-prompt"><strong>Three specific recommendations</strong> you would give a patient with HTN who eats this product weekly (do not just say "stop eating it"):</p>
+    <div class="ruled medium" role="region" aria-label="Nutrition recommendations answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Clinical Reasoning Cases</p>
+        <h2 class="section-title" id="s4-title">Integrate LFTs, lipid panel, and nutrition across four patients</h2>
+        <p class="section-anchor">Each case combines two or more lab skills with anatomy from the Week 7 Anatomy Workbook.</p>
+      </div>
+    </header>
+
+    <div class="case">
+      <span class="case-label">Case 1</span>
+      <p class="case-title">The acute viral hepatitis</p>
+      <p class="case-body">A 25-year-old recently traveled internationally and presents with 1 week of fatigue, nausea, and dark urine. Skin appears slightly yellow. <strong>LFTs:</strong> AST 1820, ALT 2640, ALP 145, GGT 88, total bilirubin 4.2 (direct 3.1, indirect 1.1). <strong>Hepatitis A IgM antibody: positive.</strong></p>
+      <div class="case-prompts">
+        <ol>
+          <li>Classify the LFT pattern. Is this hepatocellular or cholestatic?</li>
+          <li>Why is the bilirubin predominantly direct (conjugated)? Reference the Week 7 anatomy workbook bile pathway from hepatocyte to gut.</li>
+          <li>Hepatitis A is fecal-oral transmission. Trace the path of the virus from contaminated food to liver damage. Reference relevant anatomy.</li>
+          <li>Why does the urine appear dark? Which form of bilirubin is water-soluble enough to spill into urine?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 1 answer space"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 2</span>
+      <p class="case-title">The gallstone with obstruction</p>
+      <p class="case-body">A 48-year-old woman, BMI 32, presents with sudden severe right upper quadrant pain after a fatty meal. Skin is yellow. Stool is pale (clay-colored). Urine is dark. <strong>LFTs:</strong> AST 142, ALT 168, ALP 720, GGT 580, total bilirubin 8.6 (direct 7.2, indirect 1.4). <strong>Ultrasound:</strong> dilated common bile duct with a stone in the distal duct.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Classify the LFT pattern. Is this hepatocellular or cholestatic?</li>
+          <li>Why is the stool pale? Reference what gives stool its normal brown color.</li>
+          <li>The stone is lodged in the distal common bile duct. Trace where bile is backing up to. Reference the biliary tree anatomy from Week 7.</li>
+          <li>If the obstruction were proximal to where the cystic duct joins the common hepatic duct (above the gallbladder), would the gallbladder be enlarged or normal? Explain.</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 2 answer space"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 3</span>
+      <p class="case-title">The metabolic syndrome patient</p>
+      <p class="case-body">A 54-year-old man comes in for routine physical. BMI 36, BP 148/92, waist circumference 44 inches. <strong>Labs:</strong> fasting glucose 118, HbA1c 6.0%, total cholesterol 252, HDL 32, TG 280. <strong>LFTs:</strong> AST 58, ALT 92, ALP 102, GGT 76, bilirubin 0.8.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Calculate his LDL using Friedewald.</li>
+          <li>Identify the criteria for metabolic syndrome that this patient meets (need at least 3 of 5).</li>
+          <li>His LFTs show AST 58 / ALT 92 (ALT &gt; AST). What is the most likely cause given his metabolic profile? (Hint: not viral hepatitis, not alcohol if no history, but very common.)</li>
+          <li>What two interventions would address both his metabolic syndrome and his liver findings simultaneously?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 3 answer space"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 4</span>
+      <p class="case-title">The statin candidate with worsening LFTs</p>
+      <p class="case-body">A 62-year-old woman started on atorvastatin 40 mg 6 weeks ago for primary prevention (10-year ASCVD risk 16%). She reports muscle aches but no severe symptoms. <strong>Labs now:</strong> AST 142, ALT 158 (both were normal at baseline), CK 380 (slight elevation), no rise in bilirubin or ALP.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Are her LFTs reflecting hepatocellular injury, cholestatic injury, or muscle injury? How do you tell?</li>
+          <li>Should the statin be stopped immediately, or watched? Reference the typical threshold (3x upper limit of normal for AST/ALT) and the role of CK.</li>
+          <li>Why is CK elevated? Reference the muscle organization anatomy from Week 2.</li>
+          <li>If the statin is causing rhabdomyolysis at higher doses, what specific complication could affect the kidneys? Reference Week 6 nephron anatomy.</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 4 answer space"></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Final Synthesis</p>
+        <h2 class="section-title" id="s5-title">Integrate digestion, lipid metabolism, and nutrition in cardiovascular disease prevention</h2>
+        <p class="section-anchor">The most heavily weighted question in the workbook.</p>
+      </div>
+    </header>
+
+    <div class="synthesis">
+      <span class="synthesis-label">Synthesis question · Most weighted</span>
+      <p class="synthesis-prompt">A 50-year-old man with prediabetes (HbA1c 6.1%), BMI 32, BP 138/86, and a recent lipid panel showing TC 244, HDL 36, TG 220, calculated LDL 164 sits down with you. He eats fast food 4-5 times per week (typical lunch: cheeseburger, fries, sugared soda). His LFTs show ALT 78, AST 52 (mild elevation, ALT-dominant). He has no symptoms.</p>
+      <p class="synthesis-prompt"><strong>In four to six sentences, integrate digestive anatomy, lipid metabolism, and nutrition advice into a coherent intervention plan.</strong> Your answer must integrate:</p>
+      <p class="synthesis-prompt">(1) why his LFT pattern (ALT &gt; AST mild elevation) is consistent with non-alcoholic fatty liver disease (NAFLD) given his metabolic profile, (2) the path lipids take from his lunch into the bloodstream (reference small intestine absorption, lacteals, chylomicrons, and the liver from Week 7 anatomy), (3) why his HDL is low and his TG is high in the context of insulin resistance, (4) two specific dietary changes (not "eat better") that target both the NAFLD and the lipid panel, and (5) whether you would start a statin now or after lifestyle intervention based on his ASCVD risk and the available labs.</p>
+      <div class="ruled long" role="region" aria-label="Final synthesis answer space"></div>
+      <div class="ruled long" role="region" aria-label="Final synthesis answer space continued"></div>
+    </div>
+  </section>
+  <div class="partner-link">
+    <span class="partner-link-label">Looking for structure identification? See the <strong>Week 7 Anatomy Workbook</strong>.</span>
+    <a href="week07_anatomy_workbook.html">Open →</a>
+  </div>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit</h2>
+    <p>1. LFT pattern classification table (Section 01) is filled in for all six patients plus the bilirubin reasoning.</p>
+    <p>2. Lipid panel table (Section 02) has Friedewald-calculated LDL for patients A through E and a recommendation for each plus the high-TG question for F.</p>
+    <p>3. Nutrition label audit (Section 03) has all five components evaluated, plus the sodium math and three patient recommendations.</p>
+    <p>4. All four clinical cases (Section 04) have answers to every numbered prompt.</p>
+    <p>5. Final synthesis question (Section 05) integrates all five required elements.</p>
+        <p style="margin-top: 8px; font-size: 0.92rem; color: var(--ocean);"><strong>If any drawings were built digitally:</strong> attach the file (Google Doc / Drawing / Word / PowerPoint) to your Canvas submission AND share the revision history link. Drawings without revision history will not receive credit.</p>
+
+    <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 7 Physiology Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
+  </section>
+
+</main>
+
+
+<script>
+  // Auto-load images from data-pending attribute
+  // To customize image folder, change IMAGE_FOLDER below.
+  // Examples:
+  //   IMAGE_FOLDER = '';           // images in same folder as HTML (default)
+  //   IMAGE_FOLDER = 'images/';    // images in a subfolder named "images"
+  //   IMAGE_FOLDER = 'bio304_images/';  // any other subfolder name
+  (function () {
+    const IMAGE_FOLDER = '';
+    const imgs = document.querySelectorAll('img[data-pending]');
+    imgs.forEach(function (img) {
+      const filename = img.getAttribute('data-pending');
+      if (filename && !img.getAttribute('src')) {
+        img.src = IMAGE_FOLDER + filename;
+      }
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w07-physiology-workbook';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>

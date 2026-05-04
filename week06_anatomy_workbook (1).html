@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Week 6 Anatomy Workbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5; --sand-soft: #faf3e8; --sand: #f5e6d3;
+    --terra: #c44536; --kelp: #5a7553;
+    --paper: #fdfbf7; --line: #c9d4d8; --rule: #a8b5bb; --muted: #5a6b73;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #e8e8e0; line-height: 1.55; font-size: 16px; padding: 30px 0; -webkit-font-smoothing: antialiased; }
+  .sheet { max-width: 8.5in; margin: 0 auto; background: white; padding: 0.55in 0.6in; box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1); }
+  .actions { max-width: 8.5in; margin: 0 auto 16px; padding: 0 0.6in; display: flex; justify-content: flex-end; }
+  .print-btn { background: var(--ocean-deep); color: white; border: none; padding: 11px 22px; border-radius: 8px; font-family: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 8px; transition: background 0.15s ease; }
+  .print-btn:hover { background: var(--ocean); }
+  .print-btn::before { content: '⎙'; font-size: 1rem; }
+
+  .masthead { border-bottom: 2.5px solid var(--ocean-deep); padding-bottom: 18px; margin-bottom: 24px; position: relative; }
+  .masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .masthead.physiology::after { background: var(--terra); }
+  .course-line { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .doc-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.85rem; color: var(--ocean-deep); line-height: 1.2; margin-bottom: 6px; }
+  .doc-subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean); }
+
+  .student-block { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; margin: 18px 0 24px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field { display: flex; flex-direction: column; }
+  .field-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field-line { border-bottom: 1.5px solid var(--ink); height: 24px; }
+
+  .instructions { background: var(--sand-soft); border-left: 3px solid var(--terra); padding: 14px 18px; margin-bottom: 26px; font-size: 0.92rem; }
+  .instructions h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+
+  .section { margin: 22px 0; page-break-inside: avoid; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.5rem; color: var(--terra); min-width: 32px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; color: var(--ocean-deep); }
+  .section-anchor { font-size: 0.86rem; color: var(--ocean); font-style: italic; margin-top: 4px; }
+
+  .field-prompt { font-size: 0.92rem; color: var(--ink); margin: 10px 0 6px; line-height: 1.5; }
+  .field-prompt strong { color: var(--ocean-deep); }
+  .field-helper { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+
+  .ruled { background: white; border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; min-height: 5em; background-image: repeating-linear-gradient(transparent, transparent 24px, var(--rule) 24px, var(--rule) 25px); line-height: 25px; }
+  .ruled.short { min-height: 4em; }
+  .ruled.medium { min-height: 6em; }
+  .ruled.long { min-height: 9em; }
+
+  .word-bank { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 14px 18px; margin: 14px 0 18px; }
+  .word-bank-label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .word-bank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 14px; font-size: 0.86rem; color: var(--ink); }
+  .word-bank-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .word-bank-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 600px) {
+    .word-bank-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .label-exercise { margin: 16px 0; page-break-inside: avoid; }
+  .label-exercise-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.05rem; color: var(--terra); margin-bottom: 10px; }
+  .label-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .label-flex.wide-fig { grid-template-columns: 1.4fr 1fr; }
+  .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
+
+  .figure { margin: 0; }
+
+  .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+  .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .key-list { list-style: none; padding: 0; margin: 0; }
+  .key-list li { padding: 5px 0; border-bottom: 1px dashed var(--line); display: flex; align-items: baseline; gap: 8px; font-size: 0.88rem; }
+  .key-list li:last-child { border-bottom: none; }
+  .key-list.compact li { padding: 3px 0; font-size: 0.84rem; }
+  .key-num { font-weight: 700; color: var(--terra); min-width: 28px; flex-shrink: 0; }
+  .key-blank { flex: 1; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+  .key-fill { flex: 1; }
+
+  @media (max-width: 700px) {
+    .label-flex { grid-template-columns: 1fr; }
+  }
+
+  .draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 320px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
+  .draw-box.tall { min-height: 360px; }
+  .draw-box.short { min-height: 220px; }
+
+  .calc-box { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; margin: 10px 0; min-height: 80px; }
+  .calc-box-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.86rem; background: white; }
+  .data-table th { text-align: left; padding: 8px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .data-table .input-cell { background: white !important; min-width: 80px; }
+  .data-table .input-cell .cell-line { display: block; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+
+  .case { background: var(--sand-soft); border-left: 3px solid var(--terra); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 14px 0; page-break-inside: avoid; }
+  .case-label { display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; }
+  .case-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .case-body { font-size: 0.9rem; line-height: 1.55; margin-bottom: 8px; }
+  .case-body strong { color: var(--ocean-deep); }
+  .case-prompts { margin-top: 10px; }
+  .case-prompts ol { list-style: decimal; padding-left: 22px; margin: 6px 0; font-size: 0.9rem; }
+  .case-prompts ol li { margin-bottom: 6px; line-height: 1.5; }
+
+  .reference { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean-deep); padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.88rem; }
+  .reference h4 { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 0.96rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .reference p { margin-bottom: 6px; line-height: 1.55; }
+  .reference p:last-child { margin-bottom: 0; }
+  .reference strong { color: var(--terra); font-weight: 600; }
+  .reference .formula { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean-deep); padding: 8px 14px; background: white; border: 1px solid var(--line); border-radius: 4px; display: inline-block; margin: 4px 0; }
+
+  .synthesis { background: linear-gradient(150deg, var(--sand-soft), white); border: 2px solid var(--terra); border-radius: 8px; padding: 16px 20px; margin: 18px 0; page-break-inside: avoid; }
+  .synthesis-label { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 3px 10px; border-radius: 3px; margin-bottom: 8px; }
+  .synthesis-prompt { font-size: 0.96rem; line-height: 1.55; color: var(--ink); margin-bottom: 8px; }
+  .synthesis-prompt strong { color: var(--ocean-deep); }
+
+  .submission { margin-top: 30px; padding: 18px 22px; background: var(--sea-glass-soft); border: 1.5px solid var(--ocean-deep); border-radius: 6px; page-break-inside: avoid; }
+  .submission h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.08rem; color: var(--ocean-deep); margin-bottom: 10px; }
+  .submission p { font-size: 0.86rem; margin-bottom: 6px; }
+
+  /* PARTNER LINK BANNER (cross-link between anatomy & physiology workbooks) */
+  .partner-link { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 12px 16px; margin: 22px 0; font-size: 0.88rem; display: flex; align-items: center; gap: 12px; }
+  .partner-link-label { flex: 1; }
+  .partner-link-label strong { color: var(--ocean-deep); }
+  .partner-link a { color: var(--terra); text-decoration: underline; font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link, .partner-link { display: none !important; }
+    .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
+        @page { size: letter; margin: 0.55in 0.6in; }
+  }
+
+  .ref-draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; min-height: 380px; position: relative; page-break-inside: avoid; }
+  .ref-draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
+  .ref-instruction { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); padding: 10px 14px; margin: 10px 0 12px; font-size: 0.88rem; line-height: 1.5; border-radius: 0 4px 4px 0; }
+  .ref-instruction strong { color: var(--ocean-deep); }
+  .ref-instruction em { color: var(--terra); font-style: italic; }
+
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions">
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this workbook or save as PDF">Print / Save PDF</button>
+</div>
+
+<main id="main-content" class="sheet" role="main">
+  <header class="masthead anatomy">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 6 Anatomy Workbook</p>
+    <h1 class="doc-title">Gas Exchange &amp; Waste</h1>
+    <p class="doc-subtitle">Anatomy: respiratory and urinary systems. Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field">
+      <span class="field-label">Name</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Section</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Date</span>
+      <span class="field-line"></span>
+    </div>
+  </div>
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">How this workbook works</h2>
+    <p><strong>Print, handwrite, scan, submit.</strong> Complete every section. Drawings, labeling, tables, and clinical reasoning all earn points.</p>
+    <p><strong>About the drawings in this workbook.</strong> For each drawing, find a clear reference in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas. You may either (a) draw it by hand in the workbook box, or (b) build it digitally in Google Docs, Google Drawings, Word, or PowerPoint using shapes, lines, and text labels, then attach the file to your Canvas submission.</p>
+    <p><strong>If you build digitally, you must submit revision history</strong> showing you built the diagram in stages over time. In Google Docs and Google Drawings: File &rarr; Version history &rarr; See version history. A flat image with no revision history does not meet this requirement.</p>
+    <p><strong>Either way, you must build it yourself, structure by structure.</strong> Copying a finished image (from Google Images, an AI tool, or a peer) earns zero on the assignment and is reported as academic dishonesty. Submission to Canvas certifies the work as your own.</p>
+  </section>
+
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 1</p>
+        <h2 class="section-title" id="s1-title">Upper respiratory tract</h2>
+        <p class="section-anchor">Identify the structures from the nostrils to the trachea, including the three regions of the pharynx and the parts of the larynx.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>upper respiratory</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: sagittal section of the head and neck showing the upper respiratory tract: external nares (nostrils), nasal cavity with three nasal conchae (superior, middle, inferior), hard palate, soft palate, nasopharynx, oropharynx, laryngopharynx, epiglottis, vocal cords (true and false), thyroid cartilage, cricoid cartilage, trachea, with 12 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="upper-resp-key-title">
+        <p class="key-title" id="upper-resp-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">10.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">11.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">12.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>Trace the path of inhaled air</strong> from the external nares through to the trachea. Name each structure the air passes through, in order:</p>
+    <div class="ruled medium" role="region" aria-label="Air path answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 2</p>
+        <h2 class="section-title" id="s2-title">Lower respiratory tract and bronchial tree</h2>
+        <p class="section-anchor">Identify the lungs, lobes, fissures, and the branching airway from trachea to alveoli.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>lower respiratory</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior view of the lower respiratory tract showing trachea, carina (bifurcation point), right and left primary (main) bronchi, secondary (lobar) bronchi, tertiary (segmental) bronchi, bronchioles, terminal bronchioles, respiratory bronchioles, alveolar ducts, alveolar sacs, right lung with three lobes (superior, middle, inferior) divided by horizontal and oblique fissures, left lung with two lobes (superior, inferior) and the cardiac notch, with 14 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="lower-resp-key-title">
+        <p class="key-title" id="lower-resp-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">10.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">11.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">12.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">13.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">14.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>Why is the right primary bronchus more vertical and wider than the left?</strong> What is the clinical significance? (Hint: aspirated foreign bodies.)</p>
+    <div class="ruled short" role="region" aria-label="Right bronchus clinical answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 3</p>
+        <h2 class="section-title" id="s3-title">Alveolar histology and the respiratory membrane</h2>
+        <p class="section-anchor">Identify the cell types in alveoli and the components of the respiratory (alveolar-capillary) membrane.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>alveolar histology</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: alveolar histology showing alveoli with type i pneumocytes (thin squamous cells for gas exchange), type ii pneumocytes (cuboidal cells producing surfactant), alveolar macrophages (dust cells) inside alveolar lumens, capillaries hugging the alveolar wall, and the respiratory membrane components (alveolar epithelium, fused basement membranes, capillary endothelium), with 7 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="alveoli-key-title">
+        <p class="key-title" id="alveoli-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>What is surfactant, which cell makes it, and why does a premature infant lacking surfactant develop respiratory distress?</strong></p>
+    <div class="ruled medium" role="region" aria-label="Surfactant answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 4</p>
+        <h2 class="section-title" id="s4-title">Lung volumes and capacities (spirometry diagram)</h2>
+        <p class="section-anchor">Identify the four lung volumes and four lung capacities on a standard spirometry trace.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>lung volumes</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: standard lung volume and capacity diagram showing tidal volume (tv), inspiratory reserve volume (irv), expiratory reserve volume (erv), residual volume (rv), inspiratory capacity (ic = tv + irv), functional residual capacity (frc = erv + rv), vital capacity (vc = irv + tv + erv), total lung capacity (tlc = all four volumes), with 8 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="lung-vol-key-title">
+        <p class="key-title" id="lung-vol-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>Volume and capacity definitions:</strong> match each measurement to its definition.</p>
+    <table class="data-table" aria-label="Lung volumes and capacities">
+      <thead>
+        <tr>
+          <th style="width: 30%;">Measurement</th>
+          <th style="width: 18%;">Approx. value (mL, healthy adult)</th>
+          <th style="width: 52%;">Definition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Tidal volume (TV)</strong></td>
+          <td>500</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Inspiratory reserve volume (IRV)</strong></td>
+          <td>3,000</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Expiratory reserve volume (ERV)</strong></td>
+          <td>1,100</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Residual volume (RV)</strong></td>
+          <td>1,200</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Vital capacity (VC)</strong></td>
+          <td>4,600</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Total lung capacity (TLC)</strong></td>
+          <td>5,800</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 5</p>
+        <h2 class="section-title" id="s5-title">Kidney gross anatomy (frontal section)</h2>
+        <p class="section-anchor">Identify the major regions of the kidney from cortex to renal pelvis.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>kidney gross</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: frontal section of the kidney showing renal cortex (outer), renal medulla with renal pyramids, renal columns separating pyramids, renal papilla (apex of pyramid), minor calyces, major calyces, renal pelvis, ureter, renal artery, renal vein, hilum, fibrous capsule, with 12 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="kidney-gross-key-title">
+        <p class="key-title" id="kidney-gross-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">10.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">11.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">12.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s6-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">06</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 6</p>
+        <h2 class="section-title" id="s6-title">Nephron structure</h2>
+        <p class="section-anchor">Identify each segment of the nephron from glomerulus to collecting duct, plus the associated vasculature.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>nephron</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: nephron diagram showing afferent arteriole, glomerulus (capillary tuft), efferent arteriole, bowmans capsule (glomerular capsule), proximal convoluted tubule (pct), descending limb of loop of henle, ascending limb of loop of henle, distal convoluted tubule (dct), juxtaglomerular apparatus (jga), collecting duct, peritubular capillaries, vasa recta, with 12 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="nephron-key-title">
+        <p class="key-title" id="nephron-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">10.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">11.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">12.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>For each nephron segment, identify its primary function (filtration, reabsorption, secretion, concentration):</strong></p>
+    <table class="data-table" aria-label="Nephron segment functions">
+      <thead>
+        <tr>
+          <th style="width: 35%;">Segment</th>
+          <th style="width: 65%;">Primary function (in one sentence)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Glomerulus</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Proximal convoluted tubule (PCT)</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Descending loop of Henle</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Ascending loop of Henle</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Distal convoluted tubule (DCT)</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Collecting duct</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s7-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">07</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 7</p>
+        <h2 class="section-title" id="s7-title">Urinary tract</h2>
+        <p class="section-anchor">Identify the path from kidney to outside the body, including bladder anatomy and urethral differences between male and female.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>urinary tract</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior view of the urinary tract showing right and left kidneys, ureters, urinary bladder with detrusor muscle and trigone, internal urethral sphincter (smooth muscle), external urethral sphincter (skeletal muscle), urethra (with notation of length difference between female ~4 cm and male ~20 cm), with 8 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="urinary-key-title">
+        <p class="key-title" id="urinary-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>Why are urinary tract infections (UTIs) far more common in females than males?</strong> Reference at least two anatomical reasons:</p>
+    <div class="ruled short" role="region" aria-label="UTI anatomy answer space"></div>
+
+    <p class="field-prompt"><strong>Which sphincter is under voluntary control, and which is involuntary?</strong></p>
+    <p class="field-helper" style="font-size:0.86rem;">Internal urethral sphincter: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 320px; height: 18px;"></span></p>
+    <p class="field-helper" style="font-size:0.86rem;">External urethral sphincter: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 320px; height: 18px;"></span></p>
+  </section>
+
+  <section class="section" aria-labelledby="s8-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">08</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Drawing from Reference</p>
+        <h2 class="section-title" id="s8-title">Respiratory membrane and nephron with three transport processes</h2>
+        <p class="section-anchor">Find each diagram in OpenStax Anatomy and Physiology 2e or any anatomy atlas. Reproduce each diagram in the box and label every required component.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>Drawing 1: Respiratory membrane in cross-section</h4>
+      <p>Draw a single alveolus next to a capillary, showing the path that oxygen takes from the alveolar lumen into a red blood cell. Required components: <strong>alveolar lumen with oxygen, type I pneumocyte, alveolar basement membrane, fused basement membrane (interstitial space), capillary endothelium, capillary lumen with red blood cell, oxygen molecules with arrows showing the diffusion path</strong>. Also include one type II pneumocyte and label what it secretes.</p>
+    </div>
+
+    <div class="draw-box tall" role="region" aria-label="Respiratory membrane drawing space">
+      <span class="draw-box-label">Drawing space</span>
+    </div>
+
+    <div class="reference" style="margin-top: 18px;">
+      <h4>Drawing 2: Nephron with the three urine-forming processes</h4>
+      <p>Draw a simplified nephron labeled with all six segments. At three specific locations, draw and label arrows showing: <strong>glomerular filtration</strong> (where it happens), <strong>tubular reabsorption</strong> (PCT example), and <strong>tubular secretion</strong> (DCT example). For each, name one substance moving in that direction.</p>
+    </div>
+
+    <div class="draw-box tall" role="region" aria-label="Nephron transport drawing space">
+      <span class="draw-box-label">Drawing space</span>
+    </div>
+
+    <div class="synthesis">
+      <span class="synthesis-label">Synthesis question</span>
+      <p class="synthesis-prompt">A patient with severe asthma has bronchoconstriction and excess mucus. Their oxygen saturation is dropping. <strong>Using your respiratory membrane drawing, explain why even though their alveoli are intact, their gas exchange is impaired.</strong> Reference at least two specific points along the path you drew.</p>
+      <div class="ruled medium" role="region" aria-label="Asthma gas exchange synthesis answer space"></div>
+    </div>
+  </section>
+  <div class="partner-link">
+    <span class="partner-link-label">When you finish this workbook, continue to the <strong>Week 6 Physiology Workbook</strong>.</span>
+    <a href="week06_physiology_workbook.html">Open →</a>
+  </div>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit</h2>
+    <p>1. All seven labeling exercises (Sections 01-07) have a name in every numbered blank.</p>
+    <p>2. Air path tracing, lung volume definitions, and nephron segment functions tables are completed.</p>
+    <p>3. Both drawings (Section 08) have every required component drawn AND labeled.</p>
+    <p>4. The asthma gas exchange synthesis question is answered.</p>
+        <p style="margin-top: 8px; font-size: 0.92rem; color: var(--ocean);"><strong>If any drawings were built digitally:</strong> attach the file (Google Doc / Drawing / Word / PowerPoint) to your Canvas submission AND share the revision history link. Drawings without revision history will not receive credit.</p>
+
+    <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 6 Anatomy Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
+    <p style="margin-top: 10px;"><strong>Then continue to the Week 6 Physiology Workbook</strong> (Spirometry, ABG, &amp; Urinalysis dry lab).</p>
+  </section>
+
+</main>
+
+
+<script>
+  // Auto-load images from data-pending attribute
+  // To customize image folder, change IMAGE_FOLDER below.
+  // Examples:
+  //   IMAGE_FOLDER = '';           // images in same folder as HTML (default)
+  //   IMAGE_FOLDER = 'images/';    // images in a subfolder named "images"
+  //   IMAGE_FOLDER = 'bio304_images/';  // any other subfolder name
+  (function () {
+    const IMAGE_FOLDER = '';
+    const imgs = document.querySelectorAll('img[data-pending]');
+    imgs.forEach(function (img) {
+      const filename = img.getAttribute('data-pending');
+      if (filename && !img.getAttribute('src')) {
+        img.src = IMAGE_FOLDER + filename;
+      }
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w06-anatomy-workbook';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>

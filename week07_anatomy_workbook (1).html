@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Week 7 Anatomy Workbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5; --sand-soft: #faf3e8; --sand: #f5e6d3;
+    --terra: #c44536; --kelp: #5a7553;
+    --paper: #fdfbf7; --line: #c9d4d8; --rule: #a8b5bb; --muted: #5a6b73;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #e8e8e0; line-height: 1.55; font-size: 16px; padding: 30px 0; -webkit-font-smoothing: antialiased; }
+  .sheet { max-width: 8.5in; margin: 0 auto; background: white; padding: 0.55in 0.6in; box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1); }
+  .actions { max-width: 8.5in; margin: 0 auto 16px; padding: 0 0.6in; display: flex; justify-content: flex-end; }
+  .print-btn { background: var(--ocean-deep); color: white; border: none; padding: 11px 22px; border-radius: 8px; font-family: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 8px; transition: background 0.15s ease; }
+  .print-btn:hover { background: var(--ocean); }
+  .print-btn::before { content: '⎙'; font-size: 1rem; }
+
+  .masthead { border-bottom: 2.5px solid var(--ocean-deep); padding-bottom: 18px; margin-bottom: 24px; position: relative; }
+  .masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .masthead.physiology::after { background: var(--terra); }
+  .course-line { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .doc-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.85rem; color: var(--ocean-deep); line-height: 1.2; margin-bottom: 6px; }
+  .doc-subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean); }
+
+  .student-block { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; margin: 18px 0 24px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field { display: flex; flex-direction: column; }
+  .field-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field-line { border-bottom: 1.5px solid var(--ink); height: 24px; }
+
+  .instructions { background: var(--sand-soft); border-left: 3px solid var(--terra); padding: 14px 18px; margin-bottom: 26px; font-size: 0.92rem; }
+  .instructions h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+
+  .section { margin: 22px 0; page-break-inside: avoid; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.5rem; color: var(--terra); min-width: 32px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; color: var(--ocean-deep); }
+  .section-anchor { font-size: 0.86rem; color: var(--ocean); font-style: italic; margin-top: 4px; }
+
+  .field-prompt { font-size: 0.92rem; color: var(--ink); margin: 10px 0 6px; line-height: 1.5; }
+  .field-prompt strong { color: var(--ocean-deep); }
+  .field-helper { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+
+  .ruled { background: white; border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; min-height: 5em; background-image: repeating-linear-gradient(transparent, transparent 24px, var(--rule) 24px, var(--rule) 25px); line-height: 25px; }
+  .ruled.short { min-height: 4em; }
+  .ruled.medium { min-height: 6em; }
+  .ruled.long { min-height: 9em; }
+
+  .word-bank { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 14px 18px; margin: 14px 0 18px; }
+  .word-bank-label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .word-bank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 14px; font-size: 0.86rem; color: var(--ink); }
+  .word-bank-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .word-bank-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 600px) {
+    .word-bank-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .label-exercise { margin: 16px 0; page-break-inside: avoid; }
+  .label-exercise-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.05rem; color: var(--terra); margin-bottom: 10px; }
+  .label-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .label-flex.wide-fig { grid-template-columns: 1.4fr 1fr; }
+  .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
+
+  .figure { margin: 0; }
+
+  .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+  .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .key-list { list-style: none; padding: 0; margin: 0; }
+  .key-list li { padding: 5px 0; border-bottom: 1px dashed var(--line); display: flex; align-items: baseline; gap: 8px; font-size: 0.88rem; }
+  .key-list li:last-child { border-bottom: none; }
+  .key-list.compact li { padding: 3px 0; font-size: 0.84rem; }
+  .key-num { font-weight: 700; color: var(--terra); min-width: 28px; flex-shrink: 0; }
+  .key-blank { flex: 1; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+  .key-fill { flex: 1; }
+
+  @media (max-width: 700px) {
+    .label-flex { grid-template-columns: 1fr; }
+  }
+
+  .draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 320px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
+  .draw-box.tall { min-height: 360px; }
+  .draw-box.short { min-height: 220px; }
+
+  .calc-box { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; margin: 10px 0; min-height: 80px; }
+  .calc-box-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.86rem; background: white; }
+  .data-table th { text-align: left; padding: 8px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .data-table .input-cell { background: white !important; min-width: 80px; }
+  .data-table .input-cell .cell-line { display: block; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+
+  .case { background: var(--sand-soft); border-left: 3px solid var(--terra); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 14px 0; page-break-inside: avoid; }
+  .case-label { display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; }
+  .case-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .case-body { font-size: 0.9rem; line-height: 1.55; margin-bottom: 8px; }
+  .case-body strong { color: var(--ocean-deep); }
+  .case-prompts { margin-top: 10px; }
+  .case-prompts ol { list-style: decimal; padding-left: 22px; margin: 6px 0; font-size: 0.9rem; }
+  .case-prompts ol li { margin-bottom: 6px; line-height: 1.5; }
+
+  .reference { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean-deep); padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.88rem; }
+  .reference h4 { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 0.96rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .reference p { margin-bottom: 6px; line-height: 1.55; }
+  .reference p:last-child { margin-bottom: 0; }
+  .reference strong { color: var(--terra); font-weight: 600; }
+  .reference .formula { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean-deep); padding: 8px 14px; background: white; border: 1px solid var(--line); border-radius: 4px; display: inline-block; margin: 4px 0; }
+
+  .synthesis { background: linear-gradient(150deg, var(--sand-soft), white); border: 2px solid var(--terra); border-radius: 8px; padding: 16px 20px; margin: 18px 0; page-break-inside: avoid; }
+  .synthesis-label { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 3px 10px; border-radius: 3px; margin-bottom: 8px; }
+  .synthesis-prompt { font-size: 0.96rem; line-height: 1.55; color: var(--ink); margin-bottom: 8px; }
+  .synthesis-prompt strong { color: var(--ocean-deep); }
+
+  .submission { margin-top: 30px; padding: 18px 22px; background: var(--sea-glass-soft); border: 1.5px solid var(--ocean-deep); border-radius: 6px; page-break-inside: avoid; }
+  .submission h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.08rem; color: var(--ocean-deep); margin-bottom: 10px; }
+  .submission p { font-size: 0.86rem; margin-bottom: 6px; }
+
+  /* PARTNER LINK BANNER (cross-link between anatomy & physiology workbooks) */
+  .partner-link { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 12px 16px; margin: 22px 0; font-size: 0.88rem; display: flex; align-items: center; gap: 12px; }
+  .partner-link-label { flex: 1; }
+  .partner-link-label strong { color: var(--ocean-deep); }
+  .partner-link a { color: var(--terra); text-decoration: underline; font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link, .partner-link { display: none !important; }
+    .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
+        @page { size: letter; margin: 0.55in 0.6in; }
+  }
+
+  .ref-draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; min-height: 380px; position: relative; page-break-inside: avoid; }
+  .ref-draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
+  .ref-instruction { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); padding: 10px 14px; margin: 10px 0 12px; font-size: 0.88rem; line-height: 1.5; border-radius: 0 4px 4px 0; }
+  .ref-instruction strong { color: var(--ocean-deep); }
+  .ref-instruction em { color: var(--terra); font-style: italic; }
+
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions">
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this workbook or save as PDF">Print / Save PDF</button>
+</div>
+
+<main id="main-content" class="sheet" role="main">
+  <header class="masthead anatomy">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 7 Anatomy Workbook</p>
+    <h1 class="doc-title">Nutrition: Digestive &amp; Accessory Organs</h1>
+    <p class="doc-subtitle">Anatomy: alimentary canal, liver, gallbladder, pancreas. Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field">
+      <span class="field-label">Name</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Section</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Date</span>
+      <span class="field-line"></span>
+    </div>
+  </div>
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">How this workbook works</h2>
+    <p><strong>Print, handwrite, scan, submit.</strong> Complete every section. Drawings, labeling, tables, and clinical reasoning all earn points.</p>
+    <p><strong>About the drawings in this workbook.</strong> For each drawing, find a clear reference in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas. You may either (a) draw it by hand in the workbook box, or (b) build it digitally in Google Docs, Google Drawings, Word, or PowerPoint using shapes, lines, and text labels, then attach the file to your Canvas submission.</p>
+    <p><strong>If you build digitally, you must submit revision history</strong> showing you built the diagram in stages over time. In Google Docs and Google Drawings: File &rarr; Version history &rarr; See version history. A flat image with no revision history does not meet this requirement.</p>
+    <p><strong>Either way, you must build it yourself, structure by structure.</strong> Copying a finished image (from Google Images, an AI tool, or a peer) earns zero on the assignment and is reported as academic dishonesty. Submission to Canvas certifies the work as your own.</p>
+  </section>
+
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 1</p>
+        <h2 class="section-title" id="s1-title">Alimentary canal overview</h2>
+        <p class="section-anchor">Identify the major regions of the GI tract from mouth to anus, plus accessory organs.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>alimentary canal</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior view of the abdominal organs showing the entire alimentary canal: oral cavity, salivary glands, pharynx, esophagus, stomach, small intestine (duodenum, jejunum, ileum), large intestine (cecum with appendix, ascending colon, transverse colon, descending colon, sigmoid colon, rectum, anus), plus accessory organs (liver, gallbladder, pancreas), with 14 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="canal-key-title">
+        <p class="key-title" id="canal-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">10.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">11.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">12.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">13.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">14.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 2</p>
+        <h2 class="section-title" id="s2-title">GI tract wall: four layers</h2>
+        <p class="section-anchor">Identify the four concentric layers found in the wall of every GI organ from esophagus to anus.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>gi wall layers</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: cross-section of gi tract wall showing four layers from inner to outer: mucosa (with epithelium, lamina propria, muscularis mucosae), submucosa (with submucosal/meissners plexus and blood vessels), muscularis externa (with inner circular muscle layer, myenteric/auerbachs plexus, outer longitudinal muscle layer), and serosa (or adventitia in retroperitoneal organs), with 9 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="gi-wall-key-title">
+        <p class="key-title" id="gi-wall-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>The two enteric nerve plexuses</strong> are part of the gut's own nervous system (the "second brain"). Identify their location and primary function:</p>
+    <p class="field-helper" style="font-size:0.86rem;">Submucosal (Meissner) plexus: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 320px; height: 18px;"></span></p>
+    <p class="field-helper" style="font-size:0.86rem;">Myenteric (Auerbach) plexus: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 320px; height: 18px;"></span></p>
+  </section>
+
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 3</p>
+        <h2 class="section-title" id="s3-title">Stomach: gross anatomy and gastric pit cells</h2>
+        <p class="section-anchor">Identify the regions of the stomach and the cells that line the gastric pits.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <p class="label-exercise-title">Stomach gross anatomy</p>
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>stomach gross</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior view of the stomach showing cardia (esophageal junction), fundus, body, pyloric antrum, pylorus with pyloric sphincter, lesser curvature, greater curvature, rugae (internal folds), three muscle layers (longitudinal, circular, oblique), with 9 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="stomach-key-title">
+        <p class="key-title" id="stomach-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt" style="margin-top: 16px;"><strong>The four cell types in the gastric pit</strong> each secrete a specific substance. Match each cell to its product and function:</p>
+    <table class="data-table" aria-label="Gastric pit cells">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Cell type</th>
+          <th style="width: 30%;">Substance secreted</th>
+          <th style="width: 45%;">Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Mucous neck cells</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Parietal cells</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Chief cells</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>G cells</strong></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 4</p>
+        <h2 class="section-title" id="s4-title">Small intestine: villi and absorption surface</h2>
+        <p class="section-anchor">Identify the structures that maximize surface area for absorption: circular folds, villi, and microvilli.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>small intestine villi</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: cross-section of small intestinal wall with magnification showing circular folds (plicae circulares), villi (finger-like projections), simple columnar absorptive cells (enterocytes) with apical microvilli forming the brush border, goblet cells (mucus secretion), lacteals (lymphatic capillaries inside villi), capillary network in each villus, intestinal crypts (crypts of lieberkuhn), with 8 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="villi-key-title">
+        <p class="key-title" id="villi-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>Three levels of surface area amplification</strong> in the small intestine. Identify each and approximately how much it increases surface area beyond a simple tube:</p>
+    <p class="field-helper" style="font-size:0.86rem;">Level 1 (gross): <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 320px; height: 18px;"></span></p>
+    <p class="field-helper" style="font-size:0.86rem;">Level 2 (visible without magnification): <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 270px; height: 18px;"></span></p>
+    <p class="field-helper" style="font-size:0.86rem;">Level 3 (microscopic): <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 320px; height: 18px;"></span></p>
+
+    <p class="field-prompt" style="margin-top: 14px;"><strong>What does each villus contain that allows absorbed nutrients to enter the body?</strong> Identify which structures absorb fats vs water-soluble nutrients:</p>
+    <p class="field-helper" style="font-size:0.86rem;">Water-soluble nutrients enter: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 320px; height: 18px;"></span></p>
+    <p class="field-helper" style="font-size:0.86rem;">Fats enter: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 320px; height: 18px;"></span></p>
+  </section>
+
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 5</p>
+        <h2 class="section-title" id="s5-title">Large intestine: regions and unique features</h2>
+        <p class="section-anchor">Identify the segments of the large intestine and the features that distinguish it from the small intestine.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>large intestine</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior view of the large intestine showing cecum with vermiform appendix, ileocecal valve, ascending colon, hepatic (right colic) flexure, transverse colon, splenic (left colic) flexure, descending colon, sigmoid colon, rectum, anal canal, taeniae coli (three longitudinal bands), haustra (pouches), epiploic appendages, with 11 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="colon-key-title">
+        <p class="key-title" id="colon-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">10.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">11.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>What are the three primary functions of the large intestine?</strong></p>
+    <div class="ruled short" role="region" aria-label="Large intestine functions answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s6-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">06</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 6</p>
+        <h2 class="section-title" id="s6-title">Liver: gross anatomy and hepatic lobule</h2>
+        <p class="section-anchor">Identify the lobes and surface features of the liver, and the microscopic structure of a hepatic lobule.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <p class="label-exercise-title">Liver gross anatomy (anterior view)</p>
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>liver gross</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior view of the liver showing right lobe, left lobe, falciform ligament dividing them, round ligament (ligamentum teres) at the inferior edge of the falciform ligament, gallbladder on the inferior surface of the right lobe, plus the bare area, with 5 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="liver-gross-key-title">
+        <p class="key-title" id="liver-gross-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <div class="label-exercise" style="margin-top: 22px;">
+      <p class="label-exercise-title">Hepatic lobule (microscopic)</p>
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>hepatic lobule</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: hexagonal hepatic lobule showing central vein at the center, plates of hepatocytes radiating outward, hepatic sinusoids between hepatocyte plates with kupffer cells, portal triads at each corner of the hexagon (each containing a branch of the hepatic artery, a branch of the hepatic portal vein, and a bile ductule), bile canaliculi between hepatocytes draining toward the portal triad, with 8 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="lobule-key-title">
+        <p class="key-title" id="lobule-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>Two-blood-supply system:</strong> the liver receives blood from two different sources. Identify each and what it carries:</p>
+    <p class="field-helper" style="font-size:0.86rem;">Hepatic artery carries: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 360px; height: 18px;"></span></p>
+    <p class="field-helper" style="font-size:0.86rem;">Hepatic portal vein carries: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 360px; height: 18px;"></span></p>
+  </section>
+
+  <section class="section" aria-labelledby="s7-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">07</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 7</p>
+        <h2 class="section-title" id="s7-title">Gallbladder, biliary tree, and pancreas</h2>
+        <p class="section-anchor">Identify the path of bile from liver to duodenum, plus the dual exocrine/endocrine pancreas.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>biliary tree</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: diagram of the biliary tree showing right and left hepatic ducts joining to form the common hepatic duct, cystic duct from the gallbladder joining to form the common bile duct, pancreas with main pancreatic duct, ampulla of vater (hepatopancreatic ampulla) where common bile duct and pancreatic duct merge, sphincter of oddi controlling release into the duodenum, gallbladder, with 9 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="biliary-key-title">
+        <p class="key-title" id="biliary-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>Trace the path of bile</strong> from a hepatocyte to the duodenum after a fatty meal. Name every structure it passes through, in order:</p>
+    <div class="ruled medium" role="region" aria-label="Bile path answer space"></div>
+
+    <p class="field-prompt" style="margin-top: 14px;"><strong>The pancreas has two functions.</strong> Identify each:</p>
+    <p class="field-helper" style="font-size:0.86rem;">Exocrine function (acinar cells): <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 320px; height: 18px;"></span></p>
+    <p class="field-helper" style="font-size:0.86rem;">Endocrine function (islet cells): <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 320px; height: 18px;"></span></p>
+  </section>
+
+  <section class="section" aria-labelledby="s8-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">08</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Labeling Exercise 8</p>
+        <h2 class="section-title" id="s8-title">Peritoneum and intraperitoneal vs retroperitoneal organs</h2>
+        <p class="section-anchor">Identify the layers of peritoneum, mesenteries, and which organs are intraperitoneal vs retroperitoneal.</p>
+      </div>
+    </header>
+
+    <div class="label-exercise">
+      <div class="label-flex">
+        <figure class="figure">
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>peritoneum</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: sagittal section of the abdomen showing parietal peritoneum lining the abdominal wall, visceral peritoneum covering organs, peritoneal cavity between them, mesentery suspending small intestine, greater omentum hanging from greater curvature of stomach, lesser omentum between liver and stomach, plus retroperitoneal organs (kidneys, pancreas, duodenum, ascending and descending colon), with 6 numbered arrows.</p>
+      </figure>
+        <aside class="label-key" aria-labelledby="peritoneum-key-title">
+        <p class="key-title" id="peritoneum-key-title">Identify each numbered structure</p>
+        <ol class="key-list">
+        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
+        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
+        </ol>
+      </aside>
+      </div>
+    </div>
+
+    <p class="field-prompt"><strong>Classify each organ as intraperitoneal or retroperitoneal:</strong></p>
+    <table class="data-table" aria-label="Intraperitoneal vs retroperitoneal organs">
+      <thead>
+        <tr>
+          <th style="width: 35%;">Organ</th>
+          <th style="width: 65%;">Intraperitoneal or retroperitoneal?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Stomach</strong></td><td class="input-cell"><span class="cell-line"></span></td></tr>
+        <tr><td><strong>Liver</strong></td><td class="input-cell"><span class="cell-line"></span></td></tr>
+        <tr><td><strong>Kidneys</strong></td><td class="input-cell"><span class="cell-line"></span></td></tr>
+        <tr><td><strong>Pancreas</strong></td><td class="input-cell"><span class="cell-line"></span></td></tr>
+        <tr><td><strong>Jejunum and ileum</strong></td><td class="input-cell"><span class="cell-line"></span></td></tr>
+        <tr><td><strong>Ascending colon</strong></td><td class="input-cell"><span class="cell-line"></span></td></tr>
+        <tr><td><strong>Transverse colon</strong></td><td class="input-cell"><span class="cell-line"></span></td></tr>
+        <tr><td><strong>Sigmoid colon</strong></td><td class="input-cell"><span class="cell-line"></span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s9-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">09</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Anatomy · Drawing from Reference</p>
+        <h2 class="section-title" id="s9-title">Hepatic lobule blood flow and digestive enzyme map</h2>
+        <p class="section-anchor">Find each diagram in OpenStax Anatomy and Physiology 2e or any anatomy atlas. Reproduce each diagram in the box and label every required component.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>Drawing 1: Blood flow through a hepatic lobule</h4>
+      <p>Draw a hexagonal hepatic lobule with all six portal triads at corners and the central vein in the middle. Use arrows to show: blood flowing IN from the hepatic artery and portal vein at the portal triads, through sinusoids past hepatocytes, OUT into the central vein. Required components: <strong>portal triad (label all three vessels: hepatic artery branch, portal vein branch, bile ductule), hepatic sinusoids, hepatocytes in plates, Kupffer cells, central vein, bile canaliculi (with arrows showing bile flow direction, opposite to blood flow)</strong>.</p>
+    </div>
+
+    <div class="draw-box tall" role="region" aria-label="Hepatic lobule drawing space">
+      <span class="draw-box-label">Drawing space</span>
+    </div>
+
+    <div class="reference" style="margin-top: 18px;">
+      <h4>Drawing 2: Digestive enzyme map</h4>
+      <p>Draw a simplified GI tract from mouth to small intestine. At each major site, label the enzyme(s) released, the source, and the substrate they digest. Required entries: <strong>mouth (salivary amylase, salivary glands, starch), stomach (pepsinogen → pepsin, chief cells with parietal cell HCl, proteins), small intestine - pancreatic contributions (pancreatic amylase, lipase, trypsin/chymotrypsin, with substrates), small intestine - brush border (lactase, sucrase, maltase, peptidases, with substrates)</strong>.</p>
+    </div>
+
+    <div class="draw-box tall" role="region" aria-label="Digestive enzyme drawing space">
+      <span class="draw-box-label">Drawing space</span>
+    </div>
+
+    <div class="synthesis">
+      <span class="synthesis-label">Synthesis question</span>
+      <p class="synthesis-prompt">A patient with cirrhosis has scarred liver tissue that disrupts normal lobular architecture. <strong>Using your hepatic lobule drawing, predict what happens to (1) blood flow through the liver, (2) bile drainage, and (3) the liver's ability to detoxify substances absorbed from the gut.</strong> Reference specific anatomical structures from the lobule.</p>
+      <div class="ruled medium" role="region" aria-label="Cirrhosis synthesis answer space"></div>
+    </div>
+  </section>
+  <div class="partner-link">
+    <span class="partner-link-label">When you finish this workbook, continue to the <strong>Week 7 Physiology Workbook</strong>.</span>
+    <a href="week07_physiology_workbook.html">Open →</a>
+  </div>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit</h2>
+    <p>1. All eight labeling exercises (Sections 01-08) have a name in every numbered blank.</p>
+    <p>2. The gastric pit cells, surface area amplification levels, bile path tracing, and intraperitoneal/retroperitoneal classification tables are all completed.</p>
+    <p>3. Both drawings (Section 09) have every required component drawn AND labeled.</p>
+    <p>4. The cirrhosis synthesis question is answered referencing specific lobule structures.</p>
+        <p style="margin-top: 8px; font-size: 0.92rem; color: var(--ocean);"><strong>If any drawings were built digitally:</strong> attach the file (Google Doc / Drawing / Word / PowerPoint) to your Canvas submission AND share the revision history link. Drawings without revision history will not receive credit.</p>
+
+    <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 7 Anatomy Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
+    <p style="margin-top: 10px;"><strong>Then continue to the Week 7 Physiology Workbook</strong> (Liver Function, Lipid Panel &amp; Nutrition Audit dry lab).</p>
+  </section>
+
+</main>
+
+
+<script>
+  // Auto-load images from data-pending attribute
+  // To customize image folder, change IMAGE_FOLDER below.
+  // Examples:
+  //   IMAGE_FOLDER = '';           // images in same folder as HTML (default)
+  //   IMAGE_FOLDER = 'images/';    // images in a subfolder named "images"
+  //   IMAGE_FOLDER = 'bio304_images/';  // any other subfolder name
+  (function () {
+    const IMAGE_FOLDER = '';
+    const imgs = document.querySelectorAll('img[data-pending]');
+    imgs.forEach(function (img) {
+      const filename = img.getAttribute('data-pending');
+      if (filename && !img.getAttribute('src')) {
+        img.src = IMAGE_FOLDER + filename;
+      }
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w07-anatomy-workbook';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>

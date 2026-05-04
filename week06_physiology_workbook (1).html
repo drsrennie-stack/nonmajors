@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Week 6 Physiology Workbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass-soft: #eef4f5; --sand-soft: #faf3e8; --sand: #f5e6d3;
+    --terra: #c44536; --kelp: #5a7553;
+    --paper: #fdfbf7; --line: #c9d4d8; --rule: #a8b5bb; --muted: #5a6b73;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #e8e8e0; line-height: 1.55; font-size: 16px; padding: 30px 0; -webkit-font-smoothing: antialiased; }
+  .sheet { max-width: 8.5in; margin: 0 auto; background: white; padding: 0.55in 0.6in; box-shadow: 0 4px 24px rgba(20, 48, 75, 0.1); }
+  .actions { max-width: 8.5in; margin: 0 auto 16px; padding: 0 0.6in; display: flex; justify-content: flex-end; }
+  .print-btn { background: var(--ocean-deep); color: white; border: none; padding: 11px 22px; border-radius: 8px; font-family: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 8px; transition: background 0.15s ease; }
+  .print-btn:hover { background: var(--ocean); }
+  .print-btn::before { content: '⎙'; font-size: 1rem; }
+
+  .masthead { border-bottom: 2.5px solid var(--ocean-deep); padding-bottom: 18px; margin-bottom: 24px; position: relative; }
+  .masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .masthead.physiology::after { background: var(--terra); }
+  .course-line { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .doc-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.85rem; color: var(--ocean-deep); line-height: 1.2; margin-bottom: 6px; }
+  .doc-subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean); }
+
+  .student-block { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; margin: 18px 0 24px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field { display: flex; flex-direction: column; }
+  .field-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field-line { border-bottom: 1.5px solid var(--ink); height: 24px; }
+
+  .instructions { background: var(--sand-soft); border-left: 3px solid var(--terra); padding: 14px 18px; margin-bottom: 26px; font-size: 0.92rem; }
+  .instructions h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .instructions strong { color: var(--ocean-deep); }
+  .instructions p { margin-bottom: 6px; }
+  .instructions p:last-child { margin-bottom: 0; }
+
+  .section { margin: 22px 0; page-break-inside: avoid; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.5rem; color: var(--terra); min-width: 32px; }
+  .section-titles { flex: 1; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; color: var(--ocean-deep); }
+  .section-anchor { font-size: 0.86rem; color: var(--ocean); font-style: italic; margin-top: 4px; }
+
+  .field-prompt { font-size: 0.92rem; color: var(--ink); margin: 10px 0 6px; line-height: 1.5; }
+  .field-prompt strong { color: var(--ocean-deep); }
+  .field-helper { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+
+  .ruled { background: white; border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; min-height: 5em; background-image: repeating-linear-gradient(transparent, transparent 24px, var(--rule) 24px, var(--rule) 25px); line-height: 25px; }
+  .ruled.short { min-height: 4em; }
+  .ruled.medium { min-height: 6em; }
+  .ruled.long { min-height: 9em; }
+
+  .word-bank { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 14px 18px; margin: 14px 0 18px; }
+  .word-bank-label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .word-bank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 14px; font-size: 0.86rem; color: var(--ink); }
+  .word-bank-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .word-bank-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 600px) {
+    .word-bank-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .label-exercise { margin: 16px 0; page-break-inside: avoid; }
+  .label-exercise-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1.05rem; color: var(--terra); margin-bottom: 10px; }
+  .label-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .label-flex.wide-fig { grid-template-columns: 1.4fr 1fr; }
+  .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
+
+  .figure { margin: 0; }
+
+  .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+  .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
+  .key-list { list-style: none; padding: 0; margin: 0; }
+  .key-list li { padding: 5px 0; border-bottom: 1px dashed var(--line); display: flex; align-items: baseline; gap: 8px; font-size: 0.88rem; }
+  .key-list li:last-child { border-bottom: none; }
+  .key-list.compact li { padding: 3px 0; font-size: 0.84rem; }
+  .key-num { font-weight: 700; color: var(--terra); min-width: 28px; flex-shrink: 0; }
+  .key-blank { flex: 1; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+  .key-fill { flex: 1; }
+
+  @media (max-width: 700px) {
+    .label-flex { grid-template-columns: 1fr; }
+  }
+
+  .draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 320px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
+  .draw-box.tall { min-height: 360px; }
+  .draw-box.short { min-height: 220px; }
+
+  .calc-box { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; margin: 10px 0; min-height: 80px; }
+  .calc-box-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.86rem; background: white; }
+  .data-table th { text-align: left; padding: 8px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--sand-soft); }
+  .data-table .input-cell { background: white !important; min-width: 80px; }
+  .data-table .input-cell .cell-line { display: block; border-bottom: 1.5px solid var(--ink); min-height: 22px; }
+
+  .case { background: var(--sand-soft); border-left: 3px solid var(--terra); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 14px 0; page-break-inside: avoid; }
+  .case-label { display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; }
+  .case-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 1rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .case-body { font-size: 0.9rem; line-height: 1.55; margin-bottom: 8px; }
+  .case-body strong { color: var(--ocean-deep); }
+  .case-prompts { margin-top: 10px; }
+  .case-prompts ol { list-style: decimal; padding-left: 22px; margin: 6px 0; font-size: 0.9rem; }
+  .case-prompts ol li { margin-bottom: 6px; line-height: 1.5; }
+
+  .reference { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean-deep); padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.88rem; }
+  .reference h4 { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 0.96rem; color: var(--ocean-deep); margin-bottom: 6px; }
+  .reference p { margin-bottom: 6px; line-height: 1.55; }
+  .reference p:last-child { margin-bottom: 0; }
+  .reference strong { color: var(--terra); font-weight: 600; }
+  .reference .formula { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--ocean-deep); padding: 8px 14px; background: white; border: 1px solid var(--line); border-radius: 4px; display: inline-block; margin: 4px 0; }
+
+  .synthesis { background: linear-gradient(150deg, var(--sand-soft), white); border: 2px solid var(--terra); border-radius: 8px; padding: 16px 20px; margin: 18px 0; page-break-inside: avoid; }
+  .synthesis-label { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--terra); padding: 3px 10px; border-radius: 3px; margin-bottom: 8px; }
+  .synthesis-prompt { font-size: 0.96rem; line-height: 1.55; color: var(--ink); margin-bottom: 8px; }
+  .synthesis-prompt strong { color: var(--ocean-deep); }
+
+  .submission { margin-top: 30px; padding: 18px 22px; background: var(--sea-glass-soft); border: 1.5px solid var(--ocean-deep); border-radius: 6px; page-break-inside: avoid; }
+  .submission h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.08rem; color: var(--ocean-deep); margin-bottom: 10px; }
+  .submission p { font-size: 0.86rem; margin-bottom: 6px; }
+
+  /* PARTNER LINK BANNER (cross-link between anatomy & physiology workbooks) */
+  .partner-link { background: var(--sea-glass-soft); border: 1px solid var(--ocean); border-radius: 6px; padding: 12px 16px; margin: 22px 0; font-size: 0.88rem; display: flex; align-items: center; gap: 12px; }
+  .partner-link-label { flex: 1; }
+  .partner-link-label strong { color: var(--ocean-deep); }
+  .partner-link a { color: var(--terra); text-decoration: underline; font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
+    .actions, .skip-link, .partner-link { display: none !important; }
+    .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
+        @page { size: letter; margin: 0.55in 0.6in; }
+  }
+
+  .ref-draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; min-height: 380px; position: relative; page-break-inside: avoid; }
+  .ref-draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
+  .ref-instruction { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); padding: 10px 14px; margin: 10px 0 12px; font-size: 0.88rem; line-height: 1.5; border-radius: 0 4px 4px 0; }
+  .ref-instruction strong { color: var(--ocean-deep); }
+  .ref-instruction em { color: var(--terra); font-style: italic; }
+
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="actions">
+  <button class="print-btn" type="button" onclick="window.print()" aria-label="Print this workbook or save as PDF">Print / Save PDF</button>
+</div>
+
+<main id="main-content" class="sheet" role="main">
+  <header class="masthead physiology">
+    <p class="course-line">BIO 304 · Human Anatomy &amp; Physiology · Week 6 Physiology Workbook</p>
+    <h1 class="doc-title">Spirometry, ABG &amp; Urinalysis</h1>
+    <p class="doc-subtitle">Physiology: read pulmonary function tests, interpret arterial blood gases, analyze urine dipsticks. Dr. Sharilyn Rennie</p>
+  </header>
+
+  <div class="student-block">
+    <div class="field">
+      <span class="field-label">Name</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Section</span>
+      <span class="field-line"></span>
+    </div>
+    <div class="field">
+      <span class="field-label">Date</span>
+      <span class="field-line"></span>
+    </div>
+  </div>
+  <section class="instructions" aria-labelledby="how-heading">
+    <h2 id="how-heading">How this workbook works</h2>
+    <p><strong>Print, handwrite, scan, submit.</strong> Complete every section. Drawings, labeling, tables, and clinical reasoning all earn points.</p>
+    <p><strong>About the drawings in this workbook.</strong> For each drawing, find a clear reference in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas. You may either (a) draw it by hand in the workbook box, or (b) build it digitally in Google Docs, Google Drawings, Word, or PowerPoint using shapes, lines, and text labels, then attach the file to your Canvas submission.</p>
+    <p><strong>If you build digitally, you must submit revision history</strong> showing you built the diagram in stages over time. In Google Docs and Google Drawings: File &rarr; Version history &rarr; See version history. A flat image with no revision history does not meet this requirement.</p>
+    <p><strong>Either way, you must build it yourself, structure by structure.</strong> Copying a finished image (from Google Images, an AI tool, or a peer) earns zero on the assignment and is reported as academic dishonesty. Submission to Canvas certifies the work as your own.</p>
+  </section>
+
+  <section class="section" aria-labelledby="s1-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 1</p>
+        <h2 class="section-title" id="s1-title">Spirometry: FEV1/FVC and the obstructive vs restrictive pattern</h2>
+        <p class="section-anchor">Interpret pulmonary function tests using the FEV1/FVC ratio and total lung volumes.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>Key spirometry values</h4>
+      <p><strong>FVC (forced vital capacity):</strong> total volume exhaled forcefully after a maximal inhalation. Reflects total lung volume available.</p>
+      <p><strong>FEV1 (forced expiratory volume in 1 second):</strong> volume exhaled in the first second of an FVC maneuver. Reflects airway speed/resistance.</p>
+      <p><strong>FEV1/FVC ratio:</strong> the percentage of total volume that gets out in 1 second. <strong>Normal in healthy adults: ≥ 0.70 (or 70%).</strong></p>
+      <p><strong>TLC (total lung capacity):</strong> total air the lungs can hold. Used to differentiate obstructive from restrictive disease.</p>
+    </div>
+
+    <div class="reference">
+      <h4>The four spirometry patterns</h4>
+      <p><strong>Normal:</strong> FEV1/FVC ≥ 0.70. FVC and FEV1 both within normal range. TLC normal.</p>
+      <p><strong>Obstructive (asthma, COPD):</strong> FEV1/FVC &lt; 0.70 (the airways are narrow, less air gets out in 1 second). FEV1 reduced. FVC may be normal or reduced. TLC often normal or increased (air trapping).</p>
+      <p><strong>Restrictive (pulmonary fibrosis, chest wall disease, neuromuscular):</strong> FEV1/FVC ≥ 0.70 (or even higher than normal). FVC reduced. FEV1 reduced proportionally. <strong>TLC reduced.</strong> The lungs cannot expand to normal size.</p>
+      <p><strong>Mixed:</strong> elements of both. FEV1/FVC &lt; 0.70 AND TLC reduced.</p>
+    </div>
+
+    <p class="field-prompt"><strong>For each set of spirometry values, classify the pattern</strong> (normal, obstructive, restrictive, or mixed) and identify which step of the diagnostic algorithm pointed you there.</p>
+
+    <table class="data-table" aria-label="Spirometry pattern classification">
+      <thead>
+        <tr>
+          <th style="width: 15%;">Patient</th>
+          <th style="width: 13%;">FVC (% pred)</th>
+          <th style="width: 13%;">FEV1 (% pred)</th>
+          <th style="width: 14%;">FEV1/FVC</th>
+          <th style="width: 13%;">TLC (% pred)</th>
+          <th style="width: 32%;">Pattern + brief reasoning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>A</strong> (asthma, exacerbation)</td>
+          <td>78%</td>
+          <td>52%</td>
+          <td>0.55</td>
+          <td>105%</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>B</strong> (former smoker, age 68)</td>
+          <td>62%</td>
+          <td>38%</td>
+          <td>0.48</td>
+          <td>118%</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>C</strong> (pulmonary fibrosis)</td>
+          <td>54%</td>
+          <td>56%</td>
+          <td>0.82</td>
+          <td>58%</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>D</strong> (BMI 47, sleep apnea)</td>
+          <td>72%</td>
+          <td>74%</td>
+          <td>0.81</td>
+          <td>71%</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>E</strong> (healthy 30 y/o)</td>
+          <td>96%</td>
+          <td>94%</td>
+          <td>0.84</td>
+          <td>98%</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>F</strong> (smoker w/ pneumonia hx)</td>
+          <td>58%</td>
+          <td>42%</td>
+          <td>0.62</td>
+          <td>67%</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="field-prompt" style="margin-top: 14px;"><strong>Bronchodilator response.</strong> If a patient with FEV1/FVC of 0.58 takes albuterol and their FEV1 improves by 14%, what does that suggest about their disease (asthma vs COPD)? Why does this matter clinically?</p>
+    <div class="ruled medium" role="region" aria-label="Bronchodilator answer space"></div>
+  </section>
+
+  <section class="section" aria-labelledby="s2-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 2</p>
+        <h2 class="section-title" id="s2-title">ABG interpretation: primary disorder and compensation</h2>
+        <p class="section-anchor">Use a systematic 4-step method to identify the primary acid-base disorder and any compensation.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>Normal ABG values</h4>
+      <p><strong>pH:</strong> 7.35-7.45 &nbsp;·&nbsp; <strong>PaCO₂:</strong> 35-45 mmHg &nbsp;·&nbsp; <strong>HCO₃⁻:</strong> 22-26 mEq/L &nbsp;·&nbsp; <strong>PaO₂:</strong> 80-100 mmHg (room air)</p>
+    </div>
+
+    <div class="reference">
+      <h4>The 4-step ABG method</h4>
+      <p><strong>Step 1: Look at pH.</strong> &lt; 7.35 = acidosis. &gt; 7.45 = alkalosis. 7.35-7.45 with abnormal CO₂/HCO₃⁻ = fully compensated.</p>
+      <p><strong>Step 2: Look at PaCO₂.</strong> If pH and CO₂ change in opposite directions (low pH + high CO₂, or high pH + low CO₂), the disorder is <strong>respiratory</strong>.</p>
+      <p><strong>Step 3: Look at HCO₃⁻.</strong> If pH and HCO₃⁻ change in the same direction (low pH + low HCO₃⁻, or high pH + high HCO₃⁻), the disorder is <strong>metabolic</strong>.</p>
+      <p><strong>Step 4: Compensation?</strong> If the other system has shifted toward correcting pH, compensation is present (partial if pH still abnormal, complete if pH normal).</p>
+    </div>
+
+    <div class="reference">
+      <h4>Common causes of each disorder</h4>
+      <p><strong>Respiratory acidosis</strong> (high CO₂, low pH): hypoventilation. COPD exacerbation, opioid overdose, neuromuscular failure, severe asthma.</p>
+      <p><strong>Respiratory alkalosis</strong> (low CO₂, high pH): hyperventilation. Anxiety/panic, pain, fever, pulmonary embolism, pregnancy, salicylate toxicity (early).</p>
+      <p><strong>Metabolic acidosis</strong> (low HCO₃⁻, low pH): DKA, lactic acidosis, renal failure, severe diarrhea (loss of HCO₃⁻).</p>
+      <p><strong>Metabolic alkalosis</strong> (high HCO₃⁻, high pH): vomiting, diuretic use, antacid overuse.</p>
+    </div>
+
+    <p class="field-prompt"><strong>For each ABG, walk the 4-step method and identify the primary disorder + compensation status.</strong></p>
+
+    <table class="data-table" aria-label="ABG interpretation cases">
+      <thead>
+        <tr>
+          <th style="width: 14%;">Patient</th>
+          <th style="width: 11%;">pH</th>
+          <th style="width: 13%;">PaCO₂</th>
+          <th style="width: 13%;">HCO₃⁻</th>
+          <th style="width: 21%;">Primary disorder</th>
+          <th style="width: 28%;">Compensation status (none / partial / complete)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>A</strong></td>
+          <td>7.28</td>
+          <td>58</td>
+          <td>26</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>B</strong></td>
+          <td>7.52</td>
+          <td>28</td>
+          <td>22</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>C</strong></td>
+          <td>7.18</td>
+          <td>22</td>
+          <td>10</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>D</strong></td>
+          <td>7.50</td>
+          <td>48</td>
+          <td>36</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>E</strong></td>
+          <td>7.36</td>
+          <td>55</td>
+          <td>32</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>F</strong></td>
+          <td>7.41</td>
+          <td>40</td>
+          <td>24</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="field-prompt" style="margin-top: 14px;"><strong>For each ABG above, name one likely clinical cause</strong> based on the disorder pattern:</p>
+    <p class="field-helper" style="font-size:0.86rem;">A: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 360px; height: 18px;"></span></p>
+    <p class="field-helper" style="font-size:0.86rem;">B: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 360px; height: 18px;"></span></p>
+    <p class="field-helper" style="font-size:0.86rem;">C: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 360px; height: 18px;"></span></p>
+    <p class="field-helper" style="font-size:0.86rem;">D: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 360px; height: 18px;"></span></p>
+    <p class="field-helper" style="font-size:0.86rem;">E: <span style="border-bottom: 1px solid var(--ink); display: inline-block; min-width: 360px; height: 18px;"></span></p>
+  </section>
+
+  <section class="section" aria-labelledby="s3-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Lab Skill 3</p>
+        <h2 class="section-title" id="s3-title">Urine dipstick interpretation</h2>
+        <p class="section-anchor">Read the standard 10-pad urine dipstick and recognize patterns of disease from the strip alone.</p>
+      </div>
+    </header>
+
+    <div class="reference">
+      <h4>Normal urine dipstick (negative or trace)</h4>
+      <p>Most pads should read negative or trace. The two that show normal positive values: <strong>specific gravity</strong> (1.005-1.030) and <strong>pH</strong> (4.5-8.0).</p>
+    </div>
+
+    <div class="reference">
+      <h4>What each pad detects</h4>
+      <p><strong>Glucose:</strong> normally negative. Positive in DKA, hyperglycemia exceeding renal threshold (~180 mg/dL), pregnancy.</p>
+      <p><strong>Ketones:</strong> normally negative. Positive in DKA, starvation, alcoholic ketoacidosis, ketogenic diet.</p>
+      <p><strong>Specific gravity:</strong> measures urine concentration. Low (1.005) = dilute (overhydration, diabetes insipidus). High (&gt;1.030) = concentrated (dehydration, SIADH).</p>
+      <p><strong>Blood:</strong> normally negative. Positive in UTI, kidney stones, glomerulonephritis, rhabdomyolysis (myoglobin cross-reacts), trauma, menstrual contamination.</p>
+      <p><strong>pH:</strong> normally 4.5-8.0. Acidic urine in metabolic acidosis. Alkaline urine in UTIs with urea-splitting bacteria (Proteus).</p>
+      <p><strong>Protein:</strong> normally negative or trace. Positive in glomerular disease (nephrotic syndrome), preeclampsia, exercise.</p>
+      <p><strong>Urobilinogen:</strong> trace normal. Increased in liver disease, hemolysis.</p>
+      <p><strong>Nitrites:</strong> normally negative. Positive in UTI from gram-negative bacteria (E. coli, Proteus, Klebsiella) that convert nitrate to nitrite.</p>
+      <p><strong>Leukocyte esterase:</strong> normally negative. Positive when neutrophils are present (UTI, infection).</p>
+      <p><strong>Bilirubin:</strong> normally negative. Positive in liver disease, biliary obstruction.</p>
+    </div>
+
+    <p class="field-prompt"><strong>For each urine dipstick result, identify the most likely diagnosis.</strong> Multiple findings can point to one diagnosis.</p>
+
+    <table class="data-table" aria-label="Urine dipstick pattern recognition">
+      <thead>
+        <tr>
+          <th style="width: 15%;">Patient</th>
+          <th style="width: 50%;">Dipstick findings</th>
+          <th style="width: 35%;">Most likely diagnosis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>A</strong></td>
+          <td>Nitrite +, leukocyte esterase +, blood trace, pH 8.5, all others negative.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>B</strong></td>
+          <td>Glucose ++++, ketones +++, specific gravity 1.030, pH 5.0, others negative.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>C</strong></td>
+          <td>Protein ++++, blood +, others normal. Patient has 3+ pitting edema.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>D</strong></td>
+          <td>Blood ++++, no RBCs visible on microscopy. Patient was in a crush injury.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>E</strong></td>
+          <td>Bilirubin ++, urobilinogen ++, dark amber color. Patient is jaundiced.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+        <tr>
+          <td><strong>F</strong></td>
+          <td>Specific gravity 1.005, all others negative. Patient drinks 6 L of water daily and urinates frequently.</td>
+          <td class="input-cell"><span class="cell-line"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="s4-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Clinical Reasoning Cases</p>
+        <h2 class="section-title" id="s4-title">Integrate spirometry, ABG, and urinalysis across four patients</h2>
+        <p class="section-anchor">Each case combines two or three lab skills to test integration across systems.</p>
+      </div>
+    </header>
+
+    <div class="case">
+      <span class="case-label">Case 1</span>
+      <p class="case-title">The COPD exacerbation</p>
+      <p class="case-body">A 70-year-old man with a 60 pack-year history comes to the ER with worsening dyspnea and productive cough. <strong>Spirometry:</strong> FEV1/FVC 0.46, FEV1 32% predicted, TLC 116% predicted. <strong>ABG (room air):</strong> pH 7.30, PaCO₂ 62, HCO₃⁻ 32, PaO₂ 56.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Classify the spirometry pattern. Why is TLC elevated in this patient (reference air trapping)?</li>
+          <li>Interpret the ABG using the 4-step method. What is the primary disorder and is there compensation?</li>
+          <li>Why is HCO₃⁻ elevated despite this being primarily a respiratory problem?</li>
+          <li>Treatment with bronchodilators and steroids is started, but the team avoids high-flow oxygen targeting normal SaO₂. Why? (Hint: hypoxic drive in chronic CO₂ retention.)</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 1 answer space"></div>
+      <div class="ruled long" role="region" aria-label="Case 1 answer space continued"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 2</span>
+      <p class="case-title">The diabetic in DKA</p>
+      <p class="case-body">A 19-year-old with type 1 diabetes presents confused with deep, rapid breathing (Kussmaul respirations). Glucose 480 mg/dL. <strong>ABG:</strong> pH 7.12, PaCO₂ 18, HCO₃⁻ 6, PaO₂ 102. <strong>Urine dipstick:</strong> glucose ++++, ketones +++, specific gravity 1.032.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Interpret the ABG. What is the primary disorder and what is the role of the low PaCO₂?</li>
+          <li>Why is glucose in the urine, and why are ketones present?</li>
+          <li>Explain Kussmaul respirations as a compensatory mechanism. Reference both the brainstem chemoreceptors and the bicarbonate equation.</li>
+          <li>Why is the specific gravity high? What does this say about the patient's volume status?</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 2 answer space"></div>
+      <div class="ruled long" role="region" aria-label="Case 2 answer space continued"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 3</span>
+      <p class="case-title">The pulmonary embolism</p>
+      <p class="case-body">A 28-year-old woman, 2 weeks postpartum, presents with sudden chest pain and shortness of breath. HR 118, SpO₂ 88% on room air. <strong>ABG:</strong> pH 7.51, PaCO₂ 26, HCO₃⁻ 22, PaO₂ 62.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Interpret the ABG. What is the primary disorder?</li>
+          <li>Why is PaO₂ low while pH is high? (These can seem contradictory.) Reference how PE affects ventilation vs perfusion.</li>
+          <li>Why does PE cause hyperventilation in the first place? (Reference irritant receptors and hypoxia drive.)</li>
+          <li>Two factors in this patient's history put her at high risk for venous thromboembolism. Identify both.</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 3 answer space"></div>
+      <div class="ruled long" role="region" aria-label="Case 3 answer space continued"></div>
+    </div>
+
+    <div class="case">
+      <span class="case-label">Case 4</span>
+      <p class="case-title">The acute kidney injury</p>
+      <p class="case-body">A 75-year-old woman is hospitalized for severe pneumonia and started on IV vancomycin and gentamicin. Five days in, urine output drops to 200 mL/day. Creatinine rises from 0.9 to 3.4. <strong>Urine dipstick:</strong> protein +, blood trace, specific gravity 1.012, all else negative. <strong>ABG:</strong> pH 7.30, PaCO₂ 32, HCO₃⁻ 16, PaO₂ 88.</p>
+      <div class="case-prompts">
+        <ol>
+          <li>Interpret the ABG.</li>
+          <li>What is the most likely cause of her acute kidney injury (AKI), and which specific nephron segment is affected? Reference the Week 6 Anatomy nephron labeling.</li>
+          <li>Why is the urine specific gravity 1.012 despite her being oliguric? (Hint: damaged tubules cannot concentrate urine.)</li>
+          <li>Why is metabolic acidosis a complication of AKI? (Reference the kidney's normal role in acid excretion and bicarbonate regeneration.)</li>
+        </ol>
+      </div>
+      <div class="ruled long" role="region" aria-label="Case 4 answer space"></div>
+      <div class="ruled long" role="region" aria-label="Case 4 answer space continued"></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s5-title">
+    <header class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-titles">
+        <p class="section-eyebrow">Physiology · Final Synthesis</p>
+        <h2 class="section-title" id="s5-title">Integrate respiratory and renal compensation across an acid-base disturbance</h2>
+        <p class="section-anchor">The most heavily weighted question in the workbook.</p>
+      </div>
+    </header>
+
+    <div class="synthesis">
+      <span class="synthesis-label">Synthesis question · Most weighted</span>
+      <p class="synthesis-prompt">A 62-year-old woman with chronic kidney disease (baseline creatinine 2.4) develops severe pneumonia and respiratory failure. <strong>ABG on arrival:</strong> pH 7.16, PaCO₂ 60, HCO₃⁻ 14, PaO₂ 50. <strong>Spirometry not feasible due to her acute respiratory failure.</strong></p>
+      <p class="synthesis-prompt"><strong>In four to six sentences, integrate respiratory and renal physiology to explain her acid-base picture.</strong> Your answer must integrate:</p>
+      <p class="synthesis-prompt">(1) the primary respiratory disorder she has and why (reference pneumonia + alveolar gas exchange + the respiratory membrane), (2) the primary metabolic disorder she has and why (reference her CKD and normal kidney role in acid-base balance), (3) why this is called a "mixed disorder" rather than primary respiratory acidosis with metabolic compensation, (4) what would normally compensate for her respiratory acidosis if her kidneys were healthy, and why that compensation is failing, (5) why her PaO₂ matters more urgently than her acid-base status in determining the next intervention.</p>
+      <div class="ruled long" role="region" aria-label="Final synthesis answer space"></div>
+      <div class="ruled long" role="region" aria-label="Final synthesis answer space continued"></div>
+    </div>
+  </section>
+  <div class="partner-link">
+    <span class="partner-link-label">Looking for structure identification? See the <strong>Week 6 Anatomy Workbook</strong>.</span>
+    <a href="week06_anatomy_workbook.html">Open →</a>
+  </div>
+
+  <section class="submission" aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Before you submit</h2>
+    <p>1. Spirometry classification table (Section 01) is filled in for all six patients plus the bronchodilator response prompt.</p>
+    <p>2. ABG interpretation table (Section 02) is filled in for all six patients plus likely clinical causes A through E.</p>
+    <p>3. Urine dipstick pattern recognition table (Section 03) is filled in for all six patients.</p>
+    <p>4. All four clinical cases (Section 04) have answers to every numbered prompt.</p>
+    <p>5. Final synthesis question (Section 05) integrates all five required elements.</p>
+        <p style="margin-top: 8px; font-size: 0.92rem; color: var(--ocean);"><strong>If any drawings were built digitally:</strong> attach the file (Google Doc / Drawing / Word / PowerPoint) to your Canvas submission AND share the revision history link. Drawings without revision history will not receive credit.</p>
+
+    <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 6 Physiology Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
+  </section>
+
+</main>
+
+
+<script>
+  // Auto-load images from data-pending attribute
+  // To customize image folder, change IMAGE_FOLDER below.
+  // Examples:
+  //   IMAGE_FOLDER = '';           // images in same folder as HTML (default)
+  //   IMAGE_FOLDER = 'images/';    // images in a subfolder named "images"
+  //   IMAGE_FOLDER = 'bio304_images/';  // any other subfolder name
+  (function () {
+    const IMAGE_FOLDER = '';
+    const imgs = document.querySelectorAll('img[data-pending]');
+    imgs.forEach(function (img) {
+      const filename = img.getAttribute('data-pending');
+      if (filename && !img.getAttribute('src')) {
+        img.src = IMAGE_FOLDER + filename;
+      }
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-w06-physiology-workbook';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
