@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 · Regular and Substantive Interaction (RSI) Statement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
+    --sand: #f5e6d3; --sand-soft: #faf3e8;
+    --terra: #c44536; --terra-soft: #e8a499;
+    --kelp: #5a7553; --kelp-soft: #aabba0;
+    --paper: #fdfbf7; --line: #c9d4d8; --muted: #5a6b73;
+    --shadow-md: 0 4px 14px rgba(20, 48, 75, 0.08);
+    --radius-md: 12px; --radius-lg: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 980px; margin: 0 auto; padding: 0 28px 80px; }
+
+  header.masthead { padding: 48px 0 24px; border-bottom: 2.5px solid var(--ocean-deep); margin-bottom: 32px; position: relative; }
+  header.masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
+  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(1.9rem, 4vw, 2.5rem); line-height: 1.15; color: var(--ocean-deep); margin-bottom: 14px; }
+  h1.title em { font-style: italic; color: var(--terra); }
+  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.1rem; color: var(--ocean); max-width: 760px; }
+
+  .audience-pills {
+    display: inline-flex; gap: 8px; margin-top: 16px; flex-wrap: wrap;
+  }
+  .audience-pill {
+    background: var(--sea-glass-soft);
+    border: 1px solid var(--sea-glass);
+    color: var(--ocean-deep);
+    padding: 5px 14px; border-radius: 999px;
+    font-size: 0.78rem; font-weight: 600;
+  }
+
+  .section { margin-top: 44px; scroll-margin-top: 20px; }
+  .section h2 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem;
+    color: var(--ocean-deep); margin-bottom: 14px;
+    padding-bottom: 8px; border-bottom: 1.5px solid var(--ocean-deep);
+  }
+  .section h2 em { font-style: italic; color: var(--terra); }
+  .section h3 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.15rem;
+    color: var(--ocean-deep); margin: 22px 0 10px;
+  }
+  .section p { margin-bottom: 14px; max-width: 820px; line-height: 1.65; }
+  .section p:last-child { margin-bottom: 0; }
+  .section ul { padding-left: 24px; margin: 8px 0 14px; }
+  .section li { padding: 4px 0; line-height: 1.6; }
+
+  /* SUMMARY CARD */
+  .summary-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--terra);
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+    margin: 0 0 32px;
+    box-shadow: var(--shadow-md);
+  }
+  .summary-card h2 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.35rem;
+    color: var(--ocean-deep); margin-bottom: 12px;
+    padding: 0; border: 0;
+  }
+  .summary-card h2 em { font-style: italic; color: var(--terra); }
+
+  .compliance-stat {
+    display: grid; grid-template-columns: 80px 1fr; gap: 18px;
+    margin: 18px 0 6px; align-items: center;
+  }
+  .stat-num {
+    font-family: 'Lora', serif; font-style: italic; font-weight: 500;
+    font-size: 3rem; color: var(--terra); line-height: 1;
+    text-align: center;
+  }
+  .stat-text {
+    font-size: 0.94rem; line-height: 1.55; color: var(--ink);
+  }
+  .stat-text strong { color: var(--ocean-deep); }
+
+  /* CATEGORY CARDS */
+  .category-grid { display: grid; gap: 18px; margin: 16px 0; }
+
+  .category-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 0;
+    overflow: hidden;
+  }
+  .cat-header {
+    background: var(--ocean-deep); color: white;
+    padding: 16px 24px;
+    display: grid; grid-template-columns: 50px 1fr auto;
+    gap: 16px; align-items: center;
+  }
+  .cat-num {
+    font-family: 'Lora', serif; font-style: italic; font-weight: 500;
+    font-size: 1.6rem; color: var(--terra-soft); line-height: 1;
+  }
+  .cat-name {
+    font-family: 'Lora', serif; font-weight: 500;
+    font-size: 1.15rem;
+  }
+  .cat-name em { font-style: italic; color: var(--terra-soft); }
+  .cat-status {
+    background: var(--terra); color: white;
+    padding: 4px 14px; border-radius: 999px;
+    font-size: 0.74rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  @media (max-width: 600px) {
+    .cat-header { grid-template-columns: 50px 1fr; }
+    .cat-status { grid-column: 2; justify-self: start; margin-top: 6px; }
+  }
+
+  .cat-body {
+    padding: 22px 26px;
+  }
+  .cat-detail-grid {
+    display: grid; grid-template-columns: 140px 1fr;
+    gap: 14px 22px; margin-top: 10px;
+  }
+  @media (max-width: 600px) {
+    .cat-detail-grid { grid-template-columns: 1fr; gap: 4px 0; }
+    .cat-detail-grid > *:nth-child(odd) { margin-top: 12px; }
+  }
+  .cat-detail-grid > *:first-child { margin-top: 0 !important; }
+  .detail-label {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+    padding-top: 4px;
+  }
+  .detail-value { font-size: 0.92rem; line-height: 1.55; }
+  .detail-value strong { color: var(--ocean-deep); }
+
+  .evidence-list {
+    margin: 8px 0 0;
+    padding: 12px 18px;
+    background: var(--sea-glass-soft);
+    border-radius: 8px;
+    list-style: none;
+  }
+  .evidence-list li {
+    padding: 4px 0 4px 22px; position: relative;
+    font-size: 0.86rem; line-height: 1.5;
+  }
+  .evidence-list li::before {
+    content: '◆'; position: absolute; left: 0;
+    color: var(--terra); font-size: 0.78rem;
+  }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--sand-soft);
+    border-left: 4px solid var(--terra);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 18px 24px; margin: 16px 0;
+  }
+  .callout-label {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--terra); margin-bottom: 6px;
+  }
+  .callout p { margin-bottom: 6px; max-width: none; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout.info { background: var(--sea-glass-soft); border-left-color: var(--ocean); }
+  .callout.info .callout-label { color: var(--ocean-deep); }
+
+  /* AUDITOR BOX */
+  .auditor-box {
+    background: linear-gradient(150deg, var(--ocean-deep), var(--ink));
+    color: white;
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+    margin: 24px 0;
+    position: relative; overflow: hidden;
+  }
+  .auditor-box::before {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, var(--terra) 0%, transparent 70%);
+    opacity: 0.3; pointer-events: none;
+  }
+  .auditor-box h3 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.25rem;
+    color: white; margin: 0 0 12px; padding: 0; border: 0;
+    position: relative;
+  }
+  .auditor-box h3 em { font-style: italic; color: var(--terra-soft); }
+  .auditor-box p { color: white; max-width: none; margin-bottom: 12px; position: relative; }
+  .auditor-box p:last-child { margin-bottom: 0; }
+  .auditor-box a { color: var(--terra-soft); text-decoration: none; font-weight: 600; }
+  .auditor-box a:hover { color: white; text-decoration: underline; }
+  .auditor-box ul { color: white; }
+  .auditor-box li { color: white; }
+
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .skip-link { display: none !important; }
+    .summary-card, .category-card, .callout, .auditor-box {
+      break-inside: avoid; box-shadow: none;
+    }
+    .auditor-box { background: white !important; color: var(--ink) !important; border: 2px solid var(--ink); }
+    .auditor-box h3, .auditor-box p, .auditor-box ul, .auditor-box li { color: var(--ink) !important; }
+    .auditor-box h3 em, .auditor-box a { color: var(--terra) !important; }
+    .cat-header { background: var(--ocean-deep) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    @page { size: letter; margin: 0.5in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="page" id="main-content" role="main">
+
+  <header class="masthead">
+    <p class="eyebrow">BIO 304 · Regulatory Compliance Statement</p>
+    <h1 class="title">Regular and Substantive <em>Interaction</em></h1>
+    <p class="subtitle">How this online course meets and exceeds federal RSI requirements. Documentation for students, compliance reviewers, and accreditation auditors.</p>
+    <div class="audience-pills">
+      <span class="audience-pill">For students</span>
+      <span class="audience-pill">For compliance reviewers</span>
+      <span class="audience-pill">For accreditation auditors</span>
+    </div>
+  </header>
+
+  <!-- SUMMARY -->
+  <section class="summary-card" aria-labelledby="summary-head">
+    <h2 id="summary-head">Compliance <em>summary</em></h2>
+    <p>Federal regulation 34 CFR 600.2 requires that distance education courses include regular and substantive interaction (RSI) between students and the instructor. To qualify, a course must include interactions from at least <strong>two of five</strong> approved categories.</p>
+
+    <div class="compliance-stat">
+      <span class="stat-num">4 / 5</span>
+      <p class="stat-text"><strong>BIO 304 documents instructor-led interaction in four of five RSI categories.</strong> This places the course well above the federal minimum and provides defensible evidence for accreditation review.</p>
+    </div>
+  </section>
+
+  <!-- WHAT IS RSI -->
+  <section class="section" aria-labelledby="what-head">
+    <h2 id="what-head">What is <em>RSI</em>?</h2>
+
+    <p>Regular and Substantive Interaction is a federal requirement for distance education courses that qualify for Title IV federal financial aid. The requirement was clarified in 2021 to ensure that online courses provide genuine instructor presence and engagement, not just self-paced content with auto-graded assessments.</p>
+
+    <p>To meet the federal definition, instructor-student interactions must be:</p>
+
+    <ul>
+      <li><strong>Regular:</strong> Predictable, ongoing presence throughout the course, not occasional or one-time events.</li>
+      <li><strong>Substantive:</strong> Engaging students in teaching, learning, and assessment consistent with the academic content. Not limited to administrative or technical communications.</li>
+      <li><strong>Initiated by the instructor:</strong> Active engagement from the instructor side, not just availability for student-initiated questions.</li>
+    </ul>
+
+    <p>The federal regulation defines five categories of substantive interaction. A course must document interactions in at least two categories to qualify as having RSI. Auto-graded quizzes alone do not satisfy this requirement, even when feedback is generated automatically.</p>
+
+    <h3>The five federal categories</h3>
+    <ol style="padding-left: 24px; margin: 8px 0 14px;">
+      <li style="padding: 4px 0;"><strong>Direct instruction</strong> by the instructor (synchronous or asynchronous, recorded by the instructor)</li>
+      <li style="padding: 4px 0;"><strong>Assessing or providing feedback</strong> on student coursework</li>
+      <li style="padding: 4px 0;"><strong>Providing information or responding to questions</strong> about course content</li>
+      <li style="padding: 4px 0;"><strong>Facilitating group discussion</strong> regarding course content</li>
+      <li style="padding: 4px 0;"><strong>Other interactions</strong> approved by the institution's accrediting agency</li>
+    </ol>
+  </section>
+
+  <!-- HOW BIO 304 MEETS RSI -->
+  <section class="section" aria-labelledby="how-head">
+    <h2 id="how-head">How BIO 304 <em>meets and exceeds</em> RSI</h2>
+
+    <p>This course documents instructor-led interaction in four of the five federal categories. Each category below specifies the form of interaction, the cadence at which it occurs, and where evidence can be located in the Canvas course shell.</p>
+
+    <div class="category-grid">
+
+      <!-- CATEGORY 1 -->
+      <article class="category-card">
+        <header class="cat-header">
+          <span class="cat-num">01</span>
+          <span class="cat-name">Direct <em>Instruction</em></span>
+          <span class="cat-status">Documented</span>
+        </header>
+        <div class="cat-body">
+          <p style="margin: 0;">Concept lectures recorded by Dr. Sharilyn Rennie are embedded in every weekly module. These recordings constitute direct instruction by the instructor as defined by federal regulation. Some lectures are repurposed from Dr. Rennie's prior anatomy and physiology courses where content overlaps. Others are recorded specifically for BIO 304. Curated YouTube content is provided as supplementary enrichment but is not a substitute for direct instruction.</p>
+
+          <div class="cat-detail-grid">
+            <span class="detail-label">Form</span>
+            <span class="detail-value">Recorded video lectures created by the instructor, embedded in Canvas weekly modules.</span>
+
+            <span class="detail-label">Cadence</span>
+            <span class="detail-value">At least one recorded lecture by Dr. Rennie in every weekly module across all 8 weeks of the course. Multiple lectures per week where content depth requires.</span>
+
+            <span class="detail-label">Substance</span>
+            <span class="detail-value">Each lecture covers anatomical and physiological content for the week's body system. Lectures are designed to teach concepts, not to deliver announcements or logistics.</span>
+
+            <span class="detail-label">Evidence</span>
+            <span class="detail-value">
+              <ul class="evidence-list">
+                <li>Embedded video files in Canvas weekly modules (visible to all enrolled students)</li>
+                <li>Recording metadata showing Dr. Rennie as creator</li>
+                <li>Video player analytics showing student viewing activity</li>
+                <li>Concept Videos page indexing all lectures by week</li>
+              </ul>
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- CATEGORY 2 -->
+      <article class="category-card">
+        <header class="cat-header">
+          <span class="cat-num">02</span>
+          <span class="cat-name">Feedback on <em>coursework</em></span>
+          <span class="cat-status">Documented</span>
+        </header>
+        <div class="cat-body">
+          <p style="margin: 0;">Dr. Rennie provides individual written feedback on student work using Canvas SpeedGrader. Feedback is personalized to the student's specific submission and addresses both strengths and opportunities for improvement.</p>
+
+          <div class="cat-detail-grid">
+            <span class="detail-label">Form</span>
+            <span class="detail-value">Individual written feedback in Canvas SpeedGrader on workbooks, portfolio pages, and discussions. Feedback addresses specific elements of each student's submission.</span>
+
+            <span class="detail-label">Cadence</span>
+            <span class="detail-value">Feedback provided within 5 business days of each submission deadline. Across the 8-week term, each student receives instructor feedback on 16 workbooks, 8 portfolio pages, 1 final compiled portfolio, and 8 discussion activities.</span>
+
+            <span class="detail-label">Substance</span>
+            <span class="detail-value">Feedback identifies specific strengths in the student's work, points to specific areas of misunderstanding, and where appropriate references the relevant section of the OpenStax textbook or course materials. Feedback is not limited to scoring rubrics.</span>
+
+            <span class="detail-label">Evidence</span>
+            <span class="detail-value">
+              <ul class="evidence-list">
+                <li>SpeedGrader records visible per assignment, per student</li>
+                <li>Individual grade comments visible to students in their gradebook</li>
+                <li>Audit-accessible feedback timestamps showing turnaround time</li>
+                <li>Workbook rubric documenting the 5-point accuracy spot-check on 1-2 undisclosed questions per assignment</li>
+              </ul>
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- CATEGORY 3 -->
+      <article class="category-card">
+        <header class="cat-header">
+          <span class="cat-num">03</span>
+          <span class="cat-name">Information &amp; <em>questions</em></span>
+          <span class="cat-status">Documented</span>
+        </header>
+        <div class="cat-body">
+          <p style="margin: 0;">Dr. Rennie maintains active, ongoing channels for providing course information and responding to student questions. The primary channel is the Virtual Office Hours forum on Canvas, supplemented by weekly announcements and email.</p>
+
+          <div class="cat-detail-grid">
+            <span class="detail-label">Form</span>
+            <span class="detail-value">
+              <strong>Weekly overview announcements</strong> posted in Canvas at the start of each week, previewing focus areas, common pitfalls, and timing reminders.<br><br>
+              <strong>Virtual Office Hours discussion forum</strong> for non-confidential questions, with public answers visible to all enrolled students.<br><br>
+              <strong>Email and Canvas Inbox</strong> for confidential matters (grades, accommodations, personal circumstances).
+            </span>
+
+            <span class="detail-label">Cadence</span>
+            <span class="detail-value">
+              <strong>Announcements:</strong> Weekly, every Sunday or Monday, for all 8 weeks of the term.<br>
+              <strong>Forum monitoring:</strong> Every 24 to 48 hours on weekdays.<br>
+              <strong>Email response:</strong> Within 24 to 48 hours on weekdays.
+            </span>
+
+            <span class="detail-label">Substance</span>
+            <span class="detail-value">Responses address specific course content, clarify assignment requirements, point to course resources, and provide study guidance. Responses are not limited to administrative redirects.</span>
+
+            <span class="detail-label">Evidence</span>
+            <span class="detail-value">
+              <ul class="evidence-list">
+                <li>Canvas Announcements log (timestamped, all weekly posts visible)</li>
+                <li>Virtual Office Hours discussion thread (visible to all enrolled students)</li>
+                <li>Canvas Inbox message records</li>
+                <li>"How to Reach Me" page documenting communication channels and response time commitments</li>
+              </ul>
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- CATEGORY 4 -->
+      <article class="category-card">
+        <header class="cat-header">
+          <span class="cat-num">04</span>
+          <span class="cat-name">Facilitating <em>discussion</em></span>
+          <span class="cat-status">Documented</span>
+        </header>
+        <div class="cat-body">
+          <p style="margin: 0;">Dr. Rennie posts class-wide synthesis content in the Discussion area at predictable intervals. These posts highlight what students are doing well, identify common areas of misunderstanding, and connect student work to broader clinical contexts.</p>
+
+          <div class="cat-detail-grid">
+            <span class="detail-label">Form</span>
+            <span class="detail-value">Instructor-authored synthesis posts in the graded Discussion area. Posts review submitted student work in aggregate, identify patterns, highlight strong examples (with student permission), and address common misunderstandings.</span>
+
+            <span class="detail-label">Cadence</span>
+            <span class="detail-value">Bi-weekly synthesis posts at the conclusion of Weeks 2, 4, 6, and 8. Four posts total across the term.</span>
+
+            <span class="detail-label">Substance</span>
+            <span class="detail-value">Each synthesis post addresses substantive course content, not just procedural reminders. Topics include common reasoning errors in physiology cases, anatomy structures most often misidentified, and examples of strong clinical reasoning from student portfolios.</span>
+
+            <span class="detail-label">Evidence</span>
+            <span class="detail-value">
+              <ul class="evidence-list">
+                <li>Discussion forum posts authored by Dr. Rennie (timestamped, visible to all enrolled students)</li>
+                <li>Synthesis posts archived in the Canvas course shell</li>
+                <li>Cadence schedule documented in the course calendar</li>
+              </ul>
+            </span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- WHY THIS MATTERS FOR STUDENTS -->
+  <section class="section" aria-labelledby="why-students-head">
+    <h2 id="why-students-head">Why this <em>matters for students</em></h2>
+
+    <p>RSI compliance is not just a regulatory requirement. Research on online learning consistently shows that <strong>regular instructor presence is one of the strongest predictors of student success in distance education</strong>. Courses where instructors are visible, responsive, and substantively engaged have higher completion rates, higher learning outcomes, and higher student satisfaction than courses where instructors are absent or only respond reactively.</p>
+
+    <p>Building this course around RSI principles is intentional. You should expect to see Dr. Rennie:</p>
+
+    <ul>
+      <li>In every weekly module, through recorded concept lectures</li>
+      <li>In your individual assignment feedback, with specific written comments on your work</li>
+      <li>In the Virtual Office Hours forum, answering questions within 1 to 2 days</li>
+      <li>In weekly announcements at the start of each week</li>
+      <li>In the Discussion area, periodically synthesizing class-wide work</li>
+    </ul>
+
+    <p>If you are not seeing this level of presence, please let Dr. Rennie know. The forum is the right place for this kind of feedback, or email if you prefer to keep it private.</p>
+  </section>
+
+  <!-- AUDITOR INFO -->
+  <section class="section" aria-labelledby="auditor-head">
+    <h2 id="auditor-head">For compliance reviewers and <em>auditors</em></h2>
+
+    <div class="auditor-box">
+      <h3>Additional <em>documentation</em></h3>
+      <p>This statement provides public-facing documentation of RSI compliance for BIO 304. For compliance review or accreditation audit purposes, additional materials are available upon request:</p>
+      <ul style="padding-left: 24px; margin: 8px 0 14px;">
+        <li style="padding: 4px 0;">Copies of all weekly announcements (timestamped)</li>
+        <li style="padding: 4px 0;">Sample SpeedGrader feedback (de-identified) demonstrating substantive review</li>
+        <li style="padding: 4px 0;">Virtual Office Hours forum response samples</li>
+        <li style="padding: 4px 0;">Discussion synthesis post archive</li>
+        <li style="padding: 4px 0;">Recorded lecture inventory by week</li>
+        <li style="padding: 4px 0;">Aggregate engagement analytics from Canvas (course-wide, de-identified)</li>
+      </ul>
+      <p>Contact Dr. Sharilyn Rennie at <a href="mailto:rennies@arc.losrios.edu">rennies@arc.losrios.edu</a> for documentation requests. Please allow 5 to 7 business days for assembly of audit-ready materials.</p>
+    </div>
+
+    <div class="callout info">
+      <p class="callout-label">Regulatory citation</p>
+      <p>The federal definition of distance education and the requirement for regular and substantive interaction is codified at 34 CFR 600.2. The 2021 clarification was issued by the U.S. Department of Education in the Federal Register and applies to all institutions participating in Title IV federal financial aid programs.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="closing-head">
+    <h2 id="closing-head">A <em>final note</em></h2>
+
+    <p>Building a regulatory compliance statement into a public course page is unusual. Most institutions document RSI compliance internally and never share that documentation with students or the public. This course takes a different approach for three reasons:</p>
+
+    <ul>
+      <li><strong>Transparency for students.</strong> You deserve to know what to expect from your instructor and what level of engagement is being committed to.</li>
+      <li><strong>Accountability for the instructor.</strong> Publishing this commitment publicly makes it harder to drift from the standard. The page is a contract.</li>
+      <li><strong>A model for other courses.</strong> Online education is improving when instructors document their practices. Sharing this approach is part of contributing to that improvement.</li>
+    </ul>
+
+    <p>If you have questions about how RSI is implemented in this course, or suggestions for how to do it better, the Virtual Office Hours forum is the right place to raise them.</p>
+  </section>
+
+</div>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-rsi-statement';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>

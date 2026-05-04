@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 · How to Reach Me</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
+    --sand: #f5e6d3; --sand-soft: #faf3e8;
+    --terra: #c44536; --terra-soft: #e8a499;
+    --kelp: #5a7553; --kelp-soft: #aabba0;
+    --paper: #fdfbf7; --line: #c9d4d8; --muted: #5a6b73;
+    --shadow-md: 0 4px 14px rgba(20, 48, 75, 0.08);
+    --radius-md: 12px; --radius-lg: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 920px; margin: 0 auto; padding: 0 28px 80px; }
+
+  header.masthead { padding: 48px 0 24px; border-bottom: 2.5px solid var(--ocean-deep); margin-bottom: 32px; position: relative; }
+  header.masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
+  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(1.9rem, 4vw, 2.5rem); line-height: 1.15; color: var(--ocean-deep); margin-bottom: 14px; }
+  h1.title em { font-style: italic; color: var(--terra); }
+  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.1rem; color: var(--ocean); max-width: 720px; }
+
+  .section { margin-top: 40px; }
+  .section h2 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem;
+    color: var(--ocean-deep); margin-bottom: 14px;
+    padding-bottom: 8px; border-bottom: 1.5px solid var(--ocean-deep);
+  }
+  .section h2 em { font-style: italic; color: var(--terra); }
+  .section h3 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.15rem;
+    color: var(--ocean-deep); margin: 22px 0 10px;
+  }
+  .section p { margin-bottom: 14px; max-width: 760px; line-height: 1.65; }
+  .section p:last-child { margin-bottom: 0; }
+  .section ul { padding-left: 24px; margin: 8px 0 14px; }
+  .section li { padding: 4px 0; line-height: 1.6; }
+
+  /* DECISION TREE */
+  .decision-tree {
+    background: white;
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--terra);
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+    margin: 0 0 28px;
+    box-shadow: var(--shadow-md);
+  }
+  .decision-tree h2 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.35rem;
+    color: var(--ocean-deep); margin-bottom: 6px; padding: 0; border: 0;
+  }
+  .decision-tree h2 em { font-style: italic; color: var(--terra); }
+  .decision-tree .lede {
+    font-size: 0.94rem; color: var(--muted); margin-bottom: 20px;
+  }
+
+  .channel-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 820px) { .channel-grid { grid-template-columns: 1fr; } }
+
+  .channel {
+    background: var(--sea-glass-soft);
+    border: 1px solid var(--sea-glass);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .channel.preferred { background: rgba(196, 69, 54, 0.06); border-color: rgba(196, 69, 54, 0.2); }
+  .channel-rank {
+    font-family: 'Lora', serif; font-style: italic;
+    font-weight: 500; color: var(--terra);
+    font-size: 0.82rem;
+  }
+  .channel-name {
+    font-family: 'Lora', serif; font-weight: 500;
+    font-size: 1.15rem; color: var(--ocean-deep);
+  }
+  .channel-when {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .channel-desc {
+    font-size: 0.88rem; line-height: 1.5; color: var(--ink);
+  }
+  .channel-time {
+    font-size: 0.82rem; font-weight: 600; color: var(--ocean);
+    margin-top: auto; padding-top: 10px;
+    border-top: 1px dashed var(--sea-glass);
+  }
+
+  /* CONTACT INFO BOX */
+  .contact-card {
+    background: linear-gradient(150deg, var(--ocean-deep), var(--ink));
+    color: white;
+    border-radius: var(--radius-lg);
+    padding: 32px 36px;
+    margin: 24px 0;
+    position: relative; overflow: hidden;
+  }
+  .contact-card::before {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 240px; height: 240px;
+    background: radial-gradient(circle, var(--terra) 0%, transparent 70%);
+    opacity: 0.3; pointer-events: none;
+  }
+  .contact-card h3 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem;
+    color: white; margin: 0 0 18px; padding: 0; border: 0;
+    position: relative;
+  }
+  .contact-card h3 em { font-style: italic; color: var(--terra-soft); }
+
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 14px; position: relative;
+  }
+  @media (max-width: 600px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-item {
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 14px 18px;
+  }
+  .contact-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--terra-soft); margin-bottom: 6px;
+  }
+  .contact-value { font-size: 0.94rem; color: white; line-height: 1.45; }
+  .contact-value a { color: var(--terra-soft); text-decoration: none; font-weight: 600; }
+  .contact-value a:hover { color: white; text-decoration: underline; }
+
+  /* EXAMPLES BOX */
+  .examples {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 0; margin: 16px 0;
+    overflow: hidden;
+  }
+  .example-row {
+    display: grid; grid-template-columns: 1fr 200px;
+    gap: 18px; padding: 16px 22px;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .example-row:last-child { border-bottom: none; }
+  .example-row:nth-child(odd) { background: var(--sea-glass-soft); }
+  .example-q {
+    font-size: 0.92rem; line-height: 1.55; color: var(--ink);
+  }
+  .example-q strong { color: var(--ocean-deep); }
+  .example-a {
+    font-family: 'Lora', serif; font-style: italic; font-weight: 500;
+    color: var(--terra); font-size: 0.92rem; text-align: right;
+  }
+  @media (max-width: 600px) {
+    .example-row { grid-template-columns: 1fr; gap: 4px; }
+    .example-a { text-align: left; }
+  }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--sand-soft);
+    border-left: 4px solid var(--terra);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 18px 24px; margin: 16px 0;
+  }
+  .callout-label {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--terra); margin-bottom: 6px;
+  }
+  .callout p { margin-bottom: 6px; max-width: none; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout.info { background: var(--sea-glass-soft); border-left-color: var(--ocean); }
+  .callout.info .callout-label { color: var(--ocean-deep); }
+
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .skip-link { display: none !important; }
+    .decision-tree, .channel, .contact-card, .examples, .callout {
+      break-inside: avoid; box-shadow: none;
+    }
+    .contact-card { background: white !important; color: var(--ink) !important; border: 2px solid var(--ink); }
+    .contact-card h3, .contact-card p { color: var(--ink) !important; }
+    .contact-card h3 em, .contact-label { color: var(--terra) !important; }
+    .contact-item { background: var(--sea-glass-soft) !important; }
+    .contact-value, .contact-value a { color: var(--ink) !important; }
+    @page { size: letter; margin: 0.5in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="page" id="main-content" role="main">
+
+  <header class="masthead">
+    <p class="eyebrow">BIO 304 · Communication</p>
+    <h1 class="title">How to <em>reach me</em></h1>
+    <p class="subtitle">Three channels. Three different purposes. Pick the right one and you will get a faster, better answer.</p>
+  </header>
+
+  <section class="decision-tree" aria-labelledby="dt-head">
+    <h2 id="dt-head">Choose your <em>channel</em></h2>
+    <p class="lede">Most questions belong in one specific place. Use this guide to pick the right channel for what you need.</p>
+
+    <div class="channel-grid">
+      <div class="channel preferred">
+        <span class="channel-rank">First choice</span>
+        <h3 class="channel-name">Virtual Office Hours forum</h3>
+        <span class="channel-when">For most questions</span>
+        <p class="channel-desc">Course content, assignment clarifications, technical questions about Canvas or Honorlock, study strategies, "how do I do this?" questions. <strong>Anything that is not confidential belongs here.</strong></p>
+        <p class="channel-time">Response: 24 to 48 hours, weekdays</p>
+      </div>
+
+      <div class="channel">
+        <span class="channel-rank">Second choice</span>
+        <h3 class="channel-name">Email or Canvas Inbox</h3>
+        <span class="channel-when">For confidential matters</span>
+        <p class="channel-desc">Grade questions, accommodation needs, personal circumstances, anything you would not want classmates to see. Use email for things that are about you specifically, not the course.</p>
+        <p class="channel-time">Response: 24 to 48 hours, weekdays</p>
+      </div>
+
+      <div class="channel">
+        <span class="channel-rank">Third choice</span>
+        <h3 class="channel-name">One-on-one Zoom</h3>
+        <span class="channel-when">For deep conversations</span>
+        <p class="channel-desc">Complex situations that need back-and-forth conversation, study coaching, going over feedback, or getting unstuck on a difficult concept. By appointment only, scheduled by email.</p>
+        <p class="channel-time">Response: scheduled within 1 to 3 days</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="why-forum-head">
+    <h2 id="why-forum-head">Why the <em>forum is preferred</em></h2>
+
+    <p>Most professors I know use email as the default contact method. I am asking you to use the Virtual Office Hours forum instead, for four reasons:</p>
+
+    <ul>
+      <li><strong>Other students benefit from your questions.</strong> If you are confused about something, three other students probably are too. Posting publicly means everyone gets the answer.</li>
+      <li><strong>You can read others' questions.</strong> Some of the most useful learning happens when you see what your classmates are wrestling with. The forum becomes a study aid.</li>
+      <li><strong>Faster responses.</strong> I check the forum daily on weekdays. Email gets answered too, but the forum is my first stop.</li>
+      <li><strong>Searchable record.</strong> Questions and answers stay in the forum all semester. You can search back for "ABG analysis" or "portfolio submission" and find the answer immediately.</li>
+    </ul>
+
+    <p>The result is fewer duplicate emails for me, faster responses for everyone, and a richer learning environment for the class.</p>
+  </section>
+
+  <section class="section" aria-labelledby="examples-head">
+    <h2 id="examples-head">Quick <em>examples</em></h2>
+
+    <p>Not sure which channel to use? Here are some common situations:</p>
+
+    <div class="examples">
+      <div class="example-row">
+        <span class="example-q"><strong>"I do not understand the difference between hypotonic and hypertonic solutions."</strong></span>
+        <span class="example-a">Forum</span>
+      </div>
+      <div class="example-row">
+        <span class="example-q"><strong>"I think I missed a question on Quiz 3 that was actually correct, can you regrade?"</strong></span>
+        <span class="example-a">Email</span>
+      </div>
+      <div class="example-row">
+        <span class="example-q"><strong>"My DSPS letter was just approved and I need to discuss accommodations."</strong></span>
+        <span class="example-a">Email or Zoom</span>
+      </div>
+      <div class="example-row">
+        <span class="example-q"><strong>"What does 'consult OpenStax 5.2' mean if I cannot find that section?"</strong></span>
+        <span class="example-a">Forum</span>
+      </div>
+      <div class="example-row">
+        <span class="example-q"><strong>"I am struggling with anatomy in general and I think I need study coaching."</strong></span>
+        <span class="example-a">Zoom</span>
+      </div>
+      <div class="example-row">
+        <span class="example-q"><strong>"How do I upload my workbook PDF when the file is too big?"</strong></span>
+        <span class="example-a">Forum</span>
+      </div>
+      <div class="example-row">
+        <span class="example-q"><strong>"I had a family emergency and missed a discussion deadline. What are my options?"</strong></span>
+        <span class="example-a">Email</span>
+      </div>
+      <div class="example-row">
+        <span class="example-q"><strong>"Are we supposed to draw the entire bronchial tree or just the major branches?"</strong></span>
+        <span class="example-a">Forum</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="contact-head">
+    <h2 id="contact-head">Contact <em>information</em></h2>
+
+    <div class="contact-card">
+      <h3><em>Dr. Sharilyn Rennie</em></h3>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <p class="contact-label">Email</p>
+          <p class="contact-value"><a href="mailto:rennies@arc.losrios.edu">rennies@arc.losrios.edu</a></p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">Canvas Inbox</p>
+          <p class="contact-value">From within the BIO 304 Canvas course</p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">Virtual Office Hours forum</p>
+          <p class="contact-value">Pinned in the BIO 304 discussion section</p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">One-on-one Zoom</p>
+          <p class="contact-value"><a href="https://lrccd.zoom.us/j/4748608065">lrccd.zoom.us/j/4748608065</a></p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">Response time (weekdays)</p>
+          <p class="contact-value">24 to 48 hours</p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">Weekend &amp; holiday messages</p>
+          <p class="contact-value">Response on the next business day</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="zoom-head">
+    <h2 id="zoom-head">How to schedule <em>a Zoom meeting</em></h2>
+
+    <p>Email me at <a href="mailto:rennies@arc.losrios.edu" style="color: var(--terra); font-weight: 600; text-decoration: none;">rennies@arc.losrios.edu</a> to request a meeting. Three things to include:</p>
+
+    <ul>
+      <li><strong>Two or three time windows that work for you.</strong> Give me options so I can find a time that fits both schedules.</li>
+      <li><strong>What you want to discuss.</strong> A brief description so I can prepare any necessary resources before we meet.</li>
+      <li><strong>How long you expect to need.</strong> Most coaching meetings are 20 to 30 minutes. Quick check-ins can be 10 minutes.</li>
+    </ul>
+
+    <p>Meetings are held at <a href="https://lrccd.zoom.us/j/4748608065" style="color: var(--terra); font-weight: 600; text-decoration: none;">lrccd.zoom.us/j/4748608065</a>. Be ready to start on time. If you cannot make a scheduled meeting, email me at least 2 hours in advance to reschedule.</p>
+  </section>
+
+  <section class="section" aria-labelledby="end-head">
+    <h2 id="end-head">After the <em>course ends</em></h2>
+
+    <p>The Canvas course closes after final grades are submitted. After that:</p>
+
+    <ul>
+      <li><strong>The Virtual Office Hours forum will not be monitored.</strong> Do not post questions there after the course ends; I will not see them.</li>
+      <li><strong>Email me directly</strong> at <a href="mailto:rennies@arc.losrios.edu" style="color: var(--terra); font-weight: 600; text-decoration: none;">rennies@arc.losrios.edu</a> for any questions, transcript verification requests, or letters of recommendation.</li>
+      <li><strong>Letters of recommendation</strong> require at least 2 weeks notice. Include the program you are applying to, the deadline, and a brief reminder of how I knew you (which course, when, what stood out about your work).</li>
+    </ul>
+
+    <div class="callout info">
+      <p class="callout-label">Stay in touch</p>
+      <p>If you go on to nursing school, EMT or paramedic certification, mortuary science, or any other allied health pathway, I would love to hear how it went. Send me an update. Watching former students succeed is one of the best parts of this work.</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-how-to-reach-me';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
