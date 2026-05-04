@@ -6,7 +6,7 @@
 <title>Week 01 Portfolio Template | BIO 304</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink: #1d3557;
@@ -14,11 +14,10 @@
   --ocean-deep: #14304b;
   --terra: #c44536;
   --kelp: #5a7553;
-  --sand-soft: #faf3e8;
-  --sea-glass-soft: #eef4f5;
-  --paper: #fdfbf7;
+  --paper: #ffffff;
   --line: #c9d4d8;
   --muted: #5a6b73;
+  --tint: #f4f7f8;
 }
 
 * { box-sizing: border-box; }
@@ -30,7 +29,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   color: var(--ink);
-  background: var(--paper);
+  background: #ffffff;
   margin: 0;
   padding: 0;
 }
@@ -63,7 +62,7 @@ main {
 
 /* Masthead */
 .masthead {
-  background: var(--paper);
+  background: #ffffff;
   border-bottom: 4px solid var(--ocean-deep);
   padding: 2rem 1.5rem 1.75rem;
   position: relative;
@@ -93,13 +92,13 @@ main {
   margin: 0 0 0.5rem;
 }
 .masthead h1 {
-  font-family: 'Lora', serif;
-  font-style: italic;
-  font-weight: 500;
-  font-size: 2.25rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 2.05rem;
   line-height: 1.2;
   color: var(--ocean-deep);
   margin: 0 0 0.4rem;
+  letter-spacing: -0.01em;
 }
 .masthead .subtitle {
   font-size: 1.05rem;
@@ -150,11 +149,11 @@ main {
   margin-bottom: 1rem;
 }
 .section-head .section-num {
-  font-family: 'Lora', serif;
-  font-style: italic;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
   font-size: 0.95rem;
   color: var(--terra);
-  font-weight: 500;
+  letter-spacing: 0.04em;
 }
 .section-head .section-eyebrow {
   display: block;
@@ -166,12 +165,12 @@ main {
   margin-top: 0.15rem;
 }
 .section-head h2 {
-  font-family: 'Lora', serif;
-  font-style: italic;
-  font-weight: 500;
-  font-size: 1.6rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.45rem;
   color: var(--ocean-deep);
   margin: 0.3rem 0 0.5rem;
+  letter-spacing: -0.005em;
 }
 
 h3 {
@@ -206,18 +205,19 @@ a {
 a:hover { color: var(--terra); }
 
 strong { color: var(--ink); font-weight: 600; }
-em { font-family: 'Lora', serif; font-style: italic; color: var(--ocean-deep); }
+em { font-style: italic; color: var(--ocean-deep); }
 
 /* Callouts */
 .callout {
-  background: var(--sand-soft);
+  background: #ffffff;
+  border: 1px solid var(--line);
   border-left: 4px solid var(--terra);
   padding: 1rem 1.25rem;
   margin: 1.25rem 0;
   border-radius: 0 4px 4px 0;
 }
 .callout.kelp { border-left-color: var(--kelp); }
-.callout.ocean { border-left-color: var(--ocean); background: var(--sea-glass-soft); }
+.callout.ocean { border-left-color: var(--ocean); }
 .callout p:first-child { margin-top: 0; }
 .callout p:last-child { margin-bottom: 0; }
 .callout-label {
@@ -234,7 +234,7 @@ em { font-family: 'Lora', serif; font-style: italic; color: var(--ocean-deep); }
 
 /* Reference box (for Quick Reference at top of templates) */
 .refbox {
-  background: var(--sea-glass-soft);
+  background: #ffffff;
   border: 1px solid var(--line);
   border-top: 3px solid var(--ocean);
   padding: 1.1rem 1.25rem;
@@ -265,7 +265,7 @@ th, td {
   vertical-align: top;
 }
 th {
-  background: var(--sea-glass-soft);
+  background: #ffffff;
   color: var(--ocean-deep);
   font-weight: 700;
   font-size: 0.8rem;
@@ -273,11 +273,11 @@ th {
   text-transform: uppercase;
   border-bottom: 2px solid var(--ocean);
 }
-tbody tr:nth-child(even) { background: rgba(238, 244, 245, 0.4); }
+tbody tr:nth-child(even) { background: #ffffff; }
 
 /* Decision logic blocks (for portfolio middle section) */
 .decision {
-  background: var(--paper);
+  background: #ffffff;
   border: 1px solid var(--line);
   border-radius: 4px;
   padding: 1rem 1.15rem;
@@ -303,7 +303,8 @@ tbody tr:nth-child(even) { background: rgba(238, 244, 245, 0.4); }
 
 /* Scenario cards */
 .scenario {
-  background: var(--sand-soft);
+  background: #ffffff;
+  border: 1px solid var(--line);
   border-left: 3px solid var(--ocean);
   padding: 0.9rem 1.1rem;
   margin: 0.85rem 0;
@@ -320,7 +321,6 @@ tbody tr:nth-child(even) { background: rgba(238, 244, 245, 0.4); }
 }
 .scenario .vignette {
   font-style: italic;
-  font-family: 'Lora', serif;
   color: var(--ink);
   margin-bottom: 0.5rem;
 }
@@ -344,7 +344,7 @@ tbody tr:nth-child(even) { background: rgba(238, 244, 245, 0.4); }
 /* Synthesis (red accent) */
 .synthesis {
   border: 1.5px solid var(--terra);
-  background: rgba(196, 69, 54, 0.04);
+  background: #ffffff;
   padding: 1rem 1.2rem;
   border-radius: 4px;
   margin: 1.5rem 0;
@@ -367,7 +367,7 @@ tbody tr:nth-child(even) { background: rgba(238, 244, 245, 0.4); }
   margin: 1.25rem 0;
 }
 .card {
-  background: var(--paper);
+  background: #ffffff;
   border: 1px solid var(--line);
   border-top: 3px solid var(--ocean);
   border-radius: 4px;
