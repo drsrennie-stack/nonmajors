@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Week 7 Cognitive Trainer · Nutrition · BIO 304</title>
+<title>Week 6 Cognitive Trainer · Gas Exchange &amp; Waste · BIO 304</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
     --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
     --sand: #f5e6d3; --sand-soft: #faf3e8;
     --terra: #c44536; --terra-soft: #e8a499;
-    --kelp: #5a7553; --paper: #fdfbf7;
+    --kelp: #5a7553; --paper: #ffffff;
     --line: #c9d4d8; --muted: #5a6b73;
     --shadow-sm: 0 1px 2px rgba(20, 48, 75, 0.06);
     --radius-sm: 6px; --radius-md: 12px; --radius-lg: 18px;
@@ -29,28 +29,28 @@
     html { scroll-behavior: auto; }
   }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: #ffffff; line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
   .page { max-width: 1180px; margin: 0 auto; padding: 0 28px 80px; }
   header.masthead { padding: 48px 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 36px; }
   .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
-  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; color: var(--ocean-deep); letter-spacing: -0.01em; margin-bottom: 14px; }
+  h1.title { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 500; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; color: var(--ocean-deep); letter-spacing: -0.01em; margin-bottom: 14px; }
   h1.title em { font-style: italic; color: var(--terra); }
-  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.12rem; color: var(--ocean); max-width: 720px; margin-bottom: 24px; }
+  .subtitle { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-style: italic; font-size: 1.12rem; color: var(--ocean); max-width: 720px; margin-bottom: 24px; }
   .meta-row { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: center; font-size: 0.86rem; color: var(--muted); }
   .meta-row strong { color: var(--ink); font-weight: 600; }
-  .meta-pill { display: inline-flex; gap: 8px; align-items: center; background: var(--sea-glass-soft); padding: 6px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 500; color: var(--ocean-deep); }
+  .meta-pill { display: inline-flex; gap: 8px; align-items: center; background: #ffffff; padding: 6px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 500; color: var(--ocean-deep); }
   .meta-pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--terra); }
-  .progress-rail { position: sticky; top: 0; background: var(--paper); z-index: 50; padding: 14px 28px; margin: 0 -28px 28px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 18px; }
+  .progress-rail { position: sticky; top: 0; background: #ffffff; z-index: 50; padding: 14px 28px; margin: 0 -28px 28px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 18px; }
   .progress-label { font-size: 0.74rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); white-space: nowrap; }
   .progress-track { flex: 1; height: 6px; background: var(--sea-glass); border-radius: 999px; overflow: hidden; }
   .progress-fill { height: 100%; background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 100%); width: 0%; transition: width 0.35s ease; }
   .progress-count { font-size: 0.84rem; font-weight: 600; color: var(--ocean-deep); min-width: 50px; text-align: right; }
   .progress-actions { display: flex; gap: 8px; }
   .icon-btn { border: 1px solid var(--line); background: white; color: var(--ocean-deep); width: 34px; height: 34px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.15s ease; font-size: 1rem; }
-  .icon-btn:hover { background: var(--sea-glass-soft); border-color: var(--ocean); }
-  .intro { background: linear-gradient(135deg, var(--sea-glass-soft) 0%, var(--sand-soft) 100%); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px 36px; margin-bottom: 36px; position: relative; }
+  .icon-btn:hover { background: #ffffff; border-color: var(--ocean); }
+  .intro { background: #ffffff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px 36px; margin-bottom: 36px; position: relative; }
   .intro::after { content: ''; position: absolute; bottom: 0; left: 36px; right: 36px; height: 3px; background: linear-gradient(90deg, var(--terra) 0%, var(--ocean) 50%, var(--kelp) 100%); border-radius: 2px; }
-  .intro h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem; color: var(--ocean-deep); margin-bottom: 14px; }
+  .intro h2 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 500; font-size: 1.5rem; color: var(--ocean-deep); margin-bottom: 14px; }
   .intro p { color: var(--ink); margin-bottom: 12px; max-width: 780px; }
   .intro p:last-of-type { margin-bottom: 0; }
   .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 22px; padding-top: 22px; border-top: 1px dashed var(--line); font-size: 0.84rem; }
@@ -60,12 +60,12 @@
   .chip-build { background: var(--terra); color: white; }
   .chip-apply { background: var(--kelp); color: white; }
   .section { background: white; border: 1px solid var(--line); border-radius: var(--radius-lg); margin-bottom: 32px; overflow: hidden; box-shadow: var(--shadow-sm); }
-  .section-head { display: flex; gap: 22px; align-items: flex-start; padding: 28px 32px 22px; border-bottom: 1px solid var(--line); background: var(--sand-soft); cursor: pointer; user-select: none; transition: background 0.15s ease; }
-  .section-head:hover { background: var(--sand); }
-  .section-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 2.4rem; color: var(--terra); line-height: 1; min-width: 48px; }
+  .section-head { display: flex; gap: 22px; align-items: flex-start; padding: 28px 32px 22px; border-bottom: 1px solid var(--line); background: #ffffff; cursor: pointer; user-select: none; transition: background 0.15s ease; }
+  .section-head:hover { background: #ffffff; }
+  .section-num { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-style: italic; font-weight: 500; font-size: 2.4rem; color: var(--terra); line-height: 1; min-width: 48px; }
   .section-titles { flex: 1; }
   .section-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-  .section-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.45rem; color: var(--ocean-deep); margin-bottom: 8px; }
+  .section-title { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 500; font-size: 1.45rem; color: var(--ocean-deep); margin-bottom: 8px; }
   .section-anchor { font-size: 0.92rem; color: var(--ocean); max-width: 700px; }
   .section-toggle { font-size: 1.2rem; color: var(--ocean); transition: transform 0.25s ease; margin-top: 8px; }
   .section.collapsed .section-toggle { transform: rotate(-90deg); }
@@ -75,15 +75,15 @@
   .mode-block:last-child { margin-bottom: 0; }
   .mode-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
   .mode-tag { display: inline-block; padding: 4px 11px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
-  .mode-name { font-family: 'Lora', serif; font-style: italic; font-size: 1.05rem; color: var(--ocean-deep); }
+  .mode-name { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-style: italic; font-size: 1.05rem; color: var(--ocean-deep); }
   .prompt-list { list-style: none; }
   .prompt-list li { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px dashed var(--line); align-items: flex-start; }
   .prompt-list li:last-child { border-bottom: none; }
-  .prompt-num { font-family: 'Lora', serif; font-weight: 500; font-size: 0.95rem; color: var(--terra); min-width: 22px; }
+  .prompt-num { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 500; font-size: 0.95rem; color: var(--terra); min-width: 22px; }
   .prompt-text { flex: 1; }
   .prompt-text .reveal-btn { margin-left: 8px; background: transparent; border: 1px solid var(--line); color: var(--ocean); font-size: 0.7rem; font-weight: 600; padding: 2px 9px; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.15s ease; }
   .prompt-text .reveal-btn:hover { background: var(--ocean); color: white; }
-  .answer { display: none; margin-top: 8px; padding: 10px 14px; background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); border-radius: 4px; font-size: 0.92rem; color: var(--ocean-deep); font-family: 'Lora', serif; }
+  .answer { display: none; margin-top: 8px; padding: 10px 14px; background: #ffffff; border-left: 3px solid var(--ocean); border-radius: 4px; font-size: 0.92rem; color: var(--ocean-deep); font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
   .answer.show { display: block; }
   .answer strong { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; }
   .work-box { margin-top: 14px; background: white; border: 1.5px solid var(--ink); border-radius: var(--radius-sm); padding: 18px 20px; min-height: 120px; background-image: linear-gradient(transparent calc(1.7em - 1px), var(--line) 1px); background-size: 100% 1.7em; line-height: 1.7em; }
@@ -92,9 +92,9 @@
   .ref-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 14px 0; }
   .ref-table th { text-align: left; padding: 10px 12px; background: var(--ocean-deep); color: white; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
   .ref-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  .ref-table tr:nth-child(even) td { background: var(--sand-soft); }
-  .ref-table .blank-cell { cursor: pointer; color: var(--muted); font-style: italic; font-family: 'Lora', serif; }
-  .ref-table .blank-cell:hover { background: var(--sea-glass-soft); }
+  .ref-table tr:nth-child(even) td { background: #ffffff; }
+  .ref-table .blank-cell { cursor: pointer; color: var(--muted); font-style: italic; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  .ref-table .blank-cell:hover { background: #ffffff; }
   .ref-table .blank-cell.revealed { color: var(--ink); font-style: normal; font-family: inherit; }
   .check-prompt { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; }
   .check-prompt input[type="checkbox"] { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--terra); cursor: pointer; }
@@ -106,13 +106,14 @@
   .complete-btn.done::before { content: '✓ '; }
   .closing { background: linear-gradient(150deg, var(--ocean-deep) 0%, var(--ink) 100%); color: white; border-radius: var(--radius-lg); padding: 36px 38px; margin-top: 40px; position: relative; overflow: hidden; }
   .closing::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: radial-gradient(circle, var(--terra) 0%, transparent 70%); opacity: 0.3; }
-  .closing h3 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem; margin-bottom: 14px; position: relative; }
+  .closing h3 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 500; font-size: 1.5rem; margin-bottom: 14px; position: relative; }
   .closing p { opacity: 0.88; max-width: 700px; margin-bottom: 14px; position: relative; }
   .closing-steps { list-style: none; counter-reset: step; margin-top: 18px; position: relative; }
   .closing-steps li { counter-increment: step; padding: 8px 0 8px 38px; position: relative; font-size: 0.95rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
   .closing-steps li::before { content: counter(step); position: absolute; left: 0; top: 6px; width: 26px; height: 26px; background: var(--terra); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; }
-  .formula-card { background: var(--sea-glass-soft); border: 1.5px solid var(--ocean); border-radius: 8px; padding: 14px 18px; margin: 14px 0; font-family: 'Lora', serif; font-size: 0.95rem; }
-  .formula-card strong { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--ocean-deep); }
+  .aqi-strip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; margin: 14px 0; font-size: 0.74rem; }
+  .aqi-cell { padding: 8px 6px; border-radius: 4px; color: white; text-align: center; line-height: 1.3; }
+  .aqi-cell strong { display: block; font-size: 0.92rem; margin-bottom: 2px; }
   @media print {
     body { background: white; font-size: 11pt; }
     .progress-rail, .icon-btn, .reveal-btn, .complete-btn, .skip-link { display: none !important; }
@@ -122,6 +123,12 @@
     .closing { background: white; color: var(--ink); border: 2px solid var(--ink); }
     @page { size: letter; margin: 0.55in; }
   }
+
+  /* PRINTER-FRIENDLY OVERRIDES */
+  @media print {
+    * { background: #ffffff !important; background-color: #ffffff !important; background-image: none !important; box-shadow: none !important; }
+    body, html { background: #ffffff !important; }
+  }
 </style>
 </head>
 <body>
@@ -129,11 +136,11 @@
 <div class="page" id="main-content" role="main">
 
   <header class="masthead">
-    <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · Week 07</p>
-    <h1 class="title">Nutrition: Digestion, Absorption, <em>Metabolism</em></h1>
-    <p class="subtitle">Digestive anatomy, mechanical and chemical breakdown, absorption, the liver as metabolic hub, and dietary recommendations.</p>
+    <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · Week 06</p>
+    <h1 class="title">Gas Exchange &amp; <em>Waste</em></h1>
+    <p class="subtitle">Respiratory and urinary systems, fluid and electrolyte balance, acid-base regulation, and the bedside tools that read them.</p>
     <div class="meta-row">
-      <span class="meta-pill">OpenStax · Ch 23 (Read) · Ch 24.4 (Focus) · 24.1 skim only</span>
+      <span class="meta-pill">OpenStax · Ch 22, 25 (Read) · Ch 26.1, 26.4 (Focus)</span>
       <span><strong>Cognitive load:</strong> 3 modes across 7 sections</span>
       <span><strong>Estimated time:</strong> 130 to 160 minutes</span>
       <span><strong>Author:</strong> Dr. Sharilyn Rennie</span>
@@ -151,9 +158,9 @@
   </div>
 
   <div class="intro">
-    <h2>Week 7: how the body breaks down food and uses it</h2>
-    <p>The GI tract is one continuous tube about nine meters long. Food enters at the mouth, gets mechanically and chemically broken down along the way, and leaves at the anus. The accessory organs (liver, gallbladder, pancreas, salivary glands) sit alongside and contribute enzymes, bile, and metabolic processing.</p>
-    <p>One section in this trainer covers <strong>COR-named content</strong>: Section 4 on the liver as metabolic hub. The lab anchors are TDEE calculation using Mifflin-St Jeor and a nutrition label audit, both of which Section 6 prepares you for.</p>
+    <h2>Week 6: how the body trades gases and disposes of waste</h2>
+    <p>The lungs and kidneys work as a pair. The lungs handle CO₂ (a volatile acid) on a breath-by-breath timescale. The kidneys handle bicarbonate, fixed acids, water, and electrolytes on a slower timescale. Together they keep arterial pH between 7.35 and 7.45.</p>
+    <p>One section in this trainer covers <strong>COR-named content</strong>: Section 6 on the urine dipstick. The same section covers the regional extension on AirNow AQI and wildfire smoke, which is a real respiratory exposure for Northern California students.</p>
     <div class="legend">
       <span class="legend-item"><span class="legend-chip chip-retrieve">Retrieve</span> Recall the term, structure, or fact</span>
       <span class="legend-item"><span class="legend-chip chip-build">Build</span> Draw, label, or construct the mechanism</span>
@@ -166,31 +173,47 @@
     <div class="section-head" onclick="toggleSection('s1')">
       <div class="section-num">01</div>
       <div class="section-titles">
-        <p class="section-eyebrow">Read · OpenStax 23.1-23.5</p>
-        <h2 class="section-title">Digestive Tract Anatomy</h2>
-        <p class="section-anchor">One continuous tube from mouth to anus, with a four-layer wall throughout. Accessory organs deliver enzymes and bile through ducts. The lab quiz will require identification of every major structure.</p>
+        <p class="section-eyebrow">Read · OpenStax 22.1-22.3</p>
+        <h2 class="section-title">Respiratory Anatomy &amp; Ventilation</h2>
+        <p class="section-anchor">Two functional zones: a conducting zone that filters and humidifies air, and a respiratory zone where gas exchange happens. Breathing is a mechanical pump driven by pressure differences.</p>
       </div>
       <div class="section-toggle" aria-hidden="true">▾</div>
     </div>
     <div class="section-body">
 
       <div class="mode-block">
-        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">GI tract organs and wall layers</span></div>
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Airways, lungs, mechanics, volumes</span></div>
         <ol class="prompt-list">
-          <li><span class="prompt-num">1.</span><div class="prompt-text">List the organs of the alimentary canal in order from mouth to anus.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Mouth (oral cavity)</strong> → <strong>pharynx</strong> → <strong>esophagus</strong> → <strong>stomach</strong> → <strong>small intestine</strong> (duodenum, jejunum, ileum) → <strong>large intestine</strong> (cecum, ascending colon, transverse colon, descending colon, sigmoid colon, rectum) → <strong>anal canal</strong> and anus. Total length about 9 meters in the cadaver, shorter in life because of muscle tone.</div></div></li>
-          <li><span class="prompt-num">2.</span><div class="prompt-text">Name the four layers of the GI tract wall from inside to outside, and identify what each layer contains.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Mucosa:</strong> innermost, three sublayers (epithelium, lamina propria, muscularis mucosae). Absorption and secretion happen here. <strong>Submucosa:</strong> dense connective tissue with blood vessels, nerves (submucosal plexus), and glands. <strong>Muscularis externa:</strong> smooth muscle with two layers (inner circular, outer longitudinal) that produce peristalsis and segmentation. The myenteric plexus sits between them. <strong>Serosa:</strong> outermost, visceral peritoneum (or adventitia where the organ is retroperitoneal).</div></div></li>
-          <li><span class="prompt-num">3.</span><div class="prompt-text">Name the four accessory digestive organs and what each contributes.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Salivary glands</strong> (parotid, submandibular, sublingual): secrete saliva with amylase (carbohydrate digestion) and lysozyme. <strong>Liver:</strong> produces bile (emulsifies fats) and processes nutrients absorbed from the GI tract via the hepatic portal vein. <strong>Gallbladder:</strong> stores and concentrates bile, releases it into the duodenum after a fatty meal. <strong>Pancreas:</strong> exocrine cells secrete pancreatic juice (amylase, lipase, proteases, bicarbonate) into the duodenum; endocrine islets secrete insulin and glucagon.</div></div></li>
-          <li><span class="prompt-num">4.</span><div class="prompt-text">Describe the peritoneum and distinguish intraperitoneal from retroperitoneal organs.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">The peritoneum is a serous membrane lining the abdominal cavity. <strong>Parietal peritoneum</strong> lines the body wall; <strong>visceral peritoneum</strong> covers organs. The space between contains a thin film of serous fluid for lubrication. <strong>Mesentery</strong> is a double layer of peritoneum that anchors organs to the body wall and carries vessels and nerves. <strong>Intraperitoneal</strong> organs (stomach, small intestine, transverse colon) hang from a mesentery. <strong>Retroperitoneal</strong> organs (kidneys, pancreas, ascending and descending colon, duodenum) sit behind the parietal peritoneum.</div></div></li>
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Distinguish the conducting zone from the respiratory zone of the airway, and trace air from the nose to an alveolus.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Conducting zone</strong> warms, humidifies, and filters air. No gas exchange. <strong>Respiratory zone</strong> is where gas exchange occurs. Path: nose/mouth → pharynx → larynx → trachea → primary bronchi → secondary and tertiary bronchi → bronchioles → terminal bronchioles (end of conducting zone) → respiratory bronchioles → alveolar ducts → alveoli (respiratory zone).</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Describe the lungs and the alveolar wall, including the cell types in alveoli.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Right lung has 3 lobes; left lung has 2 lobes (cardiac notch accommodates the heart). Each lung is wrapped in <strong>visceral pleura</strong>, the chest wall is lined with <strong>parietal pleura</strong>, and a thin film of <strong>pleural fluid</strong> sits between them. Alveolar wall has three cell types: <strong>Type I pneumocytes</strong> (thin squamous, gas exchange), <strong>Type II pneumocytes</strong> (cuboidal, secrete surfactant to reduce surface tension), <strong>alveolar macrophages</strong> (clear debris and pathogens). About 300 million alveoli per lung.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Explain the mechanics of inspiration and expiration. Identify which is active and which is passive.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Inspiration is active.</strong> Diaphragm contracts (flattens) and external intercostals lift the ribs → thoracic volume increases → intrapulmonary pressure drops below atmospheric → air flows in down the gradient. <strong>Expiration at rest is passive.</strong> Inspiratory muscles relax, the lungs and chest wall recoil → thoracic volume decreases → intrapulmonary pressure rises above atmospheric → air flows out. Forced expiration adds active contraction of internal intercostals and abdominal muscles.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Define the four primary lung volumes (TV, IRV, ERV, RV) and the two main capacities (VC, TLC).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Tidal volume (TV):</strong> normal breath volume, ~500 mL. <strong>Inspiratory reserve volume (IRV):</strong> extra air you can inhale after a normal breath in, ~3000 mL. <strong>Expiratory reserve volume (ERV):</strong> extra air you can exhale after a normal breath out, ~1100 mL. <strong>Residual volume (RV):</strong> air left in lungs after maximum exhalation, ~1200 mL. Cannot be measured by spirometry. <strong>Vital capacity (VC) = TV + IRV + ERV</strong>, ~4600 mL. <strong>Total lung capacity (TLC) = VC + RV</strong>, ~5800 mL.</div></div></li>
         </ol>
       </div>
 
       <div class="mode-block">
-        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">GI organ scenarios</span></div>
-        <div class="work-label">a. A patient with cirrhosis (liver damage) develops impaired bile production. Predict the effect on fat digestion in the small intestine.</div>
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Lung volumes reference</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the answer.</p>
+        <table class="ref-table">
+          <thead><tr><th scope="col">Volume / capacity</th><th scope="col">Approximate value</th><th scope="col">What it measures</th></tr></thead>
+          <tbody>
+            <tr><td>Tidal volume (TV)</td><td class="blank-cell" onclick="revealCell(this, '~500 mL')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Volume of one normal breath')">click to reveal</td></tr>
+            <tr><td>Inspiratory reserve (IRV)</td><td class="blank-cell" onclick="revealCell(this, '~3000 mL')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Extra air inhaled beyond normal TV')">click to reveal</td></tr>
+            <tr><td>Expiratory reserve (ERV)</td><td class="blank-cell" onclick="revealCell(this, '~1100 mL')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Extra air exhaled beyond normal TV')">click to reveal</td></tr>
+            <tr><td>Residual volume (RV)</td><td class="blank-cell" onclick="revealCell(this, '~1200 mL')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Air left after maximum exhalation; keeps alveoli open')">click to reveal</td></tr>
+            <tr><td>Vital capacity (VC)</td><td class="blank-cell" onclick="revealCell(this, '~4600 mL')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'TV + IRV + ERV; max usable air')">click to reveal</td></tr>
+            <tr><td>Total lung capacity (TLC)</td><td class="blank-cell" onclick="revealCell(this, '~5800 mL')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'VC + RV; total lung air at full inspiration')">click to reveal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Predict the breathing pattern</span></div>
+        <div class="work-label">a. A patient develops a pneumothorax (air enters the pleural cavity through a chest wall puncture). Predict the effect on lung expansion on the affected side and explain why.</div>
         <div class="work-box"></div>
-        <div class="work-label" style="margin-top:14px;">b. A patient has a cholecystectomy (gallbladder removal). Predict the effect on bile delivery and on tolerance for high-fat meals.</div>
+        <div class="work-label" style="margin-top:14px;">b. A COPD patient has chronic mucus and damaged alveolar elastic tissue. Predict the effect on inspiration and on expiration. Why is expiration disproportionately impaired?</div>
         <div class="work-box"></div>
-        <div class="work-label" style="margin-top:14px;">c. A patient with chronic pancreatitis has reduced pancreatic enzyme secretion. Predict three nutrient categories that will be malabsorbed and explain why.</div>
+        <div class="work-label" style="margin-top:14px;">c. A pulmonary fibrosis patient has stiff, non-compliant lungs. Predict the effect on lung volumes (specifically TLC and VC) and on the work of breathing.</div>
         <div class="work-box"></div>
       </div>
 
@@ -203,31 +226,31 @@
     <div class="section-head" onclick="toggleSection('s2')">
       <div class="section-num">02</div>
       <div class="section-titles">
-        <p class="section-eyebrow">Read · OpenStax 23.5</p>
-        <h2 class="section-title">Mechanical &amp; Chemical Digestion</h2>
-        <p class="section-anchor">Mechanical digestion breaks food physically. Chemical digestion uses enzymes to break macromolecules into absorbable units. Each location handles a different macronutrient.</p>
+        <p class="section-eyebrow">Read · OpenStax 22.4-22.5</p>
+        <h2 class="section-title">Gas Exchange &amp; Transport</h2>
+        <p class="section-anchor">Gas moves down partial pressure gradients. Hemoglobin makes O₂ delivery possible at the volume the body needs. CO₂ travels in three forms.</p>
       </div>
       <div class="section-toggle" aria-hidden="true">▾</div>
     </div>
     <div class="section-body">
 
       <div class="mode-block">
-        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Where digestion happens and which enzymes</span></div>
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">External and internal respiration, hemoglobin, CO₂, V/Q</span></div>
         <ol class="prompt-list">
-          <li><span class="prompt-num">1.</span><div class="prompt-text">Identify the major site of mechanical digestion at each location: mouth, stomach, and small intestine.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Mouth:</strong> mastication (chewing) by teeth and tongue. Mixing with saliva forms a bolus. <strong>Stomach:</strong> churning by smooth muscle of three layers (longitudinal, circular, oblique). Combines with gastric juice to form chyme. <strong>Small intestine:</strong> segmentation, a back-and-forth chopping motion that mixes chyme with bile and pancreatic enzymes. Peristalsis moves material forward more slowly here.</div></div></li>
-          <li><span class="prompt-num">2.</span><div class="prompt-text">Trace carbohydrate digestion from polysaccharides to absorbable monosaccharides, naming each enzyme and its location.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">(1) <strong>Salivary amylase</strong> (in mouth) begins breakdown of starch to disaccharides. Inactivated by stomach acid. (2) <strong>Pancreatic amylase</strong> (in duodenum) continues, producing disaccharides. (3) <strong>Brush border enzymes</strong> on small intestine microvilli finish the job: <strong>maltase</strong> (maltose to 2 glucose), <strong>sucrase</strong> (sucrose to glucose + fructose), <strong>lactase</strong> (lactose to glucose + galactose). Final products absorbed: glucose, galactose, fructose.</div></div></li>
-          <li><span class="prompt-num">3.</span><div class="prompt-text">Trace protein digestion from intact protein to absorbable amino acids, naming each enzyme and its location.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">(1) <strong>Pepsin</strong> in the stomach (activated from pepsinogen by HCl) breaks proteins into peptides. (2) <strong>Pancreatic proteases</strong> in the duodenum (<strong>trypsin, chymotrypsin, carboxypeptidase</strong>) further fragment peptides. Secreted as inactive zymogens; trypsin activated by enterokinase, then trypsin activates the others. (3) <strong>Brush border peptidases</strong> finish breakdown to single amino acids and small peptides. Absorbed as amino acids primarily.</div></div></li>
-          <li><span class="prompt-num">4.</span><div class="prompt-text">Trace lipid digestion, noting why fats need extra preparation before enzymatic breakdown.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Lipids are not water-soluble, so enzymes (which are in aqueous fluid) cannot easily access them. (1) <strong>Bile</strong> from the liver and gallbladder <strong>emulsifies</strong> large fat droplets into many tiny droplets, increasing surface area. (2) <strong>Pancreatic lipase</strong> then breaks triglycerides into monoglycerides and free fatty acids. (3) These products combine with bile salts to form <strong>micelles</strong>, which deliver the lipids to the brush border for absorption. Inside the enterocyte, lipids are repackaged into <strong>chylomicrons</strong> that enter <strong>lacteals</strong> (lymph vessels), bypassing the hepatic portal circulation.</div></div></li>
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Distinguish external and internal respiration in terms of location and direction of gas movement.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>External respiration:</strong> at the alveolar-capillary interface in the lungs. O₂ diffuses from alveoli (high PO₂) into pulmonary capillaries; CO₂ diffuses from capillaries into alveoli. Both move down their partial pressure gradients. <strong>Internal respiration:</strong> at the tissue-capillary interface throughout the body. O₂ diffuses from systemic capillaries into tissue cells; CO₂ diffuses from cells into capillaries.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Describe how hemoglobin transports O₂ and what the Bohr effect is.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Hemoglobin has four heme groups, each carrying one O₂ molecule. One Hb carries up to 4 O₂. Binding is <strong>cooperative</strong>: the first O₂ makes binding the next ones easier, producing a sigmoidal saturation curve. <strong>Bohr effect:</strong> in tissues, low pH, high CO₂, high temperature, and high 2,3-BPG shift the curve right, decreasing Hb's O₂ affinity and releasing O₂ where the tissues need it most.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">List the three forms in which CO₂ travels in blood, with approximate percentages.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">(1) <strong>Bicarbonate (HCO₃⁻) in plasma: ~70%.</strong> CO₂ + H₂O ⇌ H₂CO₃ ⇌ H⁺ + HCO₃⁻ (catalyzed by carbonic anhydrase in RBCs). The HCO₃⁻ leaves the RBC; this is the chloride shift. (2) <strong>Carbaminohemoglobin: ~23%.</strong> CO₂ binds the protein portion of Hb (not the heme). (3) <strong>Dissolved in plasma: ~7%.</strong> Direct dissolution.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Define ventilation-perfusion (V/Q) matching. Compare a low V/Q (shunt) with a high V/Q (dead space).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Optimal V/Q ≈ 1: ventilation matches perfusion in each lung region, so all blood gets oxygenated. <strong>Low V/Q (shunt):</strong> perfusion without ventilation. Blood passes through unventilated alveoli (e.g., pneumonia, atelectasis) and stays deoxygenated. Causes hypoxemia. <strong>High V/Q (dead space):</strong> ventilation without perfusion. Air reaches alveoli but no blood is there to pick up O₂ (e.g., pulmonary embolism). Wasted ventilation.</div></div></li>
         </ol>
       </div>
 
       <div class="mode-block">
-        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Predict the deficiency</span></div>
-        <div class="work-label">a. A patient is lactose intolerant. Identify the missing enzyme, its location, and explain why undigested lactose causes diarrhea and gas.</div>
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Gas exchange clinical scenarios</span></div>
+        <div class="work-label">a. Carbon monoxide (CO) binds hemoglobin with much greater affinity than O₂. Predict the effect on O₂ saturation, O₂ delivery to tissues, and PaO₂. Why is pulse oximetry misleading in CO poisoning?</div>
         <div class="work-box"></div>
-        <div class="work-label" style="margin-top:14px;">b. A patient has bile duct obstruction (gallstone in the common bile duct). Predict the effect on fat digestion and on stool color (steatorrhea).</div>
+        <div class="work-label" style="margin-top:14px;">b. A pulmonary embolism (PE) blocks a pulmonary artery. Identify whether this creates a shunt or dead space and predict the effect on PaO₂ and PaCO₂.</div>
         <div class="work-box"></div>
-        <div class="work-label" style="margin-top:14px;">c. A patient has Zollinger-Ellison syndrome with severely high gastric acid. Predict the effect on pepsin activity, on the duodenal mucosa, and on the function of pancreatic enzymes that arrive in the duodenum.</div>
+        <div class="work-label" style="margin-top:14px;">c. A patient hyperventilates due to anxiety. Predict the effect on PaCO₂ and on blood pH. Identify the resulting acid-base disorder.</div>
         <div class="work-box"></div>
       </div>
 
@@ -240,31 +263,38 @@
     <div class="section-head" onclick="toggleSection('s3')">
       <div class="section-num">03</div>
       <div class="section-titles">
-        <p class="section-eyebrow">Read · OpenStax 23.5</p>
-        <h2 class="section-title">Absorption in the Small Intestine</h2>
-        <p class="section-anchor">The small intestine is where almost all absorption happens. Three structural amplifiers boost surface area roughly 600-fold.</p>
+        <p class="section-eyebrow">Read · OpenStax 25.1-25.3</p>
+        <h2 class="section-title">Urinary Anatomy &amp; the Nephron</h2>
+        <p class="section-anchor">The kidneys filter ~180 L of plasma per day and return ~178 L to circulation. The nephron is the functional unit that does all of this.</p>
       </div>
       <div class="section-toggle" aria-hidden="true">▾</div>
     </div>
     <div class="section-body">
 
       <div class="mode-block">
-        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Surface area, transport mechanisms, vitamins</span></div>
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Gross anatomy and the nephron</span></div>
         <ol class="prompt-list">
-          <li><span class="prompt-num">1.</span><div class="prompt-text">Name the three structural features that amplify small intestinal surface area, and the approximate fold increase from each.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Circular folds (plicae circulares):</strong> permanent ridges in the inner wall, ~3-fold. <strong>Villi:</strong> finger-like projections of the mucosa, each ~1 mm tall, ~10-fold. <strong>Microvilli:</strong> brush border on each enterocyte, ~20-fold. Together about 600-fold increase, yielding ~200 m² of absorptive surface.</div></div></li>
-          <li><span class="prompt-num">2.</span><div class="prompt-text">Compare the absorption mechanisms for glucose, fructose, and amino acids at the apical (luminal) membrane of the enterocyte.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Glucose and galactose:</strong> <em>secondary active transport</em> via the SGLT1 cotransporter, coupled with Na⁺. <strong>Fructose:</strong> <em>facilitated diffusion</em> via GLUT5. <strong>Amino acids:</strong> mostly secondary active transport coupled with Na⁺ via family-specific transporters. All exit the basolateral side via passive carriers (GLUT2 for sugars) into capillaries that drain into the hepatic portal vein.</div></div></li>
-          <li><span class="prompt-num">3.</span><div class="prompt-text">Trace fat absorption from the lumen to the lymphatic system.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Monoglycerides and free fatty acids form <strong>micelles</strong> with bile salts → micelles ferry lipids to the brush border → lipids diffuse across the apical membrane into the enterocyte → reassembled into triglycerides → packaged with cholesterol and apoproteins into <strong>chylomicrons</strong> → exit the basolateral side into <strong>lacteals</strong> (lymphatic capillaries in the villi) → travel via the thoracic duct into the left subclavian vein. Fats bypass the liver on first pass.</div></div></li>
-          <li><span class="prompt-num">4.</span><div class="prompt-text">Distinguish water-soluble and fat-soluble vitamin absorption, and identify why vitamin B₁₂ has a special requirement.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Water-soluble vitamins (B vitamins, vitamin C):</strong> absorbed by simple or facilitated diffusion across the small intestine, into capillaries with the rest of the water-soluble nutrients. <strong>Fat-soluble vitamins (A, D, E, K):</strong> absorbed with dietary fat in chylomicrons via the lymphatic system. Require fat in the meal and adequate bile. <strong>Vitamin B₁₂:</strong> requires <em>intrinsic factor</em>, a glycoprotein secreted by parietal cells in the stomach. The B₁₂-IF complex is absorbed in the <em>distal ileum</em>. Deficiency causes pernicious anemia and neurologic symptoms.</div></div></li>
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Name the four organs of the urinary system and describe the gross internal anatomy of the kidney.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Two <strong>kidneys</strong> filter blood. Two <strong>ureters</strong> transport urine to the bladder. The <strong>urinary bladder</strong> stores urine. The <strong>urethra</strong> conducts urine to the outside. Internal kidney layers: <strong>cortex</strong> (outer, contains glomeruli), <strong>medulla</strong> (inner, organized into pyramids; loops of Henle and collecting ducts live here), <strong>renal pelvis</strong> (collects urine from minor and major calyces and funnels it to the ureter).</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">List the parts of the nephron in the order filtrate flows through them.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+          <div class="answer">(1) <strong>Renal corpuscle</strong> = glomerulus + Bowman's capsule (filtration occurs here). (2) <strong>Proximal convoluted tubule (PCT)</strong>: bulk reabsorption. (3) <strong>Loop of Henle</strong>: descending limb (water permeable), then ascending limb (solute permeable). (4) <strong>Distal convoluted tubule (DCT)</strong>: regulated reabsorption and secretion. (5) <strong>Collecting duct</strong>: final water and Na⁺ adjustments under hormonal control.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Compare cortical and juxtamedullary nephrons.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Cortical nephrons</strong> (~85%) sit mostly in the cortex with short loops of Henle that barely dip into the medulla. Handle routine filtration. <strong>Juxtamedullary nephrons</strong> (~15%) sit at the cortex-medulla border with long loops of Henle that descend deep into the medulla. They establish the medullary osmotic gradient that allows the kidney to concentrate urine.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Trace blood flow through the kidney from renal artery to renal vein, naming the key vessels around the nephron.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Renal artery → segmental artery → interlobar artery → arcuate artery → cortical radiate artery → <strong>afferent arteriole</strong> → <strong>glomerulus</strong> (filtration) → <strong>efferent arteriole</strong> → <strong>peritubular capillaries</strong> (around PCT and DCT, reabsorption) or <strong>vasa recta</strong> (around loop of Henle in juxtamedullary nephrons) → cortical radiate vein → arcuate vein → interlobar vein → renal vein.</div></div></li>
         </ol>
       </div>
 
       <div class="mode-block">
-        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Malabsorption scenarios</span></div>
-        <div class="work-label">a. A patient with Crohn's disease has chronic inflammation of the distal ileum. Predict which specific nutrient deficiency is most likely and explain the mechanism.</div>
+        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Draw a labeled nephron</span></div>
+        <p style="margin-bottom: 10px; color: var(--ocean);">Draw a single nephron with its blood supply. Label the renal corpuscle (glomerulus and Bowman's capsule), proximal convoluted tubule, loop of Henle (descending and ascending limbs), distal convoluted tubule, and collecting duct. Include the afferent and efferent arterioles and the peritubular capillaries.</p>
+        <div class="work-box draw"></div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Predict the consequence</span></div>
+        <div class="work-label">a. Renal artery stenosis (narrowing) reduces blood flow to one kidney. Predict the effect on filtration in that kidney and on systemic blood pressure via RAAS.</div>
         <div class="work-box"></div>
-        <div class="work-label" style="margin-top:14px;">b. A patient with celiac disease has flattened villi due to autoimmune damage. Predict the effect on overall nutrient absorption and identify two specific deficiencies likely to develop.</div>
+        <div class="work-label" style="margin-top:14px;">b. A patient has bilateral acute kidney injury after a major hemorrhage. Predict three immediate consequences in the first 24 hours.</div>
         <div class="work-box"></div>
-        <div class="work-label" style="margin-top:14px;">c. A patient with cystic fibrosis has pancreatic exocrine insufficiency (low lipase). Predict their fat-soluble vitamin status and explain why this is a chronic problem.</div>
+        <div class="work-label" style="margin-top:14px;">c. A patient lives at high altitude and has higher than normal hematocrit and concentrated urine. Connect the role of juxtamedullary nephrons to their ability to retain water at altitude.</div>
         <div class="work-box"></div>
       </div>
 
@@ -272,52 +302,36 @@
     </div>
   </section>
 
-  <!-- SECTION 04 - COR -->
+  <!-- SECTION 04 -->
   <section class="section" data-section="s4">
     <div class="section-head" onclick="toggleSection('s4')">
       <div class="section-num">04</div>
       <div class="section-titles">
-        <p class="section-eyebrow">Read · OpenStax 23.6 · COR-named content</p>
-        <h2 class="section-title">The Liver as Metabolic Hub</h2>
-        <p class="section-anchor">Almost everything absorbed from the GI tract goes through the liver before reaching the rest of the body. The liver processes nutrients, makes plasma proteins and bile, detoxifies drugs and hormones, and manages blood glucose. Section 23.6 is COR-named for this course.</p>
+        <p class="section-eyebrow">Read · OpenStax 25.6-25.10</p>
+        <h2 class="section-title">Urine Formation: Filtration, Reabsorption, Secretion</h2>
+        <p class="section-anchor">Three processes determine what ends up in urine. Filtration loads the tubule. Reabsorption reclaims what the body needs. Secretion adds what the body wants to dump.</p>
       </div>
       <div class="section-toggle" aria-hidden="true">▾</div>
     </div>
     <div class="section-body">
 
       <div class="mode-block">
-        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Portal circulation and the liver's many jobs</span></div>
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">The three processes and the hormones that regulate them</span></div>
         <ol class="prompt-list">
-          <li><span class="prompt-num">1.</span><div class="prompt-text">Trace the hepatic portal circulation and explain the first-pass effect.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Capillaries in the GI tract → <strong>hepatic portal vein</strong> → liver sinusoids (a second capillary bed) → <strong>hepatic veins</strong> → IVC → right heart. This means everything absorbed from the gut (except fats in chylomicrons) reaches the liver before circulating to the rest of the body. <strong>First-pass effect:</strong> the liver can metabolize, store, or detoxify substances before they reach systemic circulation. This is why oral drug doses are often higher than IV doses, and why the liver is the first to be exposed to oral toxins.</div></div></li>
-          <li><span class="prompt-num">2.</span><div class="prompt-text">List the liver's major roles in carbohydrate, protein, and lipid metabolism.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Carbohydrates:</strong> glycogenesis (storage when blood glucose is high), glycogenolysis (release when low), gluconeogenesis (making new glucose from amino acids and lactate during fasting). The liver is the central blood glucose regulator. <strong>Proteins:</strong> synthesizes most plasma proteins (albumin, clotting factors I-V-VII-IX-X, and others); deaminates amino acids; runs the urea cycle to detoxify ammonia. <strong>Lipids:</strong> synthesizes cholesterol and lipoproteins (VLDL, HDL); produces bile salts from cholesterol; performs ketogenesis during prolonged fasting.</div></div></li>
-          <li><span class="prompt-num">3.</span><div class="prompt-text">Describe bile production and storage. Identify the components and the function of bile.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">The liver produces ~600 to 1000 mL of bile per day. Bile is stored and concentrated in the <strong>gallbladder</strong> between meals. After a fatty meal, CCK from the duodenum triggers gallbladder contraction, releasing bile into the duodenum. <strong>Components:</strong> bile salts (made from cholesterol, the active ingredient for fat emulsification), bilirubin (from RBC breakdown, the brown-yellow pigment), cholesterol, and electrolytes. <strong>Function:</strong> emulsifies fats; eliminates bilirubin and excess cholesterol.</div></div></li>
-          <li><span class="prompt-num">4.</span><div class="prompt-text">Describe the liver's detoxification roles, including drugs, hormones, and bilirubin handling.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Drugs and toxins:</strong> the cytochrome P450 system in hepatocytes oxidizes drugs (Phase I), then conjugates them (Phase II) to make them water-soluble for excretion in bile or urine. <strong>Hormones:</strong> the liver clears circulating insulin, thyroid hormone, sex hormones, and others. <strong>Bilirubin:</strong> when RBCs are broken down (in the spleen), heme is converted to unconjugated (indirect) bilirubin. The liver conjugates it (adds glucuronic acid) and excretes it in bile. Failure at any step causes <strong>jaundice</strong>: pre-hepatic (hemolysis), hepatic (liver disease), or post-hepatic (biliary obstruction).</div></div></li>
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Describe glomerular filtration. Identify the filtration membrane, what it excludes, and the normal GFR.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Hydrostatic pressure in the glomerulus pushes plasma through a three-layer <strong>filtration membrane</strong>: (1) fenestrated capillary endothelium, (2) basement membrane, (3) podocyte filtration slits. Excludes blood cells and most plasma proteins. Net filtration pressure ≈ glomerular hydrostatic pressure − blood osmotic pressure − capsular hydrostatic pressure. <strong>Normal GFR ≈ 125 mL/min</strong> (~180 L/day). The body filters its plasma volume many times a day.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Describe what is reabsorbed in the PCT and the concept of transport maximum (Tm).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">The <strong>PCT reabsorbs ~65% of the filtrate</strong>. Returns essentially 100% of glucose and amino acids, ~65% of Na⁺ and water, most bicarbonate, much of K⁺ and Cl⁻. Transport relies on Na⁺/K⁺ ATPase on the basolateral side, creating gradients that pull other solutes via cotransport. <strong>Transport maximum (Tm):</strong> each transporter saturates at a maximum rate. When plasma glucose exceeds the renal threshold (~180 mg/dL), transporters saturate and glucose spills into urine.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Describe the countercurrent multiplier in the loop of Henle and why it matters.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Descending limb:</strong> permeable to water but not solute. Water leaves into the increasingly concentrated medulla, so the filtrate becomes more concentrated. <strong>Ascending limb:</strong> permeable to solute (active Na⁺/K⁺/2Cl⁻ pumping) but impermeable to water. Solute leaves but water cannot follow, so the filtrate becomes dilute. The two limbs together build a medullary gradient from ~300 mOsm at the cortex-medulla border to ~1200 mOsm at the deepest medulla. This gradient allows the collecting duct to concentrate urine when ADH is present.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Name three major hormones that regulate urine output and their primary actions.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>ADH (antidiuretic hormone, vasopressin):</strong> released from posterior pituitary in response to high plasma osmolarity or low BP. Increases collecting duct water permeability via aquaporin insertion. Result: more water reabsorbed, concentrated urine. <strong>Aldosterone:</strong> released from adrenal cortex (RAAS). Increases Na⁺ reabsorption and K⁺ secretion in DCT and collecting duct. Result: more Na⁺ and water retained, raises BP. <strong>ANP (atrial natriuretic peptide):</strong> released from atrial cells when stretched (high blood volume). Increases Na⁺ excretion. Result: lowers blood volume and BP. Opposes RAAS.</div></div></li>
         </ol>
       </div>
 
       <div class="mode-block">
-        <div class="mode-header"><span class="mode-tag chip-build">Build</span><span class="mode-name">Liver as metabolic hub reference</span></div>
-        <p style="margin-bottom: 10px; color: var(--ocean);">Click each blank cell to reveal the answer.</p>
-        <table class="ref-table">
-          <thead><tr><th scope="col">Liver function category</th><th scope="col">Specific role</th><th scope="col">What fails when liver fails</th></tr></thead>
-          <tbody>
-            <tr><td>Carbohydrate metabolism</td><td class="blank-cell" onclick="revealCell(this, 'Glycogenesis, glycogenolysis, gluconeogenesis')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Hypoglycemia between meals')">click to reveal</td></tr>
-            <tr><td>Protein synthesis</td><td class="blank-cell" onclick="revealCell(this, 'Albumin, clotting factors, plasma proteins')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Edema (low albumin), bleeding (low clotting factors)')">click to reveal</td></tr>
-            <tr><td>Urea cycle</td><td class="blank-cell" onclick="revealCell(this, 'Converts ammonia to urea for renal excretion')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Hyperammonemia, hepatic encephalopathy')">click to reveal</td></tr>
-            <tr><td>Bile production</td><td class="blank-cell" onclick="revealCell(this, 'Bile salts emulsify fats; bilirubin excretion')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Fat malabsorption, jaundice, pruritus')">click to reveal</td></tr>
-            <tr><td>Lipid handling</td><td class="blank-cell" onclick="revealCell(this, 'Cholesterol synthesis, VLDL/HDL production, ketogenesis')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Lipid imbalance, fatty liver progression')">click to reveal</td></tr>
-            <tr><td>Detoxification</td><td class="blank-cell" onclick="revealCell(this, 'CYP450 metabolism of drugs, hormones, toxins')">click to reveal</td><td class="blank-cell" onclick="revealCell(this, 'Drug accumulation, hormonal imbalance')">click to reveal</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="mode-block">
-        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Liver in failure</span></div>
-        <div class="work-label">a. A patient with end-stage liver failure presents with jaundice, ascites, easy bruising, and confusion. Match each finding to the failed liver function (one finding per function).</div>
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Urine formation in disease and drugs</span></div>
+        <div class="work-label">a. A patient with uncontrolled diabetes has a plasma glucose of 300 mg/dL. Predict whether their urine will contain glucose, and explain via the transport maximum.</div>
         <div class="work-box"></div>
-        <div class="work-label" style="margin-top:14px;">b. A patient takes an oral medication that has high first-pass metabolism. Explain why a higher oral dose is needed than the IV equivalent, and predict what would happen if the patient developed cirrhosis.</div>
+        <div class="work-label" style="margin-top:14px;">b. Furosemide (Lasix) is a loop diuretic that blocks the Na⁺/K⁺/2Cl⁻ cotransporter in the ascending limb of the loop of Henle. Predict the effect on urine output, urine concentration, and blood pressure.</div>
         <div class="work-box"></div>
-        <div class="work-label" style="margin-top:14px;">c. A newborn develops jaundice on day 3 of life with elevated unconjugated bilirubin. Identify whether this is pre-hepatic, hepatic, or post-hepatic, and explain why the newborn liver is particularly vulnerable.</div>
+        <div class="work-label" style="margin-top:14px;">c. A patient with central diabetes insipidus produces no ADH. Predict their urine volume, urine concentration, and predict what happens to plasma osmolarity if they cannot drink enough water.</div>
         <div class="work-box"></div>
       </div>
 
@@ -330,31 +344,31 @@
     <div class="section-head" onclick="toggleSection('s5')">
       <div class="section-num">05</div>
       <div class="section-titles">
-        <p class="section-eyebrow">Focus · OpenStax 24.4</p>
-        <h2 class="section-title">Macronutrients &amp; Micronutrients</h2>
-        <p class="section-anchor">Macronutrients (carbohydrates, fats, proteins) provide energy. Micronutrients (vitamins, minerals) support enzyme and structural functions in trace amounts. Both have dietary recommendations.</p>
+        <p class="section-eyebrow">Focus · OpenStax 26.1, 26.4</p>
+        <h2 class="section-title">Fluid, Electrolyte &amp; Acid-Base Balance</h2>
+        <p class="section-anchor">Total body water is 60% of body weight, distributed across compartments. The lungs and kidneys regulate pH together, on different timescales.</p>
       </div>
       <div class="section-toggle" aria-hidden="true">▾</div>
     </div>
     <div class="section-body">
 
       <div class="mode-block">
-        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Macronutrients, AMDR, vitamins, minerals</span></div>
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Compartments, electrolytes, buffers, disorders</span></div>
         <ol class="prompt-list">
-          <li><span class="prompt-num">1.</span><div class="prompt-text">State the energy value (kcal/g) of carbohydrates, proteins, fats, and alcohol.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Carbohydrate: 4 kcal/g.</strong> <strong>Protein: 4 kcal/g.</strong> <strong>Fat: 9 kcal/g</strong> (more than twice as energy-dense as carb or protein). <strong>Alcohol: 7 kcal/g</strong> (provides energy but no other nutrients, so often called "empty calories"). Knowing these lets you reverse-engineer caloric content from a nutrition label.</div></div></li>
-          <li><span class="prompt-num">2.</span><div class="prompt-text">State the Acceptable Macronutrient Distribution Ranges (AMDRs) and explain what they represent.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Carbohydrates: 45 to 65%</strong> of total calories. <strong>Fat: 20 to 35%</strong> (with limits on saturated and trans fat). <strong>Protein: 10 to 35%</strong>. AMDRs are the percentage ranges associated with reduced risk of chronic disease while providing essential nutrients. They define a flexible target rather than a single optimal value.</div></div></li>
-          <li><span class="prompt-num">3.</span><div class="prompt-text">Distinguish essential and non-essential amino acids and fatty acids, and explain why "essential" matters for diet planning.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">"Essential" means the body cannot synthesize it from other compounds, so it must come from food. <strong>Nine essential amino acids</strong> (e.g., lysine, methionine, leucine, valine). Animal proteins are "complete" because they contain all nine; plant proteins often miss one or more, so vegetarians need protein variety. <strong>Two essential fatty acids:</strong> linoleic acid (omega-6) and alpha-linolenic acid (omega-3). Found in plant oils, nuts, seeds, fatty fish.</div></div></li>
-          <li><span class="prompt-num">4.</span><div class="prompt-text">Match three vitamin or mineral deficiencies to the disease they cause: vitamin C, vitamin D, iron.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Vitamin C deficiency:</strong> <em>scurvy</em> (impaired collagen synthesis, bleeding gums, poor wound healing, joint pain). <strong>Vitamin D deficiency:</strong> <em>rickets</em> in children (soft, deformed bones), <em>osteomalacia</em> in adults (bone pain, weakness). Reduced calcium absorption is the underlying mechanism. <strong>Iron deficiency:</strong> <em>microcytic hypochromic anemia</em> (small, pale RBCs because hemoglobin synthesis is impaired). Symptoms: fatigue, pallor, shortness of breath.</div></div></li>
+          <li><span class="prompt-num">1.</span><div class="prompt-text">Describe the body fluid compartments and their approximate fractions of body weight.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Total body water ≈ 60% of body weight (lower in females and the elderly because of higher fat fraction). <strong>Intracellular fluid (ICF): ~40%</strong> of body weight, the largest compartment. <strong>Extracellular fluid (ECF): ~20%</strong> of body weight. ECF subdivides into <strong>interstitial fluid (~15%)</strong> and <strong>plasma (~5%)</strong>. Membranes between compartments allow water to follow osmotic gradients.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Identify the major cation in the ICF and the major cation in the ECF, and state the normal plasma values for Na⁺ and K⁺.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Major ICF cation: K⁺</strong> (~140 mEq/L inside cells, ~3.5 to 5.0 mEq/L in plasma). <strong>Major ECF cation: Na⁺</strong> (~135 to 145 mEq/L in plasma, only ~10 mEq/L inside cells). The Na⁺/K⁺ ATPase maintains these gradients. Other key electrolytes: Cl⁻ and HCO₃⁻ are major ECF anions; phosphate and proteins are major ICF anions; Ca²⁺ is mostly ECF and bone.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">State the normal arterial pH range and identify the three buffer systems that defend pH.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Normal arterial pH: <strong>7.35 to 7.45</strong>. Three buffer systems: (1) <strong>Bicarbonate buffer</strong> in plasma (extracellular). Fast. CO₂ + H₂O ⇌ H₂CO₃ ⇌ H⁺ + HCO₃⁻. Lungs control PCO₂; kidneys control HCO₃⁻. (2) <strong>Phosphate buffer</strong> in urine and intracellular. (3) <strong>Protein buffers</strong>, especially hemoglobin in RBCs and proteins inside cells. Intracellular.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Compare the four primary acid-base disorders and identify how the body compensates.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Respiratory acidosis:</strong> high PCO₂ (hypoventilation, COPD, drug overdose). pH low. Renal compensation: kidneys retain HCO₃⁻ (slow, days). <strong>Respiratory alkalosis:</strong> low PCO₂ (hyperventilation, anxiety, high altitude). pH high. Renal compensation: kidneys excrete HCO₃⁻. <strong>Metabolic acidosis:</strong> low HCO₃⁻ (DKA, lactic acidosis, diarrhea). pH low. Respiratory compensation: hyperventilation lowers PCO₂ (fast, minutes). <strong>Metabolic alkalosis:</strong> high HCO₃⁻ (vomiting, diuretics). pH high. Respiratory compensation: hypoventilation raises PCO₂. Lungs compensate fast; kidneys compensate slowly.</div></div></li>
         </ol>
       </div>
 
       <div class="mode-block">
-        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Diet and deficiency reasoning</span></div>
-        <div class="work-label">a. A vegan patient eats only plant proteins. Identify the nutritional concern, name two amino acids most commonly limiting in plant diets, and explain the strategy of "complementary proteins."</div>
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Acid-base scenarios</span></div>
+        <div class="work-label">a. A patient has severe diarrhea for three days. Predict the acid-base disorder, the change in HCO₃⁻ and pH, and the expected respiratory compensation.</div>
         <div class="work-box"></div>
-        <div class="work-label" style="margin-top:14px;">b. A patient on a very low-fat diet (less than 10% of calories from fat) develops night vision problems and easy bruising over six months. Identify the deficiency category and the mechanism.</div>
+        <div class="work-label" style="margin-top:14px;">b. A patient with Type 1 diabetes presents in DKA with rapid deep breathing (Kussmaul respirations). Identify the acid-base disorder, explain why ketones cause it, and explain why the breathing pattern is the body's compensation.</div>
         <div class="work-box"></div>
-        <div class="work-label" style="margin-top:14px;">c. A patient drinks heavily and obtains 30% of their calories from alcohol. Predict the consequence for vitamin status and overall nutrition, and explain why "empty calories" is a fitting description.</div>
+        <div class="work-label" style="margin-top:14px;">c. A patient has an anxiety attack with rapid shallow breathing. They report tingling around the mouth and in the fingers. Identify the acid-base disorder and explain why the symptoms occur.</div>
         <div class="work-box"></div>
       </div>
 
@@ -362,43 +376,46 @@
     </div>
   </section>
 
-  <!-- SECTION 06 - LAB ANCHOR -->
+  <!-- SECTION 06 - COR & AirNow -->
   <section class="section" data-section="s6">
     <div class="section-head" onclick="toggleSection('s6')">
       <div class="section-num">06</div>
       <div class="section-titles">
-        <p class="section-eyebrow">Lab anchor · TDEE &amp; Nutrition Label Audit</p>
-        <h2 class="section-title">TDEE Calculation &amp; Reading Nutrition Labels</h2>
-        <p class="section-anchor">Two clinical tools for this week's lab. Mifflin-St Jeor estimates BMR, then activity multiplier scales to TDEE. Nutrition labels follow a standard format with Daily Values for comparison.</p>
+        <p class="section-eyebrow">Lab anchor · Urine Dipstick (COR-named) &amp; AirNow AQI</p>
+        <h2 class="section-title">Bedside Tools: Dipstick &amp; Air Quality</h2>
+        <p class="section-anchor">Two clinical tools for this week's lab. The urine dipstick is COR-named content. The AirNow AQI is a regional extension because Northern California air quality during wildfire season directly affects respiratory health.</p>
       </div>
       <div class="section-toggle" aria-hidden="true">▾</div>
     </div>
     <div class="section-body">
 
       <div class="mode-block">
-        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Formula, factors, label structure</span></div>
+        <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Dipstick parameters and AQI categories</span></div>
         <ol class="prompt-list">
-          <li><span class="prompt-num">1.</span><div class="prompt-text">State the Mifflin-St Jeor equation for basal metabolic rate (BMR) for males and females.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">Inputs: weight (W) in kilograms, height (H) in centimeters, age (A) in years.<br><strong>Male BMR = (10 × W) + (6.25 × H) - (5 × A) + 5</strong><br><strong>Female BMR = (10 × W) + (6.25 × H) - (5 × A) - 161</strong><br>This is the number of kilocalories the body burns at rest in 24 hours just to maintain basic functions. Mifflin-St Jeor is the most widely used and accurate equation for healthy adults.</div></div></li>
-          <li><span class="prompt-num">2.</span><div class="prompt-text">List the standard activity multipliers used to convert BMR to TDEE (total daily energy expenditure).<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>1.2 Sedentary:</strong> little to no exercise, desk job. <strong>1.375 Lightly active:</strong> light exercise 1 to 3 days per week. <strong>1.55 Moderately active:</strong> moderate exercise 3 to 5 days per week. <strong>1.725 Very active:</strong> hard exercise 6 to 7 days per week. <strong>1.9 Extremely active:</strong> very hard daily exercise plus physical job or training twice per day. <strong>TDEE = BMR × activity factor.</strong></div></div></li>
-          <li><span class="prompt-num">3.</span><div class="prompt-text">List the major elements of a US nutrition label, in order from top to bottom.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer">(1) <strong>Serving size and servings per container</strong> at the top. Read this first; portions can be deceiving. (2) <strong>Calories per serving</strong> (large font since 2016). (3) <strong>Macronutrients with %DV:</strong> total fat (saturated, trans), cholesterol, sodium, total carbohydrate (dietary fiber, total sugars including added sugars), protein. (4) <strong>Micronutrients with %DV:</strong> vitamin D, calcium, iron, potassium (these four are required since 2016). (5) <strong>Footnote:</strong> "% Daily Values are based on a 2000 calorie diet."</div></div></li>
-          <li><span class="prompt-num">4.</span><div class="prompt-text">Identify the four most useful red flags to audit on a packaged food label.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Added sugars:</strong> Daily Value cap is 50 g (10% of calories). One 20-oz soda has more than this. <strong>Saturated fat:</strong> DV cap 20 g. <strong>Sodium:</strong> DV cap 2300 mg. Many processed foods exceed 30% DV per serving. <strong>Fiber:</strong> DV target 28 g (more is better). General rule: %DV ≤ 5% is low; ≥ 20% is high. Aim for low %DV on the cap nutrients (added sugar, saturated fat, sodium) and high %DV on the target nutrients (fiber, vitamin D, calcium, iron, potassium).</div></div></li>
+          <li><span class="prompt-num">1.</span><div class="prompt-text">List the parameters on a standard urine dipstick and what each indicates when abnormal.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Specific gravity:</strong> urine concentration (1.005 to 1.030). High = concentrated/dehydrated. <strong>pH:</strong> 4.5 to 8.0. <strong>Glucose:</strong> normally negative; positive in diabetes mellitus once renal threshold (~180 mg/dL plasma) is exceeded. <strong>Ketones:</strong> normally negative; positive in DKA, starvation, low-carb diet. <strong>Protein:</strong> normally negative; positive in glomerular damage. <strong>Blood:</strong> normally negative; positive in UTI, kidney stones, glomerular disease. <strong>Leukocyte esterase:</strong> positive when WBCs present (UTI). <strong>Nitrites:</strong> positive when gram-negative bacteria reduce dietary nitrate (UTI). <strong>Bilirubin / urobilinogen:</strong> liver and biliary function.</div></div></li>
+          <li><span class="prompt-num">2.</span><div class="prompt-text">Identify the typical dipstick patterns for diabetes mellitus, urinary tract infection, and glomerulonephritis.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>Uncontrolled diabetes mellitus:</strong> glucose positive, ketones positive (especially in DKA), often acidic pH. Specific gravity often elevated. <strong>UTI:</strong> leukocyte esterase positive, nitrites positive (when gram-negative organism), often blood trace, sometimes alkaline pH. <strong>Glomerulonephritis:</strong> protein positive (often heavy), blood positive (microscopic or gross hematuria). Hyaline or RBC casts on microscopy.</div></div></li>
+          <li><span class="prompt-num">3.</span><div class="prompt-text">Identify the six AirNow Air Quality Index (AQI) categories with their numeric ranges and the populations affected at each level.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button>
+          <div class="answer"><strong>0 to 50: Good</strong> (green). Air quality satisfactory; minimal risk. <strong>51 to 100: Moderate</strong> (yellow). Unusually sensitive people may have symptoms. <strong>101 to 150: Unhealthy for Sensitive Groups</strong> (orange). Children, elderly, those with heart or lung disease, and pregnant people should reduce outdoor activity. <strong>151 to 200: Unhealthy</strong> (red). Everyone may experience effects; sensitive groups more serious. <strong>201 to 300: Very Unhealthy</strong> (purple). Everyone should reduce outdoor activity; health alert. <strong>301+: Hazardous</strong> (maroon). Emergency conditions; everyone should avoid outdoor activity.</div></div></li>
+          <li><span class="prompt-num">4.</span><div class="prompt-text">Explain why PM2.5 from wildfire smoke is particularly harmful and which clinical conditions worsen during high-AQI days.<button class="reveal-btn" onclick="toggleAnswer(this)">Show</button><div class="answer"><strong>PM2.5</strong> = fine particulate matter, less than 2.5 micrometers in diameter. Small enough to bypass nasal filtering and reach the alveoli, where it triggers inflammation, crosses into systemic circulation, and contributes to cardiovascular events. Conditions that worsen during high-AQI days: <strong>asthma exacerbations, COPD flares, increased risk of heart attack and stroke, decreased exercise tolerance in healthy people</strong>. Effects are dose-dependent, so brief exposure at moderate levels is much less harmful than prolonged exposure at unhealthy levels.</div></div></li>
         </ol>
       </div>
 
-      <div class="formula-card">
-        <strong>Mifflin-St Jeor formulas:</strong><br>
-        Male BMR = (10 × kg) + (6.25 × cm) - (5 × years) + 5<br>
-        Female BMR = (10 × kg) + (6.25 × cm) - (5 × years) - 161<br>
-        <strong>TDEE = BMR × activity factor</strong> (1.2 to 1.9)
+      <div class="aqi-strip" aria-label="AQI categories visual reference">
+        <div class="aqi-cell" style="background:#00e400;color:#003"><strong>0-50</strong>Good</div>
+        <div class="aqi-cell" style="background:#ffff00;color:#553"><strong>51-100</strong>Moderate</div>
+        <div class="aqi-cell" style="background:#ff7e00"><strong>101-150</strong>Sensitive Groups</div>
+        <div class="aqi-cell" style="background:#ff0000"><strong>151-200</strong>Unhealthy</div>
+        <div class="aqi-cell" style="background:#8f3f97"><strong>201-300</strong>Very Unhealthy</div>
+        <div class="aqi-cell" style="background:#7e0023"><strong>301+</strong>Hazardous</div>
       </div>
 
       <div class="mode-block">
-        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Calculate and audit</span></div>
-        <div class="work-label">a. Calculate the TDEE of a 30-year-old female, 65 kg, 165 cm tall, sedentary office worker. Show your work step by step.</div>
+        <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Interpret dipstick and AQI scenarios</span></div>
+        <div class="work-label">a. A patient brings in this dipstick: glucose ++, ketones ++, pH 5.0, specific gravity 1.025. Identify the most likely diagnosis and one immediate next step.</div>
         <div class="work-box"></div>
-        <div class="work-label" style="margin-top:14px;">b. A label shows: serving size 1 cup, calories 250, total fat 12 g (saturated 4 g), sodium 480 mg, total carbs 30 g (added sugars 18 g, fiber 1 g), protein 5 g. Identify the red flags using the 5%/20% rule of thumb (assume 2000 kcal/day). Identify two label features that are nutritionally appropriate.</div>
+        <div class="work-label" style="margin-top:14px;">b. A 28-year-old female presents with dysuria and frequency. Dipstick: leukocyte esterase positive, nitrites positive, blood trace, pH 7.5. Identify the most likely diagnosis and explain how each finding fits.</div>
         <div class="work-box"></div>
-        <div class="work-label" style="margin-top:14px;">c. A patient eats two servings of the food in part b. Recalculate the calories, added sugars, and sodium consumed, and predict whether they have exceeded any of the daily caps in this single snack.</div>
+        <div class="work-label" style="margin-top:14px;">c. The local AQI is 175 due to nearby wildfire smoke. Your patient has moderate persistent asthma. Counsel them on outdoor activity, mask use, and rescue inhaler readiness today.</div>
         <div class="work-box"></div>
       </div>
 
@@ -413,7 +430,7 @@
       <div class="section-titles">
         <p class="section-eyebrow">Self-Assessment · Reflect</p>
         <h2 class="section-title">Self-Check &amp; Reflection</h2>
-        <p class="section-anchor">Audit before the lab. The TDEE and label audit activities draw directly from Section 6.</p>
+        <p class="section-anchor">The lungs and kidneys are connected. Audit how well you can move between them.</p>
       </div>
       <div class="section-toggle" aria-hidden="true">▾</div>
     </div>
@@ -422,29 +439,31 @@
       <div class="mode-block">
         <div class="mode-header"><span class="mode-tag chip-retrieve">Retrieve</span><span class="mode-name">Confidence audit</span></div>
         <p style="margin-bottom: 10px; color: var(--ocean);">Check the box only if you can do the action without notes, right now.</p>
-        <div class="check-prompt"><input type="checkbox" id="cf1"><label for="cf1">I can name the alimentary canal organs in order from mouth to anus.</label></div>
-        <div class="check-prompt"><input type="checkbox" id="cf2"><label for="cf2">I can name the four GI wall layers and what each contains.</label></div>
-        <div class="check-prompt"><input type="checkbox" id="cf3"><label for="cf3">I can name the four accessory organs and their contributions.</label></div>
-        <div class="check-prompt"><input type="checkbox" id="cf4"><label for="cf4">I can trace carbohydrate, protein, and lipid digestion from intact macromolecule to absorbable unit.</label></div>
-        <div class="check-prompt"><input type="checkbox" id="cf5"><label for="cf5">I can name three structural amplifiers of small intestinal surface area.</label></div>
-        <div class="check-prompt"><input type="checkbox" id="cf6"><label for="cf6">I can compare absorption mechanisms for glucose, fructose, amino acids, and fats.</label></div>
-        <div class="check-prompt"><input type="checkbox" id="cf7"><label for="cf7">I can explain why vitamin B₁₂ requires intrinsic factor and where it is absorbed.</label></div>
-        <div class="check-prompt"><input type="checkbox" id="cf8"><label for="cf8">I can trace the hepatic portal circulation and explain the first-pass effect. (COR)</label></div>
-        <div class="check-prompt"><input type="checkbox" id="cf9"><label for="cf9">I can list six major liver functions and what fails when each fails. (COR)</label></div>
-        <div class="check-prompt"><input type="checkbox" id="cf10"><label for="cf10">I can describe bile components and the pathway of bilirubin handling. (COR)</label></div>
-        <div class="check-prompt"><input type="checkbox" id="cf11"><label for="cf11">I can state the energy density (kcal/g) of carbs, protein, fat, and alcohol.</label></div>
-        <div class="check-prompt"><input type="checkbox" id="cf12"><label for="cf12">I can state the AMDR ranges and explain what they represent.</label></div>
-        <div class="check-prompt"><input type="checkbox" id="cf13"><label for="cf13">I can apply the Mifflin-St Jeor equation and an activity factor to find TDEE.</label></div>
-        <div class="check-prompt"><input type="checkbox" id="cf14"><label for="cf14">I can read a nutrition label and apply the 5%/20% rule to identify red flags.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf1"><label for="cf1">I can distinguish conducting from respiratory zones and trace air to an alveolus.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf2"><label for="cf2">I can identify the three alveolar cell types and the role of surfactant.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf3"><label for="cf3">I can explain the mechanics of inspiration and expiration.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf4"><label for="cf4">I can define the four lung volumes and two main capacities.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf5"><label for="cf5">I can distinguish external and internal respiration.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf6"><label for="cf6">I can explain hemoglobin O₂ binding and the Bohr effect.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf7"><label for="cf7">I can list the three forms of CO₂ transport with approximate percentages.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf8"><label for="cf8">I can compare V/Q shunt and V/Q dead space.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf9"><label for="cf9">I can name the parts of the nephron in order and trace blood through the kidney.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf10"><label for="cf10">I can describe glomerular filtration and the filtration membrane.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf11"><label for="cf11">I can explain the countercurrent multiplier in the loop of Henle.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf12"><label for="cf12">I can describe the actions of ADH, aldosterone, and ANP.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf13"><label for="cf13">I can identify ICF and ECF major cations and normal Na⁺ and K⁺ ranges.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf14"><label for="cf14">I can compare the four primary acid-base disorders and how the body compensates.</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf15"><label for="cf15">I can interpret a urine dipstick and identify common patterns. (COR)</label></div>
+        <div class="check-prompt"><input type="checkbox" id="cf16"><label for="cf16">I can identify the AirNow AQI categories and counsel on activity at each level.</label></div>
       </div>
 
       <div class="mode-block">
         <div class="mode-header"><span class="mode-tag chip-apply">Apply</span><span class="mode-name">Reflection prompts</span></div>
-        <div class="work-label">a. Of the topics this week (digestive anatomy, mechanical/chemical digestion, absorption, liver as metabolic hub, macronutrients/micronutrients, TDEE/labels), which one feels strongest right now?</div>
+        <div class="work-label">a. Of the topics this week (respiratory anatomy and ventilation, gas exchange, urinary anatomy, urine formation, fluid/electrolyte/acid-base, dipstick and AQI), which one feels strongest right now?</div>
         <div class="work-box"></div>
         <div class="work-label" style="margin-top:14px;">b. Which one is still cloudy? Write what you would ask Dr. Rennie or a study partner if you had thirty seconds.</div>
         <div class="work-box"></div>
-        <div class="work-label" style="margin-top:14px;">c. Lab preview: in lab you will calculate your own TDEE and audit a real nutrition label from your kitchen. Predict one habit you might change after running these numbers, and one thing you expect the label of your favorite snack to reveal.</div>
+        <div class="work-label" style="margin-top:14px;">c. Lab preview: in lab you will interpret urine dipsticks and check the local AirNow AQI to make activity recommendations. Predict one dipstick pattern that would worry you most, and explain how you would advise an asthmatic neighbor on a 175-AQI smoke day.</div>
         <div class="work-box"></div>
       </div>
 
@@ -453,14 +472,14 @@
   </section>
 
   <div class="closing">
-    <h3>Wrapping up Week 7</h3>
-    <p>Digestion is mechanical, then chemical, then absorptive. The liver is the metabolic hub everything passes through. Nutrition is the system view, with TDEE and labels as the bedside tools you actually use.</p>
+    <h3>Wrapping up Week 6</h3>
+    <p>The respiratory and urinary systems are the body's two main waste managers. Together they regulate pH, blood volume, and electrolyte balance on different timescales. The dipstick reads urine; the AQI reads the air. Both come up in lab this week.</p>
     <p>To submit:</p>
     <ol class="closing-steps">
       <li>Make sure the progress bar above shows 7 of 7 sections complete. The trainer is your study tool, not your turn-in.</li>
-      <li>Open and print the Week 7 Worksheet (companion document). Complete every box by hand in pen or pencil.</li>
+      <li>Open and print the Week 6 Worksheet (companion document). Complete every box by hand in pen or pencil.</li>
       <li>Save your <strong>completed</strong> worksheet as a single PDF (scan it or photograph it).</li>
-      <li>Upload that PDF to the Week 7 Worksheet assignment in Canvas.</li>
+      <li>Upload that PDF to the Week 6 Worksheet assignment in Canvas.</li>
     </ol>
   </div>
 
@@ -527,7 +546,7 @@
     el.setAttribute('aria-label', answer);
   }
 
-  const STORAGE_KEY = 'bio304_w07_trainer_progress';
+  const STORAGE_KEY = 'bio304_w06_trainer_progress';
   let completed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
   function updateProgress() {
     const total = 7;
@@ -569,7 +588,7 @@
   };
 
   (function() {
-    const FRAME_ID = 'bio304-w07-trainer';
+    const FRAME_ID = 'bio304-w06-trainer';
     function sendHeight() {
       const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
       window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
