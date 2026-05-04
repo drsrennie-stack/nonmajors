@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Course Structure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
+    --sand: #f5e6d3; --sand-soft: #faf3e8;
+    --terra: #c44536; --terra-soft: #e8a499;
+    --kelp: #5a7553; --kelp-soft: #aabba0;
+    --paper: #fdfbf7; --line: #c9d4d8; --muted: #5a6b73;
+    --shadow-md: 0 4px 14px rgba(20, 48, 75, 0.08);
+    --radius-md: 12px; --radius-lg: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 0 28px 80px; }
+
+  header.masthead { padding: 48px 0 24px; border-bottom: 2.5px solid var(--ocean-deep); margin-bottom: 36px; position: relative; }
+  header.masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
+  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(2rem, 4vw, 2.6rem); line-height: 1.15; color: var(--ocean-deep); letter-spacing: -0.01em; margin-bottom: 14px; }
+  h1.title em { font-style: italic; color: var(--terra); }
+  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.1rem; color: var(--ocean); max-width: 720px; }
+
+  /* CATEGORY BLOCK */
+  .category { margin: 44px 0; }
+  .category-head { display: flex; gap: 18px; align-items: baseline; margin-bottom: 18px; }
+  .category-num { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 2.2rem; color: var(--terra); line-height: 1; min-width: 44px; }
+  .category-titles { flex: 1; padding-bottom: 10px; border-bottom: 1.5px solid var(--ocean-deep); }
+  .category-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .category-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.55rem; color: var(--ocean-deep); }
+  .category-title em { font-style: italic; color: var(--terra); }
+  .category-description { color: var(--ink); margin-bottom: 18px; max-width: 820px; line-height: 1.65; }
+
+  /* COMPONENT GRID */
+  .component-grid { display: grid; gap: 16px; margin-bottom: 16px; }
+  .component-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .component-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+  @media (max-width: 720px) {
+    .component-grid.cols-2, .component-grid.cols-3 { grid-template-columns: 1fr; }
+  }
+
+  /* COMPONENT CARD */
+  .component {
+    background: white;
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--ocean-deep);
+    border-radius: var(--radius-md);
+    padding: 20px 22px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .component:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .component.anatomy { border-top-color: var(--ocean-deep); }
+  .component.physiology { border-top-color: var(--terra); }
+  .component.assessment { border-top-color: var(--kelp); }
+  .component.project { border-top-color: var(--terra); }
+  .component-eyebrow {
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
+  }
+  .component-name {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.15rem;
+    color: var(--ocean-deep); line-height: 1.25; margin-bottom: 8px;
+  }
+  .component-name em { font-style: italic; color: var(--terra); }
+  .component-desc { font-size: 0.9rem; line-height: 1.55; margin-bottom: 10px; }
+  .component-meta {
+    font-size: 0.78rem; color: var(--muted); padding-top: 10px;
+    border-top: 1px dashed var(--line);
+  }
+  .component-meta strong { color: var(--ocean-deep); }
+
+  /* WORKBOOK PAIR */
+  .workbook-pair {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    margin: 12px 0;
+  }
+  .workbook-pair-title {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.2rem;
+    color: var(--ocean-deep); margin-bottom: 10px;
+  }
+  .workbook-pair-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px;
+  }
+  .workbook-half {
+    padding: 14px 16px; border-radius: 8px;
+    border-left: 4px solid var(--ocean-deep);
+    background: var(--sea-glass-soft);
+  }
+  .workbook-half.physiology {
+    border-left-color: var(--terra);
+    background: var(--sand-soft);
+  }
+  .workbook-half-label {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 4px;
+  }
+  .workbook-half.physiology .workbook-half-label { color: var(--terra); }
+  .workbook-half-name {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1rem;
+    color: var(--ink); margin-bottom: 6px;
+  }
+  .workbook-half-desc { font-size: 0.84rem; color: var(--ink); line-height: 1.5; }
+
+  @media (max-width: 720px) {
+    .workbook-pair-grid { grid-template-columns: 1fr; }
+  }
+
+  /* GRADE DISTRIBUTION */
+  .grade-row {
+    display: grid;
+    grid-template-columns: 1fr 80px 80px;
+    gap: 16px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    align-items: center;
+  }
+  .grade-row:last-child { border-bottom: none; font-weight: 700; background: var(--sea-glass-soft); }
+  .grade-row .grade-label { color: var(--ink); font-weight: 500; }
+  .grade-row .grade-pct {
+    font-family: 'Lora', serif; font-style: italic; font-weight: 500;
+    color: var(--terra); text-align: right;
+  }
+  .grade-row .grade-pts {
+    font-size: 0.86rem; color: var(--muted); text-align: right;
+  }
+
+  /* WEEK FLOW */
+  .week-strip {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 4px;
+    margin: 12px 0 18px;
+  }
+  .week-cell {
+    background: var(--sea-glass-soft);
+    border: 1px solid var(--ocean);
+    border-radius: 6px;
+    padding: 12px 8px;
+    text-align: center;
+  }
+  .week-cell-num {
+    font-family: 'Lora', serif; font-style: italic; font-weight: 500;
+    font-size: 1.2rem; color: var(--terra); line-height: 1; margin-bottom: 4px;
+  }
+  .week-cell-title {
+    font-size: 0.68rem; color: var(--ocean-deep); line-height: 1.3;
+  }
+
+  @media (max-width: 720px) {
+    .week-strip { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* PRINT BUTTON */
+  .print-btn-floating {
+    position: fixed; bottom: 24px; right: 24px;
+    background: var(--ocean-deep); color: white; border: none;
+    padding: 14px 22px; border-radius: 999px;
+    font-family: inherit; font-size: 0.88rem; font-weight: 600;
+    cursor: pointer; letter-spacing: 0.04em;
+    box-shadow: 0 4px 16px rgba(20, 48, 75, 0.25);
+    z-index: 50;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.15s ease, transform 0.18s ease;
+  }
+  .print-btn-floating:hover { background: var(--ocean); transform: translateY(-2px); }
+  .print-btn-floating::before { content: '⎙'; font-size: 1.05rem; }
+
+  @media (max-width: 720px) {
+    .print-btn-floating { bottom: 16px; right: 16px; padding: 12px 18px; font-size: 0.82rem; }
+  }
+
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .skip-link, .print-btn-floating { display: none !important; }
+    .component, .workbook-pair, .category { break-inside: avoid; box-shadow: none; }
+    @page { size: letter; margin: 0.5in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<button class="print-btn-floating" type="button" onclick="window.print()" aria-label="Print this page or save as PDF">Print / Save PDF</button>
+
+<div class="page" id="main-content" role="main">
+
+  <header class="masthead">
+    <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · Course Structure</p>
+    <h1 class="title">How <em>this course</em> is built.</h1>
+    <p class="subtitle">A complete map of the components you will use across eight weeks. Use this to understand how everything fits together.</p>
+  </header>
+
+  <!-- CATEGORY 01: WEEK STRUCTURE OVERVIEW -->
+  <section class="category" aria-labelledby="cat-1-heading">
+    <div class="category-head">
+      <span class="category-num" aria-hidden="true">01</span>
+      <div class="category-titles">
+        <p class="category-eyebrow">Course rhythm</p>
+        <h2 class="category-title" id="cat-1-heading">Eight weeks, double the pace</h2>
+      </div>
+    </div>
+    <p class="category-description">This is an 8-week intensive course covering material that runs at a regular semester would cover in 16 weeks. You will move twice as fast as students in a traditional A&amp;P course. Each week has the same rhythm: study the trainer, complete the workbooks, take the quiz, contribute to discussion.</p>
+
+    <div class="week-strip" aria-label="Eight weeks of the course">
+      <div class="week-cell"><div class="week-cell-num">01</div><div class="week-cell-title">Body Basics, Cells &amp; Tissues</div></div>
+      <div class="week-cell"><div class="week-cell-num">02</div><div class="week-cell-title">Protection &amp; Support</div></div>
+      <div class="week-cell"><div class="week-cell-num">03</div><div class="week-cell-title">Control Systems</div></div>
+      <div class="week-cell"><div class="week-cell-num">04</div><div class="week-cell-title">Senses &amp; Integration</div></div>
+      <div class="week-cell"><div class="week-cell-num">05</div><div class="week-cell-title">Transport</div></div>
+      <div class="week-cell"><div class="week-cell-num">06</div><div class="week-cell-title">Gas Exchange &amp; Waste</div></div>
+      <div class="week-cell"><div class="week-cell-num">07</div><div class="week-cell-title">Nutrition</div></div>
+      <div class="week-cell"><div class="week-cell-num">08</div><div class="week-cell-title">Reproductive &amp; Lifespan</div></div>
+    </div>
+  </section>
+
+  <!-- CATEGORY 02: WEEKLY COMPONENTS -->
+  <section class="category" aria-labelledby="cat-2-heading">
+    <div class="category-head">
+      <span class="category-num" aria-hidden="true">02</span>
+      <div class="category-titles">
+        <p class="category-eyebrow">Weekly study tools</p>
+        <h2 class="category-title" id="cat-2-heading">What you use <em>every week</em></h2>
+      </div>
+    </div>
+    <p class="category-description">Six tools repeat every week. Use them in the order shown for best results.</p>
+
+    <div class="component-grid cols-3">
+      <div class="component">
+        <p class="component-eyebrow">Step 01</p>
+        <h3 class="component-name">Concept &amp; Lab Videos</h3>
+        <p class="component-desc">Pre-recorded lectures by Dr. Rennie plus curated YouTube content, plus lab identification videos for the week. Watch these first to build a foundation.</p>
+        <p class="component-meta"><strong>When:</strong> Monday–Tuesday</p>
+      </div>
+      <div class="component">
+        <p class="component-eyebrow">Step 02</p>
+        <h3 class="component-name">Cognitive Trainer</h3>
+        <p class="component-desc">Interactive, self-paced study tool. Retrieve, build, and apply across all sections of the week. Use repeatedly throughout the week.</p>
+        <p class="component-meta"><strong>When:</strong> Tuesday–Friday, multiple sessions</p>
+      </div>
+      <div class="component">
+        <p class="component-eyebrow">Step 03</p>
+        <h3 class="component-name">Discussion</h3>
+        <p class="component-desc">Two AI-resistant prompts per week. Initial post by Wednesday, two replies to peers by Sunday.</p>
+        <p class="component-meta"><strong>When:</strong> Initial Wed, replies by Sun</p>
+      </div>
+      <div class="component anatomy">
+        <p class="component-eyebrow">Step 04a</p>
+        <h3 class="component-name">Anatomy Workbook</h3>
+        <p class="component-desc">Draw with reference, label every numbered structure, complete synthesis questions. Print, handwrite, scan to PDF, OR build digitally with revision history.</p>
+        <p class="component-meta"><strong>When:</strong> Thursday–Friday · Due Sun 11:59 PM</p>
+      </div>
+      <div class="component physiology">
+        <p class="component-eyebrow">Step 04b</p>
+        <h3 class="component-name">Physiology Workbook</h3>
+        <p class="component-desc">Clinical dry lab simulation. Lab interpretation, patient cases, evidence-based reasoning.</p>
+        <p class="component-meta"><strong>When:</strong> Friday–Saturday · Due Sun 11:59 PM</p>
+      </div>
+      <div class="component project">
+        <p class="component-eyebrow">Step 05</p>
+        <h3 class="component-name">Portfolio Page</h3>
+        <p class="component-desc">One single-sided clinical reference page using content from the week's workbooks. Quick reference, decision logic, scenarios, anatomy connection.</p>
+        <p class="component-meta"><strong>When:</strong> Saturday · Due Sun 11:59 PM</p>
+      </div>
+      <div class="component assessment">
+        <p class="component-eyebrow">Step 06</p>
+        <h3 class="component-name">Weekly Quiz</h3>
+        <p class="component-desc">20 multiple-choice questions, 30 minutes, Honorlock-proctored. Closed-book.</p>
+        <p class="component-meta"><strong>When:</strong> Sunday before 11:59 PM</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY 03: WORKBOOK STRUCTURE -->
+  <section class="category" aria-labelledby="cat-3-heading">
+    <div class="category-head">
+      <span class="category-num" aria-hidden="true">03</span>
+      <div class="category-titles">
+        <p class="category-eyebrow">The workbooks</p>
+        <h2 class="category-title" id="cat-3-heading">Two halves: <em>anatomy then physiology</em></h2>
+      </div>
+    </div>
+    <p class="category-description">Lab is 50% anatomy and 50% physiology. Each week, those halves come as two separate workbooks. Anatomy first, then physiology. Both are required.</p>
+
+    <div class="workbook-pair">
+      <p class="workbook-pair-title">Each week: a paired set of workbooks</p>
+      <div class="workbook-pair-grid">
+        <div class="workbook-half">
+          <p class="workbook-half-label">Half 1</p>
+          <h4 class="workbook-half-name">Anatomy Workbook</h4>
+          <p class="workbook-half-desc">Draw key structures using a reference figure (cell membrane, sarcomere, brain, nephron, etc.). Place the numbered structure list on your drawing. Answer synthesis questions. Word banks scaffold Weeks 1 and 2; from Week 3 onward, recall from your trainer practice.</p>
+        </div>
+        <div class="workbook-half physiology">
+          <p class="workbook-half-label">Half 2</p>
+          <h4 class="workbook-half-name">Physiology Workbook</h4>
+          <p class="workbook-half-desc">Clinical dry lab simulation: tonicity calculations, DEXA interpretation, ECG reading, neuro exam, ABG analysis, and more. Patient cases. Final synthesis question integrates the entire week.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-grid cols-2" style="margin-top: 18px;">
+      <div class="component physiology">
+        <p class="component-eyebrow">Why this design</p>
+        <h3 class="component-name">Drawings &amp; synthesis are <em>graded heavily</em></h3>
+        <p class="component-desc">Drawing tasks and synthesis questions cannot be copied from AI. They require genuine understanding and integration. Filling in label blanks is required, but the drawing and synthesis sections drive your grade.</p>
+        <p class="component-meta"><strong>Studies have shown:</strong> the act of drawing structures, even with a reference, builds spatial understanding far beyond what passive label-matching can achieve.</p>
+      </div>
+      <div class="component physiology">
+        <p class="component-eyebrow">Why this design</p>
+        <h3 class="component-name">Physiology is <em>clinical</em></h3>
+        <p class="component-desc">Each weekly physiology workbook teaches a real bedside skill: ECG interpretation, full neurological exam, ABG analysis, lab value interpretation. These prepare you for nursing school, EMT, paramedic, mortuary science, and any future A&amp;P coursework you take.</p>
+        <p class="component-meta"><strong>Examples:</strong> Tonicity → burn fluids · Bone density → fracture risk · OGTT → diabetes diagnosis</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY 04: CLINICAL REFERENCE PORTFOLIO -->
+  <section class="category" aria-labelledby="cat-4-heading">
+    <div class="category-head">
+      <span class="category-num" aria-hidden="true">04</span>
+      <div class="category-titles">
+        <p class="category-eyebrow">The semester-long project</p>
+        <h2 class="category-title" id="cat-4-heading">Clinical Reference Portfolio</h2>
+      </div>
+    </div>
+    <p class="category-description">A semester-long project where you build your own clinical reference document. One single-page reference per week, eight pages total, each aligned with that week's body system and the clinical tools we work through in the physiology workbook. By Week 8, you will have a complete clinical reference you can carry into nursing school, EMT, paramedic, mortuary science, or wherever your career takes you. Worth 15% of your final grade.</p>
+
+    <div class="component-grid cols-3">
+      <div class="component project">
+        <p class="component-eyebrow">Deliverable 1</p>
+        <h3 class="component-name">Weekly Portfolio Pages</h3>
+        <p class="component-desc">8 single-sided reference pages, one per body system. Quick reference values, decision logic, two clinical scenarios, and an anatomy connection.</p>
+        <p class="component-meta"><strong>8 × 10 pts = 80 pts</strong> · Weeks 1 through 8</p>
+      </div>
+      <div class="component project">
+        <p class="component-eyebrow">Deliverable 2</p>
+        <h3 class="component-name">Final Compiled Portfolio</h3>
+        <p class="component-desc">All 8 pages compiled into a single PDF with cover page and 200-400 word reflection. Submitted Friday of Week 8.</p>
+        <p class="component-meta"><strong>20 pts</strong> · Due Friday Week 8</p>
+      </div>
+      <div class="component project">
+        <p class="component-eyebrow">Resource</p>
+        <h3 class="component-name">Templates Provided</h3>
+        <p class="component-desc">Each weekly page comes with a customizable HTML template. Download, fill in, customize, submit as PDF.</p>
+        <p class="component-meta"><strong>8 templates</strong> · Linked from Dashboard</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY 05: GRADE DISTRIBUTION -->
+  <section class="category" aria-labelledby="cat-5-heading">
+    <div class="category-head">
+      <span class="category-num" aria-hidden="true">05</span>
+      <div class="category-titles">
+        <p class="category-eyebrow">How you are graded</p>
+        <h2 class="category-title" id="cat-5-heading">Grade distribution</h2>
+      </div>
+    </div>
+    <p class="category-description">Five categories make up your final grade. Workbooks (Anatomy + Physiology combined) are the largest category. Lab exams come second. No late work is accepted.</p>
+
+    <div style="background: white; border: 1px solid var(--line); border-radius: var(--radius-md); padding: 8px 0; margin: 16px 0;">
+      <div class="grade-row">
+        <span class="grade-label">Workbooks (Anatomy + Physiology)</span>
+        <span class="grade-pct">30%</span>
+        <span class="grade-pts">16 workbooks · 50 pts each</span>
+      </div>
+      <div class="grade-row">
+        <span class="grade-label">Lab Exams (Honorlock-proctored)</span>
+        <span class="grade-pct">25%</span>
+        <span class="grade-pts">2 exams · midterm Wk 4, final Wk 8</span>
+      </div>
+      <div class="grade-row">
+        <span class="grade-label">Clinical Reference Portfolio</span>
+        <span class="grade-pct">15%</span>
+        <span class="grade-pts">8 pages + final compilation</span>
+      </div>
+      <div class="grade-row">
+        <span class="grade-label">Weekly Quizzes (Honorlock)</span>
+        <span class="grade-pct">15%</span>
+        <span class="grade-pts">8 quizzes · 20 pts each</span>
+      </div>
+      <div class="grade-row">
+        <span class="grade-label">Discussions</span>
+        <span class="grade-pct">15%</span>
+        <span class="grade-pts">8 weeks · 25 pts each</span>
+      </div>
+      <div class="grade-row">
+        <span class="grade-label">Total</span>
+        <span class="grade-pct">100%</span>
+        <span class="grade-pts">A 90+ · B 80+ · C 70+</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY 06: SUPPORT MATERIALS -->
+  <section class="category" aria-labelledby="cat-6-heading">
+    <div class="category-head">
+      <span class="category-num" aria-hidden="true">06</span>
+      <div class="category-titles">
+        <p class="category-eyebrow">Always available</p>
+        <h2 class="category-title" id="cat-6-heading">Reference and support pages</h2>
+      </div>
+    </div>
+    <p class="category-description">These pages do not change week to week. Use them whenever you need them.</p>
+
+    <div class="component-grid cols-3">
+      <div class="component">
+        <p class="component-eyebrow">Navigation</p>
+        <h3 class="component-name">Course Dashboard</h3>
+        <p class="component-desc">Your home page. Pick any week, jump to any resource. The single navigation hub for the course.</p>
+      </div>
+      <div class="component">
+        <p class="component-eyebrow">Reference</p>
+        <h3 class="component-name">Syllabus</h3>
+        <p class="component-desc">Grade rules, late policy, AI policy, accommodations, contact info, course schedule.</p>
+      </div>
+      <div class="component">
+        <p class="component-eyebrow">Reference</p>
+        <h3 class="component-name">Weekly Pacer</h3>
+        <p class="component-desc">Day-by-day rhythm of a typical week. Use this to plan your time.</p>
+      </div>
+      <div class="component project">
+        <p class="component-eyebrow">Project hub</p>
+        <h3 class="component-name">Clinical Portfolio Hub</h3>
+        <p class="component-desc">Everything about the semester project: assignment, rubric, timeline, page templates, AI policy, and the 8-page topic map.</p>
+      </div>
+      <div class="component">
+        <p class="component-eyebrow">Quiz prep</p>
+        <h3 class="component-name">Quiz Directions</h3>
+        <p class="component-desc">Honorlock setup, what to expect during a proctored quiz, technical requirements.</p>
+      </div>
+      <div class="component project">
+        <p class="component-eyebrow">Submission</p>
+        <h3 class="component-name">Submission Directions</h3>
+        <p class="component-desc">Three options for completing weekly work (print and handwrite, build digitally, or handwrite on blank paper). Includes PDF conversion guide for every device.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // Iframe height-sender for Kajabi embedding
+  (function () {
+    const FRAME_ID = 'bio304-course-structure';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
