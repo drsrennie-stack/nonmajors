@@ -139,6 +139,7 @@
   }
   .req-card.required .level { color: var(--terra); }
   .req-card.recommended .level { color: var(--ocean-mid); }
+  .req-card.optional .level { color: var(--ocean-mid); }
   .req-card h3 {
     font-family: var(--serif);
     font-weight: 500;
@@ -273,7 +274,7 @@
     <article class="req-card required">
       <p class="level">Required</p>
       <h3>A computer or laptop</h3>
-      <p>Any Mac, Windows, or Chromebook from the last 5 or so years. Phones and tablets work for reading and watching videos but are harder for lab uploads and typing longer discussion posts.</p>
+      <p>Any Mac, Windows, or Chromebook from the last 5 or so years. Phones and tablets are not sufficient for proctored quizzes (Honorlock). Desktop or laptop is required.</p>
     </article>
 
     <article class="req-card required">
@@ -291,25 +292,31 @@
     <article class="req-card required">
       <p class="level">Required</p>
       <h3>Honorlock (Chrome extension)</h3>
-      <p>A free Chrome extension used only for taking weekly quizzes. At ARC, it is configured in lockdown-only mode: no webcam, no audio, no recording. It just prevents other tabs from being open during a quiz. Installation instructions will be posted in Module 0 before Week 1.</p>
+      <p>A free Chrome extension used only for taking weekly quizzes and lab exams. At ARC, it is configured in lockdown-only mode: no webcam, no audio, no recording. It just prevents other tabs from being open during a quiz. Installation instructions will be posted in Module 0 before Week 1.</p>
     </article>
 
     <article class="req-card required">
       <p class="level">Required</p>
-      <h3>A printer</h3>
-      <p>You will print one trainer each week and fill it in by hand. Any home printer works. If you do not have one at home, any campus or public library printer will do.</p>
-    </article>
-
-    <article class="req-card required">
-      <p class="level">Required</p>
-      <h3>A camera</h3>
-      <p>Any phone camera is fine. You will photograph your completed trainer and anatomy labels each week and upload them to Canvas.</p>
+      <h3>PDF reader and PDF creation</h3>
+      <p>Built into most operating systems. You will submit weekly workbooks and portfolio pages as PDFs. The Submission Directions page walks through how to create PDFs from any platform (phone scan, Google Docs export, Word save-as).</p>
     </article>
 
     <article class="req-card required">
       <p class="level">Required</p>
       <h3>Your Los Rios login</h3>
       <p>You should already have this from registration. Use it to access Canvas at <a href="https://lrccd.instructure.com" target="_blank" rel="noopener">lrccd.instructure.com</a>.</p>
+    </article>
+
+    <article class="req-card optional">
+      <p class="level">Optional</p>
+      <h3>A printer</h3>
+      <p>Optional. The submission policy gives you three ways to complete weekly work: print and handwrite, build digitally with revision history, or handwrite on blank paper. A printer makes Option 1 easier but is not required. Public libraries and campus printers also work.</p>
+    </article>
+
+    <article class="req-card optional">
+      <p class="level">Optional</p>
+      <h3>A camera or scanning app</h3>
+      <p>Any phone camera works. Use a free scanning app (Adobe Scan, Microsoft Lens, Apple Notes, Google Drive) to capture handwritten work and convert to PDF. Optional if you build everything digitally.</p>
     </article>
 
     <article class="req-card recommended">
@@ -321,7 +328,7 @@
     <article class="req-card recommended">
       <p class="level">Recommended</p>
       <h3>Colored pens or pencils</h3>
-      <p>Three to five colors. Helps a lot with trainers and anatomy labeling. Not required, but makes the work easier and the memorization stickier.</p>
+      <p>Three to five colors. Helps a lot with anatomy drawings and labeling. Not required, but makes the work easier and the memorization stickier.</p>
     </article>
   </div>
 
@@ -342,20 +349,20 @@
     <h3>Email me if the problem is the course, not Canvas</h3>
     <p>If the course content itself has a problem (a broken link inside a page I built, a video with no audio, a lab that is missing a file), email me. I can fix those.</p>
     <p class="field"><strong>Email</strong> <a href="mailto:rennies@arc.losrios.edu">rennies@arc.losrios.edu</a></p>
-    <p class="field"><strong>Response time</strong> Within 48 hours of the next business day.</p>
+    <p class="field"><strong>Response time</strong> Within 24 to 48 hours on weekdays. Weekend or holiday messages get a response on the next business day.</p>
   </aside>
 
   <!-- FOOTER -->
   <footer class="footer">
     <span>BIOL 304 &middot; American River College &middot; Summer 2026</span>
-    <span class="version">Tech Setup v1</span>
+    <span class="version">Tech Setup v2</span>
   </footer>
 
 </div>
 
 <script>
 (function () {
-  var FRAME_ID = 'biol304_tech_setup_v1';
+  var FRAME_ID = 'bio304-tech-setup';
   function sendHeight() {
     var h = Math.max(
       document.body.scrollHeight,
