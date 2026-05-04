@@ -82,14 +82,6 @@
   .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
 
   .figure { margin: 0; }
-  .figure-imgbox { background: white; border: 2px dashed var(--ocean); border-radius: 6px; padding: 14px; position: relative; display: flex; align-items: center; justify-content: center; }
-  .figure-imgbox img { max-width: 100%; height: auto; display: block; }
-  .figure-imgbox.img-pending { background: var(--sea-glass-soft); border-color: var(--ocean); }
-  .img-pending-msg { display: none; flex-direction: column; align-items: center; gap: 6px; text-align: center; color: var(--muted); padding: 18px; }
-  .figure-imgbox.img-pending .img-pending-msg { display: flex; }
-  .img-pending-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); }
-  .img-pending-file { font-size: 0.95rem; font-weight: 600; color: var(--terra); background: white; padding: 6px 14px; border-radius: 4px; border: 1px solid var(--terra); }
-  .img-pending-alt { font-size: 0.82rem; font-style: italic; max-width: 360px; line-height: 1.4; margin-top: 4px; }
 
   .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
   .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
@@ -105,8 +97,8 @@
     .label-flex { grid-template-columns: 1fr; }
   }
 
-  .draw-box { background: white; border: 1.5px solid var(--ocean-deep); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 280px; background-image: linear-gradient(rgba(214, 228, 231, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(214, 228, 231, 0.4) 1px, transparent 1px); background-size: 24px 24px; background-position: -1px -1px; position: relative; page-break-inside: avoid; }
-  .draw-box-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: white; padding: 1px 6px; border-radius: 2px; }
+  .draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 320px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
   .draw-box.tall { min-height: 360px; }
   .draw-box.short { min-height: 220px; }
 
@@ -156,10 +148,15 @@
     .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
     .actions, .skip-link, .partner-link { display: none !important; }
     .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
-    .figure-imgbox { border-color: #888; }
-    .figure-imgbox.img-pending { background: white; }
-    @page { size: letter; margin: 0.55in 0.6in; }
+        @page { size: letter; margin: 0.55in 0.6in; }
   }
+
+  .ref-draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; min-height: 380px; position: relative; page-break-inside: avoid; }
+  .ref-draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
+  .ref-instruction { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); padding: 10px 14px; margin: 10px 0 12px; font-size: 0.88rem; line-height: 1.5; border-radius: 0 4px 4px 0; }
+  .ref-instruction strong { color: var(--ocean-deep); }
+  .ref-instruction em { color: var(--terra); font-style: italic; }
+
 </style>
 </head>
 <body>
@@ -192,9 +189,10 @@
   </div>
   <section class="instructions" aria-labelledby="how-heading">
     <h2 id="how-heading">How this workbook works</h2>
-    <p><strong>Print, handwrite, scan, submit.</strong> This is the <strong>Anatomy Workbook</strong> for Week 4. Complete this first, then move to the Physiology Workbook for the Full Neurological Exam dry lab.</p>
-    <p><strong>Recall structures from memory.</strong> No word banks from Week 3 onward. Honest blanks teach you more than guessed labels.</p>
-    <p><strong>This week emphasizes structures you will see clinically.</strong> The eye, ear, and cranial nerve exam are core skills for nurses, EMTs, and paramedics. Know where each structure sits and what it does.</p>
+    <p><strong>Print, handwrite, scan, submit.</strong> Complete every section. Drawings, labeling, tables, and clinical reasoning all earn points.</p>
+    <p><strong>About the drawings in this workbook.</strong> For each drawing, find a clear reference in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas. You may either (a) draw it by hand in the workbook box, or (b) build it digitally in Google Docs, Google Drawings, Word, or PowerPoint using shapes, lines, and text labels, then attach the file to your Canvas submission.</p>
+    <p><strong>If you build digitally, you must submit revision history</strong> showing you built the diagram in stages over time. In Google Docs and Google Drawings: File &rarr; Version history &rarr; See version history. A flat image with no revision history does not meet this requirement.</p>
+    <p><strong>Either way, you must build it yourself, structure by structure.</strong> Copying a finished image (from Google Images, an AI tool, or a peer) earns zero on the assignment and is reported as academic dishonesty. Submission to Canvas certifies the work as your own.</p>
   </section>
 
   <section class="section" aria-labelledby="s1-title">
@@ -210,14 +208,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Anterior view of the right eye showing eyelids (upper and lower with eyelashes), conjunctiva, sclera, cornea, iris, pupil, lacrimal gland (superior lateral), lacrimal canaliculi, lacrimal sac, nasolacrimal duct, with 10 numbered arrows" data-pending="eye_external.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">eye_external.png</span>
-            <span class="img-pending-alt">Anterior view of the right eye showing eyelids (upper and lower with eyelashes), conjunctiva, sclera, cornea, iris, pupil, lacrimal gland (superior lateral), lacrimal canaliculi, lacrimal sac, nasolacrimal duct, with 10 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>eye external</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior view of the right eye showing eyelids (upper and lower with eyelashes), conjunctiva, sclera, cornea, iris, pupil, lacrimal gland (superior lateral), lacrimal canaliculi, lacrimal sac, nasolacrimal duct, with 10 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="eye-ext-key-title">
         <p class="key-title" id="eye-ext-key-title">Identify each numbered structure</p>
@@ -254,14 +246,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 420px;">
-          <img src="" alt="Sagittal section of the eye showing fibrous tunic (cornea, sclera), vascular tunic (iris, ciliary body, choroid), retina (with macula and fovea), lens, anterior chamber with aqueous humor, posterior chamber, vitreous chamber with vitreous humor, suspensory ligaments, optic nerve at optic disc (blind spot), with 13 numbered arrows" data-pending="eye_internal.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">eye_internal.png</span>
-            <span class="img-pending-alt">Sagittal section of the eye showing fibrous tunic (cornea, sclera), vascular tunic (iris, ciliary body, choroid), retina (with macula and fovea), lens, anterior chamber with aqueous humor, posterior chamber, vitreous chamber with vitreous humor, suspensory ligaments, optic nerve at optic disc (blind spot), with 13 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>eye internal</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: sagittal section of the eye showing fibrous tunic (cornea, sclera), vascular tunic (iris, ciliary body, choroid), retina (with macula and fovea), lens, anterior chamber with aqueous humor, posterior chamber, vitreous chamber with vitreous humor, suspensory ligaments, optic nerve at optic disc (blind spot), with 13 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="eye-int-key-title">
         <p class="key-title" id="eye-int-key-title">Identify each numbered structure</p>
@@ -301,14 +287,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Retinal histology cross-section showing layers from outer to inner: pigmented epithelium (against choroid), photoreceptor layer with rods and cones, outer nuclear layer, bipolar cell layer (outer plexiform and outer nuclear layers), ganglion cell layer with axons forming the optic nerve, with 7 numbered arrows" data-pending="retina_histology.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">retina_histology.png</span>
-            <span class="img-pending-alt">Retinal histology cross-section showing layers from outer to inner: pigmented epithelium (against choroid), photoreceptor layer with rods and cones, outer nuclear layer, bipolar cell layer (outer plexiform and outer nuclear layers), ganglion cell layer with axons forming the optic nerve, with 7 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>retina histology</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: retinal histology cross-section showing layers from outer to inner: pigmented epithelium (against choroid), photoreceptor layer with rods and cones, outer nuclear layer, bipolar cell layer (outer plexiform and outer nuclear layers), ganglion cell layer with axons forming the optic nerve, with 7 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="retina-key-title">
         <p class="key-title" id="retina-key-title">Identify each numbered structure</p>
@@ -372,14 +352,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 420px;">
-          <img src="" alt="Frontal section of the ear showing outer ear (auricle/pinna, external auditory canal, tympanic membrane), middle ear (malleus, incus, stapes ossicles, oval window, round window, auditory/eustachian tube), and inner ear (cochlea, semicircular canals, vestibule with utricle and saccule, vestibulocochlear nerve CN VIII), with 12 numbered arrows" data-pending="ear_full.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">ear_full.png</span>
-            <span class="img-pending-alt">Frontal section of the ear showing outer ear (auricle/pinna, external auditory canal, tympanic membrane), middle ear (malleus, incus, stapes ossicles, oval window, round window, auditory/eustachian tube), and inner ear (cochlea, semicircular canals, vestibule with utricle and saccule, vestibulocochlear nerve CN VIII), with 12 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>ear full</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: frontal section of the ear showing outer ear (auricle/pinna, external auditory canal, tympanic membrane), middle ear (malleus, incus, stapes ossicles, oval window, round window, auditory/eustachian tube), and inner ear (cochlea, semicircular canals, vestibule with utricle and saccule, vestibulocochlear nerve cn viii), with 12 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="ear-key-title">
         <p class="key-title" id="ear-key-title">Identify each numbered structure</p>
@@ -423,14 +397,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Cross-section of skin highlighting sensory receptors at different depths: free nerve endings in epidermis (pain, temperature), Meissner corpuscles in dermal papillae (light touch, vibration), Merkel discs at epidermal-dermal junction (sustained pressure), Pacinian corpuscles deep in dermis/hypodermis (deep pressure, vibration), Ruffini endings in dermis (sustained touch, stretch), with 5 numbered arrows" data-pending="sensory_receptors_skin.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">sensory_receptors_skin.png</span>
-            <span class="img-pending-alt">Cross-section of skin highlighting sensory receptors at different depths: free nerve endings in epidermis (pain, temperature), Meissner corpuscles in dermal papillae (light touch, vibration), Merkel discs at epidermal-dermal junction (sustained pressure), Pacinian corpuscles deep in dermis/hypodermis (deep pressure, vibration), Ruffini endings in dermis (sustained touch, stretch), with 5 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>sensory receptors skin</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: cross-section of skin highlighting sensory receptors at different depths: free nerve endings in epidermis (pain, temperature), meissner corpuscles in dermal papillae (light touch, vibration), merkel discs at epidermal-dermal junction (sustained pressure), pacinian corpuscles deep in dermis/hypodermis (deep pressure, vibration), ruffini endings in dermis (sustained touch, stretch), with 5 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="sensory-key-title">
         <p class="key-title" id="sensory-key-title">Identify each numbered structure</p>
@@ -498,14 +466,8 @@
       <p class="label-exercise-title">Cranial nerves on the brain (review from Week 3)</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 420px;">
-          <img src="" alt="Inferior view of the brain with all 12 cranial nerves emerging in order: I olfactory, II optic, III oculomotor, IV trochlear, V trigeminal with three branches V1 V2 V3, VI abducens, VII facial, VIII vestibulocochlear, IX glossopharyngeal, X vagus, XI accessory, XII hypoglossal, with 12 numbered arrows" data-pending="cranial_nerves_review.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">cranial_nerves_review.png</span>
-            <span class="img-pending-alt">Inferior view of the brain with all 12 cranial nerves emerging in order: I olfactory, II optic, III oculomotor, IV trochlear, V trigeminal with three branches V1 V2 V3, VI abducens, VII facial, VIII vestibulocochlear, IX glossopharyngeal, X vagus, XI accessory, XII hypoglossal, with 12 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>cranial nerves review</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: inferior view of the brain with all 12 cranial nerves emerging in order: i olfactory, ii optic, iii oculomotor, iv trochlear, v trigeminal with three branches v1 v2 v3, vi abducens, vii facial, viii vestibulocochlear, ix glossopharyngeal, x vagus, xi accessory, xii hypoglossal, with 12 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="cn-review-key-title">
         <p class="key-title" id="cn-review-key-title">Identify each numbered structure</p>
@@ -615,14 +577,8 @@
       <p class="label-exercise-title">Major cerebral arteries (Circle of Willis, inferior view)</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Inferior view of the brain showing the Circle of Willis: anterior cerebral artery (ACA), middle cerebral artery (MCA), posterior cerebral artery (PCA), basilar artery, vertebral arteries, anterior communicating artery, posterior communicating arteries, internal carotid arteries, with 8 numbered arrows" data-pending="circle_of_willis.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">circle_of_willis.png</span>
-            <span class="img-pending-alt">Inferior view of the brain showing the Circle of Willis: anterior cerebral artery (ACA), middle cerebral artery (MCA), posterior cerebral artery (PCA), basilar artery, vertebral arteries, anterior communicating artery, posterior communicating arteries, internal carotid arteries, with 8 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>circle of willis</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: inferior view of the brain showing the circle of willis: anterior cerebral artery (aca), middle cerebral artery (mca), posterior cerebral artery (pca), basilar artery, vertebral arteries, anterior communicating artery, posterior communicating arteries, internal carotid arteries, with 8 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="willis-key-title">
         <p class="key-title" id="willis-key-title">Identify each numbered structure</p>
@@ -686,7 +642,7 @@
     <header class="section-head">
       <span class="section-num" aria-hidden="true">08</span>
       <div class="section-titles">
-        <p class="section-eyebrow">Anatomy · Drawing from Memory</p>
+        <p class="section-eyebrow">Anatomy · Drawing from Reference</p>
         <h2 class="section-title" id="s8-title">Visual pathway and pupillary light reflex</h2>
         <p class="section-anchor">Without referencing figures above, draw two pathways. Label every component.</p>
       </div>
@@ -698,7 +654,7 @@
     </div>
 
     <div class="draw-box tall" role="region" aria-label="Visual pathway drawing space">
-      <span class="draw-box-label">Drawing space: visual pathway</span>
+      <span class="draw-box-label">Drawing space</span>
     </div>
 
     <div class="reference" style="margin-top: 18px;">
@@ -707,7 +663,7 @@
     </div>
 
     <div class="draw-box tall" role="region" aria-label="Pupillary reflex drawing space">
-      <span class="draw-box-label">Drawing space: pupillary light reflex</span>
+      <span class="draw-box-label">Drawing space</span>
     </div>
 
     <div class="synthesis">
@@ -729,11 +685,33 @@
     <p>4. The FAST anatomical correlation table (Section 07) is completed for F, A, and S.</p>
     <p>5. Both drawings (Section 08) have every required component drawn AND labeled.</p>
     <p>6. The pupillary asymmetry synthesis question is answered.</p>
+        <p style="margin-top: 8px; font-size: 0.92rem; color: var(--ocean);"><strong>If any drawings were built digitally:</strong> attach the file (Google Doc / Drawing / Word / PowerPoint) to your Canvas submission AND share the revision history link. Drawings without revision history will not receive credit.</p>
+
     <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 4 Anatomy Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
     <p style="margin-top: 10px;"><strong>Then continue to the Week 4 Physiology Workbook</strong> (Full Neurological Exam dry lab).</p>
   </section>
 
 </main>
+
+
+<script>
+  // Auto-load images from data-pending attribute
+  // To customize image folder, change IMAGE_FOLDER below.
+  // Examples:
+  //   IMAGE_FOLDER = '';           // images in same folder as HTML (default)
+  //   IMAGE_FOLDER = 'images/';    // images in a subfolder named "images"
+  //   IMAGE_FOLDER = 'bio304_images/';  // any other subfolder name
+  (function () {
+    const IMAGE_FOLDER = '';
+    const imgs = document.querySelectorAll('img[data-pending]');
+    imgs.forEach(function (img) {
+      const filename = img.getAttribute('data-pending');
+      if (filename && !img.getAttribute('src')) {
+        img.src = IMAGE_FOLDER + filename;
+      }
+    });
+  })();
+</script>
 
 <script>
   (function () {
