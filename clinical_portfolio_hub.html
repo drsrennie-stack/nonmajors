@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinical Portfolio Hub | BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1d3557;
+  --ocean: #2a4d6e;
+  --ocean-deep: #14304b;
+  --terra: #c44536;
+  --kelp: #5a7553;
+  --sand-soft: #faf3e8;
+  --sea-glass-soft: #eef4f5;
+  --paper: #fdfbf7;
+  --line: #c9d4d8;
+  --muted: #5a6b73;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  margin: 0;
+  padding: 0;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--ocean-deep);
+  color: var(--paper);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  z-index: 100;
+  font-weight: 600;
+}
+.skip-link:focus { top: 0; }
+
+/* Focus indicator */
+:focus-visible {
+  outline: 3px solid var(--terra);
+  outline-offset: 2px;
+}
+
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+/* Masthead */
+.masthead {
+  background: var(--paper);
+  border-bottom: 4px solid var(--ocean-deep);
+  padding: 2rem 1.5rem 1.75rem;
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+.masthead::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 96px;
+  height: 4px;
+  background: var(--terra);
+}
+.masthead-inner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+.masthead .eyebrow {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin: 0 0 0.5rem;
+}
+.masthead h1 {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 2.25rem;
+  line-height: 1.2;
+  color: var(--ocean-deep);
+  margin: 0 0 0.4rem;
+}
+.masthead .subtitle {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin: 0;
+  font-weight: 400;
+}
+.masthead .meta {
+  margin-top: 0.9rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.masthead .meta strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Print button */
+.print-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  background: var(--ocean-deep);
+  color: var(--paper);
+  border: none;
+  padding: 0.55rem 1rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.print-btn:hover { background: var(--ocean); }
+.print-btn:focus-visible {
+  outline: 3px solid var(--terra);
+  outline-offset: 2px;
+}
+
+/* Section heads */
+.section {
+  margin: 2.75rem 0 0;
+}
+.section-head {
+  border-top: 1px solid var(--line);
+  padding-top: 1.25rem;
+  margin-bottom: 1rem;
+}
+.section-head .section-num {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--terra);
+  font-weight: 500;
+}
+.section-head .section-eyebrow {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  margin-top: 0.15rem;
+}
+.section-head h2 {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: var(--ocean-deep);
+  margin: 0.3rem 0 0.5rem;
+}
+
+h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ocean-deep);
+  margin: 1.5rem 0 0.6rem;
+  letter-spacing: 0.01em;
+}
+h4 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ocean);
+  margin: 1.1rem 0 0.4rem;
+}
+
+p { margin: 0.5rem 0 0.85rem; }
+
+ul, ol { padding-left: 1.4rem; margin: 0.4rem 0 0.9rem; }
+li { margin: 0.25rem 0; }
+
+a {
+  color: var(--ocean-deep);
+  text-decoration: underline;
+  text-decoration-color: var(--terra);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  font-weight: 500;
+}
+a:hover { color: var(--terra); }
+
+strong { color: var(--ink); font-weight: 600; }
+em { font-family: 'Lora', serif; font-style: italic; color: var(--ocean-deep); }
+
+/* Callouts */
+.callout {
+  background: var(--sand-soft);
+  border-left: 4px solid var(--terra);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 0 4px 4px 0;
+}
+.callout.kelp { border-left-color: var(--kelp); }
+.callout.ocean { border-left-color: var(--ocean); background: var(--sea-glass-soft); }
+.callout p:first-child { margin-top: 0; }
+.callout p:last-child { margin-bottom: 0; }
+.callout-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 0.4rem;
+}
+.callout.kelp .callout-label { color: var(--kelp); }
+.callout.ocean .callout-label { color: var(--ocean); }
+
+/* Reference box (for Quick Reference at top of templates) */
+.refbox {
+  background: var(--sea-glass-soft);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--ocean);
+  padding: 1.1rem 1.25rem;
+  border-radius: 4px;
+  margin: 1rem 0 1.5rem;
+}
+.refbox .refbox-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  margin-bottom: 0.5rem;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+th, td {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+th {
+  background: var(--sea-glass-soft);
+  color: var(--ocean-deep);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--ocean);
+}
+tbody tr:nth-child(even) { background: rgba(238, 244, 245, 0.4); }
+
+/* Decision logic blocks (for portfolio middle section) */
+.decision {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1rem 1.15rem;
+  margin: 0.9rem 0;
+}
+.decision .when {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  color: var(--ocean-deep);
+  font-size: 0.9rem;
+}
+.decision .then {
+  margin-top: 0.35rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+.decision .arrow {
+  display: inline-block;
+  margin: 0 0.4rem;
+  color: var(--terra);
+  font-weight: 700;
+}
+
+/* Scenario cards */
+.scenario {
+  background: var(--sand-soft);
+  border-left: 3px solid var(--ocean);
+  padding: 0.9rem 1.1rem;
+  margin: 0.85rem 0;
+  border-radius: 0 4px 4px 0;
+}
+.scenario .scenario-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  margin-bottom: 0.35rem;
+}
+.scenario .vignette {
+  font-style: italic;
+  font-family: 'Lora', serif;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.scenario .response-prompt {
+  font-size: 0.85rem;
+  color: var(--terra);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+.scenario .response-space {
+  background: #ffffff;
+  border: 2px dashed var(--ocean);
+  border-radius: 3px;
+  min-height: 4.5rem;
+  margin-top: 0.4rem;
+  padding: 0.4rem;
+}
+
+/* Synthesis (red accent) */
+.synthesis {
+  border: 1.5px solid var(--terra);
+  background: rgba(196, 69, 54, 0.04);
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
+  margin: 1.5rem 0;
+}
+.synthesis .synthesis-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 0.5rem;
+}
+
+/* Cards (used in hub for week-list grid) */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--ocean);
+  border-radius: 4px;
+  padding: 1rem 1.1rem;
+}
+.card .week-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 0.3rem;
+}
+.card h3 {
+  font-size: 0.98rem;
+  margin: 0.2rem 0 0.4rem;
+}
+.card p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Numbered steps */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  padding-left: 0;
+}
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 2.4rem;
+  margin: 0.7rem 0;
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: var(--ocean-deep);
+  color: var(--paper);
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* Footer */
+.page-foot {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .masthead h1 { font-size: 1.7rem; }
+  .print-btn {
+    position: static;
+    display: block;
+    margin: 1rem 0 0;
+  }
+  main { padding: 0 1rem 3rem; }
+  table { font-size: 0.85rem; }
+  th, td { padding: 0.5rem 0.5rem; }
+}
+
+/* Print styles */
+@media print {
+  body { background: white; }
+  .skip-link, .print-btn, .partner-link { display: none !important; }
+  .masthead { border-bottom-color: #000; padding: 0.5rem 0 1rem; margin-bottom: 1rem; }
+  main { padding: 0; max-width: 100%; }
+  .section { page-break-inside: avoid; }
+  .scenario, .decision, .refbox, .callout, .synthesis { page-break-inside: avoid; }
+  h2, h3 { page-break-after: avoid; }
+  a { text-decoration: none; color: var(--ink); }
+  .response-space { min-height: 3.5rem; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body id="bio304-clinical-portfolio-hub">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="masthead" role="banner">
+  <div class="masthead-inner">
+    <button class="print-btn" type="button" onclick="window.print()" aria-label="Print or save this page as PDF">Print / Save PDF</button>
+    <p class="eyebrow">BIO 304 &middot; Clinical Portfolio</p>
+    <h1>Clinical Portfolio Hub</h1>
+    <p class="subtitle">One reference page per week. Eight pages total. Build them as if you'll actually use them.</p>
+    <div class="meta"><strong>Weight:</strong> 15% of your final grade &middot; <strong>Format:</strong> One printable page per week, submitted as PDF</div>
+  </div>
+</header>
+<main id="main-content"><header class="section-head" id="overview">
+  <span class="section-num">01</span>
+  <span class="section-eyebrow">Start here</span>
+  <h2>What this is and why you're building it</h2>
+</header>
+
+<p>The Clinical Portfolio is a series of eight reference pages, one per week, that translate the week's anatomy and physiology into a tool a clinician would actually reach for. Each page lives on a single printable sheet. Each page is yours: your organizing logic, your phrasing, your call on what's high-yield enough to make the page.</p>
+
+<div class="callout">
+  <span class="callout-label">The point</span>
+  <p>Anatomy and physiology stop feeling abstract the moment you have to decide what to do with them. A&#160;clinician doesn't think, "what is the loop of Henle." They think, "this patient is hypokalemic on furosemide; what now." The portfolio is where you practice that translation, eight times, across every system you study this term.</p>
+</div>
+
+<p>By the end of the course you'll have an eight-page personal clinical reference. Bring it to BIO 304 lab, to your future nursing or paramedic program, to the bedside. It's a working document.</p>
+<header class="section-head" id="topics">
+  <span class="section-num">02</span>
+  <span class="section-eyebrow">Topic map</span>
+  <h2>What each week's page is about</h2>
+</header>
+<div class="card-grid">
+<div class="card">
+  <span class="week-tag">Week 01</span>
+  <h3>Fluids, electrolytes, and burns</h3>
+  <p>IV fluid tonicity decisions, Parkland burn calculation, electrolyte triage thresholds.</p>
+</div>
+<div class="card">
+  <span class="week-tag">Week 02</span>
+  <h3>Bone health and fall risk</h3>
+  <p>T-score interpretation, FRAX inputs, fall risk screen, intervention triggers.</p>
+</div>
+<div class="card">
+  <span class="week-tag">Week 03</span>
+  <h3>Endocrine recognition</h3>
+  <p>OGTT cutoffs, HbA1c bands, glucose decision tree, autonomic reflex map.</p>
+</div>
+<div class="card">
+  <span class="week-tag">Week 04</span>
+  <h3>Bedside neuro exam</h3>
+  <p>MRC strength scale, GCS, FAST stroke screen, tPA window logic.</p>
+</div>
+<div class="card">
+  <span class="week-tag">Week 05</span>
+  <h3>Cardiovascular decisions</h3>
+  <p>12-lead ECG read, ASCVD risk thresholds, RAAS pathway with drug targets.</p>
+</div>
+<div class="card">
+  <span class="week-tag">Week 06</span>
+  <h3>Respiratory and renal triage</h3>
+  <p>ABG four-step interpretation, spirometry pattern recognition, urinalysis dipstick logic.</p>
+</div>
+<div class="card">
+  <span class="week-tag">Week 07</span>
+  <h3>Hepatic and lipid workup</h3>
+  <p>LFT pattern recognition, lipid panel interpretation, statin start thresholds.</p>
+</div>
+<div class="card">
+  <span class="week-tag">Week 08</span>
+  <h3>Neuro-lifespan synthesis</h3>
+  <p>EEG basics, brain death criteria, integration across all systems and the lifespan.</p>
+</div></div>
+<p>Each week's portfolio template is a separate file you'll open from your weekly dashboard. The template is scaffolded: the structure is laid out, the prompts are written, you fill in the substance.</p>
+<header class="section-head" id="requirements">
+  <span class="section-num">03</span>
+  <span class="section-eyebrow">Template requirements</span>
+  <h2>What every page must contain</h2>
+</header>
+
+<p>Every portfolio page, regardless of topic, has the same four-part structure. This is non-negotiable. Consistency is what makes the portfolio usable as a reference set.</p>
+
+<h3>1. Quick Reference (top of page)</h3>
+<p>The values, cutoffs, formulas, and ranges you'd want to grab in five seconds. This is the lookup zone. Bullet lists, small tables, or labeled values work; dense paragraphs do not.</p>
+
+<h3>2. Decision Logic (middle of page)</h3>
+<p>A series of if/then statements that walk through the actual clinical decisions for the topic. Aim for three to five logic blocks per page. Format:</p>
+
+<div class="decision">
+  <div class="when"><strong>When</strong> serum K+ is below 3.5 mEq/L and patient is on furosemide</div>
+  <div class="then"><span class="arrow">&rarr;</span> Hold the next dose, replace potassium per protocol, recheck in 4 hours.</div>
+</div>
+
+<h3>3. Patient Scenarios (bottom of page)</h3>
+<p>Two to three short vignettes, each with a prompt asking what you'd do, recognize, or order. These are <em>application</em> questions, not recall. The point is to force the page through a real situation while you build it.</p>
+
+<h3>4. Integration sentence</h3>
+<p>One sentence at the very end connecting this week's topic to a prior week's system. For Week 1 there is no prior system; in that case, write one sentence connecting this page to something you already knew before BIO 304.</p>
+<header class="section-head" id="rubric">
+  <span class="section-num">04</span>
+  <span class="section-eyebrow">Rubric</span>
+  <h2>How each page is scored</h2>
+</header>
+
+<p>Each portfolio page is worth 12.5 points. Eight pages = 100 points = 15% of your final course grade.</p>
+
+<table>
+<thead>
+<tr><th>Component</th><th style="text-align:right">Points</th><th>What earns full credit</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Quick Reference</strong></td><td style='text-align:right'>4.0</td><td>Values, cutoffs, and formulas are accurate, complete, and organized for rapid retrieval.</td></tr>
+<tr><td><strong>Decision Logic</strong></td><td style='text-align:right'>4.0</td><td>If/then statements are clinically correct and cover the high-yield decision points for the topic.</td></tr>
+<tr><td><strong>Patient Scenarios</strong></td><td style='text-align:right'>3.0</td><td>Two to three vignettes show application, not memorization. Reasoning is shown, not just an answer.</td></tr>
+<tr><td><strong>Integration sentence</strong></td><td style='text-align:right'>1.5</td><td>One sentence connects this week to a prior week's system in a non-trivial way.</td></tr>
+
+<tr><td colspan="3" style="background:var(--sea-glass-soft); font-weight:700; color:var(--ocean-deep)">Total per page: 12.5 points</td></tr>
+</tbody>
+</table>
+
+<div class="callout kelp">
+  <span class="callout-label">Two ways to lose points fast</span>
+  <ul>
+    <li><strong>Lecture summary instead of decision tool.</strong> If a stranger reading your page can't tell what action it points toward, you've written notes, not a reference.</li>
+    <li><strong>Page exceeds one printable side.</strong> Compression is part of the skill. Cut, don't expand.</li>
+  </ul>
+</div>
+<header class="section-head" id="timeline">
+  <span class="section-num">05</span>
+  <span class="section-eyebrow">Timeline</span>
+  <h2>When each page is due</h2>
+</header>
+
+<p>Each portfolio page is due Sunday at 11:59 PM Pacific of its week. The page covers content from that week's lectures and workbooks, so build it after the workbooks are done, not before.</p>
+
+<table>
+<thead>
+<tr><th>Page</th><th>Topic</th><th>Due</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Week 01</strong></td><td>Fluids, electrolytes, and burns</td><td>Sunday of Week 01, 11:59 PM PT</td></tr>
+<tr><td><strong>Week 02</strong></td><td>Bone health and fall risk</td><td>Sunday of Week 02, 11:59 PM PT</td></tr>
+<tr><td><strong>Week 03</strong></td><td>Endocrine recognition</td><td>Sunday of Week 03, 11:59 PM PT</td></tr>
+<tr><td><strong>Week 04</strong></td><td>Bedside neuro exam</td><td>Sunday of Week 04, 11:59 PM PT</td></tr>
+<tr><td><strong>Week 05</strong></td><td>Cardiovascular decisions</td><td>Sunday of Week 05, 11:59 PM PT</td></tr>
+<tr><td><strong>Week 06</strong></td><td>Respiratory and renal triage</td><td>Sunday of Week 06, 11:59 PM PT</td></tr>
+<tr><td><strong>Week 07</strong></td><td>Hepatic and lipid workup</td><td>Sunday of Week 07, 11:59 PM PT</td></tr>
+<tr><td><strong>Week 08</strong></td><td>Neuro-lifespan synthesis</td><td>Sunday of Week 08, 11:59 PM PT</td></tr>
+
+</tbody>
+</table>
+
+<p>No late portfolio pages are accepted. If you submit a Week 2 page in Week 4, it's a zero. DSPS accommodations are honored per the syllabus.</p>
+<header class="section-head" id="examples">
+  <span class="section-num">06</span>
+  <span class="section-eyebrow">Examples</span>
+  <h2>What a strong page looks like</h2>
+</header>
+
+<p>A strong portfolio page has these visible signs:</p>
+
+<ul>
+  <li><strong>Specific numbers.</strong> "HbA1c 6.5% or higher = diabetes" beats "elevated HbA1c suggests diabetes" every time.</li>
+  <li><strong>If/then structure throughout.</strong> Even the Quick Reference is organized so you can find the value <em>and</em> know what it triggers.</li>
+  <li><strong>Original phrasing.</strong> The page reads as if the student wrote it for themselves, not as if they pasted from a textbook.</li>
+  <li><strong>Visual hierarchy.</strong> The reader can locate the Quick Reference, the Decision Logic, and the Scenarios without reading carefully.</li>
+  <li><strong>Compression.</strong> Fits one side of one sheet, with white space, not crammed margins.</li>
+</ul>
+
+<p>A weak page reads like a chapter summary, has no decision points, lists facts without consequences, or sprawls onto two pages.</p>
+<header class="section-head" id="ai-policy">
+  <span class="section-num">07</span>
+  <span class="section-eyebrow">AI policy</span>
+  <h2>What you can and cannot use AI for</h2>
+</header>
+
+<div class="callout ocean">
+  <span class="callout-label">Build it yourself</span>
+  <p>The portfolio's value is that you built it. Asking an AI to generate a portfolio page defeats the entire assignment. Submissions that show signs of generated content (uniform phrasing across students, generic structure, content the student can't explain when asked) earn a zero and a referral under the academic integrity policy.</p>
+</div>
+
+<h3>Allowed</h3>
+<ul>
+  <li>Asking an AI tutor to explain a concept you find confusing. Example: "explain why furosemide causes hypokalemia."</li>
+  <li>Asking an AI to quiz you on the topic before you build the page.</li>
+  <li>Using AI to check your understanding of a value or cutoff after you've drafted it.</li>
+</ul>
+
+<h3>Not allowed</h3>
+<ul>
+  <li>Asking AI to write the page, draft sections, or generate the decision logic.</li>
+  <li>Asking AI to produce scenarios for you.</li>
+  <li>Pasting your draft into AI and asking it to "improve" or "rewrite" the content.</li>
+</ul>
+
+<p>Rule of thumb: AI can teach you the topic. Your fingers, on your keyboard or pen, build the page.</p>
+<header class="section-head" id="submission">
+  <span class="section-num">08</span>
+  <span class="section-eyebrow">Submission</span>
+  <h2>How to turn each page in</h2>
+</header>
+
+<ol class="steps">
+  <li>Open the week's portfolio template (linked from your weekly dashboard).</li>
+  <li>Fill in your content. Stay within the one-page limit.</li>
+  <li>Save as PDF. (Print to PDF works on every platform; see the Submission Directions document if you need device-specific guidance.)</li>
+  <li>File-name your PDF: <strong>LastName_BIO304_PortfolioWk[N].pdf</strong>. Example: <strong>Garcia_BIO304_PortfolioWk03.pdf</strong>.</li>
+  <li>Upload to the Canvas Clinical Portfolio assignment for that week.</li>
+</ol>
+
+<div class="callout">
+  <span class="callout-label">One page only</span>
+  <p>Pages that print to two sides will not be re-graded for length. The single-page constraint is part of the assignment. If you cannot fit it, cut content, do not extend.</p>
+</div>
+<header class="section-head" id="closing">
+  <span class="section-num">09</span>
+  <span class="section-eyebrow">Final note</span>
+  <h2>Why this matters</h2>
+</header>
+
+<div class="synthesis">
+  <span class="synthesis-label">From Dr. Rennie</span>
+  <p>The students who do well in clinical settings, in nursing programs, in EMT and paramedic ride-alongs, in mortuary science labs, are not the ones who memorized the most facts. They are the ones who built reliable tools for thinking, then trusted those tools when the moment got loud. This portfolio is a small version of that practice. Build it for yourself.</p>
+  <p style="margin-bottom:0"><em>Dr. Sharilyn Rennie</em></p>
+</div>
+
+<footer class="page-foot" role="contentinfo">
+  <p>BIO 304 Human Anatomy &amp; Physiology &middot; Dr. Sharilyn Rennie &middot; MedMasters Collaborative</p>
+</footer>
+</main>
+<script>
+  // Iframe height-sender for Kajabi embedding
+  (function() {
+    var frameId = "bio304-clinical-portfolio-hub";
+    function sendHeight() {
+      var h = document.documentElement.scrollHeight;
+      try {
+        window.parent.postMessage({ type: "iframe-height", id: frameId, height: h }, "*");
+      } catch (e) {}
+    }
+    if (window.ResizeObserver) {
+      var ro = new ResizeObserver(sendHeight);
+      ro.observe(document.body);
+    }
+    window.addEventListener("load", sendHeight);
+    window.addEventListener("resize", sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 1000);
+  })();
+</script>
+</body>
+</html>
