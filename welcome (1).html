@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to BIO 304 | BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1d3557;
+  --ocean: #2a4d6e;
+  --ocean-deep: #14304b;
+  --terra: #c44536;
+  --kelp: #5a7553;
+  --paper: #ffffff;
+  --line: #c9d4d8;
+  --muted: #5a6b73;
+  --tint: #f4f7f8;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--ocean-deep);
+  color: var(--paper);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  z-index: 100;
+  font-weight: 600;
+}
+.skip-link:focus { top: 0; }
+
+/* Focus indicator */
+:focus-visible {
+  outline: 3px solid var(--terra);
+  outline-offset: 2px;
+}
+
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+/* Masthead */
+.masthead {
+  background: #ffffff;
+  border-bottom: 4px solid var(--ocean-deep);
+  padding: 2rem 1.5rem 1.75rem;
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+.masthead::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 96px;
+  height: 4px;
+  background: var(--terra);
+}
+.masthead-inner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+.masthead .eyebrow {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin: 0 0 0.5rem;
+}
+.masthead h1 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 2.05rem;
+  line-height: 1.2;
+  color: var(--ocean-deep);
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.01em;
+}
+.masthead .subtitle {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin: 0;
+  font-weight: 400;
+}
+.masthead .meta {
+  margin-top: 0.9rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.masthead .meta strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Print button */
+.print-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  background: var(--ocean-deep);
+  color: var(--paper);
+  border: none;
+  padding: 0.55rem 1rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.print-btn:hover { background: var(--ocean); }
+.print-btn:focus-visible {
+  outline: 3px solid var(--terra);
+  outline-offset: 2px;
+}
+
+/* Section heads */
+.section {
+  margin: 2.75rem 0 0;
+}
+.section-head {
+  border-top: 1px solid var(--line);
+  padding-top: 1.25rem;
+  margin-bottom: 1rem;
+}
+.section-head .section-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--terra);
+  letter-spacing: 0.04em;
+}
+.section-head .section-eyebrow {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  margin-top: 0.15rem;
+}
+.section-head h2 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.45rem;
+  color: var(--ocean-deep);
+  margin: 0.3rem 0 0.5rem;
+  letter-spacing: -0.005em;
+}
+
+h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ocean-deep);
+  margin: 1.5rem 0 0.6rem;
+  letter-spacing: 0.01em;
+}
+h4 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ocean);
+  margin: 1.1rem 0 0.4rem;
+}
+
+p { margin: 0.5rem 0 0.85rem; }
+
+ul, ol { padding-left: 1.4rem; margin: 0.4rem 0 0.9rem; }
+li { margin: 0.25rem 0; }
+
+a {
+  color: var(--ocean-deep);
+  text-decoration: underline;
+  text-decoration-color: var(--terra);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  font-weight: 500;
+}
+a:hover { color: var(--terra); }
+
+strong { color: var(--ink); font-weight: 600; }
+em { font-style: italic; color: var(--ocean-deep); }
+
+/* Callouts */
+.callout {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--terra);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 0 4px 4px 0;
+}
+.callout.kelp { border-left-color: var(--kelp); }
+.callout.ocean { border-left-color: var(--ocean); }
+.callout p:first-child { margin-top: 0; }
+.callout p:last-child { margin-bottom: 0; }
+.callout-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 0.4rem;
+}
+.callout.kelp .callout-label { color: var(--kelp); }
+.callout.ocean .callout-label { color: var(--ocean); }
+
+/* Reference box (for Quick Reference at top of templates) */
+.refbox {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--ocean);
+  padding: 1.1rem 1.25rem;
+  border-radius: 4px;
+  margin: 1rem 0 1.5rem;
+}
+.refbox .refbox-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  margin-bottom: 0.5rem;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+th, td {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+th {
+  background: #ffffff;
+  color: var(--ocean-deep);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--ocean);
+}
+tbody tr:nth-child(even) { background: #ffffff; }
+
+/* Decision logic blocks (for portfolio middle section) */
+.decision {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1rem 1.15rem;
+  margin: 0.9rem 0;
+}
+.decision .when {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  color: var(--ocean-deep);
+  font-size: 0.9rem;
+}
+.decision .then {
+  margin-top: 0.35rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+.decision .arrow {
+  display: inline-block;
+  margin: 0 0.4rem;
+  color: var(--terra);
+  font-weight: 700;
+}
+
+/* Scenario cards */
+.scenario {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--ocean);
+  padding: 0.9rem 1.1rem;
+  margin: 0.85rem 0;
+  border-radius: 0 4px 4px 0;
+}
+.scenario .scenario-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  margin-bottom: 0.35rem;
+}
+.scenario .vignette {
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.scenario .response-prompt {
+  font-size: 0.85rem;
+  color: var(--terra);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+.scenario .response-space {
+  background: #ffffff;
+  border: 2px dashed var(--ocean);
+  border-radius: 3px;
+  min-height: 4.5rem;
+  margin-top: 0.4rem;
+  padding: 0.4rem;
+}
+
+/* Synthesis (red accent) */
+.synthesis {
+  border: 1.5px solid var(--terra);
+  background: #ffffff;
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
+  margin: 1.5rem 0;
+}
+.synthesis .synthesis-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 0.5rem;
+}
+
+/* Cards (used in hub for week-list grid) */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+.card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--ocean);
+  border-radius: 4px;
+  padding: 1rem 1.1rem;
+}
+.card .week-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 0.3rem;
+}
+.card h3 {
+  font-size: 0.98rem;
+  margin: 0.2rem 0 0.4rem;
+}
+.card p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Numbered steps */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  padding-left: 0;
+}
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 2.4rem;
+  margin: 0.7rem 0;
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: var(--ocean-deep);
+  color: var(--paper);
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* Footer */
+.page-foot {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .masthead h1 { font-size: 1.7rem; }
+  .print-btn {
+    position: static;
+    display: block;
+    margin: 1rem 0 0;
+  }
+  main { padding: 0 1rem 3rem; }
+  table { font-size: 0.85rem; }
+  th, td { padding: 0.5rem 0.5rem; }
+}
+
+/* Print styles */
+@media print {
+  body { background: white; }
+  .skip-link, .print-btn, .partner-link { display: none !important; }
+  .masthead { border-bottom-color: #000; padding: 0.5rem 0 1rem; margin-bottom: 1rem; }
+  main { padding: 0; max-width: 100%; }
+  .section { page-break-inside: avoid; }
+  .scenario, .decision, .refbox, .callout, .synthesis { page-break-inside: avoid; }
+  h2, h3 { page-break-after: avoid; }
+  a { text-decoration: none; color: var(--ink); }
+  .response-space { min-height: 3.5rem; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body id="bio304-welcome">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="masthead" role="banner">
+  <div class="masthead-inner">
+    <button class="print-btn" type="button" onclick="window.print()" aria-label="Print or save this page as PDF">Print / Save PDF</button>
+    <p class="eyebrow">BIO 304 &middot; Welcome</p>
+    <h1>Welcome to Human Anatomy &amp; Physiology</h1>
+    <p class="subtitle">A note from Dr. Rennie, then the six places you should go before Week 1 begins.</p>
+    <div class="meta"><strong>Course:</strong> BIO 304 (4 credits, 8-week intensive, online) &middot; <strong>Instructor:</strong> Dr. Sharilyn Rennie</div>
+  </div>
+</header>
+<main id="main-content"><header class="section-head" id="note">
+  <span class="section-num">01</span>
+  <span class="section-eyebrow">From the instructor</span>
+  <h2>A short note before you begin</h2>
+</header>
+
+<p>Welcome. I'm glad you're here.</p>
+
+<p>BIO 304 is the kind of course that rewards consistent, structured effort. It does not reward last-minute heroics. Eight weeks is short. The content is dense. The clinical applications are immediate. If you commit to the rhythm I've built into this course, week by week, you will leave with a working knowledge of the human body that you can use, not just recite.</p>
+
+<div class="callout ocean">
+  <span class="callout-label">A small expectation</span>
+  <p>Read the syllabus before Week 1. Read it carefully. Most of what feels like a surprise later in the term is something the syllabus quietly told you in Week 0. Save yourself the friction.</p>
+</div>
+
+<p>If you've taken an A&amp;P course before and felt overwhelmed, this version is designed to fix that. Every assignment is built to do exactly one job. Every workbook has a purpose. Nothing is busywork. If something feels confusing, ask. Office hours are real, and so am I.</p>
+
+<p style="margin-bottom:0"><em>Dr. Sharilyn Rennie</em></p>
+<header class="section-head" id="what">
+  <span class="section-num">02</span>
+  <span class="section-eyebrow">What this course is</span>
+  <h2>Two minutes of orientation</h2>
+</header>
+
+<p>BIO 304 is a 4-credit, 8-week, asynchronous online course that combines human anatomy and physiology. Anatomy is the structure (what is where). Physiology is the function (how it behaves). The two are inseparable in clinical practice and inseparable in this course. Each week you will work through both, in parallel, and connect them.</p>
+
+<p>The course is built for pre-nursing, EMT, paramedic, mortuary science, and preparation for advanced A&amp;P coursework. The content is calibrated for people who will use this material in real clinical decisions, soon.</p>
+
+<h3>What a typical week looks like</h3>
+<ul>
+  <li>Six hours of video lectures (four hours new, two hours existing concept and lab ID videos).</li>
+  <li>One anatomy workbook and one physiology workbook (graded, structured, draw-from-reference).</li>
+  <li>Three to four cognitive trainer sessions (spaced retrieval practice, ungraded).</li>
+  <li>One clinical portfolio page (the week's anatomy and physiology translated into a clinical reference tool).</li>
+  <li>One Honorlock-proctored quiz, twenty questions, twenty minutes.</li>
+  <li>One discussion post and two replies.</li>
+</ul>
+
+<p>Total student engagement is approximately 20 to 20.5 hours per week. This is what a 4-credit, 8-week intensive looks like. Plan for it.</p>
+<header class="section-head" id="start">
+  <span class="section-num">03</span>
+  <span class="section-eyebrow">Start here</span>
+  <h2>The six pages to read before Week 1</h2>
+</header>
+
+<p>In order. Don't skip any.</p>
+
+<div class="card-grid">
+  <a class="card" href="syllabus.html" style="text-decoration:none">
+    <span class="week-tag">Step 1</span>
+    <h3>Syllabus</h3>
+    <p>Grade weights, policies, schedule, the full course agreement. Read it cover to cover.</p>
+  </a>
+  <a class="card" href="course_structure.html" style="text-decoration:none">
+    <span class="week-tag">Step 2</span>
+    <h3>Course structure</h3>
+    <p>Visual map of every component (workbooks, trainer, portfolio, quizzes, discussions) and how they connect.</p>
+  </a>
+  <a class="card" href="weekly_pacer.html" style="text-decoration:none">
+    <span class="week-tag">Step 3</span>
+    <h3>Weekly pacer</h3>
+    <p>Monday-through-Sunday rhythm with time estimates per task. Use this to plan your week.</p>
+  </a>
+  <a class="card" href="dashboard.html" style="text-decoration:none">
+    <span class="week-tag">Step 4</span>
+    <h3>Dashboard</h3>
+    <p>Your home base. Every week's workbooks, trainer, portfolio template, quiz, and discussion link from here.</p>
+  </a>
+  <a class="card" href="clinical_portfolio_hub.html" style="text-decoration:none">
+    <span class="week-tag">Step 5</span>
+    <h3>Clinical Portfolio Hub</h3>
+    <p>Read this before you build your first portfolio page. The hub explains what the portfolio is and how it's graded.</p>
+  </a>
+  <a class="card" href="submission_directions.html" style="text-decoration:none">
+    <span class="week-tag">Step 6</span>
+    <h3>Submission directions</h3>
+    <p>How to format, save, name, and upload your work. Three submission options. PDF conversion guides for every platform.</p>
+  </a>
+</div>
+<header class="section-head" id="tech">
+  <span class="section-num">04</span>
+  <span class="section-eyebrow">Tech setup checklist</span>
+  <h2>Do these before Week 1, in order</h2>
+</header>
+
+<ol class="steps">
+  <li><strong>Verify your Canvas access.</strong> Log in. Confirm you can see the BIO 304 course shell. If you cannot, contact the Solano Community College help desk before Monday of Week 1.</li>
+  <li><strong>Install Honorlock.</strong> Honorlock is the proctoring tool used for the eight weekly quizzes. The installation is a Chrome extension; install it on a laptop or desktop with a working webcam and microphone. Do this before your first quiz, not five minutes before.</li>
+  <li><strong>Confirm your file conversion path.</strong> Workbooks, portfolio pages, and any handwritten work submitted as PDF must convert cleanly. If you are unsure how to make a PDF on your device, the Submission Directions document has step-by-step guides for iPhone, iPad, Android, Windows, and Mac.</li>
+  <li><strong>Test your camera and microphone.</strong> Honorlock requires both. Run a test recording on your machine to confirm both work.</li>
+  <li><strong>Pick your study space.</strong> Quiet, well-lit, no other people in frame. Honorlock will flag distractions during quizzes.</li>
+  <li><strong>Gather your supplies.</strong> Blank paper, pencils with erasers, colored pencils (helpful for anatomy drawings), a textbook or atlas (your choice; recommendations are in the syllabus).</li>
+</ol>
+<header class="section-head" id="help">
+  <span class="section-num">05</span>
+  <span class="section-eyebrow">Get help</span>
+  <h2>Where to go when something goes wrong</h2>
+</header>
+
+<h3>Course content questions</h3>
+<p>Post in the weekly discussion forum if your question is one other students might also have. Email me directly for individual situations. I respond within 24 hours on weekdays, 48 hours on weekends.</p>
+
+<h3>Virtual office hours</h3>
+<p>Held weekly via the link in Canvas. Drop in with anything: a confusing topic, a workbook section that isn't clicking, a portfolio page you're stuck on. You don't need an appointment.</p>
+
+<h3>Accessibility and accommodations (DSPS)</h3>
+<p>If you need accommodations, contact Solano Community College's Disability Services Program (DSPS) early in the term. All approved accommodations are honored without exception. Reach out to me as well so I know to expect your accommodation letter.</p>
+
+<h3>Tech support</h3>
+<ul>
+  <li><strong>Canvas issues:</strong> Solano Community College help desk.</li>
+  <li><strong>Honorlock issues:</strong> Honorlock 24/7 chat support, accessed inside the proctoring window.</li>
+  <li><strong>File conversion issues:</strong> Submission Directions document covers most cases; otherwise, email me with the device and the file type.</li>
+</ul>
+
+<div class="callout kelp">
+  <span class="callout-label">One last thing</span>
+  <p>If you're feeling overwhelmed in the first two weeks, reach out. Eight-week intensives compress quickly. The students who come talk to me in Week 2 finish the course. The students who quietly fall behind in Week 2, often don't. I would much rather hear from you early.</p>
+</div>
+
+<footer class="page-foot" role="contentinfo">
+  <p>BIO 304 Human Anatomy &amp; Physiology &middot; Dr. Sharilyn Rennie &middot; MedMasters Collaborative</p>
+</footer>
+</main>
+<script>
+  // Iframe height-sender for Kajabi embedding
+  (function() {
+    var frameId = "bio304-welcome";
+    function sendHeight() {
+      var h = document.documentElement.scrollHeight;
+      try {
+        window.parent.postMessage({ type: "iframe-height", id: frameId, height: h }, "*");
+      } catch (e) {}
+    }
+    if (window.ResizeObserver) {
+      var ro = new ResizeObserver(sendHeight);
+      ro.observe(document.body);
+    }
+    window.addEventListener("load", sendHeight);
+    window.addEventListener("resize", sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 1000);
+  })();
+</script>
+</body>
+</html>
