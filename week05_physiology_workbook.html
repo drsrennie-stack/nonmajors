@@ -82,14 +82,6 @@
   .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
 
   .figure { margin: 0; }
-  .figure-imgbox { background: white; border: 2px dashed var(--ocean); border-radius: 6px; padding: 14px; position: relative; display: flex; align-items: center; justify-content: center; }
-  .figure-imgbox img { max-width: 100%; height: auto; display: block; }
-  .figure-imgbox.img-pending { background: var(--sea-glass-soft); border-color: var(--ocean); }
-  .img-pending-msg { display: none; flex-direction: column; align-items: center; gap: 6px; text-align: center; color: var(--muted); padding: 18px; }
-  .figure-imgbox.img-pending .img-pending-msg { display: flex; }
-  .img-pending-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); }
-  .img-pending-file { font-size: 0.95rem; font-weight: 600; color: var(--terra); background: white; padding: 6px 14px; border-radius: 4px; border: 1px solid var(--terra); }
-  .img-pending-alt { font-size: 0.82rem; font-style: italic; max-width: 360px; line-height: 1.4; margin-top: 4px; }
 
   .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
   .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
@@ -105,8 +97,8 @@
     .label-flex { grid-template-columns: 1fr; }
   }
 
-  .draw-box { background: white; border: 1.5px solid var(--ocean-deep); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 280px; background-image: linear-gradient(rgba(214, 228, 231, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(214, 228, 231, 0.4) 1px, transparent 1px); background-size: 24px 24px; background-position: -1px -1px; position: relative; page-break-inside: avoid; }
-  .draw-box-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: white; padding: 1px 6px; border-radius: 2px; }
+  .draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 320px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
   .draw-box.tall { min-height: 360px; }
   .draw-box.short { min-height: 220px; }
 
@@ -156,10 +148,15 @@
     .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
     .actions, .skip-link, .partner-link { display: none !important; }
     .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
-    .figure-imgbox { border-color: #888; }
-    .figure-imgbox.img-pending { background: white; }
-    @page { size: letter; margin: 0.55in 0.6in; }
+        @page { size: letter; margin: 0.55in 0.6in; }
   }
+
+  .ref-draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; min-height: 380px; position: relative; page-break-inside: avoid; }
+  .ref-draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
+  .ref-instruction { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); padding: 10px 14px; margin: 10px 0 12px; font-size: 0.88rem; line-height: 1.5; border-radius: 0 4px 4px 0; }
+  .ref-instruction strong { color: var(--ocean-deep); }
+  .ref-instruction em { color: var(--terra); font-style: italic; }
+
 </style>
 </head>
 <body>
@@ -191,9 +188,11 @@
     </div>
   </div>
   <section class="instructions" aria-labelledby="how-heading">
-    <h2 id="how-heading">About this workbook</h2>
-    <p>This is the <strong>Physiology Workbook</strong> for Week 5. Complete the <strong>Week 5 Anatomy Workbook first</strong>. Two of this week's most important physiology topics are COR-named: <strong>ECG interpretation</strong> and <strong>ASCVD 10-year cardiovascular risk</strong>. Both are integrated below.</p>
-    <p>Reading an ECG is the single most-tested clinical skill on the NCLEX-RN, on EMT/paramedic certifying exams, and at the bedside. ASCVD risk drives statin and antihypertensive treatment decisions in primary care. By the end of this workbook, you will be able to identify normal sinus rhythm, calculate heart rate from a strip, recognize the most common arrhythmias, and predict cardiovascular risk for several patient profiles.</p>
+    <h2 id="how-heading">How this workbook works</h2>
+    <p><strong>Print, handwrite, scan, submit.</strong> Complete every section. Drawings, labeling, tables, and clinical reasoning all earn points.</p>
+    <p><strong>About the drawings in this workbook.</strong> For each drawing, find a clear reference in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas. You may either (a) draw it by hand in the workbook box, or (b) build it digitally in Google Docs, Google Drawings, Word, or PowerPoint using shapes, lines, and text labels, then attach the file to your Canvas submission.</p>
+    <p><strong>If you build digitally, you must submit revision history</strong> showing you built the diagram in stages over time. In Google Docs and Google Drawings: File &rarr; Version history &rarr; See version history. A flat image with no revision history does not meet this requirement.</p>
+    <p><strong>Either way, you must build it yourself, structure by structure.</strong> Copying a finished image (from Google Images, an AI tool, or a peer) earns zero on the assignment and is reported as academic dishonesty. Submission to Canvas certifies the work as your own.</p>
   </section>
 
   <section class="section" aria-labelledby="s1-title">
@@ -288,14 +287,8 @@
     <div class="label-exercise">
       <p class="label-exercise-title">Practice strip 1: Identify this rhythm</p>
       <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 180px;">
-          <img src="" alt="A 6-second ECG rhythm strip showing normal sinus rhythm: regular R-R intervals approximately 4 large boxes apart, upright P wave before each QRS in lead II, PR interval 4 small boxes, narrow QRS, normal T waves" data-pending="ecg_practice_1.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">ecg_practice_1.png</span>
-            <span class="img-pending-alt">A 6-second ECG rhythm strip showing normal sinus rhythm: regular R-R intervals approximately 4 large boxes apart, upright P wave before each QRS in lead II, PR interval 4 small boxes, narrow QRS, normal T waves</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>ecg practice 1</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: a 6-second ecg rhythm strip showing normal sinus rhythm: regular r-r intervals approximately 4 large boxes apart, upright p wave before each qrs in lead ii, pr interval 4 small boxes, narrow qrs, normal t waves.</p>
       </figure>
     </div>
 
@@ -632,10 +625,32 @@
     <p>5. RAAS cascade table (Section 05) is filled in for all 5 scenarios.</p>
     <p>6. All four integrated cases (Section 06) have answers to every numbered prompt.</p>
     <p>7. Final synthesis question (Section 07) integrates all five required elements.</p>
+        <p style="margin-top: 8px; font-size: 0.92rem; color: var(--ocean);"><strong>If any drawings were built digitally:</strong> attach the file (Google Doc / Drawing / Word / PowerPoint) to your Canvas submission AND share the revision history link. Drawings without revision history will not receive credit.</p>
+
     <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 5 Physiology Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
   </section>
 
 </main>
+
+
+<script>
+  // Auto-load images from data-pending attribute
+  // To customize image folder, change IMAGE_FOLDER below.
+  // Examples:
+  //   IMAGE_FOLDER = '';           // images in same folder as HTML (default)
+  //   IMAGE_FOLDER = 'images/';    // images in a subfolder named "images"
+  //   IMAGE_FOLDER = 'bio304_images/';  // any other subfolder name
+  (function () {
+    const IMAGE_FOLDER = '';
+    const imgs = document.querySelectorAll('img[data-pending]');
+    imgs.forEach(function (img) {
+      const filename = img.getAttribute('data-pending');
+      if (filename && !img.getAttribute('src')) {
+        img.src = IMAGE_FOLDER + filename;
+      }
+    });
+  })();
+</script>
 
 <script>
   (function () {
