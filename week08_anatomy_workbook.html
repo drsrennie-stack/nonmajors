@@ -82,14 +82,6 @@
   .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
 
   .figure { margin: 0; }
-  .figure-imgbox { background: white; border: 2px dashed var(--ocean); border-radius: 6px; padding: 14px; position: relative; display: flex; align-items: center; justify-content: center; }
-  .figure-imgbox img { max-width: 100%; height: auto; display: block; }
-  .figure-imgbox.img-pending { background: var(--sea-glass-soft); border-color: var(--ocean); }
-  .img-pending-msg { display: none; flex-direction: column; align-items: center; gap: 6px; text-align: center; color: var(--muted); padding: 18px; }
-  .figure-imgbox.img-pending .img-pending-msg { display: flex; }
-  .img-pending-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); }
-  .img-pending-file { font-size: 0.95rem; font-weight: 600; color: var(--terra); background: white; padding: 6px 14px; border-radius: 4px; border: 1px solid var(--terra); }
-  .img-pending-alt { font-size: 0.82rem; font-style: italic; max-width: 360px; line-height: 1.4; margin-top: 4px; }
 
   .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
   .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
@@ -105,8 +97,8 @@
     .label-flex { grid-template-columns: 1fr; }
   }
 
-  .draw-box { background: white; border: 1.5px solid var(--ocean-deep); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 280px; background-image: linear-gradient(rgba(214, 228, 231, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(214, 228, 231, 0.4) 1px, transparent 1px); background-size: 24px 24px; background-position: -1px -1px; position: relative; page-break-inside: avoid; }
-  .draw-box-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: white; padding: 1px 6px; border-radius: 2px; }
+  .draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 320px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
   .draw-box.tall { min-height: 360px; }
   .draw-box.short { min-height: 220px; }
 
@@ -156,10 +148,17 @@
     .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
     .actions, .skip-link, .partner-link { display: none !important; }
     .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
-    .figure-imgbox { border-color: #888; }
-    .figure-imgbox.img-pending { background: white; }
-    @page { size: letter; margin: 0.55in 0.6in; }
+        @page { size: letter; margin: 0.55in 0.6in; }
   }
+
+  .ref-draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; min-height: 380px; position: relative; page-break-inside: avoid; }
+  .ref-draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
+  .ref-instruction { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); padding: 10px 14px; margin: 10px 0 12px; font-size: 0.88rem; line-height: 1.5; border-radius: 0 4px 4px 0; }
+  .ref-instruction strong { color: var(--ocean-deep); }
+  .ref-instruction em { color: var(--terra); font-style: italic; }
+
+  .key-list li .key-structure { color: var(--ink); font-size: 0.86rem; flex: 1; padding-bottom: 2px; }
+  .key-list li .key-structure { line-height: 1.4; }
 </style>
 </head>
 <body>
@@ -192,9 +191,10 @@
   </div>
   <section class="instructions" aria-labelledby="how-heading">
     <h2 id="how-heading">How this workbook works</h2>
-    <p><strong>Print, handwrite, scan, submit.</strong> This is the <strong>Anatomy Workbook</strong> for Week 8, the final week of the course. Complete this first, then move to the Physiology Workbook for the EEG &amp; lifespan integration dry lab.</p>
-    <p><strong>This week integrates everything.</strong> Reproduction connects endocrine (Week 3), vascular (Week 5), and tissue physiology (Week 1). Pregnancy adds a developing organism with two circulations sharing one body. Aging touches every organ system you have studied. The lab exam will test reproductive anatomy and pregnancy/placental anatomy heavily, so identify every structure carefully.</p>
-    <p><strong>Recall structures from memory.</strong> No word banks. Drawing tasks and synthesis questions are weighted heavily.</p>
+    <p><strong>Print, handwrite, scan, submit.</strong> Complete every section. Drawings, labeling, tables, and clinical reasoning all earn points.</p>
+    <p><strong>About the drawings in this workbook.</strong> For each drawing, find a clear reference in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas. You may either (a) draw it by hand in the workbook box, or (b) build it digitally in Google Docs, Google Drawings, Word, or PowerPoint using shapes, lines, and text labels, then attach the file to your Canvas submission.</p>
+    <p><strong>If you build digitally, you must submit revision history</strong> showing you built the diagram in stages over time. In Google Docs and Google Drawings: File &rarr; Version history &rarr; See version history. A flat image with no revision history does not meet this requirement.</p>
+    <p><strong>Either way, you must build it yourself, structure by structure.</strong> Copying a finished image (from Google Images, an AI tool, or a peer) earns zero on the assignment and is reported as academic dishonesty. Submission to Canvas certifies the work as your own.</p>
   </section>
 
   <section class="section" aria-labelledby="s1-title">
@@ -210,32 +210,26 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 440px;">
-          <img src="" alt="Sagittal section of the male pelvis showing testes within scrotum, epididymis, vas deferens (ductus deferens), spermatic cord, seminal vesicles, ejaculatory duct, prostate gland, bulbourethral (Cowpers) glands, urethra (with prostatic, membranous, and spongy/penile portions), penis with corpus cavernosum and corpus spongiosum, glans penis, with 13 numbered arrows" data-pending="male_reproductive.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">male_reproductive.png</span>
-            <span class="img-pending-alt">Sagittal section of the male pelvis showing testes within scrotum, epididymis, vas deferens (ductus deferens), spermatic cord, seminal vesicles, ejaculatory duct, prostate gland, bulbourethral (Cowpers) glands, urethra (with prostatic, membranous, and spongy/penile portions), penis with corpus cavernosum and corpus spongiosum, glans penis, with 13 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>male reproductive</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Place each number from the structure list (right) onto the matching location of your drawing. Write the numbers, not the full names. The names are already provided in the list. The figure should show: sagittal section of the male pelvis showing testes within scrotum, epididymis, vas deferens (ductus deferens), spermatic cord, seminal vesicles, ejaculatory duct, prostate gland, bulbourethral (cowpers) glands, urethra (with prostatic, membranous, and spongy/penile portions), penis with corpus cavernosum and corpus spongiosum, glans penis, with 13 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="male-repro-key-title">
-        <p class="key-title" id="male-repro-key-title">Identify each numbered structure</p>
+        <p class="key-title" id="male-repro-key-title">Required structures · Place each number on your drawing</p>
         <ol class="key-list">
-        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">10.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">11.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">12.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">13.</span><span class="key-blank"></span></li>
-        </ol>
+        <li><span class="key-num">1.</span><span class="key-structure">Testis</span></li>
+        <li><span class="key-num">2.</span><span class="key-structure">Scrotum</span></li>
+        <li><span class="key-num">3.</span><span class="key-structure">Epididymis</span></li>
+        <li><span class="key-num">4.</span><span class="key-structure">Vas deferens (ductus deferens)</span></li>
+        <li><span class="key-num">5.</span><span class="key-structure">Spermatic cord</span></li>
+        <li><span class="key-num">6.</span><span class="key-structure">Seminal vesicle</span></li>
+        <li><span class="key-num">7.</span><span class="key-structure">Ejaculatory duct</span></li>
+        <li><span class="key-num">8.</span><span class="key-structure">Prostate gland</span></li>
+        <li><span class="key-num">9.</span><span class="key-structure">Bulbourethral (Cowper) gland</span></li>
+        <li><span class="key-num">10.</span><span class="key-structure">Prostatic urethra</span></li>
+        <li><span class="key-num">11.</span><span class="key-structure">Membranous urethra</span></li>
+        <li><span class="key-num">12.</span><span class="key-structure">Spongy (penile) urethra</span></li>
+        <li><span class="key-num">13.</span><span class="key-structure">Penis (corpus cavernosum / spongiosum / glans)</span></li>
+      </ol>
       </aside>
       </div>
     </div>
@@ -262,26 +256,20 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Cross-section of a seminiferous tubule showing spermatogonia (outermost, against basement membrane), primary spermatocytes, secondary spermatocytes, spermatids, mature spermatozoa (innermost, with tails projecting into lumen), Sertoli (sustentacular) cells supporting developing sperm, Leydig (interstitial) cells outside the tubule producing testosterone, with 7 numbered arrows" data-pending="testis_histology.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">testis_histology.png</span>
-            <span class="img-pending-alt">Cross-section of a seminiferous tubule showing spermatogonia (outermost, against basement membrane), primary spermatocytes, secondary spermatocytes, spermatids, mature spermatozoa (innermost, with tails projecting into lumen), Sertoli (sustentacular) cells supporting developing sperm, Leydig (interstitial) cells outside the tubule producing testosterone, with 7 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>testis histology</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Place each number from the structure list (right) onto the matching location of your drawing. Write the numbers, not the full names. The names are already provided in the list. The figure should show: cross-section of a seminiferous tubule showing spermatogonia (outermost, against basement membrane), primary spermatocytes, secondary spermatocytes, spermatids, mature spermatozoa (innermost, with tails projecting into lumen), sertoli (sustentacular) cells supporting developing sperm, leydig (interstitial) cells outside the tubule producing testosterone, with 7 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="testis-key-title">
-        <p class="key-title" id="testis-key-title">Identify each numbered structure</p>
+        <p class="key-title" id="testis-key-title">Required structures · Place each number on your drawing</p>
         <ol class="key-list">
-        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
-        </ol>
+        <li><span class="key-num">1.</span><span class="key-structure">Spermatogonium (basement membrane)</span></li>
+        <li><span class="key-num">2.</span><span class="key-structure">Primary spermatocyte</span></li>
+        <li><span class="key-num">3.</span><span class="key-structure">Secondary spermatocyte</span></li>
+        <li><span class="key-num">4.</span><span class="key-structure">Spermatid</span></li>
+        <li><span class="key-num">5.</span><span class="key-structure">Spermatozoa (mature, in lumen)</span></li>
+        <li><span class="key-num">6.</span><span class="key-structure">Sertoli (sustentacular) cell</span></li>
+        <li><span class="key-num">7.</span><span class="key-structure">Leydig (interstitial) cell (testosterone)</span></li>
+      </ol>
       </aside>
       </div>
     </div>
@@ -339,31 +327,25 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 420px;">
-          <img src="" alt="Anterior view of the female reproductive system showing ovaries, uterine (fallopian) tubes with fimbriae, infundibulum, ampulla, isthmus, uterus with fundus, body, and cervix, internal os, external os, vagina, broad ligament, ovarian ligament, round ligament of uterus, with 12 numbered arrows" data-pending="female_reproductive.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">female_reproductive.png</span>
-            <span class="img-pending-alt">Anterior view of the female reproductive system showing ovaries, uterine (fallopian) tubes with fimbriae, infundibulum, ampulla, isthmus, uterus with fundus, body, and cervix, internal os, external os, vagina, broad ligament, ovarian ligament, round ligament of uterus, with 12 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>female reproductive</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Place each number from the structure list (right) onto the matching location of your drawing. Write the numbers, not the full names. The names are already provided in the list. The figure should show: anterior view of the female reproductive system showing ovaries, uterine (fallopian) tubes with fimbriae, infundibulum, ampulla, isthmus, uterus with fundus, body, and cervix, internal os, external os, vagina, broad ligament, ovarian ligament, round ligament of uterus, with 12 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="female-repro-key-title">
-        <p class="key-title" id="female-repro-key-title">Identify each numbered structure</p>
+        <p class="key-title" id="female-repro-key-title">Required structures · Place each number on your drawing</p>
         <ol class="key-list">
-        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">9.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">10.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">11.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">12.</span><span class="key-blank"></span></li>
-        </ol>
+        <li><span class="key-num">1.</span><span class="key-structure">Ovary</span></li>
+        <li><span class="key-num">2.</span><span class="key-structure">Uterine (fallopian) tube</span></li>
+        <li><span class="key-num">3.</span><span class="key-structure">Fimbriae</span></li>
+        <li><span class="key-num">4.</span><span class="key-structure">Infundibulum</span></li>
+        <li><span class="key-num">5.</span><span class="key-structure">Ampulla</span></li>
+        <li><span class="key-num">6.</span><span class="key-structure">Isthmus</span></li>
+        <li><span class="key-num">7.</span><span class="key-structure">Fundus of uterus</span></li>
+        <li><span class="key-num">8.</span><span class="key-structure">Body of uterus</span></li>
+        <li><span class="key-num">9.</span><span class="key-structure">Cervix</span></li>
+        <li><span class="key-num">10.</span><span class="key-structure">Vagina</span></li>
+        <li><span class="key-num">11.</span><span class="key-structure">Broad ligament</span></li>
+        <li><span class="key-num">12.</span><span class="key-structure">Round ligament of uterus</span></li>
+      </ol>
       </aside>
       </div>
     </div>
@@ -390,26 +372,20 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Cross-section of an ovary showing primordial follicles (peripheral, smallest), primary follicles, secondary follicles, mature (Graafian) follicle ready for ovulation, ruptured follicle at ovulation, corpus luteum (post-ovulation), corpus albicans (regressed corpus luteum), all surrounded by connective tissue stroma, with 7 numbered arrows" data-pending="ovary_histology.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">ovary_histology.png</span>
-            <span class="img-pending-alt">Cross-section of an ovary showing primordial follicles (peripheral, smallest), primary follicles, secondary follicles, mature (Graafian) follicle ready for ovulation, ruptured follicle at ovulation, corpus luteum (post-ovulation), corpus albicans (regressed corpus luteum), all surrounded by connective tissue stroma, with 7 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>ovary histology</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Place each number from the structure list (right) onto the matching location of your drawing. Write the numbers, not the full names. The names are already provided in the list. The figure should show: cross-section of an ovary showing primordial follicles (peripheral, smallest), primary follicles, secondary follicles, mature (graafian) follicle ready for ovulation, ruptured follicle at ovulation, corpus luteum (post-ovulation), corpus albicans (regressed corpus luteum), all surrounded by connective tissue stroma, with 7 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="ovary-key-title">
-        <p class="key-title" id="ovary-key-title">Identify each numbered structure</p>
+        <p class="key-title" id="ovary-key-title">Required structures · Place each number on your drawing</p>
         <ol class="key-list">
-        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
-        </ol>
+        <li><span class="key-num">1.</span><span class="key-structure">Primordial follicle</span></li>
+        <li><span class="key-num">2.</span><span class="key-structure">Primary follicle</span></li>
+        <li><span class="key-num">3.</span><span class="key-structure">Secondary follicle</span></li>
+        <li><span class="key-num">4.</span><span class="key-structure">Mature (Graafian) follicle</span></li>
+        <li><span class="key-num">5.</span><span class="key-structure">Ruptured follicle (ovulation)</span></li>
+        <li><span class="key-num">6.</span><span class="key-structure">Corpus luteum</span></li>
+        <li><span class="key-num">7.</span><span class="key-structure">Corpus albicans</span></li>
+      </ol>
       </aside>
       </div>
     </div>
@@ -460,24 +436,18 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 320px;">
-          <img src="" alt="Diagram showing the uterine (menstrual) cycle across 28 days with three phases marked: menstrual phase (days 1-5, endometrium shedding), proliferative phase (days 6-14, endometrium thickening under estrogen), secretory phase (days 15-28, endometrium maturing and becoming glandular under progesterone), plus a graph below showing estrogen and progesterone levels across the cycle, with 5 numbered arrows" data-pending="uterine_cycle.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">uterine_cycle.png</span>
-            <span class="img-pending-alt">Diagram showing the uterine (menstrual) cycle across 28 days with three phases marked: menstrual phase (days 1-5, endometrium shedding), proliferative phase (days 6-14, endometrium thickening under estrogen), secretory phase (days 15-28, endometrium maturing and becoming glandular under progesterone), plus a graph below showing estrogen and progesterone levels across the cycle, with 5 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>uterine cycle</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Place each number from the structure list (right) onto the matching location of your drawing. Write the numbers, not the full names. The names are already provided in the list. The figure should show: diagram showing the uterine (menstrual) cycle across 28 days with three phases marked: menstrual phase (days 1-5, endometrium shedding), proliferative phase (days 6-14, endometrium thickening under estrogen), secretory phase (days 15-28, endometrium maturing and becoming glandular under progesterone), plus a graph below showing estrogen and progesterone levels across the cycle, with 5 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="uterine-cycle-key-title">
-        <p class="key-title" id="uterine-cycle-key-title">Identify each numbered structure</p>
+        <p class="key-title" id="uterine-cycle-key-title">Required structures · Place each number on your drawing</p>
         <ol class="key-list">
-        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
-        </ol>
+        <li><span class="key-num">1.</span><span class="key-structure">Menstrual phase (days 1-5)</span></li>
+        <li><span class="key-num">2.</span><span class="key-structure">Proliferative phase (days 6-14, estrogen)</span></li>
+        <li><span class="key-num">3.</span><span class="key-structure">Secretory phase (days 15-28, progesterone)</span></li>
+        <li><span class="key-num">4.</span><span class="key-structure">Estrogen curve across cycle</span></li>
+        <li><span class="key-num">5.</span><span class="key-structure">Progesterone curve across cycle</span></li>
+      </ol>
       </aside>
       </div>
     </div>
@@ -499,27 +469,21 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Sagittal section of the female breast showing 15-20 lobes containing lobules (alveoli/glandular tissue), lactiferous ducts converging toward the nipple, lactiferous sinus (widening of duct beneath nipple), nipple, areola, suspensory (Coopers) ligaments anchoring breast to skin and chest wall, adipose tissue, pectoralis major muscle posterior to breast, with 8 numbered arrows" data-pending="breast_anatomy.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">breast_anatomy.png</span>
-            <span class="img-pending-alt">Sagittal section of the female breast showing 15-20 lobes containing lobules (alveoli/glandular tissue), lactiferous ducts converging toward the nipple, lactiferous sinus (widening of duct beneath nipple), nipple, areola, suspensory (Coopers) ligaments anchoring breast to skin and chest wall, adipose tissue, pectoralis major muscle posterior to breast, with 8 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>breast anatomy</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Place each number from the structure list (right) onto the matching location of your drawing. Write the numbers, not the full names. The names are already provided in the list. The figure should show: sagittal section of the female breast showing 15-20 lobes containing lobules (alveoli/glandular tissue), lactiferous ducts converging toward the nipple, lactiferous sinus (widening of duct beneath nipple), nipple, areola, suspensory (coopers) ligaments anchoring breast to skin and chest wall, adipose tissue, pectoralis major muscle posterior to breast, with 8 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="breast-key-title">
-        <p class="key-title" id="breast-key-title">Identify each numbered structure</p>
+        <p class="key-title" id="breast-key-title">Required structures · Place each number on your drawing</p>
         <ol class="key-list">
-        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">8.</span><span class="key-blank"></span></li>
-        </ol>
+        <li><span class="key-num">1.</span><span class="key-structure">Lobes</span></li>
+        <li><span class="key-num">2.</span><span class="key-structure">Lobules (alveoli, glandular tissue)</span></li>
+        <li><span class="key-num">3.</span><span class="key-structure">Lactiferous ducts</span></li>
+        <li><span class="key-num">4.</span><span class="key-structure">Lactiferous sinus</span></li>
+        <li><span class="key-num">5.</span><span class="key-structure">Nipple</span></li>
+        <li><span class="key-num">6.</span><span class="key-structure">Areola</span></li>
+        <li><span class="key-num">7.</span><span class="key-structure">Suspensory (Cooper) ligaments</span></li>
+        <li><span class="key-num">8.</span><span class="key-structure">Pectoralis major muscle (posterior)</span></li>
+      </ol>
       </aside>
       </div>
     </div>
@@ -543,25 +507,19 @@
       <p class="label-exercise-title">Early embryonic development (week 1)</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 300px;">
-          <img src="" alt="Diagram showing early embryonic development across 7 days: zygote (day 0, fertilization in fallopian tube), 2-cell stage, 4-cell stage, morula (16+ cells, day 3), blastocyst (day 5 with inner cell mass and trophoblast), implantation in endometrium (day 7), with 6 numbered arrows" data-pending="early_development.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">early_development.png</span>
-            <span class="img-pending-alt">Diagram showing early embryonic development across 7 days: zygote (day 0, fertilization in fallopian tube), 2-cell stage, 4-cell stage, morula (16+ cells, day 3), blastocyst (day 5 with inner cell mass and trophoblast), implantation in endometrium (day 7), with 6 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>early development</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Place each number from the structure list (right) onto the matching location of your drawing. Write the numbers, not the full names. The names are already provided in the list. The figure should show: diagram showing early embryonic development across 7 days: zygote (day 0, fertilization in fallopian tube), 2-cell stage, 4-cell stage, morula (16+ cells, day 3), blastocyst (day 5 with inner cell mass and trophoblast), implantation in endometrium (day 7), with 6 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="early-dev-key-title">
-        <p class="key-title" id="early-dev-key-title">Identify each numbered structure</p>
+        <p class="key-title" id="early-dev-key-title">Required structures · Place each number on your drawing</p>
         <ol class="key-list">
-        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
-        </ol>
+        <li><span class="key-num">1.</span><span class="key-structure">Zygote (day 0, fertilization)</span></li>
+        <li><span class="key-num">2.</span><span class="key-structure">2-cell stage</span></li>
+        <li><span class="key-num">3.</span><span class="key-structure">4-cell stage</span></li>
+        <li><span class="key-num">4.</span><span class="key-structure">Morula (16+ cells, day 3)</span></li>
+        <li><span class="key-num">5.</span><span class="key-structure">Blastocyst (day 5: inner cell mass + trophoblast)</span></li>
+        <li><span class="key-num">6.</span><span class="key-structure">Implantation in endometrium (day 7)</span></li>
+      </ol>
       </aside>
       </div>
     </div>
@@ -570,26 +528,20 @@
       <p class="label-exercise-title">Mature placenta and umbilical cord</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Cross-section of the mature placenta showing chorionic villi (fetal portion) bathed in maternal blood within intervillous spaces, decidua basalis (maternal portion), umbilical cord with two umbilical arteries (carrying deoxygenated blood from fetus to placenta) and one umbilical vein (carrying oxygenated blood from placenta to fetus), amnion, chorion, with 7 numbered arrows" data-pending="placenta.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">placenta.png</span>
-            <span class="img-pending-alt">Cross-section of the mature placenta showing chorionic villi (fetal portion) bathed in maternal blood within intervillous spaces, decidua basalis (maternal portion), umbilical cord with two umbilical arteries (carrying deoxygenated blood from fetus to placenta) and one umbilical vein (carrying oxygenated blood from placenta to fetus), amnion, chorion, with 7 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>placenta</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Place each number from the structure list (right) onto the matching location of your drawing. Write the numbers, not the full names. The names are already provided in the list. The figure should show: cross-section of the mature placenta showing chorionic villi (fetal portion) bathed in maternal blood within intervillous spaces, decidua basalis (maternal portion), umbilical cord with two umbilical arteries (carrying deoxygenated blood from fetus to placenta) and one umbilical vein (carrying oxygenated blood from placenta to fetus), amnion, chorion, with 7 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="placenta-key-title">
-        <p class="key-title" id="placenta-key-title">Identify each numbered structure</p>
+        <p class="key-title" id="placenta-key-title">Required structures · Place each number on your drawing</p>
         <ol class="key-list">
-        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
-        </ol>
+        <li><span class="key-num">1.</span><span class="key-structure">Chorionic villi (fetal portion)</span></li>
+        <li><span class="key-num">2.</span><span class="key-structure">Intervillous space (maternal blood)</span></li>
+        <li><span class="key-num">3.</span><span class="key-structure">Decidua basalis (maternal portion)</span></li>
+        <li><span class="key-num">4.</span><span class="key-structure">Umbilical cord</span></li>
+        <li><span class="key-num">5.</span><span class="key-structure">Umbilical arteries (carry deoxygenated blood)</span></li>
+        <li><span class="key-num">6.</span><span class="key-structure">Umbilical vein (carries oxygenated blood)</span></li>
+        <li><span class="key-num">7.</span><span class="key-structure">Amnion / chorion</span></li>
+      </ol>
       </aside>
       </div>
     </div>
@@ -612,26 +564,20 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 440px;">
-          <img src="" alt="Diagram of fetal circulation showing umbilical vein bringing oxygenated blood from placenta, ductus venosus shunt bypassing the liver into the inferior vena cava, foramen ovale shunt between right and left atria, ductus arteriosus shunt between pulmonary artery and aorta, two umbilical arteries returning to placenta, plus the heart and great vessels, with 7 numbered arrows" data-pending="fetal_circulation.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">fetal_circulation.png</span>
-            <span class="img-pending-alt">Diagram of fetal circulation showing umbilical vein bringing oxygenated blood from placenta, ductus venosus shunt bypassing the liver into the inferior vena cava, foramen ovale shunt between right and left atria, ductus arteriosus shunt between pulmonary artery and aorta, two umbilical arteries returning to placenta, plus the heart and great vessels, with 7 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>fetal circulation</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Place each number from the structure list (right) onto the matching location of your drawing. Write the numbers, not the full names. The names are already provided in the list. The figure should show: diagram of fetal circulation showing umbilical vein bringing oxygenated blood from placenta, ductus venosus shunt bypassing the liver into the inferior vena cava, foramen ovale shunt between right and left atria, ductus arteriosus shunt between pulmonary artery and aorta, two umbilical arteries returning to placenta, plus the heart and great vessels, with 7 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="fetal-circ-key-title">
-        <p class="key-title" id="fetal-circ-key-title">Identify each numbered structure</p>
+        <p class="key-title" id="fetal-circ-key-title">Required structures · Place each number on your drawing</p>
         <ol class="key-list">
-        <li><span class="key-num">1.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">2.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">3.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">4.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">5.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">6.</span><span class="key-blank"></span></li>
-        <li><span class="key-num">7.</span><span class="key-blank"></span></li>
-        </ol>
+        <li><span class="key-num">1.</span><span class="key-structure">Umbilical vein (oxygenated, from placenta)</span></li>
+        <li><span class="key-num">2.</span><span class="key-structure">Ductus venosus (bypasses liver)</span></li>
+        <li><span class="key-num">3.</span><span class="key-structure">Inferior vena cava</span></li>
+        <li><span class="key-num">4.</span><span class="key-structure">Foramen ovale (between atria)</span></li>
+        <li><span class="key-num">5.</span><span class="key-structure">Ductus arteriosus (pulmonary trunk to aorta)</span></li>
+        <li><span class="key-num">6.</span><span class="key-structure">Umbilical arteries (return to placenta)</span></li>
+        <li><span class="key-num">7.</span><span class="key-structure">Pulmonary trunk / aorta</span></li>
+      </ol>
       </aside>
       </div>
     </div>
@@ -733,9 +679,9 @@
     <header class="section-head">
       <span class="section-num" aria-hidden="true">10</span>
       <div class="section-titles">
-        <p class="section-eyebrow">Anatomy · Drawing from Memory</p>
+        <p class="section-eyebrow">Anatomy · Drawing from Reference</p>
         <h2 class="section-title" id="s10-title">Capstone integration: HPG axis and fetal-to-newborn circulation transition</h2>
-        <p class="section-anchor">Without referencing figures above, draw two integrated diagrams. Label every component.</p>
+        <p class="section-anchor">Find each diagram in OpenStax Anatomy and Physiology 2e or any anatomy atlas. Reproduce each integrated diagram in the box and label every required component.</p>
       </div>
     </header>
 
@@ -745,7 +691,7 @@
     </div>
 
     <div class="draw-box tall" role="region" aria-label="HPG axis drawing space">
-      <span class="draw-box-label">Drawing space: HPG axis with feedback loops</span>
+      <span class="draw-box-label">Drawing space</span>
     </div>
 
     <div class="reference" style="margin-top: 18px;">
@@ -754,7 +700,7 @@
     </div>
 
     <div class="draw-box tall" role="region" aria-label="Fetal to newborn circulation drawing space">
-      <span class="draw-box-label">Drawing space: fetal vs newborn circulation</span>
+      <span class="draw-box-label">Drawing space</span>
     </div>
 
     <div class="synthesis">
@@ -775,11 +721,33 @@
     <p>3. The age-related changes table (Section 09) is filled in for all 10 organ systems.</p>
     <p>4. Both drawings (Section 10) have every required component drawn AND labeled, including feedback arrows.</p>
     <p>5. The patent ductus arteriosus synthesis question references at least three structures from your drawing.</p>
+        <p style="margin-top: 8px; font-size: 0.92rem; color: var(--ocean);"><strong>If any drawings were built digitally:</strong> attach the file (Google Doc / Drawing / Word / PowerPoint) to your Canvas submission AND share the revision history link. Drawings without revision history will not receive credit.</p>
+
     <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 8 Anatomy Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
     <p style="margin-top: 10px;"><strong>Then continue to the Week 8 Physiology Workbook</strong> (EEG, Apnea Testing &amp; Lifespan Integration dry lab).</p>
   </section>
 
 </main>
+
+
+<script>
+  // Auto-load images from data-pending attribute
+  // To customize image folder, change IMAGE_FOLDER below.
+  // Examples:
+  //   IMAGE_FOLDER = '';           // images in same folder as HTML (default)
+  //   IMAGE_FOLDER = 'images/';    // images in a subfolder named "images"
+  //   IMAGE_FOLDER = 'bio304_images/';  // any other subfolder name
+  (function () {
+    const IMAGE_FOLDER = '';
+    const imgs = document.querySelectorAll('img[data-pending]');
+    imgs.forEach(function (img) {
+      const filename = img.getAttribute('data-pending');
+      if (filename && !img.getAttribute('src')) {
+        img.src = IMAGE_FOLDER + filename;
+      }
+    });
+  })();
+</script>
 
 <script>
   (function () {
