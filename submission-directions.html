@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Submission Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
+    --sand: #f5e6d3; --sand-soft: #faf3e8;
+    --terra: #c44536; --terra-soft: #e8a499;
+    --kelp: #5a7553; --kelp-soft: #aabba0;
+    --paper: #fdfbf7; --line: #c9d4d8; --muted: #5a6b73;
+    --shadow-md: 0 4px 14px rgba(20, 48, 75, 0.08);
+    --radius-md: 12px; --radius-lg: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1080px; margin: 0 auto; padding: 0 28px 80px; }
+
+  header.masthead { padding: 48px 0 24px; border-bottom: 2.5px solid var(--ocean-deep); margin-bottom: 36px; position: relative; }
+  header.masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
+  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(2rem, 4vw, 2.6rem); line-height: 1.15; color: var(--ocean-deep); letter-spacing: -0.01em; margin-bottom: 14px; }
+  h1.title em { font-style: italic; color: var(--terra); }
+  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.1rem; color: var(--ocean); max-width: 720px; }
+
+  /* INTRO */
+  .intro {
+    background: var(--sea-glass-soft);
+    border-left: 4px solid var(--ocean);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 22px 28px;
+    margin: 0 0 36px;
+  }
+  .intro p { margin-bottom: 10px; }
+  .intro p:last-child { margin-bottom: 0; }
+  .intro strong { color: var(--ocean-deep); }
+
+  /* ==== UNIVERSAL RULES ==== */
+  .universal-rules {
+    background: var(--sand-soft);
+    border: 2px solid var(--terra);
+    border-radius: var(--radius-md);
+    padding: 22px 28px;
+    margin: 0 0 36px;
+    page-break-inside: avoid;
+  }
+  .universal-rules h2 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.4rem;
+    color: var(--terra); margin-bottom: 12px;
+  }
+  .universal-rules h2 em { font-style: italic; }
+  .universal-rules ul { list-style: none; padding: 0; }
+  .universal-rules li {
+    padding: 8px 0 8px 32px;
+    position: relative;
+    font-size: 0.96rem; line-height: 1.55;
+  }
+  .universal-rules li::before {
+    content: '!';
+    position: absolute; left: 0; top: 8px;
+    width: 22px; height: 22px;
+    background: var(--terra); color: white;
+    font-family: 'Lora', serif; font-weight: 700; font-size: 0.9rem;
+    text-align: center; line-height: 22px;
+    border-radius: 50%;
+  }
+  .universal-rules strong { color: var(--ocean-deep); }
+
+  /* ==== OPTION CARDS ==== */
+  .options-section { margin-top: 48px; }
+  .options-section > h2 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.6rem;
+    color: var(--ocean-deep); margin-bottom: 8px;
+  }
+  .options-section > h2 em { font-style: italic; color: var(--terra); }
+  .options-section > p.lede { color: var(--muted); margin-bottom: 24px; max-width: 720px; }
+
+  .option-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 26px 30px;
+    margin: 18px 0;
+    page-break-inside: avoid;
+    transition: box-shadow 0.18s ease;
+    border-top: 5px solid var(--ocean-deep);
+  }
+  .option-card.option-2 { border-top-color: var(--terra); }
+  .option-card.option-3 { border-top-color: var(--kelp); }
+
+  .option-header {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 18px;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  .option-num {
+    font-family: 'Lora', serif; font-style: italic; font-weight: 500;
+    font-size: 2.6rem; color: var(--ocean-deep);
+    line-height: 1; text-align: center;
+  }
+  .option-2 .option-num { color: var(--terra); }
+  .option-3 .option-num { color: var(--kelp); }
+  .option-titles {
+    border-bottom: 1.5px solid var(--line); padding-bottom: 10px;
+  }
+  .option-eyebrow {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
+  }
+  .option-title {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.4rem;
+    color: var(--ocean-deep); line-height: 1.2;
+  }
+  .option-title em { font-style: italic; color: var(--terra); }
+
+  .option-good-for {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 14px;
+  }
+  .pill {
+    display: inline-block; font-size: 0.74rem; font-weight: 600;
+    padding: 4px 12px; border-radius: 999px;
+    background: var(--sea-glass-soft); color: var(--ocean-deep);
+    border: 1px solid var(--sea-glass);
+  }
+
+  .step-list {
+    counter-reset: step;
+    list-style: none; padding: 0; margin: 14px 0;
+  }
+  .step-list li {
+    counter-increment: step;
+    padding: 12px 0 12px 56px;
+    position: relative;
+    border-bottom: 1px dashed var(--line);
+    font-size: 0.94rem; line-height: 1.6;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-list li::before {
+    content: counter(step);
+    position: absolute; left: 0; top: 12px;
+    width: 36px; height: 36px;
+    background: var(--ocean-deep); color: white;
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.1rem;
+    text-align: center; line-height: 36px;
+    border-radius: 50%;
+  }
+  .option-2 .step-list li::before { background: var(--terra); }
+  .option-3 .step-list li::before { background: var(--kelp); }
+
+  .step-list strong { color: var(--ocean-deep); }
+  .step-list em { color: var(--ocean); font-style: italic; }
+  .step-list code {
+    background: var(--sea-glass-soft); border: 1px solid var(--sea-glass);
+    padding: 1px 7px; border-radius: 4px; font-size: 0.86rem;
+    font-family: 'Plus Jakarta Sans', sans-serif; color: var(--ocean-deep);
+    font-weight: 500;
+  }
+
+  /* ==== HANDWRITE PAPER FORMAT ==== */
+  .paper-format {
+    margin-top: 14px;
+    background: var(--sand-soft);
+    border-left: 4px solid var(--kelp);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+  }
+  .paper-format h4 {
+    font-family: 'Lora', serif; font-weight: 500;
+    color: var(--kelp); font-size: 1.05rem; margin-bottom: 8px;
+  }
+  .paper-format ul { list-style: none; padding: 0; }
+  .paper-format li {
+    padding: 4px 0 4px 22px; position: relative; font-size: 0.9rem;
+  }
+  .paper-format li::before {
+    content: '✓'; position: absolute; left: 0; top: 4px;
+    color: var(--kelp); font-weight: 700;
+  }
+
+  /* ==== PDF CONVERSION SECTION ==== */
+  .pdf-section { margin-top: 56px; }
+  .pdf-section > h2 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.6rem;
+    color: var(--ocean-deep); margin-bottom: 8px;
+  }
+  .pdf-section > h2 em { font-style: italic; color: var(--terra); }
+  .pdf-section > p.lede { color: var(--muted); margin-bottom: 24px; max-width: 720px; }
+
+  .conversion-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 18px 0;
+  }
+  @media (max-width: 720px) {
+    .conversion-grid { grid-template-columns: 1fr; }
+  }
+
+  .conversion-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    page-break-inside: avoid;
+    border-left: 4px solid var(--ocean);
+  }
+  .conversion-card.docs { border-left-color: var(--ocean-deep); }
+  .conversion-card.slides { border-left-color: var(--terra); }
+  .conversion-card.word { border-left-color: var(--ocean-deep); }
+  .conversion-card.ppt { border-left-color: var(--terra); }
+  .conversion-card.scan { border-left-color: var(--kelp); }
+  .conversion-card.merge { border-left-color: var(--ocean); }
+
+  .conversion-eyebrow {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
+  }
+  .conversion-title {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.1rem;
+    color: var(--ocean-deep); margin-bottom: 10px;
+  }
+  .conversion-title em { font-style: italic; color: var(--terra); }
+  .conversion-steps {
+    font-size: 0.88rem; line-height: 1.55;
+  }
+  .conversion-steps p { margin-bottom: 6px; }
+  .conversion-steps strong { color: var(--ocean-deep); }
+  .arrow {
+    font-family: 'Lora', serif; font-weight: 500;
+    color: var(--terra); padding: 0 2px;
+  }
+
+  /* ==== POWERPOINT BUILD GUIDE ==== */
+  .ppt-guide {
+    background: white;
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--terra);
+    border-radius: var(--radius-md);
+    padding: 26px 30px;
+    margin: 24px 0;
+    page-break-inside: avoid;
+  }
+  .ppt-guide h3 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.3rem;
+    color: var(--ocean-deep); margin-bottom: 8px;
+  }
+  .ppt-guide h3 em { font-style: italic; color: var(--terra); }
+  .ppt-guide > p { font-size: 0.95rem; margin-bottom: 14px; max-width: 760px; color: var(--ink); }
+
+  .ppt-steps { counter-reset: pptstep; list-style: none; padding: 0; margin: 12px 0; }
+  .ppt-steps li {
+    counter-increment: pptstep;
+    padding: 12px 0 12px 50px;
+    position: relative;
+    border-bottom: 1px dashed var(--line);
+    font-size: 0.92rem; line-height: 1.55;
+  }
+  .ppt-steps li:last-child { border-bottom: none; }
+  .ppt-steps li::before {
+    content: counter(pptstep);
+    position: absolute; left: 0; top: 12px;
+    width: 32px; height: 32px;
+    background: var(--terra); color: white;
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1rem;
+    text-align: center; line-height: 32px;
+    border-radius: 50%;
+  }
+  .ppt-steps strong { color: var(--ocean-deep); }
+  .ppt-steps code {
+    background: var(--sand-soft); border: 1px solid var(--sand);
+    padding: 1px 7px; border-radius: 4px; font-size: 0.84rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--ocean-deep); font-weight: 500;
+  }
+
+  /* ==== TROUBLESHOOTING ==== */
+  .troubleshoot {
+    background: var(--sea-glass-soft);
+    border: 1px solid var(--ocean);
+    border-radius: var(--radius-md);
+    padding: 22px 28px;
+    margin: 36px 0 0;
+    page-break-inside: avoid;
+  }
+  .troubleshoot h2 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.3rem;
+    color: var(--ocean-deep); margin-bottom: 14px;
+  }
+  .troubleshoot h2 em { font-style: italic; color: var(--terra); }
+  .ts-pair {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 14px 24px;
+    padding: 12px 0; border-bottom: 1px dashed var(--line);
+    align-items: start;
+  }
+  .ts-pair:last-child { border-bottom: none; }
+  .ts-question {
+    font-weight: 600; color: var(--ocean-deep); font-size: 0.92rem;
+  }
+  .ts-answer { font-size: 0.92rem; line-height: 1.55; }
+  .ts-answer strong { color: var(--terra); }
+  @media (max-width: 720px) {
+    .ts-pair { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* ==== CHECKLIST ==== */
+  .checklist {
+    background: linear-gradient(150deg, var(--ocean-deep), var(--ink));
+    color: white;
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+    margin-top: 48px;
+    page-break-inside: avoid;
+    position: relative; overflow: hidden;
+  }
+  .checklist::before {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, var(--terra) 0%, transparent 70%);
+    opacity: 0.3; pointer-events: none;
+  }
+  .checklist h2 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem;
+    margin-bottom: 14px; position: relative;
+  }
+  .checklist h2 em { font-style: italic; color: var(--terra-soft); }
+  .checklist ul { list-style: none; padding: 0; position: relative; }
+  .checklist li {
+    padding: 8px 0 8px 32px;
+    position: relative;
+    font-size: 0.95rem; line-height: 1.55;
+  }
+  .checklist li::before {
+    content: '☐';
+    position: absolute; left: 0; top: 6px;
+    color: var(--terra-soft); font-size: 1.3rem; line-height: 1;
+  }
+  .checklist strong { color: white; }
+
+  /* PRINT BUTTON */
+  .print-btn-floating {
+    position: fixed; bottom: 24px; right: 24px;
+    background: var(--ocean-deep); color: white; border: none;
+    padding: 14px 22px; border-radius: 999px;
+    font-family: inherit; font-size: 0.88rem; font-weight: 600;
+    cursor: pointer; letter-spacing: 0.04em;
+    box-shadow: 0 4px 16px rgba(20, 48, 75, 0.25);
+    z-index: 50;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.15s ease, transform 0.18s ease;
+  }
+  .print-btn-floating:hover { background: var(--ocean); transform: translateY(-2px); }
+  .print-btn-floating::before { content: '⎙'; font-size: 1.05rem; }
+  @media (max-width: 720px) {
+    .print-btn-floating { bottom: 16px; right: 16px; padding: 12px 18px; font-size: 0.82rem; }
+  }
+
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .skip-link, .print-btn-floating { display: none !important; }
+    .option-card, .conversion-card, .ppt-guide, .troubleshoot, .checklist, .universal-rules, .intro {
+      break-inside: avoid; box-shadow: none;
+    }
+    .checklist {
+      background: white !important; color: var(--ink) !important;
+      border: 2px solid var(--ink);
+    }
+    .checklist h2 em { color: var(--terra); }
+    .checklist li::before { color: var(--terra); }
+    @page { size: letter; margin: 0.5in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<button class="print-btn-floating" type="button" onclick="window.print()" aria-label="Print this page or save as PDF">Print / Save PDF</button>
+
+<div class="page" id="main-content" role="main">
+
+  <header class="masthead">
+    <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · Submission Directions</p>
+    <h1 class="title">How to <em>complete and submit</em> your workbooks.</h1>
+    <p class="subtitle">Three ways to do the work. One way to submit. Read this once at the start of the semester so you know exactly what to do every Sunday.</p>
+  </header>
+
+  <div class="intro">
+    <p>You have three choices for how to complete each weekly workbook. <strong>You can mix and match across weeks</strong>: print one week, write longhand the next, build digitally another. Pick what works for you.</p>
+    <p><strong>All submissions go to Canvas as a single PDF.</strong> The PDF is the only acceptable format. Photos taken in Canvas, JPG files, Word docs, and Google Doc links are not accepted. The directions below show you how to make a PDF on every device.</p>
+  </div>
+
+  <!-- UNIVERSAL RULES -->
+  <section class="universal-rules" aria-labelledby="rules-heading">
+    <h2 id="rules-heading">Rules that apply to <em>every</em> submission</h2>
+    <ul>
+      <li>Submissions must be in <strong>PDF format</strong>. Single PDF per workbook (one for anatomy, one for physiology).</li>
+      <li>Pages must be in <strong>order</strong>. Section 01 first, Section 02 next, and so on through the submission checklist.</li>
+      <li>Every page must have a <strong>page number</strong> in the top or bottom corner: page 1 of 12, page 2 of 12, and so on.</li>
+      <li>Every page must be labeled with the <strong>workbook title</strong> (for example: "Week 4 Anatomy Workbook") and the <strong>section/exercise number</strong> currently being answered.</li>
+      <li>Every workbook must include the <strong>name, section, and date</strong> on the first page, just like the printed version.</li>
+      <li>Every submission must be <strong>complete</strong>. Skipping sections earns zero on those sections.</li>
+      <li>Submissions are due <strong>Sunday 11:59 PM</strong>. Late work is not accepted.</li>
+    </ul>
+  </section>
+
+  <!-- ============== THREE OPTIONS ============== -->
+  <section class="options-section" aria-labelledby="options-heading">
+    <h2 id="options-heading">Your <em>three options</em> for completing the workbook</h2>
+    <p class="lede">Choose the option that works for you each week. The work and the rules are the same. Only the medium changes.</p>
+
+    <!-- OPTION 01 - PRINT AND HANDWRITE -->
+    <article class="option-card option-1" aria-labelledby="option-1-title">
+      <header class="option-header">
+        <div class="option-num">01</div>
+        <div class="option-titles">
+          <p class="option-eyebrow">Recommended for most students</p>
+          <h3 class="option-title" id="option-1-title">Print the workbook, <em>handwrite</em>, scan to PDF</h3>
+        </div>
+      </header>
+
+      <div class="option-good-for">
+        <span class="pill">Easiest grading workflow</span>
+        <span class="pill">Best for handwriting practice</span>
+        <span class="pill">Reliable for unstable internet</span>
+      </div>
+
+      <ol class="step-list">
+        <li><strong>Download the workbook PDF</strong> from Canvas (or use the combined weekly PDF). Print it single-sided or double-sided. Both are fine.</li>
+        <li><strong>Complete every section</strong> in pen or pencil. Drawings go in the drawing boxes. Labels go on the numbered key lines. Tables, calculations, and synthesis questions get filled in directly on the page.</li>
+        <li><strong>Scan all pages to a single PDF.</strong> Use a phone scanning app (Adobe Scan, Microsoft Lens, or Apple Notes are all free and excellent) or a desktop scanner. The scanning section below shows you how.</li>
+        <li><strong>Verify your scan.</strong> Pages are right-side up, in order, all visible, no shadows, all writing legible.</li>
+        <li><strong>Upload the PDF to Canvas</strong> in the matching assignment slot before Sunday 11:59 PM.</li>
+      </ol>
+    </article>
+
+    <!-- OPTION 02 - DIGITAL BUILD -->
+    <article class="option-card option-2" aria-labelledby="option-2-title">
+      <header class="option-header">
+        <div class="option-num">02</div>
+        <div class="option-titles">
+          <p class="option-eyebrow">For students who prefer digital tools</p>
+          <h3 class="option-title" id="option-2-title">Build it digitally with <em>shapes and text labels</em></h3>
+        </div>
+      </header>
+
+      <div class="option-good-for">
+        <span class="pill">Best for motor difficulties</span>
+        <span class="pill">No printer required</span>
+        <span class="pill">Editable, fixable, replayable</span>
+      </div>
+
+      <p style="margin: 8px 0 14px; font-size: 0.95rem;"><strong>Important: digital drawings require revision history.</strong> See the PowerPoint/Slides build guide below for the full method, including how to verify your revision history before submitting.</p>
+
+      <ol class="step-list">
+        <li><strong>Open the workbook PDF</strong> on your screen as a reference for what each section asks.</li>
+        <li><strong>Open Google Slides, Google Docs, PowerPoint, or Word.</strong> Create one slide or page per workbook section. Number each one and title each one with the workbook title and section.</li>
+        <li><strong>For drawings:</strong> use shapes, lines, and text boxes to build each diagram <em>structure by structure</em>. Find a clear reference figure in OpenStax or any anatomy atlas, then reproduce it. Do not copy a finished image from anywhere. Do not screenshot. Build it from scratch.</li>
+        <li><strong>For tables, calculations, and synthesis answers:</strong> type your responses directly into the file. Match the layout of the workbook so it is easy to grade.</li>
+        <li><strong>Verify revision history</strong> exists and shows multiple edits over time. <code>File &rarr; Version history &rarr; See version history</code>. A flat file with no revision history will not receive credit.</li>
+        <li><strong>Export the file to PDF.</strong> Method depends on the tool; see the PDF Conversion section below.</li>
+        <li><strong>Upload the PDF to Canvas.</strong> If your work is in Google Docs or Slides, you must <em>also share the link with revision history visible</em> in the Canvas submission comments so it can be verified.</li>
+      </ol>
+    </article>
+
+    <!-- OPTION 03 - HANDWRITE ON BLANK PAPER -->
+    <article class="option-card option-3" aria-labelledby="option-3-title">
+      <header class="option-header">
+        <div class="option-num">03</div>
+        <div class="option-titles">
+          <p class="option-eyebrow">When you cannot print</p>
+          <h3 class="option-title" id="option-3-title">Handwrite on <em>blank paper</em>, scan to PDF</h3>
+        </div>
+      </header>
+
+      <div class="option-good-for">
+        <span class="pill">No printer needed</span>
+        <span class="pill">Works anywhere</span>
+        <span class="pill">Costs nothing</span>
+      </div>
+
+      <p style="margin: 8px 0 14px; font-size: 0.95rem;">If you cannot print, you can complete every section on blank notebook or printer paper. The work is the same. The formatting requirements are stricter because graders need to find your answers.</p>
+
+      <div class="paper-format">
+        <h4>Format requirements for handwritten paper</h4>
+        <ul>
+          <li>Page 1 must include: <strong>your name, course section, date, and the workbook title</strong> (for example: "Week 4 Anatomy Workbook").</li>
+          <li>Every page must have a <strong>page number</strong> in the top or bottom corner. Format: "Page 3 of 14".</li>
+          <li>Every page must have the <strong>section number you are currently answering</strong> at the top of the page (for example: "Section 03 · Eye Internal Anatomy").</li>
+          <li>Sections must be in <strong>numerical order</strong> from start to finish. Do not jump around. Do not skip and come back.</li>
+          <li>Question numbers and letters must match the workbook (for example: "Section 04, question 2a"). Do not invent your own numbering.</li>
+          <li>Drawings must be in the order they appear in the workbook. Label every required structure clearly.</li>
+          <li>Tables must be redrawn or labeled clearly with column headings matching the workbook.</li>
+          <li>Synthesis answers must be labeled with the section number.</li>
+        </ul>
+      </div>
+
+      <ol class="step-list">
+        <li><strong>Open the workbook PDF</strong> on a screen so you can see what each section asks.</li>
+        <li><strong>Set up page 1</strong> with your name, section, date, workbook title, and "Page 1 of __".</li>
+        <li><strong>Work through each section in order.</strong> Label each page with section number, page number, and total page count. Update the total at the end.</li>
+        <li><strong>Complete every part of every section.</strong> Drawings, labels, tables, calculations, synthesis questions. If you skip any, those sections earn zero.</li>
+        <li><strong>Stack pages in order.</strong> Number them all. Use a paper clip or staple if you have one.</li>
+        <li><strong>Scan all pages to a single PDF.</strong> See the scanning section below.</li>
+        <li><strong>Verify the scanned PDF.</strong> All pages present, in order, right-side up, legible.</li>
+        <li><strong>Upload the PDF to Canvas</strong> before Sunday 11:59 PM.</li>
+      </ol>
+    </article>
+  </section>
+
+  <!-- ============== PDF CONVERSION GUIDES ============== -->
+  <section class="pdf-section" aria-labelledby="pdf-heading">
+    <h2 id="pdf-heading">How to <em>create a PDF</em> from your work</h2>
+    <p class="lede">Every device can make a PDF. Find your tool below and follow the steps.</p>
+
+    <div class="conversion-grid">
+
+      <!-- GOOGLE DOCS -->
+      <article class="conversion-card docs">
+        <p class="conversion-eyebrow">Google Docs</p>
+        <h3 class="conversion-title">Export <em>Google Docs</em> to PDF</h3>
+        <div class="conversion-steps">
+          <p><strong>1.</strong> Open your Doc.</p>
+          <p><strong>2.</strong> Click <code>File</code> <span class="arrow">→</span> <code>Download</code> <span class="arrow">→</span> <code>PDF Document (.pdf)</code></p>
+          <p><strong>3.</strong> The PDF downloads to your computer. Find it in your Downloads folder.</p>
+          <p><strong>4.</strong> Upload that PDF to Canvas.</p>
+        </div>
+      </article>
+
+      <!-- GOOGLE SLIDES -->
+      <article class="conversion-card slides">
+        <p class="conversion-eyebrow">Google Slides</p>
+        <h3 class="conversion-title">Export <em>Google Slides</em> to PDF</h3>
+        <div class="conversion-steps">
+          <p><strong>1.</strong> Open your Slides file.</p>
+          <p><strong>2.</strong> Click <code>File</code> <span class="arrow">→</span> <code>Download</code> <span class="arrow">→</span> <code>PDF Document (.pdf)</code></p>
+          <p><strong>3.</strong> Each slide becomes a page. Verify your slide order is correct first.</p>
+          <p><strong>4.</strong> Upload the downloaded PDF to Canvas.</p>
+        </div>
+      </article>
+
+      <!-- WORD -->
+      <article class="conversion-card word">
+        <p class="conversion-eyebrow">Microsoft Word</p>
+        <h3 class="conversion-title">Export <em>Word</em> to PDF</h3>
+        <div class="conversion-steps">
+          <p><strong>Web/Office 365:</strong> <code>File</code> <span class="arrow">→</span> <code>Download as PDF</code> (or <code>Save As</code> <span class="arrow">→</span> <code>PDF</code>)</p>
+          <p><strong>Desktop (Windows/Mac):</strong> <code>File</code> <span class="arrow">→</span> <code>Save As</code> <span class="arrow">→</span> select <code>PDF</code> from format dropdown.</p>
+          <p><strong>Mac alternative:</strong> <code>File</code> <span class="arrow">→</span> <code>Print</code> <span class="arrow">→</span> click PDF dropdown <span class="arrow">→</span> <code>Save as PDF</code></p>
+        </div>
+      </article>
+
+      <!-- POWERPOINT -->
+      <article class="conversion-card ppt">
+        <p class="conversion-eyebrow">PowerPoint</p>
+        <h3 class="conversion-title">Export <em>PowerPoint</em> to PDF</h3>
+        <div class="conversion-steps">
+          <p><strong>Web/Office 365:</strong> <code>File</code> <span class="arrow">→</span> <code>Export</code> <span class="arrow">→</span> <code>Download as PDF</code></p>
+          <p><strong>Desktop (Windows/Mac):</strong> <code>File</code> <span class="arrow">→</span> <code>Save As</code> (or <code>Export</code>) <span class="arrow">→</span> select <code>PDF</code></p>
+          <p><strong>Choose "All slides"</strong> when prompted. Verify the page order matches your section order before uploading.</p>
+        </div>
+      </article>
+
+      <!-- SCANNING WITH PHONE -->
+      <article class="conversion-card scan">
+        <p class="conversion-eyebrow">Phone scanning apps</p>
+        <h3 class="conversion-title">Scan <em>handwritten pages</em> to PDF</h3>
+        <div class="conversion-steps">
+          <p><strong>Apple iPhone (built in):</strong> Open Notes app <span class="arrow">→</span> tap camera icon <span class="arrow">→</span> <code>Scan Documents</code> <span class="arrow">→</span> scan each page <span class="arrow">→</span> tap Save <span class="arrow">→</span> Share <span class="arrow">→</span> <code>Save to Files</code> as PDF.</p>
+          <p><strong>Adobe Scan (free, iOS &amp; Android):</strong> open the app <span class="arrow">→</span> photograph each page <span class="arrow">→</span> app builds a multi-page PDF automatically <span class="arrow">→</span> Share <span class="arrow">→</span> Save or email.</p>
+          <p><strong>Google Drive (Android):</strong> open Drive <span class="arrow">→</span> tap <code>+</code> <span class="arrow">→</span> <code>Scan</code> <span class="arrow">→</span> photograph pages <span class="arrow">→</span> save as PDF in Drive.</p>
+          <p><strong>Microsoft Lens (free, iOS &amp; Android):</strong> open the app <span class="arrow">→</span> select <code>Document</code> mode <span class="arrow">→</span> photograph each page <span class="arrow">→</span> save as PDF.</p>
+        </div>
+      </article>
+
+      <!-- MERGING -->
+      <article class="conversion-card merge">
+        <p class="conversion-eyebrow">If you have multiple PDFs</p>
+        <h3 class="conversion-title">Combine <em>multiple PDFs</em> into one</h3>
+        <div class="conversion-steps">
+          <p>Canvas requires <strong>one PDF per workbook</strong>. If you have multiple, merge them first.</p>
+          <p><strong>Free online (no account):</strong> visit smallpdf.com or ilovepdf.com <span class="arrow">→</span> Merge PDF tool <span class="arrow">→</span> upload PDFs in order <span class="arrow">→</span> download merged file.</p>
+          <p><strong>Mac (built-in Preview):</strong> open first PDF in Preview <span class="arrow">→</span> View <span class="arrow">→</span> Thumbnails <span class="arrow">→</span> drag additional PDFs into the sidebar <span class="arrow">→</span> File <span class="arrow">→</span> Export as PDF.</p>
+          <p><strong>Adobe Acrobat (free trial or Reader):</strong> Tools <span class="arrow">→</span> Combine Files <span class="arrow">→</span> add files in order <span class="arrow">→</span> Combine.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============== POWERPOINT BUILD GUIDE ============== -->
+  <section aria-labelledby="ppt-guide-heading">
+    <article class="ppt-guide">
+      <h3 id="ppt-guide-heading">Step-by-step: <em>build a workbook digitally</em> in PowerPoint or Google Slides</h3>
+      <p>If you choose Option 02, this is the workflow. The same steps work for either tool. Slides is recommended because revision history is preserved automatically and accessible by direct link.</p>
+
+      <ol class="ppt-steps">
+        <li><strong>Open Google Slides or PowerPoint.</strong> Start a blank presentation. Title the file: <code>YourName_Week04_Anatomy_Workbook</code> (replace with your week and workbook type).</li>
+        <li><strong>Set the slide size to portrait letter</strong> so it matches the workbook layout. In Slides: <code>File</code> <span class="arrow">→</span> <code>Page setup</code> <span class="arrow">→</span> Custom <span class="arrow">→</span> 8.5 inches by 11 inches. In PowerPoint: <code>Design</code> tab <span class="arrow">→</span> <code>Slide Size</code> <span class="arrow">→</span> Custom <span class="arrow">→</span> Letter Portrait.</li>
+        <li><strong>Slide 1 is your cover page</strong> with name, course section, date, and workbook title. Match the format on the workbook PDF cover.</li>
+        <li><strong>Make one slide per workbook section.</strong> If the anatomy workbook has 8 sections, you have at least 8 slides. Add extra slides for sections that need more space (drawings, long synthesis questions).</li>
+        <li><strong>Title every slide</strong> with the workbook name and section. Example: "Week 4 Anatomy · Section 03 · Eye Internal Anatomy".</li>
+        <li><strong>For drawings:</strong> use the shape tools (<code>Insert</code> <span class="arrow">→</span> <code>Shape</code>) to build each structure piece by piece. Use lines, ovals, rectangles, and freeform shapes. Find a clear reference in OpenStax or an atlas, then build a copy structure by structure. <strong>Do not paste a finished image. Do not screenshot a textbook.</strong></li>
+        <li><strong>Add labels with text boxes</strong> for every structure required in the numbered key. Use lines or arrows to connect labels to the structure they identify.</li>
+        <li><strong>For tables and calculations:</strong> use Insert <span class="arrow">→</span> Table to add tables, or use text boxes to type out responses. Match the column headings from the workbook so it is easy to grade.</li>
+        <li><strong>For synthesis questions:</strong> add a text box with your full answer. Do not summarize. Match the same depth you would write by hand.</li>
+        <li><strong>Save constantly.</strong> Both tools auto-save, but verify <code>File</code> <span class="arrow">→</span> <code>Version history</code> shows multiple saves over time. <strong>If you build the entire thing in one sitting in 30 minutes, your revision history will not look like genuine work and may be flagged.</strong> Build over multiple sessions across the week.</li>
+        <li><strong>Verify revision history before submitting.</strong> <code>File</code> <span class="arrow">→</span> <code>Version history</code> <span class="arrow">→</span> <code>See version history</code>. You should see multiple timestamped versions. Take a screenshot of this view if you want extra protection in case of disputes.</li>
+        <li><strong>Export to PDF.</strong> See the conversion guide above. Verify all pages exported in order.</li>
+        <li><strong>Submit:</strong> upload the PDF to Canvas, AND in the submission comments paste a link to your Slides/PowerPoint file with revision history accessible. If using Slides, set sharing to "Anyone with the link can view" so the instructor can see version history without requesting access.</li>
+      </ol>
+    </article>
+  </section>
+
+  <!-- ============== TROUBLESHOOTING ============== -->
+  <section class="troubleshoot" aria-labelledby="troubleshoot-heading">
+    <h2 id="troubleshoot-heading">Common <em>problems</em> and what to do</h2>
+
+    <div class="ts-pair">
+      <div class="ts-question">My phone scanned the pages out of order.</div>
+      <div class="ts-answer">Most scanning apps let you drag pages to reorder before saving. If you already saved the PDF, use a free merge tool (smallpdf.com, ilovepdf.com) to split, reorder, and recombine. <strong>Out-of-order pages are the most common reason for partial credit.</strong></div>
+    </div>
+
+    <div class="ts-pair">
+      <div class="ts-question">My handwriting is hard to read in the scan.</div>
+      <div class="ts-answer">Scan in good lighting, hold the phone directly above the page (not at an angle), use the document mode in your scanning app to enhance contrast. If still illegible, retake the photo. <strong>Illegible pages may receive partial credit only.</strong></div>
+    </div>
+
+    <div class="ts-pair">
+      <div class="ts-question">Canvas rejected my upload.</div>
+      <div class="ts-answer">Most common reasons: file is over the size limit (compress in Adobe Scan or use smallpdf.com to compress), file is not a PDF (re-export from your tool), or wrong assignment slot. <strong>Verify the file is a PDF and try a different browser if needed.</strong></div>
+    </div>
+
+    <div class="ts-pair">
+      <div class="ts-question">My internet went out before I could submit.</div>
+      <div class="ts-answer">Document the outage with a screenshot or email your phone provider for confirmation, then email Dr. Rennie immediately. Submissions that arrive within 6 hours of a documented outage will be evaluated case by case. <strong>"My internet was down" without documentation is not accepted.</strong></div>
+    </div>
+
+    <div class="ts-pair">
+      <div class="ts-question">I built my drawings digitally but forgot to enable revision history.</div>
+      <div class="ts-answer">Google Slides and Google Docs preserve revision history automatically. PowerPoint preserves it if you save to OneDrive or SharePoint. <strong>If you built locally on PowerPoint without OneDrive, your work cannot be verified and will not receive drawing credit.</strong> For digital builds, always use Google tools or PowerPoint with cloud save enabled.</div>
+    </div>
+
+    <div class="ts-pair">
+      <div class="ts-question">I cannot print and I don't have access to a phone scanner.</div>
+      <div class="ts-answer">Free desktop scanners are available at the campus library. The MedMasters Collaborative also has free PDF print packets available; ask Dr. Rennie. <strong>Use Option 03 (handwrite on blank paper) and ask for help on accessing a scanner before the deadline.</strong></div>
+    </div>
+
+    <div class="ts-pair">
+      <div class="ts-question">My drawings look bad. Will I get less credit?</div>
+      <div class="ts-answer">No. Drawings are graded on accuracy and completeness, not artistry. As long as the structures are recognizable and labeled correctly, you get full credit. <strong>Do not waste time making them pretty. Focus on getting every required structure labeled.</strong></div>
+    </div>
+  </section>
+
+  <!-- ============== PRE-SUBMISSION CHECKLIST ============== -->
+  <section class="checklist" aria-labelledby="checklist-heading">
+    <h2 id="checklist-heading">Before you hit <em>submit</em>: pre-submission checklist</h2>
+    <ul>
+      <li>The file is a <strong>PDF</strong>, not a Word doc, image, or link.</li>
+      <li>Every page has a <strong>page number</strong> (page 1 of __, page 2 of __).</li>
+      <li>Every page has the <strong>workbook title</strong> and <strong>section number</strong> being answered.</li>
+      <li>Page 1 has my <strong>name, section, and date</strong>.</li>
+      <li>Pages are in <strong>numerical order</strong> from Section 01 onward.</li>
+      <li>Every section is <strong>complete</strong> (drawings, labels, tables, calculations, synthesis answers).</li>
+      <li>Pages are <strong>right-side up</strong> and <strong>legible</strong> if scanned.</li>
+      <li>If I used Option 02, my <strong>revision history</strong> is verified and the link is in the submission comments.</li>
+      <li>If I used Option 02, my drawings were <strong>built structure by structure</strong>, not copied from anywhere.</li>
+      <li>The PDF is uploaded to the <strong>correct assignment</strong> in Canvas (anatomy or physiology, matching the week).</li>
+      <li>Submission is <strong>before Sunday 11:59 PM</strong>.</li>
+    </ul>
+  </section>
+
+</div>
+
+<script>
+  // Iframe height-sender for Kajabi embedding
+  (function () {
+    const FRAME_ID = 'bio304-submission-directions';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
