@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 · Academic Integrity &amp; AI Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
+    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
+    --sand: #f5e6d3; --sand-soft: #faf3e8;
+    --terra: #c44536; --terra-soft: #e8a499;
+    --kelp: #5a7553; --kelp-soft: #aabba0;
+    --paper: #fdfbf7; --line: #c9d4d8; --muted: #5a6b73;
+    --shadow-md: 0 4px 14px rgba(20, 48, 75, 0.08);
+    --radius-md: 12px; --radius-lg: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
+  .skip-link:focus { left: 0; top: 0; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 920px; margin: 0 auto; padding: 0 28px 80px; }
+
+  header.masthead { padding: 48px 0 24px; border-bottom: 2.5px solid var(--ocean-deep); margin-bottom: 32px; position: relative; }
+  header.masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
+  .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
+  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(1.9rem, 4vw, 2.5rem); line-height: 1.15; color: var(--ocean-deep); margin-bottom: 14px; }
+  h1.title em { font-style: italic; color: var(--terra); }
+  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.1rem; color: var(--ocean); max-width: 720px; }
+
+  .section { margin-top: 40px; }
+  .section h2 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem;
+    color: var(--ocean-deep); margin-bottom: 14px;
+    padding-bottom: 8px; border-bottom: 1.5px solid var(--ocean-deep);
+  }
+  .section h2 em { font-style: italic; color: var(--terra); }
+  .section h3 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.15rem;
+    color: var(--ocean-deep); margin: 22px 0 10px;
+  }
+  .section p { margin-bottom: 14px; max-width: 760px; line-height: 1.65; }
+  .section p:last-child { margin-bottom: 0; }
+  .section ul { padding-left: 24px; margin: 8px 0 14px; }
+  .section li { padding: 4px 0; line-height: 1.6; }
+
+  .opening-frame {
+    background: white;
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--terra);
+    border-radius: var(--radius-lg);
+    padding: 26px 30px;
+    margin: 0 0 32px;
+    box-shadow: var(--shadow-md);
+  }
+  .opening-frame h2 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.25rem;
+    color: var(--ocean-deep); margin-bottom: 12px;
+    border: none; padding: 0;
+  }
+  .opening-frame h2 em { font-style: italic; color: var(--terra); }
+
+  /* DO / DONT */
+  .do-dont-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 14px 0;
+  }
+  @media (max-width: 720px) { .do-dont-grid { grid-template-columns: 1fr; } }
+  .do-card, .dont-card {
+    border-radius: var(--radius-md); padding: 22px 26px;
+  }
+  .do-card { background: rgba(90, 117, 83, 0.08); border-left: 4px solid var(--kelp); }
+  .dont-card { background: rgba(196, 69, 54, 0.08); border-left: 4px solid var(--terra); }
+  .do-card h3, .dont-card h3 {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; margin-bottom: 12px; padding: 0; border: 0;
+  }
+  .do-card h3 { color: var(--kelp); }
+  .dont-card h3 { color: var(--terra); }
+  .do-card ul, .dont-card ul { list-style: none; padding: 0; margin: 0; }
+  .do-card li, .dont-card li {
+    padding: 6px 0 6px 24px; position: relative;
+    font-size: 0.92rem; line-height: 1.55;
+  }
+  .do-card li::before { content: '✓'; position: absolute; left: 0; color: var(--kelp); font-weight: 700; }
+  .dont-card li::before { content: '✗'; position: absolute; left: 0; color: var(--terra); font-weight: 700; }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--sand-soft);
+    border-left: 4px solid var(--terra);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 18px 24px; margin: 16px 0;
+  }
+  .callout-label {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--terra); margin-bottom: 6px;
+  }
+  .callout p { margin-bottom: 6px; max-width: none; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout.info { background: var(--sea-glass-soft); border-left-color: var(--ocean); }
+  .callout.info .callout-label { color: var(--ocean-deep); }
+
+  /* CONSEQUENCES TABLE */
+  .consequences {
+    background: white; border: 1px solid var(--line);
+    border-radius: var(--radius-md); padding: 0; margin: 16px 0;
+    overflow: hidden;
+  }
+  .consequences-row {
+    display: grid; grid-template-columns: 230px 1fr;
+    gap: 18px; padding: 14px 22px;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .consequences-row:last-child { border-bottom: none; }
+  .consequences-row:nth-child(odd) { background: var(--sea-glass-soft); }
+  .severity {
+    font-family: 'Lora', serif; font-weight: 500;
+    color: var(--ocean-deep); font-size: 0.95rem;
+  }
+  .severity em { font-style: italic; color: var(--terra); }
+  .outcome { font-size: 0.92rem; line-height: 1.55; }
+  @media (max-width: 600px) {
+    .consequences-row { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* HONOR CONTRACT BOX */
+  .honor-box {
+    background: linear-gradient(150deg, var(--ocean-deep), var(--ink));
+    color: white;
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+    margin: 24px 0;
+    position: relative; overflow: hidden;
+  }
+  .honor-box::before {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, var(--terra) 0%, transparent 70%);
+    opacity: 0.3; pointer-events: none;
+  }
+  .honor-box h3 {
+    font-family: 'Lora', serif; font-weight: 500; font-size: 1.3rem;
+    color: white; margin: 0 0 10px; padding: 0; border: 0;
+    position: relative;
+  }
+  .honor-box h3 em { font-style: italic; color: var(--terra-soft); }
+  .honor-box p { color: white; position: relative; max-width: none; margin-bottom: 10px; }
+  .honor-box p:last-child { margin-bottom: 0; }
+  .honor-box strong { color: var(--terra-soft); }
+  .deadline-pill {
+    display: inline-block; background: var(--terra); color: white;
+    padding: 4px 14px; border-radius: 999px;
+    font-size: 0.84rem; font-weight: 600;
+    margin-top: 6px;
+  }
+
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .skip-link { display: none !important; }
+    .opening-frame, .do-card, .dont-card, .consequences, .honor-box, .callout {
+      break-inside: avoid; box-shadow: none;
+    }
+    .honor-box { background: white !important; color: var(--ink) !important; border: 2px solid var(--ink); }
+    .honor-box h3, .honor-box p { color: var(--ink) !important; }
+    .honor-box h3 em, .honor-box strong { color: var(--terra) !important; }
+    @page { size: letter; margin: 0.5in; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="page" id="main-content" role="main">
+
+  <header class="masthead">
+    <p class="eyebrow">BIO 304 · Course Policies</p>
+    <h1 class="title">Academic Integrity &amp; <em>AI Policy</em></h1>
+    <p class="subtitle">How we work together honestly. What you can and cannot do with AI tools. What happens if integrity is compromised.</p>
+  </header>
+
+  <div class="opening-frame">
+    <h2>Why this <em>matters</em> in healthcare</h2>
+    <p>You are training for a career where integrity has direct consequences for human lives. A nurse who fakes a patient assessment, an EMT who fabricates vital signs, a paramedic who copies someone else's protocol, a mortuary technician who falsifies records, all of these put patients, families, and communities at risk. The habits you build now are the habits you carry into your career.</p>
+    <p>This course is built on the assumption that you want to learn the material, and that you understand why doing your own work is non-negotiable in healthcare. I have designed the assessments to make academic integrity easy to maintain and academic dishonesty easy to detect. Read this page carefully. Ask questions in the Virtual Office Hours forum if anything is unclear.</p>
+  </div>
+
+  <section class="section" aria-labelledby="integrity-head">
+    <h2 id="integrity-head">The <em>integrity standard</em></h2>
+
+    <p>All submitted work must be your own. This is the standard at every American college, every healthcare program, and every clinical environment. Academic dishonesty in this course includes:</p>
+
+    <h3>Cheating</h3>
+    <ul>
+      <li>Copying answers from another student, a website, or any external source</li>
+      <li>Using AI tools to complete graded work without permission</li>
+      <li>Sharing quiz or exam questions or answers with others, including in study groups</li>
+      <li>Submitting someone else's work as your own (including AI-generated content)</li>
+      <li>Using unauthorized devices, notes, or references during a proctored exam</li>
+      <li>Having someone else complete portions of a workbook, portfolio page, or quiz on your behalf</li>
+    </ul>
+
+    <h3>Plagiarism</h3>
+    <ul>
+      <li>Using another person's words or ideas without citation</li>
+      <li>Copying lab reports, assignments, or discussion posts from any source (including AI output)</li>
+      <li>Paraphrasing closely without crediting the original source</li>
+      <li>Submitting the same work for multiple courses without permission from both instructors</li>
+      <li>Using copyrighted images (Google Images, textbook scans) as your own drawings</li>
+    </ul>
+
+    <p style="font-size: 0.92rem; color: var(--muted); font-style: italic;">See the official ARC policy at <a href="https://arc.losrios.edu/student-resources/student-conduct" style="color: var(--terra); text-decoration: none; font-weight: 600;">arc.losrios.edu/student-resources/student-conduct</a>.</p>
+  </section>
+
+  <section class="section" aria-labelledby="ai-head">
+    <h2 id="ai-head">The <em>AI policy</em></h2>
+
+    <p>Generative AI tools (ChatGPT, Claude, Gemini, Perplexity, and others) are powerful study aids and increasingly part of professional life in healthcare. <strong>This course does not ban AI use, but it requires transparency and limits where AI can be applied.</strong></p>
+
+    <p>Think of AI in this course like a well-meaning study group: it can help you understand difficult concepts, generate practice questions, organize your thinking, and check your reasoning. But it cannot take your test, write your discussion post, or build your workbook. Those tasks measure what you know.</p>
+
+    <div class="do-dont-grid">
+      <div class="do-card">
+        <h3>You can use AI to</h3>
+        <ul>
+          <li>Clarify difficult concepts or summarize complex information for your own learning</li>
+          <li>Create a personal tutor for retrieval practice</li>
+          <li>Generate practice questions or outlines for review</li>
+          <li>Generate review podcasts to help you retain material</li>
+          <li>Organize your thinking before drafting your own writing</li>
+          <li>Verify information and evaluate bias in published sources</li>
+          <li>Reflect on and improve your own study processes</li>
+          <li>Check accuracy of clinical decision logic on portfolio pages, after you build the page yourself</li>
+        </ul>
+      </div>
+      <div class="dont-card">
+        <h3>You cannot use AI to</h3>
+        <ul>
+          <li>Generate any content for graded assignments unless the assignment is specifically designated AI-allowed</li>
+          <li>Generate workbook drawings, labels, or synthesis answers</li>
+          <li>Generate portfolio page content, scenarios, or reflections</li>
+          <li>Complete quizzes or exams (Honorlock-proctored, AI use is automatically a violation)</li>
+          <li>Write discussion posts in your name</li>
+          <li>Bypass the requirement to build digital drawings yourself, structure by structure</li>
+          <li>Translate or rewrite the entire workbook for you</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>How AI use is detected</h3>
+    <p>I may use AI detection tools to screen submitted work in this course. AI-generated content has predictable signatures: stylistic uniformity, certain phrasing patterns, factual hallucinations that are inconsistent with the textbook, and structures that do not match the assignment prompt. These signatures are increasingly easy to identify.</p>
+    <p>For workbooks and portfolio pages submitted as digital builds, the revision history requirement is the primary detection mechanism. A digital workbook or portfolio page that arrives with no revision history, or with revision history showing the entire document built in a single session, is treated as AI-generated by default.</p>
+
+    <div class="callout info">
+      <p class="callout-label">A note on transparency</p>
+      <p>If you used AI to study, brainstorm, or check your work, that is allowed and you do not need to declare it. If AI generated content that appears in your submission, that is a violation. The line is whether AI did your thinking or you did your thinking.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="honor-head">
+    <h2 id="honor-head">The <em>AI Honor Contract</em></h2>
+
+    <div class="honor-box">
+      <h3>Required for all <em>BIO 304 students</em></h3>
+      <p>All students must read, sign, and upload the AI Use Honor Contract during Week 1. The contract outlines responsible AI use in your A&amp;P coursework and is required for course participation.</p>
+      <p>You will find the contract in the Week 1 module on Canvas. Read it carefully, sign it, and upload your signed copy.</p>
+      <p><span class="deadline-pill">Due: end of day Tuesday, June 9, 2026</span></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="instructor-ai-head">
+    <h2 id="instructor-ai-head">How <em>I use AI</em> in this course</h2>
+
+    <p>Transparency goes both ways. I want you to know how I use AI tools in designing and delivering this course.</p>
+
+    <p>I may use AI to support the design of instructional materials: organizing content, formatting rubrics, drafting clinical case prompts, and refining the clarity of explanations. <strong>All final content is reviewed and edited by me to meet rigorous academic and professional standards.</strong> The course you experience is the product of my judgment and expertise, with AI as a drafting assistant.</p>
+
+    <p>I may also use AI to assist in organizing my grading workflow or generating feedback summaries when identifying class-wide trends. <strong>AI-assisted grading uses anonymous, de-identified submissions only.</strong> No personally identifiable information is shared with AI systems. All grading decisions reflect my professional judgment and are grounded in your submitted work and the course rubric.</p>
+
+    <p>If you have questions about how AI is being used in this course, ask in the Virtual Office Hours forum.</p>
+  </section>
+
+  <section class="section" aria-labelledby="consequences-head">
+    <h2 id="consequences-head">If integrity is <em>compromised</em></h2>
+
+    <p>Violations have predictable consequences. The severity depends on the nature of the violation and whether it is a first or repeated offense.</p>
+
+    <div class="consequences">
+      <div class="consequences-row">
+        <span class="severity">First minor violation</span>
+        <span class="outcome">Zero on the assignment in question. Documentation in your course file. Required meeting with Dr. Rennie to discuss what happened and how to prevent recurrence.</span>
+      </div>
+      <div class="consequences-row">
+        <span class="severity">First major violation</span>
+        <span class="outcome">Zero on the assignment. Referral to the V.P. of Student Services for disciplinary action. Documentation in your permanent ARC record.</span>
+      </div>
+      <div class="consequences-row">
+        <span class="severity">Repeat violation</span>
+        <span class="outcome">F for the course. Referral to the V.P. of Student Services. Documentation in your permanent ARC record.</span>
+      </div>
+      <div class="consequences-row">
+        <span class="severity">AI on a proctored quiz or exam</span>
+        <span class="outcome">F for the assessment, automatic. Referral to the V.P. of Student Services. Course grade may also fall to F.</span>
+      </div>
+      <div class="consequences-row">
+        <span class="severity">AI detection rating above 25% on graded work</span>
+        <span class="outcome">Automatic zero on the assignment unless AI use was specifically permitted on that assignment.</span>
+      </div>
+    </div>
+
+    <p style="margin-top: 14px;">Severe or repeated violations may result in further disciplinary action by ARC, including suspension or expulsion from the college. These outcomes are documented in your academic record and may affect future enrollment in healthcare programs.</p>
+  </section>
+
+  <section class="section" aria-labelledby="prevention-head">
+    <h2 id="prevention-head">How to <em>stay on the right side</em></h2>
+
+    <p>Integrity violations are usually preventable. A few practical habits make them very hard to commit accidentally:</p>
+
+    <ul>
+      <li><strong>Build digital work over time, not all at once.</strong> Open your workbook or portfolio page early in the week, work in short sessions, and let the revision history show genuine building. A workbook that takes 90 minutes to build over 4 days is indistinguishable from genuine work. A workbook that appears in 15 minutes the night it is due is a red flag.</li>
+      <li><strong>Use AI for studying, not producing.</strong> Ask AI to quiz you, explain concepts, or check your reasoning. Do not ask it to write paragraphs, draw figures, or compose discussion posts.</li>
+      <li><strong>Cite when you reference.</strong> If you read something and use the idea, cite the source. This applies to OpenStax, websites, AI conversations, and study group discussions.</li>
+      <li><strong>Ask if you are unsure.</strong> The Virtual Office Hours forum is the right place to ask "is this OK?" before submitting. Asking is never a violation.</li>
+      <li><strong>Do not share assessments.</strong> Do not screenshot quiz questions, do not text answers to classmates, do not post questions to forums like Chegg or Course Hero. These are tracked and detected.</li>
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="closing-head">
+    <h2 id="closing-head">A <em>final note</em></h2>
+
+    <p>Most students in this course will never face an integrity question because they will simply do their own work. The policies above exist to make expectations clear, to protect students who are doing the right thing, and to ensure that grades in this course mean what they are supposed to mean.</p>
+
+    <p>If you are struggling and feel tempted to take a shortcut, please reach out instead. Late work is not accepted in this course, but a single missed assignment is far less consequential than an integrity violation. Email me, post in the Virtual Office Hours forum, or schedule a Zoom meeting. I will help you find a path forward.</p>
+  </section>
+
+</div>
+
+<script>
+  (function () {
+    const FRAME_ID = 'bio304-academic-integrity';
+    function sendHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 800);
+  })();
+</script>
+</body>
+</html>
