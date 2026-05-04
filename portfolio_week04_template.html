@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 04 Portfolio Template | BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1d3557;
+  --ocean: #2a4d6e;
+  --ocean-deep: #14304b;
+  --terra: #c44536;
+  --kelp: #5a7553;
+  --sand-soft: #faf3e8;
+  --sea-glass-soft: #eef4f5;
+  --paper: #fdfbf7;
+  --line: #c9d4d8;
+  --muted: #5a6b73;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  margin: 0;
+  padding: 0;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--ocean-deep);
+  color: var(--paper);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  z-index: 100;
+  font-weight: 600;
+}
+.skip-link:focus { top: 0; }
+
+/* Focus indicator */
+:focus-visible {
+  outline: 3px solid var(--terra);
+  outline-offset: 2px;
+}
+
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+/* Masthead */
+.masthead {
+  background: var(--paper);
+  border-bottom: 4px solid var(--ocean-deep);
+  padding: 2rem 1.5rem 1.75rem;
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+.masthead::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 96px;
+  height: 4px;
+  background: var(--terra);
+}
+.masthead-inner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+.masthead .eyebrow {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin: 0 0 0.5rem;
+}
+.masthead h1 {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 2.25rem;
+  line-height: 1.2;
+  color: var(--ocean-deep);
+  margin: 0 0 0.4rem;
+}
+.masthead .subtitle {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin: 0;
+  font-weight: 400;
+}
+.masthead .meta {
+  margin-top: 0.9rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.masthead .meta strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Print button */
+.print-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  background: var(--ocean-deep);
+  color: var(--paper);
+  border: none;
+  padding: 0.55rem 1rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.print-btn:hover { background: var(--ocean); }
+.print-btn:focus-visible {
+  outline: 3px solid var(--terra);
+  outline-offset: 2px;
+}
+
+/* Section heads */
+.section {
+  margin: 2.75rem 0 0;
+}
+.section-head {
+  border-top: 1px solid var(--line);
+  padding-top: 1.25rem;
+  margin-bottom: 1rem;
+}
+.section-head .section-num {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--terra);
+  font-weight: 500;
+}
+.section-head .section-eyebrow {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  margin-top: 0.15rem;
+}
+.section-head h2 {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: var(--ocean-deep);
+  margin: 0.3rem 0 0.5rem;
+}
+
+h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ocean-deep);
+  margin: 1.5rem 0 0.6rem;
+  letter-spacing: 0.01em;
+}
+h4 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ocean);
+  margin: 1.1rem 0 0.4rem;
+}
+
+p { margin: 0.5rem 0 0.85rem; }
+
+ul, ol { padding-left: 1.4rem; margin: 0.4rem 0 0.9rem; }
+li { margin: 0.25rem 0; }
+
+a {
+  color: var(--ocean-deep);
+  text-decoration: underline;
+  text-decoration-color: var(--terra);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  font-weight: 500;
+}
+a:hover { color: var(--terra); }
+
+strong { color: var(--ink); font-weight: 600; }
+em { font-family: 'Lora', serif; font-style: italic; color: var(--ocean-deep); }
+
+/* Callouts */
+.callout {
+  background: var(--sand-soft);
+  border-left: 4px solid var(--terra);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 0 4px 4px 0;
+}
+.callout.kelp { border-left-color: var(--kelp); }
+.callout.ocean { border-left-color: var(--ocean); background: var(--sea-glass-soft); }
+.callout p:first-child { margin-top: 0; }
+.callout p:last-child { margin-bottom: 0; }
+.callout-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 0.4rem;
+}
+.callout.kelp .callout-label { color: var(--kelp); }
+.callout.ocean .callout-label { color: var(--ocean); }
+
+/* Reference box (for Quick Reference at top of templates) */
+.refbox {
+  background: var(--sea-glass-soft);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--ocean);
+  padding: 1.1rem 1.25rem;
+  border-radius: 4px;
+  margin: 1rem 0 1.5rem;
+}
+.refbox .refbox-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  margin-bottom: 0.5rem;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+th, td {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+th {
+  background: var(--sea-glass-soft);
+  color: var(--ocean-deep);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--ocean);
+}
+tbody tr:nth-child(even) { background: rgba(238, 244, 245, 0.4); }
+
+/* Decision logic blocks (for portfolio middle section) */
+.decision {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1rem 1.15rem;
+  margin: 0.9rem 0;
+}
+.decision .when {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  color: var(--ocean-deep);
+  font-size: 0.9rem;
+}
+.decision .then {
+  margin-top: 0.35rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+.decision .arrow {
+  display: inline-block;
+  margin: 0 0.4rem;
+  color: var(--terra);
+  font-weight: 700;
+}
+
+/* Scenario cards */
+.scenario {
+  background: var(--sand-soft);
+  border-left: 3px solid var(--ocean);
+  padding: 0.9rem 1.1rem;
+  margin: 0.85rem 0;
+  border-radius: 0 4px 4px 0;
+}
+.scenario .scenario-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  margin-bottom: 0.35rem;
+}
+.scenario .vignette {
+  font-style: italic;
+  font-family: 'Lora', serif;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.scenario .response-prompt {
+  font-size: 0.85rem;
+  color: var(--terra);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+.scenario .response-space {
+  background: #ffffff;
+  border: 2px dashed var(--ocean);
+  border-radius: 3px;
+  min-height: 4.5rem;
+  margin-top: 0.4rem;
+  padding: 0.4rem;
+}
+
+/* Synthesis (red accent) */
+.synthesis {
+  border: 1.5px solid var(--terra);
+  background: rgba(196, 69, 54, 0.04);
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
+  margin: 1.5rem 0;
+}
+.synthesis .synthesis-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 0.5rem;
+}
+
+/* Cards (used in hub for week-list grid) */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--ocean);
+  border-radius: 4px;
+  padding: 1rem 1.1rem;
+}
+.card .week-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 0.3rem;
+}
+.card h3 {
+  font-size: 0.98rem;
+  margin: 0.2rem 0 0.4rem;
+}
+.card p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Numbered steps */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  padding-left: 0;
+}
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 2.4rem;
+  margin: 0.7rem 0;
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: var(--ocean-deep);
+  color: var(--paper);
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* Footer */
+.page-foot {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .masthead h1 { font-size: 1.7rem; }
+  .print-btn {
+    position: static;
+    display: block;
+    margin: 1rem 0 0;
+  }
+  main { padding: 0 1rem 3rem; }
+  table { font-size: 0.85rem; }
+  th, td { padding: 0.5rem 0.5rem; }
+}
+
+/* Print styles */
+@media print {
+  body { background: white; }
+  .skip-link, .print-btn, .partner-link { display: none !important; }
+  .masthead { border-bottom-color: #000; padding: 0.5rem 0 1rem; margin-bottom: 1rem; }
+  main { padding: 0; max-width: 100%; }
+  .section { page-break-inside: avoid; }
+  .scenario, .decision, .refbox, .callout, .synthesis { page-break-inside: avoid; }
+  h2, h3 { page-break-after: avoid; }
+  a { text-decoration: none; color: var(--ink); }
+  .response-space { min-height: 3.5rem; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body id="bio304-portfolio-w04">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="masthead" role="banner">
+  <div class="masthead-inner">
+    <button class="print-btn" type="button" onclick="window.print()" aria-label="Print or save this page as PDF">Print / Save PDF</button>
+    <p class="eyebrow">BIO 304 &middot; Clinical Portfolio &middot; Week 04</p>
+    <h1>Week 04: Bedside neuro exam</h1>
+    <p class="subtitle">MRC strength, GCS, FAST stroke screen, and the tPA time window.</p>
+    <div class="meta"><strong>Format:</strong> One printable page when finished &middot; <strong>Worth:</strong> 12.5 points &middot; <strong>Due:</strong> Sunday of Week 04, 11:59 PM PT</div>
+  </div>
+</header>
+<main id="main-content"><header class="section-head" id="howto">
+  <span class="section-num">01</span>
+  <span class="section-eyebrow">How to use this template</span>
+  <h2>Before you start</h2>
+</header>
+
+<p>This template is a starting structure. The four sections below match the rubric exactly. Your job is to fill in the values, the decision logic, and the scenario responses, then print the final document to one side of one sheet.</p>
+
+<div class="callout">
+  <span class="callout-label">One page only</span>
+  <p>Your final submission must fit on one printable page. The template includes response spaces that take more room than your final answer will. Compress as you finalize. If you cannot fit it, cut, do not extend.</p>
+</div>
+
+<p>You may keep the template's structure or rebuild it in your own format, as long as your finished page contains all four required sections (Quick Reference, Decision Logic, Patient Scenarios, Integration sentence).</p>
+<header class="section-head" id="quickref">
+  <span class="section-num">02</span>
+  <span class="section-eyebrow">Quick Reference</span>
+  <h2>Values, cutoffs, and formulas</h2>
+</header>
+<div class="refbox">
+<span class="refbox-label">For rapid retrieval at the bedside</span>
+<p style="margin-top:0; font-size:0.92rem; color:var(--muted)">Fill in each row with the accurate value, range, formula, or definition. Use your textbook, lecture notes, and reputable clinical references. The Quick Reference is the lookup zone of your portfolio page.</p>
+</div>
+<h3>MRC strength scale (0 to 5)</h3>
+<table>
+<thead><tr><th style="width:55%">Item</th><th>Your value, range, or definition</th></tr></thead>
+<tbody>
+<tr><td><strong>0 / 5</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+<tr><td><strong>1 / 5</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+<tr><td><strong>2 / 5</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+<tr><td><strong>3 / 5</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+<tr><td><strong>4 / 5</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+<tr><td><strong>5 / 5</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+</tbody></table>
+<h3>Glasgow Coma Scale components</h3>
+<table>
+<thead><tr><th style="width:55%">Item</th><th>Your value, range, or definition</th></tr></thead>
+<tbody>
+<tr><td><strong>Eye opening (E) range</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+<tr><td><strong>Verbal response (V) range</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+<tr><td><strong>Motor response (M) range</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+<tr><td><strong>Total GCS range</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+<tr><td><strong>GCS threshold for definitive airway</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+</tbody></table>
+<h3>FAST stroke screen and tPA window</h3>
+<table>
+<thead><tr><th style="width:55%">Item</th><th>Your value, range, or definition</th></tr></thead>
+<tbody>
+<tr><td><strong>F</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+<tr><td><strong>A</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+<tr><td><strong>S</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+<tr><td><strong>T</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+<tr><td><strong>Standard tPA window from last known well</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+<tr><td><strong>Extended tPA window (select cases)</strong></td><td style="background:#ffffff; border:1px dashed var(--ocean); min-height:2rem">&nbsp;</td></tr>
+</tbody></table><header class="section-head" id="decisions">
+  <span class="section-num">03</span>
+  <span class="section-eyebrow">Decision Logic</span>
+  <h2>If/then statements that drive action</h2>
+</header>
+<p style="font-size:0.92rem; color:var(--muted)">Each block below gives you a clinical situation. Write the action, rationale, or differential in the response space. Be specific: numbers, drug classes, time goals.</p>
+
+<div class="decision">
+  <div class="when"><strong>WHEN</strong> When GCS is 8 or less</div>
+  <div class="then"><span class="arrow">&rarr;</span> <strong>THEN</strong> <em style="color:var(--muted); font-size:0.88rem">(immediate airway action and the rationale)</em></div>
+  <div class="response-space" role="textbox" aria-label="Response space for decision logic block 1"></div>
+</div>
+
+<div class="decision">
+  <div class="when"><strong>WHEN</strong> When FAST is positive and last known well is 90 minutes ago</div>
+  <div class="then"><span class="arrow">&rarr;</span> <strong>THEN</strong> <em style="color:var(--muted); font-size:0.88rem">(your priority sequence, including imaging)</em></div>
+  <div class="response-space" role="textbox" aria-label="Response space for decision logic block 2"></div>
+</div>
+
+<div class="decision">
+  <div class="when"><strong>WHEN</strong> When last known well is greater than 4.5 hours but the patient meets advanced imaging criteria</div>
+  <div class="then"><span class="arrow">&rarr;</span> <strong>THEN</strong> <em style="color:var(--muted); font-size:0.88rem">(consideration and team to involve)</em></div>
+  <div class="response-space" role="textbox" aria-label="Response space for decision logic block 3"></div>
+</div>
+
+<div class="decision">
+  <div class="when"><strong>WHEN</strong> When MRC strength is 2/5 in a single limb of recent onset</div>
+  <div class="then"><span class="arrow">&rarr;</span> <strong>THEN</strong> <em style="color:var(--muted); font-size:0.88rem">(differential and the next test)</em></div>
+  <div class="response-space" role="textbox" aria-label="Response space for decision logic block 4"></div>
+</div><header class="section-head" id="scenarios">
+  <span class="section-num">04</span>
+  <span class="section-eyebrow">Patient Scenarios</span>
+  <h2>Where the page meets a real situation</h2>
+</header>
+<p style="font-size:0.92rem; color:var(--muted)">For each scenario, write your reasoning in the response space. Show the steps; do not just give the answer.</p>
+
+<div class="scenario">
+  <span class="scenario-label">Scenario 1</span>
+  <div class="vignette">A 67-year-old wakes with right arm and leg weakness, last seen normal 90 minutes ago. BP 175/95, glucose 110, alert.</div>
+  <div class="response-prompt">What's your immediate sequence, what do you order, and what's the tPA decision?</div>
+  <div class="response-space" role="textbox" aria-label="Response space for scenario 1"></div>
+</div>
+
+<div class="scenario">
+  <span class="scenario-label">Scenario 2</span>
+  <div class="vignette">A patient with severe head injury arrives with GCS E1 V2 M4, sluggish pupils, BP 180/100.</div>
+  <div class="response-prompt">Calculate the GCS total. What's your immediate airway and circulation plan?</div>
+  <div class="response-space" role="textbox" aria-label="Response space for scenario 2"></div>
+</div>
+
+<div class="scenario">
+  <span class="scenario-label">Scenario 3</span>
+  <div class="vignette">A 55-year-old presents with confusion and slurred speech, history of atrial fibrillation off anticoagulation.</div>
+  <div class="response-prompt">What are you screening for, what imaging, and what is the immediate consult?</div>
+  <div class="response-space" role="textbox" aria-label="Response space for scenario 3"></div>
+</div><header class="section-head" id="integration">
+  <span class="section-num">05</span>
+  <span class="section-eyebrow">Integration</span>
+  <h2>Connecting this week to the rest</h2>
+</header>
+
+<div class="synthesis">
+  <span class="synthesis-label">One sentence connecting this week to a prior system</span>
+  <p>Connect bedside neuro to last week's endocrine content. (Hint: which endocrine emergency mimics a stroke and how do you tell them apart?)</p>
+  <div class="response-space" role="textbox" aria-label="Response space for integration sentence" style="min-height:3rem"></div>
+</div><header class="section-head" id="submission">
+  <span class="section-num">06</span>
+  <span class="section-eyebrow">Submission</span>
+  <h2>When you finish</h2>
+</header>
+
+<ol class="steps">
+  <li>Read your filled-in template top to bottom. Confirm every section is complete.</li>
+  <li>Compress: rewrite any section that sprawls. Aim for one printable side, total.</li>
+  <li>Save as PDF (Print &rarr; Save as PDF works on every platform).</li>
+  <li>Name the file <strong>LastName_BIO304_PortfolioWk04.pdf</strong>.</li>
+  <li>Upload to the Canvas Clinical Portfolio assignment for Week 04.</li>
+</ol>
+
+<p style="font-size:0.9rem; color:var(--muted)">If you have a question about the topic, see the Clinical Portfolio Hub for the AI policy on what kinds of help are allowed.</p>
+
+<footer class="page-foot" role="contentinfo">
+  <p>BIO 304 Human Anatomy &amp; Physiology &middot; Dr. Sharilyn Rennie &middot; MedMasters Collaborative</p>
+</footer>
+</main>
+<script>
+  // Iframe height-sender for Kajabi embedding
+  (function() {
+    var frameId = "bio304-portfolio-w04";
+    function sendHeight() {
+      var h = document.documentElement.scrollHeight;
+      try {
+        window.parent.postMessage({ type: "iframe-height", id: frameId, height: h }, "*");
+      } catch (e) {}
+    }
+    if (window.ResizeObserver) {
+      var ro = new ResizeObserver(sendHeight);
+      ro.observe(document.body);
+    }
+    window.addEventListener("load", sendHeight);
+    window.addEventListener("resize", sendHeight);
+    setTimeout(sendHeight, 200);
+    setTimeout(sendHeight, 1000);
+  })();
+</script>
+</body>
+</html>
