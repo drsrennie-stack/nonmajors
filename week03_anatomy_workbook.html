@@ -82,14 +82,6 @@
   .label-flex.wide-key { grid-template-columns: 1fr 1.4fr; }
 
   .figure { margin: 0; }
-  .figure-imgbox { background: white; border: 2px dashed var(--ocean); border-radius: 6px; padding: 14px; position: relative; display: flex; align-items: center; justify-content: center; }
-  .figure-imgbox img { max-width: 100%; height: auto; display: block; }
-  .figure-imgbox.img-pending { background: var(--sea-glass-soft); border-color: var(--ocean); }
-  .img-pending-msg { display: none; flex-direction: column; align-items: center; gap: 6px; text-align: center; color: var(--muted); padding: 18px; }
-  .figure-imgbox.img-pending .img-pending-msg { display: flex; }
-  .img-pending-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean-deep); }
-  .img-pending-file { font-size: 0.95rem; font-weight: 600; color: var(--terra); background: white; padding: 6px 14px; border-radius: 4px; border: 1px solid var(--terra); }
-  .img-pending-alt { font-size: 0.82rem; font-style: italic; max-width: 360px; line-height: 1.4; margin-top: 4px; }
 
   .label-key { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
   .key-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean-deep); margin-bottom: 8px; }
@@ -105,8 +97,8 @@
     .label-flex { grid-template-columns: 1fr; }
   }
 
-  .draw-box { background: white; border: 1.5px solid var(--ocean-deep); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 280px; background-image: linear-gradient(rgba(214, 228, 231, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(214, 228, 231, 0.4) 1px, transparent 1px); background-size: 24px 24px; background-position: -1px -1px; position: relative; page-break-inside: avoid; }
-  .draw-box-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: white; padding: 1px 6px; border-radius: 2px; }
+  .draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; margin: 12px 0; min-height: 320px; position: relative; page-break-inside: avoid; }
+  .draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
   .draw-box.tall { min-height: 360px; }
   .draw-box.short { min-height: 220px; }
 
@@ -156,10 +148,15 @@
     .sheet { box-shadow: none; max-width: none; padding: 0; margin: 0; }
     .actions, .skip-link, .partner-link { display: none !important; }
     .section, .submission, .case, .synthesis, .label-exercise { page-break-inside: avoid; }
-    .figure-imgbox { border-color: #888; }
-    .figure-imgbox.img-pending { background: white; }
-    @page { size: letter; margin: 0.55in 0.6in; }
+        @page { size: letter; margin: 0.55in 0.6in; }
   }
+
+  .ref-draw-box { background: white; border: 1.5px dashed var(--ocean); border-radius: 6px; padding: 14px; min-height: 380px; position: relative; page-break-inside: avoid; }
+  .ref-draw-box-label { position: absolute; top: -10px; right: 14px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocean); background: white; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--ocean); }
+  .ref-instruction { background: var(--sea-glass-soft); border-left: 3px solid var(--ocean); padding: 10px 14px; margin: 10px 0 12px; font-size: 0.88rem; line-height: 1.5; border-radius: 0 4px 4px 0; }
+  .ref-instruction strong { color: var(--ocean-deep); }
+  .ref-instruction em { color: var(--terra); font-style: italic; }
+
 </style>
 </head>
 <body>
@@ -192,9 +189,10 @@
   </div>
   <section class="instructions" aria-labelledby="how-heading">
     <h2 id="how-heading">How this workbook works</h2>
-    <p><strong>Print, handwrite, scan, submit.</strong> This is the <strong>Anatomy Workbook</strong> for Week 3. Complete this first, then move to the Physiology Workbook for the OGTT &amp; ANS reflex dry lab.</p>
-    <p><strong>This week, the word banks are gone.</strong> Recall structures from memory. If you cannot name a structure, leave the line blank, then check it against the trainer afterward and study the gaps. Honest blanks teach you more than guessed labels.</p>
-    <p><strong>Drawing tasks and synthesis questions are weighted heavily</strong> because they cannot be copied from AI.</p>
+    <p><strong>Print, handwrite, scan, submit.</strong> Complete every section. Drawings, labeling, tables, and clinical reasoning all earn points.</p>
+    <p><strong>About the drawings in this workbook.</strong> For each drawing, find a clear reference in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas. You may either (a) draw it by hand in the workbook box, or (b) build it digitally in Google Docs, Google Drawings, Word, or PowerPoint using shapes, lines, and text labels, then attach the file to your Canvas submission.</p>
+    <p><strong>If you build digitally, you must submit revision history</strong> showing you built the diagram in stages over time. In Google Docs and Google Drawings: File &rarr; Version history &rarr; See version history. A flat image with no revision history does not meet this requirement.</p>
+    <p><strong>Either way, you must build it yourself, structure by structure.</strong> Copying a finished image (from Google Images, an AI tool, or a peer) earns zero on the assignment and is reported as academic dishonesty. Submission to Canvas certifies the work as your own.</p>
   </section>
 
   <section class="section" aria-labelledby="s1-title">
@@ -211,14 +209,8 @@
       <p class="label-exercise-title">Multipolar neuron</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Multipolar motor neuron showing dendrites, cell body (soma) with nucleus and Nissl bodies, axon hillock, axon, myelin sheath formed by Schwann cells, nodes of Ranvier, axon terminals (synaptic boutons), with 9 numbered arrows" data-pending="multipolar_neuron.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">multipolar_neuron.png</span>
-            <span class="img-pending-alt">Multipolar motor neuron showing dendrites, cell body (soma) with nucleus and Nissl bodies, axon hillock, axon, myelin sheath formed by Schwann cells, nodes of Ranvier, axon terminals (synaptic boutons), with 9 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>multipolar neuron</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: multipolar motor neuron showing dendrites, cell body (soma) with nucleus and nissl bodies, axon hillock, axon, myelin sheath formed by schwann cells, nodes of ranvier, axon terminals (synaptic boutons), with 9 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="neuron-key-title">
         <p class="key-title" id="neuron-key-title">Identify each numbered structure</p>
@@ -241,14 +233,8 @@
       <p class="label-exercise-title">Chemical synapse (close-up)</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 320px;">
-          <img src="" alt="Chemical synapse showing presynaptic axon terminal with synaptic vesicles containing neurotransmitter, voltage-gated calcium channels, synaptic cleft, neurotransmitter molecules in the cleft, postsynaptic membrane with receptor proteins, and the postsynaptic cell, with 7 numbered arrows" data-pending="synapse.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">synapse.png</span>
-            <span class="img-pending-alt">Chemical synapse showing presynaptic axon terminal with synaptic vesicles containing neurotransmitter, voltage-gated calcium channels, synaptic cleft, neurotransmitter molecules in the cleft, postsynaptic membrane with receptor proteins, and the postsynaptic cell, with 7 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>synapse</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: chemical synapse showing presynaptic axon terminal with synaptic vesicles containing neurotransmitter, voltage-gated calcium channels, synaptic cleft, neurotransmitter molecules in the cleft, postsynaptic membrane with receptor proteins, and the postsynaptic cell, with 7 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="synapse-key-title">
         <p class="key-title" id="synapse-key-title">Identify each numbered structure</p>
@@ -279,14 +265,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 360px;">
-          <img src="" alt="Six types of glial cells shown side by side: astrocytes wrapping a capillary (CNS), oligodendrocyte myelinating multiple axons (CNS), microglia (CNS), ependymal cells lining a ventricle (CNS), Schwann cell wrapping a single axon (PNS), satellite cells around a ganglion neuron (PNS), with 6 numbered arrows" data-pending="glial_cells.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">glial_cells.png</span>
-            <span class="img-pending-alt">Six types of glial cells shown side by side: astrocytes wrapping a capillary (CNS), oligodendrocyte myelinating multiple axons (CNS), microglia (CNS), ependymal cells lining a ventricle (CNS), Schwann cell wrapping a single axon (PNS), satellite cells around a ganglion neuron (PNS), with 6 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>glial cells</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: six types of glial cells shown side by side: astrocytes wrapping a capillary (cns), oligodendrocyte myelinating multiple axons (cns), microglia (cns), ependymal cells lining a ventricle (cns), schwann cell wrapping a single axon (pns), satellite cells around a ganglion neuron (pns), with 6 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="glia-key-title">
         <p class="key-title" id="glia-key-title">Identify each numbered structure</p>
@@ -359,14 +339,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 360px;">
-          <img src="" alt="Lateral view of the brain showing frontal lobe, parietal lobe, temporal lobe, occipital lobe, central sulcus separating frontal and parietal, lateral sulcus separating temporal from frontal/parietal, precentral gyrus (primary motor cortex), postcentral gyrus (primary somatosensory cortex), cerebellum, brainstem, with 10 numbered arrows" data-pending="brain_lateral.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">brain_lateral.png</span>
-            <span class="img-pending-alt">Lateral view of the brain showing frontal lobe, parietal lobe, temporal lobe, occipital lobe, central sulcus separating frontal and parietal, lateral sulcus separating temporal from frontal/parietal, precentral gyrus (primary motor cortex), postcentral gyrus (primary somatosensory cortex), cerebellum, brainstem, with 10 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>brain lateral</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: lateral view of the brain showing frontal lobe, parietal lobe, temporal lobe, occipital lobe, central sulcus separating frontal and parietal, lateral sulcus separating temporal from frontal/parietal, precentral gyrus (primary motor cortex), postcentral gyrus (primary somatosensory cortex), cerebellum, brainstem, with 10 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="brain-lat-key-title">
         <p class="key-title" id="brain-lat-key-title">Identify each numbered structure</p>
@@ -400,14 +374,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Midsagittal section of the brain showing corpus callosum, thalamus, hypothalamus, pineal gland, pituitary gland, midbrain, pons, medulla oblongata, cerebellum, fourth ventricle, lateral ventricle, third ventricle, cerebral aqueduct, with 12 numbered arrows" data-pending="brain_sagittal.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">brain_sagittal.png</span>
-            <span class="img-pending-alt">Midsagittal section of the brain showing corpus callosum, thalamus, hypothalamus, pineal gland, pituitary gland, midbrain, pons, medulla oblongata, cerebellum, fourth ventricle, lateral ventricle, third ventricle, cerebral aqueduct, with 12 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>brain sagittal</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: midsagittal section of the brain showing corpus callosum, thalamus, hypothalamus, pineal gland, pituitary gland, midbrain, pons, medulla oblongata, cerebellum, fourth ventricle, lateral ventricle, third ventricle, cerebral aqueduct, with 12 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="brain-sag-key-title">
         <p class="key-title" id="brain-sag-key-title">Identify each numbered structure</p>
@@ -467,14 +435,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 380px;">
-          <img src="" alt="Cross-section of the spinal cord showing the H-shaped (butterfly) gray matter with anterior (ventral) horn, posterior (dorsal) horn, lateral horn, central canal at center, white matter divided into anterior column, lateral column, and posterior column, plus the dorsal root with dorsal root ganglion, ventral root, and spinal nerve, with 9 numbered arrows" data-pending="spinal_cord_cross.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">spinal_cord_cross.png</span>
-            <span class="img-pending-alt">Cross-section of the spinal cord showing the H-shaped (butterfly) gray matter with anterior (ventral) horn, posterior (dorsal) horn, lateral horn, central canal at center, white matter divided into anterior column, lateral column, and posterior column, plus the dorsal root with dorsal root ganglion, ventral root, and spinal nerve, with 9 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>spinal cord cross</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: cross-section of the spinal cord showing the h-shaped (butterfly) gray matter with anterior (ventral) horn, posterior (dorsal) horn, lateral horn, central canal at center, white matter divided into anterior column, lateral column, and posterior column, plus the dorsal root with dorsal root ganglion, ventral root, and spinal nerve, with 9 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="cord-key-title">
         <p class="key-title" id="cord-key-title">Identify each numbered structure</p>
@@ -511,14 +473,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 420px;">
-          <img src="" alt="Inferior view of the brain showing all 12 cranial nerves emerging from the brain in numerical order: I olfactory, II optic with optic chiasm, III oculomotor, IV trochlear, V trigeminal, VI abducens, VII facial, VIII vestibulocochlear, IX glossopharyngeal, X vagus, XI accessory, XII hypoglossal, with 12 numbered arrows" data-pending="cranial_nerves.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">cranial_nerves.png</span>
-            <span class="img-pending-alt">Inferior view of the brain showing all 12 cranial nerves emerging from the brain in numerical order: I olfactory, II optic with optic chiasm, III oculomotor, IV trochlear, V trigeminal, VI abducens, VII facial, VIII vestibulocochlear, IX glossopharyngeal, X vagus, XI accessory, XII hypoglossal, with 12 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>cranial nerves</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: inferior view of the brain showing all 12 cranial nerves emerging from the brain in numerical order: i olfactory, ii optic with optic chiasm, iii oculomotor, iv trochlear, v trigeminal, vi abducens, vii facial, viii vestibulocochlear, ix glossopharyngeal, x vagus, xi accessory, xii hypoglossal, with 12 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="cn-key-title">
         <p class="key-title" id="cn-key-title">Identify each numbered structure</p>
@@ -640,14 +596,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 480px;">
-          <img src="" alt="Anterior view of the body showing all major endocrine organs in position: pineal gland in brain, hypothalamus and pituitary gland in brain, thyroid gland anterior to trachea, parathyroid glands posterior to thyroid, thymus in mediastinum, adrenal glands on top of kidneys, pancreas in abdomen, ovaries (in female) or testes (in male), with 9 numbered arrows" data-pending="endocrine_torso.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">endocrine_torso.png</span>
-            <span class="img-pending-alt">Anterior view of the body showing all major endocrine organs in position: pineal gland in brain, hypothalamus and pituitary gland in brain, thyroid gland anterior to trachea, parathyroid glands posterior to thyroid, thymus in mediastinum, adrenal glands on top of kidneys, pancreas in abdomen, ovaries (in female) or testes (in male), with 9 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>endocrine torso</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: anterior view of the body showing all major endocrine organs in position: pineal gland in brain, hypothalamus and pituitary gland in brain, thyroid gland anterior to trachea, parathyroid glands posterior to thyroid, thymus in mediastinum, adrenal glands on top of kidneys, pancreas in abdomen, ovaries (in female) or testes (in male), with 9 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="endo-organ-key-title">
         <p class="key-title" id="endo-organ-key-title">Identify each numbered structure</p>
@@ -739,14 +689,8 @@
       <p class="label-exercise-title">Thyroid follicles</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 300px;">
-          <img src="" alt="Thyroid histology slide showing thyroid follicles with simple cuboidal follicular cells surrounding a colloid-filled lumen, parafollicular (C) cells between follicles, and capillaries in the connective tissue, with 4 numbered arrows" data-pending="thyroid_histology.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">thyroid_histology.png</span>
-            <span class="img-pending-alt">Thyroid histology slide showing thyroid follicles with simple cuboidal follicular cells surrounding a colloid-filled lumen, parafollicular (C) cells between follicles, and capillaries in the connective tissue, with 4 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>thyroid histology</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: thyroid histology slide showing thyroid follicles with simple cuboidal follicular cells surrounding a colloid-filled lumen, parafollicular (c) cells between follicles, and capillaries in the connective tissue, with 4 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="thyroid-key-title">
         <p class="key-title" id="thyroid-key-title">Identify each numbered structure</p>
@@ -764,14 +708,8 @@
       <p class="label-exercise-title">Adrenal cortex zones</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 320px;">
-          <img src="" alt="Adrenal gland histology showing the three zones of the adrenal cortex from outside to inside: zona glomerulosa (outermost, glomerular cell clusters), zona fasciculata (middle, columns of cells), zona reticularis (innermost, branching network), and the adrenal medulla in the center, with 4 numbered arrows" data-pending="adrenal_histology.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">adrenal_histology.png</span>
-            <span class="img-pending-alt">Adrenal gland histology showing the three zones of the adrenal cortex from outside to inside: zona glomerulosa (outermost, glomerular cell clusters), zona fasciculata (middle, columns of cells), zona reticularis (innermost, branching network), and the adrenal medulla in the center, with 4 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>adrenal histology</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: adrenal gland histology showing the three zones of the adrenal cortex from outside to inside: zona glomerulosa (outermost, glomerular cell clusters), zona fasciculata (middle, columns of cells), zona reticularis (innermost, branching network), and the adrenal medulla in the center, with 4 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="adrenal-key-title">
         <p class="key-title" id="adrenal-key-title">Identify each numbered structure</p>
@@ -789,14 +727,8 @@
       <p class="label-exercise-title">Pancreatic islet (Islet of Langerhans)</p>
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 300px;">
-          <img src="" alt="Pancreatic islet of Langerhans surrounded by exocrine acinar tissue, showing alpha cells (peripheral, larger), beta cells (central, smaller, most numerous), delta cells, and the surrounding acinar cells of the exocrine pancreas, with 4 numbered arrows" data-pending="pancreas_islet.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">pancreas_islet.png</span>
-            <span class="img-pending-alt">Pancreatic islet of Langerhans surrounded by exocrine acinar tissue, showing alpha cells (peripheral, larger), beta cells (central, smaller, most numerous), delta cells, and the surrounding acinar cells of the exocrine pancreas, with 4 numbered arrows</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>pancreas islet</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: pancreatic islet of langerhans surrounded by exocrine acinar tissue, showing alpha cells (peripheral, larger), beta cells (central, smaller, most numerous), delta cells, and the surrounding acinar cells of the exocrine pancreas, with 4 numbered arrows.</p>
       </figure>
         <aside class="label-key" aria-labelledby="islet-key-title">
         <p class="key-title" id="islet-key-title">Identify each numbered structure</p>
@@ -857,14 +789,8 @@
     <div class="label-exercise">
       <div class="label-flex">
         <figure class="figure">
-        <div class="figure-imgbox" style="min-height: 420px;">
-          <img src="" alt="Overview comparing sympathetic and parasympathetic divisions: sympathetic chain originating from thoracolumbar T1-L2 with short preganglionic fibers and long postganglionic fibers; parasympathetic origin from craniosacral (CN III, VII, IX, X and S2-S4) with long preganglionic and short postganglionic fibers; ganglia locations differ, with 6 numbered arrows pointing to preganglionic and postganglionic fibers in each division and ganglia" data-pending="ans_overview.png" onerror="this.style.display='none'; this.parentElement.classList.add('img-pending');">
-          <div class="img-pending-msg" aria-hidden="true">
-            <span class="img-pending-label">Image placeholder</span>
-            <span class="img-pending-file">ans_overview.png</span>
-            <span class="img-pending-alt">Overview comparing sympathetic and parasympathetic divisions: sympathetic chain originating from thoracolumbar T1-L2 with short preganglionic fibers and long postganglionic fibers; parasympathetic origin from craniosacral (CN III, VII, IX, X and S2-S4) with long preganglionic and short postganglionic fibers; ganglia locations differ, with 6 numbered arrows pointing to preganglionic and postganglionic fibers in each division and ganglia</span>
-          </div>
-        </div>
+        <div class="ref-draw-box"><span class="ref-draw-box-label">Drawing space</span></div>
+        <p class="ref-instruction"><strong>Find a clear figure of <em>ans overview</em></strong> in OpenStax <em>Anatomy and Physiology 2e</em> or any anatomy atlas, then reproduce it in the drawing box above. Label every structure listed in the numbered key beside this exercise. The figure should show: overview comparing sympathetic and parasympathetic divisions: sympathetic chain originating from thoracolumbar t1-l2 with short preganglionic fibers and long postganglionic fibers; parasympathetic origin from craniosacral (cn iii, vii, ix, x and s2-s4) with long preganglionic and short postganglionic fibers; ganglia locations differ, with 6 numbered arrows pointing to preganglionic and postganglionic fibers in each division and ganglia.</p>
       </figure>
         <aside class="label-key" aria-labelledby="ans-key-title">
         <p class="key-title" id="ans-key-title">Identify each numbered structure</p>
@@ -928,9 +854,9 @@
     <header class="section-head">
       <span class="section-num" aria-hidden="true">10</span>
       <div class="section-titles">
-        <p class="section-eyebrow">Anatomy · Drawing from Memory</p>
+        <p class="section-eyebrow">Anatomy · Drawing from Reference</p>
         <h2 class="section-title" id="s10-title">Action potential and ANS organ effects</h2>
-        <p class="section-anchor">Without referencing figures above, draw two diagrams. Label every component.</p>
+        <p class="section-anchor">Find each diagram in OpenStax Anatomy and Physiology 2e or any anatomy atlas. Reproduce each diagram in the box and label every required component.</p>
       </div>
     </header>
 
@@ -940,7 +866,7 @@
     </div>
 
     <div class="draw-box tall" role="region" aria-label="Action potential graph drawing space">
-      <span class="draw-box-label">Drawing space: action potential graph</span>
+      <span class="draw-box-label">Drawing space</span>
     </div>
 
     <div class="reference" style="margin-top: 18px;">
@@ -949,7 +875,7 @@
     </div>
 
     <div class="draw-box tall" role="region" aria-label="ANS organ effects drawing space">
-      <span class="draw-box-label">Drawing space: ANS effects on heart, lungs, GI tract</span>
+      <span class="draw-box-label">Drawing space</span>
     </div>
 
     <div class="synthesis">
@@ -968,11 +894,33 @@
     <p>1. All nine labeling exercises (Sections 01-09) have a name in every numbered blank, and tables filled in for glial cells, cranial nerves, endocrine hormones, adrenal zones, islet cells, and ANS neurotransmitters.</p>
     <p>2. Both drawings (Section 10) have every required component drawn AND labeled.</p>
     <p>3. The epinephrine synthesis question (Section 10) is answered referencing specific receptor subtypes.</p>
+        <p style="margin-top: 8px; font-size: 0.92rem; color: var(--ocean);"><strong>If any drawings were built digitally:</strong> attach the file (Google Doc / Drawing / Word / PowerPoint) to your Canvas submission AND share the revision history link. Drawings without revision history will not receive credit.</p>
+
     <p style="margin-top: 10px;"><strong>Print, handwrite, scan, and submit to Canvas Week 3 Anatomy Workbook by Sunday 11:59 PM.</strong> No late work is accepted.</p>
     <p style="margin-top: 10px;"><strong>Then continue to the Week 3 Physiology Workbook</strong> (OGTT &amp; ANS reflex testing dry lab).</p>
   </section>
 
 </main>
+
+
+<script>
+  // Auto-load images from data-pending attribute
+  // To customize image folder, change IMAGE_FOLDER below.
+  // Examples:
+  //   IMAGE_FOLDER = '';           // images in same folder as HTML (default)
+  //   IMAGE_FOLDER = 'images/';    // images in a subfolder named "images"
+  //   IMAGE_FOLDER = 'bio304_images/';  // any other subfolder name
+  (function () {
+    const IMAGE_FOLDER = '';
+    const imgs = document.querySelectorAll('img[data-pending]');
+    imgs.forEach(function (img) {
+      const filename = img.getAttribute('data-pending');
+      if (filename && !img.getAttribute('src')) {
+        img.src = IMAGE_FOLDER + filename;
+      }
+    });
+  })();
+</script>
 
 <script>
   (function () {
