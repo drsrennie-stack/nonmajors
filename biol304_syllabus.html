@@ -142,8 +142,10 @@
   }
   .grade-table tbody tr:last-child td { border-bottom: none; }
   .grade-table tbody tr:nth-child(even) { background: var(--sea-glass-soft); }
-  .grade-table .component-col { font-family: 'Lora', serif; font-weight: 500; color: var(--ocean-deep); width: 26%; }
-  .grade-table .weight-col { font-family: 'Lora', serif; font-style: italic; color: var(--terra); width: 12%; font-weight: 500; font-size: 1.1rem; }
+  .grade-table tbody .component-col { font-family: 'Lora', serif; font-weight: 500; color: var(--ocean-deep); width: 22%; }
+  .grade-table thead .component-col { width: 22%; }
+  .grade-table .weight-col { font-family: 'Lora', serif; font-style: italic; color: var(--terra); width: 11%; font-weight: 500; font-size: 1.1rem; }
+  .grade-table thead .weight-col { color: white; font-style: normal; font-size: 0.72rem; }
 
   .grade-scale {
     background: var(--sand-soft);
@@ -507,7 +509,6 @@
 
     <ul>
       <li><strong>Desktop or laptop computer.</strong> Minimum 8 GB RAM (16 GB recommended). Modern processor (Intel i5 or Ryzen 5 or better). A phone or tablet is not sufficient for proctored exams.</li>
-      <li><strong>Webcam and microphone.</strong> Required for Honorlock-proctored exams.</li>
       <li><strong>High-speed internet.</strong> Stable enough to stream HD video without interruption and complete proctored exams.</li>
       <li><strong>Web browser.</strong> Latest version of Google Chrome (recommended) or Firefox. Safari and Edge may work but Chrome has the fewest compatibility issues with our course platforms.</li>
       <li><strong>Canvas.</strong> Access to the ARC Canvas Learning Management System.</li>
@@ -517,7 +518,7 @@
 
     <div class="callout">
       <p class="callout-label">Important</p>
-      <p>Proctored exams cannot be completed on iPads, iPhones, or Android tablets. Honorlock requires browser lockdown, screen recording, and webcam access that is only available on desktop/laptop computers. <strong>If you do not have access to a desktop or laptop, contact me before Week 1 to arrange alternatives.</strong></p>
+      <p>Proctored exams cannot be completed on iPads, iPhones, or Android tablets. Honorlock requires browser lockdown that is only available on desktop/laptop computers. <strong>If you do not have access to a desktop or laptop, contact me before Week 1 to arrange alternatives.</strong></p>
     </div>
   </section>
 
@@ -661,49 +662,66 @@
       </div>
     </header>
 
-    <p>Your final course grade is the weighted average of the following components:</p>
+    <p>Your final course grade is the weighted average of the following components. Canvas is configured with weighted assignment groups, so the percentages below are what your final letter grade is based on (regardless of raw points within each category).</p>
 
     <table class="grade-table" aria-label="Grade weights for BIO 304">
       <thead>
         <tr>
           <th class="component-col">Component</th>
           <th>What it covers</th>
+          <th>Points</th>
           <th class="weight-col">Weight</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td class="component-col">Workbooks</td>
-          <td>16 weekly workbooks (8 anatomy + 8 physiology). Drawing, labeling, calculations, synthesis questions, clinical case reasoning.</td>
+          <td>16 weekly workbooks (8 anatomy + 8 physiology) at 50 points each.</td>
+          <td>800 pts</td>
           <td class="weight-col">30%</td>
         </tr>
         <tr>
           <td class="component-col">Lab Exams</td>
-          <td>2 Honorlock-proctored lab practical exams in Week 4 and Week 8. Structure identification on diagrams, models, histology.</td>
-          <td class="weight-col">20%</td>
+          <td>2 Honorlock-proctored lab practical exams: midterm (end of Week 4), final (end of Week 8). 50 points each.</td>
+          <td>100 pts</td>
+          <td class="weight-col">25%</td>
         </tr>
         <tr>
           <td class="component-col">Clinical Portfolio</td>
           <td>8 weekly portfolio pages (10 pts each) + final compiled portfolio with reflection (20 pts).</td>
+          <td>100 pts</td>
           <td class="weight-col">15%</td>
         </tr>
         <tr>
           <td class="component-col">Quizzes</td>
-          <td>8 Honorlock-proctored weekly quizzes covering each week's content.</td>
+          <td>8 Honorlock-proctored weekly quizzes covering each week's content. 20 points each.</td>
+          <td>160 pts</td>
           <td class="weight-col">15%</td>
         </tr>
         <tr>
           <td class="component-col">Discussions</td>
-          <td>8 weekly discussion forum activities. Initial post by Wednesday, two replies by Sunday.</td>
+          <td>8 weekly discussion forum activities. Initial post by Wednesday, two replies by Sunday. 25 points each.</td>
+          <td>200 pts</td>
           <td class="weight-col">15%</td>
-        </tr>
-        <tr>
-          <td class="component-col">Participation</td>
-          <td>Engagement with course materials, on-time submission patterns, Virtual Office Hours contributions.</td>
-          <td class="weight-col">5%</td>
         </tr>
       </tbody>
     </table>
+
+    <h3>How workbooks are graded · 50 points each</h3>
+    <p>Each workbook (anatomy and physiology alike) is evaluated on three dimensions:</p>
+
+    <div class="time-breakdown">
+      <h3>Workbook <em>rubric</em></h3>
+      <div class="time-row"><span class="time-label"><strong>Completion.</strong> Each incomplete or trivially-answered question deducts 5 points. Substantive effort is required (a single word or "idk" counts as incomplete). Skip 8 or more items and completion goes to zero.</span><span class="time-hours">40 pts</span></div>
+      <div class="time-row"><span class="time-label"><strong>Authenticity.</strong> Your own work, built by you. If digital, revision history must show genuine building over time. If handwritten, handwriting must be consistent throughout. No copying from peers, the internet, or AI tools. Violations earn zero for the entire workbook (not just this 5 points) and are reported as academic dishonesty.</span><span class="time-hours">5 pts</span></div>
+      <div class="time-row"><span class="time-label"><strong>Accuracy spot-check.</strong> One or two undisclosed questions per workbook are graded for correctness. Build your understanding for every section, not just the ones you think will be checked.</span><span class="time-hours">5 pts</span></div>
+      <div class="time-row total"><span class="time-label">Total</span><span class="time-hours">50 pts</span></div>
+    </div>
+
+    <div class="callout">
+      <p class="callout-label">What this means in practice</p>
+      <p>A genuinely complete workbook with all your own work and correct spot-check answers earns 50/50 (100%). A complete workbook with one skipped item earns 45/50 (90%). A complete workbook with five skipped items earns 25/50 (50%). <strong>Skipping is the fastest way to tank a workbook grade.</strong> Plan to engage substantively with every section, even if you find a topic difficult. A genuine attempt that arrives at the wrong answer earns more credit than a blank space.</p>
+    </div>
 
     <h3>Grading scale</h3>
 
