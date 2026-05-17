@@ -84,7 +84,8 @@ details.week-group[open]>summary::before{content:"-"}
 .rhythm-row{display:flex;gap:14px;padding:8px 0;border-bottom:1px dotted var(--gray-line);flex-wrap:wrap;align-items:baseline}
 .rhythm-row:last-child{border-bottom:none}
 .rhythm-day{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);min-width:90px}
-.resource-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.resource-group-title{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--terra-dark);font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--gray-line)}
+.resource-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:18px}
 .resource-tile{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:16px;box-shadow:var(--shadow-rest);transition:transform 200ms ease,box-shadow 200ms ease}
 .resource-tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
 .resource-tile a{text-decoration:none;color:var(--navy);display:block}
@@ -213,25 +214,45 @@ def build_schedule_section(course):
 '''
 
 
-RESOURCES_SECTION = """
-<section aria-labelledby="resources-heading">
-  <h2 id="resources-heading">Course resources</h2>
-  <div class="resource-grid">
-    <div class="resource-tile"><a href="bio304-spaced-recall-prototype.html" target="_top"><h4>Pre-work hub</h4><p>Daily lecture pre-work with spaced recall practice.</p></a></div>
-    <div class="resource-tile"><a href="discussions.html" target="_top"><h4>Discussions</h4><p>Weekly prompts and post submissions on Canvas.</p></a></div>
-    <div class="resource-tile"><a href="dashboard.html" target="_top"><h4>Dashboard</h4><p>Your progress at a glance.</p></a></div>
-    <div class="resource-tile"><a href="clinical_portfolio_hub.html" target="_top"><h4>Clinical Portfolio</h4><p>Apply concepts to real patient scenarios.</p></a></div>
-    <div class="resource-tile"><a href="biol304_textbook.html" target="_top"><h4>Textbook</h4><p>OpenStax A&amp;P 2e (free).</p></a></div>
-    <div class="resource-tile"><a href="biol304_reading_map.html" target="_top"><h4>Reading map</h4><p>Which textbook sections support each topic.</p></a></div>
-    <div class="resource-tile"><a href="biol304_tech_setup.html" target="_top"><h4>Tech setup</h4><p>What you need to participate online.</p></a></div>
-    <div class="resource-tile"><a href="biol304_how_to_reach_me.html" target="_top"><h4>How to reach me</h4><p>Office hours, email, and response times.</p></a></div>
-    <div class="resource-tile"><a href="submission-directions.html" target="_top"><h4>Submission directions</h4><p>How and where to turn in work.</p></a></div>
-    <div class="resource-tile"><a href="biol304_accessibility.html" target="_top"><h4>Accessibility</h4><p>How to request accommodations.</p></a></div>
-    <div class="resource-tile"><a href="biol304_rsi_statement.html" target="_top"><h4>Regular substantive interaction</h4><p>What you can expect from me each week.</p></a></div>
-    <div class="resource-tile"><a href="integrity.html" target="_top"><h4>Academic integrity</h4><p>The hand-labeling rule and other expectations.</p></a></div>
-  </div>
-</section>
-"""
+RESOURCE_GROUPS = [
+    ("Where to do your work", "study", [
+        ("bio304-spaced-recall-prototype.html", "Pre-work hub", "Daily lecture pre-work with spaced recall practice."),
+        ("dashboard.html",                       "Dashboard",     "Your progress at a glance."),
+        ("discussions.html",                     "Discussions",   "Weekly prompts and post submissions on Canvas."),
+        ("clinical_portfolio_hub.html",          "Clinical Portfolio", "Apply concepts to real patient scenarios."),
+    ]),
+    ("Reference materials", "reference", [
+        ("biol304_textbook.html",     "Textbook",    "OpenStax A&amp;P 2e (free)."),
+        ("biol304_reading_map.html",  "Reading map", "Which textbook sections support each topic."),
+    ]),
+    ("Getting things done", "logistics", [
+        ("biol304_tech_setup.html",      "Tech setup",            "What you need to participate online."),
+        ("submission-directions.html",   "Submission directions", "How and where to turn in work."),
+        ("biol304_how_to_reach_me.html", "How to reach me",       "Office hours, email, response times, and Zoom."),
+    ]),
+    ("Course policies", "policies", [
+        ("biol304_accessibility.html",  "Accessibility",                   "How to request accommodations."),
+        ("biol304_rsi_statement.html",  "Regular substantive interaction", "What you can expect from me each week."),
+        ("integrity.html",              "Academic integrity",              "The hand-labeling rule and other expectations."),
+    ]),
+]
+
+
+def build_resources_section():
+    out = ['<section aria-labelledby="resources-heading">',
+           '  <h2 id="resources-heading">Course resources</h2>',
+           '  <p class="usage">Grouped by what you would use each one for.</p>']
+    for group_title, group_id, tiles in RESOURCE_GROUPS:
+        out.append(f'  <h3 class="resource-group-title">{group_title}</h3>')
+        out.append('  <div class="resource-grid">')
+        for href, name, desc in tiles:
+            out.append(f'    <div class="resource-tile"><a href="{href}" target="_top"><h4>{name}</h4><p>{desc}</p></a></div>')
+        out.append('  </div>')
+    out.append('</section>')
+    return "\n".join(out)
+
+
+RESOURCES_SECTION = build_resources_section()
 
 FOOTER = """
 </main>
