@@ -56,6 +56,14 @@ h4{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:va
 .card-list{padding-left:20px}
 .card-list li{margin:6px 0}
 .flow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
+/* Inside a week body, force 5 columns across (Mon, Tue, Wed, Thu, Fri) at full width. */
+.week-body .flow-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+@media (max-width: 1080px){.week-body .flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width: 600px){.week-body .flow-grid{grid-template-columns:1fr}}
+.week-body .day-tile{font-size:14px;padding:14px}
+.week-body .day-tile .topic{font-size:14px;line-height:1.35;margin-bottom:8px}
+.week-body .day-tile .day-label{font-size:11px;letter-spacing:.08em}
+.week-body .day-tile a{font-size:13px;padding:6px 0}
 .day-tile{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:16px;box-shadow:var(--shadow-rest)}
 .day-tile.lab-day{background:var(--off-white);border-style:dashed;border-color:var(--gold-deep)}
 .day-label{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 6px}
