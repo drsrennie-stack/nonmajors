@@ -41,7 +41,7 @@
 window.BIO304_COURSE_CONTENT = {
   courseLabel: "BIO 304",
   /* Course start date (Monday of week 1). Leave null to disable scheduled release. */
-  courseStart: null,
+  courseStart: "2026-06-08",  // Summer 2026: Monday of Week 1
 
   modules: [
 
