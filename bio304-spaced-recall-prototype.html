@@ -1290,7 +1290,10 @@
         const status = topicStatus(t.id);
         const ts = STATE.topics[t.id];
         const cardsReviewed = ts ? Object.values(ts.cards).reduce((acc,c) => acc + c.history.length, 0) : 0;
-        const seen = ts ? Object.keys(ts.cards).length : 0;
+        // "Seen" means the student has actually rated this card at least once.
+        // State entries can exist for cards that have only been peeked at by the scheduler,
+        // so count only cards with at least one rating in their history.
+        const seen = ts ? Object.values(ts.cards).filter(c => c.history.length > 0).length : 0;
         const hasVideo = !!t.videoUrl;
 
         const card = document.createElement("article");
