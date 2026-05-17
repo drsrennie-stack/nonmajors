@@ -3,11 +3,12 @@
 ## 1. Project
 
 - **Project name:** BIO 304 Nightly Pre-Work and Spaced Recall (prototype)
-- **Files covered:** `bio304-spaced-recall-prototype.html`
+- **Files covered:** `bio304-spaced-recall-prototype.html` (engine), `course-content.js` (curriculum)
 - **Date:** 2026-05-17
 - **Reviewer:** Dr. Sharilyn Rennie (pending student-readiness pass)
 - **WCAG version targeted:** 2.2
 - **Target level:** AA minimum across all criteria; AAA for color contrast where feasible.
+- **Scope:** 17 modules, 46 topics, 320 DOK-tagged cards covering combined A&P from levels of organization through pregnancy and development. All videoUrl fields are null; the instructor fills them in as videos are produced. The engine groups topics by module on the dashboard and routes returning students past completed gates.
 
 ## 2. WCAG 2.2 conformance summary
 
@@ -137,7 +138,8 @@ Live region announcements include:
 | Focus ring uses brushed gold `#B8924A`, which is only 2.9:1 against the white card interior. | Medium | The 2px offset means the ring straddles the card edge and the off-white page background; against the navy border of unlocked cards it reads >7:1. Remediation if a student reports trouble: switch focus ring to navy `#1E3D4C` with an outer gold halo. |
 | Gray-soft `#5c6970` is 5.4:1 on off-white. Passes AA normal but not AAA-normal (7:1). | Low | Used only for secondary metadata (timestamps, hint text). Promote any required-comprehension text to navy. |
 | Gate evaluation is heuristic (word count + keyword match) and can be defeated by keyword-stuffing. | Pedagogical, not WCAG | v2: optional AI evaluation via Claude API. Data model already supports swapping the evaluator without changes to the storage schema. |
-| Video is a placeholder. Real video must include captions and audio description per 1.2.2 and 1.2.5. | High when real video drops in | Use captioned YouTube embeds or self-hosted `<video>` with `<track kind="captions">`. Add a transcript link below the player. |
+| Video is a placeholder in every topic. Real video must include captions (WCAG 1.2.2) and a transcript (WCAG 1.2.3). | High when real video drops in | The engine mounts a YouTube iframe or a native `<video>` element based on the `videoUrl` field. For YouTube, enable closed captions on each video; for self-hosted files, add a `<track kind="captions">` track. Add a transcript link in the topic notes. Audio description (1.2.5, AA) is required when meaningful visual-only content appears on screen. |
+| YouTube `ended` event is not yet wired through the IFrame API; on YouTube videos, watch-completion is currently tracked via the manual "Mark watched" button after Simulate watching. | Medium | v2: load the YT IFrame API, listen for state-change to ended (state 0), and auto-enable Mark Watched. Self-hosted `<video>` already uses the native `ended` event correctly. |
 | `localStorage` is single-device. A student who clears browser data loses progress. | Low | Export/import progress code is provided. v2 could add a QR-code export for transfer to phone. |
 | Confirm and prompt dialogs (`confirm()`, `prompt()` for reset/import) inherit browser-level styling and may not match focus-management expectations. | Low | Replace with in-page modal dialog using `<dialog>` element for v2. |
 

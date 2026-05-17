@@ -577,6 +577,87 @@
     font-style: italic;
   }
 
+  /* Module groups */
+  .module-group {
+    background: var(--white);
+    border: 1px solid var(--gray-line);
+    border-radius: 10px;
+    box-shadow: var(--shadow-rest);
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .module-group > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    border-bottom: 1px solid transparent;
+    transition: background var(--t-fast), border-color var(--t-fast);
+  }
+  .module-group > summary::-webkit-details-marker { display: none; }
+  .module-group[open] > summary { border-bottom-color: var(--gray-line); }
+  .module-group > summary:hover,
+  .module-group > summary:focus-visible {
+    background: var(--navy-tint);
+  }
+  .module-group > summary::before {
+    content: "+";
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid var(--navy);
+    color: var(--navy);
+    text-align: center;
+    line-height: 20px;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .module-group[open] > summary::before { content: "−"; }
+  .module-week {
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+  }
+  .module-title {
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--navy);
+    flex: 1;
+    min-width: 200px;
+  }
+  .module-progress {
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-size: 13px;
+    color: var(--gray-soft);
+  }
+  .module-progress.complete { color: var(--navy); font-weight: 700; }
+  .module-body { padding: 12px 18px 18px; }
+  .module-body .card { margin-bottom: 10px; padding: 16px 18px; }
+  .module-body .card:last-child { margin-bottom: 0; }
+  .module-body .card h3 { font-size: 15px; margin: 0 0 4px; }
+
+  /* "Tonight" highlight ribbon */
+  .tonight-block {
+    background: var(--navy-tint);
+    border: 1px solid var(--navy);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 22px;
+  }
+  .tonight-block h3 {
+    color: var(--navy);
+    margin-top: 0;
+  }
+
   /* Toolbar */
   .toolbar {
     display: flex;
@@ -775,23 +856,34 @@
 </main>
 
 <footer>
-  <p>Dr. Sharilyn Rennie &middot; BIO 304 prototype &middot; All progress stays on your device.</p>
+  <p>Dr. Sharilyn Rennie &middot; BIO 304 &middot; All progress stays on your device.</p>
 </footer>
+
+<!-- External course content. Edit course-content.js to add/edit modules, topics, and cards.
+     If this file is missing, the engine falls back to a single bundled demo topic. -->
+<script src="course-content.js"></script>
 
 <script>
 /* ============================================================
    BIO 304 Pre-Work and Spaced Recall
-   Single-file prototype. localStorage only. No PII collected.
+   Engine only. Content is loaded from course-content.js.
+   localStorage only. No PII collected.
    ============================================================ */
 
 (function(){
   "use strict";
 
-  /* ---------- CONTENT (placeholder) ---------- */
+  /* ---------- CONTENT ----------
+     Course content lives in course-content.js (loaded above).
+     If that file is missing, a single demo topic is bundled here as fallback. */
 
-  const CONTENT = {
+  const FALLBACK_CONTENT = {
     courseLabel: "BIO 304",
-    topics: [
+    modules: [{
+      id: "m-demo",
+      title: "Demo (load course-content.js for the full course)",
+      week: 0,
+      topics: [
       {
         id: "t-homeostasis",
         title: "Homeostasis and Feedback Loops",
@@ -832,91 +924,38 @@
           { id: "h-11", dok: 3, q: "A patient with type 1 diabetes has lost the ability to make insulin. Analyze how this disrupts the negative feedback loop that controls blood glucose, and predict the consequence after a meal.", a: "Insulin is the effector signal that drives glucose into cells and lowers blood glucose. Without it, the loop cannot complete: receptors detect the post-meal glucose spike, but no effector response brings it back to set point. Blood glucose rises and stays elevated (hyperglycemia)." },
           { id: "h-12", dok: 3, q: "Design an experiment to determine whether shivering is under negative feedback control. What would you measure and what would constitute evidence?", a: "Cool the subject and measure core temperature over time alongside EMG activity from skeletal muscle. Evidence of negative feedback: shivering EMG activity rises as core temperature falls below set point and falls back to baseline as core temperature returns to set point. The response opposes the temperature change, which is the defining feature." }
         ]
-      },
-      {
-        id: "t-membrane",
-        title: "Membrane Transport",
-        summary: "How substances cross the plasma membrane: passive vs active, simple vs facilitated, primary vs secondary.",
-        videoLabel: "Video: Membrane transport (placeholder)",
-        gateKeywords: ["membrane", "diffusion", "active transport", "gradient", "channel"],
-        notes: [
-          { heading: "The membrane in 30 seconds", body: [
-            "Phospholipid bilayer with embedded proteins.",
-            "Hydrophobic interior excludes large polar molecules and ions.",
-            "Small nonpolar molecules cross easily; everything else needs help."
-          ]},
-          { heading: "Passive transport (no ATP)", body: [
-            "Simple diffusion: nonpolar solutes move down their gradient through the bilayer.",
-            "Facilitated diffusion: polar solutes and ions move down their gradient through channels or carriers.",
-            "Osmosis: water moves down its concentration gradient, usually through aquaporins."
-          ]},
-          { heading: "Active transport (uses ATP, direct or indirect)", body: [
-            "Primary active transport: pump uses ATP directly (Na+/K+ ATPase).",
-            "Secondary active transport: pump uses the gradient set up by a primary pump (Na+-glucose symporter in the small intestine)."
-          ]},
-          { heading: "Bulk transport", body: [
-            "Endocytosis: cell engulfs material into a vesicle.",
-            "Exocytosis: vesicle fuses with the membrane and releases contents."
-          ]}
-        ],
-        cards: [
-          { id: "m-1", dok: 1, q: "Define diffusion.", a: "Net movement of solute from a region of higher concentration to one of lower concentration, driven by random molecular motion." },
-          { id: "m-2", dok: 1, q: "Which type of transport requires ATP directly?", a: "Primary active transport." },
-          { id: "m-3", dok: 1, q: "Name two molecules that cross the bilayer by simple diffusion.", a: "Oxygen, carbon dioxide, steroid hormones, small lipids." },
-          { id: "m-4", dok: 1, q: "What is the role of aquaporins?", a: "Channel proteins that allow water to cross the membrane rapidly by osmosis." },
-          { id: "m-5", dok: 1, q: "What is the ion stoichiometry of the Na+/K+ ATPase?", a: "Three Na+ out, two K+ in, per ATP hydrolyzed." },
-          { id: "m-6", dok: 2, q: "Explain why glucose enters intestinal epithelial cells against its gradient but enters most other cells down its gradient.", a: "Intestinal epithelium uses a Na+-glucose symporter (secondary active transport): the Na+ gradient (set up by the Na+/K+ pump) drags glucose in even against its own gradient. Most other cells use GLUT carriers (facilitated diffusion), which only move glucose down its gradient." },
-          { id: "m-7", dok: 2, q: "How does the Na+/K+ ATPase set up the conditions for secondary active transport?", a: "It pumps Na+ out, keeping intracellular Na+ low. The resulting steep inward Na+ gradient stores potential energy that secondary transporters tap when they couple Na+ entry to the movement of another solute." },
-          { id: "m-8", dok: 2, q: "Contrast facilitated diffusion and primary active transport in terms of energy source and direction of movement.", a: "Facilitated diffusion: no ATP, solute moves down its gradient through a channel or carrier. Primary active transport: ATP is hydrolyzed directly, solute moves against its gradient." },
-          { id: "m-9", dok: 2, q: "Predict the direction of net water movement when a red blood cell is placed in a hypertonic solution.", a: "Water leaves the cell (moves down its concentration gradient toward the higher solute outside). The cell crenates (shrinks)." },
-          { id: "m-10", dok: 3, q: "Ouabain blocks the Na+/K+ ATPase. Predict the downstream consequences for secondary active transport of glucose in the small intestine, and explain your reasoning.", a: "Without the pump, intracellular Na+ rises and the inward Na+ gradient collapses. The Na+-glucose symporter loses its driving force, so glucose absorption against its gradient stops. Glucose uptake falls dramatically even though the carrier itself is intact." },
-          { id: "m-11", dok: 3, q: "A drug specifically inhibits aquaporin-2 in the renal collecting duct. Analyze the effect on urine volume and plasma osmolarity.", a: "Water reabsorption falls because aquaporin-2 is the regulated water channel in this segment. Urine volume rises (dilute urine, like diabetes insipidus). Without water reabsorbed, plasma osmolarity rises." },
-          { id: "m-12", dok: 3, q: "Design a simple experiment that would distinguish between simple diffusion and facilitated diffusion of a solute across a membrane.", a: "Measure flux as a function of solute concentration. Simple diffusion: flux rises linearly with concentration without saturating. Facilitated diffusion: flux saturates at high concentration because carriers/channels are finite. A saturation curve is the signature of facilitated diffusion." }
-        ]
-      },
-      {
-        id: "t-epithelium",
-        title: "Epithelial Tissue Classification",
-        summary: "Naming epithelia by layer and cell shape, plus where each type is found and what jobs it does.",
-        videoLabel: "Video: Epithelial tissue classification (placeholder)",
-        gateKeywords: ["epithelium", "simple", "stratified", "squamous", "cuboidal", "columnar"],
-        notes: [
-          { heading: "Naming convention", body: [
-            "First name: number of layers. Simple = one layer, stratified = two or more.",
-            "Second name: shape of the apical (surface) cells. Squamous (flat), cuboidal (cube), columnar (tall).",
-            "Pseudostratified and transitional are special cases."
-          ]},
-          { heading: "Simple epithelia (one layer, function = exchange or secretion)", body: [
-            "Simple squamous: alveoli, capillary endothelium. Diffusion.",
-            "Simple cuboidal: kidney tubules, glands. Secretion and absorption.",
-            "Simple columnar: small intestine, stomach. Absorption and secretion (often with microvilli or cilia)."
-          ]},
-          { heading: "Stratified epithelia (multiple layers, function = protection)", body: [
-            "Stratified squamous: epidermis (keratinized), esophagus and vagina (non-keratinized). Abrasion resistance.",
-            "Transitional: urinary bladder. Stretches as the organ fills."
-          ]},
-          { heading: "Pseudostratified", body: [
-            "Looks like multiple layers but every cell touches the basement membrane.",
-            "Ciliated pseudostratified columnar lines the upper airway."
-          ]}
-        ],
-        cards: [
-          { id: "e-1", dok: 1, q: "What does the first name of an epithelium tell you?", a: "The number of cell layers (simple = one, stratified = two or more)." },
-          { id: "e-2", dok: 1, q: "Where is simple squamous epithelium found?", a: "Alveoli of the lung and the endothelium of blood vessels (anywhere thin diffusion is needed)." },
-          { id: "e-3", dok: 1, q: "Name the epithelium lining the urinary bladder.", a: "Transitional epithelium." },
-          { id: "e-4", dok: 1, q: "What is the function of stratified squamous epithelium?", a: "Protection from abrasion." },
-          { id: "e-5", dok: 1, q: "What is the shape of cells in cuboidal epithelium?", a: "Cube-shaped (height roughly equal to width)." },
-          { id: "e-6", dok: 2, q: "Explain why the alveoli are lined with simple squamous epithelium rather than columnar.", a: "Alveolar function is gas exchange by diffusion. A single flat (squamous) layer minimizes diffusion distance for oxygen and carbon dioxide. A thicker columnar layer would slow exchange." },
-          { id: "e-7", dok: 2, q: "Why does pseudostratified columnar epithelium look stratified even though it is not?", a: "Cell nuclei sit at different heights because cells differ in shape and reach. Every cell contacts the basement membrane, so it is truly one layer, but the nuclei give the illusion of layering." },
-          { id: "e-8", dok: 2, q: "Predict how transitional epithelium changes appearance between an empty and a full bladder.", a: "Empty: apical cells look rounded or dome-shaped, multiple layers visible. Full: cells flatten and the apparent number of layers decreases as the tissue stretches." },
-          { id: "e-9", dok: 2, q: "Match function to structure: why are intestinal absorptive cells simple columnar with microvilli?", a: "Absorption is their job. Columnar height gives room for the apical machinery, and microvilli multiply surface area roughly twentyfold so more nutrient transporters fit per square millimeter of lumen." },
-          { id: "e-10", dok: 3, q: "A smoker has metaplasia of the upper airway: pseudostratified ciliated columnar epithelium is replaced by stratified squamous. Predict two functional consequences.", a: "Loss of cilia means mucus is no longer swept up to be cleared. Pathogens and particulates linger in the airway. The new stratified squamous layer is thicker and more abrasion-resistant but less able to secrete mucus, so the mucociliary escalator fails and infection risk rises." },
-          { id: "e-11", dok: 3, q: "A pathology report describes simple cuboidal epithelium in an area that should be lined by simple columnar with microvilli. Analyze what functional capacity is likely lost.", a: "Microvilli (and the apical surface area they provide) are gone, so absorption is impaired. Columnar height also accommodates more secretory machinery; a cuboidal cell has less of it. Expect reduced absorptive and secretory capacity in that region." },
-          { id: "e-12", dok: 3, q: "Design a quick decision tree a student could use at the microscope to identify an unknown epithelium.", a: "1) How many layers of nuclei? One = simple or pseudostratified; multiple = stratified or transitional. 2) If simple: shape of cell? Flat = squamous, cube = cuboidal, tall = columnar. 3) If multiple layers and apical cells flat = stratified squamous; if dome-shaped and organ is urinary = transitional. 4) Check apical features (cilia, microvilli, keratin) to confirm location." }
-        ]
       }
     ]
-  };
+  }]
+};
+
+  /* Use external content if course-content.js loaded; otherwise fall back to the demo. */
+  const CONTENT = (typeof window !== "undefined" && window.BIO304_COURSE_CONTENT)
+    ? window.BIO304_COURSE_CONTENT
+    : FALLBACK_CONTENT;
+
+  /* Flatten helpers (topics live inside modules). */
+  function allTopics(){
+    const out = [];
+    (CONTENT.modules || []).forEach(m => (m.topics || []).forEach(t => out.push(t)));
+    return out;
+  }
+  function topicById(id){
+    for (const m of (CONTENT.modules || [])) {
+      for (const t of (m.topics || [])) {
+        if (t.id === id) return t;
+      }
+    }
+    return null;
+  }
+  function moduleByTopicId(id){
+    for (const m of (CONTENT.modules || [])) {
+      for (const t of (m.topics || [])) {
+        if (t.id === id) return m;
+      }
+    }
+    return null;
+  }
 
   /* ---------- STATE / PERSISTENCE ---------- */
 
@@ -1061,7 +1100,7 @@
   }
 
   function pickCardForTopic(topicId){
-    const topic = CONTENT.topics.find(t => t.id === topicId);
+    const topic = topicById(topicId);
     if (!topic) return null;
     const level = computeAdaptiveLevel(topicId);
     const ts = getTopicState(topicId);
@@ -1100,7 +1139,7 @@
 
   function countDueGlobally(){
     let n = 0;
-    CONTENT.topics.forEach(t => {
+    allTopics().forEach(t => {
       t.cards.forEach(c => {
         const st = getCardState(t.id, c.id, c.dok);
         if (st.reps > 0 && st.nextDue <= nowSim()) n += 1;
@@ -1200,10 +1239,10 @@
 
   function topicsTonight(){
     // Tonight's pre-work = topics not yet completed today.
-    // For the prototype, we treat all CONTENT.topics as available "tonight."
+    // For the prototype, every uncompleted topic is treated as available "tonight."
     const today = todayKey(0);
     const session = STATE.sessions.find(s => s.date === today);
-    return CONTENT.topics.filter(t => {
+    return allTopics().filter(t => {
       const completedToday = session && session.topicsCompleted.includes(t.id);
       return !completedToday;
     });
@@ -1217,36 +1256,70 @@
 
     const wrap = $("#topic-list");
     wrap.innerHTML = "";
-    CONTENT.topics.forEach(t => {
-      const status = topicStatus(t.id);
-      const ts = STATE.topics[t.id];
-      const cardsReviewed = ts ? Object.values(ts.cards).reduce((acc,c) => acc + c.history.length, 0) : 0;
-      const total = t.cards.length;
-      const seen = ts ? Object.keys(ts.cards).length : 0;
 
-      const card = document.createElement("article");
-      card.className = "card state-" + status;
-      card.innerHTML = `
-        <div class="topic-row">
-          <div style="flex:1; min-width:260px;">
-            <h3>${escapeHtml(t.title)}</h3>
-            <p class="usage" style="margin:2px 0 8px;">${escapeHtml(t.summary)}</p>
-            <div class="topic-meta">
-              <span class="pill ${status}">${status === "completed" ? "Completed tonight" : status === "unlocked" ? "In progress" : "Locked"}</span>
-              <span>${total} cards (${seen} seen, ${cardsReviewed} reviews logged)</span>
+    const modules = CONTENT.modules || [];
+    if (!modules.length) {
+      wrap.innerHTML = '<div class="card"><p class="empty">No course content loaded. Make sure course-content.js is in the same folder as this file.</p></div>';
+      return;
+    }
+
+    // Find the first module that has a non-completed topic. Open it; collapse the rest.
+    let firstActiveIdx = modules.findIndex(m => (m.topics || []).some(t => topicStatus(t.id) !== "completed"));
+    if (firstActiveIdx < 0) firstActiveIdx = 0;
+
+    modules.forEach((m, mi) => {
+      const topics = m.topics || [];
+      const completedCount = topics.filter(t => topicStatus(t.id) === "completed").length;
+      const isAllDone = topics.length > 0 && completedCount === topics.length;
+
+      const details = document.createElement("details");
+      details.className = "module-group";
+      if (mi === firstActiveIdx) details.open = true;
+
+      const summary = document.createElement("summary");
+      summary.innerHTML = `
+        <span class="module-week">${m.week ? "Week " + escapeHtml(String(m.week)) : "Module"}</span>
+        <span class="module-title">${escapeHtml(m.title)}</span>
+        <span class="module-progress${isAllDone ? " complete" : ""}">${completedCount} of ${topics.length} complete</span>
+      `;
+      details.appendChild(summary);
+
+      const body = document.createElement("div");
+      body.className = "module-body";
+      topics.forEach(t => {
+        const status = topicStatus(t.id);
+        const ts = STATE.topics[t.id];
+        const cardsReviewed = ts ? Object.values(ts.cards).reduce((acc,c) => acc + c.history.length, 0) : 0;
+        const seen = ts ? Object.keys(ts.cards).length : 0;
+        const hasVideo = !!t.videoUrl;
+
+        const card = document.createElement("article");
+        card.className = "card state-" + status;
+        card.innerHTML = `
+          <div class="topic-row">
+            <div style="flex:1; min-width:260px;">
+              <h3>${escapeHtml(t.title)}</h3>
+              <p class="usage" style="margin:2px 0 8px;">${escapeHtml(t.summary || "")}</p>
+              <div class="topic-meta">
+                <span class="pill ${status}">${status === "completed" ? "Completed" : status === "unlocked" ? "In progress" : "Locked"}</span>
+                <span>${t.cards.length} cards (${seen} seen, ${cardsReviewed} reviews logged)</span>
+                ${hasVideo ? "" : '<span style="color:var(--terra-dark);">video pending</span>'}
+              </div>
+            </div>
+            <div class="toolbar" style="margin:0;">
+              ${ status === "completed"
+                ? `<button class="btn btn-ghost" data-open-topic="${t.id}">Reopen</button>`
+                : status === "unlocked"
+                  ? `<button class="btn btn-gold" data-open-topic="${t.id}">Continue</button>`
+                  : `<button class="btn btn-primary" data-open-topic="${t.id}">Start</button>`
+              }
             </div>
           </div>
-          <div class="toolbar" style="margin:0;">
-            ${ status === "completed"
-              ? `<button class="btn btn-ghost" data-open-topic="${t.id}">Reopen</button>`
-              : status === "unlocked"
-                ? `<button class="btn btn-gold" data-open-topic="${t.id}">Continue</button>`
-                : `<button class="btn btn-primary" data-open-topic="${t.id}">Start</button>`
-            }
-          </div>
-        </div>
-      `;
-      wrap.appendChild(card);
+        `;
+        body.appendChild(card);
+      });
+      details.appendChild(body);
+      wrap.appendChild(details);
     });
 
     $$('[data-open-topic]').forEach(b => {
@@ -1264,17 +1337,20 @@
 
   function renderTopic(topicId){
     CURRENT_TOPIC = topicId;
-    const topic = CONTENT.topics.find(t => t.id === topicId);
+    const topic = topicById(topicId);
     if (!topic) { nav("dashboard"); return; }
     const ts = getTopicState(topicId);
     $("#topic-heading").textContent = topic.title;
-    $("#topic-summary").textContent = topic.summary;
-    $("#video-placeholder-label").textContent = topic.videoLabel;
+    $("#topic-summary").textContent = topic.summary || "";
+    $("#video-placeholder-label").textContent = topic.videoLabel || "Video for this topic is being produced.";
     $("#gate-keyword-target").textContent = topic.gateKeywords.length;
     $("#gate-input").value = ts.gateExplanation || "";
     updateGateMeter(topic, $("#gate-input").value);
     $("#gate-feedback").textContent = "";
     $("#gate-feedback").className = "gate-feedback";
+
+    // Mount the actual video player if a URL is set. Otherwise show the placeholder.
+    renderVideoPlayer(topic);
 
     if (ts.videoWatched) {
       $("#video-status").textContent = "Video marked watched.";
@@ -1285,13 +1361,76 @@
       $("#gate-card").hidden = false;
       $("#gate-locked-note").hidden = true;
     } else {
-      $("#video-status").textContent = "Video not yet watched.";
+      $("#video-status").textContent = topic.videoUrl ? "Watch the video below from start to finish." : "Video for this topic is being produced. Use ‘Simulate watching’ to test the flow.";
       $("#video-progress").style.width = "0%";
       $("#btn-mark-watched").disabled = true;
       $("#btn-simulate-watch").disabled = false;
       // Hide the gate until the video has been watched all the way through.
       $("#gate-card").hidden = true;
       $("#gate-locked-note").hidden = false;
+    }
+  }
+
+  function renderVideoPlayer(topic){
+    const frame = document.querySelector(".video-frame");
+    if (!frame) return;
+    // Clear any previously mounted player but preserve the placeholder elements.
+    Array.from(frame.querySelectorAll(".mounted-player")).forEach(el => el.remove());
+    const placeholder = $("#video-placeholder-label");
+    if (!topic.videoUrl) {
+      if (placeholder) placeholder.style.display = "";
+      return;
+    }
+    if (placeholder) placeholder.style.display = "none";
+    const url = topic.videoUrl;
+    const isYouTube = /youtu\.?be/.test(url);
+    if (isYouTube) {
+      // For YouTube, embed via iframe API. Detecting "ended" reliably requires the YT IFrame API,
+      // which is loaded lazily. For now we embed the player so the student can watch.
+      // The "Mark watched" gate is still enforced via the Simulate/Mark watched buttons until
+      // the YT API is fully wired in v2.
+      const id = ytIdFromUrl(url);
+      const iframe = document.createElement("iframe");
+      iframe.className = "mounted-player";
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id) + "?rel=0&modestbranding=1";
+      iframe.title = topic.videoLabel || topic.title;
+      iframe.allow = "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      iframe.allowFullscreen = true;
+      iframe.style.cssText = "position:absolute;inset:0;width:100%;height:100%;border:0;";
+      frame.appendChild(iframe);
+    } else {
+      // Self-hosted file (mp4/webm). Use a native <video> with the "ended" event to enable Mark watched.
+      const video = document.createElement("video");
+      video.className = "mounted-player";
+      video.src = url;
+      video.controls = true;
+      video.preload = "metadata";
+      video.style.cssText = "position:absolute;inset:0;width:100%;height:100%;background:black;";
+      video.addEventListener("ended", () => {
+        $("#video-progress").style.width = "100%";
+        $("#btn-mark-watched").disabled = false;
+        $("#video-status").textContent = "Video complete. Click ‘Mark watched’ to proceed.";
+        announce("Video complete. You can mark it watched.");
+      });
+      video.addEventListener("timeupdate", () => {
+        if (video.duration > 0) {
+          $("#video-progress").style.width = ((video.currentTime / video.duration) * 100).toFixed(1) + "%";
+        }
+      });
+      frame.appendChild(video);
+    }
+  }
+
+  function ytIdFromUrl(url){
+    try {
+      const u = new URL(url);
+      if (u.hostname.includes("youtu.be")) return u.pathname.slice(1);
+      const v = u.searchParams.get("v");
+      if (v) return v;
+      const parts = u.pathname.split("/");
+      return parts[parts.length - 1] || "";
+    } catch(e) {
+      return url;
     }
   }
 
@@ -1349,7 +1488,7 @@
   }
 
   function submitGate(){
-    const topic = CONTENT.topics.find(t => t.id === CURRENT_TOPIC);
+    const topic = topicById(CURRENT_TOPIC);
     if (!topic) return;
     const ts = getTopicState(CURRENT_TOPIC);
     if (!ts.videoWatched) {
@@ -1389,7 +1528,7 @@
 
   function renderLearn(topicId){
     CURRENT_TOPIC = topicId;
-    const topic = CONTENT.topics.find(t => t.id === topicId);
+    const topic = topicById(topicId);
     if (!topic) { nav("dashboard"); return; }
     const ts = getTopicState(topicId);
     if (!ts.gateCompleted) { nav("topic", topicId); return; }
@@ -1446,7 +1585,7 @@
       return;
     }
     CURRENT_CARD = card;
-    const topic = CONTENT.topics.find(t => t.id === CURRENT_TOPIC);
+    const topic = topicById(CURRENT_TOPIC);
     const idx = topic.cards.findIndex(c => c.id === card.id) + 1;
     $("#card-question").textContent = card.q;
     $("#card-answer").textContent = card.a;
@@ -1479,7 +1618,7 @@
 
     // Check if topic is "done for tonight" (every card has been seen at least once today).
     const ts = getTopicState(CURRENT_TOPIC);
-    const topic = CONTENT.topics.find(t => t.id === CURRENT_TOPIC);
+    const topic = topicById(CURRENT_TOPIC);
     const seenCount = topic.cards.filter(c => {
       const s = ts.cards[c.id];
       return s && s.history.length > 0;
@@ -1497,7 +1636,7 @@
     const body = $("#review-body");
     body.innerHTML = "";
     const due = [];
-    CONTENT.topics.forEach(t => {
+    allTopics().forEach(t => {
       t.cards.forEach(c => {
         const st = getCardState(t.id, c.id, c.dok);
         if (st.reps > 0 && st.nextDue <= nowSim()) {
@@ -1560,7 +1699,7 @@
     const masteryCard = document.createElement("div");
     masteryCard.className = "card";
     masteryCard.innerHTML = "<h3>Mastery by topic</h3>";
-    CONTENT.topics.forEach(t => {
+    allTopics().forEach(t => {
       const ts = STATE.topics[t.id];
       if (!ts) return;
       const tWrap = document.createElement("div");
@@ -1595,7 +1734,7 @@
         const row = document.createElement("div");
         row.className = "session-row";
         const titles = s.topicsCompleted.map(id => {
-          const t = CONTENT.topics.find(x => x.id === id);
+          const t = topicById(id);
           return t ? t.title : id;
         }).join(", ") || "(in progress)";
         row.innerHTML = `<div class="date">${s.date}</div><div class="topics">${escapeHtml(titles)}</div><div>${s.cardsReviewed}</div><div>${(s.gates || []).length}</div>`;
@@ -1609,7 +1748,7 @@
     gateCard.className = "card";
     gateCard.innerHTML = "<h3>Your gate explanations</h3><p class=\"usage\">What you wrote in your own words to unlock each topic.</p>";
     let any = false;
-    CONTENT.topics.forEach(t => {
+    allTopics().forEach(t => {
       const ts = STATE.topics[t.id];
       if (ts && ts.gateCompleted && ts.gateExplanation) {
         any = true;
@@ -1702,7 +1841,7 @@
     $("#btn-simulate-watch").addEventListener("click", simulateWatch);
     $("#btn-mark-watched").addEventListener("click", markWatched);
     $("#gate-input").addEventListener("input", (e) => {
-      const topic = CONTENT.topics.find(t => t.id === CURRENT_TOPIC);
+      const topic = topicById(CURRENT_TOPIC);
       if (topic) updateGateMeter(topic, e.target.value);
     });
     $("#btn-submit-gate").addEventListener("click", submitGate);
