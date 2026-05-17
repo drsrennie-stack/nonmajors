@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Pre-Work and Spaced Recall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1E3D4C;
+    --navy-deep: #142a36;
+    --navy-tint: #EDF1F3;
+    --gold: #B8924A;
+    --gold-deep: #9a7838;
+    --terra: #C2734D;
+    --terra-dark: #A0522D;
+    --white: #FFFFFF;
+    --off-white: #FAFAF9;
+    --gray-line: #cfd6da;
+    --gray-soft: #5c6970;
+    --shadow-rest: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 16px rgba(0,0,0,0.10);
+    --t-fast: 150ms ease;
+    --t-med: 200ms ease;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Lora", Georgia, serif;
+    color: var(--navy);
+    background: var(--off-white);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--navy);
+    color: var(--white);
+    padding: 12px 18px;
+    z-index: 100;
+    text-decoration: none;
+    border-radius: 0 0 6px 0;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 600;
+  }
+  .skip-link:focus { left: 0; }
+
+  /* Focus indicators */
+  :focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Header */
+  header.page-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-line);
+    padding: 24px 32px 20px;
+  }
+  .eyebrow {
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    margin: 0 0 6px;
+  }
+  h1.page-title {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(26px, 3.2vw, 36px);
+    color: var(--navy);
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .subhead {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(15px, 1.6vw, 18px);
+    color: var(--terra-dark);
+    margin: 0 0 8px;
+  }
+  .usage {
+    font-family: "Lora", Georgia, serif;
+    font-style: italic;
+    color: var(--gray-soft);
+    font-size: 15px;
+    margin: 6px 0 0;
+    max-width: 70ch;
+  }
+
+  /* Top nav */
+  nav.top-nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+  nav.top-nav button {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    background: transparent;
+    color: var(--navy);
+    border: 1px solid var(--gray-line);
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
+  }
+  nav.top-nav button:hover,
+  nav.top-nav button:focus-visible {
+    background: var(--navy-tint);
+    border-color: var(--navy);
+  }
+  nav.top-nav button[aria-current="page"] {
+    background: var(--navy);
+    color: var(--white);
+    border-color: var(--navy);
+  }
+
+  /* Main layout */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 24px 60px;
+  }
+
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* Cards */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--gray-line);
+    border-radius: 10px;
+    padding: 22px 24px;
+    box-shadow: var(--shadow-rest);
+    transition: transform var(--t-med), box-shadow var(--t-med);
+    margin-bottom: 16px;
+  }
+  .card.interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+    cursor: pointer;
+  }
+  .card.state-locked {
+    border-style: dashed;
+    border-color: var(--gray-line);
+    background: var(--off-white);
+  }
+  .card.state-unlocked {
+    border-color: var(--gold);
+  }
+  .card.state-completed {
+    border-color: var(--navy);
+    background: var(--navy-tint);
+  }
+
+  h2 {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 600;
+    color: var(--terra-dark);
+    font-size: 22px;
+    margin: 0 0 12px;
+  }
+  h3 {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 600;
+    color: var(--terra-dark);
+    font-size: 17px;
+    margin: 0 0 8px;
+  }
+  h4 {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 15px;
+    margin: 0 0 6px;
+  }
+
+  /* Topic list (dashboard) */
+  .topic-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .topic-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-size: 13px;
+    color: var(--gray-soft);
+  }
+  .pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid var(--gray-line);
+  }
+  .pill.locked { background: transparent; color: var(--gray-soft); }
+  .pill.unlocked { background: transparent; color: var(--gold-deep); border-color: var(--gold); }
+  .pill.completed { background: var(--navy-tint); color: var(--navy); border-color: var(--navy); }
+  .pill.due { background: transparent; color: var(--terra-dark); border-color: var(--terra); }
+
+  /* Buttons */
+  .btn {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary {
+    background: var(--navy);
+    color: var(--white);
+    border-color: var(--navy);
+  }
+  .btn-primary:hover, .btn-primary:focus-visible {
+    background: var(--navy-deep);
+    border-color: var(--navy-deep);
+  }
+  .btn-gold {
+    background: var(--navy);
+    color: var(--white);
+    border: 2px solid var(--gold);
+  }
+  .btn-gold:hover, .btn-gold:focus-visible {
+    background: var(--navy-deep);
+    border-color: var(--gold-deep);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--navy);
+    border-color: var(--gray-line);
+  }
+  .btn-ghost:hover, .btn-ghost:focus-visible {
+    background: var(--navy-tint);
+    border-color: var(--navy);
+  }
+  .btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Stats row */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .stat {
+    background: var(--white);
+    border: 1px solid var(--gray-line);
+    border-radius: 10px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow-rest);
+  }
+  .stat-label {
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    margin: 0 0 4px;
+  }
+  .stat-value {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .stat-sub {
+    font-size: 12px;
+    color: var(--gray-soft);
+    margin-top: 4px;
+  }
+
+  /* Video panel */
+  .video-frame {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--navy-deep);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .video-frame .placeholder-label {
+    text-align: center;
+    padding: 24px;
+    max-width: 80%;
+  }
+  .video-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 6px;
+    background: var(--gold);
+    width: 0%;
+    transition: width 250ms linear;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .video-progress { transition: none; }
+  }
+
+  /* Gate */
+  .gate {
+    background: var(--white);
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin-top: 14px;
+  }
+  .gate label {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 600;
+    color: var(--navy);
+    display: block;
+    margin: 0 0 8px;
+  }
+  .gate textarea {
+    width: 100%;
+    min-height: 140px;
+    padding: 12px;
+    border: 1px solid var(--gray-line);
+    border-radius: 6px;
+    font-family: "Lora", Georgia, serif;
+    font-size: 16px;
+    color: var(--navy);
+    background: var(--off-white);
+    resize: vertical;
+  }
+  .gate textarea:focus { background: var(--white); }
+  .gate-feedback {
+    margin-top: 10px;
+    font-family: "Lora", Georgia, serif;
+    font-style: italic;
+    min-height: 1.5em;
+  }
+  .gate-feedback.error { color: var(--terra-dark); }
+  .gate-feedback.success { color: var(--navy); font-style: normal; font-weight: 600; font-family: "Plus Jakarta Sans", system-ui, sans-serif; }
+  .gate-meter {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-size: 13px;
+    color: var(--gray-soft);
+  }
+  .gate-meter span strong { color: var(--navy); }
+
+  /* Learning view: two-column */
+  .learn-grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) 1.4fr;
+    gap: 22px;
+  }
+  @media (max-width: 820px) {
+    .learn-grid { grid-template-columns: 1fr; }
+  }
+  .notes-panel {
+    background: var(--white);
+    border: 1px solid var(--gray-line);
+    border-radius: 10px;
+    padding: 20px 22px;
+    max-height: 70vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-rest);
+  }
+  .notes-panel h3 { margin-top: 18px; }
+  .notes-panel h3:first-child { margin-top: 0; }
+  .notes-panel ul, .notes-panel ol { padding-left: 22px; }
+  .notes-panel li { margin: 4px 0; }
+
+  /* Card practice */
+  .practice-card {
+    background: var(--white);
+    border: 2px solid var(--navy);
+    border-radius: 10px;
+    padding: 26px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-rest);
+  }
+  .practice-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .dok-badge {
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid;
+  }
+  .dok-1 { color: var(--navy); border-color: var(--navy); }
+  .dok-2 { color: var(--navy); border-color: var(--gold-deep); background: #fbf4e3; }
+  .dok-3 { color: var(--terra-dark); border-color: var(--terra-dark); }
+
+  .progress-text {
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-size: 12px;
+    color: var(--gray-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .q-text {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--navy);
+    margin: 12px 0 16px;
+  }
+  .a-text {
+    font-family: "Lora", Georgia, serif;
+    font-size: 16px;
+    color: var(--navy);
+    padding: 14px 16px;
+    background: var(--navy-tint);
+    border-left: 3px solid var(--navy);
+    border-radius: 4px;
+    margin-bottom: 16px;
+    display: none;
+  }
+  .a-text.revealed { display: block; }
+
+  .rate-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+  }
+  @media (max-width: 540px) {
+    .rate-row { grid-template-columns: repeat(2, 1fr); }
+  }
+  .rate-btn {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 12px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--gray-line);
+    background: var(--white);
+    cursor: pointer;
+    color: var(--navy);
+    transition: background var(--t-fast), border-color var(--t-fast);
+    line-height: 1.2;
+    text-align: center;
+  }
+  .rate-btn small {
+    display: block;
+    font-weight: 500;
+    font-size: 11px;
+    color: var(--gray-soft);
+    margin-top: 4px;
+    font-family: "DM Sans", system-ui, sans-serif;
+  }
+  .rate-btn:hover, .rate-btn:focus-visible {
+    background: var(--navy-tint);
+    border-color: var(--navy);
+  }
+  .rate-btn.again { border-color: var(--terra); }
+  .rate-btn.again:hover, .rate-btn.again:focus-visible { background: #fbeee6; }
+  .rate-btn.easy { border-color: var(--gold); }
+  .rate-btn.easy:hover, .rate-btn.easy:focus-visible { background: #f7eed8; }
+
+  /* Mastery bars */
+  .mastery-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 60px;
+    align-items: center;
+    gap: 10px;
+    margin: 6px 0;
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-size: 13px;
+  }
+  .mastery-bar {
+    height: 8px;
+    background: var(--navy-tint);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .mastery-fill {
+    height: 100%;
+    background: var(--navy);
+    border-radius: 4px;
+    transition: width var(--t-med);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mastery-fill { transition: none; }
+  }
+  .mastery-fill.l1 { background: var(--navy); }
+  .mastery-fill.l2 { background: var(--gold-deep); }
+  .mastery-fill.l3 { background: var(--terra-dark); }
+
+  /* Sessions list */
+  .session-row {
+    display: grid;
+    grid-template-columns: 130px 1fr 70px 70px;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-line);
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-size: 13px;
+  }
+  .session-row:last-child { border-bottom: none; }
+  .session-row .date { color: var(--navy); font-weight: 600; }
+  .session-row .topics { color: var(--gray-soft); }
+
+  /* Live region */
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    color: var(--gray-soft);
+    padding: 20px;
+    font-family: "Lora", Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+  }
+
+  /* Empty state */
+  .empty {
+    text-align: center;
+    padding: 30px 16px;
+    color: var(--gray-soft);
+    font-style: italic;
+  }
+
+  /* Toolbar */
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 18px 0;
+  }
+
+  /* Print styles */
+  @media print {
+    nav.top-nav, .skip-link, footer, .no-print { display: none !important; }
+    body { background: white; color: black; }
+    .view { display: none; }
+    .view.print-view { display: block !important; }
+    .card, .stat, .practice-card, .notes-panel {
+      box-shadow: none;
+      border-color: #888;
+      page-break-inside: avoid;
+    }
+    header.page-header { border-bottom: 2px solid #333; }
+    h1.page-title, h2, h3, h4 { color: black; }
+    .mastery-fill { background: #555 !important; }
+    .pill { border-color: #555; }
+  }
+
+  /* High contrast preference */
+  @media (prefers-contrast: more) {
+    .card, .stat, .practice-card, .notes-panel { border-color: var(--navy); }
+    .gray-line, .pill { border-color: var(--navy); }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="page-header">
+  <p class="eyebrow">BIO 304 &middot; Human Anatomy &amp; Physiology &middot; MedMasters Collaborative</p>
+  <h1 class="page-title">Nightly Pre-Work and Spaced Recall</h1>
+  <p class="subhead" id="subhead-context">Tonight&rsquo;s prep, your daily review, and your engagement record</p>
+  <p class="usage">Watch each video. Explain it in your own words to unlock notes and your question set. Rate how you felt on each card. Come back tomorrow and your cards will be ready for review.</p>
+  <nav class="top-nav" aria-label="Primary">
+    <button type="button" data-nav="dashboard" aria-current="page">Tonight&rsquo;s pre-work</button>
+    <button type="button" data-nav="review">Daily review</button>
+    <button type="button" data-nav="report">Engagement report</button>
+    <button type="button" data-nav="settings">Settings</button>
+  </nav>
+</header>
+
+<div role="status" aria-live="polite" class="sr-only" id="live-region"></div>
+
+<main id="main-content" tabindex="-1">
+
+  <!-- DASHBOARD -->
+  <section class="view active" id="view-dashboard" aria-labelledby="dash-heading">
+    <h2 id="dash-heading">Tonight&rsquo;s pre-work</h2>
+    <div class="stats-row">
+      <div class="stat">
+        <p class="stat-label">Streak</p>
+        <p class="stat-value" id="stat-streak">0</p>
+        <p class="stat-sub">days in a row</p>
+      </div>
+      <div class="stat">
+        <p class="stat-label">Cards due today</p>
+        <p class="stat-value" id="stat-due">0</p>
+        <p class="stat-sub">from prior sessions</p>
+      </div>
+      <div class="stat">
+        <p class="stat-label">Topics tonight</p>
+        <p class="stat-value" id="stat-topics-tonight">0</p>
+        <p class="stat-sub">new pre-work</p>
+      </div>
+      <div class="stat">
+        <p class="stat-label">All-time cards</p>
+        <p class="stat-value" id="stat-total-cards">0</p>
+        <p class="stat-sub">reviewed</p>
+      </div>
+    </div>
+    <div id="topic-list" aria-live="polite"></div>
+  </section>
+
+  <!-- TOPIC LOCKED (video + gate) -->
+  <section class="view" id="view-topic" aria-labelledby="topic-heading">
+    <button type="button" class="btn btn-ghost" data-nav="dashboard" style="margin-bottom:14px;">&larr; Back to tonight&rsquo;s list</button>
+    <h2 id="topic-heading">Topic</h2>
+    <p class="usage" id="topic-summary"></p>
+
+    <div class="card" id="video-card">
+      <h3>Step 1. Watch the video</h3>
+      <div class="video-frame" aria-label="Video player placeholder">
+        <div class="placeholder-label" id="video-placeholder-label">Placeholder video. The real video must play start-to-finish before the next step appears.</div>
+        <div class="video-progress" id="video-progress"></div>
+      </div>
+      <div class="toolbar">
+        <button type="button" class="btn btn-primary" id="btn-simulate-watch">Simulate watching (10s)</button>
+        <button type="button" class="btn btn-gold" id="btn-mark-watched">Mark watched</button>
+      </div>
+      <p class="usage" id="video-status">Video not yet watched.</p>
+    </div>
+
+    <p class="usage" id="gate-locked-note" style="margin-top:16px;">Step 2 unlocks after you finish the video.</p>
+
+    <div class="gate" id="gate-card" aria-labelledby="gate-heading" hidden>
+      <h3 id="gate-heading">Step 2. Explain in your own words</h3>
+      <label for="gate-input">In your own words, what did this video teach you? Aim for at least 60 words and include the key ideas.</label>
+      <textarea id="gate-input" aria-describedby="gate-help" placeholder="Type your explanation here..."></textarea>
+      <p id="gate-help" class="usage">Your explanation stays on this device. It will print with your engagement report so your professor can see your understanding.</p>
+      <div class="gate-meter" aria-live="polite">
+        <span>Words: <strong id="gate-word-count">0</strong> / 60</span>
+        <span>Concepts found: <strong id="gate-keyword-count">0</strong> / <span id="gate-keyword-target">0</span></span>
+      </div>
+      <div class="toolbar">
+        <button type="button" class="btn btn-primary" id="btn-submit-gate">Unlock notes and questions</button>
+      </div>
+      <p class="gate-feedback" id="gate-feedback" role="status"></p>
+    </div>
+  </section>
+
+  <!-- LEARNING VIEW (notes + cards) -->
+  <section class="view" id="view-learn" aria-labelledby="learn-heading">
+    <button type="button" class="btn btn-ghost" data-nav="dashboard" style="margin-bottom:14px;">&larr; Back to tonight&rsquo;s list</button>
+    <h2 id="learn-heading">Notes and spaced recall</h2>
+    <div class="learn-grid">
+      <aside class="notes-panel" id="notes-panel" aria-label="Topic notes">
+        <p class="empty">Notes load here.</p>
+      </aside>
+      <div>
+        <div class="practice-card" id="practice-card" aria-live="polite">
+          <div class="practice-meta">
+            <span class="dok-badge dok-1" id="card-dok-badge">DOK 1</span>
+            <span class="progress-text" id="card-progress">Card 1 of 20</span>
+          </div>
+          <div>
+            <p class="q-text" id="card-question">Question loads here.</p>
+            <p class="a-text" id="card-answer">Answer loads here.</p>
+          </div>
+          <div>
+            <div class="toolbar" id="card-reveal-row">
+              <button type="button" class="btn btn-primary" id="btn-reveal">Show answer</button>
+            </div>
+            <div class="rate-row" id="rate-row" hidden>
+              <button type="button" class="rate-btn again" data-rate="again">Again<small>didn&rsquo;t know it</small></button>
+              <button type="button" class="rate-btn" data-rate="hard">Hard<small>got it, struggled</small></button>
+              <button type="button" class="rate-btn" data-rate="good">Good<small>knew it</small></button>
+              <button type="button" class="rate-btn easy" data-rate="easy">Easy<small>solid</small></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:18px;">
+          <h3>Mastery in this topic</h3>
+          <div class="mastery-row"><span>DOK 1</span><div class="mastery-bar"><div class="mastery-fill l1" id="mastery-l1" style="width:0%"></div></div><span id="mastery-l1-text">0%</span></div>
+          <div class="mastery-row"><span>DOK 2</span><div class="mastery-bar"><div class="mastery-fill l2" id="mastery-l2" style="width:0%"></div></div><span id="mastery-l2-text">0%</span></div>
+          <div class="mastery-row"><span>DOK 3</span><div class="mastery-bar"><div class="mastery-fill l3" id="mastery-l3" style="width:0%"></div></div><span id="mastery-l3-text">0%</span></div>
+          <p class="usage" id="dok-adapt-note">Adaptive level: warming up at DOK 1.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAILY REVIEW -->
+  <section class="view" id="view-review" aria-labelledby="review-heading">
+    <h2 id="review-heading">Daily review</h2>
+    <p class="usage">These cards are due based on how you rated them last time. Lower confidence resurfaces first.</p>
+    <div id="review-body"></div>
+  </section>
+
+  <!-- ENGAGEMENT REPORT -->
+  <section class="view print-view" id="view-report" aria-labelledby="report-heading">
+    <h2 id="report-heading">Engagement report</h2>
+    <p class="usage">A printable record of your nightly work. Hand this in or save it as a PDF.</p>
+    <div class="toolbar no-print">
+      <button type="button" class="btn btn-primary" id="btn-print">Print or save as PDF</button>
+      <button type="button" class="btn btn-ghost" id="btn-export">Export progress code</button>
+      <button type="button" class="btn btn-ghost" id="btn-import">Import progress code</button>
+    </div>
+    <div id="report-body"></div>
+  </section>
+
+  <!-- SETTINGS -->
+  <section class="view" id="view-settings" aria-labelledby="settings-heading">
+    <h2 id="settings-heading">Settings</h2>
+    <div class="card">
+      <h3>Reset and data</h3>
+      <p class="usage">Everything is stored on this device only. No names, no IDs, no accounts.</p>
+      <div class="toolbar">
+        <button type="button" class="btn btn-ghost" id="btn-reset-day">Simulate next day (for testing)</button>
+        <button type="button" class="btn btn-ghost" id="btn-reset-all">Reset all progress</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>About this prototype</h3>
+      <p class="usage">BIO 304 nightly pre-work tool. Forces video watch, requires a written explanation gate, then unlocks notes and an adaptive spaced-recall card set across DOK 1 to 3. Reviews carry across days using a lightweight SM2-style scheduler.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Dr. Sharilyn Rennie &middot; BIO 304 prototype &middot; All progress stays on your device.</p>
+</footer>
+
+<script>
+/* ============================================================
+   BIO 304 Pre-Work and Spaced Recall
+   Single-file prototype. localStorage only. No PII collected.
+   ============================================================ */
+
+(function(){
+  "use strict";
+
+  /* ---------- CONTENT (placeholder) ---------- */
+
+  const CONTENT = {
+    courseLabel: "BIO 304",
+    topics: [
+      {
+        id: "t-homeostasis",
+        title: "Homeostasis and Feedback Loops",
+        summary: "Levels of organization, set points, and how negative feedback keeps internal variables stable.",
+        videoLabel: "Video: Homeostasis and feedback loops (placeholder)",
+        gateKeywords: ["homeostasis", "feedback", "set point", "receptor", "effector"],
+        notes: [
+          { heading: "Levels of organization", body: [
+            "Chemical, cellular, tissue, organ, organ system, organism.",
+            "Each level builds on the one below it. Function emerges as complexity increases."
+          ]},
+          { heading: "Homeostasis", body: [
+            "Maintenance of a relatively stable internal environment despite external change.",
+            "Set point: the target value for a regulated variable (for example, core body temperature near 37 degrees C)."
+          ]},
+          { heading: "Negative feedback (the workhorse)", body: [
+            "Stimulus changes a variable away from set point.",
+            "Receptor detects the change.",
+            "Control center compares to set point and signals an effector.",
+            "Effector produces a response that opposes the change and returns the variable toward set point."
+          ]},
+          { heading: "Positive feedback (less common)", body: [
+            "Amplifies the original signal until an end point is reached.",
+            "Examples: oxytocin in labor, platelet plug formation."
+          ]}
+        ],
+        cards: [
+          { id: "h-1", dok: 1, q: "Define homeostasis.", a: "The maintenance of a relatively stable internal environment despite external change." },
+          { id: "h-2", dok: 1, q: "List the four core components of a negative feedback loop.", a: "Stimulus, receptor, control center, effector (with a response that opposes the change)." },
+          { id: "h-3", dok: 1, q: "What is a set point?", a: "The target value a regulated variable is kept near (for example, ~37 degrees C for core body temperature)." },
+          { id: "h-4", dok: 1, q: "Give one example of a regulated variable.", a: "Core body temperature, blood glucose, blood pH, blood pressure, blood osmolarity, or arterial pO2." },
+          { id: "h-5", dok: 1, q: "Which feedback type is most common in physiology?", a: "Negative feedback." },
+          { id: "h-6", dok: 2, q: "Explain how negative feedback returns body temperature to set point after exercise.", a: "Skin and hypothalamic thermoreceptors detect a rise. The hypothalamic control center compares to set point and signals effectors: sweat glands secrete (evaporative cooling) and cutaneous vessels dilate (heat loss to environment). Core temperature falls back toward set point." },
+          { id: "h-7", dok: 2, q: "Contrast negative and positive feedback in terms of their effect on the original stimulus.", a: "Negative feedback opposes the change and stabilizes the variable. Positive feedback amplifies the change and drives the system to an end point." },
+          { id: "h-8", dok: 2, q: "Why is positive feedback less common in homeostasis?", a: "Because it amplifies change rather than stabilizing it. It is useful only when a system needs to reach an end point quickly (childbirth, clot formation) and then be shut off." },
+          { id: "h-9", dok: 2, q: "Identify the receptor, control center, and effector in the baroreceptor response to a drop in blood pressure.", a: "Receptor: baroreceptors in the carotid sinus and aortic arch. Control center: cardiovascular centers in the medulla. Effectors: heart (increased rate and contractility) and vascular smooth muscle (vasoconstriction)." },
+          { id: "h-10", dok: 3, q: "Predict what happens to a patient whose hypothalamic set point for temperature is reset upward by pyrogens during fever.", a: "The body now treats normal core temperature as too low. Effectors that conserve and generate heat activate: vasoconstriction (cold skin), shivering, and behavioral chill-seeking. Core temperature rises to the new (elevated) set point. When pyrogens clear, the set point falls and the patient sweats and vasodilates to dump the excess heat." },
+          { id: "h-11", dok: 3, q: "A patient with type 1 diabetes has lost the ability to make insulin. Analyze how this disrupts the negative feedback loop that controls blood glucose, and predict the consequence after a meal.", a: "Insulin is the effector signal that drives glucose into cells and lowers blood glucose. Without it, the loop cannot complete: receptors detect the post-meal glucose spike, but no effector response brings it back to set point. Blood glucose rises and stays elevated (hyperglycemia)." },
+          { id: "h-12", dok: 3, q: "Design an experiment to determine whether shivering is under negative feedback control. What would you measure and what would constitute evidence?", a: "Cool the subject and measure core temperature over time alongside EMG activity from skeletal muscle. Evidence of negative feedback: shivering EMG activity rises as core temperature falls below set point and falls back to baseline as core temperature returns to set point. The response opposes the temperature change, which is the defining feature." }
+        ]
+      },
+      {
+        id: "t-membrane",
+        title: "Membrane Transport",
+        summary: "How substances cross the plasma membrane: passive vs active, simple vs facilitated, primary vs secondary.",
+        videoLabel: "Video: Membrane transport (placeholder)",
+        gateKeywords: ["membrane", "diffusion", "active transport", "gradient", "channel"],
+        notes: [
+          { heading: "The membrane in 30 seconds", body: [
+            "Phospholipid bilayer with embedded proteins.",
+            "Hydrophobic interior excludes large polar molecules and ions.",
+            "Small nonpolar molecules cross easily; everything else needs help."
+          ]},
+          { heading: "Passive transport (no ATP)", body: [
+            "Simple diffusion: nonpolar solutes move down their gradient through the bilayer.",
+            "Facilitated diffusion: polar solutes and ions move down their gradient through channels or carriers.",
+            "Osmosis: water moves down its concentration gradient, usually through aquaporins."
+          ]},
+          { heading: "Active transport (uses ATP, direct or indirect)", body: [
+            "Primary active transport: pump uses ATP directly (Na+/K+ ATPase).",
+            "Secondary active transport: pump uses the gradient set up by a primary pump (Na+-glucose symporter in the small intestine)."
+          ]},
+          { heading: "Bulk transport", body: [
+            "Endocytosis: cell engulfs material into a vesicle.",
+            "Exocytosis: vesicle fuses with the membrane and releases contents."
+          ]}
+        ],
+        cards: [
+          { id: "m-1", dok: 1, q: "Define diffusion.", a: "Net movement of solute from a region of higher concentration to one of lower concentration, driven by random molecular motion." },
+          { id: "m-2", dok: 1, q: "Which type of transport requires ATP directly?", a: "Primary active transport." },
+          { id: "m-3", dok: 1, q: "Name two molecules that cross the bilayer by simple diffusion.", a: "Oxygen, carbon dioxide, steroid hormones, small lipids." },
+          { id: "m-4", dok: 1, q: "What is the role of aquaporins?", a: "Channel proteins that allow water to cross the membrane rapidly by osmosis." },
+          { id: "m-5", dok: 1, q: "What is the ion stoichiometry of the Na+/K+ ATPase?", a: "Three Na+ out, two K+ in, per ATP hydrolyzed." },
+          { id: "m-6", dok: 2, q: "Explain why glucose enters intestinal epithelial cells against its gradient but enters most other cells down its gradient.", a: "Intestinal epithelium uses a Na+-glucose symporter (secondary active transport): the Na+ gradient (set up by the Na+/K+ pump) drags glucose in even against its own gradient. Most other cells use GLUT carriers (facilitated diffusion), which only move glucose down its gradient." },
+          { id: "m-7", dok: 2, q: "How does the Na+/K+ ATPase set up the conditions for secondary active transport?", a: "It pumps Na+ out, keeping intracellular Na+ low. The resulting steep inward Na+ gradient stores potential energy that secondary transporters tap when they couple Na+ entry to the movement of another solute." },
+          { id: "m-8", dok: 2, q: "Contrast facilitated diffusion and primary active transport in terms of energy source and direction of movement.", a: "Facilitated diffusion: no ATP, solute moves down its gradient through a channel or carrier. Primary active transport: ATP is hydrolyzed directly, solute moves against its gradient." },
+          { id: "m-9", dok: 2, q: "Predict the direction of net water movement when a red blood cell is placed in a hypertonic solution.", a: "Water leaves the cell (moves down its concentration gradient toward the higher solute outside). The cell crenates (shrinks)." },
+          { id: "m-10", dok: 3, q: "Ouabain blocks the Na+/K+ ATPase. Predict the downstream consequences for secondary active transport of glucose in the small intestine, and explain your reasoning.", a: "Without the pump, intracellular Na+ rises and the inward Na+ gradient collapses. The Na+-glucose symporter loses its driving force, so glucose absorption against its gradient stops. Glucose uptake falls dramatically even though the carrier itself is intact." },
+          { id: "m-11", dok: 3, q: "A drug specifically inhibits aquaporin-2 in the renal collecting duct. Analyze the effect on urine volume and plasma osmolarity.", a: "Water reabsorption falls because aquaporin-2 is the regulated water channel in this segment. Urine volume rises (dilute urine, like diabetes insipidus). Without water reabsorbed, plasma osmolarity rises." },
+          { id: "m-12", dok: 3, q: "Design a simple experiment that would distinguish between simple diffusion and facilitated diffusion of a solute across a membrane.", a: "Measure flux as a function of solute concentration. Simple diffusion: flux rises linearly with concentration without saturating. Facilitated diffusion: flux saturates at high concentration because carriers/channels are finite. A saturation curve is the signature of facilitated diffusion." }
+        ]
+      },
+      {
+        id: "t-epithelium",
+        title: "Epithelial Tissue Classification",
+        summary: "Naming epithelia by layer and cell shape, plus where each type is found and what jobs it does.",
+        videoLabel: "Video: Epithelial tissue classification (placeholder)",
+        gateKeywords: ["epithelium", "simple", "stratified", "squamous", "cuboidal", "columnar"],
+        notes: [
+          { heading: "Naming convention", body: [
+            "First name: number of layers. Simple = one layer, stratified = two or more.",
+            "Second name: shape of the apical (surface) cells. Squamous (flat), cuboidal (cube), columnar (tall).",
+            "Pseudostratified and transitional are special cases."
+          ]},
+          { heading: "Simple epithelia (one layer, function = exchange or secretion)", body: [
+            "Simple squamous: alveoli, capillary endothelium. Diffusion.",
+            "Simple cuboidal: kidney tubules, glands. Secretion and absorption.",
+            "Simple columnar: small intestine, stomach. Absorption and secretion (often with microvilli or cilia)."
+          ]},
+          { heading: "Stratified epithelia (multiple layers, function = protection)", body: [
+            "Stratified squamous: epidermis (keratinized), esophagus and vagina (non-keratinized). Abrasion resistance.",
+            "Transitional: urinary bladder. Stretches as the organ fills."
+          ]},
+          { heading: "Pseudostratified", body: [
+            "Looks like multiple layers but every cell touches the basement membrane.",
+            "Ciliated pseudostratified columnar lines the upper airway."
+          ]}
+        ],
+        cards: [
+          { id: "e-1", dok: 1, q: "What does the first name of an epithelium tell you?", a: "The number of cell layers (simple = one, stratified = two or more)." },
+          { id: "e-2", dok: 1, q: "Where is simple squamous epithelium found?", a: "Alveoli of the lung and the endothelium of blood vessels (anywhere thin diffusion is needed)." },
+          { id: "e-3", dok: 1, q: "Name the epithelium lining the urinary bladder.", a: "Transitional epithelium." },
+          { id: "e-4", dok: 1, q: "What is the function of stratified squamous epithelium?", a: "Protection from abrasion." },
+          { id: "e-5", dok: 1, q: "What is the shape of cells in cuboidal epithelium?", a: "Cube-shaped (height roughly equal to width)." },
+          { id: "e-6", dok: 2, q: "Explain why the alveoli are lined with simple squamous epithelium rather than columnar.", a: "Alveolar function is gas exchange by diffusion. A single flat (squamous) layer minimizes diffusion distance for oxygen and carbon dioxide. A thicker columnar layer would slow exchange." },
+          { id: "e-7", dok: 2, q: "Why does pseudostratified columnar epithelium look stratified even though it is not?", a: "Cell nuclei sit at different heights because cells differ in shape and reach. Every cell contacts the basement membrane, so it is truly one layer, but the nuclei give the illusion of layering." },
+          { id: "e-8", dok: 2, q: "Predict how transitional epithelium changes appearance between an empty and a full bladder.", a: "Empty: apical cells look rounded or dome-shaped, multiple layers visible. Full: cells flatten and the apparent number of layers decreases as the tissue stretches." },
+          { id: "e-9", dok: 2, q: "Match function to structure: why are intestinal absorptive cells simple columnar with microvilli?", a: "Absorption is their job. Columnar height gives room for the apical machinery, and microvilli multiply surface area roughly twentyfold so more nutrient transporters fit per square millimeter of lumen." },
+          { id: "e-10", dok: 3, q: "A smoker has metaplasia of the upper airway: pseudostratified ciliated columnar epithelium is replaced by stratified squamous. Predict two functional consequences.", a: "Loss of cilia means mucus is no longer swept up to be cleared. Pathogens and particulates linger in the airway. The new stratified squamous layer is thicker and more abrasion-resistant but less able to secrete mucus, so the mucociliary escalator fails and infection risk rises." },
+          { id: "e-11", dok: 3, q: "A pathology report describes simple cuboidal epithelium in an area that should be lined by simple columnar with microvilli. Analyze what functional capacity is likely lost.", a: "Microvilli (and the apical surface area they provide) are gone, so absorption is impaired. Columnar height also accommodates more secretory machinery; a cuboidal cell has less of it. Expect reduced absorptive and secretory capacity in that region." },
+          { id: "e-12", dok: 3, q: "Design a quick decision tree a student could use at the microscope to identify an unknown epithelium.", a: "1) How many layers of nuclei? One = simple or pseudostratified; multiple = stratified or transitional. 2) If simple: shape of cell? Flat = squamous, cube = cuboidal, tall = columnar. 3) If multiple layers and apical cells flat = stratified squamous; if dome-shaped and organ is urinary = transitional. 4) Check apical features (cilia, microvilli, keratin) to confirm location." }
+        ]
+      }
+    ]
+  };
+
+  /* ---------- STATE / PERSISTENCE ---------- */
+
+  const STORAGE_KEY = "bio304_spaced_recall_v1";
+  const DAY_MS = 24 * 60 * 60 * 1000;
+
+  function todayKey(offsetDays){
+    // Single source of truth for "now" with the simulated-day offset applied once.
+    const ms = Date.now() + (((offsetDays || 0) + (STATE.daysSimulated || 0)) * DAY_MS);
+    return new Date(ms).toISOString().slice(0,10);
+  }
+  function nowSim(){
+    return Date.now() + (STATE.daysSimulated || 0) * DAY_MS;
+  }
+
+  function freshState(){
+    return {
+      version: 1,
+      createdAt: new Date().toISOString(),
+      daysSimulated: 0,
+      topics: {},
+      sessions: [],
+      lastOpenedDate: ""
+    };
+  }
+
+  function loadState(){
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return freshState();
+      const parsed = JSON.parse(raw);
+      if (!parsed.version) return freshState();
+      return parsed;
+    } catch(e){
+      return freshState();
+    }
+  }
+
+  function saveState(){
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE));
+    } catch(e){
+      announce("Could not save progress. Storage may be full or disabled.");
+    }
+  }
+
+  let STATE = loadState();
+
+  function getTopicState(topicId){
+    if (!STATE.topics[topicId]) {
+      STATE.topics[topicId] = {
+        videoWatched: false,
+        gateCompleted: false,
+        gateExplanation: "",
+        gateCompletedAt: "",
+        unlockedAt: "",
+        cards: {},
+        dok: { 1: { correct: 0, total: 0 }, 2: { correct: 0, total: 0 }, 3: { correct: 0, total: 0 } },
+        adaptiveLevel: 1
+      };
+    }
+    return STATE.topics[topicId];
+  }
+
+  function getCardState(topicId, cardId, dok){
+    const ts = getTopicState(topicId);
+    if (!ts.cards[cardId]) {
+      ts.cards[cardId] = {
+        dok: dok,
+        reps: 0,
+        lapses: 0,
+        ease: 2.5,
+        interval: 0,
+        nextDue: nowSim(),
+        lastRating: "",
+        history: []
+      };
+    }
+    return ts.cards[cardId];
+  }
+
+  /* ---------- SCHEDULER (SM2-lite) ---------- */
+
+  function scheduleCard(cardState, rating){
+    const ratingMap = { again: 1, hard: 2, good: 3, easy: 4 };
+    const q = ratingMap[rating] || 3;
+    cardState.history.push({ at: new Date(nowSim()).toISOString(), rating: rating });
+    cardState.lastRating = rating;
+
+    if (q === 1) {
+      // Failed. Reset interval to under a day. Will resurface tomorrow.
+      cardState.reps = 0;
+      cardState.lapses += 1;
+      cardState.interval = 0;
+      cardState.ease = Math.max(1.3, cardState.ease - 0.2);
+      cardState.nextDue = nowSim() + 0.7 * DAY_MS;
+    } else {
+      cardState.reps += 1;
+      if (cardState.reps === 1) {
+        cardState.interval = 1;
+      } else if (cardState.reps === 2) {
+        cardState.interval = 3;
+      } else {
+        cardState.interval = Math.round(cardState.interval * cardState.ease);
+      }
+      if (q === 2) {
+        cardState.ease = Math.max(1.3, cardState.ease - 0.15);
+        cardState.interval = Math.max(1, Math.round(cardState.interval * 0.8));
+      } else if (q === 4) {
+        cardState.ease = cardState.ease + 0.15;
+        cardState.interval = Math.round(cardState.interval * 1.2);
+      }
+      cardState.nextDue = nowSim() + cardState.interval * DAY_MS;
+    }
+  }
+
+  /* ---------- DOK MASTERY / ADAPTATION ---------- */
+
+  function recordDokOutcome(topicId, dok, rating){
+    const ts = getTopicState(topicId);
+    if (!ts.dok[dok]) ts.dok[dok] = { correct: 0, total: 0 };
+    ts.dok[dok].total += 1;
+    if (rating === "good" || rating === "easy") ts.dok[dok].correct += 1;
+  }
+
+  function masteryFor(topicId, dok){
+    const ts = getTopicState(topicId);
+    const b = ts.dok[dok];
+    if (!b || b.total < 3) return 0;
+    return b.correct / b.total;
+  }
+
+  function computeAdaptiveLevel(topicId){
+    const ts = getTopicState(topicId);
+    const m1 = masteryFor(topicId, 1);
+    const m2 = masteryFor(topicId, 2);
+    let level = 1;
+    if (m1 >= 0.85) level = 2;
+    if (m1 >= 0.85 && m2 >= 0.85) level = 3;
+    ts.adaptiveLevel = level;
+    return level;
+  }
+
+  function pickCardForTopic(topicId){
+    const topic = CONTENT.topics.find(t => t.id === topicId);
+    if (!topic) return null;
+    const level = computeAdaptiveLevel(topicId);
+    const ts = getTopicState(topicId);
+
+    // 1) Any cards due now (across DOK levels)?
+    const due = topic.cards
+      .map(c => ({ card: c, st: getCardState(topicId, c.id, c.dok) }))
+      .filter(x => x.st.reps > 0 && x.st.nextDue <= nowSim())
+      .sort((a,b) => a.st.nextDue - b.st.nextDue);
+    if (due.length) return due[0].card;
+
+    // 2) Otherwise pick a new card at the adaptive level (or below if none).
+    const newCards = topic.cards.filter(c => {
+      const st = getCardState(topicId, c.id, c.dok);
+      return st.reps === 0 && c.dok <= level;
+    });
+    if (newCards.length) {
+      // Prefer the lowest-DOK new card so we ladder up.
+      newCards.sort((a,b) => a.dok - b.dok);
+      return newCards[0];
+    }
+
+    // 3) Everything new at this level is used. Mix in any not-yet-due cards
+    // due in the next 24h to keep practice rolling, or higher-DOK new cards.
+    const higher = topic.cards.filter(c => {
+      const st = getCardState(topicId, c.id, c.dok);
+      return st.reps === 0;
+    });
+    if (higher.length) return higher.sort((a,b) => a.dok - b.dok)[0];
+
+    const soon = topic.cards
+      .map(c => ({ card: c, st: getCardState(topicId, c.id, c.dok) }))
+      .sort((a,b) => a.st.nextDue - b.st.nextDue);
+    return soon.length ? soon[0].card : null;
+  }
+
+  function countDueGlobally(){
+    let n = 0;
+    CONTENT.topics.forEach(t => {
+      t.cards.forEach(c => {
+        const st = getCardState(t.id, c.id, c.dok);
+        if (st.reps > 0 && st.nextDue <= nowSim()) n += 1;
+      });
+    });
+    return n;
+  }
+
+  function totalCardsReviewed(){
+    let n = 0;
+    Object.values(STATE.topics).forEach(ts => {
+      Object.values(ts.cards).forEach(c => { n += c.history.length; });
+    });
+    return n;
+  }
+
+  /* ---------- SESSIONS / STREAK ---------- */
+
+  function logSessionActivity(meta){
+    const day = todayKey(0);
+    let s = STATE.sessions.find(x => x.date === day);
+    if (!s) {
+      s = { date: day, topicsCompleted: [], cardsReviewed: 0, gates: [] };
+      STATE.sessions.push(s);
+    }
+    if (meta.topicCompleted && !s.topicsCompleted.includes(meta.topicCompleted)) {
+      s.topicsCompleted.push(meta.topicCompleted);
+    }
+    if (meta.cardReview) s.cardsReviewed += 1;
+    if (meta.gate) s.gates.push(meta.gate);
+    saveState();
+  }
+
+  function computeStreak(){
+    if (!STATE.sessions.length) return 0;
+    const dates = STATE.sessions.map(s => s.date).sort();
+    const today = todayKey(0);
+    let streak = 0;
+    let cursor = new Date(today + "T00:00:00");
+    for (let i = 0; i < 365; i++){
+      const key = cursor.toISOString().slice(0,10);
+      if (dates.includes(key)) {
+        streak += 1;
+        cursor = new Date(cursor.getTime() - DAY_MS);
+      } else if (i === 0) {
+        // No activity today yet. Look at yesterday for a streak.
+        cursor = new Date(cursor.getTime() - DAY_MS);
+      } else {
+        break;
+      }
+    }
+    return streak;
+  }
+
+  /* ---------- DOM HELPERS ---------- */
+
+  const $ = (sel, root) => (root || document).querySelector(sel);
+  const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
+
+  function announce(msg){
+    const lr = $("#live-region");
+    if (lr) { lr.textContent = ""; setTimeout(() => { lr.textContent = msg; }, 30); }
+  }
+
+  /* ---------- NAVIGATION ---------- */
+
+  let CURRENT_TOPIC = null;
+  let CURRENT_CARD = null;
+
+  function nav(view, topicId){
+    $$(".view").forEach(v => v.classList.remove("active"));
+    const target = $("#view-" + view);
+    if (target) target.classList.add("active");
+    $$("nav.top-nav button").forEach(b => {
+      const isCurrent = b.dataset.nav === view || (view === "topic" && b.dataset.nav === "dashboard") || (view === "learn" && b.dataset.nav === "dashboard");
+      b.setAttribute("aria-current", isCurrent ? "page" : "false");
+    });
+    if (view === "dashboard") renderDashboard();
+    if (view === "topic") renderTopic(topicId);
+    if (view === "learn") renderLearn(topicId);
+    if (view === "review") renderReview();
+    if (view === "report") renderReport();
+    if (view === "settings") renderSettings();
+    const main = $("#main-content");
+    if (main) main.focus({ preventScroll: false });
+  }
+
+  /* ---------- DASHBOARD ---------- */
+
+  function topicStatus(topicId){
+    const ts = STATE.topics[topicId];
+    if (!ts) return "locked";
+    if (ts.gateCompleted && ts.videoWatched) return "completed";
+    if (ts.videoWatched) return "unlocked";
+    return "locked";
+  }
+
+  function topicsTonight(){
+    // Tonight's pre-work = topics not yet completed today.
+    // For the prototype, we treat all CONTENT.topics as available "tonight."
+    const today = todayKey(0);
+    const session = STATE.sessions.find(s => s.date === today);
+    return CONTENT.topics.filter(t => {
+      const completedToday = session && session.topicsCompleted.includes(t.id);
+      return !completedToday;
+    });
+  }
+
+  function renderDashboard(){
+    $("#stat-streak").textContent = computeStreak();
+    $("#stat-due").textContent = countDueGlobally();
+    $("#stat-topics-tonight").textContent = topicsTonight().length;
+    $("#stat-total-cards").textContent = totalCardsReviewed();
+
+    const wrap = $("#topic-list");
+    wrap.innerHTML = "";
+    CONTENT.topics.forEach(t => {
+      const status = topicStatus(t.id);
+      const ts = STATE.topics[t.id];
+      const cardsReviewed = ts ? Object.values(ts.cards).reduce((acc,c) => acc + c.history.length, 0) : 0;
+      const total = t.cards.length;
+      const seen = ts ? Object.keys(ts.cards).length : 0;
+
+      const card = document.createElement("article");
+      card.className = "card state-" + status;
+      card.innerHTML = `
+        <div class="topic-row">
+          <div style="flex:1; min-width:260px;">
+            <h3>${escapeHtml(t.title)}</h3>
+            <p class="usage" style="margin:2px 0 8px;">${escapeHtml(t.summary)}</p>
+            <div class="topic-meta">
+              <span class="pill ${status}">${status === "completed" ? "Completed tonight" : status === "unlocked" ? "In progress" : "Locked"}</span>
+              <span>${total} cards (${seen} seen, ${cardsReviewed} reviews logged)</span>
+            </div>
+          </div>
+          <div class="toolbar" style="margin:0;">
+            ${ status === "completed"
+              ? `<button class="btn btn-ghost" data-open-topic="${t.id}">Reopen</button>`
+              : status === "unlocked"
+                ? `<button class="btn btn-gold" data-open-topic="${t.id}">Continue</button>`
+                : `<button class="btn btn-primary" data-open-topic="${t.id}">Start</button>`
+            }
+          </div>
+        </div>
+      `;
+      wrap.appendChild(card);
+    });
+
+    $$('[data-open-topic]').forEach(b => {
+      b.addEventListener("click", () => {
+        const id = b.dataset.openTopic;
+        CURRENT_TOPIC = id;
+        const ts = getTopicState(id);
+        if (ts.gateCompleted) nav("learn", id);
+        else nav("topic", id);
+      });
+    });
+  }
+
+  /* ---------- TOPIC (video + gate) ---------- */
+
+  function renderTopic(topicId){
+    CURRENT_TOPIC = topicId;
+    const topic = CONTENT.topics.find(t => t.id === topicId);
+    if (!topic) { nav("dashboard"); return; }
+    const ts = getTopicState(topicId);
+    $("#topic-heading").textContent = topic.title;
+    $("#topic-summary").textContent = topic.summary;
+    $("#video-placeholder-label").textContent = topic.videoLabel;
+    $("#gate-keyword-target").textContent = topic.gateKeywords.length;
+    $("#gate-input").value = ts.gateExplanation || "";
+    updateGateMeter(topic, $("#gate-input").value);
+    $("#gate-feedback").textContent = "";
+    $("#gate-feedback").className = "gate-feedback";
+
+    if (ts.videoWatched) {
+      $("#video-status").textContent = "Video marked watched.";
+      $("#video-progress").style.width = "100%";
+      $("#btn-mark-watched").disabled = true;
+      $("#btn-simulate-watch").disabled = true;
+      // Reveal the gate once the video is finished.
+      $("#gate-card").hidden = false;
+      $("#gate-locked-note").hidden = true;
+    } else {
+      $("#video-status").textContent = "Video not yet watched.";
+      $("#video-progress").style.width = "0%";
+      $("#btn-mark-watched").disabled = true;
+      $("#btn-simulate-watch").disabled = false;
+      // Hide the gate until the video has been watched all the way through.
+      $("#gate-card").hidden = true;
+      $("#gate-locked-note").hidden = false;
+    }
+  }
+
+  let simulateTimer = null;
+  function simulateWatch(){
+    const ts = getTopicState(CURRENT_TOPIC);
+    if (ts.videoWatched) return;
+    let progress = 0;
+    $("#btn-simulate-watch").disabled = true;
+    $("#btn-mark-watched").disabled = true;
+    if (simulateTimer) clearInterval(simulateTimer);
+    simulateTimer = setInterval(() => {
+      progress += 10;
+      $("#video-progress").style.width = progress + "%";
+      $("#video-status").textContent = "Watching... " + progress + "%";
+      if (progress >= 100) {
+        clearInterval(simulateTimer);
+        $("#btn-mark-watched").disabled = false;
+        $("#video-status").textContent = "Video complete. Click ‘Mark watched’ to proceed.";
+        announce("Video complete. You can mark it watched.");
+      }
+    }, 1000);
+  }
+
+  function markWatched(){
+    const ts = getTopicState(CURRENT_TOPIC);
+    ts.videoWatched = true;
+    saveState();
+    announce("Video marked watched. Now write your explanation.");
+    renderTopic(CURRENT_TOPIC);
+    $("#gate-input").focus();
+  }
+
+  function gateCheck(topic, text){
+    const words = (text || "").trim().split(/\s+/).filter(Boolean);
+    const wordCount = words.length;
+    const lowered = (text || "").toLowerCase();
+    const matched = topic.gateKeywords.filter(k => lowered.includes(k.toLowerCase()));
+    const minWords = 60;
+    const minKeywords = Math.max(2, Math.ceil(topic.gateKeywords.length * 0.6));
+    return {
+      wordCount: wordCount,
+      keywordCount: matched.length,
+      matched: matched,
+      minWords: minWords,
+      minKeywords: minKeywords,
+      passed: wordCount >= minWords && matched.length >= minKeywords
+    };
+  }
+
+  function updateGateMeter(topic, text){
+    const r = gateCheck(topic, text);
+    $("#gate-word-count").textContent = r.wordCount;
+    $("#gate-keyword-count").textContent = r.keywordCount;
+  }
+
+  function submitGate(){
+    const topic = CONTENT.topics.find(t => t.id === CURRENT_TOPIC);
+    if (!topic) return;
+    const ts = getTopicState(CURRENT_TOPIC);
+    if (!ts.videoWatched) {
+      const fb = $("#gate-feedback");
+      fb.textContent = "Watch the video first, then come back to this step.";
+      fb.className = "gate-feedback error";
+      announce("Watch the video first.");
+      return;
+    }
+    const text = $("#gate-input").value;
+    const r = gateCheck(topic, text);
+    const fb = $("#gate-feedback");
+    if (r.passed) {
+      ts.gateCompleted = true;
+      ts.gateExplanation = text;
+      ts.gateCompletedAt = new Date(nowSim()).toISOString();
+      ts.unlockedAt = ts.gateCompletedAt;
+      logSessionActivity({ gate: { topicId: CURRENT_TOPIC, at: ts.gateCompletedAt, words: r.wordCount, text: text } });
+      saveState();
+      fb.textContent = "Unlocked. Notes and questions are ready.";
+      fb.className = "gate-feedback success";
+      announce("Gate unlocked.");
+      setTimeout(() => nav("learn", CURRENT_TOPIC), 600);
+    } else {
+      const needWords = Math.max(0, r.minWords - r.wordCount);
+      const needKw = Math.max(0, r.minKeywords - r.keywordCount);
+      const parts = [];
+      if (needWords > 0) parts.push("add about " + needWords + " more words");
+      if (needKw > 0) parts.push("include " + needKw + " more key concept(s) from the video");
+      fb.textContent = "Not quite yet. Try to " + parts.join(" and ") + ".";
+      fb.className = "gate-feedback error";
+      announce("Explanation needs more detail.");
+    }
+  }
+
+  /* ---------- LEARNING VIEW ---------- */
+
+  function renderLearn(topicId){
+    CURRENT_TOPIC = topicId;
+    const topic = CONTENT.topics.find(t => t.id === topicId);
+    if (!topic) { nav("dashboard"); return; }
+    const ts = getTopicState(topicId);
+    if (!ts.gateCompleted) { nav("topic", topicId); return; }
+    $("#learn-heading").textContent = topic.title + " - notes and recall";
+    renderNotes(topic);
+    renderMastery(topicId);
+    loadNextCard();
+  }
+
+  function renderNotes(topic){
+    const panel = $("#notes-panel");
+    panel.innerHTML = "";
+    topic.notes.forEach(section => {
+      const h = document.createElement("h3");
+      h.textContent = section.heading;
+      panel.appendChild(h);
+      const ul = document.createElement("ul");
+      section.body.forEach(line => {
+        const li = document.createElement("li");
+        li.textContent = line;
+        ul.appendChild(li);
+      });
+      panel.appendChild(ul);
+    });
+  }
+
+  function renderMastery(topicId){
+    [1,2,3].forEach(lv => {
+      const m = masteryFor(topicId, lv);
+      const pct = Math.round(m * 100);
+      $("#mastery-l" + lv).style.width = pct + "%";
+      $("#mastery-l" + lv + "-text").textContent = pct + "%";
+    });
+    const level = computeAdaptiveLevel(topicId);
+    const msg = level === 1
+      ? "Adaptive level: building DOK 1 fluency."
+      : level === 2
+        ? "Adaptive level: mixing in DOK 2 application questions."
+        : "Adaptive level: working at DOK 3 analysis questions.";
+    $("#dok-adapt-note").textContent = msg;
+  }
+
+  function loadNextCard(){
+    const card = pickCardForTopic(CURRENT_TOPIC);
+    if (!card) {
+      $("#card-question").textContent = "All cards in this topic are scheduled out. Come back tomorrow or rotate to another topic.";
+      $("#card-answer").classList.remove("revealed");
+      $("#card-dok-badge").textContent = "DONE";
+      $("#card-dok-badge").className = "dok-badge dok-1";
+      $("#card-progress").textContent = "";
+      $("#btn-reveal").disabled = true;
+      $("#rate-row").hidden = true;
+      $("#card-reveal-row").hidden = false;
+      return;
+    }
+    CURRENT_CARD = card;
+    const topic = CONTENT.topics.find(t => t.id === CURRENT_TOPIC);
+    const idx = topic.cards.findIndex(c => c.id === card.id) + 1;
+    $("#card-question").textContent = card.q;
+    $("#card-answer").textContent = card.a;
+    $("#card-answer").classList.remove("revealed");
+    $("#card-dok-badge").textContent = "DOK " + card.dok;
+    $("#card-dok-badge").className = "dok-badge dok-" + card.dok;
+    $("#card-progress").textContent = "Card " + idx + " of " + topic.cards.length;
+    $("#btn-reveal").disabled = false;
+    $("#rate-row").hidden = true;
+    $("#card-reveal-row").hidden = false;
+  }
+
+  function revealAnswer(){
+    $("#card-answer").classList.add("revealed");
+    $("#card-reveal-row").hidden = true;
+    $("#rate-row").hidden = false;
+    announce("Answer revealed. Rate how well you knew it.");
+    // Focus the "good" button by default for fast keyboard rating.
+    const good = $('.rate-btn[data-rate="good"]');
+    if (good) good.focus();
+  }
+
+  function rateCard(rating){
+    if (!CURRENT_CARD) return;
+    const cardSt = getCardState(CURRENT_TOPIC, CURRENT_CARD.id, CURRENT_CARD.dok);
+    scheduleCard(cardSt, rating);
+    recordDokOutcome(CURRENT_TOPIC, CURRENT_CARD.dok, rating);
+    logSessionActivity({ cardReview: true });
+    saveState();
+
+    // Check if topic is "done for tonight" (every card has been seen at least once today).
+    const ts = getTopicState(CURRENT_TOPIC);
+    const topic = CONTENT.topics.find(t => t.id === CURRENT_TOPIC);
+    const seenCount = topic.cards.filter(c => {
+      const s = ts.cards[c.id];
+      return s && s.history.length > 0;
+    }).length;
+    if (seenCount >= topic.cards.length) {
+      logSessionActivity({ topicCompleted: CURRENT_TOPIC });
+    }
+    renderMastery(CURRENT_TOPIC);
+    loadNextCard();
+  }
+
+  /* ---------- DAILY REVIEW ---------- */
+
+  function renderReview(){
+    const body = $("#review-body");
+    body.innerHTML = "";
+    const due = [];
+    CONTENT.topics.forEach(t => {
+      t.cards.forEach(c => {
+        const st = getCardState(t.id, c.id, c.dok);
+        if (st.reps > 0 && st.nextDue <= nowSim()) {
+          due.push({ topic: t, card: c, st: st });
+        }
+      });
+    });
+    if (!due.length) {
+      body.innerHTML = '<div class="card"><p class="empty">No cards are due right now. Come back tomorrow, or start a new topic from tonight’s pre-work.</p></div>';
+      return;
+    }
+    // Order: lowest ease first (the cards the student struggles with), then earliest due.
+    due.sort((a,b) => a.st.ease - b.st.ease || a.st.nextDue - b.st.nextDue);
+    const wrap = document.createElement("div");
+    wrap.className = "card";
+    wrap.innerHTML = "<h3>" + due.length + " card" + (due.length === 1 ? "" : "s") + " due across topics</h3>";
+    const list = document.createElement("div");
+    due.slice(0, 20).forEach(item => {
+      const row = document.createElement("div");
+      row.style.cssText = "display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-line);";
+      row.innerHTML = `
+        <div style="flex:1; min-width:0;">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;color:var(--navy);">${escapeHtml(item.topic.title)}</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:var(--gray-soft);">DOK ${item.card.dok} &middot; last rated "${item.st.lastRating || "new"}"</div>
+        </div>
+        <button class="btn btn-gold" data-review-open="${item.topic.id}">Review</button>
+      `;
+      list.appendChild(row);
+    });
+    wrap.appendChild(list);
+    body.appendChild(wrap);
+
+    $$('[data-review-open]').forEach(b => {
+      b.addEventListener("click", () => {
+        const tid = b.dataset.reviewOpen;
+        const ts = getTopicState(tid);
+        if (!ts.gateCompleted) nav("topic", tid);
+        else nav("learn", tid);
+      });
+    });
+  }
+
+  /* ---------- ENGAGEMENT REPORT ---------- */
+
+  function renderReport(){
+    const body = $("#report-body");
+    body.innerHTML = "";
+
+    const stats = document.createElement("div");
+    stats.className = "stats-row";
+    stats.innerHTML = `
+      <div class="stat"><p class="stat-label">Streak</p><p class="stat-value">${computeStreak()}</p><p class="stat-sub">days</p></div>
+      <div class="stat"><p class="stat-label">Sessions logged</p><p class="stat-value">${STATE.sessions.length}</p><p class="stat-sub">total</p></div>
+      <div class="stat"><p class="stat-label">Card reviews</p><p class="stat-value">${totalCardsReviewed()}</p><p class="stat-sub">all time</p></div>
+      <div class="stat"><p class="stat-label">Cards due now</p><p class="stat-value">${countDueGlobally()}</p><p class="stat-sub">across topics</p></div>
+    `;
+    body.appendChild(stats);
+
+    // Per-topic mastery
+    const masteryCard = document.createElement("div");
+    masteryCard.className = "card";
+    masteryCard.innerHTML = "<h3>Mastery by topic</h3>";
+    CONTENT.topics.forEach(t => {
+      const ts = STATE.topics[t.id];
+      if (!ts) return;
+      const tWrap = document.createElement("div");
+      tWrap.style.cssText = "margin:10px 0;padding:8px 0;border-bottom:1px solid var(--gray-line);";
+      const tt = document.createElement("h4");
+      tt.textContent = t.title;
+      tWrap.appendChild(tt);
+      [1,2,3].forEach(lv => {
+        const m = masteryFor(t.id, lv);
+        const pct = Math.round(m * 100);
+        const row = document.createElement("div");
+        row.className = "mastery-row";
+        row.innerHTML = `<span>DOK ${lv}</span><div class="mastery-bar"><div class="mastery-fill l${lv}" style="width:${pct}%"></div></div><span>${pct}%</span>`;
+        tWrap.appendChild(row);
+      });
+      masteryCard.appendChild(tWrap);
+    });
+    body.appendChild(masteryCard);
+
+    // Sessions list
+    const sessionsCard = document.createElement("div");
+    sessionsCard.className = "card";
+    sessionsCard.innerHTML = "<h3>Session log</h3>";
+    if (!STATE.sessions.length) {
+      sessionsCard.innerHTML += '<p class="empty">No sessions yet. Complete tonight’s pre-work to start the log.</p>';
+    } else {
+      const headerRow = document.createElement("div");
+      headerRow.className = "session-row";
+      headerRow.innerHTML = '<div class="date">Date</div><div class="topics">Topics covered</div><div>Cards</div><div>Gates</div>';
+      sessionsCard.appendChild(headerRow);
+      STATE.sessions.slice().reverse().forEach(s => {
+        const row = document.createElement("div");
+        row.className = "session-row";
+        const titles = s.topicsCompleted.map(id => {
+          const t = CONTENT.topics.find(x => x.id === id);
+          return t ? t.title : id;
+        }).join(", ") || "(in progress)";
+        row.innerHTML = `<div class="date">${s.date}</div><div class="topics">${escapeHtml(titles)}</div><div>${s.cardsReviewed}</div><div>${(s.gates || []).length}</div>`;
+        sessionsCard.appendChild(row);
+      });
+    }
+    body.appendChild(sessionsCard);
+
+    // Gate explanations (so professor can see understanding)
+    const gateCard = document.createElement("div");
+    gateCard.className = "card";
+    gateCard.innerHTML = "<h3>Your gate explanations</h3><p class=\"usage\">What you wrote in your own words to unlock each topic.</p>";
+    let any = false;
+    CONTENT.topics.forEach(t => {
+      const ts = STATE.topics[t.id];
+      if (ts && ts.gateCompleted && ts.gateExplanation) {
+        any = true;
+        const block = document.createElement("div");
+        block.style.cssText = "margin:12px 0;padding:12px 14px;background:var(--off-white);border-left:3px solid var(--gold);border-radius:4px;";
+        block.innerHTML = `<h4>${escapeHtml(t.title)}</h4><p style="white-space:pre-wrap;margin:6px 0 0;">${escapeHtml(ts.gateExplanation)}</p><p style="font-family:'DM Sans',sans-serif;font-size:11px;color:var(--gray-soft);margin-top:6px;">Submitted ${escapeHtml((ts.gateCompletedAt || "").slice(0,10))}</p>`;
+        gateCard.appendChild(block);
+      }
+    });
+    if (!any) gateCard.innerHTML += '<p class="empty">No gate explanations submitted yet.</p>';
+    body.appendChild(gateCard);
+  }
+
+  /* ---------- SETTINGS ---------- */
+
+  function renderSettings(){
+    // No dynamic content yet; buttons wired in init().
+  }
+
+  function resetAll(){
+    if (!confirm("Erase all progress on this device? This cannot be undone.")) return;
+    STATE = freshState();
+    saveState();
+    announce("All progress reset.");
+    nav("dashboard");
+  }
+
+  function simulateNextDay(){
+    STATE.daysSimulated = (STATE.daysSimulated || 0) + 1;
+    saveState();
+    announce("Simulated +1 day. Reload the dashboard to see due cards.");
+    nav("dashboard");
+  }
+
+  /* ---------- EXPORT / IMPORT ---------- */
+
+  function exportProgress(){
+    const blob = btoa(unescape(encodeURIComponent(JSON.stringify(STATE))));
+    const ta = document.createElement("textarea");
+    ta.value = blob;
+    ta.style.cssText = "position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:9999;width:80vw;height:40vh;padding:14px;border:2px solid var(--navy);border-radius:8px;font-family:monospace;font-size:12px;background:white;";
+    const close = document.createElement("button");
+    close.textContent = "Close";
+    close.className = "btn btn-primary";
+    close.style.cssText = "position:fixed;left:50%;top:calc(50% + 22vh);transform:translateX(-50%);z-index:9999;";
+    close.addEventListener("click", () => { ta.remove(); close.remove(); });
+    document.body.appendChild(ta);
+    document.body.appendChild(close);
+    ta.select();
+    announce("Progress code shown. Copy it and save it somewhere safe.");
+  }
+
+  function importProgress(){
+    const blob = prompt("Paste your exported progress code:");
+    if (!blob) return;
+    try {
+      const parsed = JSON.parse(decodeURIComponent(escape(atob(blob.trim()))));
+      if (!parsed.version) throw new Error("not valid");
+      STATE = parsed;
+      saveState();
+      announce("Progress imported.");
+      nav("dashboard");
+    } catch(e){
+      alert("That code did not parse. Make sure you copied the whole thing.");
+    }
+  }
+
+  /* ---------- UTIL ---------- */
+
+  function escapeHtml(s){
+    return String(s || "").replace(/[&<>"']/g, ch => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[ch]));
+  }
+
+  /* ---------- INIT ---------- */
+
+  function init(){
+    // Top nav
+    $$('nav.top-nav button').forEach(b => {
+      b.addEventListener("click", () => nav(b.dataset.nav));
+    });
+    // Back buttons inside views
+    $$('[data-nav]').forEach(b => {
+      if (b.closest("nav.top-nav")) return;
+      b.addEventListener("click", () => nav(b.dataset.nav));
+    });
+
+    // Topic / gate handlers
+    $("#btn-simulate-watch").addEventListener("click", simulateWatch);
+    $("#btn-mark-watched").addEventListener("click", markWatched);
+    $("#gate-input").addEventListener("input", (e) => {
+      const topic = CONTENT.topics.find(t => t.id === CURRENT_TOPIC);
+      if (topic) updateGateMeter(topic, e.target.value);
+    });
+    $("#btn-submit-gate").addEventListener("click", submitGate);
+
+    // Card handlers
+    $("#btn-reveal").addEventListener("click", revealAnswer);
+    $$('.rate-btn').forEach(b => {
+      b.addEventListener("click", () => rateCard(b.dataset.rate));
+    });
+
+    // Keyboard shortcuts for card practice
+    document.addEventListener("keydown", (e) => {
+      if (!$("#view-learn").classList.contains("active")) return;
+      if (document.activeElement && document.activeElement.tagName === "TEXTAREA") return;
+      if (e.key === " " || e.key === "Enter") {
+        if (!$("#rate-row").hidden) return; // already revealed
+        e.preventDefault();
+        revealAnswer();
+      } else if (!$("#rate-row").hidden) {
+        if (e.key === "1") rateCard("again");
+        else if (e.key === "2") rateCard("hard");
+        else if (e.key === "3") rateCard("good");
+        else if (e.key === "4") rateCard("easy");
+      }
+    });
+
+    // Report
+    $("#btn-print").addEventListener("click", () => { nav("report"); setTimeout(() => window.print(), 200); });
+    $("#btn-export").addEventListener("click", exportProgress);
+    $("#btn-import").addEventListener("click", importProgress);
+
+    // Settings
+    $("#btn-reset-day").addEventListener("click", simulateNextDay);
+    $("#btn-reset-all").addEventListener("click", resetAll);
+
+    // Track that the user opened the app today (counts toward streak even without finishing a card).
+    const today = todayKey(0);
+    if (STATE.lastOpenedDate !== today) {
+      STATE.lastOpenedDate = today;
+      // Pre-create today's session row so streak reflects activity.
+      if (!STATE.sessions.find(s => s.date === today)) {
+        STATE.sessions.push({ date: today, topicsCompleted: [], cardsReviewed: 0, gates: [] });
+      }
+      saveState();
+    }
+
+    nav("dashboard");
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+})();
+
+/* ---------- IFRAME HEIGHT SENDER (required for Kajabi embeds) ---------- */
+(function(){
+  "use strict";
+  if (window.self === window.top) return; // not in an iframe
+  const id = (function(){
+    const u = new URL(window.location.href);
+    return u.searchParams.get("iframeId") || "bio304-prework";
+  })();
+  function sendHeight(){
+    const h = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    try {
+      window.parent.postMessage({ type: "iframe-height", id: id, height: h }, "*");
+    } catch(e){}
+  }
+  window.addEventListener("load", sendHeight);
+  window.addEventListener("resize", sendHeight);
+  if (window.ResizeObserver) {
+    const ro = new ResizeObserver(sendHeight);
+    ro.observe(document.body);
+  } else {
+    setInterval(sendHeight, 800);
+  }
+})();
+</script>
+
+</body>
+</html>
