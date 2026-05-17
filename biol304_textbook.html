@@ -45,6 +45,33 @@ th{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:va
 blockquote{margin:14px 0;padding:12px 18px;background:var(--off-white);border-left:3px solid var(--gold);font-style:italic;color:var(--gray-soft)}
 strong{color:var(--navy);font-weight:700}
 footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;font-size:13px}
+/* Legacy compatibility layer: style the inline class names from older pages */
+.lede,.lead,.section-lede{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:500;color:var(--navy);font-size:16px;margin-bottom:14px}
+[class$="-grid"]{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:12px 0}
+[class$="-card"],.tier,.channel,.format-card,.skim-card,.req-card,.read-card,.contact-card,.callout,.summary-card,.week-card,.category-card,.contact-callout,.feature-item,.legend-item,.auditor-box,.help-block,.compliance-stat,.tracks .track,.note,.tip,.info,.field,.focus,.examples{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:16px 18px;box-shadow:var(--shadow-rest)}
+.preferred,.recommended{border:2px solid var(--gold);background:var(--off-white)}
+.required{border-left:4px solid var(--terra-dark)}
+.optional{border-left:4px solid var(--gold)}
+.channel-rank,.cat-status,.tier-tag,.day-tag,.track-label,.section-num,.label,.lbl,.detail-label,.contact-label{display:inline-block;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);margin-bottom:6px}
+.preferred .channel-rank{color:var(--gold-deep)}
+.channel-name,.cat-name,.contact-item h4,.track-name,.format-card h3,.skim-card h3,.req-card h3,.read-card h3,.section-title,.week-number,.read-body h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:16px;margin:0 0 6px}
+.channel-when,.detail-value,.contact-value,.tier-tag,.day-tag,.pill,.deadline,.commitment,.evidence-list .ref{display:inline-block;font-family:'DM Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--navy);background:var(--navy-tint);padding:3px 10px;border-radius:999px;margin:2px 4px 6px 0}
+.channel-time,.deadline,.cat-status,.tier-tag,.commitment{font-style:italic;color:var(--gray-soft);font-size:12px;margin-top:8px}
+.channel-desc,.read-body,.cat-body p,.format-card p{font-family:'Lora',Georgia,serif;font-size:14px;color:var(--navy);margin:6px 0;line-height:1.55}
+.callout,.note,.tip{border-left:4px solid var(--gold);padding-left:16px;background:var(--off-white)}
+.callout-label{display:block;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:4px}
+.legend-swatch{display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--gray-line);vertical-align:middle;margin-right:6px}
+.steps{counter-reset:step;padding-left:0;list-style:none}
+.steps li{counter-increment:step;position:relative;padding:10px 12px 10px 44px;border-radius:8px;border:1px solid var(--gray-line);background:var(--white);margin:6px 0}
+.steps li::before{content:counter(step);position:absolute;left:12px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--navy);color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+.rhythm-table{border-collapse:collapse;width:100%}
+.day-cell,.day-name,.instructor-cell,.student-cell{padding:8px 10px}
+.compliance-stat .stat-num{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:28px;color:var(--navy);line-height:1}
+.compliance-stat .stat-text{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--gray-soft);text-transform:uppercase;letter-spacing:.08em}
+.section-head{display:flex;align-items:baseline;gap:10px;margin:18px 0 10px}
+.section-num{background:var(--navy);color:var(--white);padding:4px 10px;border-radius:4px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px}
+.systems{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:10px 0}
+.systems > *{padding:10px 12px;background:var(--off-white);border-radius:6px;border:1px solid var(--gray-line)}
 </style>
 </head>
 <body>
@@ -57,6 +84,9 @@ footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;f
 </header>
 <main id="main" tabindex="-1">
   <div class="toolbar">
+    <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
+  </div>
+<article class="card"><div class="toolbar">
     <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
 <article class="card"><div class="page">
@@ -131,7 +161,7 @@ footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;f
   <!-- FOOTER -->
   
 
-</div></article>
+</div></article></article>
 </main>
 <footer><p>Dr. Sharilyn Rennie . BIO 304 . American River College</p></footer>
 <script>

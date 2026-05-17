@@ -60,8 +60,11 @@ h4{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:va
 .day-tile.lab-day{background:var(--off-white);border-style:dashed;border-color:var(--gold-deep)}
 .day-label{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 6px}
 .day-tile .topic{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:14px;margin:0 0 8px;line-height:1.35}
-.day-tile a{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;color:var(--navy);text-decoration:none;display:inline-block;padding:4px 0}
-.day-tile a:hover{color:var(--gold-deep);text-decoration:underline}
+.day-tile a:not(.btn){font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;color:var(--navy);text-decoration:none;display:inline-block;padding:4px 0}
+.day-tile a:not(.btn):hover{color:var(--gold-deep);text-decoration:underline}
+.day-tile a.btn{text-decoration:none}
+.day-tile a.btn-primary{color:var(--white)}
+.day-tile a.btn-primary:hover{color:var(--white)}
 .btn{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:14px;padding:10px 18px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block}
 .btn-primary{background:var(--navy);color:var(--white);border-color:var(--navy)}
 .btn-primary:hover{background:var(--navy-deep)}
