@@ -1,6 +1,6 @@
 """
 Build 17 per-module teaching PDFs from course-content.js + teaching_content.py.
-Output: BIO-304-Module-XX-<slug>.pdf in this directory.
+Compact, dense layout. No cover page. Topics flow into each other.
 """
 
 import json
@@ -9,15 +9,14 @@ import re
 import subprocess
 import sys
 from reportlab.lib.colors import HexColor
-from reportlab.lib.enums import TA_LEFT, TA_CENTER
+from reportlab.lib.enums import TA_LEFT
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.platypus import (
     SimpleDocTemplate, Paragraph, Spacer, PageBreak,
-    Table, TableStyle, KeepTogether, HRFlowable, ListFlowable, ListItem
+    HRFlowable, ListFlowable, ListItem, KeepTogether
 )
-from reportlab.pdfgen import canvas
 from reportlab.lib import colors
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -35,6 +34,7 @@ OFF_WHITE = HexColor("#FAFAF9")
 WHITE = colors.white
 GRAY_LINE = HexColor("#CFD6DA")
 GRAY_SOFT = HexColor("#5C6970")
+
 
 # --- Pull course data from course-content.js via Node ---
 
@@ -57,76 +57,63 @@ def load_course():
 COURSE = load_course()
 
 
-# --- Reusable styles ---
+# --- Compact styles ---
 
 styles = getSampleStyleSheet()
 
 S = {
-    "eyebrow": ParagraphStyle(
-        "eyebrow", parent=styles["Normal"],
-        fontName="Helvetica-Bold", fontSize=8, leading=10,
-        textColor=TERRA_DARK, spaceAfter=4, alignment=TA_LEFT
+    "module_eyebrow": ParagraphStyle(
+        "module_eyebrow", parent=styles["Normal"],
+        fontName="Helvetica-Bold", fontSize=7.5, leading=9,
+        textColor=TERRA_DARK, spaceAfter=2,
     ),
-    "cover_title": ParagraphStyle(
-        "cover_title", parent=styles["Title"],
-        fontName="Helvetica-Bold", fontSize=28, leading=34,
-        textColor=NAVY, spaceAfter=10, alignment=TA_LEFT
+    "module_title": ParagraphStyle(
+        "module_title", parent=styles["Title"],
+        fontName="Helvetica-Bold", fontSize=16, leading=20,
+        textColor=NAVY, spaceAfter=2, alignment=TA_LEFT,
     ),
-    "cover_subtitle": ParagraphStyle(
-        "cover_subtitle", parent=styles["Heading2"],
-        fontName="Helvetica-Bold", fontSize=16, leading=22,
-        textColor=TERRA_DARK, spaceAfter=20, alignment=TA_LEFT
-    ),
-    "cover_intro": ParagraphStyle(
-        "cover_intro", parent=styles["Normal"],
-        fontName="Times-Italic", fontSize=11, leading=16,
-        textColor=GRAY_SOFT, spaceAfter=20, alignment=TA_LEFT
-    ),
-    "cover_topic": ParagraphStyle(
-        "cover_topic", parent=styles["Normal"],
-        fontName="Helvetica-Bold", fontSize=12, leading=16,
-        textColor=NAVY, spaceAfter=4, leftIndent=8
-    ),
-    "cover_topic_sub": ParagraphStyle(
-        "cover_topic_sub", parent=styles["Normal"],
-        fontName="Times-Italic", fontSize=10, leading=14,
-        textColor=GRAY_SOFT, spaceAfter=10, leftIndent=8
+    "module_sub": ParagraphStyle(
+        "module_sub", parent=styles["Normal"],
+        fontName="Times-Italic", fontSize=9.5, leading=12,
+        textColor=GRAY_SOFT, spaceAfter=6,
     ),
     "topic_eyebrow": ParagraphStyle(
         "topic_eyebrow", parent=styles["Normal"],
-        fontName="Helvetica-Bold", fontSize=8, leading=10,
-        textColor=TERRA_DARK, spaceAfter=4, alignment=TA_LEFT
+        fontName="Helvetica-Bold", fontSize=7.5, leading=9,
+        textColor=TERRA_DARK, spaceAfter=1,
     ),
     "topic_title": ParagraphStyle(
         "topic_title", parent=styles["Heading1"],
-        fontName="Helvetica-Bold", fontSize=20, leading=24,
-        textColor=NAVY, spaceAfter=6, alignment=TA_LEFT
+        fontName="Helvetica-Bold", fontSize=14, leading=17,
+        textColor=NAVY, spaceBefore=2, spaceAfter=2,
     ),
     "topic_summary": ParagraphStyle(
         "topic_summary", parent=styles["Normal"],
-        fontName="Times-Italic", fontSize=11, leading=16,
-        textColor=GRAY_SOFT, spaceAfter=14, alignment=TA_LEFT
+        fontName="Times-Italic", fontSize=9.5, leading=12,
+        textColor=GRAY_SOFT, spaceAfter=4,
     ),
     "section_header": ParagraphStyle(
         "section_header", parent=styles["Heading2"],
-        fontName="Helvetica-Bold", fontSize=14, leading=18,
-        textColor=TERRA_DARK, spaceBefore=10, spaceAfter=8, alignment=TA_LEFT
+        fontName="Helvetica-Bold", fontSize=10.5, leading=13,
+        textColor=TERRA_DARK, spaceBefore=6, spaceAfter=2,
+        keepWithNext=1,
     ),
     "sub_header": ParagraphStyle(
         "sub_header", parent=styles["Heading3"],
-        fontName="Helvetica-Bold", fontSize=11, leading=14,
-        textColor=NAVY, spaceBefore=8, spaceAfter=4, alignment=TA_LEFT
+        fontName="Helvetica-Bold", fontSize=9.5, leading=12,
+        textColor=NAVY, spaceBefore=4, spaceAfter=1,
+        keepWithNext=1,
     ),
     "body": ParagraphStyle(
         "body", parent=styles["Normal"],
-        fontName="Times-Roman", fontSize=11, leading=16,
-        textColor=NAVY, spaceAfter=8, alignment=TA_LEFT
+        fontName="Times-Roman", fontSize=9.5, leading=12.5,
+        textColor=NAVY, spaceAfter=3, alignment=TA_LEFT,
     ),
     "bullet": ParagraphStyle(
         "bullet", parent=styles["Normal"],
-        fontName="Times-Roman", fontSize=10.5, leading=15,
-        textColor=NAVY, leftIndent=22, bulletIndent=8,
-        spaceBefore=2, spaceAfter=2, alignment=TA_LEFT
+        fontName="Times-Roman", fontSize=9.5, leading=12.5,
+        textColor=NAVY, leftIndent=14, bulletIndent=2,
+        spaceBefore=0, spaceAfter=1,
     ),
 }
 
@@ -136,29 +123,25 @@ S = {
 def _header_footer(canv, doc, module_label):
     canv.saveState()
     page_num = canv.getPageNumber()
-    # Skip header on the cover page (page 1)
-    if page_num > 1:
-        # Top: small module label, navy
-        canv.setFont("Helvetica-Bold", 8)
-        canv.setFillColor(TERRA_DARK)
-        canv.drawString(0.75 * inch, letter[1] - 0.45 * inch, module_label.upper())
-        # Top rule
-        canv.setStrokeColor(GRAY_LINE)
-        canv.setLineWidth(0.5)
-        canv.line(0.75 * inch, letter[1] - 0.55 * inch,
-                  letter[0] - 0.75 * inch, letter[1] - 0.55 * inch)
+    # Top: running header on every page (including the first; helpful for grab-and-go reference)
+    canv.setFont("Helvetica-Bold", 7.5)
+    canv.setFillColor(TERRA_DARK)
+    canv.drawString(0.55 * inch, letter[1] - 0.35 * inch, module_label.upper())
+    canv.setStrokeColor(GRAY_LINE)
+    canv.setLineWidth(0.5)
+    canv.line(0.55 * inch, letter[1] - 0.42 * inch,
+              letter[0] - 0.55 * inch, letter[1] - 0.42 * inch)
     # Footer
-    canv.setFont("Times-Italic", 9)
+    canv.setFont("Times-Italic", 8)
     canv.setFillColor(GRAY_SOFT)
-    canv.drawString(0.75 * inch, 0.5 * inch, "Dr. Sharilyn Rennie  .  BIO 304 Teaching Guide")
-    canv.drawRightString(letter[0] - 0.75 * inch, 0.5 * inch, f"Page {page_num}")
+    canv.drawString(0.55 * inch, 0.38 * inch, "Dr. Sharilyn Rennie  .  BIO 304 Teaching Guide")
+    canv.drawRightString(letter[0] - 0.55 * inch, 0.38 * inch, f"Page {page_num}")
     canv.restoreState()
 
 
 # --- Build helpers ---
 
 def safe_html(text):
-    """Escape characters that ReportLab's Paragraph parser treats as markup."""
     if text is None:
         return ""
     return (str(text)
@@ -168,22 +151,49 @@ def safe_html(text):
 
 
 def split_into_paragraphs(text):
-    """Split body text into paragraphs on blank lines (after \\n\\n)."""
     return [p.strip() for p in text.split("\n\n") if p.strip()]
 
 
-def topic_flowables(topic, idx, total, module_week):
+def module_header_flowables(module, module_idx, total_modules):
+    flow = []
+    flow.append(Paragraph(
+        f"BIO 304  .  HUMAN ANATOMY &amp; PHYSIOLOGY  .  WEEK {module['week']}  .  MODULE {module_idx} OF {total_modules}",
+        S["module_eyebrow"]
+    ))
+    flow.append(Paragraph(f"Module {module_idx}: {safe_html(module['title'])}", S["module_title"]))
+    topic_names = ", ".join(t["title"] for t in module["topics"])
+    flow.append(Paragraph(
+        f"Topics: {safe_html(topic_names)}",
+        S["module_sub"]
+    ))
+    flow.append(HRFlowable(width="100%", thickness=1.2, color=GOLD_DEEP, spaceBefore=2, spaceAfter=6))
+    return flow
+
+
+def topic_flowables(topic, idx, total, module_week, is_first):
     teach = TEACHING.get(topic["id"], {})
     if not teach:
         return [Paragraph(f"[No teaching content yet for {topic['id']}]", S["body"])]
 
     flow = []
-    eyebrow = f"TOPIC {idx} OF {total}  .  WEEK {module_week}  .  {len(topic['cards'])} CARDS  ({sum(1 for c in topic['cards'] if c['dok']==1)} DOK 1  /  {sum(1 for c in topic['cards'] if c['dok']==2)} DOK 2  /  {sum(1 for c in topic['cards'] if c['dok']==3)} DOK 3)"
-    flow.append(Paragraph(eyebrow, S["topic_eyebrow"]))
-    flow.append(Paragraph(safe_html(topic["title"]), S["topic_title"]))
+    if not is_first:
+        # Light divider between topics on the same page
+        flow.append(HRFlowable(width="40%", thickness=0.8, color=GRAY_LINE,
+                               spaceBefore=10, spaceAfter=6, hAlign="LEFT"))
+
+    dok1 = sum(1 for c in topic["cards"] if c["dok"] == 1)
+    dok2 = sum(1 for c in topic["cards"] if c["dok"] == 2)
+    dok3 = sum(1 for c in topic["cards"] if c["dok"] == 3)
+    eyebrow = (f"TOPIC {idx} OF {total}  .  WEEK {module_week}  .  "
+               f"{len(topic['cards'])} CARDS  ({dok1} DOK 1 / {dok2} DOK 2 / {dok3} DOK 3)")
+    # Keep the topic title block together so it never strands the heading at the bottom of a page
+    title_block = [
+        Paragraph(eyebrow, S["topic_eyebrow"]),
+        Paragraph(safe_html(topic["title"]), S["topic_title"]),
+    ]
     if topic.get("summary"):
-        flow.append(Paragraph(safe_html(topic["summary"]), S["topic_summary"]))
-    flow.append(HRFlowable(width="100%", thickness=1, color=GOLD_DEEP, spaceBefore=2, spaceAfter=10))
+        title_block.append(Paragraph(safe_html(topic["summary"]), S["topic_summary"]))
+    flow.append(KeepTogether(title_block))
 
     # Section 1: The Science
     flow.append(Paragraph("The Science", S["section_header"]))
@@ -198,55 +208,23 @@ def topic_flowables(topic, idx, total, module_week):
     flow.append(Paragraph(safe_html(teaching["before_video"]), S["body"]))
 
     flow.append(Paragraph("Common misconceptions to address", S["sub_header"]))
-    miscon_items = [ListItem(Paragraph(safe_html(m), S["bullet"]), leftIndent=12, bulletColor=GOLD_DEEP)
+    miscon_items = [ListItem(Paragraph(safe_html(m), S["bullet"]), leftIndent=10, bulletColor=GOLD_DEEP)
                     for m in teaching["misconceptions"]]
-    flow.append(ListFlowable(miscon_items, bulletType="bullet", start="circle", leftIndent=18))
+    flow.append(ListFlowable(miscon_items, bulletType="bullet", start="circle", leftIndent=14))
 
     flow.append(Paragraph("Order of operations (what to teach first)", S["sub_header"]))
     flow.append(Paragraph(safe_html(teaching["order"]), S["body"]))
 
-    flow.append(Paragraph("Self-test prompts (for students before the recall deck)", S["sub_header"]))
-    test_items = [ListItem(Paragraph(safe_html(t), S["bullet"]), leftIndent=12, bulletColor=NAVY)
+    flow.append(Paragraph("Self-test prompts", S["sub_header"]))
+    test_items = [ListItem(Paragraph(safe_html(t), S["bullet"]), leftIndent=10, bulletColor=NAVY)
                   for t in teaching["self_test"]]
-    flow.append(ListFlowable(test_items, bulletType="bullet", start="circle", leftIndent=18))
+    flow.append(ListFlowable(test_items, bulletType="bullet", start="circle", leftIndent=14))
 
     # Section 3: Why This Matters (clinical)
     flow.append(Paragraph("Why This Matters to Your Patients", S["section_header"]))
     for p in split_into_paragraphs(teach["clinical"]):
         flow.append(Paragraph(safe_html(p), S["body"]))
 
-    flow.append(Spacer(1, 14))
-    flow.append(HRFlowable(width="100%", thickness=0.5, color=GRAY_LINE, spaceBefore=4, spaceAfter=4))
-    flow.append(PageBreak())
-    return flow
-
-
-def cover_flowables(module, module_idx, total_modules):
-    flow = []
-    flow.append(Spacer(1, 60))
-    flow.append(Paragraph("BIO 304  .  HUMAN ANATOMY &amp; PHYSIOLOGY  .  MEDMASTERS COLLABORATIVE", S["eyebrow"]))
-    flow.append(Paragraph(f"Module {module_idx}: {safe_html(module['title'])}", S["cover_title"]))
-    flow.append(Paragraph(f"Week {module['week']} teaching guide  .  {len(module['topics'])} topic{'s' if len(module['topics']) != 1 else ''}", S["cover_subtitle"]))
-    flow.append(Paragraph(
-        "This is the instructor-facing companion to the student pre-work hub. For every topic, "
-        "you have the science to teach, the recommended approach to learning that material, and "
-        "why it matters to your students' future patients. Lecture order, common misconceptions, "
-        "and pre-video drawing prompts are baked in so each video lesson can hit the same "
-        "pedagogical beats.",
-        S["cover_intro"]
-    ))
-    flow.append(Spacer(1, 18))
-    flow.append(Paragraph("Topics in this module", S["section_header"]))
-    for i, t in enumerate(module["topics"], start=1):
-        flow.append(Paragraph(f"{i}. {safe_html(t['title'])}", S["cover_topic"]))
-        flow.append(Paragraph(safe_html(t.get("summary", "")), S["cover_topic_sub"]))
-    flow.append(Spacer(1, 30))
-    flow.append(HRFlowable(width=2.5 * inch, thickness=2, color=GOLD_DEEP, spaceBefore=10, spaceAfter=10))
-    flow.append(Paragraph(
-        f"Module {module_idx} of {total_modules}  .  Dr. Sharilyn Rennie",
-        S["topic_eyebrow"]
-    ))
-    flow.append(PageBreak())
     return flow
 
 
@@ -265,25 +243,21 @@ def build_module_pdf(module, module_idx, total_modules, out_dir):
     doc = SimpleDocTemplate(
         out_path,
         pagesize=letter,
-        leftMargin=0.75 * inch,
-        rightMargin=0.75 * inch,
-        topMargin=0.85 * inch,
-        bottomMargin=0.75 * inch,
+        leftMargin=0.55 * inch,
+        rightMargin=0.55 * inch,
+        topMargin=0.55 * inch,
+        bottomMargin=0.55 * inch,
         title=f"BIO 304 Module {module_idx}: {module['title']}",
         author="Dr. Sharilyn Rennie",
         subject="BIO 304 Teaching Guide",
     )
 
     story = []
-    story.extend(cover_flowables(module, module_idx, total_modules))
+    story.extend(module_header_flowables(module, module_idx, total_modules))
 
     total_topics = len(module["topics"])
     for i, topic in enumerate(module["topics"], start=1):
-        story.extend(topic_flowables(topic, i, total_topics, module["week"]))
-
-    # Drop the trailing PageBreak from the last topic to avoid an empty final page
-    while story and isinstance(story[-1], PageBreak):
-        story.pop()
+        story.extend(topic_flowables(topic, i, total_topics, module["week"], is_first=(i == 1)))
 
     def on_page(canv, doc_):
         _header_footer(canv, doc_, label)

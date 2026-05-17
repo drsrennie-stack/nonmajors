@@ -14,8 +14,8 @@
     --ocean-deep: #14304b;
     --sea-glass: #d6e4e7;
     --sea-glass-soft: #eef4f5;
-    --sand: #f5e6d3;
-    --sand-soft: #faf3e8;
+    --navy-tint-legacy: #f5e6d3;
+    --navy-tint-legacy-soft: #faf3e8;
     --terra: #c44536;
     --terra-soft: #e8a499;
     --kelp: #5a7553;
@@ -716,7 +716,7 @@
     </div>
   </div>
 
-  <!-- SECTION 01 — ANATOMICAL LANGUAGE -->
+  <!-- SECTION 01  -  ANATOMICAL LANGUAGE -->
   <section class="section" data-section="s1">
     <div class="section-head" onclick="toggleSection('s1')">
       <div class="section-num">01</div>
@@ -802,7 +802,7 @@
     </div>
   </section>
 
-  <!-- SECTION 02 — LEVELS OF ORGANIZATION & HOMEOSTASIS -->
+  <!-- SECTION 02  -  LEVELS OF ORGANIZATION & HOMEOSTASIS -->
   <section class="section" data-section="s2">
     <div class="section-head" onclick="toggleSection('s2')">
       <div class="section-num">02</div>
@@ -883,7 +883,7 @@
     </div>
   </section>
 
-  <!-- SECTION 03 — CHEMICAL LEVEL -->
+  <!-- SECTION 03  -  CHEMICAL LEVEL -->
   <section class="section" data-section="s3">
     <div class="section-head" onclick="toggleSection('s3')">
       <div class="section-num">03</div>
@@ -993,7 +993,7 @@
           </div>
           <div class="calc-result">
             <span class="calc-result-label">[H⁺] concentration</span>
-            <span class="calc-result-value" id="phResult">— <span class="unit">mol/L</span></span>
+            <span class="calc-result-value" id="phResult"> -  <span class="unit">mol/L</span></span>
           </div>
           <div class="calc-interp" id="phInterp">Enter a pH value to see the interpretation.</div>
         </div>
@@ -1008,7 +1008,7 @@
     </div>
   </section>
 
-  <!-- SECTION 04 — CELLULAR LEVEL -->
+  <!-- SECTION 04  -  CELLULAR LEVEL -->
   <section class="section" data-section="s4">
     <div class="section-head" onclick="toggleSection('s4')">
       <div class="section-num">04</div>
@@ -1091,7 +1091,7 @@
     </div>
   </section>
 
-  <!-- SECTION 05 — TISSUES -->
+  <!-- SECTION 05  -  TISSUES -->
   <section class="section" data-section="s5">
     <div class="section-head" onclick="toggleSection('s5')">
       <div class="section-num">05</div>
@@ -1203,7 +1203,7 @@
     </div>
   </section>
 
-  <!-- SECTION 06 — CLINICAL CALCULATORS -->
+  <!-- SECTION 06  -  CLINICAL CALCULATORS -->
   <section class="section" data-section="s6">
     <div class="section-head" onclick="toggleSection('s6')">
       <div class="section-num">06</div>
@@ -1287,7 +1287,7 @@
             </div>
             <div class="calc-result">
               <span class="calc-result-label">BMI</span>
-              <span class="calc-result-value" id="bmiResult">— <span class="unit">kg/m²</span></span>
+              <span class="calc-result-value" id="bmiResult"> -  <span class="unit">kg/m²</span></span>
             </div>
             <div class="calc-interp" id="bmiInterp">Enter height and weight to calculate.</div>
           </div>
@@ -1322,7 +1322,7 @@
             </div>
             <div class="calc-result">
               <span class="calc-result-label">BSA (Mosteller)</span>
-              <span class="calc-result-value" id="bsaResult">— <span class="unit">m²</span></span>
+              <span class="calc-result-value" id="bsaResult"> -  <span class="unit">m²</span></span>
             </div>
             <div class="calc-interp" id="bsaInterp">Average adult BSA is about 1.6 to 2.0 m².</div>
           </div>
@@ -1344,7 +1344,7 @@
     </div>
   </section>
 
-  <!-- SECTION 07 — REFLECTION -->
+  <!-- SECTION 07  -  REFLECTION -->
   <section class="section" data-section="s7">
     <div class="section-head" onclick="toggleSection('s7')">
       <div class="section-num">07</div>
@@ -1586,7 +1586,7 @@
   function calcPH() {
     const ph = parseFloat(document.getElementById('phInput').value);
     if (isNaN(ph) || ph < 0 || ph > 14) {
-      document.getElementById('phResult').innerHTML = '— <span class="unit">mol/L</span>';
+      document.getElementById('phResult').innerHTML = ' -  <span class="unit">mol/L</span>';
       document.getElementById('phInterp').textContent = 'Enter a pH between 0 and 14.';
       return;
     }
@@ -1608,7 +1608,7 @@
     const hu = document.getElementById('bmiHeightUnit').value;
     const wu = document.getElementById('bmiWeightUnit').value;
     if (isNaN(h) || isNaN(w) || h <= 0 || w <= 0) {
-      document.getElementById('bmiResult').innerHTML = '— <span class="unit">kg/m²</span>';
+      document.getElementById('bmiResult').innerHTML = ' -  <span class="unit">kg/m²</span>';
       document.getElementById('bmiInterp').textContent = 'Enter height and weight to calculate.';
       return;
     }
@@ -1634,7 +1634,7 @@
     const hu = document.getElementById('bsaHeightUnit').value;
     const wu = document.getElementById('bsaWeightUnit').value;
     if (isNaN(h) || isNaN(w) || h <= 0 || w <= 0) {
-      document.getElementById('bsaResult').innerHTML = '— <span class="unit">m²</span>';
+      document.getElementById('bsaResult').innerHTML = ' -  <span class="unit">m²</span>';
       document.getElementById('bsaInterp').textContent = 'Average adult BSA is about 1.6 to 2.0 m².';
       return;
     }

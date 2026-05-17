@@ -189,178 +189,6 @@ TEACHING = {
     },
 
     # ============================================================
-    # MODULE 2: CHEMISTRY OF LIFE
-    # ============================================================
-
-    "t-atoms-bonds-water": {
-        "science": (
-            "Chemistry is the substrate the rest of the course rides on, even when it does not look "
-            "chemical. Lecture density should be low. Pick three things to nail: subatomic structure, "
-            "the three bond types ranked by strength and behavior, and the properties of water."
-            "\n\n"
-            "Bonds: ionic (full electron transfer, strong in dry, weak in water because water "
-            "screens the charges), covalent (shared electrons, very strong, can be polar or nonpolar "
-            "based on electronegativity), hydrogen (weak attraction between a partial-positive H and "
-            "a partial-negative O or N, weak individually but enormously powerful in aggregate). "
-            "The hydrogen bond is the bond that holds proteins folded, DNA strands paired, and water "
-            "behaving like a liquid at room temperature. Spend time here."
-            "\n\n"
-            "Water is the medium of life and behaves the way it does because it is polar and small. "
-            "Polarity makes it a universal biological solvent (anything with a charge or partial "
-            "charge dissolves; anything hydrophobic does not, which is why membranes form). High "
-            "specific heat buffers the body against temperature swings. High heat of vaporization "
-            "is why sweating cools effectively. The chemistry is the reason your patient can stand "
-            "in a hot kitchen all day without their core temperature climbing."
-        ),
-        "teaching": {
-            "before_video": (
-                "Have students draw a water molecule with partial charges labeled, then a second "
-                "water molecule hydrogen-bonded to it. They have to commit to where the bond lives "
-                "before the answer is shown."
-            ),
-            "misconceptions": [
-                "Students think hydrogen bonds are intramolecular (within one molecule). In water "
-                "and most biology they are intermolecular (between molecules).",
-                "Polar and ionic get conflated. Polar is a partial charge; ionic is a full one.",
-                "Students assume strong bonds matter more than weak ones. In biology, weak bonds "
-                "matter MORE because they are reversible: that is the basis of enzyme-substrate "
-                "binding, receptor-ligand binding, and DNA base pairing."
-            ],
-            "order": (
-                "Atomic structure briefly, then bonds (ranked by strength), then water properties "
-                "explained as consequences of the bonds. Lead with structure; consequences follow."
-            ),
-            "self_test": [
-                "Draw three water molecules hydrogen-bonded together.",
-                "Without notes, list three properties of water and why each one matters for life.",
-                "Rank ionic, covalent, and hydrogen bonds by strength."
-            ]
-        },
-        "clinical": (
-            "This shows up later when you wonder why an IV fluid is isotonic, why a fever destabilizes "
-            "enzymes (hydrogen bonds breaking), why dehydration concentrates blood, and why anti-cancer "
-            "drugs that disrupt hydrogen bonding (cisplatin and DNA crosslinks) cause specific kinds "
-            "of cellular damage. Nurses titrating IV fluids are managing osmotic gradients, which are "
-            "water-property problems. The chemistry is invisible until something goes wrong; then it "
-            "becomes the whole story."
-        )
-    },
-
-    "t-macromolecules": {
-        "science": (
-            "Four classes, four jobs. Carbohydrates for short-term energy. Lipids for long-term "
-            "storage, membranes, and signaling molecules. Proteins for everything else (enzymes, "
-            "structure, transport, recognition). Nucleic acids for information storage and "
-            "transmission. Drive the class-to-function pairing hard; otherwise students just memorize "
-            "structures with no organizing principle."
-            "\n\n"
-            "Polymers and monomers: students should be able to name the monomer of each class. "
-            "Carbs: monosaccharides. Proteins: amino acids. Nucleic acids: nucleotides. Lipids do "
-            "not technically polymerize from monomers, which is itself worth noting (this is a "
-            "common test point). Triglycerides are glycerol plus three fatty acids; phospholipids "
-            "are the same minus one fatty acid plus a phosphate head, and that single change is what "
-            "lets them form bilayers."
-            "\n\n"
-            "Protein structure deserves its own beat. Primary (sequence) determines secondary "
-            "(alpha helix and beta sheet patterns from hydrogen bonding), which determines tertiary "
-            "(3D fold from R-group interactions), which sometimes assembles into quaternary "
-            "(multiple chains). Function depends on tertiary and quaternary. Denature the fold "
-            "(heat, pH) and you lose the function, even though every atom is still present. This "
-            "explains fever's effect on enzymes, gastric acid's effect on dietary protein, and why "
-            "egg whites turn solid when cooked."
-        ),
-        "teaching": {
-            "before_video": (
-                "Ask students to sketch one molecule from each class and label the monomer if "
-                "applicable. They have to identify the building block before you show the structure."
-            ),
-            "misconceptions": [
-                "Lipids are not all the same. Triglycerides, phospholipids, and steroids look "
-                "completely different and do different jobs.",
-                "Students think 'denaturation' means destruction. It means unfolding; the chain "
-                "is still there, just non-functional.",
-                "DNA and proteins get confused as information carriers. DNA stores the recipe; "
-                "proteins are the dish."
-            ],
-            "order": (
-                "Carbs (familiar from food), proteins (workhorse), lipids (with bilayer foreshadowing), "
-                "nucleic acids (information). Save protein structure for its own segment; do not "
-                "rush it."
-            ),
-            "self_test": [
-                "Name the monomer of each macromolecule class.",
-                "Explain why a high fever can cause enzyme dysfunction across the body.",
-                "Why do phospholipids form bilayers but triglycerides do not?"
-            ]
-        },
-        "clinical": (
-            "Nutrition assessment, IV nutrition, lab interpretation, drug metabolism, and disease "
-            "process all live here. Albumin is a protein; a low serum albumin is a marker for "
-            "malnutrition or liver disease. LDL and HDL are lipid-carrying proteins. Hemoglobin A1c "
-            "measures glycated hemoglobin (a sugar-protein bond), which integrates glucose exposure "
-            "over months. Patients on chemotherapy lose hair because chemotherapy preferentially "
-            "kills rapidly dividing cells, which require constant protein synthesis. Almost every "
-            "lab value and most medications operate on macromolecules."
-        )
-    },
-
-    "t-enzymes-energy": {
-        "science": (
-            "Enzymes lower activation energy. They do not change the equilibrium of a reaction; "
-            "they change the speed. Without enzymes, virtually no metabolic reaction would proceed "
-            "fast enough to support life at body temperature. With them, reactions that would take "
-            "weeks happen in milliseconds."
-            "\n\n"
-            "Specificity comes from the active site. The shape and chemistry of the active site "
-            "match the substrate; this is the lock-and-key model (rigid) or, more accurately, the "
-            "induced-fit model (the active site molds slightly to embrace the substrate). Anything "
-            "that disrupts the active site, temperature, pH, inhibitors, allosteric regulators, "
-            "changes enzyme activity. Most human enzymes have a pH optimum near 7.4 and a "
-            "temperature optimum near 37 degrees. Exceptions are physiologically located: pepsin in "
-            "the stomach has an optimum near pH 2."
-            "\n\n"
-            "ATP is the universal energy currency. The terminal phosphate bond is high-energy "
-            "(strictly, the energy is released when ATP is hydrolyzed and the products are more "
-            "stable than the reactant). ATP powers active transport, muscle contraction, biosynthesis. "
-            "Cells regenerate ATP continuously through cellular respiration. A cell that runs out of "
-            "ATP dies within minutes; the body has roughly enough ATP at any moment for a few "
-            "seconds of activity."
-        ),
-        "teaching": {
-            "before_video": (
-                "Ask students to draw an energy diagram of a reaction with and without an enzyme. "
-                "They have to predict what the curve looks like."
-            ),
-            "misconceptions": [
-                "Students think enzymes are consumed by reactions. They are not; they catalyze "
-                "and are regenerated.",
-                "Enzymes are thought to change equilibrium. They do not. They speed both directions.",
-                "ATP is often called 'stored energy.' More accurate: ATP is the energy currency "
-                "the cell uses for immediate transactions. Actual energy storage is in glycogen and fat."
-            ],
-            "order": (
-                "What an enzyme does (lower activation energy), why specificity exists (active site), "
-                "what regulates them (temp, pH, inhibitors), then ATP and the energy-cycling story."
-            ),
-            "self_test": [
-                "Explain in one sentence what an enzyme does to a reaction.",
-                "Predict the effect of pH 2 on a typical body enzyme.",
-                "What happens to a cell that cannot regenerate ATP? Why?"
-            ]
-        },
-        "clinical": (
-            "Every drug that ends in -statin, -mab, -ase, or -inib is operating on enzymes. Statins "
-            "inhibit HMG-CoA reductase to lower cholesterol synthesis. SSRIs block the serotonin "
-            "transporter (not technically an enzyme but a related kinetic story). Aspirin inhibits "
-            "cyclooxygenase. Heart attacks release cardiac enzymes (troponin, CK-MB) that are diagnosed "
-            "by enzyme assays. Organophosphate poisoning inhibits acetylcholinesterase, causing the "
-            "neuromuscular crisis you may see in a farming community. Fever's danger comes from enzyme "
-            "denaturation, which is why we treat fevers above 104 degrees aggressively. Understanding "
-            "enzyme kinetics is understanding most of pharmacology and toxicology."
-        )
-    },
-
-    # ============================================================
     # MODULE 3: THE CELL
     # ============================================================
 
@@ -470,58 +298,6 @@ TEACHING = {
             "edema). Cholera kills by hijacking the intestinal Cl channel, driving massive secretion. "
             "Cystic fibrosis is a defective Cl channel. Once you see the body as a network of "
             "transport mechanisms, much of clinical pharmacology becomes legible."
-        )
-    },
-
-    "t-cell-cycle-protein-synthesis": {
-        "science": (
-            "The cell cycle and protein synthesis are two different processes that share importance: "
-            "both are how a cell builds and renews itself. Teach them in sequence."
-            "\n\n"
-            "Cell cycle: interphase (G1 growth, S DNA replication, G2 final prep), then mitosis "
-            "(PMAT) and cytokinesis. Checkpoints at G1/S, G2/M, and the metaphase spindle prevent "
-            "damaged cells from dividing. Loss of checkpoint control is the cellular signature of "
-            "cancer. Most tumor suppressors (p53, Rb) sit at these checkpoints."
-            "\n\n"
-            "Protein synthesis: transcription in the nucleus reads DNA and produces mRNA. The mRNA "
-            "is processed (5' cap, poly-A tail, introns spliced out), then exits to the cytoplasm. "
-            "Translation: a ribosome reads codons three at a time, tRNAs deliver amino acids, peptide "
-            "bonds form. A single point mutation in DNA can yield a single amino acid change in "
-            "protein. Sometimes that single change is silent; sometimes it is sickle cell anemia "
-            "(one Glu-to-Val substitution in beta-globin). The fragility of this pipeline, and its "
-            "robustness against most insults, is one of biology's deepest balances."
-        ),
-        "teaching": {
-            "before_video": (
-                "Ask students to draw the cell cycle as a circle with phases labeled, and "
-                "separately draw a flowchart from DNA to protein."
-            ),
-            "misconceptions": [
-                "Students think mitosis is most of the cell cycle. Interphase is roughly 90% of "
-                "the cycle; mitosis is the brief, dramatic finale.",
-                "DNA, RNA, and protein get mashed together. DNA stores; RNA transports; protein "
-                "executes.",
-                "Students think cancer is one disease. Cancer is many diseases unified by loss of "
-                "cell-cycle control."
-            ],
-            "order": (
-                "Cell cycle (where DNA replication and mitosis fit), then DNA-RNA-protein flow, "
-                "then point mutations as a way to integrate both ideas."
-            ),
-            "self_test": [
-                "In what phase of the cell cycle does DNA replication occur?",
-                "Trace the flow of genetic information from DNA to functional protein.",
-                "Why does a mutation in a tumor suppressor gene predispose to cancer?"
-            ]
-        },
-        "clinical": (
-            "Most chemotherapy targets dividing cells: cells in S or M phase get hit hardest. The "
-            "predictable side effects (hair loss, bone marrow suppression, mouth sores, GI lining "
-            "damage) all reflect tissues with rapidly dividing cells. Cancer is checkpoint failure; "
-            "the modern era of targeted therapy attacks specific failed checkpoints rather than "
-            "all dividing cells. Genetic counseling is built on understanding how single mutations "
-            "produce phenotypes. Patient education around chemo side effects is more compassionate "
-            "and more effective when the nurse can explain why specific tissues fail first."
         )
     },
 
@@ -1864,57 +1640,58 @@ TEACHING = {
 
     "t-conduction-ecg": {
         "science": (
-            "The heart paces itself. The sinoatrial (SA) node in the right atrial wall is the "
-            "normal pacemaker, firing at about 60-100 per minute at rest. The signal spreads "
-            "through atrial myocardium to the atrioventricular (AV) node, which deliberately "
-            "delays the impulse (about 100 ms) so the atria finish contracting before the "
-            "ventricles start. Then the signal travels through the Bundle of His, down the right "
-            "and left bundle branches, and into the Purkinje fibers, which rapidly distribute it "
-            "to the ventricular myocardium."
+            "The heart paces itself. The sinoatrial (SA) node sits in the right atrial wall and fires "
+            "60-100 times per minute at rest. From there, the impulse spreads through atrial "
+            "myocardium, hits the atrioventricular (AV) node, and is deliberately held there for "
+            "about 100 milliseconds. That delay is the load-bearing concept: it lets the atria "
+            "finish contracting and emptying before the ventricles fire. Without it, atria and "
+            "ventricles would contract simultaneously, ventricular filling would collapse, and "
+            "stroke volume would crash."
             "\n\n"
-            "The ECG records this electrical activity. P wave = atrial depolarization. QRS complex "
-            "= ventricular depolarization (atrial repolarization is hidden inside it). T wave = "
-            "ventricular repolarization. The PR interval includes AV nodal delay; the QT interval "
-            "spans ventricular depolarization through repolarization. Normal intervals are well "
-            "defined, and deviations point to specific problems."
+            "After the AV delay, the signal races through the Bundle of His, down the right and "
+            "left bundle branches, and out into the Purkinje fibers, which distribute it almost "
+            "simultaneously to the entire ventricular myocardium. That speed is essential: "
+            "ventricles need to contract as a coordinated unit to eject effectively. Slow or "
+            "uneven spread produces inefficient pumping."
             "\n\n"
-            "Arrhythmias: AV block (first-degree = prolonged PR; second-degree = some dropped "
-            "beats; third-degree = atria and ventricles dissociated). Atrial fibrillation (chaotic "
-            "atrial activity, irregularly irregular ventricular response). Ventricular tachycardia "
-            "and fibrillation (loss of organized ventricular contraction; rapidly fatal without "
-            "defibrillation)."
+            "For essentials scope, you do not have to teach ECG wave-by-wave interpretation. The "
+            "core concept is the pathway and the timing. Mention arrhythmias as a category "
+            "(AV block, atrial fibrillation, ventricular fibrillation) so students recognize the "
+            "vocabulary, but you do not need them reading rhythm strips."
         ),
         "teaching": {
             "before_video": (
-                "Have students sketch the conduction pathway: SA, AV, Bundle of His, bundle "
-                "branches, Purkinje. Then they sketch the corresponding ECG: P, QRS, T."
+                "Have students draw the heart and trace the conduction pathway with arrows from "
+                "SA to ventricular myocardium. They commit before the video confirms the route."
             ),
             "misconceptions": [
-                "Students think the AV node speeds the signal up. It deliberately delays it.",
-                "The T wave is sometimes thought to represent atrial repolarization. No, that is "
-                "hidden inside the QRS; the T wave is ventricular repolarization.",
-                "ECG and EKG are the same thing (German 'kardiogramm' vs English 'cardiogram'); "
-                "students sometimes think they are different tests."
+                "Students think the AV node speeds the signal up. It deliberately slows it; the delay "
+                "is the entire point.",
+                "The conduction system is sometimes confused with the coronary arteries. Conduction "
+                "is electrical (myocardial cells specialized for fast conduction); arteries are "
+                "the blood supply.",
+                "Ventricular fibrillation is sometimes thought to be a fast heart rate. It is "
+                "chaotic activity with no coordinated contraction at all; the ventricles quiver."
             ],
             "order": (
-                "Conduction anatomy, then how each part of the pathway shows up on the ECG, then "
-                "common arrhythmias as failure modes."
+                "Pacemaker (SA node) → AV delay (why it matters) → fast ventricular spread "
+                "(Bundle of His, Purkinje) → coordinated ejection. Add arrhythmias as failure modes "
+                "of each step."
             ),
             "self_test": [
-                "What sets the normal heart rate?",
-                "What does each wave on the ECG represent?",
-                "Why is there an AV nodal delay?"
+                "Without notes, draw the conduction pathway in order.",
+                "Why is the AV nodal delay necessary?",
+                "Why is rapid Purkinje conduction important for effective ejection?"
             ]
         },
         "clinical": (
-            "Atrial fibrillation is the most common sustained arrhythmia in adults; it raises "
-            "stroke risk because stagnant blood in the fibrillating atrium can form clots that "
-            "embolize. Anticoagulation (warfarin, DOACs) is standard. Long QT syndrome (congenital "
-            "or drug-induced) predisposes to torsades de pointes, a polymorphic ventricular "
-            "tachycardia. Heart blocks may require pacemakers. Ventricular fibrillation is the "
-            "cardiac arrest rhythm that responds to defibrillation; this is why AEDs are everywhere. "
-            "Every nurse monitoring a patient on telemetry is reading the ECG for these patterns "
-            "in real time."
+            "Atrial fibrillation is the most common sustained arrhythmia and a major stroke risk: "
+            "stagnant blood in the fibrillating atrium can clot and embolize to the brain. "
+            "Anticoagulation (warfarin or a DOAC) is standard. AV blocks (especially third-degree) "
+            "drop cardiac output because atrial and ventricular contractions decouple; pacemakers "
+            "restore coordination. Ventricular fibrillation is the cardiac-arrest rhythm that "
+            "responds to defibrillation, which is why AEDs are everywhere. Every nurse on a "
+            "telemetry floor is watching this pathway in real time."
         )
     },
 
@@ -2647,61 +2424,59 @@ TEACHING = {
 
     "t-pregnancy-development": {
         "science": (
-            "Fertilization happens in the ampulla of the uterine tube, usually within hours of "
-            "ovulation. The zygote begins cleavage as it travels to the uterus, becomes a morula, "
-            "then a blastocyst with an inner cell mass (becomes the embryo) and trophoblast "
-            "(becomes the placenta). Implantation in the uterine endometrium is around day 6-7. "
-            "Trophoblast secretes hCG, which maintains the corpus luteum so progesterone keeps "
-            "the endometrium intact."
+            "Fertilization happens in the ampulla of the uterine tube within hours of ovulation. "
+            "The zygote divides as it travels toward the uterus and arrives as a blastocyst. "
+            "Implantation in the endometrium is around day 6-7. Trophoblast cells secrete hCG "
+            "almost immediately; hCG keeps the corpus luteum alive so it continues producing the "
+            "progesterone that holds the endometrium in place. By the end of the first trimester, "
+            "the placenta takes over hormone production."
             "\n\n"
-            "Embryonic period (weeks 1-8): all major organ systems form (organogenesis). Three "
-            "germ layers (ectoderm, mesoderm, endoderm) differentiate and give rise to all "
-            "tissues. Ectoderm: nervous system, epidermis. Mesoderm: muscle, bone, blood, kidney. "
-            "Endoderm: GI lining, respiratory lining, glands. This is the period of highest "
-            "vulnerability to teratogens because critical structures are forming."
+            "The placenta is the working interface between mother and fetus. It exchanges gases, "
+            "nutrients, and waste, but maternal and fetal blood never directly mix. It is also an "
+            "endocrine organ (progesterone, estrogen, hPL) and an imperfect filter (many drugs, "
+            "alcohol, and infections cross to the fetus)."
             "\n\n"
-            "Fetal period (week 9 to birth): growth and maturation. The placenta is the interface "
-            "between maternal and fetal circulations; gases, nutrients, and wastes diffuse across "
-            "without direct mixing of blood. The placenta is also a major endocrine organ in "
-            "later pregnancy, producing estrogen, progesterone, hCG, and human placental lactogen."
-            "\n\n"
-            "Trimesters: first (weeks 1-12, organogenesis, high teratogen risk), second (weeks "
-            "13-26, rapid growth, fetal movement felt), third (weeks 27 to birth, lung and CNS "
-            "maturation, weight gain). Surfactant production by Type II pneumocytes ramps up in "
-            "the final weeks; premature birth before 34 weeks risks respiratory distress syndrome."
+            "Maternal physiology changes substantially. Blood volume rises about 40 percent by "
+            "the second trimester. Cardiac output increases. Renal filtration goes up. The "
+            "respiratory drive shifts because progesterone affects ventilation. Late in pregnancy, "
+            "the enlarged uterus presses on the inferior vena cava when the mother lies supine, "
+            "compressing venous return and dropping blood pressure: classic supine hypotensive "
+            "syndrome of pregnancy. For essentials scope, skip the developmental biology details "
+            "(germ layers, organogenesis week-by-week) and focus on the maternal-fetal interface."
         ),
         "teaching": {
             "before_video": (
-                "Have students list the three germ layers and one major tissue from each. Then "
-                "outline the three trimesters with one developmental highlight per trimester."
+                "Ask students to draw the maternal-fetal interface: maternal blood on one side, "
+                "fetal vessels on the other, the placental membrane between. They have to commit "
+                "to whether blood mixes (it does not) before the video confirms."
             ),
             "misconceptions": [
-                "Students think fertilization happens in the uterus. It usually happens in the "
-                "uterine tube (ampulla).",
-                "The placenta is sometimes thought to mix maternal and fetal blood. It does not; "
-                "the two circulations are separated by the placental membrane.",
-                "All teratogenic damage is equal. The same teratogen has very different effects "
-                "depending on when in development it is encountered."
+                "Maternal and fetal blood mix at the placenta. They do not; only molecules diffuse "
+                "across the placental membrane.",
+                "Students think pregnancy is mostly about the baby. Maternal physiology changes "
+                "dramatically: blood volume, cardiac output, renal function, respiratory drive.",
+                "hCG is sometimes thought to come from the mother. It comes from trophoblast "
+                "(fetal-side) tissue, which is why it is such a specific pregnancy marker."
             ],
             "order": (
-                "Fertilization, cleavage, implantation, then organogenesis with the germ layers, "
-                "then placental function and the three trimesters."
+                "Fertilization and implantation → hormonal support (hCG, corpus luteum, placenta) "
+                "→ placental functions → maternal physiology by trimester."
             ),
             "self_test": [
                 "Where does fertilization typically occur?",
-                "Name the three primary germ layers and one structure from each.",
-                "Why is the first trimester the most vulnerable to teratogens?"
+                "What is the role of hCG in early pregnancy?",
+                "Why does maternal blood volume rise during pregnancy?"
             ]
         },
         "clinical": (
-            "Ectopic pregnancy (implantation outside the uterus, usually in the uterine tube) is "
-            "a surgical emergency; rupture causes hemorrhagic shock. Spontaneous abortion is "
-            "common in the first trimester, often from chromosomal abnormalities. Pre-eclampsia "
-            "is a third-trimester syndrome of hypertension and proteinuria, often progressing to "
-            "eclampsia (seizures) if untreated. Gestational diabetes increases fetal size and "
-            "delivery complications. Neonatal respiratory distress syndrome in preterm infants is "
-            "treated with exogenous surfactant. Folate supplementation in early pregnancy reduces "
-            "neural tube defects. Obstetric and neonatal nursing is built on this physiology."
+            "Ectopic pregnancy: implantation outside the uterus, usually in the tube. Rupture "
+            "produces hemorrhagic shock; this is a surgical emergency. Preeclampsia: third-"
+            "trimester hypertension and proteinuria, with risk of progression to eclampsia "
+            "(seizures); blood pressure monitoring and timely delivery are the management. "
+            "Gestational diabetes: places mother at risk of preeclampsia and fetus at risk of "
+            "macrosomia and shoulder dystocia at delivery. Supine hypotensive syndrome: a "
+            "third-trimester patient becomes dizzy lying flat. Roll her left to relieve IVC "
+            "compression. These are the prenatal nursing scenarios this unit prepares students for."
         )
     }
 }

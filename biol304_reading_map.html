@@ -9,14 +9,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --sand: #F2E8D5;
-    --sand-cream: #FEF9EC;
+    --navy-tint-legacy: #EDF1F3;
+    --off-white-legacy: #FAFAF9;
     --ocean-deep: #1E3D4C;
-    --ocean-mid: #335E6E;
-    --sea-glass: #8FB8BF;
-    --sea-glass-mist: #DCE8EB;
-    --terra: #A0402A;
-    --ink: #15262F;
+    --ocean-mid: #142A36;
+    --sea-glass: #EDF1F3;
+    --sea-glass-mist: #FAFAF9;
+    --terra: #A0522D;
+    --ink: #142A36;
 
     --border: 1px solid var(--sea-glass);
     --border-strong: 1.5px solid var(--ocean-mid);
@@ -103,7 +103,7 @@
   /* === Adoption note === */
   .adoption {
     margin-top: 28px;
-    background: var(--sand-cream);
+    background: var(--off-white-legacy);
     border: var(--border);
     border-left: 3px solid var(--terra);
     padding: 22px 26px;
@@ -190,7 +190,7 @@
   }
   .legend-swatch.read { background: var(--ocean-deep); color: #FFFFFF; }
   .legend-swatch.focus { background: var(--terra); color: #FFFFFF; }
-  .legend-swatch.ref { background: var(--sand); color: var(--ocean-deep); border: 1px solid var(--sea-glass); }
+  .legend-swatch.ref { background: var(--navy-tint-legacy); color: var(--ocean-deep); border: 1px solid var(--sea-glass); }
 
   /* === Reading map cards === */
   .reading-grid {
@@ -265,7 +265,7 @@
   }
   .tier-tag.read { background: var(--ocean-deep); color: #FFFFFF; }
   .tier-tag.focus { background: var(--terra); color: #FFFFFF; }
-  .tier-tag.ref { background: var(--sand); color: var(--ocean-deep); border: 1px solid var(--sea-glass); }
+  .tier-tag.ref { background: var(--navy-tint-legacy); color: var(--ocean-deep); border: 1px solid var(--sea-glass); }
 
   .tier ul {
     margin: 0;
@@ -410,7 +410,7 @@
       color: #000000 !important;
       border: 1px solid #000000 !important;
     }
-    .adoption, .tier-legend, .sand-cream { background: #FFFFFF !important; }
+    .adoption, .tier-legend, .legacy-soft-bg { background: #FFFFFF !important; }
     .section-num, .eyebrow, .ch-num, .lab-link strong { color: #000000 !important; }
     .masthead h1, .section-title, .read-number, .read-body h3,
     .skim-card h4, .adoption h3 { color: #000000 !important; }
@@ -421,8 +421,14 @@
     .adoption a { color: #000000 !important; }
   }
 </style>
+<style>/* Accessibility floor (added by standards audit) */
+.skip-link{position:absolute;left:-9999px;top:0;background:#1E3D4C;color:#fff;padding:10px 16px;z-index:100;text-decoration:none;font-weight:600;border-radius:0 0 6px 0}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid #B8924A;outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}</style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to main content</a>
 <div class="page">
 
   <!-- MASTHEAD -->
@@ -449,7 +455,7 @@
   </aside>
 
   <!-- SECTION 01: READING MAP -->
-  <section class="section" aria-labelledby="map-head">
+  <section class="section" aria-labelledby="map-head" id="main">
     <div class="section-head">
       <span class="section-num">01</span>
       <h2 class="section-title" id="map-head">Weekly Reading Map</h2>

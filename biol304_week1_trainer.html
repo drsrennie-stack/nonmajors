@@ -9,14 +9,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --sand: #F2E8D5;
-    --sand-cream: #FEF9EC;
+    --navy-tint-legacy: #EDF1F3;
+    --off-white-legacy: #FAFAF9;
     --ocean-deep: #1E3D4C;
-    --ocean-mid: #335E6E;
-    --sea-glass: #8FB8BF;
-    --sea-glass-mist: #DCE8EB;
-    --terra: #A0402A;
-    --ink: #15262F;
+    --ocean-mid: #142A36;
+    --sea-glass: #EDF1F3;
+    --sea-glass-mist: #FAFAF9;
+    --terra: #A0522D;
+    --ink: #142A36;
 
     --border: 1px solid var(--sea-glass);
     --border-strong: 1.5px solid var(--ocean-mid);
@@ -111,7 +111,7 @@
 
   /* === How-to-use === */
   .howto {
-    background: var(--sand-cream);
+    background: var(--off-white-legacy);
     border: var(--border);
     border-left: 3px solid var(--ocean-mid);
     border-radius: 4px;
@@ -218,7 +218,7 @@
 
   /* === Diagram box === */
   .diagram-box {
-    background: var(--sand-cream);
+    background: var(--off-white-legacy);
     border: 1px dashed var(--ocean-mid);
     border-radius: 3px;
     padding: 16px 20px;
@@ -263,7 +263,7 @@
   }
   .draw-instructions {
     padding: 14px 16px;
-    background: var(--sand-cream);
+    background: var(--off-white-legacy);
     border-right: 1px dashed var(--ocean-mid);
     display: flex;
     flex-direction: column;
@@ -313,7 +313,7 @@
     color: var(--sea-glass);
   }
   .draw-checklist {
-    background: var(--sand-cream);
+    background: var(--off-white-legacy);
     border: var(--border);
     border-left: 3px solid var(--terra);
     border-radius: 3px;
@@ -427,7 +427,7 @@
 
   /* === Submission card === */
   .submit-card {
-    background: linear-gradient(180deg, var(--sand-cream) 0%, #FFFFFF 100%);
+    background: linear-gradient(180deg, var(--off-white-legacy) 0%, #FFFFFF 100%);
     border: var(--border);
     border-left: 3px solid var(--terra);
     border-radius: 4px;
@@ -561,8 +561,14 @@
     .trainer-section + .trainer-section { page-break-before: auto; }
   }
 </style>
+<style>/* Accessibility floor (added by standards audit) */
+.skip-link{position:absolute;left:-9999px;top:0;background:#1E3D4C;color:#fff;padding:10px 16px;z-index:100;text-decoration:none;font-weight:600;border-radius:0 0 6px 0}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid #B8924A;outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}</style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to main content</a>
 <div class="page">
 
   <!-- COVER -->
@@ -602,7 +608,7 @@
   </aside>
 
   <!-- SECTION 1: LEVELS OF ORGANIZATION -->
-  <section class="trainer-section" aria-labelledby="s1-head">
+  <section class="trainer-section" aria-labelledby="s1-head" id="main">
     <span class="section-tag">Section 01</span>
     <h2 id="s1-head">Levels of Organization</h2>
     <p class="reading-cue">Read OpenStax Chapter 1, Section 1.2 before completing this section.</p>

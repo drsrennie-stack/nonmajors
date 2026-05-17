@@ -3,641 +3,263 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BIO 304 · Welcome</title>
+<title>BIO 304 . Syllabus Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
-    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
-    --sand: #f5e6d3; --sand-soft: #faf3e8;
-    --terra: #c44536; --terra-soft: #e8a499;
-    --kelp: #5a7553; --kelp-soft: #aabba0;
-    --paper: #fdfbf7; --line: #c9d4d8; --muted: #5a6b73;
-    --shadow-md: 0 4px 14px rgba(20, 48, 75, 0.08);
-    --shadow-lg: 0 8px 28px rgba(20, 48, 75, 0.12);
-    --radius-md: 12px; --radius-lg: 18px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
-  .skip-link:focus { left: 0; top: 0; }
-  :focus { outline: none; }
-  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-  }
-  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; }
-  .page { max-width: 1080px; margin: 0 auto; padding: 0 28px 80px; }
-
-  /* HERO */
-  .hero {
-    padding: 56px 0 32px;
-    border-bottom: 2.5px solid var(--ocean-deep);
-    margin-bottom: 36px;
-    position: relative;
-  }
-  .hero::after {
-    content: ''; position: absolute; bottom: -6px; left: 0;
-    width: 70px; height: 2px; background: var(--terra);
-  }
-  .hero-eyebrow {
-    font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--terra); margin-bottom: 16px;
-  }
-  .hero-title {
-    font-family: 'Lora', serif; font-weight: 500;
-    font-size: clamp(2.2rem, 5vw, 3.2rem);
-    line-height: 1.1; color: var(--ocean-deep);
-    letter-spacing: -0.01em; margin-bottom: 18px;
-  }
-  .hero-title em { font-style: italic; color: var(--terra); }
-  .hero-greeting {
-    font-family: 'Lora', serif; font-style: italic;
-    font-size: 1.2rem; color: var(--ocean);
-    max-width: 760px; margin-bottom: 14px;
-  }
-  .hero-meta {
-    display: inline-flex; gap: 10px; flex-wrap: wrap;
-    margin-top: 16px;
-  }
-  .hero-pill {
-    background: var(--sea-glass-soft);
-    border: 1px solid var(--sea-glass);
-    color: var(--ocean-deep);
-    padding: 5px 14px; border-radius: 999px;
-    font-size: 0.82rem; font-weight: 600;
-  }
-
-  /* SECTION HEADERS */
-  .section { margin-top: 48px; scroll-margin-top: 20px; }
-  .section-head {
-    display: flex; align-items: baseline; gap: 16px;
-    margin-bottom: 16px;
-  }
-  .section-num {
-    font-family: 'Lora', serif; font-style: italic; font-weight: 500;
-    font-size: 2rem; color: var(--terra); line-height: 1; min-width: 40px;
-  }
-  .section-titles {
-    flex: 1; padding-bottom: 10px;
-    border-bottom: 1.5px solid var(--ocean-deep);
-  }
-  .section-eyebrow {
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em;
-    text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
-  }
-  .section-title {
-    font-family: 'Lora', serif; font-weight: 500;
-    font-size: 1.55rem; color: var(--ocean-deep);
-  }
-  .section-title em { font-style: italic; color: var(--terra); }
-  .section p { margin-bottom: 14px; max-width: 820px; line-height: 1.65; }
-  .section p:last-child { margin-bottom: 0; }
-  .section h3 {
-    font-family: 'Lora', serif; font-weight: 500; font-size: 1.2rem;
-    color: var(--ocean-deep); margin: 22px 0 10px;
-  }
-
-  /* INTRO GREETING CARD */
-  .greeting-card {
-    background: white;
-    border: 1px solid var(--line);
-    border-top: 4px solid var(--terra);
-    border-radius: var(--radius-lg);
-    padding: 28px 32px;
-    margin: 0 0 36px;
-    box-shadow: var(--shadow-md);
-  }
-  .greeting-card h2 {
-    font-family: 'Lora', serif; font-weight: 500; font-size: 1.4rem;
-    color: var(--ocean-deep); margin-bottom: 12px;
-  }
-  .greeting-card h2 em { font-style: italic; color: var(--terra); }
-  .greeting-card p { margin-bottom: 12px; }
-  .greeting-card p:last-child { margin-bottom: 0; }
-  .greeting-signature {
-    font-family: 'Lora', serif; font-style: italic;
-    color: var(--ocean); text-align: right; margin-top: 14px;
-  }
-
-  /* CHECKLIST - WHAT TO DO THIS WEEK */
-  .checklist-zone {
-    background: var(--sea-glass-soft);
-    border: 1px solid var(--sea-glass);
-    border-radius: var(--radius-lg);
-    padding: 32px 32px 28px;
-    margin: 36px 0;
-    position: relative;
-    box-shadow: inset 0 1px 3px rgba(20, 48, 75, 0.04);
-  }
-  .checklist-zone::before {
-    content: ''; position: absolute; top: 0; left: 32px;
-    width: 50px; height: 3px; background: var(--ocean-deep);
-    border-radius: 0 0 3px 3px;
-  }
-  .checklist-zone h2 {
-    font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem;
-    color: var(--ocean-deep); margin-bottom: 6px;
-  }
-  .checklist-zone h2 em { font-style: italic; color: var(--terra); }
-  .checklist-zone .lede {
-    font-size: 0.94rem; color: var(--muted); margin-bottom: 22px;
-    max-width: 720px;
-  }
-
-  .checklist-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-  @media (max-width: 720px) { .checklist-grid { grid-template-columns: 1fr; } }
-
-  .check-item {
-    background: white;
-    border: 1px solid var(--line);
-    border-left: 4px solid var(--ocean-deep);
-    border-radius: var(--radius-md);
-    padding: 18px 22px;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
-    text-decoration: none;
-    color: var(--ink);
-    display: block;
-    page-break-inside: avoid;
-  }
-  .check-item:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-    border-left-color: var(--terra);
-  }
-  .check-num {
-    font-family: 'Lora', serif; font-style: italic; font-weight: 500;
-    font-size: 1.6rem; color: var(--terra); line-height: 1;
-    margin-bottom: 6px;
-  }
-  .check-title {
-    font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem;
-    color: var(--ocean-deep); margin-bottom: 6px;
-  }
-  .check-desc {
-    font-size: 0.86rem; line-height: 1.5; color: var(--ink);
-  }
-  .check-link {
-    font-size: 0.78rem; font-weight: 600;
-    color: var(--terra); margin-top: 8px; display: inline-block;
-    letter-spacing: 0.04em;
-  }
-  .check-link::after { content: ' →'; }
-
-  /* QUICK LINKS GRID */
-  .quick-links {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 16px; margin: 16px 0;
-  }
-  @media (max-width: 980px) { .quick-links { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .quick-links { grid-template-columns: 1fr; } }
-
-  .ql-card {
-    background: white;
-    border: 1px solid var(--line);
-    border-top: 4px solid var(--ocean);
-    border-radius: var(--radius-md);
-    padding: 22px 24px 18px;
-    text-decoration: none;
-    color: var(--ink);
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
-    display: flex; flex-direction: column; gap: 8px;
-    min-height: 130px;
-    position: relative;
-  }
-  .ql-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-  .ql-card.terra { border-top-color: var(--terra); }
-  .ql-card.kelp { border-top-color: var(--kelp); }
-  .ql-card.deep { border-top-color: var(--ocean-deep); }
-  .ql-icon {
-    font-family: 'Lora', serif; font-style: italic;
-    font-weight: 500; font-size: 1.6rem; color: var(--ocean);
-    line-height: 1;
-  }
-  .ql-card.terra .ql-icon { color: var(--terra); }
-  .ql-card.kelp .ql-icon { color: var(--kelp); }
-  .ql-card.deep .ql-icon { color: var(--ocean-deep); }
-  .ql-name {
-    font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--ocean-deep);
-  }
-  .ql-desc {
-    font-size: 0.86rem; line-height: 1.5; color: var(--ink); flex: 1;
-  }
-  .ql-cta {
-    font-size: 0.78rem; font-weight: 600; color: var(--ocean);
-    letter-spacing: 0.04em; margin-top: auto;
-  }
-  .ql-card.terra .ql-cta { color: var(--terra); }
-  .ql-card.kelp .ql-cta { color: var(--kelp); }
-  .ql-card.deep .ql-cta { color: var(--ocean-deep); }
-  .ql-cta::after { content: ' →'; }
-
-  /* WEEKLY RHYTHM */
-  .rhythm {
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-md);
-    padding: 24px 28px;
-    margin: 14px 0;
-  }
-  .rhythm h3 {
-    font-family: 'Lora', serif; font-weight: 500; font-size: 1.15rem;
-    color: var(--ocean-deep); margin-top: 0;
-  }
-  .rhythm h3 em { font-style: italic; color: var(--terra); }
-
-  .day-list {
-    margin: 12px 0 0; list-style: none; padding: 0;
-  }
-  .day-row {
-    display: grid; grid-template-columns: 130px 1fr;
-    gap: 18px; padding: 12px 0;
-    border-bottom: 1px dashed var(--line);
-    align-items: baseline;
-  }
-  .day-row:last-child { border-bottom: none; }
-  .day-name {
-    font-family: 'Lora', serif; font-style: italic; font-weight: 500;
-    color: var(--terra); font-size: 1rem;
-  }
-  .day-task { font-size: 0.92rem; line-height: 1.55; }
-  .day-task strong { color: var(--ocean-deep); }
-  @media (max-width: 600px) {
-    .day-row { grid-template-columns: 1fr; gap: 4px; padding: 10px 0; }
-  }
-
-  /* INSTRUCTOR BIO */
-  .bio-card {
-    background: linear-gradient(150deg, var(--ocean-deep), var(--ink));
-    color: white;
-    border-radius: var(--radius-lg);
-    padding: 32px 36px;
-    margin: 24px 0;
-    position: relative; overflow: hidden;
-  }
-  .bio-card::before {
-    content: ''; position: absolute; top: -40px; right: -40px;
-    width: 240px; height: 240px;
-    background: radial-gradient(circle, var(--terra) 0%, transparent 70%);
-    opacity: 0.3; pointer-events: none;
-  }
-  .bio-name {
-    font-family: 'Lora', serif; font-weight: 500; font-size: 1.6rem;
-    margin-bottom: 4px; position: relative; color: white;
-  }
-  .bio-name em { font-style: italic; color: var(--terra-soft); }
-  .bio-credentials {
-    font-size: 0.84rem; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--terra-soft);
-    margin-bottom: 18px; position: relative;
-  }
-  .bio-card p {
-    color: white; margin-bottom: 12px;
-    position: relative; max-width: none; line-height: 1.65;
-  }
-  .bio-card p:last-child { margin-bottom: 0; }
-  .bio-card a {
-    color: var(--terra-soft); text-decoration: none; font-weight: 600;
-  }
-  .bio-card a:hover { color: white; text-decoration: underline; }
-
-  /* CONTACT GRID */
-  .contact-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 16px; margin-top: 18px; position: relative;
-  }
-  @media (max-width: 600px) { .contact-grid { grid-template-columns: 1fr; } }
-  .contact-item {
-    background: rgba(255,255,255,0.08);
-    border-radius: 8px; padding: 12px 16px;
-  }
-  .contact-label {
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--terra-soft); margin-bottom: 4px;
-  }
-  .contact-value { font-size: 0.92rem; color: white; }
-
-  /* CLOSING */
-  .closing {
-    background: var(--sand-soft);
-    border-left: 4px solid var(--terra);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    padding: 22px 28px;
-    margin: 36px 0 0;
-  }
-  .closing-eyebrow {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--terra); margin-bottom: 8px;
-  }
-  .closing p { margin-bottom: 10px; max-width: none; }
-  .closing p:last-child { margin-bottom: 0; }
-
-  @media print {
-    body { background: white; font-size: 11pt; }
-    .skip-link { display: none !important; }
-    .greeting-card, .checklist-zone, .ql-card, .check-item, .rhythm, .bio-card, .closing {
-      break-inside: avoid; box-shadow: none;
-    }
-    .bio-card {
-      background: white !important; color: var(--ink) !important;
-      border: 2px solid var(--ink);
-    }
-    .bio-card p, .bio-name { color: var(--ink) !important; }
-    .bio-name em, .bio-credentials, .contact-label { color: var(--terra) !important; }
-    .bio-card a { color: var(--terra) !important; }
-    .contact-item { background: var(--sea-glass-soft) !important; }
-    .contact-value { color: var(--ink) !important; }
-    @page { size: letter; margin: 0.5in; }
-  }
+:root{--navy:#1E3D4C;--navy-deep:#142A36;--navy-tint:#EDF1F3;--gold:#B8924A;--gold-deep:#9A7838;--terra:#C2734D;--terra-dark:#A0522D;--white:#FFFFFF;--off-white:#FAFAF9;--gray-line:#CFD6DA;--gray-soft:#5C6970;--shadow-rest:0 1px 3px rgba(0,0,0,.08);--shadow-hover:0 8px 16px rgba(0,0,0,.10)}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.55}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600;border-radius:0 0 6px 0}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+header{background:var(--white);border-bottom:1px solid var(--gray-line);padding:32px 32px 24px}
+.eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 6px}
+h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:clamp(28px,4vw,42px);color:var(--navy);margin:0 0 4px;letter-spacing:-.01em}
+.subhead{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:clamp(15px,1.6vw,18px);color:var(--terra-dark);margin:0 0 8px}
+.usage{font-style:italic;color:var(--gray-soft);font-size:14px;margin:6px 0 0;max-width:70ch}
+main{max-width:1100px;margin:0 auto;padding:28px 24px 60px}
+h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:22px;margin:32px 0 12px}
+h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--terra-dark);font-size:18px;margin:0 0 8px}
+h4{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:14px;margin:0 0 4px}
+.card{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:22px 24px;box-shadow:var(--shadow-rest);margin-bottom:18px}
+.card-tinted{background:var(--navy-tint);border-color:var(--navy)}
+.card-list{padding-left:20px}
+.card-list li{margin:6px 0}
+.flow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
+.day-tile{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:16px;box-shadow:var(--shadow-rest)}
+.day-tile.lab-day{background:var(--off-white);border-style:dashed;border-color:var(--gold-deep)}
+.day-label{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 6px}
+.day-tile .topic{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:14px;margin:0 0 8px;line-height:1.35}
+.day-tile a{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;color:var(--navy);text-decoration:none;display:inline-block;padding:4px 0}
+.day-tile a:hover{color:var(--gold-deep);text-decoration:underline}
+.btn{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:14px;padding:10px 18px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block}
+.btn-primary{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.btn-primary:hover{background:var(--navy-deep)}
+.btn-gold{background:var(--navy);color:var(--white);border:2px solid var(--gold)}
+.btn-gold:hover{background:var(--navy-deep)}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--gray-line)}
+.btn-ghost:hover{background:var(--navy-tint);border-color:var(--navy)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 14px}
+details.week-group{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;box-shadow:var(--shadow-rest);margin-bottom:12px;overflow:hidden}
+details.week-group>summary{list-style:none;cursor:pointer;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:'Plus Jakarta Sans',system-ui,sans-serif;border-bottom:1px solid transparent}
+details.week-group>summary::-webkit-details-marker{display:none}
+details.week-group[open]>summary{border-bottom-color:var(--gray-line)}
+details.week-group>summary:hover,details.week-group>summary:focus-visible{background:var(--navy-tint)}
+details.week-group>summary::before{content:"+";display:inline-block;width:22px;height:22px;border-radius:50%;border:1px solid var(--navy);color:var(--navy);text-align:center;line-height:20px;font-weight:700;font-size:14px;flex-shrink:0}
+details.week-group[open]>summary::before{content:"-"}
+.week-label{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark)}
+.week-title{font-weight:700;font-size:16px;color:var(--navy);flex:1;min-width:200px}
+.week-body{padding:14px 22px 22px}
+.weekly-rhythm{background:var(--white);border-left:4px solid var(--gold);padding:14px 20px;border-radius:0 8px 8px 0;margin:14px 0}
+.rhythm-row{display:flex;gap:14px;padding:8px 0;border-bottom:1px dotted var(--gray-line);flex-wrap:wrap;align-items:baseline}
+.rhythm-row:last-child{border-bottom:none}
+.rhythm-day{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);min-width:90px}
+.resource-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.resource-tile{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:16px;box-shadow:var(--shadow-rest);transition:transform 200ms ease,box-shadow 200ms ease}
+.resource-tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+.resource-tile a{text-decoration:none;color:var(--navy);display:block}
+.resource-tile h4{margin-bottom:4px}
+.resource-tile p{margin:0;font-size:13px;color:var(--gray-soft);font-style:italic}
+footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;font-size:13px}
 </style>
 </head>
 <body>
-<a href="#main-content" class="skip-link">Skip to main content</a>
+<a href="#main" class="skip-link">Skip to main content</a>
+<header>
+  <p class="eyebrow">BIO 304 . HUMAN ANATOMY AND PHYSIOLOGY . AMERICAN RIVER COLLEGE</p>
+  <h1>BIO 304 Syllabus Hub</h1>
+  <p class="subhead">8-week non-majors A&amp;P essentials. Your single point of reference.</p>
+  <p class="usage">Find today's pre-work, lab workbook, discussion, and quiz from here. Everything else builds out from this page.</p>
+</header>
+<main id="main" tabindex="-1">
 
-<div class="page" id="main-content" role="main">
+<section aria-labelledby="welcome-heading">
+  <h2 id="welcome-heading">Welcome from Dr. Rennie</h2>
+  <div class="card">
+    <p>Welcome. You are about to learn how a human body works, top to bottom, in eight weeks. The pace is real, but the design is built to make it possible. Watch every lecture pre-work video. Label every lab diagram by hand. Show up for discussions on Wednesday. Take the quiz between Friday and Sunday. Repeat for eight weeks, and you will leave this course able to read clinical scenarios with an anatomist's eyes.</p>
+    <p>You will get out what you put in. The system is here to scaffold the effort.</p>
+  </div>
+</section>
 
-  <!-- HERO -->
-  <header class="hero">
-    <p class="hero-eyebrow">Summer 2026 · ARC Su26 BIOL 304 LEC 10058</p>
-    <h1 class="hero-title">Welcome to <em>BIO 304</em>.</h1>
-    <p class="hero-greeting">Essentials of Human Anatomy &amp; Physiology. Eight weeks. Your foundation for nursing, EMT, paramedic, mortuary science, and any other allied health pathway.</p>
-    <div class="hero-meta">
-      <span class="hero-pill">June 8 to July 31, 2026</span>
-      <span class="hero-pill">4.0 units</span>
-      <span class="hero-pill">Online asynchronous</span>
-      <span class="hero-pill">Free OpenStax textbook</span>
+<section aria-labelledby="rhythm-heading">
+  <h2 id="rhythm-heading">Your weekly rhythm</h2>
+  <p class="usage">Four lecture pre-work nights, one Wednesday lab + discussion day, one quiz window. Spaced recall practice runs every day.</p>
+  <div class="weekly-rhythm">
+    <div class="rhythm-row"><span class="rhythm-day">Monday</span><span>Lecture pre-work (one topic). Lab workbook for that topic. Spaced recall practice.</span></div>
+    <div class="rhythm-row"><span class="rhythm-day">Tuesday</span><span>Lecture pre-work (one topic). Lab workbook for that topic. Spaced recall practice.</span></div>
+    <div class="rhythm-row"><span class="rhythm-day">Wednesday</span><span>Discussion prompt posts. Lab catch-up and spaced recall. No new pre-work releases.</span></div>
+    <div class="rhythm-row"><span class="rhythm-day">Thursday</span><span>Lecture pre-work (one topic). Lab workbook for that topic. Spaced recall practice.</span></div>
+    <div class="rhythm-row"><span class="rhythm-day">Friday</span><span>Lecture pre-work (one topic). Lab workbook for that topic. <strong>Initial discussion post due. Quiz opens.</strong></span></div>
+    <div class="rhythm-row"><span class="rhythm-day">Saturday</span><span>Spaced recall practice. Work on quiz and discussion replies.</span></div>
+    <div class="rhythm-row"><span class="rhythm-day">Sunday</span><span><strong>Final discussion replies due. Quiz closes.</strong></span></div>
+  </div>
+</section>
+
+<section aria-labelledby="today-heading">
+  <h2 id="today-heading">Start here</h2>
+  <div class="flow-grid">
+    <div class="day-tile">
+      <p class="day-label">Step 1 . Tonight</p>
+      <p class="topic">Open the pre-work hub</p>
+      <a href="bio304-spaced-recall-prototype.html" target="_top" class="btn btn-primary">Open pre-work</a>
     </div>
-  </header>
-
-  <!-- GREETING CARD -->
-  <section class="greeting-card" aria-labelledby="greeting-head">
-    <h2 id="greeting-head">A note from <em>Dr. Rennie</em></h2>
-    <p>Welcome to BIO 304. I am genuinely glad you are here. Whether you are heading toward nursing school, EMT or paramedic certification, mortuary science, healthcare interpreting, or another path entirely, the structure and function of the human body is one of the most useful subjects you can ever learn. The vocabulary you build here will follow you for the rest of your career.</p>
-    <p>This is an intensive course. Eight weeks is half the time of a normal semester, and the work is the same. To succeed, you need to commit to a consistent rhythm: video lectures, retrieval practice on the cognitive trainer, the anatomy and physiology workbooks, and the weekly clinical portfolio page. Each week builds on the last. <strong>Falling behind is hard to recover from, so plan to engage daily rather than cramming on weekends.</strong></p>
-    <p>If something is unclear, ask in the Virtual Office Hours forum. Other students benefit from your questions, and I respond there within 24 to 48 hours. I am rooting for you. Let's get to work.</p>
-    <p class="greeting-signature">Dr. Sharilyn Rennie</p>
-  </section>
-
-  <!-- 5 THINGS TO DO -->
-  <section class="checklist-zone" aria-labelledby="checklist-head">
-    <h2 id="checklist-head">Your <em>first five steps</em></h2>
-    <p class="lede">Complete these in order before Week 1 starts. They take about 90 minutes total and set you up for success.</p>
-
-    <div class="checklist-grid">
-      <a class="check-item" href="biol304_syllabus.html" target="_blank" rel="noopener">
-        <p class="check-num">01</p>
-        <h3 class="check-title">Read the syllabus</h3>
-        <p class="check-desc">Course structure, grading, policies, and important dates. Required reading before Week 1.</p>
-        <span class="check-link">Open syllabus</span>
-      </a>
-
-      <a class="check-item" href="biol304_tech_setup.html" target="_blank" rel="noopener">
-        <p class="check-num">02</p>
-        <h3 class="check-title">Complete tech setup</h3>
-        <p class="check-desc">Install browser, configure Honorlock, verify Canvas access. About 20 minutes.</p>
-        <span class="check-link">Open tech setup</span>
-      </a>
-
-      <a class="check-item" href="submission-directions.html" target="_blank" rel="noopener">
-        <p class="check-num">03</p>
-        <h3 class="check-title">Review submission directions</h3>
-        <p class="check-desc">Three options for completing weekly work. PDF conversion guide for every device.</p>
-        <span class="check-link">Open directions</span>
-      </a>
-
-      <a class="check-item" href="clinical_portfolio_hub.html" target="_blank" rel="noopener">
-        <p class="check-num">04</p>
-        <h3 class="check-title">Preview the Clinical Portfolio</h3>
-        <p class="check-desc">Your semester project. See all 8 weekly pages and the page template you will use.</p>
-        <span class="check-link">Open portfolio hub</span>
-      </a>
-
-      <a class="check-item" href="dashboard.html" target="_blank" rel="noopener">
-        <p class="check-num">05</p>
-        <h3 class="check-title">Bookmark the Dashboard</h3>
-        <p class="check-desc">Your hub for every week. Click any week to see all 6 resources for that week in one place.</p>
-        <span class="check-link">Open dashboard</span>
-      </a>
+    <div class="day-tile">
+      <p class="day-label">Step 2 . Tonight</p>
+      <p class="topic">Print today's lab workbook</p>
+      <a href="#week-schedule" target="_top">Jump to today's workbook below &#8595;</a>
     </div>
-  </section>
-
-  <!-- WEEKLY RHYTHM -->
-  <section class="section" id="rhythm" aria-labelledby="rhythm-head">
-    <header class="section-head">
-      <span class="section-num" aria-hidden="true">01</span>
-      <div class="section-titles">
-        <p class="section-eyebrow">What a typical week looks like</p>
-        <h2 class="section-title" id="rhythm-head">Weekly <em>rhythm</em></h2>
-      </div>
-    </header>
-
-    <p>Each week of BIO 304 follows the same rhythm. The pacing is built so the work distributes evenly across 7 days rather than piling up on the weekend. <strong>You will not finish a week's work the night before it is due.</strong> Plan for daily engagement.</p>
-
-    <div class="rhythm">
-      <h3>A <em>typical week</em> at a glance</h3>
-      <ul class="day-list">
-        <li class="day-row">
-          <span class="day-name">Monday</span>
-          <span class="day-task"><strong>Watch the week's videos.</strong> Concept lectures (recorded by Dr. Rennie + curated YouTube content) and lab ID videos. About 6 hours total.</span>
-        </li>
-        <li class="day-row">
-          <span class="day-name">Tuesday</span>
-          <span class="day-task"><strong>OpenStax reading.</strong> Read assigned chapters from the Reading Map. Run cognitive trainer session 1.</span>
-        </li>
-        <li class="day-row">
-          <span class="day-name">Wednesday</span>
-          <span class="day-task"><strong>Initial discussion post due 11:59 PM.</strong> Run cognitive trainer session 2. Open the week's portfolio template.</span>
-        </li>
-        <li class="day-row">
-          <span class="day-name">Thursday</span>
-          <span class="day-task"><strong>Anatomy workbook.</strong> Complete the drawings, labels, tables, and synthesis questions.</span>
-        </li>
-        <li class="day-row">
-          <span class="day-name">Friday</span>
-          <span class="day-task"><strong>Physiology workbook.</strong> Complete the clinical dry lab, calculations, and case responses. Run cognitive trainer session 3 (optional 4th).</span>
-        </li>
-        <li class="day-row">
-          <span class="day-name">Saturday</span>
-          <span class="day-task"><strong>Build the portfolio page</strong> using content from the workbooks. Take the quiz (Honorlock-proctored, 30 min, 1 attempt).</span>
-        </li>
-        <li class="day-row">
-          <span class="day-name">Sunday</span>
-          <span class="day-task"><strong>Submit everything by 11:59 PM:</strong> anatomy workbook (PDF), physiology workbook (PDF), portfolio page (PDF), discussion replies (2). No late work accepted.</span>
-        </li>
-      </ul>
+    <div class="day-tile">
+      <p class="day-label">Step 3 . By Sunday</p>
+      <p class="topic">Discussion + quiz on Canvas</p>
+      <a href="discussions.html" target="_top">Discussion page</a>
     </div>
+  </div>
+</section>
 
-    <p style="margin-top: 14px; font-size: 0.94rem; color: var(--muted); font-style: italic;">This is one possible rhythm. Adjust to your own schedule, but keep daily engagement. The cognitive trainer in particular benefits from spaced practice (3 to 4 short sessions) rather than one long session.</p>
-  </section>
+<section aria-labelledby="schedule-heading" id="week-schedule">
+  <h2 id="schedule-heading">Full 8-week schedule</h2>
+  <p class="usage">Each week shows the four pre-work days plus the Wednesday lab and discussion block. Click any day to open its lecture pre-work or print its lab workbook.</p>
+  <details class="week-group" open>
+  <summary>
+    <span class="week-label">Week 1</span>
+    <span class="week-title">Pre-work days, lab workbooks, and discussion</span>
+  </summary>
+  <div class="week-body">
+    <div class="flow-grid"><div class="day-tile"><p class="day-label">Monday . Day 1</p><p class="topic">Levels of Organization</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day01_levels-of-organization.html" target="_top">Lab workbook &rarr;</a><p class="topic">Anatomical Terminology and Body Regions</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day01_anatomical-terminology-and-body-regions.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Tuesday . Day 2</p><p class="topic">Homeostasis and Feedback Loops</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day02_homeostasis-and-feedback-loops.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile lab-day">
+      <p class="day-label">Wednesday . Lab + Discussion</p>
+      <p class="topic">No new pre-work. Use this day for the Wednesday lab block and the discussion prompt.</p>
+      <a href="discussions.html" target="_top">Discussion page &rarr;</a>
+    </div><div class="day-tile"><p class="day-label">Thursday . Day 3</p><p class="topic">Cell Structure and Organelles</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day03_cell-structure-and-organelles.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Friday . Day 4</p><p class="topic">Membrane Transport</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day04_membrane-transport.html" target="_top">Lab workbook &rarr;</a></div></div>
+    <p class="usage" style="margin-top:14px;">Discussion: prompt opens Wednesday, initial post due Friday, replies due Sunday. Quiz opens Friday and closes Sunday.</p>
+  </div>
+</details><details class="week-group">
+  <summary>
+    <span class="week-label">Week 2</span>
+    <span class="week-title">Pre-work days, lab workbooks, and discussion</span>
+  </summary>
+  <div class="week-body">
+    <div class="flow-grid"><div class="day-tile"><p class="day-label">Monday . Day 5</p><p class="topic">Epithelial Tissue Classification</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day05_epithelial-tissue-classification.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Tuesday . Day 6</p><p class="topic">Connective Tissues</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day06_connective-tissues.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile lab-day">
+      <p class="day-label">Wednesday . Lab + Discussion</p>
+      <p class="topic">No new pre-work. Use this day for the Wednesday lab block and the discussion prompt.</p>
+      <a href="discussions.html" target="_top">Discussion page &rarr;</a>
+    </div><div class="day-tile"><p class="day-label">Thursday . Day 7</p><p class="topic">Muscle and Nervous Tissue Overview</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day07_muscle-and-nervous-tissue-overview.html" target="_top">Lab workbook &rarr;</a><p class="topic">Skin Structure and Layers</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day07_skin-structure-and-layers.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Friday . Day 8</p><p class="topic">Skin Functions and Accessory Structures</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day08_skin-functions-and-accessory-structures.html" target="_top">Lab workbook &rarr;</a></div></div>
+    <p class="usage" style="margin-top:14px;">Discussion: prompt opens Wednesday, initial post due Friday, replies due Sunday. Quiz opens Friday and closes Sunday.</p>
+  </div>
+</details><details class="week-group">
+  <summary>
+    <span class="week-label">Week 3</span>
+    <span class="week-title">Pre-work days, lab workbooks, and discussion</span>
+  </summary>
+  <div class="week-body">
+    <div class="flow-grid"><div class="day-tile"><p class="day-label">Monday . Day 9</p><p class="topic">Bone Tissue and Bone Growth</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day09_bone-tissue-and-bone-growth.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Tuesday . Day 10</p><p class="topic">Axial Skeleton</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day10_axial-skeleton.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile lab-day">
+      <p class="day-label">Wednesday . Lab + Discussion</p>
+      <p class="topic">No new pre-work. Use this day for the Wednesday lab block and the discussion prompt.</p>
+      <a href="discussions.html" target="_top">Discussion page &rarr;</a>
+    </div><div class="day-tile"><p class="day-label">Thursday . Day 11</p><p class="topic">Appendicular Skeleton</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day11_appendicular-skeleton.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Friday . Day 12</p><p class="topic">Joints and Body Movements</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day12_joints-and-body-movements.html" target="_top">Lab workbook &rarr;</a></div></div>
+    <p class="usage" style="margin-top:14px;">Discussion: prompt opens Wednesday, initial post due Friday, replies due Sunday. Quiz opens Friday and closes Sunday.</p>
+  </div>
+</details><details class="week-group">
+  <summary>
+    <span class="week-label">Week 4</span>
+    <span class="week-title">Pre-work days, lab workbooks, and discussion</span>
+  </summary>
+  <div class="week-body">
+    <div class="flow-grid"><div class="day-tile"><p class="day-label">Monday . Day 13</p><p class="topic">Skeletal Muscle Microanatomy</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day13_skeletal-muscle-microanatomy.html" target="_top">Lab workbook &rarr;</a><p class="topic">Motor Units and Muscle Mechanics</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day13_motor-units-and-muscle-mechanics.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Tuesday . Day 14</p><p class="topic">Sliding Filament and the Cross-Bridge Cycle</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day14_sliding-filament-and-the-cross-bridge-cycle.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile lab-day">
+      <p class="day-label">Wednesday . Lab + Discussion</p>
+      <p class="topic">No new pre-work. Use this day for the Wednesday lab block and the discussion prompt.</p>
+      <a href="discussions.html" target="_top">Discussion page &rarr;</a>
+    </div><div class="day-tile"><p class="day-label">Thursday . Day 15</p><p class="topic">Neurons and Resting Membrane Potential</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day15_neurons-and-resting-membrane-potential.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Friday . Day 16</p><p class="topic">Action Potentials and Synaptic Transmission</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day16_action-potentials-and-synaptic-transmission.html" target="_top">Lab workbook &rarr;</a></div></div>
+    <p class="usage" style="margin-top:14px;">Discussion: prompt opens Wednesday, initial post due Friday, replies due Sunday. Quiz opens Friday and closes Sunday.</p>
+  </div>
+</details><details class="week-group">
+  <summary>
+    <span class="week-label">Week 5</span>
+    <span class="week-title">Pre-work days, lab workbooks, and discussion</span>
+  </summary>
+  <div class="week-body">
+    <div class="flow-grid"><div class="day-tile"><p class="day-label">Monday . Day 17</p><p class="topic">CNS Organization: Brain and Spinal Cord</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day17_cns-organization-brain-and-spinal-cord.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Tuesday . Day 18</p><p class="topic">PNS and Autonomic Nervous System</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day18_pns-and-autonomic-nervous-system.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile lab-day">
+      <p class="day-label">Wednesday . Lab + Discussion</p>
+      <p class="topic">No new pre-work. Use this day for the Wednesday lab block and the discussion prompt.</p>
+      <a href="discussions.html" target="_top">Discussion page &rarr;</a>
+    </div><div class="day-tile"><p class="day-label">Thursday . Day 19</p><p class="topic">Vision</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day19_vision.html" target="_top">Lab workbook &rarr;</a><p class="topic">Hearing and Equilibrium</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day19_hearing-and-equilibrium.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Friday . Day 20</p><p class="topic">Hormone Mechanisms</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day20_hormone-mechanisms.html" target="_top">Lab workbook &rarr;</a><p class="topic">Major Endocrine Glands</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day20_major-endocrine-glands.html" target="_top">Lab workbook &rarr;</a></div></div>
+    <p class="usage" style="margin-top:14px;">Discussion: prompt opens Wednesday, initial post due Friday, replies due Sunday. Quiz opens Friday and closes Sunday.</p>
+  </div>
+</details><details class="week-group">
+  <summary>
+    <span class="week-label">Week 6</span>
+    <span class="week-title">Pre-work days, lab workbooks, and discussion</span>
+  </summary>
+  <div class="week-body">
+    <div class="flow-grid"><div class="day-tile"><p class="day-label">Monday . Day 21</p><p class="topic">Blood Composition and Hemopoiesis</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day21_blood-composition-and-hemopoiesis.html" target="_top">Lab workbook &rarr;</a><p class="topic">Hemostasis and Blood Typing</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day21_hemostasis-and-blood-typing.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Tuesday . Day 22</p><p class="topic">Heart Anatomy and the Cardiac Cycle</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day22_heart-anatomy-and-the-cardiac-cycle.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile lab-day">
+      <p class="day-label">Wednesday . Lab + Discussion</p>
+      <p class="topic">No new pre-work. Use this day for the Wednesday lab block and the discussion prompt.</p>
+      <a href="discussions.html" target="_top">Discussion page &rarr;</a>
+    </div><div class="day-tile"><p class="day-label">Thursday . Day 23</p><p class="topic">Cardiac Conduction System</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day23_cardiac-conduction-system.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Friday . Day 24</p><p class="topic">Blood Vessels and Hemodynamics</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day24_blood-vessels-and-hemodynamics.html" target="_top">Lab workbook &rarr;</a></div></div>
+    <p class="usage" style="margin-top:14px;">Discussion: prompt opens Wednesday, initial post due Friday, replies due Sunday. Quiz opens Friday and closes Sunday.</p>
+  </div>
+</details><details class="week-group">
+  <summary>
+    <span class="week-label">Week 7</span>
+    <span class="week-title">Pre-work days, lab workbooks, and discussion</span>
+  </summary>
+  <div class="week-body">
+    <div class="flow-grid"><div class="day-tile"><p class="day-label">Monday . Day 25</p><p class="topic">Lymphatic System and Innate Immunity</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day25_lymphatic-system-and-innate-immunity.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Tuesday . Day 26</p><p class="topic">Adaptive Immunity</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day26_adaptive-immunity.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile lab-day">
+      <p class="day-label">Wednesday . Lab + Discussion</p>
+      <p class="topic">No new pre-work. Use this day for the Wednesday lab block and the discussion prompt.</p>
+      <a href="discussions.html" target="_top">Discussion page &rarr;</a>
+    </div><div class="day-tile"><p class="day-label">Thursday . Day 27</p><p class="topic">Respiratory Anatomy and Mechanics</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day27_respiratory-anatomy-and-mechanics.html" target="_top">Lab workbook &rarr;</a><p class="topic">Gas Exchange and Transport</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day27_gas-exchange-and-transport.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Friday . Day 28</p><p class="topic">GI Tract Anatomy and Motility</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day28_gi-tract-anatomy-and-motility.html" target="_top">Lab workbook &rarr;</a><p class="topic">Digestion and Absorption</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day28_digestion-and-absorption.html" target="_top">Lab workbook &rarr;</a></div></div>
+    <p class="usage" style="margin-top:14px;">Discussion: prompt opens Wednesday, initial post due Friday, replies due Sunday. Quiz opens Friday and closes Sunday.</p>
+  </div>
+</details><details class="week-group">
+  <summary>
+    <span class="week-label">Week 8</span>
+    <span class="week-title">Pre-work days, lab workbooks, and discussion</span>
+  </summary>
+  <div class="week-body">
+    <div class="flow-grid"><div class="day-tile"><p class="day-label">Monday . Day 29</p><p class="topic">Kidney Anatomy and Glomerular Filtration</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day29_kidney-anatomy-and-glomerular-filtration.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Tuesday . Day 30</p><p class="topic">Tubular Function and Urine Concentration</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day30_tubular-function-and-urine-concentration.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile lab-day">
+      <p class="day-label">Wednesday . Lab + Discussion</p>
+      <p class="topic">No new pre-work. Use this day for the Wednesday lab block and the discussion prompt.</p>
+      <a href="discussions.html" target="_top">Discussion page &rarr;</a>
+    </div><div class="day-tile"><p class="day-label">Thursday . Day 31</p><p class="topic">Fluid, Electrolyte, and Acid-Base Balance</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day31_fluid-electrolyte-and-acid-base-balance.html" target="_top">Lab workbook &rarr;</a><p class="topic">Male Reproductive System</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day31_male-reproductive-system.html" target="_top">Lab workbook &rarr;</a></div><div class="day-tile"><p class="day-label">Friday . Day 32</p><p class="topic">Female Reproductive System</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day32_female-reproductive-system.html" target="_top">Lab workbook &rarr;</a><p class="topic">Pregnancy A&P (Basics)</p><a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br><a href="workbook_day32_pregnancy-a-p-basics.html" target="_top">Lab workbook &rarr;</a></div></div>
+    <p class="usage" style="margin-top:14px;">Discussion: prompt opens Wednesday, initial post due Friday, replies due Sunday. Quiz opens Friday and closes Sunday.</p>
+  </div>
+</details>
+</section>
 
-  <!-- COURSE COMPONENTS LINKS -->
-  <section class="section" id="components" aria-labelledby="components-head">
-    <header class="section-head">
-      <span class="section-num" aria-hidden="true">02</span>
-      <div class="section-titles">
-        <p class="section-eyebrow">Everything you will use this semester</p>
-        <h2 class="section-title" id="components-head">Course <em>resources</em></h2>
-      </div>
-    </header>
+<section aria-labelledby="resources-heading">
+  <h2 id="resources-heading">Course resources</h2>
+  <div class="resource-grid">
+    <div class="resource-tile"><a href="bio304-spaced-recall-prototype.html" target="_top"><h4>Pre-work hub</h4><p>Daily lecture pre-work with spaced recall practice.</p></a></div>
+    <div class="resource-tile"><a href="discussions.html" target="_top"><h4>Discussions</h4><p>Weekly prompts and post submissions on Canvas.</p></a></div>
+    <div class="resource-tile"><a href="dashboard.html" target="_top"><h4>Dashboard</h4><p>Your progress at a glance.</p></a></div>
+    <div class="resource-tile"><a href="clinical_portfolio_hub.html" target="_top"><h4>Clinical Portfolio</h4><p>Apply concepts to real patient scenarios.</p></a></div>
+    <div class="resource-tile"><a href="biol304_textbook.html" target="_top"><h4>Textbook</h4><p>OpenStax A&amp;P 2e (free).</p></a></div>
+    <div class="resource-tile"><a href="biol304_reading_map.html" target="_top"><h4>Reading map</h4><p>Which textbook sections support each topic.</p></a></div>
+    <div class="resource-tile"><a href="biol304_tech_setup.html" target="_top"><h4>Tech setup</h4><p>What you need to participate online.</p></a></div>
+    <div class="resource-tile"><a href="biol304_how_to_reach_me.html" target="_top"><h4>How to reach me</h4><p>Office hours, email, and response times.</p></a></div>
+    <div class="resource-tile"><a href="submission-directions.html" target="_top"><h4>Submission directions</h4><p>How and where to turn in work.</p></a></div>
+    <div class="resource-tile"><a href="biol304_accessibility.html" target="_top"><h4>Accessibility</h4><p>How to request accommodations.</p></a></div>
+    <div class="resource-tile"><a href="biol304_rsi_statement.html" target="_top"><h4>Regular substantive interaction</h4><p>What you can expect from me each week.</p></a></div>
+    <div class="resource-tile"><a href="integrity.html" target="_top"><h4>Academic integrity</h4><p>The hand-labeling rule and other expectations.</p></a></div>
+  </div>
+</section>
 
-    <p>Bookmark these key pages. Each one opens in your browser and is part of the course shell on Canvas.</p>
-
-    <div class="quick-links">
-      <a class="ql-card terra" href="biol304_syllabus.html" target="_blank" rel="noopener">
-        <span class="ql-icon" aria-hidden="true">§</span>
-        <span class="ql-name">Syllabus</span>
-        <span class="ql-desc">Course structure, grading, policies, and dates. Always reference this first.</span>
-        <span class="ql-cta">Open</span>
-      </a>
-
-      <a class="ql-card deep" href="dashboard.html" target="_blank" rel="noopener">
-        <span class="ql-icon" aria-hidden="true">▦</span>
-        <span class="ql-name">Course Dashboard</span>
-        <span class="ql-desc">Click any week to see that week's trainer, workbooks, portfolio, videos, and discussion forum.</span>
-        <span class="ql-cta">Open</span>
-      </a>
-
-      <a class="ql-card kelp" href="clinical_portfolio_hub.html" target="_blank" rel="noopener">
-        <span class="ql-icon" aria-hidden="true">◆</span>
-        <span class="ql-name">Clinical Portfolio</span>
-        <span class="ql-desc">Your semester project. 8 weekly pages building toward a personal clinical reference.</span>
-        <span class="ql-cta">Open</span>
-      </a>
-
-      <a class="ql-card" href="submission-directions.html" target="_blank" rel="noopener">
-        <span class="ql-icon" aria-hidden="true">↥</span>
-        <span class="ql-name">Submission Directions</span>
-        <span class="ql-desc">Three options for completing your work. How to convert anything to PDF.</span>
-        <span class="ql-cta">Open</span>
-      </a>
-
-      <a class="ql-card" href="biol304_reading_map.html" target="_blank" rel="noopener">
-        <span class="ql-icon" aria-hidden="true">⚏</span>
-        <span class="ql-name">Reading Map</span>
-        <span class="ql-desc">Week-by-week OpenStax chapter assignments and reading priorities.</span>
-        <span class="ql-cta">Open</span>
-      </a>
-
-      <a class="ql-card" href="biol304_tech_setup.html" target="_blank" rel="noopener">
-        <span class="ql-icon" aria-hidden="true">⌨</span>
-        <span class="ql-name">Tech Setup</span>
-        <span class="ql-desc">Browser config, Honorlock install, Canvas notification setup.</span>
-        <span class="ql-cta">Open</span>
-      </a>
-
-      <a class="ql-card" href="biol304_accessibility.html" target="_blank" rel="noopener">
-        <span class="ql-icon" aria-hidden="true">⊕</span>
-        <span class="ql-name">Accessibility</span>
-        <span class="ql-desc">DSPS contact info, accommodations process, and course design choices.</span>
-        <span class="ql-cta">Open</span>
-      </a>
-
-      <a class="ql-card terra" href="concept_videos.html" target="_blank" rel="noopener">
-        <span class="ql-icon" aria-hidden="true">▶</span>
-        <span class="ql-name">Concept Videos</span>
-        <span class="ql-desc">All recorded lectures and curated content, organized by week.</span>
-        <span class="ql-cta">Open</span>
-      </a>
-
-      <a class="ql-card kelp" href="discussions.html" target="_blank" rel="noopener">
-        <span class="ql-icon" aria-hidden="true">⌬</span>
-        <span class="ql-name">Discussion Prompts</span>
-        <span class="ql-desc">Each week's discussion forum prompts in one place.</span>
-        <span class="ql-cta">Open</span>
-      </a>
-    </div>
-  </section>
-
-  <!-- INSTRUCTOR BIO -->
-  <section class="section" id="instructor" aria-labelledby="instr-head">
-    <header class="section-head">
-      <span class="section-num" aria-hidden="true">03</span>
-      <div class="section-titles">
-        <p class="section-eyebrow">Your instructor</p>
-        <h2 class="section-title" id="instr-head">Meet <em>Dr. Rennie</em></h2>
-      </div>
-    </header>
-
-    <div class="bio-card">
-      <h3 class="bio-name">Dr. <em>Sharilyn Rennie</em></h3>
-      <p class="bio-credentials">Anatomy &amp; Physiology · American River College</p>
-
-      <p>I have been teaching anatomy and physiology to allied health students for years, watching them go on to nursing school, EMT and paramedic programs, mortuary science, and dozens of other paths. The students who succeed share a few habits: they engage with material consistently rather than cramming, they are not afraid to ask questions in public forums, and they connect what they are learning to where they are headed.</p>
-
-      <p>This course is built around those habits. Every component, from the cognitive trainer to the clinical portfolio, is designed to support the way students actually learn anatomy. If something is not working for you, tell me. I adjust based on what students need.</p>
-
-      <div class="contact-grid">
-        <div class="contact-item">
-          <p class="contact-label">Email</p>
-          <p class="contact-value"><a href="mailto:rennies@arc.losrios.edu">rennies@arc.losrios.edu</a></p>
-        </div>
-        <div class="contact-item">
-          <p class="contact-label">Office hours</p>
-          <p class="contact-value">Virtual Office Hours forum (Canvas)</p>
-        </div>
-        <div class="contact-item">
-          <p class="contact-label">Response time</p>
-          <p class="contact-value">24 to 48 hours, weekdays</p>
-        </div>
-        <div class="contact-item">
-          <p class="contact-label">One-on-one Zoom</p>
-          <p class="contact-value">By appointment, email to schedule</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ASKING QUESTIONS -->
-  <section class="section" id="questions" aria-labelledby="questions-head">
-    <header class="section-head">
-      <span class="section-num" aria-hidden="true">04</span>
-      <div class="section-titles">
-        <p class="section-eyebrow">How to get help</p>
-        <h2 class="section-title" id="questions-head">Where to <em>ask questions</em></h2>
-      </div>
-    </header>
-
-    <p>Most questions in this course should go in the <strong>Virtual Office Hours forum</strong> on Canvas, not in email. Here is why:</p>
-
-    <ul style="padding-left: 24px; margin: 8px 0 14px;">
-      <li><strong>Other students benefit.</strong> If you have a question, three other students probably have it too. Posting publicly means everyone gets the answer.</li>
-      <li><strong>Faster responses.</strong> I check the forum regularly. Email gets answered too, but the forum is my first stop.</li>
-      <li><strong>Searchable record.</strong> Questions and answers stay in the forum all semester so you can refer back.</li>
-      <li><strong>Less email traffic.</strong> The fewer duplicate questions I answer in email, the more time I have for the harder ones.</li>
-    </ul>
-
-    <p><strong>Use email or Canvas Inbox for confidential matters only:</strong> grade questions, accommodation needs, personal circumstances, anything you would not want classmates to see.</p>
-
-    <p><strong>For one-on-one Zoom meetings:</strong> email me to schedule. Include your questions in that email so I can prepare resources before we meet. Zoom: <a href="https://lrccd.zoom.us/j/4748608065" style="color: var(--terra); text-decoration: none; font-weight: 600;">https://lrccd.zoom.us/j/4748608065</a></p>
-  </section>
-
-  <!-- CLOSING -->
-  <section class="closing" aria-labelledby="closing-head">
-    <p class="closing-eyebrow">Ready to begin?</p>
-    <p id="closing-head">Open the <a href="biol304_syllabus.html" style="color: var(--terra); font-weight: 600;">syllabus</a> and read it carefully. Then complete tech setup. Then visit the <a href="dashboard.html" style="color: var(--terra); font-weight: 600;">dashboard</a> to find Week 1 and get started. The first day of class is <strong>Monday, June 8, 2026</strong>.</p>
-    <p>Welcome aboard. I will see you in the forum.</p>
-  </section>
-
-</div>
-
+</main>
+<footer><p>Dr. Sharilyn Rennie . BIO 304 Syllabus Hub . American River College</p></footer>
 <script>
-  (function () {
-    const FRAME_ID = 'bio304-course-home';
-    function sendHeight() {
-      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
-      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
-    }
-    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
-    window.addEventListener('load', sendHeight);
-    window.addEventListener('resize', sendHeight);
-    setTimeout(sendHeight, 200);
-    setTimeout(sendHeight, 800);
-  })();
+(function(){
+  if(window.self===window.top)return;
+  function sendHeight(){
+    const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight);
+    try{window.parent.postMessage({type:'iframe-height',id:'bio304-syllabus-hub',height:h},'*');}catch(e){}
+  }
+  window.addEventListener('load',sendHeight);
+  window.addEventListener('resize',sendHeight);
+  if(window.ResizeObserver){new ResizeObserver(sendHeight).observe(document.body);}else{setInterval(sendHeight,800);}
+})();
 </script>
 </body>
 </html>

@@ -9,14 +9,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --sand: #F2E8D5;
-    --sand-cream: #FEF9EC;
+    --navy-tint-legacy: #EDF1F3;
+    --off-white-legacy: #FAFAF9;
     --ocean-deep: #1E3D4C;
-    --ocean-mid: #335E6E;
-    --sea-glass: #8FB8BF;
-    --sea-glass-mist: #DCE8EB;
-    --terra: #A0402A;
-    --ink: #15262F;
+    --ocean-mid: #142A36;
+    --sea-glass: #EDF1F3;
+    --sea-glass-mist: #FAFAF9;
+    --terra: #A0522D;
+    --ink: #142A36;
 
     --border: 1px solid var(--sea-glass);
     --border-strong: 1.5px solid var(--ocean-mid);
@@ -245,7 +245,7 @@
     letter-spacing: 0.10em;
     text-transform: uppercase;
     color: var(--terra);
-    background: var(--sand-cream);
+    background: var(--off-white-legacy);
     border: 1px solid var(--terra);
     border-radius: 2px;
     padding: 4px 10px;
@@ -313,7 +313,7 @@
   /* === Lab preview === */
   .lab-preview {
     margin-top: 16px;
-    background: linear-gradient(180deg, #FFFFFF 0%, var(--sand-cream) 100%);
+    background: linear-gradient(180deg, #FFFFFF 0%, var(--off-white-legacy) 100%);
     border: var(--border);
     border-left: 3px solid var(--terra);
     border-radius: 4px;
@@ -428,8 +428,14 @@
     }
   }
 </style>
+<style>/* Accessibility floor (added by standards audit) */
+.skip-link{position:absolute;left:-9999px;top:0;background:#1E3D4C;color:#fff;padding:10px 16px;z-index:100;text-decoration:none;font-weight:600;border-radius:0 0 6px 0}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid #B8924A;outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}</style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to main content</a>
 <div class="page">
 
   <!-- MASTHEAD -->
@@ -454,7 +460,7 @@
   </aside>
 
   <!-- SECTION 01: WHAT YOU'LL LEARN -->
-  <section class="section" aria-labelledby="learn-head">
+  <section class="section" aria-labelledby="learn-head" id="main">
     <div class="section-head">
       <span class="section-num">01</span>
       <h2 class="section-title" id="learn-head">What You&rsquo;ll Learn</h2>
