@@ -382,28 +382,10 @@
   }
   .gate-meter span strong { color: var(--navy); }
 
-  /* Learning view: two-column */
-  .learn-grid {
-    display: grid;
-    grid-template-columns: minmax(260px, 1fr) 1.4fr;
-    gap: 22px;
+  /* Learning view: single column. Notes are an external link, not an inline panel. */
+  .learn-single {
+    max-width: 720px;
   }
-  @media (max-width: 820px) {
-    .learn-grid { grid-template-columns: 1fr; }
-  }
-  .notes-panel {
-    background: var(--white);
-    border: 1px solid var(--gray-line);
-    border-radius: 10px;
-    padding: 20px 22px;
-    max-height: 70vh;
-    overflow-y: auto;
-    box-shadow: var(--shadow-rest);
-  }
-  .notes-panel h3 { margin-top: 18px; }
-  .notes-panel h3:first-child { margin-top: 0; }
-  .notes-panel ul, .notes-panel ol { padding-left: 22px; }
-  .notes-panel li { margin: 4px 0; }
 
   /* Card practice */
   .practice-card {
@@ -728,7 +710,7 @@
       <div class="stat">
         <p class="stat-label">Topics tonight</p>
         <p class="stat-value" id="stat-topics-tonight">0</p>
-        <p class="stat-sub">new pre-work</p>
+        <p class="stat-sub" id="stat-topics-tonight-sub">today&rsquo;s pre-work</p>
       </div>
       <div class="stat">
         <p class="stat-label">All-time cards</p>
@@ -765,9 +747,15 @@
       <label for="gate-input">In your own words, what did this video teach you? Aim for at least 60 words and include the key ideas.</label>
       <textarea id="gate-input" aria-describedby="gate-help" placeholder="Type your explanation here..."></textarea>
       <p id="gate-help" class="usage">Your explanation stays on this device. It will print with your engagement report so your professor can see your understanding.</p>
+      <p class="usage" id="gate-preview-hint" hidden style="margin-top:6px;">
+        <strong style="color:var(--terra-dark);font-style:normal;">Preview mode hint:</strong>
+        the system is looking for these key concepts in your explanation:
+        <span id="gate-preview-keywords" style="font-family:'DM Sans',system-ui,sans-serif;font-style:normal;color:var(--navy);"></span>
+      </p>
       <div class="gate-meter" aria-live="polite">
         <span>Words: <strong id="gate-word-count">0</strong> / 60</span>
         <span>Concepts found: <strong id="gate-keyword-count">0</strong> / <span id="gate-keyword-target">0</span></span>
+        <button type="button" id="btn-toggle-preview-hint" class="btn btn-ghost" style="padding:4px 10px;font-size:12px;margin-left:auto;">Show concepts (preview)</button>
       </div>
       <div class="toolbar">
         <button type="button" class="btn btn-primary" id="btn-submit-gate">Unlock notes and questions</button>
@@ -776,14 +764,17 @@
     </div>
   </section>
 
-  <!-- LEARNING VIEW (notes + cards) -->
+  <!-- LEARNING VIEW (cards; notes link out to the existing notes hub) -->
   <section class="view" id="view-learn" aria-labelledby="learn-heading">
-    <button type="button" class="btn btn-ghost" data-nav="dashboard" style="margin-bottom:14px;">&larr; Back to tonight&rsquo;s list</button>
-    <h2 id="learn-heading">Notes and spaced recall</h2>
-    <div class="learn-grid">
-      <aside class="notes-panel" id="notes-panel" aria-label="Topic notes">
-        <p class="empty">Notes load here.</p>
-      </aside>
+    <div class="toolbar" style="margin-bottom:14px;">
+      <button type="button" class="btn btn-ghost" data-nav="dashboard">&larr; Back to tonight&rsquo;s list</button>
+      <a id="link-open-notes" class="btn btn-gold" target="_blank" rel="noopener noreferrer" href="#" hidden>Open notes &#x2197;</a>
+      <a id="link-open-reading" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="#" hidden>OpenStax reference &#x2197;</a>
+      <span id="notes-link-pending" class="usage" style="font-style:italic;align-self:center;">Notes link not yet wired for this topic.</span>
+    </div>
+    <h2 id="learn-heading">Spaced recall</h2>
+    <p class="usage" style="margin-top:-6px;">Try to recall the answer before opening the notes. Reach for notes only when you are genuinely stuck.</p>
+    <div class="learn-single">
       <div>
         <div class="practice-card" id="practice-card" aria-live="polite">
           <div class="practice-meta">
@@ -1237,12 +1228,60 @@
     return "locked";
   }
 
+  /* Course-day calendar: pre-work runs Mon, Tue, Thu, Fri. Wednesday is
+     spaced-recall + lab. Saturday/Sunday are off (recall available). */
+  const COURSE_DAYS_OF_WEEK = [1, 2, 4, 5]; // Mon Tue Thu Fri (JS getDay: 0=Sun)
+  const COURSE_DAY_NAMES = ["Monday", "Tuesday", "Thursday", "Friday"];
+  const COURSE_DAY_SHORT = ["Mon", "Tue", "Thu", "Fri"];
+
+  /* Compute the current day in the course (1-32) given courseStart.
+     Only Mon/Tue/Thu/Fri advance the course day. On Wed/Sat/Sun the course
+     day is whatever the most recent Mon/Tue/Thu/Fri was. Returns 0 if
+     courseStart is not set (release scheduling disabled). */
+  function currentDayInCourse(){
+    if (!CONTENT.courseStart) return 0;
+    const start = new Date(CONTENT.courseStart + "T00:00:00");
+    const now = new Date(nowSim());
+    const startMs = start.getTime();
+    const nowMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+    if (nowMidnight < startMs) return 0;
+    let day = 0;
+    for (let t = startMs; t <= nowMidnight; t += DAY_MS) {
+      const d = new Date(t);
+      if (COURSE_DAYS_OF_WEEK.includes(d.getDay())) day += 1;
+    }
+    return day;
+  }
+
+  /* Is today a pre-work day (Mon/Tue/Thu/Fri) or a recall+lab day (Wed)? */
+  function todayIsCourseDay(){
+    const now = new Date(nowSim());
+    return COURSE_DAYS_OF_WEEK.includes(now.getDay());
+  }
+  function todayIsLabRecallDay(){
+    const now = new Date(nowSim());
+    return now.getDay() === 3; // Wednesday
+  }
+
+  /* Released = topic's dayInCourse is <= the current course day (or no schedule). */
+  function isReleased(topic){
+    if (!CONTENT.courseStart || !topic.dayInCourse) return true;
+    return topic.dayInCourse <= currentDayInCourse();
+  }
+
+  function topicsForToday(){
+    // Topics whose dayInCourse equals exactly today's course day.
+    if (!CONTENT.courseStart) return [];
+    const today = currentDayInCourse();
+    return allTopics().filter(t => t.dayInCourse === today);
+  }
+
   function topicsTonight(){
-    // Tonight's pre-work = topics not yet completed today.
-    // For the prototype, every uncompleted topic is treated as available "tonight."
+    // Tonight's pre-work = released topics not yet completed today.
     const today = todayKey(0);
     const session = STATE.sessions.find(s => s.date === today);
     return allTopics().filter(t => {
+      if (!isReleased(t)) return false;
       const completedToday = session && session.topicsCompleted.includes(t.id);
       return !completedToday;
     });
@@ -1251,79 +1290,204 @@
   function renderDashboard(){
     $("#stat-streak").textContent = computeStreak();
     $("#stat-due").textContent = countDueGlobally();
-    $("#stat-topics-tonight").textContent = topicsTonight().length;
+    // Tonight count: if courseStart is set, today's topics. Otherwise preview day 1.
+    let tonightCount;
+    if (CONTENT.courseStart) {
+      tonightCount = todayIsLabRecallDay() ? 0 : topicsForToday().length;
+    } else {
+      tonightCount = allTopics().filter(t => t.dayInCourse === 1).length;
+    }
+    $("#stat-topics-tonight").textContent = tonightCount;
+    const sub = $("#stat-topics-tonight-sub");
+    if (sub) {
+      if (CONTENT.courseStart) {
+        sub.textContent = todayIsLabRecallDay() ? "Wednesday recall day" : "today's pre-work";
+      } else {
+        sub.textContent = "preview (set courseStart)";
+      }
+    }
     $("#stat-total-cards").textContent = totalCardsReviewed();
 
     const wrap = $("#topic-list");
     wrap.innerHTML = "";
 
-    const modules = CONTENT.modules || [];
-    if (!modules.length) {
+    const all = allTopics();
+    if (!all.length) {
       wrap.innerHTML = '<div class="card"><p class="empty">No course content loaded. Make sure course-content.js is in the same folder as this file.</p></div>';
       return;
     }
 
-    // Find the first module that has a non-completed topic. Open it; collapse the rest.
-    let firstActiveIdx = modules.findIndex(m => (m.topics || []).some(t => topicStatus(t.id) !== "completed"));
-    if (firstActiveIdx < 0) firstActiveIdx = 0;
+    // Group topics by week (1-8) and day-of-week (0=Mon, 1=Tue, 2=Thu, 3=Fri).
+    const byWeek = {};
+    all.forEach(t => {
+      if (!t.dayInCourse) return;
+      const wk = Math.ceil(t.dayInCourse / 4);
+      const dayIdx = (t.dayInCourse - 1) % 4;
+      byWeek[wk] = byWeek[wk] || {};
+      byWeek[wk][dayIdx] = byWeek[wk][dayIdx] || [];
+      byWeek[wk][dayIdx].push(t);
+    });
 
-    modules.forEach((m, mi) => {
-      const topics = m.topics || [];
-      const completedCount = topics.filter(t => topicStatus(t.id) === "completed").length;
-      const isAllDone = topics.length > 0 && completedCount === topics.length;
+    // Today highlight block (only when courseStart is set)
+    const todayDay = currentDayInCourse();
+    if (CONTENT.courseStart && todayDay > 0) {
+      if (todayIsLabRecallDay()) {
+        const wk = Math.ceil(todayDay / 4);
+        const due = countDueGlobally();
+        const recall = document.createElement("div");
+        recall.className = "tonight-block";
+        recall.innerHTML = `
+          <h3>Today is recall and lab day (Week ${wk}, Wednesday)</h3>
+          <p class="usage">No new pre-work releases today. Review the cards that are due, then head to lab.</p>
+          <div class="toolbar" style="margin:8px 0 0;">
+            <button class="btn btn-primary" data-nav="review">Open daily review (${due} cards due)</button>
+          </div>
+        `;
+        wrap.appendChild(recall);
+      } else {
+        const todaysTopics = topicsForToday();
+        if (todaysTopics.length) {
+          const wk = Math.ceil(todayDay / 4);
+          const dayName = COURSE_DAY_NAMES[(todayDay - 1) % 4];
+          const tonight = document.createElement("div");
+          tonight.className = "tonight-block";
+          tonight.innerHTML = `<h3>Tonight (Week ${wk}, ${dayName})</h3>`;
+          todaysTopics.forEach(t => {
+            const status = topicStatus(t.id);
+            const btnLabel = status === "completed" ? "Reopen" : status === "unlocked" ? "Continue" : "Start";
+            const btnClass = status === "completed" ? "btn-ghost" : "btn-primary";
+            const row = document.createElement("div");
+            row.style.cssText = "display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;flex-wrap:wrap;";
+            row.innerHTML = `
+              <div style="flex:1;min-width:240px;">
+                <strong style="font-family:'Plus Jakarta Sans',sans-serif;color:var(--navy);">${escapeHtml(t.title)}</strong>
+                <div class="usage" style="margin:2px 0 0;">${escapeHtml(t.summary || "")}</div>
+              </div>
+              <button class="btn ${btnClass}" data-open-topic="${t.id}">${btnLabel}</button>
+            `;
+            tonight.appendChild(row);
+          });
+          wrap.appendChild(tonight);
+        }
+      }
+    }
+
+    // Determine the "active" week to auto-expand.
+    let activeWeek = todayDay > 0 ? Math.ceil(todayDay / 4) : null;
+    if (!activeWeek) {
+      for (let wk = 1; wk <= 8; wk++) {
+        const wkTopics = Object.values(byWeek[wk] || {}).flat();
+        if (wkTopics.some(t => topicStatus(t.id) !== "completed")) {
+          activeWeek = wk;
+          break;
+        }
+      }
+    }
+    activeWeek = activeWeek || 1;
+
+    const totalWeeks = Math.max(...Object.keys(byWeek).map(Number));
+
+    for (let wk = 1; wk <= totalWeeks; wk++) {
+      const days = byWeek[wk] || {};
+      const wkTopics = Object.values(days).flat();
+      const completed = wkTopics.filter(t => topicStatus(t.id) === "completed").length;
+      const totalCards = wkTopics.reduce((acc, t) => acc + t.cards.length, 0);
+
+      // Module titles represented this week (subtle metadata)
+      const modSet = new Set();
+      wkTopics.forEach(t => {
+        const m = moduleByTopicId(t.id);
+        if (m) modSet.add(m.title);
+      });
+      const moduleTitleList = Array.from(modSet).join(" + ");
 
       const details = document.createElement("details");
       details.className = "module-group";
-      if (mi === firstActiveIdx) details.open = true;
+      if (wk === activeWeek) details.open = true;
 
       const summary = document.createElement("summary");
       summary.innerHTML = `
-        <span class="module-week">${m.week ? "Week " + escapeHtml(String(m.week)) : "Module"}</span>
-        <span class="module-title">${escapeHtml(m.title)}</span>
-        <span class="module-progress${isAllDone ? " complete" : ""}">${completedCount} of ${topics.length} complete</span>
+        <span class="module-week">Week ${wk}</span>
+        <span class="module-title">${escapeHtml(moduleTitleList)}</span>
+        <span class="module-progress${completed === wkTopics.length ? " complete" : ""}">${completed} of ${wkTopics.length} complete  .  ${totalCards} cards</span>
       `;
       details.appendChild(summary);
 
       const body = document.createElement("div");
       body.className = "module-body";
-      topics.forEach(t => {
-        const status = topicStatus(t.id);
-        const ts = STATE.topics[t.id];
-        const cardsReviewed = ts ? Object.values(ts.cards).reduce((acc,c) => acc + c.history.length, 0) : 0;
-        // "Seen" means the student has actually rated this card at least once.
-        // State entries can exist for cards that have only been peeked at by the scheduler,
-        // so count only cards with at least one rating in their history.
-        const seen = ts ? Object.values(ts.cards).filter(c => c.history.length > 0).length : 0;
-        const hasVideo = !!t.videoUrl;
 
-        const card = document.createElement("article");
-        card.className = "card state-" + status;
-        card.innerHTML = `
-          <div class="topic-row">
-            <div style="flex:1; min-width:260px;">
-              <h3>${escapeHtml(t.title)}</h3>
-              <p class="usage" style="margin:2px 0 8px;">${escapeHtml(t.summary || "")}</p>
-              <div class="topic-meta">
-                <span class="pill ${status}">${status === "completed" ? "Completed" : status === "unlocked" ? "In progress" : "Locked"}</span>
-                <span>${t.cards.length} cards (${seen} seen, ${cardsReviewed} reviews logged)</span>
-                ${hasVideo ? "" : '<span style="color:var(--terra-dark);">video pending</span>'}
+      // Render 4 day rows + a Wed divider between Tue and Thu.
+      for (let di = 0; di < 4; di++) {
+        if (di === 2) {
+          const wedRow = document.createElement("div");
+          wedRow.style.cssText = "margin:8px 0;padding:10px 14px;background:var(--off-white);border-left:3px solid var(--gold-deep);border-radius:4px;font-family:'DM Sans',system-ui,sans-serif;font-size:12px;color:var(--gray-soft);letter-spacing:0.03em;";
+          wedRow.innerHTML = '<strong style="color:var(--navy);font-family:\'Plus Jakarta Sans\',system-ui,sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;">Wednesday</strong> &nbsp;.&nbsp; recall and lab day. No new pre-work.';
+          body.appendChild(wedRow);
+        }
+
+        const dayLong = COURSE_DAY_NAMES[di];
+        const dayShort = COURSE_DAY_SHORT[di];
+        const dayTopics = days[di] || [];
+
+        const dayHeader = document.createElement("div");
+        dayHeader.style.cssText = "margin:10px 0 4px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;font-size:13px;color:var(--terra-dark);text-transform:uppercase;letter-spacing:0.08em;";
+        dayHeader.textContent = `${dayLong}  .  Day ${(wk - 1) * 4 + di + 1}`;
+        body.appendChild(dayHeader);
+
+        if (dayTopics.length === 0) {
+          const empty = document.createElement("div");
+          empty.style.cssText = "padding:8px 14px;color:var(--gray-soft);font-style:italic;font-family:'Lora',Georgia,serif;font-size:13px;";
+          empty.textContent = "No pre-work assigned.";
+          body.appendChild(empty);
+          continue;
+        }
+
+        dayTopics.forEach(t => {
+          const status = topicStatus(t.id);
+          const released = isReleased(t);
+          const ts = STATE.topics[t.id];
+          const cardsReviewed = ts ? Object.values(ts.cards).reduce((acc,c) => acc + c.history.length, 0) : 0;
+          const seen = ts ? Object.values(ts.cards).filter(c => c.history.length > 0).length : 0;
+          const hasVideo = !!t.videoUrl;
+          const mod = moduleByTopicId(t.id);
+          const modLabel = mod ? mod.title : "";
+
+          const card = document.createElement("article");
+          card.className = "card state-" + status + (released ? "" : " state-unreleased");
+          if (!released) card.style.opacity = "0.55";
+          card.innerHTML = `
+            <div class="topic-row">
+              <div style="flex:1; min-width:240px;">
+                <h3>${escapeHtml(t.title)}</h3>
+                <p class="usage" style="margin:2px 0 6px;font-style:italic;">${escapeHtml(t.summary || "")}</p>
+                <div class="topic-meta">
+                  ${released
+                    ? `<span class="pill ${status}">${status === "completed" ? "Completed" : status === "unlocked" ? "In progress" : "Not started"}</span>`
+                    : `<span class="pill locked">Not yet open</span>`}
+                  <span style="color:var(--gray-soft);">${escapeHtml(modLabel)}</span>
+                  <span>${t.cards.length} cards (${seen} seen, ${cardsReviewed} reviews)</span>
+                  ${hasVideo ? "" : '<span style="color:var(--terra-dark);">video pending</span>'}
+                </div>
+              </div>
+              <div class="toolbar" style="margin:0;">
+                ${ !released
+                  ? `<button class="btn btn-ghost" disabled>Locked</button>`
+                  : status === "completed"
+                    ? `<button class="btn btn-ghost" data-open-topic="${t.id}">Reopen</button>`
+                    : status === "unlocked"
+                      ? `<button class="btn btn-gold" data-open-topic="${t.id}">Continue</button>`
+                      : `<button class="btn btn-primary" data-open-topic="${t.id}">Start</button>`
+                }
               </div>
             </div>
-            <div class="toolbar" style="margin:0;">
-              ${ status === "completed"
-                ? `<button class="btn btn-ghost" data-open-topic="${t.id}">Reopen</button>`
-                : status === "unlocked"
-                  ? `<button class="btn btn-gold" data-open-topic="${t.id}">Continue</button>`
-                  : `<button class="btn btn-primary" data-open-topic="${t.id}">Start</button>`
-              }
-            </div>
-          </div>
-        `;
-        body.appendChild(card);
-      });
+          `;
+          body.appendChild(card);
+        });
+      }
+
       details.appendChild(body);
       wrap.appendChild(details);
-    });
+    }
 
     $$('[data-open-topic]').forEach(b => {
       b.addEventListener("click", () => {
@@ -1347,6 +1511,9 @@
     $("#topic-summary").textContent = topic.summary || "";
     $("#video-placeholder-label").textContent = topic.videoLabel || "Video for this topic is being produced.";
     $("#gate-keyword-target").textContent = topic.gateKeywords.length;
+    $("#gate-preview-keywords").textContent = topic.gateKeywords.join(", ");
+    $("#gate-preview-hint").hidden = true;
+    $("#btn-toggle-preview-hint").textContent = "Show concepts (preview)";
     $("#gate-input").value = ts.gateExplanation || "";
     updateGateMeter(topic, $("#gate-input").value);
     $("#gate-feedback").textContent = "";
@@ -1360,15 +1527,28 @@
       $("#video-progress").style.width = "100%";
       $("#btn-mark-watched").disabled = true;
       $("#btn-simulate-watch").disabled = true;
+      $("#btn-simulate-watch").hidden = true;
       // Reveal the gate once the video is finished.
       $("#gate-card").hidden = false;
       $("#gate-locked-note").hidden = true;
+    } else if (!topic.videoUrl) {
+      // No real video yet. Enable Mark Watched immediately so you can preview the rest of
+      // the flow. Hide the Simulate button since there is literally nothing to simulate.
+      $("#video-status").textContent = "No video uploaded for this topic yet. Click Mark watched to continue and preview the gate and recall flow.";
+      $("#video-progress").style.width = "100%";
+      $("#btn-mark-watched").disabled = false;
+      $("#btn-simulate-watch").disabled = true;
+      $("#btn-simulate-watch").hidden = true;
+      // Gate stays hidden until Mark Watched is clicked.
+      $("#gate-card").hidden = true;
+      $("#gate-locked-note").hidden = false;
     } else {
-      $("#video-status").textContent = topic.videoUrl ? "Watch the video below from start to finish." : "Video for this topic is being produced. Use ‘Simulate watching’ to test the flow.";
+      // Real video is mounted. Student must watch it; only then is Mark Watched enabled.
+      $("#video-status").textContent = "Watch the video below from start to finish.";
       $("#video-progress").style.width = "0%";
       $("#btn-mark-watched").disabled = true;
       $("#btn-simulate-watch").disabled = false;
-      // Hide the gate until the video has been watched all the way through.
+      $("#btn-simulate-watch").hidden = false;
       $("#gate-card").hidden = true;
       $("#gate-locked-note").hidden = false;
     }
@@ -1535,27 +1715,36 @@
     if (!topic) { nav("dashboard"); return; }
     const ts = getTopicState(topicId);
     if (!ts.gateCompleted) { nav("topic", topicId); return; }
-    $("#learn-heading").textContent = topic.title + " - notes and recall";
-    renderNotes(topic);
+    $("#learn-heading").textContent = topic.title;
+    renderNotesLink(topic);
     renderMastery(topicId);
     loadNextCard();
   }
 
-  function renderNotes(topic){
-    const panel = $("#notes-panel");
-    panel.innerHTML = "";
-    topic.notes.forEach(section => {
-      const h = document.createElement("h3");
-      h.textContent = section.heading;
-      panel.appendChild(h);
-      const ul = document.createElement("ul");
-      section.body.forEach(line => {
-        const li = document.createElement("li");
-        li.textContent = line;
-        ul.appendChild(li);
-      });
-      panel.appendChild(ul);
-    });
+  function renderNotesLink(topic){
+    const notesLink = $("#link-open-notes");
+    const readingLink = $("#link-open-reading");
+    const pending = $("#notes-link-pending");
+
+    if (topic.notesUrl) {
+      notesLink.href = topic.notesUrl;
+      notesLink.hidden = false;
+      pending.hidden = true;
+    } else {
+      notesLink.hidden = true;
+      notesLink.href = "#";
+      pending.hidden = false;
+    }
+
+    if (topic.readingUrl) {
+      readingLink.href = topic.readingUrl;
+      readingLink.hidden = false;
+      // If we have a reading link but no notes link, hide the pending note since at least one reference is wired.
+      if (topic.readingUrl && !topic.notesUrl) pending.hidden = true;
+    } else {
+      readingLink.hidden = true;
+      readingLink.href = "#";
+    }
   }
 
   function renderMastery(topicId){
@@ -1848,6 +2037,13 @@
       if (topic) updateGateMeter(topic, e.target.value);
     });
     $("#btn-submit-gate").addEventListener("click", submitGate);
+    $("#btn-toggle-preview-hint").addEventListener("click", () => {
+      const hint = $("#gate-preview-hint");
+      const btn = $("#btn-toggle-preview-hint");
+      const showing = !hint.hidden;
+      hint.hidden = showing;
+      btn.textContent = showing ? "Show concepts (preview)" : "Hide concepts";
+    });
 
     // Card handlers
     $("#btn-reveal").addEventListener("click", revealAnswer);

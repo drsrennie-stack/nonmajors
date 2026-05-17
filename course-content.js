@@ -13,6 +13,20 @@
      The engine will mount the player and (for self-hosted mp4)
      enable Mark Watched on the native "ended" event.
 
+   How to wire the OpenStax reference link:
+     Each topic has a readingUrl pointing to its OpenStax A&P 2e section.
+     The Learning view shows an "Open OpenStax reference" button. Students
+     use it to clarify a specific concept, not to read cover-to-cover.
+
+   How to wire the notes link:
+     Notes live in the existing course notes hub, not in this file.
+     Set notesUrl on the topic to the URL of the topic's note page:
+       notesUrl: "https://drsrennie.com/bio304/notes/homeostasis"
+     The Learning view will show an "Open notes in new tab" button
+     that opens the link with target=_blank rel=noopener noreferrer.
+     Leave notesUrl as null until the page exists; the learning view
+     will display "Notes link not yet wired for this topic."
+
    How to add a new topic:
      Inside the relevant module's topics array, copy an existing
      topic object and edit. Each card needs a unique id within
@@ -26,6 +40,8 @@
 
 window.BIO304_COURSE_CONTENT = {
   courseLabel: "BIO 304",
+  /* Course start date (Monday of week 1). Leave null to disable scheduled release. */
+  courseStart: null,
 
   modules: [
 
@@ -43,6 +59,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Levels of Organization",
           summary: "From atoms to organism: how complexity scales and where new function emerges.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/1-2-structural-organization-of-the-human-body",
+          dayInCourse: 1,
           videoLabel: "Video: Levels of organization (pending)",
           gateKeywords: ["atom", "cell", "tissue", "organ", "organ system", "organism"],
           notes: [
@@ -79,6 +98,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Anatomical Terminology and Body Regions",
           summary: "Anatomical position, directional terms, body planes, cavities, and the four abdominal quadrants.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/1-6-anatomical-terminology",
+          dayInCourse: 1,
           videoLabel: "Video: Anatomical terminology (pending)",
           gateKeywords: ["anatomical position", "sagittal", "transverse", "superior", "anterior", "abdominopelvic"],
           notes: [
@@ -117,6 +139,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Homeostasis and Feedback Loops",
           summary: "Set points, the four-part negative feedback loop, and why positive feedback is the rare exception.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/1-5-homeostasis",
+          dayInCourse: 2,
           videoLabel: "Video: Homeostasis and feedback (pending)",
           gateKeywords: ["homeostasis", "feedback", "set point", "receptor", "effector"],
           notes: [
@@ -151,137 +176,11 @@ window.BIO304_COURSE_CONTENT = {
     },
 
     /* ============================================================
-       MODULE 2: CHEMISTRY OF LIFE
-       ============================================================ */
-    {
-      id: "m-02-chemistry",
-      week: 2,
-      title: "Chemistry of Life",
-      topics: [
-
-        {
-          id: "t-atoms-bonds-water",
-          title: "Atoms, Bonds, and Water",
-          summary: "Subatomic particles, ionic vs covalent vs hydrogen bonds, and why water is the medium of life.",
-          videoUrl: null,
-          videoLabel: "Video: Atoms, bonds, water (pending)",
-          gateKeywords: ["atom", "electron", "covalent bond", "ionic bond", "hydrogen bond", "polar"],
-          notes: [
-            { heading: "Atoms", body: [
-              "Protons (+) and neutrons (neutral) in the nucleus; electrons (−) in shells around it.",
-              "Atomic number = number of protons. Mass number = protons + neutrons.",
-              "Reactivity is set by valence (outer shell) electrons."
-            ]},
-            { heading: "Bonds", body: [
-              "Ionic: one atom donates an electron, the other accepts (Na⁺ + Cl⁻). Strong in dry, weak in water.",
-              "Covalent: atoms share electrons. Nonpolar (equal share) or polar (unequal, gives partial charges).",
-              "Hydrogen bond: weak attraction between a partially positive H and a nearby partially negative atom (usually O or N)."
-            ]},
-            { heading: "Water properties", body: [
-              "Polar, so it dissolves polar and ionic solutes (the universal biological solvent).",
-              "Cohesion and surface tension from hydrogen bonding.",
-              "High specific heat: resists temperature change, buffers body temperature.",
-              "High heat of vaporization: sweating cools effectively."
-            ]}
-          ],
-          cards: [
-            { id: "c1", dok: 1, q: "What subatomic particle determines an atom's identity?", a: "The number of protons (atomic number)." },
-            { id: "c2", dok: 1, q: "What kind of bond holds together water molecules to each other?", a: "Hydrogen bonds." },
-            { id: "c3", dok: 1, q: "What kind of bond holds H and O together within a single water molecule?", a: "Polar covalent bonds." },
-            { id: "c4", dok: 1, q: "Why is water a good solvent for ions?", a: "It is polar. The partial charges on water surround and stabilize each ion, pulling them apart." },
-            { id: "c5", dok: 2, q: "Explain why ionic bonds are strong in dry NaCl but weaken in solution.", a: "Water surrounds each ion (hydration shell), reducing the electrostatic attraction between Na⁺ and Cl⁻ until they dissociate." },
-            { id: "c6", dok: 2, q: "Why does sweating cool the body more effectively than just warm air on the skin?", a: "Water has a high heat of vaporization. Converting liquid sweat to vapor pulls a large amount of heat off the skin." },
-            { id: "c7", dok: 3, q: "Predict what happens to the hydrogen-bond network of water as temperature rises from 37 to 42 degrees C. Why is this physiologically meaningful?", a: "Hydrogen bonds break more readily, water becomes slightly less ordered, and protein structures that depend on hydration shells start to destabilize. This is part of why even small fevers can impair enzyme function." }
-          ]
-        },
-
-        {
-          id: "t-macromolecules",
-          title: "Biological Macromolecules",
-          summary: "The four major polymer classes: carbohydrates, lipids, proteins, and nucleic acids.",
-          videoUrl: null,
-          videoLabel: "Video: Macromolecules (pending)",
-          gateKeywords: ["carbohydrate", "lipid", "protein", "nucleic acid", "monomer", "polymer"],
-          notes: [
-            { heading: "Carbohydrates", body: [
-              "Monomer: monosaccharide (glucose, fructose).",
-              "Polymers: glycogen (animal storage), starch (plant), cellulose (plant structure).",
-              "Primary role: short-term energy and energy storage."
-            ]},
-            { heading: "Lipids", body: [
-              "Not true polymers but grouped by hydrophobicity.",
-              "Triglycerides: glycerol + 3 fatty acids. Long-term energy storage.",
-              "Phospholipids: 2 fatty acids + glycerol + phosphate group. Bilayer of all biological membranes.",
-              "Steroids (cholesterol, hormones): four fused rings."
-            ]},
-            { heading: "Proteins", body: [
-              "Monomer: amino acid (20 standard).",
-              "Linked by peptide bonds.",
-              "Levels of structure: primary (sequence), secondary (alpha helix, beta sheet), tertiary (3D fold), quaternary (multiple chains).",
-              "Functions: enzymes, transport, structure (collagen), signaling, immune defense."
-            ]},
-            { heading: "Nucleic acids", body: [
-              "Monomer: nucleotide (base + sugar + phosphate).",
-              "DNA stores hereditary information; RNA delivers it to ribosomes.",
-              "Pairing rules: A-T (or A-U in RNA), G-C."
-            ]}
-          ],
-          cards: [
-            { id: "c1", dok: 1, q: "Name the monomer of carbohydrates.", a: "Monosaccharide (for example, glucose)." },
-            { id: "c2", dok: 1, q: "Name the monomer of proteins.", a: "Amino acid." },
-            { id: "c3", dok: 1, q: "Which macromolecule forms biological membranes?", a: "Phospholipids (a type of lipid)." },
-            { id: "c4", dok: 1, q: "Which level of protein structure refers to the amino acid sequence?", a: "Primary structure." },
-            { id: "c5", dok: 2, q: "Why does denaturing a protein (heat, pH) destroy its function?", a: "Function depends on the precise 3D fold (tertiary/quaternary structure). Denaturing unfolds the protein. Active sites and binding surfaces are lost, so the protein no longer recognizes its target." },
-            { id: "c6", dok: 2, q: "Explain why phospholipids spontaneously form bilayers in water.", a: "They are amphipathic: hydrophilic phosphate head, hydrophobic fatty acid tails. In water, tails hide together away from water and heads face the water on both sides, producing a bilayer." },
-            { id: "c7", dok: 3, q: "A mutation changes a single codon from one specifying a polar amino acid to one specifying a nonpolar one in an enzyme's active site. Predict the functional consequence.", a: "The active site loses its ability to make the polar interaction with the substrate (or solvent). Binding affinity drops or substrate orientation fails, and enzyme activity falls (or vanishes), even though only one residue changed." }
-          ]
-        },
-
-        {
-          id: "t-enzymes-energy",
-          title: "Enzymes and ATP",
-          summary: "How enzymes lower activation energy, what regulates them, and the role of ATP as the cell's energy currency.",
-          videoUrl: null,
-          videoLabel: "Video: Enzymes and energy (pending)",
-          gateKeywords: ["enzyme", "active site", "substrate", "activation energy", "ATP", "ADP"],
-          notes: [
-            { heading: "Enzymes", body: [
-              "Biological catalysts (mostly proteins) that lower activation energy.",
-              "Bind substrate at the active site; specificity comes from shape and chemistry.",
-              "Not consumed by the reaction."
-            ]},
-            { heading: "Regulation", body: [
-              "Temperature: faster up to an optimum, then denature.",
-              "pH: each enzyme has an optimum (pepsin ~2, most others near 7.4).",
-              "Cofactors and coenzymes assist many enzymes.",
-              "Allosteric regulators and feedback inhibition fine-tune pathways."
-            ]},
-            { heading: "ATP", body: [
-              "Adenosine + 3 phosphates. The terminal phosphate bond releases usable energy when cleaved.",
-              "ATP → ADP + Pi powers active transport, muscle contraction, biosynthesis.",
-              "Continuously regenerated via cellular respiration."
-            ]}
-          ],
-          cards: [
-            { id: "c1", dok: 1, q: "What does an enzyme do to activation energy?", a: "Lowers it." },
-            { id: "c2", dok: 1, q: "What part of an enzyme binds the substrate?", a: "The active site." },
-            { id: "c3", dok: 1, q: "What does ATP become when its terminal phosphate is removed?", a: "ADP + inorganic phosphate (Pi), with release of usable energy." },
-            { id: "c4", dok: 1, q: "Is an enzyme consumed by the reaction it catalyzes?", a: "No. It is regenerated and can act on more substrate." },
-            { id: "c5", dok: 2, q: "Why does fever (40+ degrees C) reduce enzyme activity across the body?", a: "Most human enzymes have an optimum near 37 C. Above this, the protein begins to denature, the active site distorts, and substrate binding fails." },
-            { id: "c6", dok: 2, q: "Explain why pepsin works in the stomach but ceases activity in the small intestine.", a: "Pepsin's pH optimum is around 2 (stomach acid). The duodenum is buffered to ~7.5 by bicarbonate. At neutral pH, pepsin denatures and stops working." },
-            { id: "c7", dok: 3, q: "A drug irreversibly binds the active site of acetylcholinesterase. Predict the downstream physiological effect at the neuromuscular junction.", a: "Acetylcholine is not degraded after release, so it lingers in the synaptic cleft and repeatedly stimulates the muscle. The result is muscle twitching, sustained contraction, and eventually paralysis from receptor desensitization. This is the mechanism behind organophosphate toxicity." }
-          ]
-        }
-
-      ]
-    },
-
-    /* ============================================================
        MODULE 3: THE CELL
        ============================================================ */
     {
       id: "m-03-cell",
-      week: 3,
+      week: 1,
       title: "The Cell",
       topics: [
 
@@ -290,6 +189,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Cell Structure and Organelles",
           summary: "Plasma membrane, nucleus, and the major cytoplasmic organelles that do the work of the cell.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/3-2-the-cytoplasm-and-cellular-organelles",
+          dayInCourse: 3,
           videoLabel: "Video: Cell structure (pending)",
           gateKeywords: ["nucleus", "mitochondria", "endoplasmic reticulum", "Golgi", "ribosome", "plasma membrane"],
           notes: [
@@ -327,6 +229,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Membrane Transport",
           summary: "Passive vs active, simple vs facilitated, primary vs secondary, plus bulk transport.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/3-1-the-cell-membrane",
+          dayInCourse: 4,
           videoLabel: "Video: Membrane transport (pending)",
           gateKeywords: ["diffusion", "osmosis", "active transport", "gradient", "channel", "carrier"],
           notes: [
@@ -359,42 +264,6 @@ window.BIO304_COURSE_CONTENT = {
             { id: "c7", dok: 3, q: "Ouabain blocks the Na⁺/K⁺ ATPase. Predict the effect on glucose absorption in the small intestine.", a: "Intracellular Na⁺ rises, the Na⁺ gradient collapses, the Na⁺-glucose symporter loses its driving force, and glucose absorption falls sharply." },
             { id: "c8", dok: 3, q: "Design an experiment to distinguish simple from facilitated diffusion of a solute.", a: "Measure flux versus solute concentration. Simple diffusion: linear, non-saturating. Facilitated diffusion: saturates because carriers are finite." }
           ]
-        },
-
-        {
-          id: "t-cell-cycle-protein-synthesis",
-          title: "Cell Cycle and Protein Synthesis",
-          summary: "Interphase and mitosis at a glance, then the DNA → RNA → protein pipeline.",
-          videoUrl: null,
-          videoLabel: "Video: Cell cycle and protein synthesis (pending)",
-          gateKeywords: ["mitosis", "interphase", "transcription", "translation", "mRNA", "ribosome"],
-          notes: [
-            { heading: "The cell cycle", body: [
-              "Interphase: G1 (growth), S (DNA replication), G2 (final prep).",
-              "Mitotic (M) phase: mitosis (PMAT, prophase, metaphase, anaphase, telophase) + cytokinesis.",
-              "Cell cycle checkpoints (G1/S, G2/M, spindle) guard against damaged DNA and mis-segregation."
-            ]},
-            { heading: "Transcription (nucleus)", body: [
-              "DNA is unwound at the gene.",
-              "RNA polymerase reads the template strand and builds a complementary mRNA (A-U, G-C).",
-              "mRNA is processed (5' cap, poly-A tail, splice out introns), then exits through nuclear pores."
-            ]},
-            { heading: "Translation (cytoplasm/ER)", body: [
-              "Ribosome reads mRNA codons three bases at a time.",
-              "tRNA brings the matching amino acid for each codon.",
-              "Amino acids are linked by peptide bonds until a stop codon is reached.",
-              "Resulting protein folds and (often) is modified post-translationally."
-            ]}
-          ],
-          cards: [
-            { id: "c1", dok: 1, q: "In which phase of the cell cycle is DNA replicated?", a: "S phase (synthesis) of interphase." },
-            { id: "c2", dok: 1, q: "List the phases of mitosis in order.", a: "Prophase, metaphase, anaphase, telophase (PMAT)." },
-            { id: "c3", dok: 1, q: "What molecule carries the message from DNA to the ribosome?", a: "Messenger RNA (mRNA)." },
-            { id: "c4", dok: 1, q: "How many bases make up a codon?", a: "Three." },
-            { id: "c5", dok: 2, q: "Why is the S phase considered the irreversible commitment to mitosis?", a: "Once DNA is duplicated, the cell has too much DNA to function as a single cell. It must divide to redistribute the chromosomes properly." },
-            { id: "c6", dok: 2, q: "Explain why a single point mutation in a tumor suppressor gene can lead to cancer.", a: "The mutation can disable the protein that enforces a cell-cycle checkpoint. Damaged cells then divide unchecked, accumulate further mutations, and become tumorigenic." },
-            { id: "c7", dok: 3, q: "A drug blocks ribosomes. Predict the immediate effect on rapidly dividing tissues like bone marrow versus slowly dividing tissues like neurons.", a: "Rapidly dividing tissues need constant protein production for new cells. They will be hit hard (bone marrow suppression, hair loss, GI lining damage). Neurons divide rarely but still need protein for maintenance; they fail more slowly but still degrade." }
-          ]
         }
 
       ]
@@ -405,7 +274,7 @@ window.BIO304_COURSE_CONTENT = {
        ============================================================ */
     {
       id: "m-04-tissues",
-      week: 4,
+      week: 2,
       title: "Tissues",
       topics: [
 
@@ -414,6 +283,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Epithelial Tissue Classification",
           summary: "Naming epithelia by layer and cell shape; where each type lives and what it does.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-2-epithelial-tissue",
+          dayInCourse: 5,
           videoLabel: "Video: Epithelial tissue (pending)",
           gateKeywords: ["epithelium", "simple", "stratified", "squamous", "cuboidal", "columnar"],
           notes: [
@@ -449,6 +321,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Connective Tissues",
           summary: "Cells embedded in a matrix: loose, dense, cartilage, bone, blood.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects",
+          dayInCourse: 6,
           videoLabel: "Video: Connective tissue (pending)",
           gateKeywords: ["connective tissue", "matrix", "fibroblast", "collagen", "cartilage", "bone"],
           notes: [
@@ -486,6 +361,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Muscle and Nervous Tissue Overview",
           summary: "Three muscle types compared, plus neurons and glia at a tissue level.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-4-muscle-tissue-and-motion",
+          dayInCourse: 7,
           videoLabel: "Video: Muscle and nervous tissue (pending)",
           gateKeywords: ["skeletal muscle", "smooth muscle", "cardiac muscle", "neuron", "glia"],
           notes: [
@@ -518,7 +396,7 @@ window.BIO304_COURSE_CONTENT = {
        ============================================================ */
     {
       id: "m-05-integumentary",
-      week: 5,
+      week: 2,
       title: "Integumentary System",
       topics: [
 
@@ -527,6 +405,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Skin Structure and Layers",
           summary: "Epidermis, dermis, hypodermis: who lives where and what they do.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/5-1-layers-of-the-skin",
+          dayInCourse: 7,
           videoLabel: "Video: Skin layers (pending)",
           gateKeywords: ["epidermis", "dermis", "hypodermis", "keratin", "melanin", "stratum"],
           notes: [
@@ -562,6 +443,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Skin Functions and Accessory Structures",
           summary: "Protection, thermoregulation, sensation, vitamin D; plus hair, glands, and nails.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/5-3-functions-of-the-integumentary-system",
+          dayInCourse: 8,
           videoLabel: "Video: Skin functions and accessories (pending)",
           gateKeywords: ["thermoregulation", "sebaceous", "sweat gland", "vitamin D", "hair follicle"],
           notes: [
@@ -598,7 +482,7 @@ window.BIO304_COURSE_CONTENT = {
        ============================================================ */
     {
       id: "m-06-skeletal",
-      week: 6,
+      week: 3,
       title: "Skeletal System",
       topics: [
 
@@ -607,6 +491,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Bone Tissue and Bone Growth",
           summary: "Cells of bone, compact vs spongy, intramembranous vs endochondral ossification, and lifelong remodeling.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/6-3-bone-structure",
+          dayInCourse: 9,
           videoLabel: "Video: Bone tissue (pending)",
           gateKeywords: ["osteoblast", "osteoclast", "osteocyte", "compact bone", "spongy bone", "ossification"],
           notes: [
@@ -644,6 +531,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Axial Skeleton",
           summary: "Skull, vertebral column, and thoracic cage: the central axis of the body.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/7-1-divisions-of-the-skeletal-system",
+          dayInCourse: 10,
           videoLabel: "Video: Axial skeleton (pending)",
           gateKeywords: ["skull", "vertebra", "cervical", "thoracic", "lumbar", "sternum"],
           notes: [
@@ -680,6 +570,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Appendicular Skeleton",
           summary: "Pectoral girdle and upper limb, pelvic girdle and lower limb.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/8-1-the-pectoral-girdle",
+          dayInCourse: 11,
           videoLabel: "Video: Appendicular skeleton (pending)",
           gateKeywords: ["clavicle", "scapula", "humerus", "femur", "pelvis", "tibia"],
           notes: [
@@ -716,6 +609,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Joints and Body Movements",
           summary: "Classifying joints by structure and function, plus the vocabulary of movement.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/9-1-classification-of-joints",
+          dayInCourse: 12,
           videoLabel: "Video: Joints and movements (pending)",
           gateKeywords: ["synovial", "hinge", "ball-and-socket", "flexion", "extension", "abduction"],
           notes: [
@@ -758,7 +654,7 @@ window.BIO304_COURSE_CONTENT = {
        ============================================================ */
     {
       id: "m-07-muscular",
-      week: 8,
+      week: 4,
       title: "Muscular System",
       topics: [
 
@@ -767,6 +663,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Skeletal Muscle Microanatomy",
           summary: "From whole muscle down to the sarcomere: the structural ladder of contractile tissue.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-2-skeletal-muscle",
+          dayInCourse: 13,
           videoLabel: "Video: Skeletal muscle microanatomy (pending)",
           gateKeywords: ["sarcomere", "myofibril", "actin", "myosin", "sarcoplasmic reticulum"],
           notes: [
@@ -803,6 +702,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Sliding Filament and the Cross-Bridge Cycle",
           summary: "How calcium, ATP, actin, and myosin convert chemical energy into mechanical force.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-3-muscle-fiber-contraction-and-relaxation",
+          dayInCourse: 14,
           videoLabel: "Video: Sliding filament theory (pending)",
           gateKeywords: ["sliding filament", "cross-bridge", "calcium", "troponin", "tropomyosin", "ATP"],
           notes: [
@@ -842,6 +744,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Motor Units and Muscle Mechanics",
           summary: "Motor unit organization, recruitment, summation, and fatigue.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-4-nervous-system-control-of-muscle-tension",
+          dayInCourse: 13,
           videoLabel: "Video: Motor units (pending)",
           gateKeywords: ["motor unit", "recruitment", "twitch", "summation", "tetanus"],
           notes: [
@@ -879,7 +784,7 @@ window.BIO304_COURSE_CONTENT = {
        ============================================================ */
     {
       id: "m-08-nervous",
-      week: 10,
+      week: 4,
       title: "Nervous System",
       topics: [
 
@@ -888,6 +793,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Neurons and Resting Membrane Potential",
           summary: "Neuron anatomy and how the resting potential is built and maintained.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/12-2-nervous-tissue",
+          dayInCourse: 15,
           videoLabel: "Video: Neurons and resting potential (pending)",
           gateKeywords: ["neuron", "axon", "dendrite", "resting potential", "sodium-potassium pump"],
           notes: [
@@ -922,6 +830,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Action Potentials and Synaptic Transmission",
           summary: "Phases of an action potential, propagation, and how chemical synapses pass the signal on.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/12-4-the-action-potential",
+          dayInCourse: 16,
           videoLabel: "Video: Action potentials (pending)",
           gateKeywords: ["depolarization", "repolarization", "threshold", "neurotransmitter", "synapse"],
           notes: [
@@ -966,6 +877,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "CNS Organization: Brain and Spinal Cord",
           summary: "Brain regions and lobes, meninges, ventricles, and spinal cord anatomy.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/13-2-the-central-nervous-system",
+          dayInCourse: 17,
           videoLabel: "Video: CNS organization (pending)",
           gateKeywords: ["cerebrum", "cerebellum", "brainstem", "spinal cord", "meninges"],
           notes: [
@@ -1003,6 +917,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "PNS and Autonomic Nervous System",
           summary: "Cranial and spinal nerves, reflex arcs, and the sympathetic vs parasympathetic divisions.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/15-1-divisions-of-the-autonomic-nervous-system",
+          dayInCourse: 18,
           videoLabel: "Video: PNS and autonomic NS (pending)",
           gateKeywords: ["sympathetic", "parasympathetic", "cranial nerves", "reflex", "ganglion"],
           notes: [
@@ -1043,7 +960,7 @@ window.BIO304_COURSE_CONTENT = {
        ============================================================ */
     {
       id: "m-09-special-senses",
-      week: 12,
+      week: 5,
       title: "Special Senses",
       topics: [
 
@@ -1052,6 +969,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Vision",
           summary: "Eye anatomy, accommodation, and photoreceptor function.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/14-1-sensory-perception",
+          dayInCourse: 19,
           videoLabel: "Video: Vision (pending)",
           gateKeywords: ["retina", "rod", "cone", "lens", "photoreceptor"],
           notes: [
@@ -1087,6 +1007,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Hearing and Equilibrium",
           summary: "Cochlear transduction of sound and vestibular detection of head motion.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/14-1-sensory-perception",
+          dayInCourse: 19,
           videoLabel: "Video: Hearing and equilibrium (pending)",
           gateKeywords: ["cochlea", "hair cell", "vestibule", "semicircular canal", "organ of Corti"],
           notes: [
@@ -1123,7 +1046,7 @@ window.BIO304_COURSE_CONTENT = {
        ============================================================ */
     {
       id: "m-10-endocrine",
-      week: 13,
+      week: 5,
       title: "Endocrine System",
       topics: [
 
@@ -1132,6 +1055,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Hormone Mechanisms",
           summary: "Steroid vs peptide vs amino-acid-derived hormones, and how each transduces a signal.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/17-2-hormones",
+          dayInCourse: 20,
           videoLabel: "Video: Hormone mechanisms (pending)",
           gateKeywords: ["hormone", "receptor", "second messenger", "steroid", "peptide"],
           notes: [
@@ -1164,6 +1090,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Major Endocrine Glands",
           summary: "Pituitary, thyroid, parathyroid, adrenal, pancreas, gonads: who makes what and what it does.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/17-1-an-overview-of-the-endocrine-system",
+          dayInCourse: 20,
           videoLabel: "Video: Major endocrine glands (pending)",
           gateKeywords: ["pituitary", "thyroid", "adrenal", "pancreas", "insulin"],
           notes: [
@@ -1200,7 +1129,7 @@ window.BIO304_COURSE_CONTENT = {
        ============================================================ */
     {
       id: "m-11-blood",
-      week: 14,
+      week: 6,
       title: "Blood",
       topics: [
 
@@ -1209,6 +1138,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Blood Composition and Hemopoiesis",
           summary: "Plasma, formed elements, and how blood cells are made in red marrow.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-1-functions-of-blood",
+          dayInCourse: 21,
           videoLabel: "Video: Blood composition (pending)",
           gateKeywords: ["plasma", "erythrocyte", "hemoglobin", "leukocyte", "platelet"],
           notes: [
@@ -1247,6 +1179,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Hemostasis and Blood Typing",
           summary: "Stopping bleeding in three steps, and the basics of ABO and Rh.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-5-hemostasis",
+          dayInCourse: 21,
           videoLabel: "Video: Hemostasis and typing (pending)",
           gateKeywords: ["hemostasis", "platelet plug", "fibrin", "ABO", "Rh"],
           notes: [
@@ -1284,7 +1219,7 @@ window.BIO304_COURSE_CONTENT = {
        ============================================================ */
     {
       id: "m-12-cardiovascular",
-      week: 15,
+      week: 6,
       title: "Cardiovascular System",
       topics: [
 
@@ -1293,6 +1228,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Heart Anatomy and the Cardiac Cycle",
           summary: "Chambers, valves, great vessels, and the pressure-volume story of one heartbeat.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/19-1-heart-anatomy",
+          dayInCourse: 22,
           videoLabel: "Video: Heart anatomy and cycle (pending)",
           gateKeywords: ["atrium", "ventricle", "valve", "systole", "diastole"],
           notes: [
@@ -1332,37 +1270,42 @@ window.BIO304_COURSE_CONTENT = {
 
         {
           id: "t-conduction-ecg",
-          title: "Cardiac Conduction System and ECG",
-          summary: "How the heart paces itself, and the wave pattern that records it.",
+          title: "Cardiac Conduction System",
+          summary: "How the heart paces itself: pacemaker, delay, and rapid ventricular spread.",
           videoUrl: null,
-          videoLabel: "Video: Conduction and ECG (pending)",
-          gateKeywords: ["SA node", "AV node", "Purkinje", "P wave", "QRS"],
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/19-2-cardiac-muscle-and-electrical-activity",
+          dayInCourse: 23,
+          videoLabel: "Video: Cardiac conduction system (pending)",
+          gateKeywords: ["SA node", "AV node", "Purkinje", "pacemaker", "bundle of His"],
           notes: [
             { heading: "Conduction pathway", body: [
-              "SA node (right atrial wall): the pacemaker. Sets heart rate.",
-              "AV node: delays the impulse (about 100 ms) so atria finish contracting before ventricles begin.",
-              "Bundle of His → right and left bundle branches → Purkinje fibers → ventricular myocardium."
+              "SA node (right atrial wall) is the pacemaker. It sets heart rate, normally 60-100 bpm at rest.",
+              "Impulse spreads through atrial myocardium to the AV node.",
+              "AV node delays the impulse (about 100 ms) so atria finish contracting and emptying before ventricles begin.",
+              "Bundle of His carries the signal into the interventricular septum.",
+              "Right and left bundle branches deliver it to the Purkinje fibers, which rapidly spread excitation throughout the ventricular myocardium."
             ]},
-            { heading: "ECG basics", body: [
-              "P wave: atrial depolarization.",
-              "QRS complex: ventricular depolarization (atrial repolarization is hidden underneath).",
-              "T wave: ventricular repolarization.",
-              "PR interval: SA to ventricular depolarization (includes AV nodal delay).",
-              "QT interval: ventricular depolarization through repolarization."
+            { heading: "Why the timing matters", body: [
+              "The AV delay protects ventricular filling: if atria and ventricles contracted simultaneously, cardiac output would collapse.",
+              "Rapid ventricular spread by Purkinje fibers makes ventricular contraction nearly simultaneous, producing an effective ejection.",
+              "Loss of coordination at any point in this pathway causes an arrhythmia."
             ]},
             { heading: "Arrhythmias at a glance", body: [
-              "AV block: prolonged or absent conduction through the AV node.",
-              "Atrial fibrillation: chaotic atrial activity, irregularly irregular ventricular response.",
-              "Ventricular tachycardia / fibrillation: dangerous; loss of organized ventricular contraction."
+              "AV block: conduction through the AV node is slowed (first-degree) or fails intermittently (second/third-degree).",
+              "Atrial fibrillation: chaotic atrial activity, irregular ventricular response, stroke risk.",
+              "Ventricular fibrillation: ventricles quiver instead of contracting; cardiac arrest without immediate defibrillation."
             ]}
           ],
           cards: [
-            { id: "c1", dok: 1, q: "What sets the normal heart rate?", a: "The sinoatrial (SA) node." },
-            { id: "c2", dok: 1, q: "What does the P wave represent?", a: "Atrial depolarization." },
-            { id: "c3", dok: 1, q: "What does the QRS complex represent?", a: "Ventricular depolarization." },
-            { id: "c4", dok: 1, q: "Why is there a delay at the AV node?", a: "So atria finish contracting and emptying into the ventricles before the ventricles depolarize and contract." },
-            { id: "c5", dok: 2, q: "Why is ventricular fibrillation rapidly fatal without intervention?", a: "Chaotic ventricular depolarization means no coordinated contraction. The ventricles quiver rather than pump. Cardiac output collapses; the brain and heart lose perfusion within minutes." },
-            { id: "c6", dok: 3, q: "A patient's ECG shows a prolonged PR interval (>200 ms). Predict the likely site of conduction delay and explain.", a: "The PR interval includes atrial depolarization plus AV nodal conduction. A prolonged PR with otherwise normal complexes points to slowed AV nodal conduction (first-degree AV block)." }
+            { id: "c1", dok: 1, q: "What structure sets the normal heart rate?", a: "The sinoatrial (SA) node." },
+            { id: "c2", dok: 1, q: "Where does the AV node sit and what does it do?", a: "Between the atria and ventricles. It delays the impulse so the atria finish emptying before the ventricles contract." },
+            { id: "c3", dok: 1, q: "Name the conduction pathway in order from SA node to ventricular myocardium.", a: "SA node → atrial myocardium → AV node → Bundle of His → right and left bundle branches → Purkinje fibers → ventricular myocardium." },
+            { id: "c4", dok: 1, q: "Approximately how long is the AV nodal delay?", a: "About 100 milliseconds." },
+            { id: "c5", dok: 2, q: "Why is the AV delay essential for cardiac output?", a: "Without the delay, atria and ventricles would contract simultaneously. The atria would fail to empty into the ventricles, ventricular filling would drop, and stroke volume would collapse." },
+            { id: "c6", dok: 2, q: "Why does the Purkinje system spread the impulse so quickly through the ventricles?", a: "Coordinated ventricular contraction requires all regions to depolarize nearly simultaneously. Rapid Purkinje conduction makes that possible; slower spread would produce uncoordinated, inefficient ejection." },
+            { id: "c7", dok: 3, q: "A patient has third-degree (complete) AV block: the atria and ventricles fire independently. Predict the consequences for cardiac output and explain why.", a: "Atria contract on their own rhythm; ventricles fall back to a slower escape rhythm from below the block (40-60 bpm or less). The atrial kick no longer reliably precedes ventricular contraction, dropping stroke volume and cardiac output. Patients typically need a pacemaker." },
+            { id: "c8", dok: 3, q: "Why is ventricular fibrillation rapidly fatal without intervention?", a: "Chaotic ventricular activity means no coordinated contraction. The ventricles quiver rather than pump. Cardiac output collapses; brain and coronary perfusion fail within minutes." }
           ]
         },
 
@@ -1371,6 +1314,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Blood Vessels and Hemodynamics",
           summary: "Vessel types, blood pressure determinants, and how flow is regulated.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/20-2-blood-flow-blood-pressure-and-resistance",
+          dayInCourse: 24,
           videoLabel: "Video: Vessels and hemodynamics (pending)",
           gateKeywords: ["artery", "vein", "capillary", "blood pressure", "resistance"],
           notes: [
@@ -1408,7 +1354,7 @@ window.BIO304_COURSE_CONTENT = {
        ============================================================ */
     {
       id: "m-13-immune",
-      week: 16,
+      week: 7,
       title: "Lymphatic and Immune System",
       topics: [
 
@@ -1417,6 +1363,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Lymphatic System and Innate Immunity",
           summary: "Lymph vessels, lymphoid organs, and the body's general (non-specific) defenses.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/21-2-barrier-defenses-and-the-innate-immune-response",
+          dayInCourse: 25,
           videoLabel: "Video: Lymphatic and innate (pending)",
           gateKeywords: ["lymph", "lymphocyte", "innate", "phagocyte", "inflammation"],
           notes: [
@@ -1451,6 +1400,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Adaptive Immunity",
           summary: "Specificity and memory: how B and T cells learn what to attack and remember it.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/21-3-the-adaptive-immune-response-t-lymphocytes-and-their-functional-types",
+          dayInCourse: 26,
           videoLabel: "Video: Adaptive immunity (pending)",
           gateKeywords: ["B cell", "T cell", "antibody", "antigen", "MHC"],
           notes: [
@@ -1499,7 +1451,7 @@ window.BIO304_COURSE_CONTENT = {
        ============================================================ */
     {
       id: "m-14-respiratory",
-      week: 17,
+      week: 7,
       title: "Respiratory System",
       topics: [
 
@@ -1508,6 +1460,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Respiratory Anatomy and Mechanics",
           summary: "Conducting vs respiratory zones, and how pressure changes move air in and out.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-1-organs-and-structures-of-the-respiratory-system",
+          dayInCourse: 27,
           videoLabel: "Video: Respiratory anatomy and mechanics (pending)",
           gateKeywords: ["trachea", "alveolus", "diaphragm", "pleura", "Boyle"],
           notes: [
@@ -1543,6 +1498,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Gas Exchange and Transport",
           summary: "Diffusion at the alveoli and tissues, and how O₂ and CO₂ ride in the blood.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-4-gas-exchange",
+          dayInCourse: 27,
           videoLabel: "Video: Gas exchange and transport (pending)",
           gateKeywords: ["alveolus", "oxygen", "carbon dioxide", "hemoglobin", "partial pressure"],
           notes: [
@@ -1591,7 +1549,7 @@ window.BIO304_COURSE_CONTENT = {
        ============================================================ */
     {
       id: "m-15-digestive",
-      week: 18,
+      week: 7,
       title: "Digestive System",
       topics: [
 
@@ -1600,6 +1558,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "GI Tract Anatomy and Motility",
           summary: "From mouth to anus, the layers of the gut wall, and how food moves.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/23-1-overview-of-the-digestive-system",
+          dayInCourse: 28,
           videoLabel: "Video: GI anatomy and motility (pending)",
           gateKeywords: ["esophagus", "stomach", "small intestine", "peristalsis", "sphincter"],
           notes: [
@@ -1634,6 +1595,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Digestion and Absorption",
           summary: "Where each macromolecule gets broken down and how absorption happens.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/23-7-chemical-digestion-and-absorption-a-closer-look",
+          dayInCourse: 28,
           videoLabel: "Video: Digestion and absorption (pending)",
           gateKeywords: ["enzyme", "villi", "bile", "pancreas", "absorption"],
           notes: [
@@ -1675,7 +1639,7 @@ window.BIO304_COURSE_CONTENT = {
        ============================================================ */
     {
       id: "m-16-urinary",
-      week: 19,
+      week: 8,
       title: "Urinary System and Fluid Balance",
       topics: [
 
@@ -1684,6 +1648,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Kidney Anatomy and Glomerular Filtration",
           summary: "From renal cortex to nephron to filtration barrier: how urine starts.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/25-3-physiology-of-urine-formation",
+          dayInCourse: 29,
           videoLabel: "Video: Kidney filtration (pending)",
           gateKeywords: ["nephron", "glomerulus", "Bowman", "filtration", "GFR"],
           notes: [
@@ -1719,6 +1686,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Tubular Function and Urine Concentration",
           summary: "How the tubules reshape the filtrate into a final urine, and how ADH and aldosterone fine-tune it.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/25-4-physiology-of-urine-formation-tubular-reabsorption-and-secretion",
+          dayInCourse: 30,
           videoLabel: "Video: Tubular function (pending)",
           gateKeywords: ["PCT", "loop of Henle", "DCT", "collecting duct", "ADH"],
           notes: [
@@ -1764,6 +1734,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Fluid, Electrolyte, and Acid-Base Balance",
           summary: "Body fluid compartments, the main electrolytes, and how the body keeps pH near 7.4.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/26-4-acid-base-balance",
+          dayInCourse: 31,
           videoLabel: "Video: Fluid and acid-base (pending)",
           gateKeywords: ["ICF", "ECF", "sodium", "potassium", "pH"],
           notes: [
@@ -1804,8 +1777,8 @@ window.BIO304_COURSE_CONTENT = {
        ============================================================ */
     {
       id: "m-17-reproductive",
-      week: 20,
-      title: "Reproductive System and Development",
+      week: 8,
+      title: "Reproductive System",
       topics: [
 
         {
@@ -1813,6 +1786,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Male Reproductive System",
           summary: "Testis structure, spermatogenesis, accessory glands, and the hormonal axis.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/27-1-anatomy-and-physiology-of-the-testicular-reproductive-system",
+          dayInCourse: 31,
           videoLabel: "Video: Male reproductive (pending)",
           gateKeywords: ["testis", "sperm", "seminiferous", "spermatogenesis", "testosterone"],
           notes: [
@@ -1847,6 +1823,9 @@ window.BIO304_COURSE_CONTENT = {
           title: "Female Reproductive System",
           summary: "Ovary, oogenesis, the ovarian and uterine cycles, and the hormonal choreography.",
           videoUrl: null,
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system",
+          dayInCourse: 32,
           videoLabel: "Video: Female reproductive (pending)",
           gateKeywords: ["ovary", "ovulation", "uterus", "estrogen", "progesterone"],
           notes: [
@@ -1883,40 +1862,44 @@ window.BIO304_COURSE_CONTENT = {
 
         {
           id: "t-pregnancy-development",
-          title: "Pregnancy and Development",
-          summary: "Fertilization through the trimesters, plus the role of the placenta.",
+          title: "Pregnancy A&P (Basics)",
+          summary: "Fertilization, implantation, and the maternal-fetal interface. Maternal physiology highlights through the trimesters.",
           videoUrl: null,
-          videoLabel: "Video: Pregnancy and development (pending)",
-          gateKeywords: ["fertilization", "embryo", "placenta", "trimester", "hCG"],
+          notesUrl: null,
+          readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/28-4-maternal-changes-during-pregnancy-labor-and-birth",
+          dayInCourse: 32,
+          videoLabel: "Video: Pregnancy A&P basics (pending)",
+          gateKeywords: ["fertilization", "implantation", "placenta", "hCG", "corpus luteum"],
           notes: [
-            { heading: "Fertilization and early development", body: [
-              "Sperm penetrates the secondary oocyte in the ampulla of the uterine tube.",
-              "Zygote → cleavage → morula → blastocyst (with inner cell mass and trophoblast).",
-              "Implantation in the uterine endometrium around day 6-7.",
-              "Trophoblast secretes hCG, which keeps the corpus luteum alive."
+            { heading: "Fertilization and implantation", body: [
+              "Sperm meets the secondary oocyte in the ampulla of the uterine tube within hours of ovulation.",
+              "The fertilized egg divides as it travels to the uterus, becoming a blastocyst.",
+              "Implantation in the uterine endometrium occurs around day 6-7."
             ]},
-            { heading: "Embryonic and fetal stages", body: [
-              "Embryonic period (weeks 1-8): all major organ systems form (organogenesis).",
-              "Fetal period (week 9 to birth): growth and maturation.",
-              "Three germ layers (ectoderm, mesoderm, endoderm) give rise to all body tissues."
+            { heading: "Hormonal support", body: [
+              "Trophoblast cells secrete hCG, which keeps the corpus luteum alive.",
+              "The corpus luteum continues progesterone production, maintaining the endometrium.",
+              "By the end of the first trimester, the placenta takes over hormone production (progesterone, estrogen, hPL)."
             ]},
-            { heading: "Placenta", body: [
-              "Site of nutrient, gas, and waste exchange between maternal and fetal blood (no direct mixing).",
-              "Endocrine organ: takes over hormone production (estrogen, progesterone, hCG, hPL) by the end of the first trimester."
+            { heading: "Placenta as a working organ", body: [
+              "Exchange site: oxygen, nutrients, and wastes diffuse between maternal and fetal blood, but the two circulations never mix.",
+              "Endocrine organ: secretes the hormones that maintain pregnancy.",
+              "Filter (imperfect): many drugs, alcohol, and infections cross to the fetus."
             ]},
-            { heading: "Trimesters", body: [
-              "First (weeks 1-12): organogenesis; high vulnerability to teratogens.",
-              "Second (weeks 13-26): rapid growth; fetal movement.",
-              "Third (weeks 27-birth): final maturation, especially lungs and CNS; weight gain."
+            { heading: "Maternal physiology by trimester", body: [
+              "First trimester: high hCG, fatigue, nausea common. Cardiac output begins rising.",
+              "Second trimester: maternal blood volume up about 40%; heart rate rises modestly; uterus enlarges out of the pelvis.",
+              "Third trimester: pressure on diaphragm shortens breath; venous return from legs slowed by uterine compression; risk of preeclampsia rises."
             ]}
           ],
           cards: [
             { id: "c1", dok: 1, q: "Where does fertilization typically occur?", a: "In the ampulla of the uterine (fallopian) tube." },
-            { id: "c2", dok: 1, q: "What does hCG do early in pregnancy?", a: "Maintains the corpus luteum so it keeps producing progesterone until the placenta takes over." },
-            { id: "c3", dok: 1, q: "Name the three primary germ layers.", a: "Ectoderm, mesoderm, endoderm." },
-            { id: "c4", dok: 1, q: "Which trimester is most vulnerable to teratogens?", a: "The first trimester (organogenesis is happening)." },
-            { id: "c5", dok: 2, q: "Explain why home pregnancy tests detect hCG rather than other hormones.", a: "hCG is produced only by trophoblast tissue and rises rapidly after implantation. It is detectable in urine within days of a missed period. Other reproductive hormones fluctuate normally and are not specific to pregnancy." },
-            { id: "c6", dok: 3, q: "A pregnant patient takes a medication during week 4 of pregnancy that disrupts neural tube closure. Predict the developmental consequence and explain timing.", a: "Neural tube closes around days 22-28 (week 4). Disruption during this window can produce neural tube defects: spina bifida if caudal closure fails, anencephaly if rostral closure fails. The drug acts during the brief window when this developmental process is occurring. Folate supplementation reduces baseline risk by supporting DNA synthesis during this critical period." }
+            { id: "c2", dok: 1, q: "What does hCG do in early pregnancy?", a: "Maintains the corpus luteum so it continues producing progesterone until the placenta takes over." },
+            { id: "c3", dok: 1, q: "When does implantation occur after fertilization?", a: "Around day 6-7." },
+            { id: "c4", dok: 1, q: "When does the placenta take over hormone production from the corpus luteum?", a: "By the end of the first trimester." },
+            { id: "c5", dok: 2, q: "Why does maternal blood volume rise during pregnancy?", a: "To supply the growing placenta and fetus, support increased renal filtration, and provide a reserve for blood loss at delivery. Plasma volume rises more than red cell mass, producing the physiologic anemia of pregnancy." },
+            { id: "c6", dok: 2, q: "Explain why home pregnancy tests target hCG rather than other hormones.", a: "Only trophoblast tissue makes hCG, and levels rise quickly after implantation. It is specific to pregnancy and detectable in urine within days of a missed period." },
+            { id: "c7", dok: 3, q: "A third-trimester patient becomes dizzy when lying flat on her back. Predict the cause and the management.", a: "The enlarged uterus compresses the inferior vena cava when supine, dropping venous return, stroke volume, and blood pressure. Roll the patient to her left side to relieve the compression." }
           ]
         }
 
