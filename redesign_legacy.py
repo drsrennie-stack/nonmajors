@@ -178,10 +178,13 @@ def extract_content(html, h1_text):
     content = re.sub(r'<h1[^>]*>[\s\S]*?</h1>', '', content, count=1, flags=re.IGNORECASE)
     # Strip any previously-added "Back to syllabus hub" toolbar (idempotency: prevents
     # toolbars from stacking when redesign_legacy.py is re-run on already-redesigned files).
-    content = re.sub(
-        r'<div class="toolbar"[^>]*>\s*<a[^>]*Back to syllabus hub[\s\S]*?</a>\s*</div>\s*',
-        '', content, flags=re.IGNORECASE
+    # Repeated until no matches remain so all stacked copies are removed.
+    pattern = re.compile(
+        r'<div\s+class="toolbar"[^>]*>\s*<a[^>]*?href="biol304_syllabus\.html"[^>]*>[\s\S]*?</a>\s*</div>\s*',
+        re.IGNORECASE
     )
+    while pattern.search(content):
+        content = pattern.sub('', content, count=1)
 
     # Wrap each <section> as a .card so styling is consistent
     def wrap_section(m):
