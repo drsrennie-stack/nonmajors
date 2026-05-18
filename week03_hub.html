@@ -39,14 +39,14 @@ h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:va
 .day-label{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 4px}
 .day-date{font-family:'DM Sans',system-ui,sans-serif;font-size:11px;color:var(--gray-soft);margin:0 0 8px}
 .day-topic{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:14px;line-height:1.35;margin:0 0 10px}
-/* Pill buttons inside day tiles */
-.day-pill{display:inline-flex;align-items:center;gap:4px;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.04em;padding:6px 12px;border-radius:999px;text-decoration:none;margin:3px 4px 3px 0;transition:background 150ms ease,color 150ms ease;border:1px solid transparent;line-height:1.2}
-.day-pill.pill-prework{background:var(--navy);color:var(--white);border-color:var(--navy)}
-.day-pill.pill-prework:hover,.day-pill.pill-prework:focus-visible{background:var(--navy-deep);color:var(--white)}
-.day-pill.pill-lab{background:var(--navy-tint);color:var(--navy);border:1px solid var(--gold-deep)}
-.day-pill.pill-lab:hover,.day-pill.pill-lab:focus-visible{background:#F7EED8;color:var(--navy)}
-.day-pill.pill-discussion{background:#FBEEE6;color:var(--terra-dark);border:1px solid var(--terra-dark)}
-.day-pill.pill-discussion:hover,.day-pill.pill-discussion:focus-visible{background:#F6DCC8;color:var(--terra-dark)}
+/* Pill buttons inside day tiles — strong saturated colors, no pastels */
+a.day-pill{display:inline-flex;align-items:center;gap:4px;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.04em;padding:7px 13px;border-radius:999px;text-decoration:none;margin:3px 4px 3px 0;transition:background 150ms ease,color 150ms ease,border-color 150ms ease;border:1px solid transparent;line-height:1.2}
+a.day-pill.pill-prework{background:var(--navy);color:var(--white);border-color:var(--navy)}
+a.day-pill.pill-prework:hover,a.day-pill.pill-prework:focus-visible{background:var(--navy-deep);color:var(--white);border-color:var(--navy-deep)}
+a.day-pill.pill-lab{background:#B8924A;color:#142A36;border-color:#9A7838}
+a.day-pill.pill-lab:hover,a.day-pill.pill-lab:focus-visible{background:#9A7838;color:#142A36;border-color:#7D5F2C}
+a.day-pill.pill-discussion{background:var(--terra-dark);color:var(--white);border-color:var(--terra-dark)}
+a.day-pill.pill-discussion:hover,a.day-pill.pill-discussion:focus-visible{background:#7E3F22;color:var(--white);border-color:#7E3F22}
 .day-pill .arrow{font-size:13px}
 .deadline-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:10px}
 .deadline{background:var(--white);border:1px solid var(--gray-line);border-left:4px solid var(--terra);border-radius:6px;padding:14px 16px}
