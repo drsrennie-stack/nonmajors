@@ -4,94 +4,94 @@ Base URL for all iframes: **`https://drsrennie-stack.github.io/nonmajors/`**
 
 ## The lean approach
 
-Module 0 used to have 14 separate Canvas items. It now has **3**. Everything else lives inside the single document-style syllabus at `biol304_syllabus.html`, navigable through its built-in table of contents. Fewer Canvas links, less to maintain, one canonical source of truth.
+Module 0 has **3 native Canvas items**. Both the syllabus and the welcome discussion are iframed from branded HTML pages in the GitHub Pages repo, so they render in your course palette instead of plain Canvas styling.
 
-The three Module 0 items below are the only ones that must exist as native Canvas objects:
-
-1. **Course Syllabus & Welcome** — a Canvas Page that iframes the syllabus hub.
-2. **Welcome Discussion** — a Canvas Discussion topic (required for introductions and reply scaffolding).
-3. **Start-Here Acknowledgment Quiz** — a Canvas Quiz (required to gate Module 1 unlock).
+1. **Course Syllabus & Welcome** — Canvas Page that iframes `biol304_syllabus.html`
+2. **Welcome Discussion** — Canvas Discussion topic that iframes `welcome_discussion.html` in the prompt body
+3. **Start-Here Acknowledgment Quiz** — Canvas Quiz with 8 high-yield questions
 
 ## How to use this file
 
-For the Page below:
-
-1. Open the Page in Canvas.
-2. Click **Edit**.
-3. Click the **HTML editor** icon (`</>`) at the top right of the editor.
-4. Replace the contents with the code block under the page heading.
-5. Switch back to the **Rich Content Editor** view and click **Save**.
-
-For the Discussion and Quiz, follow the configuration notes in their sections (no iframe).
+For each item below: open the matching Canvas object, switch to the HTML editor (`</>` icon), paste the code block, and save.
 
 ---
 
 ## 1. Course Syllabus & Welcome (Canvas Page)
 
-Suggested iframe height: **4200px**. This is the full document-style syllabus.
+Suggested iframe height: **4200px**.
 
 ```html
-<p>Welcome to BIO 304. The syllabus below is your single point of reference for the course. Use the table of contents inside it to jump to welcome, course at a glance, learning outcomes, materials, the weekly rhythm, grading, deadlines, the 8-week schedule, how to reach me, integrity and AI policy, accessibility, RSI, tech setup, and the resource index.</p>
+<p>Welcome to BIO 304. The syllabus below is your single point of reference for the course. Use the table of contents inside it to jump to any section: welcome, course at a glance, learning outcomes, materials, the weekly rhythm, grading, deadlines, the 8-week schedule, how to reach me, integrity and AI policy, accessibility, regular substantive interaction, tech setup, and the resource index.</p>
 <p><a href="https://drsrennie-stack.github.io/nonmajors/biol304_syllabus.html" target="_blank" rel="noopener"><strong>Open the full syllabus in a new window &#8599;</strong></a></p>
 <p><iframe src="https://drsrennie-stack.github.io/nonmajors/biol304_syllabus.html" width="100%" height="4200" style="border:1px solid #cfd6da;border-radius:8px;" loading="lazy" title="BIO 304 Syllabus"></iframe></p>
 ```
 
 ---
 
-## 2. Welcome Discussion · BIO 304 (Canvas Discussion topic, no iframe)
-
-**Title:** Welcome Discussion · BIO 304
+## 2. Welcome Discussion (Canvas Discussion topic)
 
 **Settings:**
-- Discussion type: **Threaded**
-- Available from: course start date (Monday, June 8, 2026)
-- Due: Sunday of Week 1
-- Points: 5 to 10 (low-stakes welcome)
-- Require initial post before viewing replies: **Yes**
-- Reply required: **No**
+- Title: `Welcome Discussion · BIO 304`
+- Type: Threaded
+- Available: Mon Jun 8, 12:00 AM
+- Initial post due: Fri Jun 12, 11:59 PM
+- Replies due: Sun Jun 14, 11:59 PM
+- Points: 5 (low-stakes welcome)
+- Require initial post before viewing replies: Yes
 
-**Prompt (paste into the message body):**
+**Paste this into the prompt body** (Canvas Discussion HTML editor). The iframe loads the branded welcome page; the short text above it keeps Canvas's notification preview readable.
 
 ```html
-<h2>Welcome to BIO 304</h2>
-<p>Take a few minutes to introduce yourself. Share whatever feels right, but please touch on each of the following so your classmates and I know who you are:</p>
-<ol>
-  <li><strong>Your name</strong> and what you would like to be called.</li>
-  <li><strong>Where you are in your education</strong>, and where you are headed. Pre-nursing, pre-med, pre-dental hygiene, allied health, or something else?</li>
-  <li><strong>One specific body system or topic you are curious about</strong>. "How does my heart actually beat?" is a perfect answer.</li>
-  <li><strong>One thing about your life outside of school</strong>: work, hobby, family, anything.</li>
-  <li><strong>What time of day you do your best thinking</strong>. The pre-work is daily, and knowing your own rhythm will help you place it.</li>
-</ol>
-<p>Reply to at least two classmates by Sunday night. Look for someone who shares your interest or your time-of-day preference.</p>
-<p>I will introduce myself here too, and respond to each of you in the first week.</p>
+<p>Welcome to BIO 304. Read the prompt below and post your introduction by Friday. Reply to at least two classmates by Sunday.</p>
+<p><a href="https://drsrennie-stack.github.io/nonmajors/welcome_discussion.html" target="_blank" rel="noopener"><strong>Open the welcome prompt in a new window &#8599;</strong></a></p>
+<p><iframe src="https://drsrennie-stack.github.io/nonmajors/welcome_discussion.html" width="100%" height="1450" style="border:1px solid #cfd6da;border-radius:8px;" loading="lazy" title="Welcome Discussion prompt"></iframe></p>
 ```
 
 ---
 
 ## 3. Start-Here Acknowledgment Quiz (Canvas Quiz)
 
-The last item in Module 0. Use Classic Quizzes or New Quizzes depending on what ARC has enabled.
+8 questions covering the load-bearing facts in the syllabus. Use Canvas's Classic Quizzes or New Quizzes.
 
-**Quiz settings:**
-- Type: Practice or 5-point graded quiz
-- Show one question at a time: **No**
-- Time limit: **None**
-- Allow multiple attempts: **Yes (unlimited)**
-- Module Requirement: "Students must score at least 100% on this item" before Module 1 unlocks
+**Settings:**
+- Title: `Start-Here Syllabus Quiz`
+- Type: 8-point graded quiz (or practice, your call)
+- Show one question at a time: No
+- Time limit: None
+- Allow multiple attempts: Yes, unlimited
+- Module Requirement: Must score 100% before Module 1 unlocks
 
-**Questions:**
+### Q1 (multiple choice, 1 point) — Course pace
+> This is a 4-credit course delivered in 8 weeks. Approximately how many total hours per week should you plan for, per federal Carnegie Unit standards?
 
-### Q1 (multiple choice, 1 point)
-> When does new lecture pre-work release each week?
+- [ ] 5 to 8 hours per week
+- [ ] 10 to 12 hours per week
+- [x] 22 to 24 hours per week
+- [ ] 30 to 35 hours per week
+
+Feedback (correct): "Right. About 8 to 10 of those hours are pre-work videos and the Wednesday lab block; the other 12 to 15 are outside-of-class study. Block both buckets on your calendar before Week 1."
+
+### Q2 (multiple choice, 1 point) — Pre-work release schedule
+> Which days does new lecture pre-work release each week?
 
 - [ ] Monday only
 - [x] Monday, Tuesday, Thursday, and Friday
 - [ ] Every day Monday through Sunday
 - [ ] Wednesday only
 
-Feedback (correct): "Right. Wednesday is for catching up and joining the discussion. Sunday closes the week."
+Feedback (correct): "Wednesday is for catching up on labs and joining the discussion. The weekend is for the quiz."
 
-### Q2 (multiple choice, 1 point)
+### Q3 (multiple choice, 1 point) — Quiz window
+> When does the weekly quiz open and close?
+
+- [ ] Opens Monday, closes Friday
+- [ ] Opens Wednesday, closes Friday
+- [x] Opens Friday at 12:00 AM, closes Sunday at 11:59 PM
+- [ ] Opens Friday, closes Monday
+
+Feedback (correct): "You have the full Fri to Sun window. Don't wait until Sunday night. Honorlock issues happen at the worst times."
+
+### Q4 (multiple choice, 1 point) — Hand-labeling integrity rule
 > What is the academic integrity rule about lab workbooks?
 
 - [ ] You can type your labels and submit a typed version.
@@ -101,81 +101,75 @@ Feedback (correct): "Right. Wednesday is for catching up and joining the discuss
 
 Feedback (correct): "Hand labeling is the integrity mechanism for this course. Typed or AI-generated labels will not be accepted."
 
-### Q3 (multiple choice, 1 point)
-> When does the weekly quiz open and close?
+### Q5 (multiple choice, 1 point) — Grading weights
+> Which component is the LARGEST single weight in your grade?
 
-- [ ] Opens Monday, closes Friday
-- [ ] Opens Wednesday, closes Friday
-- [x] Opens Friday, closes Sunday at 11:59 PM
-- [ ] Opens Friday, closes Monday
+- [ ] Lab workbooks (30%)
+- [x] Pre-work engagement (40%)
+- [ ] Weekly discussions (10%)
+- [ ] Weekly quizzes (20%)
 
-Feedback (correct): "You have the full weekend to take the quiz. Don't wait until Sunday night."
+Feedback (correct): "Daily video viewing and spaced recall are 40% of your grade. Show up every day and this component takes care of itself."
 
-### Q4 (multiple choice, 1 point)
-> Which channel should you use to ask about your grade or a personal accommodation?
+### Q6 (multiple choice, 1 point) — DSPS accommodations
+> If you have DSPS accommodations, when must you present your accommodation letter to Dr. Rennie?
 
-- [ ] The Virtual Office Hours discussion forum
-- [x] Email or Canvas Inbox
-- [ ] A public class discussion
-- [ ] By posting in the welcome thread
+- [ ] Whenever you happen to need them
+- [ ] Before the final exam
+- [x] In Week 1, so adjustments are in place before your first deadline
+- [ ] Only if you fail a quiz first
 
-Feedback (correct): "Anything confidential goes by email. Everything else belongs in the forum so your classmates can benefit from the answer."
+Feedback (correct): "You are required to present your DSPS letter in Week 1. Accommodations are always honored, but I need the letter early to set up Honorlock extensions and any other adjustments before any deadline arrives."
 
-### Q5 (true/false, 1 point)
-> The pre-work hub uses spaced recall to surface cards I have rated as struggling more often than cards I have rated as easy.
+### Q7 (multiple choice, 1 point) — Late work
+> What is the late work policy in this course?
 
-- [x] True
-- [ ] False
+- [ ] 10% deduction per day late
+- [ ] Late work accepted up to one week after the deadline
+- [x] Late work earns zero points, no exceptions
+- [ ] Late work accepted with a doctor's note
 
-Feedback (correct): "Correct. The system schedules harder cards to come back sooner so you spend your time where you need it."
+Feedback (correct): "Late work is zero. If life is hitting hard, email me BEFORE a deadline. Solutions exist before the deadline. They do not exist after."
 
-### Q6 (multiple choice, 1 point)
-> What is the textbook for this course?
+### Q8 (multiple choice, 1 point) — Communication channel
+> You have a question about how a concept on Tuesday's pre-work video connects to Friday's content. Where should you post it?
 
-- [ ] A required hardcover textbook I need to purchase
-- [x] OpenStax Anatomy and Physiology 2e, free online
-- [ ] No textbook; everything is in the videos
-- [ ] An e-book bundled with the course fee
+- [x] The Virtual Office Hours forum
+- [ ] My personal cell phone
+- [ ] Your group chat with classmates
+- [ ] Email to Dr. Rennie
 
-Feedback (correct): "OpenStax is free. The Reading Map link inside the syllabus tells you which section supports each topic."
-
-### Q7 (true/false, 1 point) — final agreement
-> I have read the syllabus and I agree to the expectations described above.
-
-- [x] True
-- [ ] False
-
-Feedback (correct): "Welcome. You are ready to start Week 1."
+Feedback (correct): "The forum is the preferred channel for anything non-confidential, because other students learn from your question. Email is for confidential matters only (grades, accommodations, personal circumstances)."
 
 ---
 
 ## What got dropped (and where it lives now)
 
-Everything that was a separate Module 0 page is now an anchor inside `biol304_syllabus.html`:
+Everything that used to be a separate Module 0 Canvas Page is now an anchor inside `biol304_syllabus.html`:
 
 | Was a Canvas Page | Now lives at |
 |---|---|
-| Welcome | `#welcome` |
-| Syllabus Details | the full document |
-| Technical Setup & Requirements | `#tech` |
-| Submission Instructions | `#tech` |
-| Academic Integrity & AI Policy | `#integrity` |
-| How to Reach Me | `#reach` |
-| Course Structure | `#rhythm`, `#grading`, `#schedule` |
-| Course Dashboard | resource index `#resources` |
-| Textbook & Materials | `#materials` |
+| Welcome letter | `#welcome` |
+| Syllabus details | the full document |
+| Tech setup & requirements | `#tech` |
+| Submission instructions | `#tech` |
+| Academic integrity & AI policy | `#integrity` |
+| How to reach me | `#reach` |
+| Course structure | `#rhythm`, `#grading`, `#schedule` |
+| Course dashboard | resource index `#resources` |
+| Textbook & materials | `#materials` |
 | Accessibility & DSPS | `#access` |
-| Reading Map | resource index `#resources` |
-| Weekly Pacer | `#rhythm`, `#deadlines`, `#habits` |
+| Reading map | resource index `#resources` |
+| Weekly pacer | `#rhythm`, `#deadlines`, `#habits` |
 
-Students hit one Canvas Page and have access to the whole syllabus via the sidebar table of contents.
+Students hit one Canvas Page, then use the syllabus's sticky TOC to navigate.
 
 ---
 
 ## Module 0 setup checklist
 
 1. Create the **Course Syllabus & Welcome** Page and paste the snippet from section 1.
-2. Create the **Welcome Discussion** topic with the prompt from section 2.
-3. Create the **Start-Here Acknowledgment Quiz** with the questions from section 3.
-4. In Module 0 settings, require students to mark items 1 and 2 as **viewed/contributed** and to score 100% on the acknowledgment quiz before Module 1 unlocks.
+2. Create the **Welcome Discussion** topic and paste the snippet from section 2.
+3. Create the **Start-Here Syllabus Quiz** and build the 8 questions from section 3.
+4. In Module 0 settings, set the requirements: students must mark items 1 and 2 as viewed/contributed and score 100% on the syllabus quiz before Module 1 unlocks.
 5. Publish Module 0.

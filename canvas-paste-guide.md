@@ -42,39 +42,32 @@ This is the only page in Module 0 that uses an iframe. It embeds the full docume
 <p><iframe src="https://drsrennie-stack.github.io/nonmajors/biol304_syllabus.html" width="100%" height="4200" style="border:1px solid #cfd6da;border-radius:8px;" loading="lazy" title="BIO 304 Syllabus"></iframe></p>
 ```
 
-## 0.2 Welcome Discussion (Canvas Discussion topic)
-
-Native Canvas Discussion. No iframe. Paste the prompt body below.
+## 0.2 Welcome Discussion (Canvas Discussion topic, iframed branded page)
 
 **Settings:**
 - Title: `Welcome Discussion · BIO 304`
 - Type: Threaded
 - Available: Mon Jun 8, 12:00 AM
-- Due: Sun Jun 14, 11:59 PM
+- Initial post due: Fri Jun 12, 11:59 PM
+- Replies due: Sun Jun 14, 11:59 PM
 - Points: 5
 - Require initial post before viewing replies: Yes
 
+Paste this into the discussion prompt body. The iframe renders the branded welcome page; the short text above it keeps Canvas notifications readable.
+
 ```html
-<h2>Welcome to BIO 304</h2>
-<p>Take a few minutes to introduce yourself. Touch on each of the following so your classmates and I know who you are:</p>
-<ol>
-  <li><strong>Your name</strong> and what you would like to be called.</li>
-  <li><strong>Where you are in your education</strong>, and where you are headed. Pre-nursing, pre-med, pre-dental hygiene, allied health, or something else?</li>
-  <li><strong>One specific body system or topic you are curious about.</strong> "How does my heart actually beat?" is a perfect answer.</li>
-  <li><strong>One thing about your life outside of school</strong>: work, hobby, family, anything.</li>
-  <li><strong>What time of day you do your best thinking.</strong> The pre-work is daily, and knowing your own rhythm will help you place it.</li>
-</ol>
-<p>Reply to at least two classmates by Sunday night. Look for someone who shares your interest or your time-of-day preference.</p>
-<p>I will introduce myself here too, and respond to each of you in the first week.</p>
+<p>Welcome to BIO 304. Read the prompt below and post your introduction by Friday. Reply to at least two classmates by Sunday.</p>
+<p><a href="https://drsrennie-stack.github.io/nonmajors/welcome_discussion.html" target="_blank" rel="noopener"><strong>Open the welcome prompt in a new window &#8599;</strong></a></p>
+<p><iframe src="https://drsrennie-stack.github.io/nonmajors/welcome_discussion.html" width="100%" height="1450" style="border:1px solid #cfd6da;border-radius:8px;" loading="lazy" title="Welcome Discussion prompt"></iframe></p>
 ```
 
-## 0.3 Start-Here Acknowledgment Quiz (Canvas Quiz)
+## 0.3 Start-Here Syllabus Quiz (Canvas Quiz)
 
-Native Canvas Quiz. Build the 7 questions manually using `canvas-module-0-snippets.md` section 3 as the source.
+Native Canvas Quiz with 8 high-yield questions. Build them manually from `canvas-module-0-snippets.md` section 3.
 
 **Settings:**
-- Title: `Start-Here Acknowledgment Quiz`
-- Type: Practice or 5-point graded
+- Title: `Start-Here Syllabus Quiz`
+- Type: 8-point graded (or practice, your call)
 - Time limit: None
 - Multiple attempts: Yes (unlimited)
 - Module Requirement: 100% correct before Module 1 unlocks
