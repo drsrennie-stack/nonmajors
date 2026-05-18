@@ -812,7 +812,12 @@
   <!-- DAILY REVIEW -->
   <section class="view" id="view-review" aria-labelledby="review-heading">
     <h2 id="review-heading">Daily review</h2>
-    <p class="usage">These cards are due based on how you rated them last time. Lower confidence resurfaces first.</p>
+    <p class="usage" id="review-mode-note">These cards are due based on how you rated them last time. Lower confidence resurfaces first.</p>
+    <div class="toolbar" style="margin-bottom:12px;flex-wrap:wrap;gap:8px;align-items:center;">
+      <span style="font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);">Show</span>
+      <button type="button" class="btn btn-primary" id="btn-review-due" aria-pressed="true">Due today only</button>
+      <button type="button" class="btn btn-ghost" id="btn-review-all" aria-pressed="false">All unlocked cards</button>
+    </div>
     <div id="review-body"></div>
   </section>
 
@@ -1863,29 +1868,66 @@
 
   /* ---------- DAILY REVIEW ---------- */
 
+  // 'due' = only cards whose nextDue is now or earlier (the daily-review default).
+  // 'all' = every card from a topic the student has already unlocked (passed the gate).
+  //         Lets students drill everything they've ever seen, ignoring schedule.
+  //         Locked topics stay hidden.
+  let REVIEW_MODE = "due";
+
   function renderReview(){
     const body = $("#review-body");
     body.innerHTML = "";
-    const due = [];
+    const items = [];
     allTopics().forEach(t => {
+      const ts = STATE.topics[t.id];
+      if (REVIEW_MODE === "all" && !(ts && ts.gateCompleted)) return; // skip locked topics
       t.cards.forEach(c => {
         const st = getCardState(t.id, c.id, c.dok);
-        if (st.reps > 0 && st.nextDue <= nowSim()) {
-          due.push({ topic: t, card: c, st: st });
+        if (REVIEW_MODE === "due") {
+          if (st.reps > 0 && st.nextDue <= nowSim()) items.push({ topic: t, card: c, st: st });
+        } else {
+          // "all unlocked": include every card from an unlocked topic, whether seen or not.
+          items.push({ topic: t, card: c, st: st });
         }
       });
     });
-    if (!due.length) {
-      body.innerHTML = '<div class="card"><p class="empty">No cards are due right now. Come back tomorrow, or start a new topic from tonight’s pre-work.</p></div>';
+
+    // Update the mode toggle UI and the helper paragraph.
+    const btnDue = $("#btn-review-due");
+    const btnAll = $("#btn-review-all");
+    if (btnDue && btnAll) {
+      btnDue.classList.toggle("btn-primary", REVIEW_MODE === "due");
+      btnDue.classList.toggle("btn-ghost", REVIEW_MODE !== "due");
+      btnDue.setAttribute("aria-pressed", REVIEW_MODE === "due" ? "true" : "false");
+      btnAll.classList.toggle("btn-primary", REVIEW_MODE === "all");
+      btnAll.classList.toggle("btn-ghost", REVIEW_MODE !== "all");
+      btnAll.setAttribute("aria-pressed", REVIEW_MODE === "all" ? "true" : "false");
+    }
+    const note = $("#review-mode-note");
+    if (note) {
+      note.textContent = REVIEW_MODE === "due"
+        ? "These cards are due based on how you rated them last time. Lower confidence resurfaces first."
+        : "Drill every card from topics you've unlocked, regardless of due date. Useful before a quiz. Topics you haven't unlocked yet are not shown.";
+    }
+
+    if (!items.length) {
+      body.innerHTML = REVIEW_MODE === "due"
+        ? '<div class="card"><p class="empty">No cards are due right now. Come back tomorrow, or start a new topic from tonight’s pre-work.</p></div>'
+        : '<div class="card"><p class="empty">No unlocked topics yet. Start tonight’s pre-work first, then come back here.</p></div>';
       return;
     }
-    // Order: lowest ease first (the cards the student struggles with), then earliest due.
-    due.sort((a,b) => a.st.ease - b.st.ease || a.st.nextDue - b.st.nextDue);
+
+    // Order: lowest ease first (struggle cards), then earliest due.
+    items.sort((a,b) => a.st.ease - b.st.ease || a.st.nextDue - b.st.nextDue);
     const wrap = document.createElement("div");
     wrap.className = "card";
-    wrap.innerHTML = "<h3>" + due.length + " card" + (due.length === 1 ? "" : "s") + " due across topics</h3>";
+    const total = items.length;
+    const heading = REVIEW_MODE === "due"
+      ? total + " card" + (total === 1 ? "" : "s") + " due across topics"
+      : total + " card" + (total === 1 ? "" : "s") + " in your unlocked deck";
+    wrap.innerHTML = "<h3>" + heading + "</h3>";
     const list = document.createElement("div");
-    due.slice(0, 20).forEach(item => {
+    items.slice(0, 30).forEach(item => {
       const row = document.createElement("div");
       row.style.cssText = "display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-line);";
       row.innerHTML = `
@@ -1897,6 +1939,13 @@
       `;
       list.appendChild(row);
     });
+    if (items.length > 30) {
+      const more = document.createElement("p");
+      more.className = "usage";
+      more.style.marginTop = "10px";
+      more.textContent = "Showing top 30 of " + items.length + ". Open a topic to drill all of its cards.";
+      list.appendChild(more);
+    }
     wrap.appendChild(list);
     body.appendChild(wrap);
 
@@ -1908,6 +1957,11 @@
         else nav("learn", tid);
       });
     });
+  }
+
+  function setReviewMode(mode){
+    REVIEW_MODE = mode;
+    renderReview();
   }
 
   /* ---------- ENGAGEMENT REPORT ---------- */
@@ -2105,6 +2159,12 @@
         else if (e.key === "4") rateCard("easy");
       }
     });
+
+    // Review mode toggle
+    const btnReviewDue = $("#btn-review-due");
+    const btnReviewAll = $("#btn-review-all");
+    if (btnReviewDue) btnReviewDue.addEventListener("click", () => setReviewMode("due"));
+    if (btnReviewAll) btnReviewAll.addEventListener("click", () => setReviewMode("all"));
 
     // Report
     $("#btn-print").addEventListener("click", () => { nav("report"); setTimeout(() => window.print(), 200); });
