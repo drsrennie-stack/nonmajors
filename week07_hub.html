@@ -39,8 +39,15 @@ h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:va
 .day-label{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 4px}
 .day-date{font-family:'DM Sans',system-ui,sans-serif;font-size:11px;color:var(--gray-soft);margin:0 0 8px}
 .day-topic{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:14px;line-height:1.35;margin:0 0 10px}
-.day-tile a{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-size:12.5px;color:var(--navy);text-decoration:none;padding:3px 0}
-.day-tile a:hover{color:var(--gold-deep);text-decoration:underline}
+/* Pill buttons inside day tiles */
+.day-pill{display:inline-flex;align-items:center;gap:4px;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.04em;padding:6px 12px;border-radius:999px;text-decoration:none;margin:3px 4px 3px 0;transition:background 150ms ease,color 150ms ease;border:1px solid transparent;line-height:1.2}
+.day-pill.pill-prework{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.day-pill.pill-prework:hover,.day-pill.pill-prework:focus-visible{background:var(--navy-deep);color:var(--white)}
+.day-pill.pill-lab{background:var(--navy-tint);color:var(--navy);border:1px solid var(--gold-deep)}
+.day-pill.pill-lab:hover,.day-pill.pill-lab:focus-visible{background:#F7EED8;color:var(--navy)}
+.day-pill.pill-discussion{background:#FBEEE6;color:var(--terra-dark);border:1px solid var(--terra-dark)}
+.day-pill.pill-discussion:hover,.day-pill.pill-discussion:focus-visible{background:#F6DCC8;color:var(--terra-dark)}
+.day-pill .arrow{font-size:13px}
 .deadline-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:10px}
 .deadline{background:var(--white);border:1px solid var(--gray-line);border-left:4px solid var(--terra);border-radius:6px;padding:14px 16px}
 .deadline .lbl{font-family:'DM Sans',sans-serif;font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 4px}
@@ -69,35 +76,37 @@ footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;f
       <p class="day-label">Monday . Day 25</p>
       <p class="day-date">Mon, Jul 20</p>
       <p class="day-topic">Lymphatic System and Innate Immunity</p>
-      <a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br>
-      <a href="workbook_day25_lymphatic-system-and-innate-immunity.html" target="_top">Lab workbook &rarr;</a>
+      <a class="day-pill pill-prework" href="bio304-spaced-recall-prototype.html" target="_top">Pre-work <span class="arrow">&rarr;</span></a>
+      <a class="day-pill pill-lab" href="workbook_day25_lymphatic-system-and-innate-immunity.html" target="_top">Lab workbook <span class="arrow">&rarr;</span></a>
     </div>
     <div class="day-tile">
       <p class="day-label">Tuesday . Day 26</p>
       <p class="day-date">Tue, Jul 21</p>
       <p class="day-topic">Adaptive Immunity</p>
-      <a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br>
-      <a href="workbook_day26_adaptive-immunity.html" target="_top">Lab workbook &rarr;</a>
+      <a class="day-pill pill-prework" href="bio304-spaced-recall-prototype.html" target="_top">Pre-work <span class="arrow">&rarr;</span></a>
+      <a class="day-pill pill-lab" href="workbook_day26_adaptive-immunity.html" target="_top">Lab workbook <span class="arrow">&rarr;</span></a>
     </div>
     <div class="day-tile wed">
       <p class="day-label">Wednesday . Lab + Discussion</p>
       <p class="day-date">Wed, Jul 22</p>
       <p class="day-topic">No new pre-work today. Wednesday is for the lab block, the discussion prompt, and spaced recall.</p>
-      <a href="discussions.html" target="_top">Discussion page &rarr;</a>
+      <a class="day-pill pill-discussion" href="discussions.html" target="_top">Discussion <span class="arrow">&rarr;</span></a>
     </div>
     <div class="day-tile">
       <p class="day-label">Thursday . Day 27</p>
       <p class="day-date">Thu, Jul 23</p>
       <p class="day-topic">Respiratory Anatomy and Mechanics<br>Gas Exchange and Transport</p>
-      <a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br>
-      <a href="workbook_day27_respiratory-anatomy-and-mechanics.html" target="_top">Lab workbook &rarr;</a><br><a href="workbook_day27_gas-exchange-and-transport.html" target="_top">Lab workbook &rarr;</a>
+      <a class="day-pill pill-prework" href="bio304-spaced-recall-prototype.html" target="_top">Pre-work <span class="arrow">&rarr;</span></a>
+      <a class="day-pill pill-lab" href="workbook_day27_respiratory-anatomy-and-mechanics.html" target="_top">Lab workbook <span class="arrow">&rarr;</span></a>
+      <a class="day-pill pill-lab" href="workbook_day27_gas-exchange-and-transport.html" target="_top">Lab workbook <span class="arrow">&rarr;</span></a>
     </div>
     <div class="day-tile">
       <p class="day-label">Friday . Day 28</p>
       <p class="day-date">Fri, Jul 24</p>
       <p class="day-topic">GI Tract Anatomy and Motility<br>Digestion and Absorption</p>
-      <a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br>
-      <a href="workbook_day28_gi-tract-anatomy-and-motility.html" target="_top">Lab workbook &rarr;</a><br><a href="workbook_day28_digestion-and-absorption.html" target="_top">Lab workbook &rarr;</a>
+      <a class="day-pill pill-prework" href="bio304-spaced-recall-prototype.html" target="_top">Pre-work <span class="arrow">&rarr;</span></a>
+      <a class="day-pill pill-lab" href="workbook_day28_gi-tract-anatomy-and-motility.html" target="_top">Lab workbook <span class="arrow">&rarr;</span></a>
+      <a class="day-pill pill-lab" href="workbook_day28_digestion-and-absorption.html" target="_top">Lab workbook <span class="arrow">&rarr;</span></a>
     </div>
   </div>
 

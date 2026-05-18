@@ -63,7 +63,17 @@ h4{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:va
 .week-body .day-tile{font-size:14px;padding:14px}
 .week-body .day-tile .topic{font-size:14px;line-height:1.35;margin-bottom:8px}
 .week-body .day-tile .day-label{font-size:11px;letter-spacing:.08em}
-.week-body .day-tile a{font-size:13px;padding:6px 0}
+/* Pill buttons inside day tiles */
+.day-pill{display:inline-flex;align-items:center;gap:4px;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.04em;padding:6px 12px;border-radius:999px;text-decoration:none;margin:3px 4px 3px 0;transition:background var(--t-fast,150ms ease),color var(--t-fast,150ms ease);border:1px solid transparent;line-height:1.2}
+.day-pill.pill-prework{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.day-pill.pill-prework:hover,.day-pill.pill-prework:focus-visible{background:var(--navy-deep);color:var(--white)}
+.day-pill.pill-lab{background:var(--navy-tint);color:var(--navy);border:1px solid var(--gold-deep)}
+.day-pill.pill-lab:hover,.day-pill.pill-lab:focus-visible{background:#F7EED8;color:var(--navy)}
+.day-pill.pill-discussion{background:#FBEEE6;color:var(--terra-dark);border:1px solid var(--terra-dark)}
+.day-pill.pill-discussion:hover,.day-pill.pill-discussion:focus-visible{background:#F6DCC8;color:var(--terra-dark)}
+.day-pill.pill-quiz{background:var(--white);color:var(--navy);border:1px solid var(--gray-line)}
+.day-pill.pill-quiz:hover,.day-pill.pill-quiz:focus-visible{background:var(--navy-tint);border-color:var(--navy)}
+.day-pill .arrow{font-size:13px}
 .day-tile{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:16px;box-shadow:var(--shadow-rest)}
 .day-tile.lab-day{background:var(--off-white);border-style:dashed;border-color:var(--gold-deep)}
 .day-label{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 6px}
@@ -175,8 +185,8 @@ def build_week_block(week_num, days):
             workbook = f"workbook_day{day_num:02d}_{slug}.html"
             topic_links.append(
                 f'<p class="topic">{t["title"]}</p>'
-                f'<a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br>'
-                f'<a href="{workbook}" target="_top">Lab workbook &rarr;</a>'
+                f'<a class="day-pill pill-prework" href="bio304-spaced-recall-prototype.html" target="_top">Pre-work <span class="arrow">&rarr;</span></a>'
+                f'<a class="day-pill pill-lab" href="{workbook}" target="_top">Lab workbook <span class="arrow">&rarr;</span></a>'
             )
         inner = ''.join(topic_links)
         rows.append(f'<div class="day-tile"><p class="day-label">{day_name} . Day {day_num}</p>{inner}</div>')
@@ -185,7 +195,7 @@ def build_week_block(week_num, days):
     wed_tile = '''<div class="day-tile lab-day">
       <p class="day-label">Wednesday . Lab + Discussion</p>
       <p class="topic">No new pre-work. Use this day for the Wednesday lab block and the discussion prompt.</p>
-      <a href="discussions.html" target="_top">Discussion page &rarr;</a>
+      <a class="day-pill pill-discussion" href="discussions.html" target="_top">Discussion <span class="arrow">&rarr;</span></a>
     </div>'''
 
     # Insert Wed between Tue (index 1) and Thu (index 2)

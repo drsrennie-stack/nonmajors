@@ -81,8 +81,15 @@ h3{{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:v
 .day-label{{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 4px}}
 .day-date{{font-family:'DM Sans',system-ui,sans-serif;font-size:11px;color:var(--gray-soft);margin:0 0 8px}}
 .day-topic{{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:14px;line-height:1.35;margin:0 0 10px}}
-.day-tile a{{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-size:12.5px;color:var(--navy);text-decoration:none;padding:3px 0}}
-.day-tile a:hover{{color:var(--gold-deep);text-decoration:underline}}
+/* Pill buttons inside day tiles */
+.day-pill{{display:inline-flex;align-items:center;gap:4px;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.04em;padding:6px 12px;border-radius:999px;text-decoration:none;margin:3px 4px 3px 0;transition:background 150ms ease,color 150ms ease;border:1px solid transparent;line-height:1.2}}
+.day-pill.pill-prework{{background:var(--navy);color:var(--white);border-color:var(--navy)}}
+.day-pill.pill-prework:hover,.day-pill.pill-prework:focus-visible{{background:var(--navy-deep);color:var(--white)}}
+.day-pill.pill-lab{{background:var(--navy-tint);color:var(--navy);border:1px solid var(--gold-deep)}}
+.day-pill.pill-lab:hover,.day-pill.pill-lab:focus-visible{{background:#F7EED8;color:var(--navy)}}
+.day-pill.pill-discussion{{background:#FBEEE6;color:var(--terra-dark);border:1px solid var(--terra-dark)}}
+.day-pill.pill-discussion:hover,.day-pill.pill-discussion:focus-visible{{background:#F6DCC8;color:var(--terra-dark)}}
+.day-pill .arrow{{font-size:13px}}
 .deadline-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:10px}}
 .deadline{{background:var(--white);border:1px solid var(--gray-line);border-left:4px solid var(--terra);border-radius:6px;padding:14px 16px}}
 .deadline .lbl{{font-family:'DM Sans',sans-serif;font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 4px}}
@@ -170,22 +177,21 @@ def render_day_tiles(week_num, days_in_week, wed_date_str):
         date_label = fmt(date_of_course_day(day_num))  # "Mon, Jun 8"
         topic_html = "<br>".join(t['title'] for t in day_topics)
 
-        # Build pre-work + workbook links per topic; pre-work is the hub
-        workbook_links = []
+        # Build pre-work + workbook pills
+        workbook_pills = []
         for t in day_topics:
             slug = slugify(t['title'])
             wb_file = f"workbook_day{day_num:02d}_{slug}.html"
-            short = t['title'] if len(day_topics) == 1 else t['title'][:24] + "..."
-            workbook_links.append(f'<a href="{wb_file}" target="_top">Lab workbook &rarr;</a>')
+            workbook_pills.append(f'<a class="day-pill pill-lab" href="{wb_file}" target="_top">Lab workbook <span class="arrow">&rarr;</span></a>')
 
-        wb_html = "<br>".join(workbook_links)
+        pills_html = "\n      ".join(workbook_pills)
 
         tiles.append(f'''<div class="day-tile">
       <p class="day-label">{day_names_short[di]} . Day {day_num}</p>
       <p class="day-date">{date_label}</p>
       <p class="day-topic">{topic_html}</p>
-      <a href="bio304-spaced-recall-prototype.html" target="_top">Lecture pre-work &rarr;</a><br>
-      {wb_html}
+      <a class="day-pill pill-prework" href="bio304-spaced-recall-prototype.html" target="_top">Pre-work <span class="arrow">&rarr;</span></a>
+      {pills_html}
     </div>''')
 
         # Insert Wed tile after Tuesday (di == 1)
@@ -194,7 +200,7 @@ def render_day_tiles(week_num, days_in_week, wed_date_str):
       <p class="day-label">Wednesday . Lab + Discussion</p>
       <p class="day-date">{wed_date_str}</p>
       <p class="day-topic">No new pre-work today. Wednesday is for the lab block, the discussion prompt, and spaced recall.</p>
-      <a href="discussions.html" target="_top">Discussion page &rarr;</a>
+      <a class="day-pill pill-discussion" href="discussions.html" target="_top">Discussion <span class="arrow">&rarr;</span></a>
     </div>''')
 
     return "\n    ".join(tiles)
