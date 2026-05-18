@@ -1,14 +1,16 @@
 """
 Build canvas-modules-1-8.md: paste-ready Canvas snippets for Weeks 1 through 8.
 
-Per week (11 items):
-- Week overview (Canvas native page)
-- 4 pre-work pages (iframe → bio304-spaced-recall-prototype.html)
-- 4 lab workbook assignments (iframe → workbook_dayNN.html + file upload)
-- 1 discussion (native, with prompt)
-- 1 quiz (native, with sampled questions from cards)
+Lean version: 3 items per week.
+- 1 Lab Workbooks Assignment (single submission with per-day rubric rows)
+- 1 Discussion (native, with prompt)
+- 1 Quiz (native, with sampled questions from cards)
 
-Total: 88 items across 8 weeks.
+The weekly hub iframe was removed. Students access each day's pre-work and
+workbook through the document-style syllabus at biol304_syllabus.html, which
+has the full 8-week schedule with day-by-day pill links.
+
+Total: 24 Canvas items across 8 weeks (down from 88).
 """
 
 import json, os, re, subprocess
@@ -195,7 +197,7 @@ def render_quiz_section(week_num, topics_in_week):
     quiz_open = fmt_date(date_of_week_event(week_num, 'Fri'))
     quiz_close = fmt_date(date_of_week_event(week_num, 'Sun'))
     lines = [
-        f"## 4. Week {week_num} Quiz (Canvas Quiz)",
+        f"## 3. Week {week_num} Quiz (Canvas Quiz)",
         "",
         "Set this up as a Canvas Classic Quiz or New Quiz.",
         "",
@@ -267,22 +269,8 @@ def render_week(week_num, topics_in_week):
     out.append(f"**Quiz window:** {week_fri} 12:00 AM through {week_sun} 11:59 PM")
     out.append("")
 
-    # ---- 1. Week N Hub (Canvas Page) ----
-    out.append(f"## 1. Week {week_num} Hub (Canvas Page)")
-    out.append("")
-    out.append("This is the **single Canvas Page** students click into each week. It iframes the branded "
-               f"week overview, which lists every pre-work day, the workbook links, and the deadlines for the week.")
-    out.append("")
-    overview_url = f"{BASE_URL}week{week_num:02d}_hub.html"
-    out.append(f"""```html
-<p>Welcome to Week {week_num}. Your full week is laid out below. Open the pre-work hub button to start tonight's pre-work, click any day's lab workbook to print it, and check the deadline strip at the bottom for the discussion and quiz windows.</p>
-<p><a href="{overview_url}" target="_blank" rel="noopener"><strong>Open Week {week_num} in a new window &#8599;</strong></a></p>
-<p><iframe src="{overview_url}" width="100%" height="1400" style="border:1px solid #cfd6da;border-radius:8px;" loading="lazy" title="Week {week_num} hub"></iframe></p>
-```""")
-    out.append("")
-
-    # ---- 2. Week N Lab Workbooks (single assignment with rubric) ----
-    out.append(f"## 2. Week {week_num} Lab Workbooks (Canvas Assignment, one submission per week)")
+    # ---- 1. Week N Lab Workbooks (single assignment with rubric) ----
+    out.append(f"## 1. Week {week_num} Lab Workbooks (Canvas Assignment, one submission per week)")
     out.append("")
     out.append("**Assignment settings:**")
     out.append(f"- Due: {week_sun} 11:59 PM")
@@ -321,8 +309,8 @@ def render_week(week_num, topics_in_week):
 ```""")
     out.append("")
 
-    # ---- 3. Discussion ----
-    out.append(f"## 3. Week {week_num} Discussion (posts {week_wed}, replies due {week_sun})")
+    # ---- 2. Discussion ----
+    out.append(f"## 2. Week {week_num} Discussion (posts {week_wed}, replies due {week_sun})")
     out.append("")
     disc = DISCUSSION_PROMPTS.get(week_num, {})
     out.append(f"**Title:** {disc.get('title', f'Week {week_num} Discussion')}")
