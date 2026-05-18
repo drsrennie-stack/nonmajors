@@ -336,10 +336,10 @@ GRADING = """<section class="band" id="grading" aria-labelledby="grading-h">
   <table class="grading" aria-label="Grading components">
     <thead><tr><th>Component</th><th>What it measures</th><th class="pct">Weight</th></tr></thead>
     <tbody>
-      <tr><td><strong>Pre-work engagement</strong></td><td>Daily video viewing plus spaced recall practice. Logged automatically in the pre-work hub. Export your engagement report each week.</td><td class="pct">20%</td></tr>
+      <tr><td><strong>Pre-work engagement</strong></td><td>Daily video viewing plus spaced recall practice. Logged automatically in the pre-work hub. Export your engagement report each week.</td><td class="pct">40%</td></tr>
       <tr><td><strong>Lab workbooks</strong></td><td>Hand-labeled anatomy diagrams and short-answer synthesis. One workbook per pre-work day, submitted as a scanned PDF.</td><td class="pct">30%</td></tr>
-      <tr><td><strong>Weekly discussions</strong></td><td>One initial post (Friday) plus two substantive replies (Sunday). Evidence-based, your own words.</td><td class="pct">20%</td></tr>
-      <tr><td><strong>Weekly quizzes</strong></td><td>20 questions, 20 minutes, Honorlock proctored, one attempt. Opens Friday, closes Sunday at 11:59 PM.</td><td class="pct">30%</td></tr>
+      <tr><td><strong>Weekly discussions</strong></td><td>One initial post (Friday) plus two substantive replies (Sunday). Evidence-based, your own words.</td><td class="pct">10%</td></tr>
+      <tr><td><strong>Weekly quizzes</strong></td><td>20 questions, 20 minutes, Honorlock proctored, one attempt. Opens Friday, closes Sunday at 11:59 PM.</td><td class="pct">20%</td></tr>
     </tbody>
   </table>
   <h3>Letter grade scale</h3>
