@@ -6,179 +6,55 @@
 <title>BIO 304 . How Spaced Recall Works</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --navy:#1E3D4C;--navy-deep:#142A36;--navy-tint:#EDF1F3;
-  --gold:#B8924A;--gold-deep:#9A7838;
-  --terra:#C2734D;--terra-dark:#A0522D;
-  --sage-dark:#4F6B57;--sage-deeper:#3F5B47;
-  --white:#FFFFFF;--off-white:#FAFAF9;
-  --gray-line:#CFD6DA;--gray-soft:#5C6970;
-  --shadow-rest:0 1px 3px rgba(0,0,0,.08);
-}
+:root{--navy:#1E3D4C;--navy-deep:#142A36;--gold:#B8924A;--gold-deep:#9A7838;--terra:#C2734D;--terra-dark:#A0522D;--sage-dark:#4F6B57;--sage-deeper:#3F5B47;--white:#FFFFFF;--off-white:#FAFAF9;--gray-line:#CFD6DA;--gray-soft:#5C6970;--shadow-rest:0 1px 3px rgba(0,0,0,.08);--shadow-hover:0 8px 16px rgba(0,0,0,.10)}
 *{box-sizing:border-box}
 body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.6;font-size:17px}
-:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-@media (prefers-reduced-motion: reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
 .skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600}
 .skip-link:focus{left:0}
-
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 header.page-head{background:var(--white);border-bottom:1px solid var(--gray-line);padding:32px 40px 26px}
-.eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 8px}
+.eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 8px}
 h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,38px);color:var(--navy);margin:0 0 6px;letter-spacing:-.01em}
-.subhead{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:clamp(17px,1.6vw,19px);color:var(--terra-dark);margin:0}
+.subhead{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:clamp(17px,1.8vw,20px);color:var(--terra-dark);margin:0 0 4px}
+main{max-width:1100px;margin:0 auto;padding:28px 32px 40px}
+section.card{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:24px 28px;margin:0 0 22px;box-shadow:var(--shadow-rest)}
+section.card h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;color:var(--navy);font-size:23px;margin:0 0 10px;letter-spacing:-.005em}
+section.card p{margin:0 0 12px;font-size:16.5px;line-height:1.65}
+section.card p.kicker{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 8px}
+section.card strong{color:var(--navy);font-weight:700}
+.intro p{font-size:17px;line-height:1.7}
 
-main{max-width:1180px;margin:0 auto;padding:28px 32px 40px}
+h2.rhythm-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;color:var(--navy);font-size:23px;margin:0 0 6px}
+p.rhythm-sub{font-style:italic;color:var(--gray-soft);margin:0 0 18px;font-size:15.5px}
+.rhythm-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;margin:0 0 18px}
+@media (max-width: 1024px){.rhythm-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width: 720px){.rhythm-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width: 480px){.rhythm-grid{grid-template-columns:1fr}}
+.day-tile{border-radius:10px;padding:16px 16px 18px;color:var(--white);display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow-rest);min-height:auto}
+.day-tile .step-num{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin:0}
+.day-tile .day-name{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:20px;letter-spacing:-.005em;margin:0 0 2px;color:var(--white)}
+.day-tile .day-role{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;opacity:.85;margin:0 0 8px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.22)}
+.day-tile ul.todo{list-style:none;padding:0;margin:0 0 8px;display:flex;flex-direction:column;gap:6px}
+.day-tile ul.todo li{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:14px;line-height:1.35;color:var(--white);padding-left:18px;position:relative}
+.day-tile ul.todo li::before{content:"";position:absolute;left:0;top:7px;width:8px;height:8px;border-radius:50%;background:var(--white);opacity:0.85}
+.day-tile .day-foot{margin-top:auto;padding-top:8px;border-top:1px solid rgba(255,255,255,0.22);font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+.day-tile.prework{background:var(--navy)}
+.day-tile.recall{background:var(--sage-dark)}
 
-section.band{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:24px 28px;margin:0 0 22px;box-shadow:var(--shadow-rest)}
-section.band h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;color:var(--navy);font-size:22px;margin:0 0 10px;letter-spacing:-.005em}
-section.band p{margin:0 0 12px;font-size:16px}
-section.band p strong{color:var(--navy);font-weight:700}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin:0 0 14px;font-family:'DM Sans',system-ui,sans-serif;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-soft)}
+.legend-item{display:inline-flex;align-items:center;gap:8px}
+.legend-swatch{width:14px;height:14px;border-radius:3px;display:inline-block}
+.legend-swatch.prework{background:var(--navy)}
+.legend-swatch.recall{background:var(--sage-dark)}
 
-/* ----- WEEK FLOW ----- */
-.flow-wrap{margin:14px 0 6px}
-.flow{
-  display:grid;
-  grid-template-columns:repeat(7, minmax(0, 1fr));
-  gap:6px;
-  align-items:stretch;
-}
-@media (max-width: 980px){.flow{grid-template-columns:repeat(4, 1fr)}}
-@media (max-width: 620px){.flow{grid-template-columns:repeat(2, 1fr)}}
-@media (max-width: 380px){.flow{grid-template-columns:1fr}}
-
-.day{
-  border-radius:10px;
-  padding:16px 12px 14px;
-  color:var(--white);
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-  text-align:center;
-  position:relative;
-  box-shadow:var(--shadow-rest);
-}
-.day .dow{
-  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
-  font-weight:800;
-  font-size:17px;
-  letter-spacing:-.01em;
-  margin:0;
-  color:var(--white);
-}
-.day .task{
-  font-family:'DM Sans',system-ui,sans-serif;
-  font-weight:700;
-  font-size:11.5px;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  margin:auto 0 0;
-  line-height:1.35;
-}
-.day.work{background:var(--navy)}
-.day.catch{background:var(--sage-dark)}
-.day.quiz{background:var(--terra-dark)}
-
-/* Inline arrow between tiles (desktop only) */
-.flow{position:relative}
-@media (min-width: 981px){
-  .day:not(:last-child)::after{
-    content:'';
-    position:absolute;
-    top:50%;
-    right:-7px;
-    width:14px;
-    height:14px;
-    background:var(--gold);
-    clip-path:polygon(0 0, 100% 50%, 0 100%, 25% 50%);
-    z-index:1;
-    transform:translateY(-50%);
-  }
-}
-
-.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-family:'DM Sans',system-ui,sans-serif;font-size:12.5px;color:var(--gray-soft)}
-.legend-swatch{display:inline-flex;align-items:center;gap:6px}
-.legend-swatch .sw{display:inline-block;width:12px;height:12px;border-radius:3px}
-.legend-swatch .sw.s-navy{background:var(--navy)}
-.legend-swatch .sw.s-sage{background:var(--sage-dark)}
-.legend-swatch .sw.s-terra{background:var(--terra-dark)}
-
-/* ----- FORGETTING CURVE ----- */
-.curve-wrap{margin:8px 0 0}
-.curve-wrap svg{display:block;width:100%;height:auto;max-width:840px;margin:0 auto}
-.curve-caption{
-  font-family:'Lora',Georgia,serif;
-  font-style:italic;
-  color:var(--gray-soft);
-  font-size:14.5px;
-  text-align:center;
-  margin:6px 0 0;
-}
-
-/* ----- RATING CARDS ----- */
-.ratings{
-  display:grid;
-  grid-template-columns:repeat(4, 1fr);
-  gap:12px;
-  margin:14px 0 6px;
-}
-@media (max-width: 760px){.ratings{grid-template-columns:repeat(2, 1fr)}}
-@media (max-width: 380px){.ratings{grid-template-columns:1fr}}
-
-.rate{
-  border-radius:10px;
-  padding:18px 16px 16px;
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-  color:var(--white);
-  box-shadow:var(--shadow-rest);
-}
-.rate .badge{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:rgba(255,255,255,.15);
-  border:2px solid rgba(255,255,255,.55);
-  margin:0 auto 4px;
-  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
-  font-weight:800;
-  font-size:18px;
-  color:var(--white);
-}
-.rate .label{
-  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
-  font-weight:800;
-  font-size:18px;
-  margin:0;
-  color:var(--white);
-}
-.rate .felt{
-  font-family:'Lora',Georgia,serif;
-  font-style:italic;
-  font-size:13.5px;
-  margin:0;
-  opacity:.92;
-}
-.rate .when{
-  font-family:'DM Sans',system-ui,sans-serif;
-  font-weight:700;
-  font-size:11.5px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  margin:6px 0 0;
-  padding-top:8px;
-  border-top:1px solid rgba(255,255,255,.25);
-}
-.rate.again{background:var(--terra-dark)}
-.rate.hard{background:#7D5F2C}
-.rate.good{background:var(--navy)}
-.rate.easy{background:var(--sage-dark)}
+.curve{display:grid;grid-template-columns:200px 1fr;gap:22px;align-items:center;margin:6px 0 2px}
+@media (max-width: 640px){.curve{grid-template-columns:1fr}}
+.curve svg{width:100%;height:auto;display:block}
+.curve .caption{font-family:'Lora',Georgia,serif;font-size:15.5px;line-height:1.6;margin:0}
+.curve .caption strong{color:var(--navy)}
 
 footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;font-size:13px}
 </style>
@@ -186,146 +62,137 @@ footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;f
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
 <header class="page-head">
-  <p class="eyebrow">BIO 304 . Study Guide . American River College</p>
-  <h1>How spaced recall works</h1>
-  <p class="subhead">A short read. Saves you hours later.</p>
+  <p class="eyebrow">BIO 304 . STUDY GUIDE</p>
+  <h1>How Spaced Recall Works (and what to do each day)</h1>
+  <p class="subhead">A 60-second read. The system tracks the rest.</p>
 </header>
 <main id="main" tabindex="-1">
 
-  <section class="band" aria-labelledby="why-h">
-    <h2 id="why-h">Why this works</h2>
-    <p>Within 24 hours of learning something new, most of it is gone unless you actively pull it back up. That drop is called the <strong>forgetting curve</strong>. Spaced recall flattens it. The system shows you each card right before you would have forgotten it, you try to remember the answer, and you rate how it felt. Cards you struggle with come back tomorrow. Cards you nailed come back in three days, then a week, then two. <strong>The system tracks all of this for you.</strong> You just show up and rate honestly.</p>
-  </section>
-
-  <section class="band" aria-labelledby="curve-h">
-    <h2 id="curve-h">The forgetting curve</h2>
-    <div class="curve-wrap">
-      <svg viewBox="0 0 840 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="curve-title curve-desc">
-        <title id="curve-title">Forgetting curve comparison</title>
-        <desc id="curve-desc">Two memory-retention curves over 14 days. Without practice, recall drops from 100% to about 20% by day 7. With spaced recall, repeated practice resets recall to nearly 100% at each session, keeping retention high.</desc>
-
-        <!-- Axes -->
-        <line x1="80" y1="40" x2="80" y2="230" stroke="#5C6970" stroke-width="1.5"/>
-        <line x1="80" y1="230" x2="800" y2="230" stroke="#5C6970" stroke-width="1.5"/>
-
-        <!-- Y-axis labels -->
-        <text x="70" y="48" text-anchor="end" font-family="DM Sans, sans-serif" font-size="11" fill="#5C6970">100%</text>
-        <text x="70" y="138" text-anchor="end" font-family="DM Sans, sans-serif" font-size="11" fill="#5C6970">50%</text>
-        <text x="70" y="234" text-anchor="end" font-family="DM Sans, sans-serif" font-size="11" fill="#5C6970">0%</text>
-        <text x="40" y="135" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="700" fill="#1E3D4C" transform="rotate(-90 40 135)" letter-spacing="0.1em">RECALL</text>
-
-        <!-- X-axis labels -->
-        <text x="80" y="252" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#5C6970">Day 0</text>
-        <text x="180" y="252" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#5C6970">1</text>
-        <text x="285" y="252" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#5C6970">2</text>
-        <text x="395" y="252" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#5C6970">4</text>
-        <text x="540" y="252" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#5C6970">7</text>
-        <text x="800" y="252" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#5C6970">14</text>
-        <text x="440" y="272" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="700" fill="#1E3D4C" letter-spacing="0.1em">DAYS AFTER FIRST LEARNING</text>
-
-        <!-- Reference grid -->
-        <line x1="80" y1="138" x2="800" y2="138" stroke="#CFD6DA" stroke-width="1" stroke-dasharray="3,4"/>
-
-        <!-- Forgetting curve (without practice) - exponential decay -->
-        <path d="M 80 42 Q 110 90 180 130 Q 250 165 350 192 Q 450 210 600 218 L 800 222"
-              fill="none" stroke="#A0522D" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="80" cy="42" r="5" fill="#A0522D"/>
-        <text x="540" y="208" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="700" fill="#A0522D">Without practice</text>
-        <text x="540" y="223" font-family="Lora, Georgia, serif" font-style="italic" font-size="12" fill="#A0522D">forgets ~80% in a week</text>
-
-        <!-- Spaced recall curve - saw-tooth resetting to 100% -->
-        <!-- Day 1 review point at x=180 -->
-        <path d="M 80 42 Q 110 90 180 130 L 180 42"
-              fill="none" stroke="#1E3D4C" stroke-width="3" stroke-linecap="round"/>
-        <!-- Day 2 review at x=285 -->
-        <path d="M 180 42 Q 220 70 285 105 L 285 42"
-              fill="none" stroke="#1E3D4C" stroke-width="3" stroke-linecap="round"/>
-        <!-- Day 4 review at x=395 -->
-        <path d="M 285 42 Q 325 65 395 90 L 395 42"
-              fill="none" stroke="#1E3D4C" stroke-width="3" stroke-linecap="round"/>
-        <!-- Day 7 review at x=540 -->
-        <path d="M 395 42 Q 460 60 540 75 L 540 42"
-              fill="none" stroke="#1E3D4C" stroke-width="3" stroke-linecap="round"/>
-        <!-- Day 14 (just before) -->
-        <path d="M 540 42 Q 660 55 800 65"
-              fill="none" stroke="#1E3D4C" stroke-width="3" stroke-linecap="round"/>
-
-        <!-- Review-point dots -->
-        <circle cx="180" cy="42" r="5" fill="#1E3D4C"/>
-        <circle cx="285" cy="42" r="5" fill="#1E3D4C"/>
-        <circle cx="395" cy="42" r="5" fill="#1E3D4C"/>
-        <circle cx="540" cy="42" r="5" fill="#1E3D4C"/>
-
-        <!-- Spaced recall label -->
-        <text x="540" y="32" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="700" fill="#1E3D4C">With spaced recall (your system)</text>
-        <text x="540" y="55" font-family="Lora, Georgia, serif" font-style="italic" font-size="12" fill="#1E3D4C">each review resets the curve</text>
+  <section class="card intro" aria-labelledby="why-h">
+    <p class="kicker">Why this works</p>
+    <h2 id="why-h">Forgetting is normal. Spaced recall is the fix.</h2>
+    <p>Your brain forgets most of what it sees the first time. Hermann Ebbinghaus mapped this in the 1880s and called it the <strong>forgetting curve</strong>: about 24 hours after learning something new, more than half of it is gone. Spaced recall flips that curve by bringing each fact back exactly when you are about to forget it. Every time you successfully pull something out of memory, the next reminder pushes farther into the future, and the memory gets sturdier. <strong>You do not have to plan any of this.</strong> The pre-work hub tracks every card you have seen, every rating you have given it, and surfaces the cards that are due each day. Your job is to show up.</p>
+    <div class="curve" aria-hidden="true">
+      <svg viewBox="0 0 320 110" role="img" aria-label="Stylized forgetting-curve graph">
+        <defs>
+          <linearGradient id="cg" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#1E3D4C"/>
+            <stop offset="100%" stop-color="#A0522D"/>
+          </linearGradient>
+        </defs>
+        <line x1="22" y1="92" x2="312" y2="92" stroke="#CFD6DA" stroke-width="1.5"/>
+        <line x1="22" y1="92" x2="22" y2="14" stroke="#CFD6DA" stroke-width="1.5"/>
+        <text x="22" y="106" fill="#5C6970" font-family="DM Sans, sans-serif" font-size="9" font-weight="700">Day 0</text>
+        <text x="288" y="106" fill="#5C6970" font-family="DM Sans, sans-serif" font-size="9" font-weight="700">Day 7</text>
+        <text x="0" y="20" fill="#5C6970" font-family="DM Sans, sans-serif" font-size="9" font-weight="700">100%</text>
+        <text x="6" y="94" fill="#5C6970" font-family="DM Sans, sans-serif" font-size="9" font-weight="700">0%</text>
+        <path d="M22,18 C 62,72 122,84 202,88 S 282,91 312,92" fill="none" stroke="#A0522D" stroke-width="2.5" stroke-dasharray="3 3"/>
+        <path d="M22,18 L 62,42 L 67,22 L 112,44 L 117,24 L 162,44 L 167,26 L 212,44 L 217,28 L 262,44 L 267,30 L 312,44" fill="none" stroke="url(#cg)" stroke-width="2.5"/>
+        <circle cx="67" cy="22" r="3" fill="#1E3D4C"/>
+        <circle cx="117" cy="24" r="3" fill="#1E3D4C"/>
+        <circle cx="167" cy="26" r="3" fill="#1E3D4C"/>
+        <circle cx="217" cy="28" r="3" fill="#1E3D4C"/>
+        <circle cx="267" cy="30" r="3" fill="#1E3D4C"/>
       </svg>
-      <p class="curve-caption">Each navy dot is a review session. You drill the card, the curve resets, the next gap gets longer. That's why daily review beats Saturday cramming.</p>
+      <p class="caption"><strong>Dashed terra line:</strong> what you remember if you study once and never come back. <strong>Solid line with spikes:</strong> what you remember when the system surfaces a card and you successfully recall it. Each spike resets the curve a little higher and a little flatter.</p>
     </div>
   </section>
 
-  <section class="band" aria-labelledby="week-h">
-    <h2 id="week-h">Your week, at a glance</h2>
-    <div class="flow-wrap">
-      <div class="flow" role="list" aria-label="Daily plan">
-        <div class="day work" role="listitem"><p class="dow">Mon</p><p class="task">New + Review</p></div>
-        <div class="day work" role="listitem"><p class="dow">Tue</p><p class="task">New + Review</p></div>
-        <div class="day catch" role="listitem"><p class="dow">Wed</p><p class="task">Review only</p></div>
-        <div class="day work" role="listitem"><p class="dow">Thu</p><p class="task">New + Review</p></div>
-        <div class="day work" role="listitem"><p class="dow">Fri</p><p class="task">New + Review</p></div>
-        <div class="day quiz" role="listitem"><p class="dow">Sat</p><p class="task">Review + Quiz Prep</p></div>
-        <div class="day quiz" role="listitem"><p class="dow">Sun</p><p class="task">Review + Quiz</p></div>
+  <section class="card" aria-labelledby="rhythm-h">
+    <p class="kicker">Your spaced-recall week</p>
+    <h2 id="rhythm-h" class="rhythm-h">What to open the app for, every day</h2>
+    <p class="rhythm-sub">This page is about spaced recall only. Discussion, lab workbook, and quiz deadlines live on the syllabus.</p>
+    <div class="legend" aria-label="Color legend">
+      <span class="legend-item"><span class="legend-swatch prework"></span>New material + review</span>
+      <span class="legend-item"><span class="legend-swatch recall"></span>Review only</span>
+    </div>
+    <div class="rhythm-grid" role="list">
+      <div class="day-tile prework" role="listitem">
+        <p class="step-num">Day 1</p>
+        <h3 class="day-name">Monday</h3>
+        <p class="day-role">New + review</p>
+        <ul class="todo">
+          <li>New material</li>
+          <li>Daily review</li>
+        </ul>
       </div>
-      <div class="legend">
-        <span class="legend-swatch"><span class="sw s-navy"></span> New cards + daily review</span>
-        <span class="legend-swatch"><span class="sw s-sage"></span> Daily review only</span>
-        <span class="legend-swatch"><span class="sw s-terra"></span> Daily review + quiz</span>
+      <div class="day-tile prework" role="listitem">
+        <p class="step-num">Day 2</p>
+        <h3 class="day-name">Tuesday</h3>
+        <p class="day-role">New + review</p>
+        <ul class="todo">
+          <li>New material</li>
+          <li>Daily review</li>
+        </ul>
+      </div>
+      <div class="day-tile recall" role="listitem">
+        <p class="step-num">Day 3</p>
+        <h3 class="day-name">Wednesday</h3>
+        <p class="day-role">Review only</p>
+        <ul class="todo">
+          <li>Daily review</li>
+        </ul>
+      </div>
+      <div class="day-tile prework" role="listitem">
+        <p class="step-num">Day 4</p>
+        <h3 class="day-name">Thursday</h3>
+        <p class="day-role">New + review</p>
+        <ul class="todo">
+          <li>New material</li>
+          <li>Daily review</li>
+        </ul>
+      </div>
+      <div class="day-tile prework" role="listitem">
+        <p class="step-num">Day 5</p>
+        <h3 class="day-name">Friday</h3>
+        <p class="day-role">New + review</p>
+        <ul class="todo">
+          <li>New material</li>
+          <li>Daily review</li>
+        </ul>
+      </div>
+      <div class="day-tile recall" role="listitem">
+        <p class="step-num">Day 6</p>
+        <h3 class="day-name">Saturday</h3>
+        <p class="day-role">Rest or review</p>
+        <ul class="todo">
+          <li>Rest, or</li>
+          <li>Daily review</li>
+        </ul>
+      </div>
+      <div class="day-tile recall" role="listitem">
+        <p class="step-num">Day 7</p>
+        <h3 class="day-name">Sunday</h3>
+        <p class="day-role">Rest or review</p>
+        <ul class="todo">
+          <li>Rest, or</li>
+          <li>Daily review</li>
+        </ul>
       </div>
     </div>
-    <p style="margin-top:14px;font-size:15px;color:var(--gray-soft);font-style:italic">Plan on roughly 15 to 25 cards per day. Some days fewer, some more. The system picks for you.</p>
   </section>
 
-  <section class="band" aria-labelledby="rate-h">
-    <h2 id="rate-h">After each card, you rate it</h2>
-    <p>How you rate is how the system schedules. Be honest. The numbers are approximate, the system adjusts based on your overall performance.</p>
-    <div class="ratings" role="list" aria-label="Rating options">
-      <div class="rate again" role="listitem">
-        <span class="badge" aria-hidden="true">A</span>
-        <p class="label">Again</p>
-        <p class="felt">Blanked. Didn't know it.</p>
-        <p class="when">Back tomorrow</p>
-      </div>
-      <div class="rate hard" role="listitem">
-        <span class="badge" aria-hidden="true">H</span>
-        <p class="label">Hard</p>
-        <p class="felt">Got it, but it was a struggle.</p>
-        <p class="when">Back in 2-3 days</p>
-      </div>
-      <div class="rate good" role="listitem">
-        <span class="badge" aria-hidden="true">G</span>
-        <p class="label">Good</p>
-        <p class="felt">Knew it, no big deal.</p>
-        <p class="when">Back in ~1 week</p>
-      </div>
-      <div class="rate easy" role="listitem">
-        <span class="badge" aria-hidden="true">E</span>
-        <p class="label">Easy</p>
-        <p class="felt">Instant. Solid.</p>
-        <p class="when">Back in ~2 weeks</p>
-      </div>
-    </div>
-    <p style="margin-top:16px;font-size:15px;color:var(--gray-soft);font-style:italic">Bonus: open "Daily Review" any time and flip the toggle to <strong>Review all unlocked cards</strong> if you want to drill everything you've passed, not just today's due cards. Use this before a quiz.</p>
+  <section class="card" aria-labelledby="how-h">
+    <p class="kicker">How the system tracks you</p>
+    <h2 id="how-h">You do not have to remember which cards are due. The system does.</h2>
+    <p>Every card you see gets a rating from you: <strong>Again</strong>, <strong>Hard</strong>, <strong>Good</strong>, or <strong>Easy</strong>. The system uses your rating to decide when that card comes back. Struggle cards return tomorrow. Solid cards return in a few days. Cards you mark Easy push out to a week or longer. When you click <strong>Daily review</strong> in the top nav, the system pulls every card whose due date is today or in the past, sorts the toughest ones to the top, and lets you work through them in one stream.</p>
+    <p>This is why the rule is "show up every day." If you skip a day, all of yesterday's cards stack onto today and you spend twice as long working through them. Daily engagement is the cheapest way to keep your time low.</p>
   </section>
 
 </main>
-<footer><p>Dr. Sharilyn Rennie . BIO 304 . American River College . Summer 2026</p></footer>
+<footer><p>Dr. Sharilyn Rennie . BIO 304 . American River College</p></footer>
 <script>
 (function(){
   if(window.self===window.top)return;
-  function send(){var h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);try{window.parent.postMessage({type:'iframe-height',id:'bio304-spaced-recall-explainer',height:h},'*');}catch(e){}}
+  function send(){
+    try{
+      var h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+      window.parent.postMessage({type:'iframe-height',id:'bio304-how-spaced-recall',height:h},'*');
+    }catch(e){}
+  }
   window.addEventListener('load',send);
   window.addEventListener('resize',send);
-  if(window.ResizeObserver){new ResizeObserver(send).observe(document.body);}else{setInterval(send,800);}
+  if('ResizeObserver' in window) new ResizeObserver(send).observe(document.body);
 })();
 </script>
 </body>
