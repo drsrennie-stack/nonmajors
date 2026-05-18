@@ -6,485 +6,87 @@
 <title>Clinical Portfolio Hub | BIO 304</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root {
-  --ink: #1d3557;
-  --ocean: #2a4d6e;
-  --ocean-deep: #14304b;
-  --terra: #c44536;
-  --kelp: #5a7553;
-  --paper: #ffffff;
-  --line: #c9d4d8;
-  --muted: #5a6b73;
-  --tint: #f4f7f8;
-}
-
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--ink);
-  background: #ffffff;
-  margin: 0;
-  padding: 0;
-}
-
-/* Skip link */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: var(--ocean-deep);
-  color: var(--paper);
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  z-index: 100;
-  font-weight: 600;
-}
-.skip-link:focus { top: 0; }
-
-/* Focus indicator */
-:focus-visible {
-  outline: 3px solid var(--terra);
-  outline-offset: 2px;
-}
-
-main {
-  max-width: 880px;
-  margin: 0 auto;
-  padding: 0 1.5rem 4rem;
-}
-
-/* Masthead */
-.masthead {
-  background: #ffffff;
-  border-bottom: 4px solid var(--ocean-deep);
-  padding: 2rem 1.5rem 1.75rem;
-  position: relative;
-  margin-bottom: 2.5rem;
-}
-.masthead::after {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 96px;
-  height: 4px;
-  background: var(--terra);
-}
-.masthead-inner {
-  max-width: 880px;
-  margin: 0 auto;
-}
-.masthead .eyebrow {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--terra);
-  margin: 0 0 0.5rem;
-}
-.masthead h1 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 700;
-  font-size: 2.05rem;
-  line-height: 1.2;
-  color: var(--ocean-deep);
-  margin: 0 0 0.4rem;
-  letter-spacing: -0.01em;
-}
-.masthead .subtitle {
-  font-size: 1.05rem;
-  color: var(--muted);
-  margin: 0;
-  font-weight: 400;
-}
-.masthead .meta {
-  margin-top: 0.9rem;
-  font-size: 0.875rem;
-  color: var(--muted);
-}
-.masthead .meta strong {
-  color: var(--ink);
-  font-weight: 600;
-}
-
-/* Print button */
-.print-btn {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.5rem;
-  background: var(--ocean-deep);
-  color: var(--paper);
-  border: none;
-  padding: 0.55rem 1rem;
-  font-family: inherit;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
-.print-btn:hover { background: var(--ocean); }
-.print-btn:focus-visible {
-  outline: 3px solid var(--terra);
-  outline-offset: 2px;
-}
-
-/* Section heads */
-.section {
-  margin: 2.75rem 0 0;
-}
-.section-head {
-  border-top: 1px solid var(--line);
-  padding-top: 1.25rem;
-  margin-bottom: 1rem;
-}
-.section-head .section-num {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--terra);
-  letter-spacing: 0.04em;
-}
-.section-head .section-eyebrow {
-  display: block;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ocean);
-  margin-top: 0.15rem;
-}
-.section-head h2 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 700;
-  font-size: 1.45rem;
-  color: var(--ocean-deep);
-  margin: 0.3rem 0 0.5rem;
-  letter-spacing: -0.005em;
-}
-
-h3 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--ocean-deep);
-  margin: 1.5rem 0 0.6rem;
-  letter-spacing: 0.01em;
-}
-h4 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--ocean);
-  margin: 1.1rem 0 0.4rem;
-}
-
-p { margin: 0.5rem 0 0.85rem; }
-
-ul, ol { padding-left: 1.4rem; margin: 0.4rem 0 0.9rem; }
-li { margin: 0.25rem 0; }
-
-a {
-  color: var(--ocean-deep);
-  text-decoration: underline;
-  text-decoration-color: var(--terra);
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1.5px;
-  font-weight: 500;
-}
-a:hover { color: var(--terra); }
-
-strong { color: var(--ink); font-weight: 600; }
-em { font-style: italic; color: var(--ocean-deep); }
-
-/* Callouts */
-.callout {
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--terra);
-  padding: 1rem 1.25rem;
-  margin: 1.25rem 0;
-  border-radius: 0 4px 4px 0;
-}
-.callout.kelp { border-left-color: var(--kelp); }
-.callout.ocean { border-left-color: var(--ocean); }
-.callout p:first-child { margin-top: 0; }
-.callout p:last-child { margin-bottom: 0; }
-.callout-label {
-  display: block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--terra);
-  margin-bottom: 0.4rem;
-}
-.callout.kelp .callout-label { color: var(--kelp); }
-.callout.ocean .callout-label { color: var(--ocean); }
-
-/* Reference box (for Quick Reference at top of templates) */
-.refbox {
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-top: 3px solid var(--ocean);
-  padding: 1.1rem 1.25rem;
-  border-radius: 4px;
-  margin: 1rem 0 1.5rem;
-}
-.refbox .refbox-label {
-  display: block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ocean);
-  margin-bottom: 0.5rem;
-}
-
-/* Tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0 1.5rem;
-  font-size: 0.95rem;
-}
-th, td {
-  text-align: left;
-  padding: 0.6rem 0.75rem;
-  border-bottom: 1px solid var(--line);
-  vertical-align: top;
-}
-th {
-  background: #ffffff;
-  color: var(--ocean-deep);
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  border-bottom: 2px solid var(--ocean);
-}
-tbody tr:nth-child(even) { background: #ffffff; }
-
-/* Decision logic blocks (for portfolio middle section) */
-.decision {
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  padding: 1rem 1.15rem;
-  margin: 0.9rem 0;
-}
-.decision .when {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 700;
-  color: var(--ocean-deep);
-  font-size: 0.9rem;
-}
-.decision .then {
-  margin-top: 0.35rem;
-  color: var(--ink);
-  font-size: 0.95rem;
-}
-.decision .arrow {
-  display: inline-block;
-  margin: 0 0.4rem;
-  color: var(--terra);
-  font-weight: 700;
-}
-
-/* Scenario cards */
-.scenario {
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--ocean);
-  padding: 0.9rem 1.1rem;
-  margin: 0.85rem 0;
-  border-radius: 0 4px 4px 0;
-}
-.scenario .scenario-label {
-  display: block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ocean);
-  margin-bottom: 0.35rem;
-}
-.scenario .vignette {
-  font-style: italic;
-  color: var(--ink);
-  margin-bottom: 0.5rem;
-}
-.scenario .response-prompt {
-  font-size: 0.85rem;
-  color: var(--terra);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-top: 0.5rem;
-}
-.scenario .response-space {
-  background: #ffffff;
-  border: 2px dashed var(--ocean);
-  border-radius: 3px;
-  min-height: 4.5rem;
-  margin-top: 0.4rem;
-  padding: 0.4rem;
-}
-
-/* Synthesis (red accent) */
-.synthesis {
-  border: 1.5px solid var(--terra);
-  background: #ffffff;
-  padding: 1rem 1.2rem;
-  border-radius: 4px;
-  margin: 1.5rem 0;
-}
-.synthesis .synthesis-label {
-  display: block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--terra);
-  margin-bottom: 0.5rem;
-}
-
-/* Cards (used in hub for week-list grid) */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1rem;
-  margin: 1.25rem 0;
-}
-.card {
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-top: 3px solid var(--ocean);
-  border-radius: 4px;
-  padding: 1rem 1.1rem;
-}
-.card .week-tag {
-  display: inline-block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--terra);
-  margin-bottom: 0.3rem;
-}
-.card h3 {
-  font-size: 0.98rem;
-  margin: 0.2rem 0 0.4rem;
-}
-.card p {
-  font-size: 0.88rem;
-  color: var(--muted);
-  margin: 0;
-}
-
-/* Numbered steps */
-.steps {
-  counter-reset: step;
-  list-style: none;
-  padding-left: 0;
-}
-.steps li {
-  counter-increment: step;
-  position: relative;
-  padding-left: 2.4rem;
-  margin: 0.7rem 0;
-}
-.steps li::before {
-  content: counter(step);
-  position: absolute;
-  left: 0;
-  top: 0;
-  background: var(--ocean-deep);
-  color: var(--paper);
-  width: 1.7rem;
-  height: 1.7rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 0.85rem;
-}
-
-/* Footer */
-.page-foot {
-  margin-top: 4rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
-  font-size: 0.85rem;
-  color: var(--muted);
-  text-align: center;
-}
-
-/* Responsive */
-@media (max-width: 720px) {
-  .masthead h1 { font-size: 1.7rem; }
-  .print-btn {
-    position: static;
-    display: block;
-    margin: 1rem 0 0;
-  }
-  main { padding: 0 1rem 3rem; }
-  table { font-size: 0.85rem; }
-  th, td { padding: 0.5rem 0.5rem; }
-}
-
-/* Print styles */
-@media print {
-  body { background: white; }
-  .skip-link, .print-btn, .partner-link { display: none !important; }
-  .masthead { border-bottom-color: #000; padding: 0.5rem 0 1rem; margin-bottom: 1rem; }
-  main { padding: 0; max-width: 100%; }
-  .section { page-break-inside: avoid; }
-  .scenario, .decision, .refbox, .callout, .synthesis { page-break-inside: avoid; }
-  h2, h3 { page-break-after: avoid; }
-  a { text-decoration: none; color: var(--ink); }
-  .response-space { min-height: 3.5rem; }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-  html { scroll-behavior: auto; }
-}
+:root{--navy:#1E3D4C;--navy-deep:#142A36;--navy-tint:#EDF1F3;--gold:#B8924A;--gold-deep:#9A7838;--terra:#C2734D;--terra-dark:#A0522D;--white:#FFFFFF;--off-white:#FAFAF9;--gray-line:#CFD6DA;--gray-soft:#5C6970;--shadow-rest:0 1px 3px rgba(0,0,0,.08);--shadow-hover:0 8px 16px rgba(0,0,0,.10)}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.55}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600;border-radius:0 0 6px 0}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+header.page-header{background:var(--white);border-bottom:1px solid var(--gray-line);padding:28px 32px 22px}
+.eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 6px}
+h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:clamp(26px,3.2vw,38px);color:var(--navy);margin:0 0 4px;letter-spacing:-.01em}
+.subhead{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:clamp(15px,1.6vw,18px);color:var(--terra-dark);margin:0 0 8px}
+.usage,p.usage{font-style:italic;color:var(--gray-soft);font-size:14px;margin:6px 0 0;max-width:70ch}
+main{max-width:880px;margin:0 auto;padding:24px}
+h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:22px;margin:28px 0 10px}
+h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--terra-dark);font-size:17px;margin:0 0 8px}
+h4{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:14px;margin:0 0 4px}
+p{margin:0 0 12px}
+.card{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:22px 24px;box-shadow:var(--shadow-rest);margin-bottom:18px}
+.card-tinted{background:var(--navy-tint);border-color:var(--navy)}
+.card-gold{border-left:4px solid var(--gold-deep);padding-left:20px}
+.card ul,.card ol{padding-left:22px;margin:8px 0}
+.card li{margin:6px 0}
+hr{border:none;border-top:1px solid var(--gray-line);margin:24px 0}
+.btn{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:14px;padding:10px 18px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block}
+.btn-primary{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.btn-primary:hover{background:var(--navy-deep)}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--gray-line)}
+.btn-ghost:hover{background:var(--navy-tint);border-color:var(--navy)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 14px}
+a{color:var(--navy);text-decoration:underline;text-decoration-color:var(--gold)}
+a:hover{color:var(--gold-deep)}
+table{width:100%;border-collapse:collapse;margin:8px 0}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--gray-line)}
+th{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);background:var(--navy-tint)}
+blockquote{margin:14px 0;padding:12px 18px;background:var(--off-white);border-left:3px solid var(--gold);font-style:italic;color:var(--gray-soft)}
+strong{color:var(--navy);font-weight:700}
+footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;font-size:13px}
+/* Legacy compatibility layer: style the inline class names from older pages */
+.lede,.lead,.section-lede{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:500;color:var(--navy);font-size:16px;margin-bottom:14px}
+[class$="-grid"]{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:12px 0}
+[class$="-card"],.tier,.channel,.format-card,.skim-card,.req-card,.read-card,.contact-card,.callout,.summary-card,.week-card,.category-card,.contact-callout,.feature-item,.legend-item,.auditor-box,.help-block,.compliance-stat,.tracks .track,.note,.tip,.info,.field,.focus,.examples{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:16px 18px;box-shadow:var(--shadow-rest)}
+.preferred,.recommended{border:2px solid var(--gold);background:var(--off-white)}
+.required{border-left:4px solid var(--terra-dark)}
+.optional{border-left:4px solid var(--gold)}
+.channel-rank,.cat-status,.tier-tag,.day-tag,.track-label,.section-num,.label,.lbl,.detail-label,.contact-label{display:inline-block;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);margin-bottom:6px}
+.preferred .channel-rank{color:var(--gold-deep)}
+.channel-name,.cat-name,.contact-item h4,.track-name,.format-card h3,.skim-card h3,.req-card h3,.read-card h3,.section-title,.week-number,.read-body h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:16px;margin:0 0 6px}
+.channel-when,.detail-value,.contact-value,.tier-tag,.day-tag,.pill,.deadline,.commitment,.evidence-list .ref{display:inline-block;font-family:'DM Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--navy);background:var(--navy-tint);padding:3px 10px;border-radius:999px;margin:2px 4px 6px 0}
+.channel-time,.deadline,.cat-status,.tier-tag,.commitment{font-style:italic;color:var(--gray-soft);font-size:12px;margin-top:8px}
+.channel-desc,.read-body,.cat-body p,.format-card p{font-family:'Lora',Georgia,serif;font-size:14px;color:var(--navy);margin:6px 0;line-height:1.55}
+.callout,.note,.tip{border-left:4px solid var(--gold);padding-left:16px;background:var(--off-white)}
+.callout-label{display:block;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:4px}
+.legend-swatch{display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--gray-line);vertical-align:middle;margin-right:6px}
+.steps{counter-reset:step;padding-left:0;list-style:none}
+.steps li{counter-increment:step;position:relative;padding:10px 12px 10px 44px;border-radius:8px;border:1px solid var(--gray-line);background:var(--white);margin:6px 0}
+.steps li::before{content:counter(step);position:absolute;left:12px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--navy);color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+.rhythm-table{border-collapse:collapse;width:100%}
+.day-cell,.day-name,.instructor-cell,.student-cell{padding:8px 10px}
+.compliance-stat .stat-num{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:28px;color:var(--navy);line-height:1}
+.compliance-stat .stat-text{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--gray-soft);text-transform:uppercase;letter-spacing:.08em}
+.section-head{display:flex;align-items:baseline;gap:10px;margin:18px 0 10px}
+.section-num{background:var(--navy);color:var(--white);padding:4px 10px;border-radius:4px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px}
+.systems{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:10px 0}
+.systems > *{padding:10px 12px;background:var(--off-white);border-radius:6px;border:1px solid var(--gray-line)}
 </style>
 </head>
-<body id="bio304-clinical-portfolio-hub">
-<a class="skip-link" href="#main-content">Skip to main content</a>
-<header class="masthead" role="banner">
-  <div class="masthead-inner">
-    <button class="print-btn" type="button" onclick="window.print()" aria-label="Print or save this page as PDF">Print / Save PDF</button>
-    <p class="eyebrow">BIO 304 &middot; Clinical Portfolio</p>
-    <h1>Clinical Portfolio Hub</h1>
-    <p class="subtitle">One reference page per week. Eight pages total. Build them as if you'll actually use them.</p>
-    <div class="meta"><strong>Weight:</strong> 15% of your final grade &middot; <strong>Format:</strong> One printable page per week, submitted as PDF</div>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<header class="page-header">
+  <p class="eyebrow">BIO 304 . STUDY TOOL . AMERICAN RIVER COLLEGE</p>
+  <h1>Clinical Portfolio Hub</h1>
+  <p class="subhead">One reference page per week. Eight pages total. Build them as if you'll actually use them.</p>
+  
+</header>
+<main id="main" tabindex="-1">
+  <div class="toolbar">
+    <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
-</header>
-<main id="main-content"><header class="section-head" id="overview">
-  <span class="section-num">01</span>
-  <span class="section-eyebrow">Start here</span>
-  <h2>What this is and why you're building it</h2>
-</header>
-
-<p>The Clinical Portfolio is a series of eight reference pages, one per week, that translate the week's anatomy and physiology into a tool a clinician would actually reach for. Each page lives on a single printable sheet. Each page is yours: your organizing logic, your phrasing, your call on what's high-yield enough to make the page.</p>
+<article class="card"><p>The Clinical Portfolio is a series of eight reference pages, one per week, that translate the week's anatomy and physiology into a tool a clinician would actually reach for. Each page lives on a single printable sheet. Each page is yours: your organizing logic, your phrasing, your call on what's high-yield enough to make the page.</p>
 
 <div class="callout">
   <span class="callout-label">The point</span>
@@ -689,31 +291,20 @@ tbody tr:nth-child(even) { background: #ffffff; }
   <span class="synthesis-label">From Dr. Rennie</span>
   <p>The students who do well in clinical settings, in nursing programs, in EMT and paramedic ride-alongs, in mortuary science labs, are not the ones who memorized the most facts. They are the ones who built reliable tools for thinking, then trusted those tools when the moment got loud. This portfolio is a small version of that practice. Build it for yourself.</p>
   <p style="margin-bottom:0"><em>Dr. Sharilyn Rennie</em></p>
-</div>
-
-<footer class="page-foot" role="contentinfo">
-  <p>BIO 304 Human Anatomy &amp; Physiology &middot; Dr. Sharilyn Rennie &middot; American River College</p>
-</footer>
+</div></article>
 </main>
+<footer><p>Dr. Sharilyn Rennie . BIO 304 . American River College</p></footer>
 <script>
-  // Iframe height-sender for Kajabi embedding
-  (function() {
-    var frameId = "bio304-clinical-portfolio-hub";
-    function sendHeight() {
-      var h = document.documentElement.scrollHeight;
-      try {
-        window.parent.postMessage({ type: "iframe-height", id: frameId, height: h }, "*");
-      } catch (e) {}
-    }
-    if (window.ResizeObserver) {
-      var ro = new ResizeObserver(sendHeight);
-      ro.observe(document.body);
-    }
-    window.addEventListener("load", sendHeight);
-    window.addEventListener("resize", sendHeight);
-    setTimeout(sendHeight, 200);
-    setTimeout(sendHeight, 1000);
-  })();
+(function(){
+  if(window.self===window.top)return;
+  function sendHeight(){
+    const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight);
+    try{window.parent.postMessage({type:'iframe-height',id:'bio304-page',height:h},'*');}catch(e){}
+  }
+  window.addEventListener('load',sendHeight);
+  window.addEventListener('resize',sendHeight);
+  if(window.ResizeObserver){new ResizeObserver(sendHeight).observe(document.body);}else{setInterval(sendHeight,800);}
+})();
 </script>
 </body>
 </html>

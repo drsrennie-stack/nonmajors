@@ -3,189 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BIO 304 · Academic Integrity &amp; AI Policy</title>
+<title>BIO 304 . Academic Integrity &amp; AI Policy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
-    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
-    --navy-tint-legacy: #f5e6d3; --navy-tint-legacy-soft: #faf3e8;
-    --terra: #c44536; --terra-soft: #e8a499;
-    --kelp: #5a7553; --kelp-soft: #aabba0;
-    --paper: #fdfbf7; --line: #c9d4d8; --muted: #5a6b73;
-    --shadow-md: 0 4px 14px rgba(20, 48, 75, 0.08);
-    --radius-md: 12px; --radius-lg: 18px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
-  .skip-link:focus { left: 0; top: 0; }
-  :focus { outline: none; }
-  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-  }
-  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; }
-  .page { max-width: 920px; margin: 0 auto; padding: 0 28px 80px; }
-
-  header.masthead { padding: 48px 0 24px; border-bottom: 2.5px solid var(--ocean-deep); margin-bottom: 32px; position: relative; }
-  header.masthead::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 70px; height: 2px; background: var(--terra); }
-  .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
-  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(1.9rem, 4vw, 2.5rem); line-height: 1.15; color: var(--ocean-deep); margin-bottom: 14px; }
-  h1.title em { font-style: italic; color: var(--terra); }
-  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.1rem; color: var(--ocean); max-width: 720px; }
-
-  .section { margin-top: 40px; }
-  .section h2 {
-    font-family: 'Lora', serif; font-weight: 500; font-size: 1.5rem;
-    color: var(--ocean-deep); margin-bottom: 14px;
-    padding-bottom: 8px; border-bottom: 1.5px solid var(--ocean-deep);
-  }
-  .section h2 em { font-style: italic; color: var(--terra); }
-  .section h3 {
-    font-family: 'Lora', serif; font-weight: 500; font-size: 1.15rem;
-    color: var(--ocean-deep); margin: 22px 0 10px;
-  }
-  .section p { margin-bottom: 14px; max-width: 760px; line-height: 1.65; }
-  .section p:last-child { margin-bottom: 0; }
-  .section ul { padding-left: 24px; margin: 8px 0 14px; }
-  .section li { padding: 4px 0; line-height: 1.6; }
-
-  .opening-frame {
-    background: white;
-    border: 1px solid var(--line);
-    border-top: 4px solid var(--terra);
-    border-radius: var(--radius-lg);
-    padding: 26px 30px;
-    margin: 0 0 32px;
-    box-shadow: var(--shadow-md);
-  }
-  .opening-frame h2 {
-    font-family: 'Lora', serif; font-weight: 500; font-size: 1.25rem;
-    color: var(--ocean-deep); margin-bottom: 12px;
-    border: none; padding: 0;
-  }
-  .opening-frame h2 em { font-style: italic; color: var(--terra); }
-
-  /* DO / DONT */
-  .do-dont-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 14px 0;
-  }
-  @media (max-width: 720px) { .do-dont-grid { grid-template-columns: 1fr; } }
-  .do-card, .dont-card {
-    border-radius: var(--radius-md); padding: 22px 26px;
-  }
-  .do-card { background: rgba(90, 117, 83, 0.08); border-left: 4px solid var(--kelp); }
-  .dont-card { background: rgba(196, 69, 54, 0.08); border-left: 4px solid var(--terra); }
-  .do-card h3, .dont-card h3 {
-    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; margin-bottom: 12px; padding: 0; border: 0;
-  }
-  .do-card h3 { color: var(--kelp); }
-  .dont-card h3 { color: var(--terra); }
-  .do-card ul, .dont-card ul { list-style: none; padding: 0; margin: 0; }
-  .do-card li, .dont-card li {
-    padding: 6px 0 6px 24px; position: relative;
-    font-size: 0.92rem; line-height: 1.55;
-  }
-  .do-card li::before { content: '✓'; position: absolute; left: 0; color: var(--kelp); font-weight: 700; }
-  .dont-card li::before { content: '✗'; position: absolute; left: 0; color: var(--terra); font-weight: 700; }
-
-  /* CALLOUT */
-  .callout {
-    background: var(--navy-tint-legacy-soft);
-    border-left: 4px solid var(--terra);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    padding: 18px 24px; margin: 16px 0;
-  }
-  .callout-label {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--terra); margin-bottom: 6px;
-  }
-  .callout p { margin-bottom: 6px; max-width: none; }
-  .callout p:last-child { margin-bottom: 0; }
-  .callout.info { background: var(--sea-glass-soft); border-left-color: var(--ocean); }
-  .callout.info .callout-label { color: var(--ocean-deep); }
-
-  /* CONSEQUENCES TABLE */
-  .consequences {
-    background: white; border: 1px solid var(--line);
-    border-radius: var(--radius-md); padding: 0; margin: 16px 0;
-    overflow: hidden;
-  }
-  .consequences-row {
-    display: grid; grid-template-columns: 230px 1fr;
-    gap: 18px; padding: 14px 22px;
-    border-bottom: 1px solid var(--line);
-    align-items: baseline;
-  }
-  .consequences-row:last-child { border-bottom: none; }
-  .consequences-row:nth-child(odd) { background: var(--sea-glass-soft); }
-  .severity {
-    font-family: 'Lora', serif; font-weight: 500;
-    color: var(--ocean-deep); font-size: 0.95rem;
-  }
-  .severity em { font-style: italic; color: var(--terra); }
-  .outcome { font-size: 0.92rem; line-height: 1.55; }
-  @media (max-width: 600px) {
-    .consequences-row { grid-template-columns: 1fr; gap: 4px; }
-  }
-
-  /* HONOR CONTRACT BOX */
-  .honor-box {
-    background: linear-gradient(150deg, var(--ocean-deep), var(--ink));
-    color: white;
-    border-radius: var(--radius-lg);
-    padding: 28px 32px;
-    margin: 24px 0;
-    position: relative; overflow: hidden;
-  }
-  .honor-box::before {
-    content: ''; position: absolute; top: -40px; right: -40px;
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, var(--terra) 0%, transparent 70%);
-    opacity: 0.3; pointer-events: none;
-  }
-  .honor-box h3 {
-    font-family: 'Lora', serif; font-weight: 500; font-size: 1.3rem;
-    color: white; margin: 0 0 10px; padding: 0; border: 0;
-    position: relative;
-  }
-  .honor-box h3 em { font-style: italic; color: var(--terra-soft); }
-  .honor-box p { color: white; position: relative; max-width: none; margin-bottom: 10px; }
-  .honor-box p:last-child { margin-bottom: 0; }
-  .honor-box strong { color: var(--terra-soft); }
-  .deadline-pill {
-    display: inline-block; background: var(--terra); color: white;
-    padding: 4px 14px; border-radius: 999px;
-    font-size: 0.84rem; font-weight: 600;
-    margin-top: 6px;
-  }
-
-  @media print {
-    body { background: white; font-size: 11pt; }
-    .skip-link { display: none !important; }
-    .opening-frame, .do-card, .dont-card, .consequences, .honor-box, .callout {
-      break-inside: avoid; box-shadow: none;
-    }
-    .honor-box { background: white !important; color: var(--ink) !important; border: 2px solid var(--ink); }
-    .honor-box h3, .honor-box p { color: var(--ink) !important; }
-    .honor-box h3 em, .honor-box strong { color: var(--terra) !important; }
-    @page { size: letter; margin: 0.5in; }
-  }
+:root{--navy:#1E3D4C;--navy-deep:#142A36;--navy-tint:#EDF1F3;--gold:#B8924A;--gold-deep:#9A7838;--terra:#C2734D;--terra-dark:#A0522D;--white:#FFFFFF;--off-white:#FAFAF9;--gray-line:#CFD6DA;--gray-soft:#5C6970;--shadow-rest:0 1px 3px rgba(0,0,0,.08);--shadow-hover:0 8px 16px rgba(0,0,0,.10)}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.55}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600;border-radius:0 0 6px 0}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+header.page-header{background:var(--white);border-bottom:1px solid var(--gray-line);padding:28px 32px 22px}
+.eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 6px}
+h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:clamp(26px,3.2vw,38px);color:var(--navy);margin:0 0 4px;letter-spacing:-.01em}
+.subhead{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:clamp(15px,1.6vw,18px);color:var(--terra-dark);margin:0 0 8px}
+.usage,p.usage{font-style:italic;color:var(--gray-soft);font-size:14px;margin:6px 0 0;max-width:70ch}
+main{max-width:880px;margin:0 auto;padding:24px}
+h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:22px;margin:28px 0 10px}
+h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--terra-dark);font-size:17px;margin:0 0 8px}
+h4{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:14px;margin:0 0 4px}
+p{margin:0 0 12px}
+.card{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:22px 24px;box-shadow:var(--shadow-rest);margin-bottom:18px}
+.card-tinted{background:var(--navy-tint);border-color:var(--navy)}
+.card-gold{border-left:4px solid var(--gold-deep);padding-left:20px}
+.card ul,.card ol{padding-left:22px;margin:8px 0}
+.card li{margin:6px 0}
+hr{border:none;border-top:1px solid var(--gray-line);margin:24px 0}
+.btn{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:14px;padding:10px 18px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block}
+.btn-primary{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.btn-primary:hover{background:var(--navy-deep)}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--gray-line)}
+.btn-ghost:hover{background:var(--navy-tint);border-color:var(--navy)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 14px}
+a{color:var(--navy);text-decoration:underline;text-decoration-color:var(--gold)}
+a:hover{color:var(--gold-deep)}
+table{width:100%;border-collapse:collapse;margin:8px 0}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--gray-line)}
+th{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);background:var(--navy-tint)}
+blockquote{margin:14px 0;padding:12px 18px;background:var(--off-white);border-left:3px solid var(--gold);font-style:italic;color:var(--gray-soft)}
+strong{color:var(--navy);font-weight:700}
+footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;font-size:13px}
+/* Legacy compatibility layer: style the inline class names from older pages */
+.lede,.lead,.section-lede{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:500;color:var(--navy);font-size:16px;margin-bottom:14px}
+[class$="-grid"]{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:12px 0}
+[class$="-card"],.tier,.channel,.format-card,.skim-card,.req-card,.read-card,.contact-card,.callout,.summary-card,.week-card,.category-card,.contact-callout,.feature-item,.legend-item,.auditor-box,.help-block,.compliance-stat,.tracks .track,.note,.tip,.info,.field,.focus,.examples{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:16px 18px;box-shadow:var(--shadow-rest)}
+.preferred,.recommended{border:2px solid var(--gold);background:var(--off-white)}
+.required{border-left:4px solid var(--terra-dark)}
+.optional{border-left:4px solid var(--gold)}
+.channel-rank,.cat-status,.tier-tag,.day-tag,.track-label,.section-num,.label,.lbl,.detail-label,.contact-label{display:inline-block;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);margin-bottom:6px}
+.preferred .channel-rank{color:var(--gold-deep)}
+.channel-name,.cat-name,.contact-item h4,.track-name,.format-card h3,.skim-card h3,.req-card h3,.read-card h3,.section-title,.week-number,.read-body h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:16px;margin:0 0 6px}
+.channel-when,.detail-value,.contact-value,.tier-tag,.day-tag,.pill,.deadline,.commitment,.evidence-list .ref{display:inline-block;font-family:'DM Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--navy);background:var(--navy-tint);padding:3px 10px;border-radius:999px;margin:2px 4px 6px 0}
+.channel-time,.deadline,.cat-status,.tier-tag,.commitment{font-style:italic;color:var(--gray-soft);font-size:12px;margin-top:8px}
+.channel-desc,.read-body,.cat-body p,.format-card p{font-family:'Lora',Georgia,serif;font-size:14px;color:var(--navy);margin:6px 0;line-height:1.55}
+.callout,.note,.tip{border-left:4px solid var(--gold);padding-left:16px;background:var(--off-white)}
+.callout-label{display:block;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:4px}
+.legend-swatch{display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--gray-line);vertical-align:middle;margin-right:6px}
+.steps{counter-reset:step;padding-left:0;list-style:none}
+.steps li{counter-increment:step;position:relative;padding:10px 12px 10px 44px;border-radius:8px;border:1px solid var(--gray-line);background:var(--white);margin:6px 0}
+.steps li::before{content:counter(step);position:absolute;left:12px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--navy);color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+.rhythm-table{border-collapse:collapse;width:100%}
+.day-cell,.day-name,.instructor-cell,.student-cell{padding:8px 10px}
+.compliance-stat .stat-num{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:28px;color:var(--navy);line-height:1}
+.compliance-stat .stat-text{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--gray-soft);text-transform:uppercase;letter-spacing:.08em}
+.section-head{display:flex;align-items:baseline;gap:10px;margin:18px 0 10px}
+.section-num{background:var(--navy);color:var(--white);padding:4px 10px;border-radius:4px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px}
+.systems{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:10px 0}
+.systems > *{padding:10px 12px;background:var(--off-white);border-radius:6px;border:1px solid var(--gray-line)}
 </style>
 </head>
 <body>
-<a href="#main-content" class="skip-link">Skip to main content</a>
-
+<a href="#main" class="skip-link">Skip to main content</a>
+<header class="page-header">
+  <p class="eyebrow">BIO 304 . POLICY . AMERICAN RIVER COLLEGE</p>
+  <h1>Academic Integrity & AI Policy</h1>
+  <p class="subhead">How we work together honestly. What you can and cannot do with AI tools. What happens if integrity is compromised.</p>
+  
+</header>
+<main id="main" tabindex="-1">
+  <div class="toolbar">
+    <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
+  </div>
 <div class="page" id="main-content" role="main">
 
-  <header class="masthead">
-    <p class="eyebrow">BIO 304 · Course Policies</p>
-    <h1 class="title">Academic Integrity &amp; <em>AI Policy</em></h1>
-    <p class="subtitle">How we work together honestly. What you can and cannot do with AI tools. What happens if integrity is compromised.</p>
-  </header>
+  
 
   <div class="opening-frame">
     <h2>Why this <em>matters</em> in healthcare</h2>
@@ -342,20 +245,19 @@
   </section>
 
 </div>
-
+</main>
+<footer><p>Dr. Sharilyn Rennie . BIO 304 . American River College</p></footer>
 <script>
-  (function () {
-    const FRAME_ID = 'bio304-academic-integrity';
-    function sendHeight() {
-      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
-      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
-    }
-    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
-    window.addEventListener('load', sendHeight);
-    window.addEventListener('resize', sendHeight);
-    setTimeout(sendHeight, 200);
-    setTimeout(sendHeight, 800);
-  })();
+(function(){
+  if(window.self===window.top)return;
+  function sendHeight(){
+    const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight);
+    try{window.parent.postMessage({type:'iframe-height',id:'bio304-page',height:h},'*');}catch(e){}
+  }
+  window.addEventListener('load',sendHeight);
+  window.addEventListener('resize',sendHeight);
+  if(window.ResizeObserver){new ResizeObserver(sendHeight).observe(document.body);}else{setInterval(sendHeight,800);}
+})();
 </script>
 </body>
 </html>

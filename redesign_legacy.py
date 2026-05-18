@@ -18,6 +18,16 @@ TARGETS = [
     ("biol304_how_to_reach_me.html","FACULTY",   "Office hours, email, response times, Zoom"),
     ("biol304_rsi_statement.html", "POLICY",     "Regular substantive interaction you can expect each week"),
     ("nonmajors_ap_rhythm_card.html","CLINICAL TOOL", "A&P rhythm card for quick reference"),
+    # Second redesign pass for syllabus-adjacent pages
+    ("submission-directions.html", "SUBMISSION", "How and where to turn in your work"),
+    ("integrity.html",             "POLICY",     "Academic integrity expectations and AI policy"),
+    ("course_structure.html",      "COURSE MAP", "How the eight weeks are organized"),
+    ("dashboard.html",             "STUDY TOOL", "Your progress at a glance"),
+    ("weekly_pacer.html",          "PLANNING",   "Your week, day by day"),
+    ("welcome.html",               "WELCOME",    "Where to start in BIO 304"),
+    ("concept_videos.html",        "RESOURCE",   "Short concept-explainer videos"),
+    ("clinical_portfolio_hub.html","STUDY TOOL", "Apply concepts to real patient scenarios"),
+    ("discussions.html",           "DISCUSSION", "Weekly discussion prompts and post submissions"),
 ]
 
 # Legacy week1 files: orphan and superseded by week01_* + the new syllabus hub.

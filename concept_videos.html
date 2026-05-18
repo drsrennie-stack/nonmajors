@@ -6,172 +6,89 @@
 <title>BIO 304 Video Library</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #1d3557; --ocean: #2a4d6e; --ocean-deep: #14304b;
-    --sea-glass: #d6e4e7; --sea-glass-soft: #eef4f5;
-    --navy-tint-legacy: #f5e6d3; --navy-tint-legacy-soft: #faf3e8;
-    --terra: #c44536; --terra-soft: #e8a499;
-    --kelp: #5a7553; --kelp-soft: #aabba0;
-    --paper: #fdfbf7; --line: #c9d4d8; --muted: #5a6b73;
-    --shadow-sm: 0 1px 2px rgba(20, 48, 75, 0.06);
-    --shadow-md: 0 4px 14px rgba(20, 48, 75, 0.08);
-    --radius-sm: 6px; --radius-md: 12px; --radius-lg: 18px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  .skip-link { position: absolute; left: -10000px; top: 0; background: var(--ocean-deep); color: white; padding: 12px 20px; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 6px 0; }
-  .skip-link:focus { left: 0; top: 0; }
-  :focus { outline: none; }
-  :focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; border-radius: 2px; }
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    html { scroll-behavior: auto; }
-  }
-  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
-  .page { max-width: 1180px; margin: 0 auto; padding: 0 28px 80px; }
-  header.masthead { padding: 48px 0 24px; }
-  .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
-  h1.title { font-family: 'Lora', serif; font-weight: 500; font-size: clamp(2rem, 4vw, 2.6rem); line-height: 1.15; color: var(--ocean-deep); letter-spacing: -0.01em; margin-bottom: 14px; }
-  h1.title em { font-style: italic; color: var(--terra); }
-  .subtitle { font-family: 'Lora', serif; font-style: italic; font-size: 1.1rem; color: var(--ocean); max-width: 720px; margin-bottom: 18px; }
-  .stats-row { display: flex; flex-wrap: wrap; gap: 12px 22px; align-items: center; font-size: 0.86rem; color: var(--muted); padding-top: 4px; }
-  .stat-pill { display: inline-flex; gap: 8px; align-items: center; background: var(--sea-glass-soft); padding: 6px 14px; border-radius: 999px; font-size: 0.82rem; font-weight: 500; color: var(--ocean-deep); }
-  .stat-pill.has-videos { background: var(--kelp); color: white; }
-  .stat-pill.has-videos::before { content: '✓'; font-weight: 700; }
-
-  /* WEEK BUTTON ROW (primary navigation) */
-  .week-bar { position: sticky; top: 0; background: var(--paper); z-index: 50; padding: 16px 28px 14px; margin: 18px -28px 0; border-bottom: 1px solid var(--line); }
-  .week-bar-label { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 10px; }
-  .week-btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
-  .week-btn { background: white; border: 1.5px solid var(--line); color: var(--ocean-deep); padding: 9px 16px; min-width: 56px; border-radius: 8px; font-family: inherit; font-size: 0.92rem; font-weight: 600; cursor: pointer; transition: all 0.15s ease; letter-spacing: 0.02em; }
-  .week-btn:hover { border-color: var(--ocean); background: var(--sea-glass-soft); }
-  .week-btn.active { background: var(--ocean-deep); color: white; border-color: var(--ocean-deep); box-shadow: var(--shadow-sm); }
-  .week-btn.all-weeks { padding: 9px 18px; }
-
-  /* SECONDARY FILTER ROW */
-  .filter-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; padding: 16px 28px 8px; margin: 0 -28px 24px; background: var(--paper); border-bottom: 1px solid var(--line); }
-  .filter-group { display: inline-flex; align-items: center; gap: 8px; }
-  .filter-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
-  .track-btn-row { display: inline-flex; gap: 6px; }
-  .track-btn { background: white; border: 1.5px solid var(--line); color: var(--ocean-deep); padding: 6px 12px; border-radius: 6px; font-family: inherit; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.15s ease; }
-  .track-btn:hover { border-color: var(--ocean); background: var(--sea-glass-soft); }
-  .track-btn.active { background: var(--ocean-deep); color: white; border-color: var(--ocean-deep); }
-  .track-btn.active.concept-active { background: var(--ocean-deep); border-color: var(--ocean-deep); }
-  .track-btn.active.lab-active { background: var(--kelp); border-color: var(--kelp); }
-  .filter-search { padding: 7px 12px; border: 1.5px solid var(--line); border-radius: 6px; background: white; color: var(--ink); font-family: inherit; font-size: 0.86rem; min-width: 220px; transition: border-color 0.15s ease; }
-  .filter-search:hover { border-color: var(--ocean); }
-  .filter-search:focus-visible { border-color: var(--terra); }
-  .filter-clear { background: transparent; border: 1px solid var(--line); color: var(--muted); padding: 6px 12px; border-radius: 6px; font-family: inherit; font-size: 0.78rem; cursor: pointer; transition: all 0.15s ease; }
-  .filter-clear:hover { background: var(--sea-glass-soft); border-color: var(--ocean); color: var(--ocean-deep); }
-  .filter-result-count { margin-left: auto; font-size: 0.84rem; color: var(--muted); font-style: italic; }
-
-  /* WEEK SECTION */
-  .week-section { margin-bottom: 36px; }
-  .week-header { display: flex; gap: 16px; align-items: baseline; margin-bottom: 18px; padding-bottom: 8px; border-bottom: 1.5px solid var(--ocean-deep); }
-  .week-num-display { font-family: 'Lora', serif; font-style: italic; font-weight: 500; font-size: 2rem; color: var(--terra); line-height: 1; min-width: 60px; }
-  .week-titles { flex: 1; }
-  .week-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-  .week-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.4rem; color: var(--ocean-deep); }
-  .week-meta { font-size: 0.84rem; color: var(--muted); margin-top: 4px; }
-
-  /* TRACK SUBHEADING */
-  .track-subhead { display: flex; align-items: center; gap: 10px; margin: 22px 0 12px; font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); font-style: italic; }
-  .track-subhead::before { content: ''; width: 4px; height: 18px; border-radius: 2px; }
-  .track-subhead.concept-sub::before { background: var(--ocean-deep); }
-  .track-subhead.lab-sub::before { background: var(--kelp); }
-  .track-subhead .count { font-family: 'Plus Jakarta Sans', sans-serif; font-style: normal; font-size: 0.82rem; color: var(--muted); margin-left: 4px; }
-
-  /* LECTURE CARD */
-  .lectures-grid { display: flex; flex-direction: column; gap: 12px; }
-  .lecture-card { background: white; border: 1px solid var(--line); border-left: 4px solid var(--line); border-radius: var(--radius-md); padding: 20px 24px; transition: box-shadow 0.18s ease, border-left-color 0.18s ease; }
-  .lecture-card.concept { border-left-color: var(--ocean-deep); }
-  .lecture-card.lab { border-left-color: var(--kelp); }
-  .lecture-card:hover { box-shadow: var(--shadow-md); }
-  .lecture-card.expanded { box-shadow: var(--shadow-md); }
-  .lecture-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; }
-  .pill { display: inline-flex; padding: 3px 10px; border-radius: 4px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
-  .pill-track-concept { background: var(--ocean-deep); color: white; }
-  .pill-track-lab { background: var(--kelp); color: white; }
-  .pill-week { background: var(--sea-glass-soft); color: var(--ocean-deep); }
-  .pill-cor { background: var(--terra); color: white; }
-  .pill-lab-anchor { background: var(--ocean); color: white; }
-  .pill-status { margin-left: auto; }
-  .pill-status.original { background: var(--kelp); color: white; }
-  .pill-status.original::before { content: '✓ '; }
-  .pill-status.curated { background: var(--navy-tint-legacy); color: var(--ink); }
-  .pill-status.curated::before { content: '◆ '; }
-  .pill-status.pending { background: transparent; color: var(--muted); border: 1px dashed var(--line); }
-  .lecture-title { font-family: 'Lora', serif; font-weight: 500; font-size: 1.12rem; color: var(--ocean-deep); margin-bottom: 6px; line-height: 1.3; }
-  .lecture-description { font-size: 0.9rem; color: var(--ink); margin-bottom: 14px; line-height: 1.55; }
-  .lecture-action { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-  .watch-btn { background: var(--ocean-deep); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-family: inherit; font-size: 0.84rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em; transition: all 0.18s ease; display: inline-flex; align-items: center; gap: 8px; }
-  .watch-btn:hover { background: var(--ocean); transform: translateY(-1px); }
-  .watch-btn::before { content: '▶'; font-size: 0.74rem; }
-  .watch-btn.expanded { background: var(--terra); }
-  .watch-btn.expanded::before { content: '✕'; font-size: 0.88rem; }
-  .watch-btn.disabled { background: transparent; color: var(--muted); border: 1.5px dashed var(--line); cursor: not-allowed; }
-  .watch-btn.disabled:hover { background: transparent; transform: none; }
-  .watch-btn.disabled::before { content: '◷'; font-size: 0.78rem; }
-  .video-area { display: none; margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--line); }
-  .lecture-card.expanded .video-area { display: block; }
-  .video-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; background: var(--ocean-deep); border-radius: 8px; overflow: hidden; }
-  .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-  .video-placeholder { background: linear-gradient(135deg, var(--navy-tint-legacy-soft) 0%, var(--sea-glass-soft) 100%); border: 1.5px dashed var(--line); border-radius: 8px; padding: 30px 24px; text-align: center; color: var(--muted); }
-  .video-placeholder h4 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.05rem; color: var(--ocean-deep); margin-bottom: 6px; font-style: italic; }
-  .video-placeholder p { font-size: 0.86rem; max-width: 480px; margin: 0 auto; line-height: 1.5; }
-  .video-placeholder code { background: white; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.82rem; color: var(--terra); border: 1px solid var(--line); }
-
-  /* EMPTY STATE */
-  .empty-state { text-align: center; padding: 60px 28px; color: var(--muted); }
-  .empty-state h3 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.3rem; color: var(--ocean-deep); margin-bottom: 8px; font-style: italic; }
-  .empty-state p { font-size: 0.92rem; max-width: 420px; margin: 0 auto; }
-
-  /* INSTRUCTOR NOTE */
-  .instructor-note { background: var(--navy-tint-legacy-soft); border-left: 4px solid var(--terra); padding: 18px 22px; margin: 36px 0 0; border-radius: 0 8px 8px 0; }
-  .instructor-note h3 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.1rem; color: var(--ocean-deep); margin-bottom: 10px; }
-  .instructor-note p { font-size: 0.88rem; color: var(--ink); margin-bottom: 8px; }
-  .instructor-note p:last-child { margin-bottom: 0; }
-  .instructor-note code { background: white; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.82rem; color: var(--terra); border: 1px solid var(--line); }
-  .instructor-note ol { margin: 8px 0 12px 24px; font-size: 0.88rem; }
-  .instructor-note ol li { margin-bottom: 4px; }
-  .instructor-note .source-key { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); font-size: 0.84rem; }
-  .instructor-note .source-key span { display: inline-flex; align-items: center; gap: 6px; }
-
-  @media (max-width: 720px) {
-    .filter-row { flex-direction: column; align-items: stretch; gap: 10px; }
-    .filter-group { width: 100%; flex-wrap: wrap; }
-    .filter-search { width: 100%; }
-    .filter-result-count { margin-left: 0; }
-    .lecture-card { padding: 16px 18px; }
-    .pill-status { margin-left: 0; }
-    .week-btn { min-width: 48px; padding: 8px 12px; font-size: 0.86rem; }
-  }
-  @media print {
-    body { background: white; }
-    .week-bar, .filter-row, .watch-btn, .skip-link { display: none !important; }
-    .lecture-card { break-inside: avoid; box-shadow: none; }
-    @page { size: letter; margin: 0.5in; }
-  }
+:root{--navy:#1E3D4C;--navy-deep:#142A36;--navy-tint:#EDF1F3;--gold:#B8924A;--gold-deep:#9A7838;--terra:#C2734D;--terra-dark:#A0522D;--white:#FFFFFF;--off-white:#FAFAF9;--gray-line:#CFD6DA;--gray-soft:#5C6970;--shadow-rest:0 1px 3px rgba(0,0,0,.08);--shadow-hover:0 8px 16px rgba(0,0,0,.10)}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.55}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600;border-radius:0 0 6px 0}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+header.page-header{background:var(--white);border-bottom:1px solid var(--gray-line);padding:28px 32px 22px}
+.eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 6px}
+h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:clamp(26px,3.2vw,38px);color:var(--navy);margin:0 0 4px;letter-spacing:-.01em}
+.subhead{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:clamp(15px,1.6vw,18px);color:var(--terra-dark);margin:0 0 8px}
+.usage,p.usage{font-style:italic;color:var(--gray-soft);font-size:14px;margin:6px 0 0;max-width:70ch}
+main{max-width:880px;margin:0 auto;padding:24px}
+h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:22px;margin:28px 0 10px}
+h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--terra-dark);font-size:17px;margin:0 0 8px}
+h4{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:14px;margin:0 0 4px}
+p{margin:0 0 12px}
+.card{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:22px 24px;box-shadow:var(--shadow-rest);margin-bottom:18px}
+.card-tinted{background:var(--navy-tint);border-color:var(--navy)}
+.card-gold{border-left:4px solid var(--gold-deep);padding-left:20px}
+.card ul,.card ol{padding-left:22px;margin:8px 0}
+.card li{margin:6px 0}
+hr{border:none;border-top:1px solid var(--gray-line);margin:24px 0}
+.btn{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:14px;padding:10px 18px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block}
+.btn-primary{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.btn-primary:hover{background:var(--navy-deep)}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--gray-line)}
+.btn-ghost:hover{background:var(--navy-tint);border-color:var(--navy)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 14px}
+a{color:var(--navy);text-decoration:underline;text-decoration-color:var(--gold)}
+a:hover{color:var(--gold-deep)}
+table{width:100%;border-collapse:collapse;margin:8px 0}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--gray-line)}
+th{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);background:var(--navy-tint)}
+blockquote{margin:14px 0;padding:12px 18px;background:var(--off-white);border-left:3px solid var(--gold);font-style:italic;color:var(--gray-soft)}
+strong{color:var(--navy);font-weight:700}
+footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;font-size:13px}
+/* Legacy compatibility layer: style the inline class names from older pages */
+.lede,.lead,.section-lede{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:500;color:var(--navy);font-size:16px;margin-bottom:14px}
+[class$="-grid"]{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:12px 0}
+[class$="-card"],.tier,.channel,.format-card,.skim-card,.req-card,.read-card,.contact-card,.callout,.summary-card,.week-card,.category-card,.contact-callout,.feature-item,.legend-item,.auditor-box,.help-block,.compliance-stat,.tracks .track,.note,.tip,.info,.field,.focus,.examples{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:16px 18px;box-shadow:var(--shadow-rest)}
+.preferred,.recommended{border:2px solid var(--gold);background:var(--off-white)}
+.required{border-left:4px solid var(--terra-dark)}
+.optional{border-left:4px solid var(--gold)}
+.channel-rank,.cat-status,.tier-tag,.day-tag,.track-label,.section-num,.label,.lbl,.detail-label,.contact-label{display:inline-block;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);margin-bottom:6px}
+.preferred .channel-rank{color:var(--gold-deep)}
+.channel-name,.cat-name,.contact-item h4,.track-name,.format-card h3,.skim-card h3,.req-card h3,.read-card h3,.section-title,.week-number,.read-body h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:16px;margin:0 0 6px}
+.channel-when,.detail-value,.contact-value,.tier-tag,.day-tag,.pill,.deadline,.commitment,.evidence-list .ref{display:inline-block;font-family:'DM Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--navy);background:var(--navy-tint);padding:3px 10px;border-radius:999px;margin:2px 4px 6px 0}
+.channel-time,.deadline,.cat-status,.tier-tag,.commitment{font-style:italic;color:var(--gray-soft);font-size:12px;margin-top:8px}
+.channel-desc,.read-body,.cat-body p,.format-card p{font-family:'Lora',Georgia,serif;font-size:14px;color:var(--navy);margin:6px 0;line-height:1.55}
+.callout,.note,.tip{border-left:4px solid var(--gold);padding-left:16px;background:var(--off-white)}
+.callout-label{display:block;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:4px}
+.legend-swatch{display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--gray-line);vertical-align:middle;margin-right:6px}
+.steps{counter-reset:step;padding-left:0;list-style:none}
+.steps li{counter-increment:step;position:relative;padding:10px 12px 10px 44px;border-radius:8px;border:1px solid var(--gray-line);background:var(--white);margin:6px 0}
+.steps li::before{content:counter(step);position:absolute;left:12px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--navy);color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+.rhythm-table{border-collapse:collapse;width:100%}
+.day-cell,.day-name,.instructor-cell,.student-cell{padding:8px 10px}
+.compliance-stat .stat-num{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:28px;color:var(--navy);line-height:1}
+.compliance-stat .stat-text{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--gray-soft);text-transform:uppercase;letter-spacing:.08em}
+.section-head{display:flex;align-items:baseline;gap:10px;margin:18px 0 10px}
+.section-num{background:var(--navy);color:var(--white);padding:4px 10px;border-radius:4px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px}
+.systems{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:10px 0}
+.systems > *{padding:10px 12px;background:var(--off-white);border-radius:6px;border:1px solid var(--gray-line)}
 </style>
 </head>
 <body>
-<a href="#main-content" class="skip-link">Skip to main content</a>
-<div class="page" id="main-content" role="main">
+<a href="#main" class="skip-link">Skip to main content</a>
+<header class="page-header">
+  <p class="eyebrow">BIO 304 . RESOURCE . AMERICAN RIVER COLLEGE</p>
+  <h1>Concept & Lab ID Video Library</h1>
+  <p class="subhead">Two parallel tracks. Concept lectures explain mechanism and theory. Lab ID videos walk you through the structures, slides, and demonstrations you would see in a face-to-face lab. Pick a week below to begin.</p>
+  
+</header>
+<main id="main" tabindex="-1">
+  <div class="toolbar">
+    <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
+  </div>
+<article class="card"><div class="page" id="main-content" role="main">
 
-  <header class="masthead">
-    <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · Video Library</p>
-    <h1 class="title">Concept &amp; <em>Lab ID</em> Video Library</h1>
-    <p class="subtitle">Two parallel tracks. Concept lectures explain mechanism and theory. Lab ID videos walk you through the structures, slides, and demonstrations you would see in a face-to-face lab. Pick a week below to begin.</p>
-    <div class="stats-row">
-      <span class="stat-pill" id="totalCount">videos</span>
-      <span class="stat-pill" id="uploadedCount">videos uploaded</span>
-      <span class="stat-pill">8 weeks · two tracks</span>
-      <span class="stat-pill">Author: Dr. Sharilyn Rennie</span>
-    </div>
-  </header>
+  
 
   <nav class="week-bar" aria-label="Select a week">
     <p class="week-bar-label" id="week-bar-label">Pick a week</p>
@@ -223,696 +140,20 @@
     </div>
   </aside>
 
-</div>
-
+</div></article>
+</main>
+<footer><p>Dr. Sharilyn Rennie . BIO 304 . American River College</p></footer>
 <script>
-  // =============================================================================
-  // VIDEO URL CONFIG
-  // =============================================================================
-  // To attach a video to a slot below, paste the embed URL into that slot's
-  // videoUrl field. Both Canvas Studio and YouTube embed URLs work.
-  //
-  // Canvas Studio embed URL format:
-  //   https://yourschool.instructuremedia.com/embed/abc123
-  //
-  // YouTube embed URL format:
-  //   https://www.youtube.com/embed/VIDEO_ID
-  //
-  // Leave videoUrl as '' (empty string) to show a Coming soon placeholder.
-  // =============================================================================
-
-  const lectures = [
-    // ──────────── WEEK 01 · Body Basics, Cells & Tissues ────────────
-    // Concept lectures (4)
-    { id:'w1-c1', week:1, weekTitle:'Body Basics, Cells &amp; Tissues', track:'concept', flags:[],
-      title:'Anatomical Language &amp; Body Organization',
-      description:'Anatomical position, directional terms, body planes, body cavities, surface anatomy. Vocabulary fluency for the rest of the course.',
-      videoUrl:'' },
-    { id:'w1-c2', week:1, weekTitle:'Body Basics, Cells &amp; Tissues', track:'concept', flags:[],
-      title:'Levels of Organization &amp; Homeostasis',
-      description:'Atoms to systems, the eleven body systems, and feedback loops (positive vs negative). Worked example: thermoregulation as a negative feedback loop.',
-      videoUrl:'' },
-    { id:'w1-c3', week:1, weekTitle:'Body Basics, Cells &amp; Tissues', track:'concept', flags:[],
-      title:'Cell Membrane &amp; Transport Mechanisms',
-      description:'Phospholipid bilayer, integral and peripheral proteins, passive transport (diffusion, facilitated, osmosis with tonicity), active and secondary active transport.',
-      videoUrl:'' },
-    { id:'w1-c4', week:1, weekTitle:'Body Basics, Cells &amp; Tissues', track:'concept', flags:[],
-      title:'The Four Tissue Types',
-      description:'Epithelial subtypes (simple, stratified, pseudostratified), connective subtypes (loose, dense, special), muscle and nervous. Histology examples for each.',
-      videoUrl:'' },
-    // Lab ID (6)
-    { id:'w1-l1', week:1, weekTitle:'Body Basics, Cells &amp; Tissues', track:'lab', flags:[],
-      title:'Anatomical Position &amp; Directional Terms on a Model',
-      description:'Demonstrate standard anatomical position, every directional term, and the three body planes on a torso model.',
-      videoUrl:'' },
-    { id:'w1-l2', week:1, weekTitle:'Body Basics, Cells &amp; Tissues', track:'lab', flags:[],
-      title:'Body Cavities on Torso Model',
-      description:'Dorsal and ventral cavities with subdivisions: cranial, vertebral, thoracic, abdominopelvic. Surface landmarks for each.',
-      videoUrl:'' },
-    { id:'w1-l3', week:1, weekTitle:'Body Basics, Cells &amp; Tissues', track:'lab', flags:[],
-      title:'Cell Structure: Microscope &amp; Model Tour',
-      description:'Cell organelles on a model, then in real cells under the microscope. Nucleus, mitochondria, ER, Golgi, ribosomes, cytoskeleton.',
-      videoUrl:'' },
-    { id:'w1-l4', week:1, weekTitle:'Body Basics, Cells &amp; Tissues', track:'lab', flags:[],
-      title:'Tissue Histology: Epithelial Slide ID',
-      description:'Side-by-side identification of all major epithelial tissues. Simple squamous, simple cuboidal, simple columnar, stratified squamous, transitional, pseudostratified.',
-      videoUrl:'' },
-    { id:'w1-l5', week:1, weekTitle:'Body Basics, Cells &amp; Tissues', track:'lab', flags:[],
-      title:'Tissue Histology: Connective Slide ID',
-      description:'Loose connective (areolar, adipose, reticular), dense connective (regular, irregular), cartilage (hyaline, elastic, fibrocartilage), bone, blood.',
-      videoUrl:'' },
-    { id:'w1-l6', week:1, weekTitle:'Body Basics, Cells &amp; Tissues', track:'lab', flags:[],
-      title:'Tissue Histology: Muscle &amp; Nervous Slide ID',
-      description:'Skeletal, cardiac, and smooth muscle slide identification. Nervous tissue with neurons and glial cells.',
-      videoUrl:'' },
-
-    // ──────────── WEEK 02 · Protection & Support ────────────
-    // Concept lectures (4)
-    { id:'w2-c1', week:2, weekTitle:'Protection &amp; Support', track:'concept', flags:[],
-      title:'Skin Layers &amp; Function',
-      description:'Five epidermal layers, dermis sublayers, hypodermis. Cell types (keratinocytes, melanocytes, Langerhans, Merkel). UV protection, thermoregulation, sensation. Burn classification preview.',
-      videoUrl:'' },
-    { id:'w2-c2', week:2, weekTitle:'Protection &amp; Support', track:'concept', flags:[],
-      title:'Bone Tissue, Remodeling &amp; Calcium Homeostasis',
-      description:'Compact vs spongy, osteon structure, osteoblast vs osteoclast balance, fracture healing. Calcium regulation by parathyroid hormone, calcitonin, and vitamin D.',
-      videoUrl:'' },
-    { id:'w2-c3', week:2, weekTitle:'Protection &amp; Support', track:'concept', flags:[],
-      title:'Joint Classification &amp; Movement',
-      description:'Fibrous, cartilaginous, and synovial joints. Six types of synovial joints with examples and movements at each.',
-      videoUrl:'' },
-    { id:'w2-c4', week:2, weekTitle:'Protection &amp; Support', track:'concept', flags:[],
-      title:'Skeletal Muscle &amp; Excitation-Contraction Coupling',
-      description:'Sarcomere structure, sliding filament theory, cross-bridge cycle, full excitation-contraction coupling, motor units, recruitment.',
-      videoUrl:'' },
-    // Lab ID (7)
-    { id:'w2-l1', week:2, weekTitle:'Protection &amp; Support', track:'lab', flags:[],
-      title:'Skin Histology Slide ID',
-      description:'Thin and thick skin slides. Epidermal layers, dermal papillae, accessory structures (hair follicles, sweat and sebaceous glands).',
-      videoUrl:'' },
-    { id:'w2-l2', week:2, weekTitle:'Protection &amp; Support', track:'lab', flags:[],
-      title:'Skeleton Walkthrough: Axial',
-      description:'Skull bones, hyoid, vertebral column, ribs, sternum. All major bone marks for lab quiz identification.',
-      videoUrl:'' },
-    { id:'w2-l3', week:2, weekTitle:'Protection &amp; Support', track:'lab', flags:[],
-      title:'Skeleton Walkthrough: Appendicular',
-      description:'Pectoral and pelvic girdles, upper and lower limb bones. All major bone marks for lab quiz.',
-      videoUrl:'' },
-    { id:'w2-l4', week:2, weekTitle:'Protection &amp; Support', track:'lab', flags:[],
-      title:'Bone Tissue Histology: Compact &amp; Spongy',
-      description:'Compact bone with osteons, central canals, lacunae, canaliculi. Spongy bone with trabeculae.',
-      videoUrl:'' },
-    { id:'w2-l5', week:2, weekTitle:'Protection &amp; Support', track:'lab', flags:[],
-      title:'Joint ID on Models: Six Synovial Types',
-      description:'Pivot, hinge, saddle, plane, condylar, and ball-and-socket joints. Examples of each on articulated skeletons.',
-      videoUrl:'' },
-    { id:'w2-l6', week:2, weekTitle:'Protection &amp; Support', track:'lab', flags:[],
-      title:'Skeletal Muscle Histology + Sarcomere Model',
-      description:'Skeletal muscle slide showing striations and multinucleated fibers. Sarcomere model with Z-lines, A-band, I-band labeled.',
-      videoUrl:'' },
-    { id:'w2-l7', week:2, weekTitle:'Protection &amp; Support', track:'lab', flags:[],
-      title:'Major Muscles Surface Anatomy',
-      description:'Major muscles students need to identify in lab. Origin, insertion, and action for each.',
-      videoUrl:'' },
-
-    // ──────────── WEEK 03 · Control Systems ────────────
-    // Concept lectures (5)
-    { id:'w3-c1', week:3, weekTitle:'Control Systems', track:'concept', flags:[],
-      title:'Neuron Structure &amp; Glial Cells',
-      description:'Three functional neuron types, parts of a neuron, six glial cells (CNS and PNS). Sets up the action potential lecture.',
-      videoUrl:'' },
-    { id:'w3-c2', week:3, weekTitle:'Control Systems', track:'concept', flags:[],
-      title:'The Action Potential &amp; Synaptic Transmission',
-      description:'Resting potential setup, all five phases with ion channel timing, threshold, refractory periods, saltatory conduction, synaptic handoff. Goes deep because this concept underpins the rest of the nervous system.',
-      videoUrl:'' },
-    { id:'w3-c3', week:3, weekTitle:'Control Systems', track:'concept', flags:[],
-      title:'CNS Anatomy: Brain Regions &amp; Spinal Cord',
-      description:'Cerebrum (four lobes), cerebellum, brainstem, diencephalon. Spinal cord cross-section. Meninges and CSF. Foundation for the neurological exam in Week 4.',
-      videoUrl:'' },
-    { id:'w3-c4', week:3, weekTitle:'Control Systems', track:'concept', flags:['cor'],
-      title:'Endocrine Pancreas: Insulin, Glucagon, Diabetes',
-      description:'Alpha, beta, delta islet cells. Insulin and glucagon actions on liver, muscle, adipose. Type 1 vs Type 2 diabetes. Goes deep because this is COR-named.',
-      videoUrl:'' },
-    { id:'w3-c5', week:3, weekTitle:'Control Systems', track:'concept', flags:['cor'],
-      title:'Autonomic Nervous System: Sympathetic vs Parasympathetic',
-      description:'Two-neuron chain, neurotransmitters at every synapse, adrenergic and cholinergic receptor subtypes, organ-by-organ effects. COR-named.',
-      videoUrl:'' },
-    // Lab ID (7)
-    { id:'w3-l1', week:3, weekTitle:'Control Systems', track:'lab', flags:[],
-      title:'Brain External Anatomy on Specimen/Model',
-      description:'Lobes of the cerebrum, sulci, gyri, brainstem regions, cerebellum. Cranial nerve roots visible from the ventral surface.',
-      videoUrl:'' },
-    { id:'w3-l2', week:3, weekTitle:'Control Systems', track:'lab', flags:[],
-      title:'Brain Sagittal Section Walkthrough',
-      description:'Corpus callosum, thalamus, hypothalamus, pineal gland, brainstem regions, ventricles, cerebellum sectioned.',
-      videoUrl:'' },
-    { id:'w3-l3', week:3, weekTitle:'Control Systems', track:'lab', flags:[],
-      title:'Spinal Cord Cross-Section ID',
-      description:'Gray matter butterfly, white matter columns, central canal, dorsal and ventral horns, spinal nerve roots.',
-      videoUrl:'' },
-    { id:'w3-l4', week:3, weekTitle:'Control Systems', track:'lab', flags:[],
-      title:'Cranial Nerves on a Brain Specimen',
-      description:'All twelve cranial nerves located on a real brain specimen, in numerical order from olfactory to hypoglossal.',
-      videoUrl:'' },
-    { id:'w3-l5', week:3, weekTitle:'Control Systems', track:'lab', flags:[],
-      title:'Nervous Tissue Histology: Neurons &amp; Glia',
-      description:'Multipolar neuron slide with dendrites, cell body, axon. Glial cell identification. Myelinated nerve cross-section.',
-      videoUrl:'' },
-    { id:'w3-l6', week:3, weekTitle:'Control Systems', track:'lab', flags:[],
-      title:'Endocrine Organs on Torso Model',
-      description:'Pituitary, pineal, thyroid, parathyroids, thymus, adrenals, pancreatic islets, gonads. Locations and gross anatomy.',
-      videoUrl:'' },
-    { id:'w3-l7', week:3, weekTitle:'Control Systems', track:'lab', flags:[],
-      title:'Endocrine Histology: Thyroid, Adrenal, Pancreas',
-      description:'Thyroid follicles, adrenal cortex zones (and medulla), pancreatic islets among acinar tissue.',
-      videoUrl:'' },
-
-    // ──────────── WEEK 04 · Senses & Integration ────────────
-    // Concept lectures (5)
-    { id:'w4-c1', week:4, weekTitle:'Senses &amp; Integration', track:'concept', flags:[],
-      title:'Sensory Perception &amp; Pathways',
-      description:'Five sensory receptor types by stimulus modality. Generic sensory pathway with thalamic relay (and the olfaction exception). Tonic vs phasic adaptation.',
-      videoUrl:'' },
-    { id:'w4-c2', week:4, weekTitle:'Senses &amp; Integration', track:'concept', flags:['lab'],
-      title:'The Eye &amp; Vision',
-      description:'Eye anatomy (cornea to optic nerve), light path, accommodation, rods vs cones, common pathologies (glaucoma, cataract, macular degeneration). Lab anchor.',
-      videoUrl:'' },
-    { id:'w4-c3', week:4, weekTitle:'Senses &amp; Integration', track:'concept', flags:['lab'],
-      title:'The Ear: Hearing &amp; Equilibrium',
-      description:'Outer, middle, inner ear. Sound transduction in the cochlea. Semicircular canals for rotation, utricle and saccule for linear acceleration. Conductive vs sensorineural hearing loss. Lab anchor.',
-      videoUrl:'' },
-    { id:'w4-c4', week:4, weekTitle:'Senses &amp; Integration', track:'concept', flags:['lab'],
-      title:'The Twelve Cranial Nerves',
-      description:'All twelve named, classified as sensory/motor/both, with primary functions and bedside testing protocols. Goes deep because the cranial nerve exam is a lab activity.',
-      videoUrl:'' },
-    { id:'w4-c5', week:4, weekTitle:'Senses &amp; Integration', track:'concept', flags:['lab'],
-      title:'The Neurological Exam &amp; FAST',
-      description:'Five components of the neuro exam (mental status, cranial nerves, motor, sensory, reflexes). Cincinnati Prehospital Stroke Scale (FAST) walkthrough. Lab anchor.',
-      videoUrl:'' },
-    // Lab ID (5)
-    { id:'w4-l1', week:4, weekTitle:'Senses &amp; Integration', track:'lab', flags:[],
-      title:'Eye on Model: External &amp; Internal',
-      description:'Sclera, cornea, conjunctiva, eyelids, lacrimal apparatus. Internal: iris, lens, vitreous body, retina, optic nerve.',
-      videoUrl:'' },
-    { id:'w4-l2', week:4, weekTitle:'Senses &amp; Integration', track:'lab', flags:[],
-      title:'Eye Histology: Retina &amp; Cornea',
-      description:'Retinal layers (rods, cones, ganglion cells, pigmented epithelium). Corneal layers.',
-      videoUrl:'' },
-    { id:'w4-l3', week:4, weekTitle:'Senses &amp; Integration', track:'lab', flags:[],
-      title:'Ear on Model: Outer/Middle/Inner',
-      description:'Auricle, external auditory meatus, tympanic membrane. Ossicles (malleus, incus, stapes). Cochlea, semicircular canals, vestibule.',
-      videoUrl:'' },
-    { id:'w4-l4', week:4, weekTitle:'Senses &amp; Integration', track:'lab', flags:[],
-      title:'Cranial Nerve Testing on a Partner: Walkthrough',
-      description:'Bedside testing of all twelve cranial nerves. What you ask the patient to do for each, and what counts as normal vs abnormal.',
-      videoUrl:'' },
-    { id:'w4-l5', week:4, weekTitle:'Senses &amp; Integration', track:'lab', flags:[],
-      title:'FAST Exam Demonstration',
-      description:'Face, Arms, Speech, Time. Demonstrating each component of the FAST stroke screen, with normal and abnormal examples.',
-      videoUrl:'' },
-
-    // ──────────── WEEK 05 · Transport ────────────
-    // Concept lectures (7)
-    { id:'w5-c1', week:5, weekTitle:'Transport', track:'concept', flags:[],
-      title:'Blood Composition &amp; Hemostasis',
-      description:'Plasma, formed elements, the five WBC types in order of abundance. Four steps of hemostasis. ABO and Rh basics.',
-      videoUrl:'' },
-    { id:'w5-c2', week:5, weekTitle:'Transport', track:'concept', flags:[],
-      title:'Heart Anatomy &amp; Coronary Circulation',
-      description:'Four chambers, four valves, three wall layers. Blood path through the heart. LCA/LAD/circumflex/RCA. Pericardium and the pericardial cavity.',
-      videoUrl:'' },
-    { id:'w5-c3', week:5, weekTitle:'Transport', track:'concept', flags:[],
-      title:'Cardiac Cycle &amp; Heart Sounds',
-      description:'Systole and diastole walked through. Pressure changes in each chamber. Where S1 and S2 come from. Murmurs as a preview.',
-      videoUrl:'' },
-    { id:'w5-c4', week:5, weekTitle:'Transport', track:'concept', flags:['lab'],
-      title:'Cardiac Conduction &amp; ECG Interpretation',
-      description:'SA node to Purkinje fibers. P, QRS, T waves. The 300 method for heart rate. Rhythm-by-rhythm walkthroughs of the lab quiz strips. Lab anchor.',
-      videoUrl:'' },
-    { id:'w5-c5', week:5, weekTitle:'Transport', track:'concept', flags:[],
-      title:'Blood Vessels, Flow &amp; Resistance',
-      description:'Three tunics, artery vs vein vs capillary differences, F = ΔP/R, why resistance is proportional to 1/r⁴.',
-      videoUrl:'' },
-    { id:'w5-c6', week:5, weekTitle:'Transport', track:'concept', flags:['lab'],
-      title:'BP Regulation: Baroreceptor Reflex &amp; RAAS',
-      description:'BP = CO × SVR. Baroreceptor reflex via CN IX and X. Full RAAS cascade with each enzyme. The nine ASCVD 10-year risk inputs. Lab anchor.',
-      videoUrl:'' },
-    { id:'w5-c7', week:5, weekTitle:'Transport', track:'concept', flags:[],
-      title:'Innate vs Adaptive Immunity',
-      description:'Innate barriers, phagocytes, the cardinal signs of inflammation. Helper T (CD4+), cytotoxic T (CD8+), B cells. MHC and antigen presentation. Five antibody classes.',
-      videoUrl:'' },
-    // Lab ID (9)
-    { id:'w5-l1', week:5, weekTitle:'Transport', track:'lab', flags:[],
-      title:'Heart on Model: External',
-      description:'Surface anatomy: chambers visible from outside, coronary arteries, great vessels. Apex and base orientation.',
-      videoUrl:'' },
-    { id:'w5-l2', week:5, weekTitle:'Transport', track:'lab', flags:[],
-      title:'Heart on Model: Internal &amp; Valves',
-      description:'Right and left atria/ventricles. AV valves (tricuspid, mitral) and semilunar valves (pulmonary, aortic). Chordae tendineae, papillary muscles.',
-      videoUrl:'' },
-    { id:'w5-l3', week:5, weekTitle:'Transport', track:'lab', flags:[],
-      title:'Cardiac Muscle Histology',
-      description:'Cardiac muscle slide with intercalated discs, branching fibers, central nuclei. Compare with skeletal muscle.',
-      videoUrl:'' },
-    { id:'w5-l4', week:5, weekTitle:'Transport', track:'lab', flags:[],
-      title:'Major Arteries Walkthrough',
-      description:'Aortic arch and branches, abdominal aorta and visceral branches, common iliac to lower limb arteries.',
-      videoUrl:'' },
-    { id:'w5-l5', week:5, weekTitle:'Transport', track:'lab', flags:[],
-      title:'Major Veins Walkthrough',
-      description:'Superior and inferior vena cava, hepatic portal system, jugulars, subclavians, common iliac to lower limb veins.',
-      videoUrl:'' },
-    { id:'w5-l6', week:5, weekTitle:'Transport', track:'lab', flags:[],
-      title:'Capillary &amp; Vessel Histology',
-      description:'Vessel cross-sections showing the three tunics. Compare artery, vein, and capillary.',
-      videoUrl:'' },
-    { id:'w5-l7', week:5, weekTitle:'Transport', track:'lab', flags:[],
-      title:'WBC Slide ID: Five Types',
-      description:'Neutrophils, lymphocytes, monocytes, eosinophils, basophils. Side-by-side identification on Wright-stained smears. In order of abundance.',
-      videoUrl:'' },
-    { id:'w5-l8', week:5, weekTitle:'Transport', track:'lab', flags:['lab'],
-      title:'ECG Strip Practice: Rhythm-by-Rhythm',
-      description:'Sinus rhythm, sinus tach, sinus brad, atrial fibrillation, AV blocks (1st, 2nd type I, 2nd type II, 3rd), PVCs. Identification practice.',
-      videoUrl:'' },
-    { id:'w5-l9', week:5, weekTitle:'Transport', track:'lab', flags:[],
-      title:'Lymphatic System Walkthrough',
-      description:'Lymphatic ducts and major lymph node groups. Spleen, thymus, tonsils on the torso model.',
-      videoUrl:'' },
-
-    // ──────────── WEEK 06 · Gas Exchange & Waste ────────────
-    // Concept lectures (6)
-    { id:'w6-c1', week:6, weekTitle:'Gas Exchange &amp; Waste', track:'concept', flags:[],
-      title:'Respiratory Anatomy',
-      description:'Conducting vs respiratory zones. Three alveolar cell types and surfactant. Anatomy of the airway from nose to alveolus.',
-      videoUrl:'' },
-    { id:'w6-c2', week:6, weekTitle:'Gas Exchange &amp; Waste', track:'concept', flags:[],
-      title:'Pulmonary Mechanics &amp; Spirometry',
-      description:'Mechanics of inspiration (active) and expiration (passive at rest). Lung volumes, capacities, and what spirometry measures. Obstructive vs restrictive patterns.',
-      videoUrl:'' },
-    { id:'w6-c3', week:6, weekTitle:'Gas Exchange &amp; Waste', track:'concept', flags:[],
-      title:'Gas Exchange &amp; Hemoglobin Transport',
-      description:'External vs internal respiration. Hemoglobin O₂ binding curve and the Bohr effect. Three forms of CO₂ transport in blood. V/Q matching: shunt vs dead space.',
-      videoUrl:'' },
-    { id:'w6-c4', week:6, weekTitle:'Gas Exchange &amp; Waste', track:'concept', flags:[],
-      title:'The Nephron &amp; Urine Formation',
-      description:'Nephron parts in order. Glomerular filtration with the three-layer membrane. Segment-by-segment reabsorption. Countercurrent multiplier. ADH, aldosterone, ANP. Goes deep.',
-      videoUrl:'' },
-    { id:'w6-c5', week:6, weekTitle:'Gas Exchange &amp; Waste', track:'concept', flags:[],
-      title:'Fluid, Electrolyte &amp; Acid-Base Balance',
-      description:'Body fluid compartments. Major ICF and ECF cations. Three buffer systems. Four primary acid-base disorders with full compensation calculations.',
-      videoUrl:'' },
-    { id:'w6-c6', week:6, weekTitle:'Gas Exchange &amp; Waste', track:'concept', flags:['cor','lab'],
-      title:'Reading a Urine Dipstick',
-      description:'Each parameter on a 10-pad dipstick and what it means. Common patterns: uncontrolled diabetes, UTI, glomerulonephritis. AirNow AQI extension. COR-named and lab anchor.',
-      videoUrl:'' },
-    // Lab ID (7)
-    { id:'w6-l1', week:6, weekTitle:'Gas Exchange &amp; Waste', track:'lab', flags:[],
-      title:'Respiratory Anatomy on Torso',
-      description:'Nasal cavity, pharynx (3 regions), larynx, trachea, bronchi, bronchioles, lungs (lobes and fissures), diaphragm.',
-      videoUrl:'' },
-    { id:'w6-l2', week:6, weekTitle:'Gas Exchange &amp; Waste', track:'lab', flags:[],
-      title:'Lung Histology + Spirometry Demo',
-      description:'Bronchiole and alveolus histology. Type I and Type II pneumocytes. Live spirometer demonstration with measured volumes.',
-      videoUrl:'' },
-    { id:'w6-l3', week:6, weekTitle:'Gas Exchange &amp; Waste', track:'lab', flags:[],
-      title:'Kidney External + Sectioned',
-      description:'Hilum, capsule, cortex, medulla, renal columns, pyramids, calyces, pelvis, ureter.',
-      videoUrl:'' },
-    { id:'w6-l4', week:6, weekTitle:'Gas Exchange &amp; Waste', track:'lab', flags:[],
-      title:'Nephron Model Walkthrough',
-      description:'Bowman\'s capsule, PCT, loop of Henle, DCT, collecting duct. Vasa recta. Where each transport function happens.',
-      videoUrl:'' },
-    { id:'w6-l5', week:6, weekTitle:'Gas Exchange &amp; Waste', track:'lab', flags:[],
-      title:'Urinary Tract on Torso',
-      description:'Kidneys in the retroperitoneum, ureters, bladder (with trigone), urethra. Differences between male and female urethra.',
-      videoUrl:'' },
-    { id:'w6-l6', week:6, weekTitle:'Gas Exchange &amp; Waste', track:'lab', flags:['cor','lab'],
-      title:'Urine Dipstick Demo',
-      description:'Running an actual urine dipstick. Reading at the correct timing for each pad. Common patterns interpreted live. COR-named and lab anchor.',
-      videoUrl:'' },
-    { id:'w6-l7', week:6, weekTitle:'Gas Exchange &amp; Waste', track:'lab', flags:[],
-      title:'Acid-Base Case Scenarios',
-      description:'Sample ABG values walked through. Determining respiratory vs metabolic, acidosis vs alkalosis, and presence of compensation.',
-      videoUrl:'' },
-
-    // ──────────── WEEK 07 · Nutrition ────────────
-    // Concept lectures (6)
-    { id:'w7-c1', week:7, weekTitle:'Nutrition', track:'concept', flags:[],
-      title:'Digestive Tract Anatomy',
-      description:'Alimentary canal organs from mouth to anus. Four wall layers throughout. Four accessory organs (salivary glands, liver, gallbladder, pancreas). Peritoneum: intra vs retroperitoneal.',
-      videoUrl:'' },
-    { id:'w7-c2', week:7, weekTitle:'Nutrition', track:'concept', flags:[],
-      title:'Mechanical &amp; Chemical Digestion',
-      description:'Where mechanical digestion happens. Carb, protein, and lipid digestion with every enzyme named at every location. Bile, micelles, chylomicrons.',
-      videoUrl:'' },
-    { id:'w7-c3', week:7, weekTitle:'Nutrition', track:'concept', flags:[],
-      title:'Absorption in the Small Intestine',
-      description:'Three structural amplifiers (~600x surface area). Apical transport mechanisms for sugars, amino acids, fats. Water-soluble vs fat-soluble vitamins. B₁₂ and intrinsic factor.',
-      videoUrl:'' },
-    { id:'w7-c4', week:7, weekTitle:'Nutrition', track:'concept', flags:['cor'],
-      title:'The Liver as Metabolic Hub',
-      description:'Hepatic portal circulation and the first-pass effect. Liver roles in carb, protein, and lipid metabolism. Bile production, bilirubin handling, CYP450 detoxification. Drug dosing implications. COR-named.',
-      videoUrl:'' },
-    { id:'w7-c5', week:7, weekTitle:'Nutrition', track:'concept', flags:[],
-      title:'Vitamins &amp; Minerals Reference',
-      description:'Major fat-soluble (A, D, E, K) and water-soluble (B complex, C) vitamins with deficiency states. Major minerals (Na, K, Ca, Fe) with clinical relevance.',
-      videoUrl:'' },
-    { id:'w7-c6', week:7, weekTitle:'Nutrition', track:'concept', flags:['lab'],
-      title:'TDEE &amp; Reading Nutrition Labels',
-      description:'Mifflin-St Jeor BMR formula for both sexes. Five activity factors. Eight required nutrition label elements. The 5%/20% rule for cap and target nutrients. Lab anchor.',
-      videoUrl:'' },
-    // Lab ID (6)
-    { id:'w7-l1', week:7, weekTitle:'Nutrition', track:'lab', flags:[],
-      title:'Digestive Tract on Torso Model',
-      description:'Mouth through esophagus, stomach (regions and curvatures), small intestine (3 sections), large intestine (cecum, colon, rectum), anus.',
-      videoUrl:'' },
-    { id:'w7-l2', week:7, weekTitle:'Nutrition', track:'lab', flags:[],
-      title:'Accessory Organs: Liver, Gallbladder, Pancreas, Salivary',
-      description:'Liver lobes, gallbladder, biliary tree, pancreas (head/body/tail), parotid/submandibular/sublingual glands.',
-      videoUrl:'' },
-    { id:'w7-l3', week:7, weekTitle:'Nutrition', track:'lab', flags:[],
-      title:'GI Histology: Stomach, Small Intestine, Large Intestine',
-      description:'Gastric pits and rugae, intestinal villi and microvilli, large intestinal mucosa with goblet cells.',
-      videoUrl:'' },
-    { id:'w7-l4', week:7, weekTitle:'Nutrition', track:'lab', flags:[],
-      title:'Liver Histology + Portal Triad',
-      description:'Hepatic lobule with central vein, portal triad (hepatic artery, portal vein, bile duct), sinusoids, hepatocytes.',
-      videoUrl:'' },
-    { id:'w7-l5', week:7, weekTitle:'Nutrition', track:'lab', flags:['lab'],
-      title:'Nutrition Label Audit Demo',
-      description:'Walking through a real nutrition label. Calling out red flags and target nutrients. The 5%/20% rule applied live. Lab anchor.',
-      videoUrl:'' },
-    { id:'w7-l6', week:7, weekTitle:'Nutrition', track:'lab', flags:['lab'],
-      title:'TDEE Worked Example on Camera',
-      description:'Calculating TDEE with Mifflin-St Jeor and an activity factor for a sample case. Follow along with your own values. Lab anchor.',
-      videoUrl:'' },
-
-    // ──────────── WEEK 08 · Life Stages & Final Synthesis ────────────
-    // Concept lectures (7)
-    { id:'w8-c1', week:8, weekTitle:'Life Stages &amp; Final Synthesis', track:'concept', flags:[],
-      title:'Reproductive Anatomy: Both Sexes',
-      description:'Complete sperm and oocyte paths. Male hormonal axis (GnRH/LH/FSH/Leydig/Sertoli). Full ovarian cycle (follicular, ovulation, luteal) and uterine cycle (menstrual, proliferative, secretory).',
-      videoUrl:'' },
-    { id:'w8-c2', week:8, weekTitle:'Life Stages &amp; Final Synthesis', track:'concept', flags:[],
-      title:'Fertilization, Pregnancy &amp; Adjustments at Birth',
-      description:'Fertilization, blastocyst implantation, the hCG to placental hormone shift. Three stages of labor. Four major adjustments at birth: first breath, foramen ovale, ductus arteriosus, ductus venosus.',
-      videoUrl:'' },
-    { id:'w8-c3', week:8, weekTitle:'Life Stages &amp; Final Synthesis', track:'concept', flags:[],
-      title:'Lactation',
-      description:'Prolactin (synthesis) vs oxytocin (let-down). Colostrum vs mature milk. Immune transfer via IgA, lactoferrin, lysozyme. Lactational amenorrhea.',
-      videoUrl:'' },
-    { id:'w8-c4', week:8, weekTitle:'Life Stages &amp; Final Synthesis', track:'concept', flags:[],
-      title:'Aging Physiology Across Systems',
-      description:'Cross-system synthesis. Aging changes in skin, bone, muscle, nervous, senses, endocrine, cardiovascular, respiratory, renal, digestive, immune, reproductive. The loss-of-reserve principle.',
-      videoUrl:'' },
-    { id:'w8-c5', week:8, weekTitle:'Life Stages &amp; Final Synthesis', track:'concept', flags:['lab'],
-      title:'Newborn Scoring &amp; Pregnancy Dating',
-      description:'APGAR scoring at 1 and 5 minutes. Naegele\'s Rule worked example with rollover. Trimester definitions. Lab anchor.',
-      videoUrl:'' },
-    { id:'w8-c6', week:8, weekTitle:'Life Stages &amp; Final Synthesis', track:'concept', flags:['lab'],
-      title:'USPSTF Age-Based Screening',
-      description:'Letter grades A/B/C/D/I. Major Grade A/B screenings: cervical, breast, colorectal, lung, AAA, osteoporosis, hypertension, diabetes, statins. Pulls all eight weeks back through the lifespan. Lab anchor.',
-      videoUrl:'' },
-    { id:'w8-c7', week:8, weekTitle:'Life Stages &amp; Final Synthesis', track:'concept', flags:[],
-      title:'End of the Lifespan: Death, Dying &amp; Brain Death',
-      description:'Uniform Determination of Death Act. Five postmortem changes (pallor, algor, livor, rigor, decomposition) with timing and mechanism. Brain death prerequisites and exam (apnea test, ancillary tests). For pre-nursing and mortuary science students.',
-      videoUrl:'' },
-    // Lab ID (8)
-    { id:'w8-l1', week:8, weekTitle:'Life Stages &amp; Final Synthesis', track:'lab', flags:[],
-      title:'Female Reproductive on Model',
-      description:'Ovaries, fallopian tubes (with fimbriae), uterus (with three layers), cervix, vagina. Internal and external genitalia.',
-      videoUrl:'' },
-    { id:'w8-l2', week:8, weekTitle:'Life Stages &amp; Final Synthesis', track:'lab', flags:[],
-      title:'Male Reproductive on Model',
-      description:'Testes, epididymis, vas deferens, ejaculatory duct, urethra (3 parts), prostate, seminal vesicles, bulbourethral glands, penis.',
-      videoUrl:'' },
-    { id:'w8-l3', week:8, weekTitle:'Life Stages &amp; Final Synthesis', track:'lab', flags:[],
-      title:'Reproductive Histology: Ovary, Testis, Uterus',
-      description:'Ovary with follicles at different stages. Seminiferous tubules with spermatogenesis layers. Endometrium in different cycle phases.',
-      videoUrl:'' },
-    { id:'w8-l4', week:8, weekTitle:'Life Stages &amp; Final Synthesis', track:'lab', flags:[],
-      title:'Pregnancy &amp; Fetal Models Walkthrough',
-      description:'Models showing fetal development by trimester. Placenta, umbilical cord, fetal circulation shunts.',
-      videoUrl:'' },
-    { id:'w8-l5', week:8, weekTitle:'Life Stages &amp; Final Synthesis', track:'lab', flags:['lab'],
-      title:'APGAR Scoring Simulation',
-      description:'Simulated newborn presentations. Score by component, total, interpret. Multiple cases. Lab anchor.',
-      videoUrl:'' },
-    { id:'w8-l6', week:8, weekTitle:'Life Stages &amp; Final Synthesis', track:'lab', flags:['lab'],
-      title:'Naegele\'s Rule Worked Examples',
-      description:'Multiple LMP examples. Year rollover handling. Adjustments for irregular cycles. Lab anchor.',
-      videoUrl:'' },
-    { id:'w8-l7', week:8, weekTitle:'Life Stages &amp; Final Synthesis', track:'lab', flags:['lab'],
-      title:'USPSTF Screening Case Practice',
-      description:'Sample patients of various ages. Walk through the screenings each qualifies for. Connect each screening back to the relevant week of course content. Lab anchor.',
-      videoUrl:'' },
-    { id:'w8-l8', week:8, weekTitle:'Life Stages &amp; Final Synthesis', track:'lab', flags:[],
-      title:'Postmortem Changes Reference Photos',
-      description:'Photographs and descriptions of pallor, algor, livor, rigor mortis at typical timing. For mortuary science context.',
-      videoUrl:'' }
-  ];
-
-  // =============================================================================
-  // STATE & RENDERING
-  // =============================================================================
-
-  let activeWeek = '1';
-  let activeTrack = 'all';
-  let searchQuery = '';
-
-  const container = document.getElementById('lectureContainer');
-  const searchInput = document.getElementById('searchInput');
-  const clearBtn = document.getElementById('clearFilters');
-  const resultCount = document.getElementById('resultCount');
-  const uploadedCountEl = document.getElementById('uploadedCount');
-
-  function detectSource(url) {
-    if (!url || !url.trim()) return null;
-    const u = url.trim().toLowerCase();
-    if (u.includes('youtube.com') || u.includes('youtu.be') || u.includes('youtube-nocookie.com')) return 'curated';
-    if (u.includes('instructuremedia.com') || u.includes('canvasmedia.com')) return 'original';
-    return 'embedded';
+(function(){
+  if(window.self===window.top)return;
+  function sendHeight(){
+    const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight);
+    try{window.parent.postMessage({type:'iframe-height',id:'bio304-page',height:h},'*');}catch(e){}
   }
-
-  function buildStatusPill(source) {
-    if (source === 'original') return '<span class="pill pill-status original">Original</span>';
-    if (source === 'curated') return '<span class="pill pill-status curated">Curated</span>';
-    if (source === 'embedded') return '<span class="pill pill-status original">Embedded</span>';
-    return '<span class="pill pill-status pending">Pending</span>';
-  }
-
-  function buildFlagPills(flags) {
-    const out = [];
-    if (flags.includes('cor')) out.push('<span class="pill pill-cor">COR</span>');
-    if (flags.includes('lab')) out.push('<span class="pill pill-lab-anchor">Lab Anchor</span>');
-    return out.join('');
-  }
-
-  function buildTrackPill(track) {
-    if (track === 'concept') return '<span class="pill pill-track-concept">Concept</span>';
-    if (track === 'lab') return '<span class="pill pill-track-lab">Lab ID</span>';
-    return '';
-  }
-
-  function escapeHtml(s) {
-    return String(s).replace(/[<>"]/g, c => ({'<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  }
-
-  function buildLectureCard(lecture) {
-    const source = detectSource(lecture.videoUrl);
-    const hasVideo = source !== null;
-    const watchBtn = hasVideo
-      ? `<button class="watch-btn" type="button" data-lecture="${lecture.id}" aria-expanded="false" aria-controls="${lecture.id}-video">Watch ${lecture.track === 'lab' ? 'video' : 'lecture'}</button>`
-      : '<button class="watch-btn disabled" type="button" disabled aria-label="Video coming soon">Coming soon</button>';
-    const videoContent = hasVideo
-      ? `<div class="video-wrapper"><iframe src="${escapeHtml(lecture.videoUrl)}" title="${lecture.title.replace(/&amp;/g,'&').replace(/"/g,'&quot;')}" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture"></iframe></div>`
-      : `<div class="video-placeholder"><h4>Video coming soon</h4><p>Dr. Rennie will paste an embed URL into the <code>videoUrl</code> field for this slot, and the player will appear here.</p></div>`;
-    return `
-      <article class="lecture-card ${lecture.track}" data-week="${lecture.week}" data-track="${lecture.track}" data-flags="${lecture.flags.join(',')}">
-        <div class="lecture-meta">
-          ${buildTrackPill(lecture.track)}
-          <span class="pill pill-week">Week ${lecture.week}</span>
-          ${buildFlagPills(lecture.flags)}
-          ${buildStatusPill(source)}
-        </div>
-        <h3 class="lecture-title">${lecture.title}</h3>
-        <p class="lecture-description">${lecture.description}</p>
-        <div class="lecture-action">${watchBtn}</div>
-        <div class="video-area" id="${lecture.id}-video">${videoContent}</div>
-      </article>
-    `;
-  }
-
-  function getFiltered() {
-    return lectures.filter(l => {
-      if (activeWeek !== 'all' && String(l.week) !== activeWeek) return false;
-      if (activeTrack !== 'all' && l.track !== activeTrack) return false;
-      if (searchQuery) {
-        const haystack = (l.title + ' ' + l.description + ' ' + l.weekTitle).toLowerCase();
-        if (!haystack.includes(searchQuery)) return false;
-      }
-      return true;
-    });
-  }
-
-  function renderLectures() {
-    const filtered = getFiltered();
-    if (filtered.length === 0) {
-      container.innerHTML = '<div class="empty-state"><h3>No videos match these filters</h3><p>Try clearing filters, picking a different week, or broadening the search.</p></div>';
-      resultCount.textContent = '';
-      return;
-    }
-    // Group by week, then by track within each week
-    const byWeek = {};
-    filtered.forEach(l => {
-      if (!byWeek[l.week]) byWeek[l.week] = { title: l.weekTitle, concept: [], lab: [] };
-      byWeek[l.week][l.track].push(l);
-    });
-    const weeks = Object.keys(byWeek).sort((a, b) => Number(a) - Number(b));
-    let html = '';
-    weeks.forEach(w => {
-      const data = byWeek[w];
-      const totalCount = data.concept.length + data.lab.length;
-      html += `
-        <section class="week-section" aria-labelledby="week-${w}-heading">
-          <header class="week-header">
-            <span class="week-num-display" aria-hidden="true">${String(w).padStart(2, '0')}</span>
-            <div class="week-titles">
-              <p class="week-eyebrow">Week ${w}</p>
-              <h2 class="week-title" id="week-${w}-heading">${data.title}</h2>
-              <p class="week-meta">${data.concept.length} concept · ${data.lab.length} lab ID · ${totalCount} total</p>
-            </div>
-          </header>`;
-      if (data.concept.length > 0) {
-        html += `<div class="track-subhead concept-sub">Concept lectures<span class="count">${data.concept.length}</span></div>`;
-        html += '<div class="lectures-grid">' + data.concept.map(buildLectureCard).join('') + '</div>';
-      }
-      if (data.lab.length > 0) {
-        html += `<div class="track-subhead lab-sub">Lab ID<span class="count">${data.lab.length}</span></div>`;
-        html += '<div class="lectures-grid">' + data.lab.map(buildLectureCard).join('') + '</div>';
-      }
-      html += '</section>';
-    });
-    container.innerHTML = html;
-    resultCount.textContent = `${filtered.length} video${filtered.length > 1 ? 's' : ''} shown`;
-    attachWatchHandlers();
-  }
-
-  function attachWatchHandlers() {
-    document.querySelectorAll('.watch-btn:not(.disabled)').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const card = btn.closest('.lecture-card');
-        const isOpen = card.classList.toggle('expanded');
-        btn.classList.toggle('expanded', isOpen);
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        const isLab = card.dataset.track === 'lab';
-        btn.textContent = isOpen ? 'Close video' : (isLab ? 'Watch video' : 'Watch lecture');
-      });
-    });
-  }
-
-  function updateStats() {
-    const total = lectures.length;
-    const uploaded = lectures.filter(l => detectSource(l.videoUrl) !== null).length;
-    document.getElementById('totalCount').textContent = `${total} videos`;
-    uploadedCountEl.textContent = `${uploaded} of ${total} videos uploaded`;
-    if (uploaded > 0) uploadedCountEl.classList.add('has-videos');
-    else uploadedCountEl.classList.remove('has-videos');
-  }
-
-  // Week button handlers
-  document.querySelectorAll('.week-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.week-btn').forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-pressed', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-pressed', 'true');
-      activeWeek = btn.dataset.week;
-      renderLectures();
-    });
-  });
-
-  // Track button handlers
-  document.querySelectorAll('.track-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.track-btn').forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-pressed', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-pressed', 'true');
-      activeTrack = btn.dataset.track;
-      renderLectures();
-    });
-  });
-
-  // Search handler
-  searchInput.addEventListener('input', (e) => {
-    searchQuery = e.target.value.trim().toLowerCase();
-    renderLectures();
-  });
-
-  // Clear filters
-  clearBtn.addEventListener('click', () => {
-    activeWeek = '1';
-    activeTrack = 'all';
-    searchQuery = '';
-    searchInput.value = '';
-    document.querySelectorAll('.week-btn').forEach(b => {
-      const isW1 = b.dataset.week === '1';
-      b.classList.toggle('active', isW1);
-      b.setAttribute('aria-pressed', isW1 ? 'true' : 'false');
-    });
-    document.querySelectorAll('.track-btn').forEach(b => {
-      const isAll = b.dataset.track === 'all';
-      b.classList.toggle('active', isAll);
-      b.setAttribute('aria-pressed', isAll ? 'true' : 'false');
-    });
-    renderLectures();
-  });
-
-  // Keyboard navigation for week buttons
-  document.addEventListener('keydown', (e) => {
-    if (e.target.classList.contains('week-btn') && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
-      e.preventDefault();
-      const buttons = Array.from(document.querySelectorAll('.week-btn'));
-      const currentIndex = buttons.indexOf(e.target);
-      const nextIndex = e.key === 'ArrowRight' ? Math.min(currentIndex + 1, buttons.length - 1) : Math.max(currentIndex - 1, 0);
-      buttons[nextIndex].focus();
-      buttons[nextIndex].click();
-    }
-  });
-
-  updateStats();
-  // Allow ?week=N URL parameter to preselect a week
-  (function() {
-    const params = new URLSearchParams(window.location.search);
-    const w = params.get('week');
-    if (w && /^[1-8]$/.test(w)) {
-      activeWeek = w;
-      document.querySelectorAll('.week-btn').forEach(b => {
-        const isMatch = b.dataset.week === w;
-        b.classList.toggle('active', isMatch);
-        b.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
-      });
-    }
-  })();
-  renderLectures();
-
-  // Iframe height-sender for Kajabi embedding
-  (function() {
-    const FRAME_ID = 'bio304-concept-videos';
-    function sendHeight() {
-      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
-      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
-    }
-    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
-    window.addEventListener('load', sendHeight);
-    window.addEventListener('resize', sendHeight);
-    setTimeout(sendHeight, 200);
-    setTimeout(sendHeight, 800);
-  })();
+  window.addEventListener('load',sendHeight);
+  window.addEventListener('resize',sendHeight);
+  if(window.ResizeObserver){new ResizeObserver(sendHeight).observe(document.body);}else{setInterval(sendHeight,800);}
+})();
 </script>
 </body>
 </html>
