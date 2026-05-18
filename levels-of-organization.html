@@ -634,6 +634,59 @@
     .resource-bar, .video-panel { display: none !important; }
   }
 
+
+  /* Post-video gate modal */
+  .gate[hidden] { display: none; }
+  .gate {
+    position: fixed; inset: 0; z-index: 1100;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .gate-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(20,42,54,0.85);
+  }
+  .gate-content {
+    position: relative;
+    background: var(--white);
+    padding: 26px 30px 22px;
+    border: 1.5px solid var(--terra-dark);
+    border-radius: 4px;
+    max-width: 460px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 6px 14px rgba(160,82,45,0.12);
+    text-align: center;
+  }
+  .gate-content .eyebrow {
+    margin: 0 0 6px 0;
+    color: var(--terra-dark);
+  }
+  .gate-content h2 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--navy);
+    margin: 4px 0 8px 0;
+    border: 0;
+    padding: 0;
+    text-transform: none;
+    letter-spacing: -0.005em;
+  }
+  .gate-content p {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 14px;
+    color: var(--navy);
+    margin: 0 0 18px 0;
+  }
+  .gate-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .gate-actions .resource-btn { font-size: 11.5px; }
+
+  @media print { .gate { display: none !important; } }
+
   /* ------------------------------------------------------------------
      Print styles ,  what becomes the student PDF
      ------------------------------------------------------------------ */
@@ -710,7 +763,7 @@
 </div>
 
 <main class="sheet" id="main">
-  <p class="eyebrow">BIO 304 &middot; Human Anatomy &amp; Physiology &middot; American River College</p>
+  <p class="eyebrow">BIO 304 &middot; Human Anatomy &amp; Physiology</p>
   <h1 class="title">Levels of Organization</h1>
   <p class="subhead">Foundations of Anatomy &amp; Physiology &middot; Module 1</p>
   <p class="usage">A reference sheet to accompany the Levels of Organization video. The body is built from atoms up to a whole organism. Each step adds a new property the parts alone do not have, what scientists call <em>emergence</em>.</p>
@@ -848,7 +901,7 @@
   // ----------------------------------------------------------------
   window.SHEET_CONFIG = {
     video:   'https://www.youtube.com/embed/REPLACE_WITH_LEVELS_OF_ORGANIZATION_VIDEO_ID',
-    prework: 'bio304-spaced-recall-prototype.html',
+    prework: 'bio304-spaced-recall-prototype.html#topic=t-levels-of-organization',
   };
 
   (function wireResources() {
@@ -867,10 +920,18 @@
         iframe.src = 'about:blank';
         toggle.setAttribute('aria-expanded', 'false');
       } else {
-        iframe.src = cfg.video || 'about:blank';
+        var videoUrl = cfg.video || 'about:blank';
+        // Make sure the YouTube IFrame API can talk to this iframe
+        if (videoUrl.indexOf('youtube.com/embed/') !== -1 && videoUrl.indexOf('enablejsapi=1') === -1) {
+          var sep = videoUrl.indexOf('?') === -1 ? '?' : '&';
+          videoUrl = videoUrl + sep + 'enablejsapi=1&rel=0';
+        }
+        iframe.src = videoUrl;
         panel.hidden = false;
         toggle.setAttribute('aria-expanded', 'true');
         setTimeout(function () { panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
+        // Re-attach YT player to the new src so we can catch ENDED
+        setTimeout(function () { if (typeof __attachPlayer === 'function') __attachPlayer(); }, 300);
       }
     });
   })();
@@ -996,19 +1057,281 @@
   })();
 </script>
 
+<!-- Post-video gate -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title" hidden>
+  <div class="gate-backdrop" id="gate-backdrop"></div>
+  <div class="gate-content">
+    <p class="eyebrow">Pre-work unlocked</p>
+    <h2 id="gate-title">Nice work finishing the video.</h2>
+    <p>Your spaced-recall cards for this topic are ready. Open the pre-work to activate them and start drilling.</p>
+    <div class="gate-actions">
+      <a class="resource-btn primary" id="gate-prework" target="_top" rel="noopener">
+        Go to the pre-work <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <button type="button" class="resource-btn" id="gate-dismiss">Maybe later</button>
+    </div>
+  </div>
+</div>
+
+
 <!-- bio304-lecture-gate-wired -->
+<style>
+  /* Gate-locked state for the prework button while video is unwatched */
+  .resource-btn.gate-locked {
+    opacity: 0.55;
+    cursor: not-allowed;
+    pointer-events: auto;
+  }
+  .resource-btn.gate-locked:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+  .gate-hint {
+    display: inline-block;
+    margin-left: 10px;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    vertical-align: middle;
+  }
+  .gate-hint[hidden] { display: none; }
+  /* Post-video unlock modal */
+  .unlock-modal {
+    position: fixed; inset: 0; z-index: 2000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .unlock-modal[hidden] { display: none; }
+  .unlock-modal__backdrop {
+    position: absolute; inset: 0;
+    background: rgba(20,42,54,0.78);
+  }
+  .unlock-modal__card {
+    position: relative;
+    background: var(--white);
+    color: var(--navy);
+    padding: 26px 28px 22px 28px;
+    border-radius: 6px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+  .unlock-modal__eyebrow {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    margin: 0 0 8px 0;
+  }
+  .unlock-modal__title {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--navy);
+    margin: 0 0 8px 0;
+  }
+  .unlock-modal__body {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--navy);
+    margin: 0 0 18px 0;
+  }
+  .unlock-modal__actions {
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .unlock-modal__btn {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--navy);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .unlock-modal__btn--primary {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .unlock-modal__btn--primary:hover { background: var(--navy-deep); }
+  .unlock-modal__btn--ghost {
+    background: transparent;
+    color: var(--navy);
+  }
+  .unlock-modal__btn--ghost:hover { background: var(--navy-tint); }
+  .unlock-modal__btn:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+  .unlock-modal__close {
+    position: absolute; top: -12px; right: -12px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    border: 2px solid var(--white);
+    font-size: 20px; font-weight: 700; line-height: 1;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .unlock-modal__close:hover { background: var(--navy-deep); }
+  .unlock-modal__close:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .unlock-modal__card { transition: none; }
+  }
+</style>
 <script>
-// Cross-page video gate: when a student clicks 'Go to the pre-work',
-// set the localStorage flag the spaced recall app reads to unlock Step 2.
+// Cross-page video gate + post-video unlock modal.
+//   Soft path (placeholder video): button always enabled; click sets flag.
+//   Hard path (real YouTube video): button locked until video 'ended' event,
+//     then a celebratory unlock modal appears with 'Go to the pre-work' and
+//     'Maybe later' actions.
+// The spaced recall app reads localStorage['bio304-video-<topicId>'] = 'true'.
 (function () {
-    var TOPIC_ID = 't-levels-of-organization';
+  var TOPIC_ID = 't-levels-of-organization';
   var pre = document.getElementById('prework-link');
   if (!pre) return;
-  pre.addEventListener('click', function () {
+  var cfg = window.SHEET_CONFIG || {};
+  var rawVideo = (cfg.video || '').trim();
+  var isPlaceholder = !rawVideo ||
+                      rawVideo.indexOf('REPLACE_WITH_') !== -1 ||
+                      rawVideo === 'about:blank';
+
+  function setFlag() {
     if (!TOPIC_ID) return;
     try { window.localStorage.setItem('bio304-video-' + TOPIC_ID, 'true'); } catch (e) {}
+  }
+
+  // ------------- Soft path: placeholder video -------------
+  if (isPlaceholder) {
+    pre.addEventListener('click', setFlag);
+    return;
+  }
+
+  // ------------- Hard path: real video, lock + modal on end -------------
+  pre.classList.add('gate-locked');
+  pre.setAttribute('aria-disabled', 'true');
+  var hint = document.createElement('span');
+  hint.className = 'gate-hint';
+  hint.id = 'prework-gate-hint';
+  hint.textContent = 'Watch the video to unlock';
+  pre.parentNode && pre.parentNode.insertBefore(hint, pre.nextSibling);
+
+  pre.addEventListener('click', function (e) {
+    if (pre.classList.contains('gate-locked')) {
+      e.preventDefault();
+      return;
+    }
+    setFlag();
   });
+
+  if (cfg.video.indexOf('enablejsapi=1') === -1) {
+    cfg.video = cfg.video + (cfg.video.indexOf('?') !== -1 ? '&' : '?') + 'enablejsapi=1';
+  }
+  if (!window.YT) {
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  }
+
+  // ------- Build the unlock modal (hidden until video ends) -------
+  var modal = document.createElement('div');
+  modal.className = 'unlock-modal';
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.setAttribute('aria-labelledby', 'unlock-modal-title');
+  modal.hidden = true;
+  modal.innerHTML =
+    '<div class="unlock-modal__backdrop" data-modal-close></div>' +
+    '<div class="unlock-modal__card">' +
+      '<button type="button" class="unlock-modal__close" aria-label="Close" data-modal-close>&times;</button>' +
+      '<p class="unlock-modal__eyebrow">Pre-work unlocked</p>' +
+      '<h2 class="unlock-modal__title" id="unlock-modal-title">Nice work finishing the video.</h2>' +
+      '<p class="unlock-modal__body">Your spaced-recall cards for this topic are ready. Open the pre-work to activate them and start drilling.</p>' +
+      '<div class="unlock-modal__actions">' +
+        '<a class="unlock-modal__btn unlock-modal__btn--primary" id="unlock-modal-go" target="_top" href="#">Go to the pre-work &rarr;</a>' +
+        '<button type="button" class="unlock-modal__btn unlock-modal__btn--ghost" data-modal-close>Maybe later</button>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(modal);
+
+  var lastFocus = null;
+  function unlock() {
+    pre.classList.remove('gate-locked');
+    pre.removeAttribute('aria-disabled');
+    if (hint) hint.hidden = true;
+    setFlag();
+  }
+  function openModal() {
+    if (!modal.hidden) return;
+    lastFocus = document.activeElement;
+    var go = modal.querySelector('#unlock-modal-go');
+    if (go) go.href = pre.href || cfg.prework || '#';
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { if (go) go.focus(); }, 0);
+  }
+  function closeModal() {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+  modal.addEventListener('click', function (e) {
+    if (e.target.closest('[data-modal-close]')) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!modal.hidden && e.key === 'Escape') closeModal();
+  });
+  // Primary CTA in modal sets the flag (button click event also fires the native nav).
+  modal.querySelector('#unlock-modal-go').addEventListener('click', setFlag);
+
+  // ------- Wrap YT player and wait for 'ended' -------
+  var player = null;
+  function tryWrap() {
+    if (player) return;
+    if (!window.YT || !window.YT.Player) return;
+    var iframe = document.getElementById('video-iframe');
+    if (!iframe || !iframe.src || iframe.src === 'about:blank') return;
+    player = new YT.Player(iframe, {
+      events: {
+        onStateChange: function (e) {
+          if (e.data === 0) {
+            unlock();
+            openModal();
+          }
+        }
+      }
+    });
+  }
+  var videoToggle = document.getElementById('video-toggle');
+  if (videoToggle) {
+    videoToggle.addEventListener('click', function () {
+      setTimeout(tryWrap, 400);
+      setTimeout(tryWrap, 1500);
+      setTimeout(tryWrap, 3500);
+    });
+  }
+  var prevReady = window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady = function () {
+    if (typeof prevReady === 'function') { try { prevReady(); } catch (e) {} }
+    tryWrap();
+  };
 })();
+
 // Iframe height-sender for Canvas/Kajabi embeds (no-op if loaded top-level).
 (function () {
   if (window.self === window.top) return;

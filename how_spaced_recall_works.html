@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 . How Spaced Recall Works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1E3D4C;--navy-deep:#142A36;--navy-tint:#EDF1F3;
+  --gold:#B8924A;--gold-deep:#9A7838;
+  --terra:#C2734D;--terra-dark:#A0522D;
+  --sage-dark:#4F6B57;--sage-deeper:#3F5B47;
+  --white:#FFFFFF;--off-white:#FAFAF9;
+  --gray-line:#CFD6DA;--gray-soft:#5C6970;
+  --shadow-rest:0 1px 3px rgba(0,0,0,.08);
+  --shadow-hover:0 8px 16px rgba(0,0,0,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.65;font-size:17px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600}
+.skip-link:focus{left:0}
+
+header.page-head{background:var(--white);border-bottom:1px solid var(--gray-line);padding:32px 40px 26px}
+.eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 8px}
+h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,38px);color:var(--navy);margin:0 0 6px;letter-spacing:-.01em}
+.subhead{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:clamp(17px,1.8vw,20px);color:var(--terra-dark);margin:0 0 0}
+
+main{max-width:1180px;margin:0 auto;padding:28px 32px 40px}
+
+section.band{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:26px 30px;margin:0 0 22px;box-shadow:var(--shadow-rest)}
+section.band h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;color:var(--navy);font-size:24px;margin:0 0 12px;letter-spacing:-.005em}
+section.band h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--terra-dark);font-size:18px;margin:18px 0 8px}
+section.band p{margin:0 0 14px;font-size:16.5px}
+section.band p strong{color:var(--navy);font-weight:700}
+
+/* Week visual: 7 day tiles */
+.week-flow{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:10px;
+  margin:14px 0 6px;
+}
+@media (max-width: 1100px){.week-flow{grid-template-columns:repeat(4,1fr)}}
+@media (max-width: 720px){.week-flow{grid-template-columns:repeat(2,1fr)}}
+@media (max-width: 460px){.week-flow{grid-template-columns:1fr}}
+
+.day-tile{
+  border-radius:10px;
+  padding:18px 16px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  min-height:200px;
+  position:relative;
+  box-shadow:var(--shadow-rest);
+}
+.day-tile .num{
+  font-family:'DM Sans',system-ui,sans-serif;
+  font-weight:700;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  opacity:.85;
+  margin:0;
+}
+.day-tile .day-name{
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  font-weight:800;
+  font-size:22px;
+  margin:0;
+  letter-spacing:-.005em;
+}
+.day-tile .what{
+  font-family:'Lora',Georgia,serif;
+  font-size:14px;
+  line-height:1.5;
+  margin:0;
+  flex:1;
+}
+.day-tile .activity{
+  margin-top:auto;
+  font-family:'DM Sans',system-ui,sans-serif;
+  font-weight:700;
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border-top:1px solid rgba(255,255,255,.25);
+  padding-top:10px;
+  opacity:.95;
+}
+
+/* Day color schemes */
+.day-tile.prework{background:var(--navy);color:var(--white)}
+.day-tile.prework .day-name{color:var(--white)}
+.day-tile.catchup{background:var(--sage-dark);color:var(--white)}
+.day-tile.catchup .day-name{color:var(--white)}
+.day-tile.quiz{background:var(--terra-dark);color:var(--white)}
+.day-tile.quiz .day-name{color:var(--white)}
+
+.legend{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid var(--gray-line);
+  font-family:'DM Sans',system-ui,sans-serif;
+  font-size:13px;
+  color:var(--navy);
+  align-items:center;
+}
+.legend-swatch{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.legend-swatch .sw{
+  display:inline-block;
+  width:14px;
+  height:14px;
+  border-radius:3px;
+}
+.legend-swatch .sw.s-navy{background:var(--navy)}
+.legend-swatch .sw.s-sage{background:var(--sage-dark)}
+.legend-swatch .sw.s-terra{background:var(--terra-dark)}
+
+.callout-quote{
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  font-weight:600;
+  font-size:18px;
+  color:var(--navy);
+  border-left:3px solid var(--gold);
+  padding:0 0 0 18px;
+  margin:14px 0;
+  line-height:1.45;
+}
+
+ol.steps{padding-left:22px;margin:8px 0 14px}
+ol.steps li{margin:8px 0;font-size:16.5px;line-height:1.55}
+ol.steps li strong{color:var(--navy)}
+
+footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;font-size:13px}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<header class="page-head">
+  <p class="eyebrow">BIO 304 . Human Anatomy and Physiology . American River College</p>
+  <h1>How spaced recall works (and exactly what to do each day)</h1>
+  <p class="subhead">A short read. Built to save you time and protect your A.</p>
+</header>
+<main id="main" tabindex="-1">
+
+  <section class="band" aria-labelledby="how-h">
+    <h2 id="how-h">The short version</h2>
+    <p>Your brain is not a storage device. It is a filter. The forgetting curve is steep: within 24 hours of learning something new, most of it is gone unless you actively pull it back up. Spaced recall reverses that. You see a card, you try to remember the answer (this is the part that builds the memory, not the seeing), you rate how it felt, and the system schedules the next time you'll see it based on your rating. Cards you struggle with come back tomorrow. Cards you nailed come back in three days, then a week, then two weeks. By the time the exam arrives, the hard ones have been pulled into long-term memory and the easy ones are kept fresh without you wasting hours re-reading. <strong>The system tracks all of this for you.</strong> You just need to show up and rate honestly.</p>
+    <p class="callout-quote">If you do today's new cards plus today's review every day, you will not have to cram for any quiz in this course. The cramming is the loss state. Daily practice is the win state.</p>
+  </section>
+
+  <section class="band" aria-labelledby="week-h">
+    <h2 id="week-h">Your weekly rhythm at a glance</h2>
+    <p>Every day you open the pre-work app, the dashboard tells you what to do. Here is the pattern across the week so you know what to expect.</p>
+
+    <div class="week-flow" role="list" aria-label="Daily spaced recall plan">
+      <div class="day-tile prework" role="listitem">
+        <p class="num">Day 1</p>
+        <p class="day-name">Monday</p>
+        <p class="what">Watch today's lecture video. Do today's new cards. Then click <strong>Daily Review</strong> for any past cards due.</p>
+        <p class="activity">New + review</p>
+      </div>
+      <div class="day-tile prework" role="listitem">
+        <p class="num">Day 2</p>
+        <p class="day-name">Tuesday</p>
+        <p class="what">Today's video and new cards. Then Daily Review (you'll see yesterday's hardest cards resurfacing).</p>
+        <p class="activity">New + review</p>
+      </div>
+      <div class="day-tile catchup" role="listitem">
+        <p class="num">Day 3</p>
+        <p class="day-name">Wednesday</p>
+        <p class="what">No new pre-work today. Just <strong>Daily Review</strong> to consolidate Monday and Tuesday. Catch up on a lab workbook. Post your discussion prompt.</p>
+        <p class="activity">Review only</p>
+      </div>
+      <div class="day-tile prework" role="listitem">
+        <p class="num">Day 4</p>
+        <p class="day-name">Thursday</p>
+        <p class="what">Today's video and new cards. Daily Review picks up any cards Monday-Tuesday that are due back.</p>
+        <p class="activity">New + review</p>
+      </div>
+      <div class="day-tile prework" role="listitem">
+        <p class="num">Day 5</p>
+        <p class="day-name">Friday</p>
+        <p class="what">Last new pre-work day of the week. Today's video and new cards, then Daily Review. <strong>Initial discussion post due 11:59 PM.</strong></p>
+        <p class="activity">New + review</p>
+      </div>
+      <div class="day-tile quiz" role="listitem">
+        <p class="num">Day 6</p>
+        <p class="day-name">Saturday</p>
+        <p class="what">Daily Review for everything that surfaced this week. This is your warm-up for the quiz.</p>
+        <p class="activity">Quiz prep</p>
+      </div>
+      <div class="day-tile quiz" role="listitem">
+        <p class="num">Day 7</p>
+        <p class="day-name">Sunday</p>
+        <p class="what">One final Daily Review pass. Then take the <strong>weekly quiz</strong> before 11:59 PM and finish your <strong>discussion replies</strong>.</p>
+        <p class="activity">Quiz day</p>
+      </div>
+    </div>
+
+    <div class="legend" aria-label="Legend">
+      <span class="legend-swatch"><span class="sw s-navy"></span> New pre-work + Daily Review</span>
+      <span class="legend-swatch"><span class="sw s-sage"></span> Daily Review only (catch-up day)</span>
+      <span class="legend-swatch"><span class="sw s-terra"></span> Daily Review + weekend quiz prep</span>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="how-to-h">
+    <h2 id="how-to-h">How to do it every day, in under 30 seconds of setup</h2>
+    <ol class="steps">
+      <li><strong>Open the pre-work app</strong> from Canvas or your bookmark.</li>
+      <li><strong>Tonight's block</strong> at the top of the dashboard shows today's new topic. Click into it and watch the lecture video on its lecture page, then do those new cards.</li>
+      <li><strong>Click "Daily Review"</strong> in the top nav. The system has tracked which past cards are due back today. Work through them. They are already sorted so the hardest cards (your "again" and "hard" ratings) come first.</li>
+      <li><strong>Rate honestly.</strong> If a card was easy, mark Easy. If you blanked, mark Again. The schedule depends on your honesty. Inflating your rating cheats yourself, not the system.</li>
+      <li><strong>You're done</strong> when both tonight's new topic and the Daily Review list show empty. That's the win state.</li>
+    </ol>
+    <p style="font-style:italic;color:var(--gray-soft);font-size:15.5px;margin-top:14px;">On Wednesdays there is no step 2. The pre-work app shows you a Daily Review notice instead of a new topic. That's the design.</p>
+  </section>
+
+  <section class="band" aria-labelledby="why-h">
+    <h2 id="why-h">Why this beats re-reading</h2>
+    <p>Most students study by re-reading the textbook or watching the video again. Both feel productive because you recognize the material as familiar. Recognition is not retrieval. When the quiz asks you to produce an answer with no cue, recognition fails and the words you knew yesterday are gone. <strong>Spaced recall trains retrieval, which is the same skill the quiz tests.</strong> That's why students who do the daily 15 to 25 minutes outperform students who marathon for three hours on Saturday. Same total time, very different memory.</p>
+    <p>The system was built specifically for this 8-week intensive A&amp;P course. The pace is designed assuming you'll do today's cards today, not a week from now. Stay in the rhythm and the course will feel manageable. Skip three or four days and the deck stacks up fast. If you fall behind, do <strong>Daily Review first</strong> the next day you open it, before any new topic. That clears the backlog in the right order.</p>
+  </section>
+
+</main>
+<footer><p>Dr. Sharilyn Rennie . BIO 304 . American River College . Summer 2026</p></footer>
+<script>
+// Iframe height-sender for Canvas/Kajabi embeds.
+(function(){
+  if(window.self===window.top)return;
+  function sendHeight(){
+    var h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight);
+    try{window.parent.postMessage({type:'iframe-height',id:'bio304-spaced-recall-explainer',height:h},'*');}catch(e){}
+  }
+  window.addEventListener('load',sendHeight);
+  window.addEventListener('resize',sendHeight);
+  if(window.ResizeObserver){new ResizeObserver(sendHeight).observe(document.body);}else{setInterval(sendHeight,800);}
+})();
+</script>
+</body>
+</html>

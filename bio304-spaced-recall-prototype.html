@@ -2126,7 +2126,23 @@
       saveState();
     }
 
-    nav("dashboard");
+    // Deep-link: if URL hash is #topic=t-X, auto-open that topic.
+    var deepLinkTopic = null;
+    try {
+      var hash = window.location.hash || "";
+      var m = hash.match(/#topic=([\w-]+)/);
+      if (m && m[1]) deepLinkTopic = m[1];
+    } catch (e) {}
+    if (deepLinkTopic && topicById(deepLinkTopic)) {
+      CURRENT_TOPIC = deepLinkTopic;
+      const ts = getTopicState(deepLinkTopic);
+      if (ts.gateCompleted) nav("learn", deepLinkTopic);
+      else nav("topic", deepLinkTopic);
+      // Clean the URL so refresh doesn't keep auto-navigating.
+      try { history.replaceState(null, "", window.location.pathname + window.location.search); } catch (e) {}
+    } else {
+      nav("dashboard");
+    }
   }
 
   if (document.readyState === "loading") {
