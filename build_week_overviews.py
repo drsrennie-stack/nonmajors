@@ -81,24 +81,25 @@ h3{{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:v
 .day-label{{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 4px}}
 .day-date{{font-family:'DM Sans',system-ui,sans-serif;font-size:11px;color:var(--gray-soft);margin:0 0 8px}}
 .day-topic{{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:14px;line-height:1.35;margin:0 0 10px}}
-/* Pill buttons inside day tiles — strong saturated colors, no pastels */
-a.day-pill{{display:inline-flex;align-items:center;gap:4px;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.04em;padding:7px 13px;border-radius:999px;text-decoration:none;margin:3px 4px 3px 0;transition:background 150ms ease,color 150ms ease,border-color 150ms ease;border:1px solid transparent;line-height:1.2}}
-a.day-pill.pill-prework{{background:var(--navy);color:var(--white);border-color:var(--navy)}}
-a.day-pill.pill-prework:hover,a.day-pill.pill-prework:focus-visible{{background:var(--navy-deep);color:var(--white);border-color:var(--navy-deep)}}
-a.day-pill.pill-lab{{background:#B8924A;color:#142A36;border-color:#9A7838}}
-a.day-pill.pill-lab:hover,a.day-pill.pill-lab:focus-visible{{background:#9A7838;color:#142A36;border-color:#7D5F2C}}
-a.day-pill.pill-discussion{{background:var(--terra-dark);color:var(--white);border-color:var(--terra-dark)}}
-a.day-pill.pill-discussion:hover,a.day-pill.pill-discussion:focus-visible{{background:#7E3F22;color:var(--white);border-color:#7E3F22}}
-a.day-pill.pill-quiz{{background:#4F6B57;color:var(--white);border-color:#3F5B47}}
-a.day-pill.pill-quiz:hover,a.day-pill.pill-quiz:focus-visible{{background:#3F5B47;color:var(--white);border-color:#2F4537}}
-.day-pill .arrow{{font-size:13px}}
-/* Color-coded deadline cards: gold = lab, terra = discussion, sage = quiz */
+/* Pill buttons inside day tiles — all dark with white text */
+a.day-pill{{display:inline-flex;align-items:center;gap:6px;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.04em;padding:9px 18px;border-radius:999px;text-decoration:none;margin:4px 6px 4px 0;transition:background 150ms ease,color 150ms ease,border-color 150ms ease;border:1px solid transparent;line-height:1.2;color:var(--white)}}
+a.day-pill.pill-prework{{background:var(--navy);border-color:var(--navy)}}
+a.day-pill.pill-prework:hover,a.day-pill.pill-prework:focus-visible{{background:var(--navy-deep);border-color:var(--navy-deep)}}
+a.day-pill.pill-lab{{background:#7D5F2C;border-color:#5C4720}}
+a.day-pill.pill-lab:hover,a.day-pill.pill-lab:focus-visible{{background:#5C4720;border-color:#3F3015}}
+a.day-pill.pill-discussion{{background:var(--terra-dark);border-color:var(--terra-dark)}}
+a.day-pill.pill-discussion:hover,a.day-pill.pill-discussion:focus-visible{{background:#7E3F22;border-color:#7E3F22}}
+a.day-pill.pill-quiz{{background:#4F6B57;border-color:#3F5B47}}
+a.day-pill.pill-quiz:hover,a.day-pill.pill-quiz:focus-visible{{background:#3F5B47;border-color:#2F4537}}
+.day-pill .arrow{{font-size:13px;color:inherit}}
+/* Color-coded deadline cards: dark gold = lab, terra = discussion, sage = quiz */
 .deadline.deadline-discussion{{border-left-color:var(--terra-dark)}}
 .deadline.deadline-discussion .lbl{{color:var(--terra-dark)}}
 .deadline.deadline-quiz{{border-left-color:#4F6B57}}
 .deadline.deadline-quiz .lbl{{color:#4F6B57}}
-.deadline.deadline-lab{{border-left-color:#9A7838}}
-.deadline.deadline-lab .lbl{{color:#9A7838}}
+.deadline.deadline-lab{{border-left-color:#7D5F2C}}
+.deadline.deadline-lab .lbl{{color:#7D5F2C}}
+/* Duplicate of the deadline rules above; kept blank for backward compat. */
 .deadline-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:10px}}
 .deadline{{background:var(--white);border:1px solid var(--gray-line);border-left:4px solid var(--terra);border-radius:6px;padding:14px 16px}}
 .deadline .lbl{{font-family:'DM Sans',sans-serif;font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 4px}}
