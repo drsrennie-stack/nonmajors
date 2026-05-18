@@ -319,8 +319,13 @@ RHYTHM = """<section class="band" id="rhythm" aria-labelledby="rhythm-h">
     <div class="rhythm-row"><span class="rhythm-day">Saturday</span><span class="rhythm-body">Spaced recall review. Work on the quiz and your discussion replies.</span></div>
     <div class="rhythm-row"><span class="rhythm-day">Sunday</span><span class="rhythm-body"><strong>Discussion replies and lab workbooks due. Quiz closes at 11:59 PM.</strong></span></div>
   </div>
-  <h3>Plan on roughly 12 to 15 hours per week</h3>
-  <p>That is the realistic range for most students in an 8-week summer A&amp;P course at this level. Some weeks will be lighter, some heavier (the cardiovascular and renal weeks have more moving parts). Block the time on your calendar before week 1 starts.</p>
+  <h3>The Carnegie expectation: roughly 22 to 24 hours per week, total</h3>
+  <p>This is a 4-credit course delivered in 8 weeks, which doubles the weekly pace of a regular 16-week semester. Federal Carnegie Unit standards expect approximately 22 to 24 hours of total student engagement per week for that format. That total is split into two buckets:</p>
+  <ul>
+    <li><strong>Scheduled lecture and lab equivalent: about 8 to 10 hours per week.</strong> This is your pre-work video viewing (4 days a week), the Wednesday lab block, and time inside the lab workbooks. Because the course is asynchronous, you choose when to do this work, but it counts as your scheduled instruction time.</li>
+    <li><strong>Outside-of-class study: about 12 to 15 hours per week.</strong> This is the work on top of scheduled instruction: spaced recall practice in the pre-work hub, OpenStax reading, the synthesis questions on the workbooks, discussion writing and replies, and quiz preparation.</li>
+  </ul>
+  <p>Some weeks will run lighter, some heavier (the cardiovascular and renal weeks have more moving parts). Block both buckets on your calendar before week 1 starts. Treat them like work shifts.</p>
 </section>
 """
 
@@ -376,7 +381,7 @@ HABITS = """<section class="band" id="habits" aria-labelledby="habits-h">
       <span class="tag">Do</span>
       <h4>What successful students do</h4>
       <ul>
-        <li>Block specific hours on your calendar and protect them like work shifts.</li>
+        <li>Block both buckets on your calendar (instruction time and outside study) and protect them like work shifts.</li>
         <li>Run spaced recall in 15 to 25 minute sessions. More sessions, less length each.</li>
         <li>Print the lab workbook before you sit down to do it. Do not break flow to print.</li>
         <li>Take the quiz fresh, not exhausted. Schedule it earlier on Sunday if possible.</li>
@@ -388,7 +393,7 @@ HABITS = """<section class="band" id="habits" aria-labelledby="habits-h">
       <span class="tag">Don't</span>
       <h4>Patterns that hurt students</h4>
       <ul>
-        <li>Trying to do all 12 to 15 hours in a single weekend push. Spacing is core to retention.</li>
+        <li>Trying to do all 22 to 24 hours in a single weekend push. Spacing is core to retention.</li>
         <li>Skipping the pre-work video to "save time" before the workbook. The workbook builds on the video.</li>
         <li>Leaving the quiz for late Sunday night. Honorlock issues happen at the worst times.</li>
         <li>Pasting AI text into discussion posts or workbook synthesis answers. They are designed to be detectable.</li>
