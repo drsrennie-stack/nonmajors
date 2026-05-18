@@ -10,51 +10,51 @@
 <style>
 :root{--navy:#1E3D4C;--navy-deep:#142A36;--navy-tint:#EDF1F3;--gold:#B8924A;--gold-deep:#9A7838;--terra:#C2734D;--terra-dark:#A0522D;--sage-dark:#4F6B57;--sage-deeper:#3F5B47;--white:#FFFFFF;--off-white:#FAFAF9;--gray-line:#CFD6DA;--gray-soft:#5C6970;--shadow-rest:0 1px 3px rgba(0,0,0,.08)}
 *{box-sizing:border-box}
-body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.6}
+body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.65;font-size:17px}
 .skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600}
 .skip-link:focus{left:0}
 :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-header.page-head{background:var(--white);border-bottom:1px solid var(--gray-line);padding:28px 32px 22px}
-.eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 6px}
-h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:clamp(24px,3.2vw,32px);color:var(--navy);margin:0 0 4px;letter-spacing:-.01em}
-.subhead{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:clamp(15px,1.6vw,18px);color:var(--terra-dark);margin:0 0 6px}
-.usage{font-style:italic;color:var(--gray-soft);font-size:14px;margin:6px 0 0;max-width:78ch}
-main{max-width:860px;margin:0 auto;padding:24px}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px;align-items:center}
-.btn{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;font-size:14px;padding:10px 18px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block;line-height:1.2}
+header.page-head{background:var(--white);border-bottom:1px solid var(--gray-line);padding:32px 40px 26px}
+.eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 8px}
+h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,38px);color:var(--navy);margin:0 0 6px;letter-spacing:-.01em}
+.subhead{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:clamp(17px,1.8vw,20px);color:var(--terra-dark);margin:0 0 8px}
+.usage{font-style:italic;color:var(--gray-soft);font-size:16px;margin:6px 0 0;max-width:90ch;line-height:1.55}
+main{max-width:1180px;margin:0 auto;padding:28px 32px 40px}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 20px;align-items:center}
+.btn{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;font-size:15px;padding:11px 20px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block;line-height:1.2}
 .btn-primary{background:var(--navy);color:var(--white);border-color:var(--navy)}
 .btn-primary:hover{background:var(--navy-deep)}
 .btn-ghost{background:transparent;color:var(--navy);border-color:var(--gray-line)}
 .btn-ghost:hover{background:var(--navy-tint);border-color:var(--navy)}
-.steps-bar{background:var(--white);border:1px solid var(--gray-line);border-left:5px solid var(--terra-dark);border-radius:8px;padding:14px 18px;margin:0 0 18px;box-shadow:var(--shadow-rest)}
-.steps-bar p{margin:0 0 6px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;color:var(--navy);font-size:14px;letter-spacing:.02em}
-.steps-bar ol{margin:0;padding-left:22px}
-.steps-bar li{margin:4px 0;font-size:14.5px}
-section.band{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:22px 26px;margin:0 0 16px;box-shadow:var(--shadow-rest)}
-section.band h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:20px;margin:0 0 8px}
-section.band h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--terra-dark);font-size:16px;margin:18px 0 6px}
-section.band p{margin:0 0 10px}
-section.band ul,section.band ol{padding-left:22px;margin:8px 0}
-section.band li{margin:6px 0;font-size:15px}
+.steps-bar{background:var(--white);border:1px solid var(--gray-line);border-left:5px solid var(--terra-dark);border-radius:8px;padding:16px 22px;margin:0 0 20px;box-shadow:var(--shadow-rest)}
+.steps-bar p{margin:0 0 8px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;color:var(--navy);font-size:15px;letter-spacing:.02em}
+.steps-bar ol{margin:0;padding-left:24px}
+.steps-bar li{margin:6px 0;font-size:16px}
+section.band{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:26px 30px;margin:0 0 18px;box-shadow:var(--shadow-rest)}
+section.band h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:23px;margin:0 0 10px}
+section.band h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--terra-dark);font-size:18px;margin:20px 0 8px}
+section.band p{margin:0 0 12px;font-size:16px}
+section.band ul,section.band ol{padding-left:24px;margin:10px 0}
+section.band li{margin:8px 0;font-size:16px;line-height:1.55}
 section.band.transparency{border-left:5px solid var(--sage-dark);background:#F4F7F4}
 section.band.transparency h2{color:var(--sage-deeper)}
 section.band.agreement{border-left:5px solid var(--terra-dark)}
-.metabar{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:0 0 14px;padding:14px;background:var(--off-white);border:1px solid var(--gray-line);border-radius:8px}
-.metabar .pair{display:flex;flex-direction:column;gap:2px}
-.metabar .lbl{font-family:'DM Sans',sans-serif;font-weight:700;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark)}
-.metabar .val{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:var(--navy);font-size:15px}
-.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:14px 0 6px}
-.form-grid label{display:flex;flex-direction:column;gap:4px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark)}
-.form-grid input,.form-grid textarea{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;color:var(--navy);padding:9px 12px;border:1px solid var(--gray-line);border-radius:6px;background:var(--white);min-height:38px}
+.metabar{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:0 0 16px;padding:18px 20px;background:var(--off-white);border:1px solid var(--gray-line);border-radius:8px}
+.metabar .pair{display:flex;flex-direction:column;gap:3px}
+.metabar .lbl{font-family:'DM Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark)}
+.metabar .val{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:var(--navy);font-size:17px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:16px 0 8px}
+.form-grid label{display:flex;flex-direction:column;gap:5px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark)}
+.form-grid input,.form-grid textarea{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;color:var(--navy);padding:11px 14px;border:1px solid var(--gray-line);border-radius:6px;background:var(--white);min-height:44px}
 .form-grid input:focus,.form-grid textarea:focus{outline:3px solid var(--gold);outline-offset:1px;border-color:var(--navy)}
-textarea{width:100%;resize:vertical;min-height:120px;font-family:'Lora',Georgia,serif;font-size:15px;color:var(--navy);padding:10px 12px;border:1px solid var(--gray-line);border-radius:6px;background:var(--white)}
+textarea{width:100%;resize:vertical;min-height:140px;font-family:'Lora',Georgia,serif;font-size:17px;color:var(--navy);padding:12px 14px;border:1px solid var(--gray-line);border-radius:6px;background:var(--white);line-height:1.55}
 textarea:focus{outline:3px solid var(--gold);outline-offset:1px;border-color:var(--navy)}
 label.full{grid-column:1/-1}
-.signature-row{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-top:14px}
+.signature-row{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:16px}
 @media (max-width: 540px){.signature-row{grid-template-columns:1fr}}
-.signature-line{font-family:'Plus Jakarta Sans',sans-serif;font-style:italic;color:var(--gray-soft);font-size:13px;margin-top:4px}
-.note{background:var(--navy-tint);border-left:4px solid var(--navy);padding:12px 16px;border-radius:6px;margin:10px 0;font-size:14.5px}
+.signature-line{font-family:'Plus Jakarta Sans',sans-serif;font-style:italic;color:var(--gray-soft);font-size:14px;margin-top:5px}
+.note{background:var(--navy-tint);border-left:4px solid var(--navy);padding:14px 18px;border-radius:6px;margin:12px 0;font-size:16px}
 .note strong{color:var(--navy-deep)}
 footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;font-size:13px}
 @media print{
@@ -158,19 +158,26 @@ footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;f
 
   <section class="band" aria-labelledby="consequences-h">
     <h2 id="consequences-h">Consequences for misuse</h2>
-    <p>Violations of this policy are subject to instructor discretion and may include:</p>
+    <p>Violations of this policy carry firm consequences. There is no second-chance grade on an AI-misuse violation.</p>
+    <h3>First confirmed violation</h3>
     <ul>
-      <li><strong>Point deductions</strong> for failing to properly analyze, critique, or refine AI-generated responses.</li>
-      <li><strong>Required rewrites</strong> if AI-generated errors are repeated without critical evaluation.</li>
-      <li><strong>Zero credit</strong> for work that appears to be entirely AI-generated without student effort.</li>
-      <li><strong>Further academic penalties</strong> if violations persist (referral to ARC academic standards process).</li>
+      <li><strong>50% reduction</strong> on the affected assignment.</li>
+      <li>The assignment is <strong>not eligible for revision, rewrite, or any second-chance credit</strong>.</li>
+      <li>The violation is documented in your course file.</li>
     </ul>
-    <h3>Revision penalties</h3>
+    <h3>Subsequent confirmed violations</h3>
     <ul>
-      <li>If a student is required to revise and resubmit an assignment due to AI misuse, the <strong>first revision is penalized 10%</strong>.</li>
-      <li>For each additional revision beyond the first, a <strong>25% reduction</strong> of points is applied after the rubric grade.</li>
-      <li>If revisions are required multiple times because of continued failure to critically analyze AI-generated content, the assignment may be graded as incomplete or receive a failing grade.</li>
+      <li><strong>Zero credit</strong> on the assignment.</li>
+      <li><strong>Referral to the ARC academic standards process.</strong></li>
+      <li>Possible failing grade for the course.</li>
     </ul>
+    <h3>If you are suspected of AI misuse on any assignment</h3>
+    <ul>
+      <li>You will be <strong>required to complete all subsequent assignments in this course either in person or via Zoom with an ARC Writing Lab tutor present</strong>. You schedule the appointment, the tutor watches you work, and the tutor confirms the work is yours.</li>
+      <li>This requirement remains in effect <strong>for the rest of the term</strong>, even after the original suspected assignment is graded.</li>
+      <li>This is a verification step, not an additional penalty. It exists so you can keep earning credit while the integrity question is being addressed.</li>
+    </ul>
+    <div class="note"><strong>Why this is firm.</strong> Hand-labeled lab workbooks, discussion posts, and proctored quizzes never permit AI. On the assignments where AI IS permitted, you have already been given permission to use it, with transparency. The line between using AI as a study tool and submitting AI as your own work is bright, and it is the line that protects your education and your future patients.</div>
   </section>
 
   <section class="band agreement" aria-labelledby="ack-h">
