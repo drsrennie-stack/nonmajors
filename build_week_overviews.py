@@ -247,8 +247,8 @@ def main():
         with open(out, 'w', encoding='utf-8') as f:
             f.write(html)
         built += 1
-        print(f"  built: week{wk:02d}_overview.html ({len(html)//1024} KB)")
-    print(f"\nTotal: {built} week overview pages.")
+        print(f"  built: week{wk:02d}_hub.html ({len(html)//1024} KB)")
+    print(f"\nTotal: {built} week hub pages.")
 
 
 if __name__ == "__main__":
