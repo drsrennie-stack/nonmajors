@@ -91,7 +91,13 @@ footer{{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;
 /* Legacy compatibility layer: style the inline class names from older pages */
 .lede,.lead,.section-lede{{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:500;color:var(--navy);font-size:16px;margin-bottom:14px}}
 [class$="-grid"]{{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:12px 0}}
-[class$="-card"],.tier,.channel,.format-card,.skim-card,.req-card,.read-card,.contact-card,.callout,.summary-card,.week-card,.category-card,.contact-callout,.feature-item,.legend-item,.auditor-box,.help-block,.compliance-stat,.tracks .track,.note,.tip,.info,.field,.focus,.examples{{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:16px 18px;box-shadow:var(--shadow-rest)}}
+[class$="-card"],.tier,.channel,.format-card,.skim-card,.req-card,.read-card,.contact-card,.callout,.summary-card,.week-card,.category-card,.contact-callout,.feature-item,.auditor-box,.help-block,.compliance-stat,.tracks .track,.note,.tip,.info,.field,.examples{{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:16px 18px;box-shadow:var(--shadow-rest)}}
+/* Legend rows: tier name (colored pill) + description, all inline */
+.legend-item{{display:inline-flex;align-items:center;gap:8px;padding:4px 6px;margin:4px 10px 4px 0;background:transparent;border:none;box-shadow:none;font-size:13.5px;color:var(--navy);vertical-align:middle}}
+.legend-swatch{{display:inline-flex;align-items:center;justify-content:center;padding:4px 12px;border-radius:999px;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.04em;color:var(--white);background:var(--navy);border:1px solid var(--navy);width:auto;height:auto}}
+.legend-swatch.read{{background:var(--navy);border-color:var(--navy);color:var(--white)}}
+.legend-swatch.focus{{background:#B8924A;border-color:#9A7838;color:#142A36}}
+.legend-swatch.ref{{background:#4F6B57;border-color:#3F5B47;color:var(--white)}}
 .preferred,.recommended{{border:2px solid var(--gold);background:var(--off-white)}}
 .required{{border-left:4px solid var(--terra-dark)}}
 .optional{{border-left:4px solid var(--gold)}}
@@ -170,6 +176,12 @@ def extract_content(html, h1_text):
     content = re.sub(r'<script[^>]*>[\s\S]*?</script>', '', content, flags=re.IGNORECASE)
     # Drop any leftover h1 (we render h1 in the new header)
     content = re.sub(r'<h1[^>]*>[\s\S]*?</h1>', '', content, count=1, flags=re.IGNORECASE)
+    # Strip any previously-added "Back to syllabus hub" toolbar (idempotency: prevents
+    # toolbars from stacking when redesign_legacy.py is re-run on already-redesigned files).
+    content = re.sub(
+        r'<div class="toolbar"[^>]*>\s*<a[^>]*Back to syllabus hub[\s\S]*?</a>\s*</div>\s*',
+        '', content, flags=re.IGNORECASE
+    )
 
     # Wrap each <section> as a .card so styling is consistent
     def wrap_section(m):

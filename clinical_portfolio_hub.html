@@ -48,7 +48,13 @@ footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;f
 /* Legacy compatibility layer: style the inline class names from older pages */
 .lede,.lead,.section-lede{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:500;color:var(--navy);font-size:16px;margin-bottom:14px}
 [class$="-grid"]{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:12px 0}
-[class$="-card"],.tier,.channel,.format-card,.skim-card,.req-card,.read-card,.contact-card,.callout,.summary-card,.week-card,.category-card,.contact-callout,.feature-item,.legend-item,.auditor-box,.help-block,.compliance-stat,.tracks .track,.note,.tip,.info,.field,.focus,.examples{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:16px 18px;box-shadow:var(--shadow-rest)}
+[class$="-card"],.tier,.channel,.format-card,.skim-card,.req-card,.read-card,.contact-card,.callout,.summary-card,.week-card,.category-card,.contact-callout,.feature-item,.auditor-box,.help-block,.compliance-stat,.tracks .track,.note,.tip,.info,.field,.examples{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:16px 18px;box-shadow:var(--shadow-rest)}
+/* Legend rows: tier name (colored pill) + description, all inline */
+.legend-item{display:inline-flex;align-items:center;gap:8px;padding:4px 6px;margin:4px 10px 4px 0;background:transparent;border:none;box-shadow:none;font-size:13.5px;color:var(--navy);vertical-align:middle}
+.legend-swatch{display:inline-flex;align-items:center;justify-content:center;padding:4px 12px;border-radius:999px;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.04em;color:var(--white);background:var(--navy);border:1px solid var(--navy);width:auto;height:auto}
+.legend-swatch.read{background:var(--navy);border-color:var(--navy);color:var(--white)}
+.legend-swatch.focus{background:#B8924A;border-color:#9A7838;color:#142A36}
+.legend-swatch.ref{background:#4F6B57;border-color:#3F5B47;color:var(--white)}
 .preferred,.recommended{border:2px solid var(--gold);background:var(--off-white)}
 .required{border-left:4px solid var(--terra-dark)}
 .optional{border-left:4px solid var(--gold)}
@@ -86,6 +92,9 @@ footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;f
   <div class="toolbar">
     <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
+<article class="card"><div class="toolbar">
+    <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
+  </div>
 <article class="card"><p>The Clinical Portfolio is a series of eight reference pages, one per week, that translate the week's anatomy and physiology into a tool a clinician would actually reach for. Each page lives on a single printable sheet. Each page is yours: your organizing logic, your phrasing, your call on what's high-yield enough to make the page.</p>
 
 <div class="callout">
@@ -94,11 +103,7 @@ footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;f
 </div>
 
 <p>By the end of the course you'll have an eight-page personal clinical reference. Bring it to BIO 304 lab, to your future nursing or paramedic program, to the bedside. It's a working document.</p>
-<header class="section-head" id="topics">
-  <span class="section-num">02</span>
-  <span class="section-eyebrow">Topic map</span>
-  <h2>What each week's page is about</h2>
-</header>
+
 <div class="card-grid">
 <div class="card">
   <span class="week-tag">Week 01</span>
@@ -291,7 +296,7 @@ footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;f
   <span class="synthesis-label">From Dr. Rennie</span>
   <p>The students who do well in clinical settings, in nursing programs, in EMT and paramedic ride-alongs, in mortuary science labs, are not the ones who memorized the most facts. They are the ones who built reliable tools for thinking, then trusted those tools when the moment got loud. This portfolio is a small version of that practice. Build it for yourself.</p>
   <p style="margin-bottom:0"><em>Dr. Sharilyn Rennie</em></p>
-</div></article>
+</div></article></article>
 </main>
 <footer><p>Dr. Sharilyn Rennie . BIO 304 . American River College</p></footer>
 <script>

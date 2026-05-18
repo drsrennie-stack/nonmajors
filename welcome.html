@@ -48,7 +48,13 @@ footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;f
 /* Legacy compatibility layer: style the inline class names from older pages */
 .lede,.lead,.section-lede{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:500;color:var(--navy);font-size:16px;margin-bottom:14px}
 [class$="-grid"]{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:12px 0}
-[class$="-card"],.tier,.channel,.format-card,.skim-card,.req-card,.read-card,.contact-card,.callout,.summary-card,.week-card,.category-card,.contact-callout,.feature-item,.legend-item,.auditor-box,.help-block,.compliance-stat,.tracks .track,.note,.tip,.info,.field,.focus,.examples{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:16px 18px;box-shadow:var(--shadow-rest)}
+[class$="-card"],.tier,.channel,.format-card,.skim-card,.req-card,.read-card,.contact-card,.callout,.summary-card,.week-card,.category-card,.contact-callout,.feature-item,.auditor-box,.help-block,.compliance-stat,.tracks .track,.note,.tip,.info,.field,.examples{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:16px 18px;box-shadow:var(--shadow-rest)}
+/* Legend rows: tier name (colored pill) + description, all inline */
+.legend-item{display:inline-flex;align-items:center;gap:8px;padding:4px 6px;margin:4px 10px 4px 0;background:transparent;border:none;box-shadow:none;font-size:13.5px;color:var(--navy);vertical-align:middle}
+.legend-swatch{display:inline-flex;align-items:center;justify-content:center;padding:4px 12px;border-radius:999px;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.04em;color:var(--white);background:var(--navy);border:1px solid var(--navy);width:auto;height:auto}
+.legend-swatch.read{background:var(--navy);border-color:var(--navy);color:var(--white)}
+.legend-swatch.focus{background:#B8924A;border-color:#9A7838;color:#142A36}
+.legend-swatch.ref{background:#4F6B57;border-color:#3F5B47;color:var(--white)}
 .preferred,.recommended{border:2px solid var(--gold);background:var(--off-white)}
 .required{border-left:4px solid var(--terra-dark)}
 .optional{border-left:4px solid var(--gold)}
@@ -86,6 +92,9 @@ footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;f
   <div class="toolbar">
     <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
+<article class="card"><div class="toolbar">
+    <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
+  </div>
 <article class="card"><p>Welcome. I'm glad you're here.</p>
 
 <p>BIO 304 is the kind of course that rewards consistent, structured effort. It does not reward last-minute heroics. Eight weeks is short. The content is dense. The clinical applications are immediate. If you commit to the rhythm I've built into this course, week by week, you will leave with a working knowledge of the human body that you can use, not just recite.</p>
@@ -98,11 +107,7 @@ footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;f
 <p>If you've taken an A&amp;P course before and felt overwhelmed, this version is designed to fix that. Every assignment is built to do exactly one job. Every workbook has a purpose. Nothing is busywork. If something feels confusing, ask. Office hours are real, and so am I.</p>
 
 <p style="margin-bottom:0"><em>Dr. Sharilyn Rennie</em></p>
-<header class="section-head" id="what">
-  <span class="section-num">02</span>
-  <span class="section-eyebrow">What this course is</span>
-  <h2>Two minutes of orientation</h2>
-</header>
+
 
 <p>BIO 304 is a 4-credit, 8-week, asynchronous online course that combines human anatomy and physiology. Anatomy is the structure (what is where). Physiology is the function (how it behaves). The two are inseparable in clinical practice and inseparable in this course. Each week you will work through both, in parallel, and connect them.</p>
 
@@ -198,7 +203,7 @@ footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;f
 <div class="callout kelp">
   <span class="callout-label">One last thing</span>
   <p>If you're feeling overwhelmed in the first two weeks, reach out. Eight-week intensives compress quickly. The students who come talk to me in Week 2 finish the course. The students who quietly fall behind in Week 2, often don't. I would much rather hear from you early.</p>
-</div></article>
+</div></article></article>
 </main>
 <footer><p>Dr. Sharilyn Rennie . BIO 304 . American River College</p></footer>
 <script>
