@@ -1,23 +1,375 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url=biol304_syllabus.html">
-<link rel="canonical" href="biol304_syllabus.html">
-<title>BIO 304 . Syllabus Hub</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BIO 304 · Course Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;1,400&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FAFAF9;color:#1E3D4C;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;padding:24px;text-align:center}
-  .card{background:#fff;border:1px solid #CFD6DA;border-radius:10px;padding:32px;max-width:480px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
-  h1{font-weight:800;font-size:24px;margin:0 0 8px;letter-spacing:-.01em}
-  p{margin:8px 0;color:#5C6970}
-  a{color:#1E3D4C;font-weight:600}
+  :root {
+    --navy: #1E3D4C;
+    --navy-deep: #142a36;
+    --navy-tint: #EDF1F3;
+    --gold: #B8924A;
+    --terra: #C2734D;
+    --terra-dark: #A0522D;
+    --white: #FFFFFF;
+    --offwhite: #FAFAF9;
+    --rule: rgba(30,61,76,0.18);
+    --rule-soft: rgba(30,61,76,0.10);
+    --shadow-rest: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 16px rgba(0,0,0,0.10);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--offwhite);
+    color: var(--navy);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .skip { position: absolute; left: -9999px; }
+  .skip:focus { position: static; left: auto; padding: 8px 12px; background: var(--navy); color: var(--white); margin: 8px; display: inline-block; }
+
+  .page { max-width: 9.5in; margin: 28px auto; background: var(--white); padding: 0.55in 0.6in; box-shadow: var(--shadow-rest); border-radius: 2px; }
+  .eyebrow { font-family: 'DM Sans', system-ui, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terra-dark); margin: 0 0 6px 0; }
+  h1 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800; font-size: 36px; line-height: 1.1; color: var(--navy); margin: 0 0 4px 0; letter-spacing: -0.01em; }
+  .subhead { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 600; font-size: 18px; color: var(--terra-dark); margin: 0 0 10px 0; }
+  .summary { font-family: 'Lora', Georgia, serif; font-style: italic; font-size: 14px; max-width: 70ch; margin: 0 0 6px 0; opacity: 0.85; }
+  .count { font-family: 'DM Sans', system-ui, sans-serif; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terra-dark); margin: 14px 0 0 0; }
+  hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
+
+  .week { margin-top: 26px; }
+  .week h2 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800; font-size: 22px; color: var(--navy); margin: 0 0 6px 0; padding-bottom: 6px; border-bottom: 2px solid var(--navy); letter-spacing: -0.005em; }
+  .module h3 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--terra-dark); margin: 16px 0 8px 0; }
+
+  .topic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 760px) { .topic-grid { grid-template-columns: 1fr; } }
+
+  .topic {
+    display: flex; flex-direction: column;
+    padding: 12px 14px;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    text-decoration: none;
+    color: var(--navy);
+    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+    box-shadow: var(--shadow-rest);
+  }
+  .topic:hover, .topic:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--gold);
+    outline: none;
+  }
+  .topic:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .topic-title { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700; font-size: 14.5px; color: var(--navy); margin-bottom: 4px; }
+  .topic-blurb { font-family: 'Lora', Georgia, serif; font-size: 13px; color: var(--navy); opacity: 0.8; line-height: 1.45; }
+
+  .foot { margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: 'DM Sans', system-ui, sans-serif; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); opacity: 0.75; }
 </style>
 </head>
 <body>
-<div class="card">
-  <h1>BIO 304</h1>
-  <p>Redirecting you to the syllabus hub.</p>
-  <p>If the redirect does not happen automatically, <a href="biol304_syllabus.html">click here</a>.</p>
-</div>
+<a class="skip" href="#main">Skip to main content</a>
+
+<main class="page" id="main">
+  <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology</p>
+  <h1>Course Map</h1>
+  <p class="subhead">Eight weeks · Sixteen modules · 44 one-pager sheets</p>
+  <p class="summary">Every sheet has three modes. <strong>Notes</strong> prints the full reference. <strong>Study</strong> prints as a fill-in-the-blank worksheet to complete during the video or reading. <strong>Quiz me</strong> is on-screen typing practice for vocabulary. Each sheet also links out to its spaced-recall pre-work once the video is watched.</p>
+  <p class="count">Click a topic to open its one-pager &middot; 44 total</p>
+
+  <hr class="rule" />
+  <section class="week" aria-labelledby="week-1">
+    <h2 id="week-1">Week 1</h2>
+    <section class="module" aria-label="Module 1 · Foundations of Anatomy & Physiology">
+      <h3>Module 1 · Foundations of Anatomy & Physiology</h3>
+      <div class="topic-grid">
+      <a class="topic" href="levels-of-organization.html" target="_top">
+        <span class="topic-title">Levels of Organization</span>
+        <span class="topic-blurb">Atoms to organism — six levels of complexity and what emerges at each.</span>
+      </a>
+      <a class="topic" href="anatomical-position.html" target="_top">
+        <span class="topic-title">Anatomical Position, Planes & Directional Terms</span>
+        <span class="topic-blurb">The standard body map and the vocabulary for talking about it.</span>
+      </a>
+      <a class="topic" href="body-regions.html" target="_top">
+        <span class="topic-title">Body Regions</span>
+        <span class="topic-blurb">Regional terms across anterior, posterior, and lateral views.</span>
+      </a>
+      <a class="topic" href="body-cavities.html" target="_top">
+        <span class="topic-title">Body Cavities & Regions</span>
+        <span class="topic-blurb">Dorsal/ventral cavities, abdominopelvic regions and quadrants.</span>
+      </a>
+      <a class="topic" href="homeostasis-feedback.html" target="_top">
+        <span class="topic-title">Homeostasis & Feedback Loops</span>
+        <span class="topic-blurb">Negative feedback as the default; positive feedback as the exception.</span>
+      </a>
+      </div>
+    </section>
+    <section class="module" aria-label="Module 2 · The Cell">
+      <h3>Module 2 · The Cell</h3>
+      <div class="topic-grid">
+      <a class="topic" href="cell-structure.html" target="_top">
+        <span class="topic-title">Cell Structure & Organelles</span>
+        <span class="topic-blurb">Membrane, nucleus, and the cytoplasmic organelles that do the work.</span>
+      </a>
+      <a class="topic" href="membrane-transport.html" target="_top">
+        <span class="topic-title">Membrane Transport</span>
+        <span class="topic-blurb">Passive, active, and bulk transport across the plasma membrane.</span>
+      </a>
+      </div>
+    </section>
+  </section>
+  <section class="week" aria-labelledby="week-2">
+    <h2 id="week-2">Week 2</h2>
+    <section class="module" aria-label="Module 3 · Tissues">
+      <h3>Module 3 · Tissues</h3>
+      <div class="topic-grid">
+      <a class="topic" href="epithelial-tissue.html" target="_top">
+        <span class="topic-title">Epithelial Tissue Classification</span>
+        <span class="topic-blurb">Classification by shape and layers; exocrine vs endocrine.</span>
+      </a>
+      <a class="topic" href="connective-tissues.html" target="_top">
+        <span class="topic-title">Connective Tissues</span>
+        <span class="topic-blurb">ECM components and the loose, dense, and specialized CTs.</span>
+      </a>
+      <a class="topic" href="muscle-nervous-tissue.html" target="_top">
+        <span class="topic-title">Muscle & Nervous Tissue Overview</span>
+        <span class="topic-blurb">Three muscle types and the cells of the nervous system.</span>
+      </a>
+      </div>
+    </section>
+    <section class="module" aria-label="Module 4 · Integumentary System">
+      <h3>Module 4 · Integumentary System</h3>
+      <div class="topic-grid">
+      <a class="topic" href="skin-structure.html" target="_top">
+        <span class="topic-title">Skin Structure & Layers</span>
+        <span class="topic-blurb">Epidermal strata, dermal layers, and the hypodermis.</span>
+      </a>
+      <a class="topic" href="skin-functions.html" target="_top">
+        <span class="topic-title">Skin Functions & Accessory Structures</span>
+        <span class="topic-blurb">Six functions plus hair, nails, and the cutaneous glands.</span>
+      </a>
+      </div>
+    </section>
+  </section>
+  <section class="week" aria-labelledby="week-3">
+    <h2 id="week-3">Week 3</h2>
+    <section class="module" aria-label="Module 5 · Skeletal System">
+      <h3>Module 5 · Skeletal System</h3>
+      <div class="topic-grid">
+      <a class="topic" href="bone-tissue.html" target="_top">
+        <span class="topic-title">Bone Tissue & Bone Growth</span>
+        <span class="topic-blurb">Bone cells, compact and spongy structure, ossification, calcium balance.</span>
+      </a>
+      <a class="topic" href="axial-skeleton.html" target="_top">
+        <span class="topic-title">Axial Skeleton</span>
+        <span class="topic-blurb">Skull, vertebral column, and thoracic cage.</span>
+      </a>
+      <a class="topic" href="appendicular-skeleton.html" target="_top">
+        <span class="topic-title">Appendicular Skeleton</span>
+        <span class="topic-blurb">Pectoral and pelvic girdles plus the limbs.</span>
+      </a>
+      <a class="topic" href="joints-and-movements.html" target="_top">
+        <span class="topic-title">Joints & Body Movements</span>
+        <span class="topic-blurb">Joint classifications and the catalog of movements.</span>
+      </a>
+      </div>
+    </section>
+  </section>
+  <section class="week" aria-labelledby="week-4">
+    <h2 id="week-4">Week 4</h2>
+    <section class="module" aria-label="Module 6 · Muscular System">
+      <h3>Module 6 · Muscular System</h3>
+      <div class="topic-grid">
+      <a class="topic" href="skeletal-muscle-microanatomy.html" target="_top">
+        <span class="topic-title">Skeletal Muscle Microanatomy</span>
+        <span class="topic-blurb">From whole muscle down to the sarcomere.</span>
+      </a>
+      <a class="topic" href="motor-units.html" target="_top">
+        <span class="topic-title">Motor Units & Muscle Mechanics</span>
+        <span class="topic-blurb">Recruitment, summation, twitch and tetanus, fiber types.</span>
+      </a>
+      <a class="topic" href="cross-bridge-cycle.html" target="_top">
+        <span class="topic-title">Sliding Filament & Cross-Bridge Cycle</span>
+        <span class="topic-blurb">Excitation-contraction coupling and the four-step cycle.</span>
+      </a>
+      </div>
+    </section>
+    <section class="module" aria-label="Module 7 · Nervous System">
+      <h3>Module 7 · Nervous System</h3>
+      <div class="topic-grid">
+      <a class="topic" href="neurons-resting-potential.html" target="_top">
+        <span class="topic-title">Neurons & Resting Membrane Potential</span>
+        <span class="topic-blurb">Neuron types and how the membrane sits at -70 mV.</span>
+      </a>
+      <a class="topic" href="action-potentials-synapses.html" target="_top">
+        <span class="topic-title">Action Potentials & Synaptic Transmission</span>
+        <span class="topic-blurb">AP phases, propagation, and the chemical synapse.</span>
+      </a>
+      <a class="topic" href="cns-organization.html" target="_top">
+        <span class="topic-title">CNS Organization: Brain & Spinal Cord</span>
+        <span class="topic-blurb">Brain regions, lobes, spinal cord, meninges, CSF flow.</span>
+      </a>
+      <a class="topic" href="pns-autonomic.html" target="_top">
+        <span class="topic-title">PNS & Autonomic Nervous System</span>
+        <span class="topic-blurb">Cranial nerves, somatic vs autonomic, sympathetic vs parasympathetic.</span>
+      </a>
+      </div>
+    </section>
+  </section>
+  <section class="week" aria-labelledby="week-5">
+    <h2 id="week-5">Week 5</h2>
+    <section class="module" aria-label="Module 8 · Special Senses">
+      <h3>Module 8 · Special Senses</h3>
+      <div class="topic-grid">
+      <a class="topic" href="vision.html" target="_top">
+        <span class="topic-title">Vision</span>
+        <span class="topic-blurb">Eye anatomy, retinal layers, and the visual pathway.</span>
+      </a>
+      <a class="topic" href="hearing-equilibrium.html" target="_top">
+        <span class="topic-title">Hearing & Equilibrium</span>
+        <span class="topic-blurb">Outer, middle, and inner ear; cochlea and vestibular apparatus.</span>
+      </a>
+      </div>
+    </section>
+    <section class="module" aria-label="Module 9 · Endocrine System">
+      <h3>Module 9 · Endocrine System</h3>
+      <div class="topic-grid">
+      <a class="topic" href="hormone-mechanisms.html" target="_top">
+        <span class="topic-title">Hormone Mechanisms</span>
+        <span class="topic-blurb">Peptide vs steroid; second messengers and gene activation.</span>
+      </a>
+      <a class="topic" href="major-endocrine-glands.html" target="_top">
+        <span class="topic-title">Major Endocrine Glands</span>
+        <span class="topic-blurb">Hypothalamus to gonads, with the hormones each makes.</span>
+      </a>
+      </div>
+    </section>
+  </section>
+  <section class="week" aria-labelledby="week-6">
+    <h2 id="week-6">Week 6</h2>
+    <section class="module" aria-label="Module 10 · Blood">
+      <h3>Module 10 · Blood</h3>
+      <div class="topic-grid">
+      <a class="topic" href="blood-composition.html" target="_top">
+        <span class="topic-title">Blood Composition & Hemopoiesis</span>
+        <span class="topic-blurb">Plasma, formed elements, and the hemopoiesis tree.</span>
+      </a>
+      <a class="topic" href="hemostasis-blood-typing.html" target="_top">
+        <span class="topic-title">Hemostasis & Blood Typing</span>
+        <span class="topic-blurb">Three phases of clotting, ABO and Rh compatibility.</span>
+      </a>
+      </div>
+    </section>
+    <section class="module" aria-label="Module 11 · Cardiovascular System">
+      <h3>Module 11 · Cardiovascular System</h3>
+      <div class="topic-grid">
+      <a class="topic" href="heart-anatomy.html" target="_top">
+        <span class="topic-title">Heart Anatomy & the Cardiac Cycle</span>
+        <span class="topic-blurb">Four chambers, four valves, systole and diastole.</span>
+      </a>
+      <a class="topic" href="cardiac-conduction.html" target="_top">
+        <span class="topic-title">Cardiac Conduction System</span>
+        <span class="topic-blurb">SA to Purkinje, two AP types, and reading an ECG.</span>
+      </a>
+      <a class="topic" href="blood-vessels-hemodynamics.html" target="_top">
+        <span class="topic-title">Blood Vessels & Hemodynamics</span>
+        <span class="topic-blurb">Vessel structure, pressure profile, and Starling forces.</span>
+      </a>
+      </div>
+    </section>
+  </section>
+  <section class="week" aria-labelledby="week-7">
+    <h2 id="week-7">Week 7</h2>
+    <section class="module" aria-label="Module 12 · Lymphatic & Immune System">
+      <h3>Module 12 · Lymphatic & Immune System</h3>
+      <div class="topic-grid">
+      <a class="topic" href="lymphatic-innate-immunity.html" target="_top">
+        <span class="topic-title">Lymphatic System & Innate Immunity</span>
+        <span class="topic-blurb">Lymphatic plumbing and first-line defenses.</span>
+      </a>
+      <a class="topic" href="adaptive-immunity.html" target="_top">
+        <span class="topic-title">Adaptive Immunity</span>
+        <span class="topic-blurb">T cells, B cells, antibodies, and immunologic memory.</span>
+      </a>
+      </div>
+    </section>
+    <section class="module" aria-label="Module 13 · Respiratory System">
+      <h3>Module 13 · Respiratory System</h3>
+      <div class="topic-grid">
+      <a class="topic" href="respiratory-anatomy.html" target="_top">
+        <span class="topic-title">Respiratory Anatomy & Mechanics</span>
+        <span class="topic-blurb">Conducting vs respiratory zone; breathing as pressure work.</span>
+      </a>
+      <a class="topic" href="gas-exchange-transport.html" target="_top">
+        <span class="topic-title">Gas Exchange & Transport</span>
+        <span class="topic-blurb">Partial pressures, oxyhemoglobin curve, and CO₂ transport.</span>
+      </a>
+      </div>
+    </section>
+    <section class="module" aria-label="Module 14 · Digestive System">
+      <h3>Module 14 · Digestive System</h3>
+      <div class="topic-grid">
+      <a class="topic" href="gi-anatomy-motility.html" target="_top">
+        <span class="topic-title">GI Tract Anatomy & Motility</span>
+        <span class="topic-blurb">From mouth to anus; four wall layers; peristalsis and segmentation.</span>
+      </a>
+      <a class="topic" href="digestion-absorption.html" target="_top">
+        <span class="topic-title">Digestion & Absorption</span>
+        <span class="topic-blurb">Macromolecules broken down and absorbed at the brush border.</span>
+      </a>
+      </div>
+    </section>
+  </section>
+  <section class="week" aria-labelledby="week-8">
+    <h2 id="week-8">Week 8</h2>
+    <section class="module" aria-label="Module 15 · Urinary System & Fluid Balance">
+      <h3>Module 15 · Urinary System & Fluid Balance</h3>
+      <div class="topic-grid">
+      <a class="topic" href="kidney-anatomy-gfr.html" target="_top">
+        <span class="topic-title">Kidney Anatomy & Glomerular Filtration</span>
+        <span class="topic-blurb">Nephron parts, the filtration barrier, and how GFR is regulated.</span>
+      </a>
+      <a class="topic" href="tubular-function.html" target="_top">
+        <span class="topic-title">Tubular Function & Urine Concentration</span>
+        <span class="topic-blurb">Segment-by-segment reabsorption, countercurrent multiplication.</span>
+      </a>
+      <a class="topic" href="fluid-electrolyte-acid-base.html" target="_top">
+        <span class="topic-title">Fluid, Electrolyte & Acid-Base Balance</span>
+        <span class="topic-blurb">Body fluid compartments, key electrolytes, ABG analysis.</span>
+      </a>
+      </div>
+    </section>
+    <section class="module" aria-label="Module 16 · Reproductive System">
+      <h3>Module 16 · Reproductive System</h3>
+      <div class="topic-grid">
+      <a class="topic" href="male-reproductive.html" target="_top">
+        <span class="topic-title">Male Reproductive System</span>
+        <span class="topic-blurb">Sperm path, spermatogenesis, HPG axis.</span>
+      </a>
+      <a class="topic" href="female-reproductive.html" target="_top">
+        <span class="topic-title">Female Reproductive System</span>
+        <span class="topic-blurb">Ovaries, oogenesis, and the 28-day cycle.</span>
+      </a>
+      <a class="topic" href="pregnancy-basics.html" target="_top">
+        <span class="topic-title">Pregnancy A&P (Basics)</span>
+        <span class="topic-blurb">Fertilization, placenta, maternal adaptations, stages of labor.</span>
+      </a>
+      </div>
+    </section>
+  </section>
+
+  <div class="foot">
+    <span>Dr. Sharilyn Rennie</span>
+    <span>BIO 304 &middot; Course Map</span>
+  </div>
+</main>
 </body>
 </html>
