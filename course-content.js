@@ -41,7 +41,7 @@
 window.BIO304_COURSE_CONTENT = {
   courseLabel: "BIO 304",
   /* Course start date (Monday of week 1). Leave null to disable scheduled release. */
-  courseStart: "2026-06-08",  // Summer 2026: Monday of Week 1
+  courseStart: null,
 
   modules: [
 
@@ -61,6 +61,7 @@ window.BIO304_COURSE_CONTENT = {
           videoUrl: null,
           notesUrl: null,
           readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/1-2-structural-organization-of-the-human-body",
+          lecturePageUrl: "levels-of-organization.html",
           dayInCourse: 1,
           videoLabel: "Video: Levels of organization (pending)",
           gateKeywords: ["atom", "cell", "tissue", "organ", "organ system", "organism"],
@@ -100,6 +101,7 @@ window.BIO304_COURSE_CONTENT = {
           videoUrl: null,
           notesUrl: null,
           readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/1-6-anatomical-terminology",
+          lecturePageUrl: "anatomical-position.html",
           dayInCourse: 1,
           videoLabel: "Video: Anatomical terminology (pending)",
           gateKeywords: ["anatomical position", "sagittal", "transverse", "superior", "anterior", "abdominopelvic"],
@@ -141,6 +143,7 @@ window.BIO304_COURSE_CONTENT = {
           videoUrl: null,
           notesUrl: null,
           readingUrl: "https://openstax.org/books/anatomy-and-physiology-2e/pages/1-5-homeostasis",
+          lecturePageUrl: "homeostasis-feedback.html",
           dayInCourse: 2,
           videoLabel: "Video: Homeostasis and feedback (pending)",
           gateKeywords: ["homeostasis", "feedback", "set point", "receptor", "effector"],

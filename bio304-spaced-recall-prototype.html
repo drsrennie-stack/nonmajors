@@ -728,19 +728,20 @@
     <p class="usage" id="topic-summary"></p>
 
     <div class="card" id="video-card">
-      <h3>Step 1. Watch the video</h3>
-      <div class="video-frame" aria-label="Video player placeholder">
+      <h3 id="video-card-heading">Step 1. Watch the lecture video</h3>
+      <p class="usage" id="video-status">Watch this topic's lecture video on its lecture page, then return here to keep going.</p>
+      <div class="toolbar">
+        <a class="btn btn-primary" id="btn-open-lecture-page" href="#" target="_top" hidden>Open lecture page &rarr;</a>
+        <button type="button" class="btn btn-primary" id="btn-simulate-watch" hidden>Simulate watching (10s)</button>
+        <button type="button" class="btn btn-gold" id="btn-mark-watched">I&rsquo;ve watched it</button>
+      </div>
+      <div class="video-frame" id="video-frame-legacy" aria-label="Legacy in-app video player" hidden>
         <div class="placeholder-label" id="video-placeholder-label">Placeholder video. The real video must play start-to-finish before the next step appears.</div>
         <div class="video-progress" id="video-progress"></div>
       </div>
-      <div class="toolbar">
-        <button type="button" class="btn btn-primary" id="btn-simulate-watch">Simulate watching (10s)</button>
-        <button type="button" class="btn btn-gold" id="btn-mark-watched">Mark watched</button>
-      </div>
-      <p class="usage" id="video-status">Video not yet watched.</p>
     </div>
 
-    <p class="usage" id="gate-locked-note" style="margin-top:16px;">Step 2 unlocks after you finish the video.</p>
+    <p class="usage" id="gate-locked-note" style="margin-top:16px;">Step 2 unlocks once Step 1 is complete.</p>
 
     <div class="gate" id="gate-card" aria-labelledby="gate-heading" hidden>
       <h3 id="gate-heading">Step 2. Explain in your own words</h3>
@@ -1519,36 +1520,71 @@
     $("#gate-feedback").textContent = "";
     $("#gate-feedback").className = "gate-feedback";
 
-    // Mount the actual video player if a URL is set. Otherwise show the placeholder.
-    renderVideoPlayer(topic);
+    // Check the cross-page video-watched flag set by the topic's lecture page.
+    // The lecture page (one-pager) writes "bio304-video-{topicId}" = "true" when the
+    // student watches the video there. We honor that flag here.
+    var crossPageWatched = false;
+    try {
+      crossPageWatched = window.localStorage.getItem("bio304-video-" + topic.id) === "true";
+    } catch (e) { crossPageWatched = false; }
+    if (crossPageWatched && !ts.videoWatched) {
+      ts.videoWatched = true;
+      saveTopicState(topic.id, ts);
+    }
+
+    var openLectureBtn = $("#btn-open-lecture-page");
+    var simBtn = $("#btn-simulate-watch");
+    var markBtn = $("#btn-mark-watched");
+    var legacyFrame = $("#video-frame-legacy");
+
+    // Hide legacy player and simulate button by default; only used as fallback.
+    if (legacyFrame) legacyFrame.hidden = true;
+    if (simBtn) { simBtn.hidden = true; simBtn.disabled = true; }
+
+    if (topic.lecturePageUrl) {
+      // Topic has a dedicated lecture page. Point students at it.
+      openLectureBtn.href = topic.lecturePageUrl;
+      openLectureBtn.hidden = false;
+    } else {
+      openLectureBtn.hidden = true;
+      openLectureBtn.removeAttribute("href");
+    }
 
     if (ts.videoWatched) {
-      $("#video-status").textContent = "Video marked watched.";
-      $("#video-progress").style.width = "100%";
-      $("#btn-mark-watched").disabled = true;
-      $("#btn-simulate-watch").disabled = true;
-      $("#btn-simulate-watch").hidden = true;
+      $("#video-status").textContent = topic.lecturePageUrl
+        ? "Lecture video marked watched."
+        : "Video marked watched.";
+      markBtn.disabled = true;
+      markBtn.textContent = "Watched";
       // Reveal the gate once the video is finished.
       $("#gate-card").hidden = false;
       $("#gate-locked-note").hidden = true;
+    } else if (topic.lecturePageUrl) {
+      $("#video-status").textContent = "Open the lecture page, watch the video, then return here and click I've watched it.";
+      markBtn.disabled = false;
+      markBtn.textContent = "I've watched it";
+      $("#gate-card").hidden = true;
+      $("#gate-locked-note").hidden = false;
     } else if (!topic.videoUrl) {
-      // No real video yet. Enable Mark Watched immediately so you can preview the rest of
-      // the flow. Hide the Simulate button since there is literally nothing to simulate.
-      $("#video-status").textContent = "No video uploaded for this topic yet. Click Mark watched to continue and preview the gate and recall flow.";
+      // No lecture page AND no in-app video: preview mode.
+      if (legacyFrame) legacyFrame.hidden = false;
+      renderVideoPlayer(topic);
+      $("#video-status").textContent = "No lecture page is wired up for this topic yet. Click I've watched it to continue.";
       $("#video-progress").style.width = "100%";
-      $("#btn-mark-watched").disabled = false;
-      $("#btn-simulate-watch").disabled = true;
-      $("#btn-simulate-watch").hidden = true;
-      // Gate stays hidden until Mark Watched is clicked.
+      markBtn.disabled = false;
+      markBtn.textContent = "I've watched it";
       $("#gate-card").hidden = true;
       $("#gate-locked-note").hidden = false;
     } else {
-      // Real video is mounted. Student must watch it; only then is Mark Watched enabled.
+      // Legacy fallback: in-app video player + simulate watch.
+      if (legacyFrame) legacyFrame.hidden = false;
+      renderVideoPlayer(topic);
       $("#video-status").textContent = "Watch the video below from start to finish.";
       $("#video-progress").style.width = "0%";
-      $("#btn-mark-watched").disabled = true;
-      $("#btn-simulate-watch").disabled = false;
-      $("#btn-simulate-watch").hidden = false;
+      markBtn.disabled = true;
+      markBtn.textContent = "Mark watched";
+      simBtn.hidden = false;
+      simBtn.disabled = false;
       $("#gate-card").hidden = true;
       $("#gate-locked-note").hidden = false;
     }
@@ -1642,6 +1678,9 @@
     const ts = getTopicState(CURRENT_TOPIC);
     ts.videoWatched = true;
     saveState();
+    // Mirror the in-app watched state to the cross-page flag the lecture pages use,
+    // so navigating between surfaces is consistent.
+    try { window.localStorage.setItem("bio304-video-" + CURRENT_TOPIC, "true"); } catch(e) {}
     announce("Video marked watched. Now write your explanation.");
     renderTopic(CURRENT_TOPIC);
     $("#gate-input").focus();

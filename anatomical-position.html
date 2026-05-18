@@ -1,0 +1,1051 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Anatomical Position, Planes &amp; Directional Terms · BIO 304 · One-Pager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ------------------------------------------------------------------
+     PRIMARY palette (teaching stack)
+     ------------------------------------------------------------------ */
+  :root {
+    --navy: #1E3D4C;
+    --navy-deep: #142a36;
+    --navy-tint: #EDF1F3;
+    --gold: #B8924A;
+    --terra: #C2734D;
+    --terra-dark: #A0522D;
+    --white: #FFFFFF;
+    --offwhite: #FAFAF9;
+    --rule: rgba(30,61,76,0.18);
+    --rule-soft: rgba(30,61,76,0.10);
+    --shadow-rest: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 16px rgba(0,0,0,0.10);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--offwhite);
+    color: var(--navy);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Skip link */
+  .skip {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .skip:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    padding: 8px 12px;
+    background: var(--navy);
+    color: var(--white);
+    text-decoration: none;
+    margin: 8px;
+  }
+
+  /* ------------------------------------------------------------------
+     Sheet (the "one-pager")
+     ------------------------------------------------------------------ */
+  .sheet {
+    max-width: 8.5in;
+    margin: 28px auto;
+    background: var(--white);
+    padding: 0.55in 0.6in 0.55in 0.6in;
+    box-shadow: var(--shadow-rest);
+    border-radius: 2px;
+  }
+
+  /* Atlas-style header */
+  .eyebrow {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    margin: 0 0 6px 0;
+  }
+  h1.title {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 34px;
+    line-height: 1.1;
+    color: var(--navy);
+    margin: 0 0 4px 0;
+    letter-spacing: -0.01em;
+  }
+  .subhead {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--terra-dark);
+    margin: 0 0 10px 0;
+  }
+  .usage {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--navy);
+    opacity: 0.85;
+    margin: 0 0 18px 0;
+    max-width: 62ch;
+  }
+
+  hr.rule {
+    border: 0;
+    border-top: 1px solid var(--rule);
+    margin: 18px 0;
+  }
+
+  /* Objectives row */
+  .objectives {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 14px;
+    align-items: start;
+    margin: 0 0 18px 0;
+  }
+  .objectives .label {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    padding-top: 2px;
+  }
+  .objectives ol {
+    margin: 0;
+    padding-left: 18px;
+    columns: 1;
+  }
+  .objectives li {
+    margin: 0 0 4px 0;
+    padding-left: 4px;
+  }
+  .objectives li::marker {
+    color: var(--terra-dark);
+    font-weight: 700;
+  }
+
+  /* Two-column reference */
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 4px;
+  }
+  @media (max-width: 720px) {
+    .columns { grid-template-columns: 1fr; }
+  }
+
+  .col h2 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin: 0 0 8px 0;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--navy);
+  }
+  .col h3 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--terra-dark);
+    margin: 14px 0 6px 0;
+    letter-spacing: 0.02em;
+  }
+
+  /* Term rows */
+  .terms { list-style: none; margin: 0; padding: 0; }
+  .term {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 10px;
+    padding: 6px 0 5px 0;
+    border-bottom: 1px dotted var(--rule-soft);
+    align-items: baseline;
+  }
+  .term .name {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--navy);
+  }
+  .term .loc {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--navy);
+    opacity: 0.78;
+  }
+
+  /* Interactive: a "note" input below each term, visible on screen, hidden on print */
+  .note-field {
+    grid-column: 1 / -1;
+    display: none;
+    margin-top: 4px;
+  }
+  body.interactive .note-field { display: block; }
+  body.interactive .term { padding-bottom: 8px; }
+  .note-field input {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--rule);
+    background: transparent;
+    padding: 4px 0;
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--navy);
+  }
+  .note-field input:focus {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    border-bottom-color: var(--gold);
+  }
+  .note-field label {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    display: inline-block;
+    margin-bottom: 2px;
+  }
+
+  /* Notes section at bottom */
+  .notes-block { margin-top: 22px; }
+  .notes-block .eyebrow { color: var(--terra-dark); }
+  .notes-block h2 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    margin: 0 0 10px 0;
+    color: var(--navy);
+  }
+  /* Sketch space: blank white area, no lines */
+  .sketch-space {
+    min-height: 2.2in;
+    background: var(--white);
+  }
+
+  /* Clinical tie-in callout ,  white on white with terra-cotta border, lifted */
+  .tie-in {
+    margin-top: 20px;
+    padding: 14px 18px 16px 18px;
+    background: var(--white);
+    border: 1.5px solid var(--terra-dark);
+    border-radius: 3px;
+    box-shadow: 0 6px 14px rgba(160,82,45,0.12), 0 1px 2px rgba(0,0,0,0.06);
+  }
+  .tie-in .eyebrow { color: var(--terra-dark); margin-bottom: 6px; }
+  .tie-in h3 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--navy);
+    margin: 0 0 6px 0;
+  }
+  .tie-in p {
+    margin: 0 0 8px 0;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 13.5px;
+    color: var(--navy);
+  }
+  .tie-in p:last-child { margin-bottom: 0; }
+  .tie-in strong { color: var(--terra-dark); }
+
+  /* Footer */
+  .foot {
+    margin-top: 22px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+    opacity: 0.75;
+  }
+
+  /* ------------------------------------------------------------------
+     Mode toolbar (screen-only)
+     ------------------------------------------------------------------ */
+  .toolbar {
+    max-width: 8.5in;
+    margin: 18px auto 0 auto;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 4px;
+  }
+  .toolbar .group {
+    display: inline-flex;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 3px;
+    box-shadow: var(--shadow-rest);
+  }
+  .toolbar button {
+    background: transparent;
+    border: 0;
+    padding: 6px 14px;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 200ms ease, color 200ms ease;
+  }
+  .toolbar button:hover { background: var(--navy-tint); }
+  .toolbar button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .toolbar button.active {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .toolbar .print {
+    background: var(--navy);
+    color: var(--white);
+    border: 1px solid var(--navy);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: var(--shadow-rest);
+    transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+  }
+  .toolbar .print:hover {
+    background: var(--navy-deep);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-hover);
+  }
+  .toolbar .print:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  /* Body region image plate (3-up, click to zoom) */
+  .plate {
+    margin: 14px 0 6px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+  }
+  .plate figure {
+    margin: 0;
+    padding: 4px;
+    text-align: center;
+    cursor: zoom-in;
+    transition: transform 200ms ease;
+  }
+  .plate figure:hover { transform: translateY(-2px) scale(1.01); }
+  .plate figure:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+    transform: translateY(-2px);
+  }
+  .plate img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    pointer-events: none; /* clicks bubble to figure */
+  }
+  .plate figcaption {
+    margin-top: 6px;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    font-weight: 700;
+    pointer-events: none;
+  }
+  @media (max-width: 720px) {
+    .plate { grid-template-columns: 1fr; }
+  }
+
+  /* Lightbox */
+  .lightbox[hidden] { display: none; }
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 42, 54, 0.88);
+  }
+  .lightbox-content {
+    position: relative;
+    background: var(--white);
+    padding: 16px 16px 12px 16px;
+    border-radius: 4px;
+    max-width: min(96vw, 1400px);
+    max-height: 96vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .lightbox-content img {
+    max-width: 100%;
+    max-height: 82vh;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+  .lightbox-caption {
+    margin: 10px 0 0 0;
+    text-align: center;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    font-weight: 700;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    border: 2px solid var(--white);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .lightbox-close:hover { background: var(--navy-deep); }
+  .lightbox-close:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+  /* ------------------------------------------------------------------
+     MODE: Notes (default) / Study / Quiz me
+     ------------------------------------------------------------------ */
+  .term .reveal-btn,
+  .term .term-input { display: none; }
+  .term .note-field { display: none; }   /* old per-term note inputs are retired */
+
+  /* STUDY mode: term visible, definition hidden until click */
+  body.study .term .loc { display: none; }
+  body.study .term .reveal-btn { display: inline-block; }
+  body.study .term.revealed .loc { display: inline; }
+  body.study .term.revealed .reveal-btn { display: none; }
+
+  /* QUIZ mode: definition visible, term hidden, type the term then reveal */
+  body.quiz .term {
+    display: block;
+    padding: 8px 0 10px 0;
+  }
+  body.quiz .term .name { display: none; }
+  body.quiz .term .loc {
+    display: block;
+    font-size: 13.5px;
+    opacity: 1;
+    margin-bottom: 6px;
+    color: var(--navy);
+  }
+  body.quiz .term .term-input {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  body.quiz .term .term-input input {
+    flex: 1 1 220px;
+    min-width: 180px;
+    border: 0;
+    border-bottom: 1px solid var(--rule);
+    background: transparent;
+    padding: 4px 0;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--navy);
+  }
+  body.quiz .term .term-input input:focus {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    border-bottom-color: var(--gold);
+  }
+  body.quiz .term .term-input input.correct {
+    border-bottom-color: var(--navy);
+    color: var(--navy);
+  }
+  body.quiz .term .reveal-btn { display: inline-block; }
+  body.quiz .term.revealed .name {
+    display: inline-block;
+    background: var(--navy-tint);
+    padding: 2px 10px;
+    border-radius: 3px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-top: 4px;
+  }
+  body.quiz .term.revealed .term-input input { opacity: 0.6; }
+  body.quiz .term.revealed .reveal-btn { display: none; }
+
+  .reveal-btn {
+    background: transparent;
+    border: 1px dashed var(--terra-dark);
+    color: var(--terra-dark);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 200ms ease, color 200ms ease;
+  }
+  .reveal-btn:hover { background: var(--terra-dark); color: var(--white); }
+  .reveal-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  /* Directional Terms section ,  no card, just heading + grid */
+  .directions { margin: 18px 0 4px 0; }
+  .directions h2 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin: 0 0 8px 0;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--navy);
+  }
+  .directions .hint {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--navy);
+    margin: 6px 0 10px 0;
+  }
+  .dir-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 22px;
+  }
+  @media (max-width: 720px) { .dir-grid { grid-template-columns: 1fr; } }
+
+
+  /* Resource bar (video + pre-work) ,  screen only */
+  .resource-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 0 14px 0;
+  }
+  .resource-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid var(--navy);
+    background: var(--white);
+    color: var(--navy);
+    transition: background 200ms ease, color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+    box-shadow: var(--shadow-rest);
+  }
+  .resource-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-hover);
+  }
+  .resource-btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+  .resource-btn.primary {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .resource-btn.primary:hover { background: var(--navy-deep); }
+  .resource-btn .arrow { font-size: 16px; line-height: 1; }
+
+  .video-panel {
+    margin: 0 0 18px 0;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    background: var(--navy-tint);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: var(--shadow-rest);
+  }
+  .video-panel[hidden] { display: none; }
+  .video-panel iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  @media print {
+    .resource-bar, .video-panel { display: none !important; }
+  }
+
+  /* ------------------------------------------------------------------
+     Print styles ,  what becomes the student PDF
+     ------------------------------------------------------------------ */
+  @media print {
+    @page { size: letter; margin: 0.45in; }
+    body { background: var(--white); }
+    .toolbar, .skip { display: none !important; }
+    .sheet {
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+      max-width: none;
+    }
+    .note-field, body.study .note-field, body.quiz .note-field { display: none; }
+    .reveal-btn { display: none !important; }
+    .term-input { display: none !important; }
+    .term-input input { display: none !important; }
+
+    /* NOTES (no mode class): everything visible ,  default print */
+
+    /* STUDY print: terms visible, definitions become a write-on line */
+    body.study .term .name { display: inline !important; }
+    body.study .term .loc {
+      color: transparent !important;
+      border-bottom: 1px solid #888 !important;
+      display: inline-block !important;
+      width: 100% !important;
+      min-height: 1.1em;
+    }
+
+    /* QUIZ print: definitions visible, term names become a write-on line */
+    body.quiz .term {
+      display: grid !important;
+      grid-template-columns: 120px 1fr !important;
+      gap: 10px !important;
+      padding: 6px 0 5px 0 !important;
+      align-items: baseline !important;
+    }
+    body.quiz .term .name {
+      color: transparent !important;
+      border-bottom: 1px solid #888 !important;
+      display: inline-block !important;
+      width: 100% !important;
+      min-height: 1.1em;
+    }
+    body.quiz .term .loc {
+      display: inline !important;
+      color: var(--navy) !important;
+      opacity: 0.85 !important;
+    }
+    .sketch-space { min-height: 2in; }
+    .plate figure { border: 0; padding: 0; background: transparent; cursor: default; }
+    .plate { page-break-inside: avoid; }
+    .lightbox { display: none !important; }
+    a { color: var(--navy); text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<!-- Mode toolbar: screen only -->
+<div class="toolbar" role="toolbar" aria-label="Sheet mode">
+  <div class="group" role="group" aria-label="Mode">
+    <button type="button" id="mode-notes" class="active" aria-pressed="true">Notes</button>
+    <button type="button" id="mode-study" aria-pressed="false">Study</button>
+    <button type="button" id="mode-quiz" aria-pressed="false">Quiz me</button>
+  </div>
+  <button type="button" class="print" id="reset-btn" aria-label="Reset all answers and inputs" style="background:transparent;color:var(--navy);border:1px solid var(--navy);">Reset</button>
+  <button type="button" class="print" id="print-btn" aria-label="Print or save as PDF">Print / Save PDF</button>
+</div>
+  <button type="button" class="print" id="reset-btn" aria-label="Reset all answers and inputs" style="background:transparent;color:var(--navy);border:1px solid var(--navy);">Reset</button>
+  <button type="button" class="print" id="print-btn" aria-label="Print or save as PDF">Print / Save PDF</button>
+</div>
+
+<main class="sheet" id="main">
+  <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology · American River College</p>
+  <h1 class="title">Anatomical Position, Planes &amp; Directional Terms</h1>
+  <p class="subhead">Foundations of Anatomy &amp; Physiology · Module 1</p>
+  <p class="usage">A reference sheet to accompany the Anatomical Position video. Anatomical position is the standard body "map"; planes and directional terms are how we navigate it without ambiguity.</p>
+  <p class="mode-hint" role="note" style="font-family:'Lora',Georgia,serif;font-size:13px;color:var(--navy);background:transparent;border-left:2px solid var(--gold);padding:6px 0 6px 12px;margin:-6px 0 18px 0;max-width:62ch;">
+    <strong style="font-family:'DM Sans',system-ui,sans-serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--terra-dark);display:block;margin-bottom:2px;">How to use this sheet</strong>
+    Toggle the toolbar above. <strong>Notes</strong> prints the full reference for review. <strong>Study</strong> prints as a fill-in-the-blank worksheet ,  print it, then write each definition while you watch the video or read your book. <strong>Quiz me</strong> is on-screen typing practice; type the term, click <em>Reveal</em> to check yourself.
+  </p>
+
+  <div class="resource-bar" role="region" aria-label="Topic resources">
+    <button type="button" class="resource-btn" id="video-toggle" aria-expanded="false" aria-controls="video-panel">
+      <span class="arrow" aria-hidden="true">&#9654;</span> Watch the video
+    </button>
+    <a class="resource-btn primary" id="prework-link" href="#" target="_top" rel="noopener">
+      Go to the pre-work <span class="arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+  <div class="video-panel" id="video-panel" hidden>
+    <iframe id="video-iframe" src="about:blank" title="Topic video" loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+  </div>
+
+  <hr class="rule" />
+
+  <div class="objectives">
+    <span class="label">By the end</span>
+    <ol>
+      <li>Demonstrate anatomical position and contrast it with the prone and supine positions.</li>
+      <li>Identify the three primary body planes (sagittal, frontal, transverse) and the cut each one produces.</li>
+      <li>Apply paired directional terms (medial/lateral, proximal/distal, superficial/deep, etc.) to describe relative locations.</li>
+    </ol>
+  </div>
+
+  <!-- OpenStax A&P 2e figures, CC-BY 4.0. https://openstax.org/books/anatomy-and-physiology-2e -->
+  <div class="plate" aria-label="OpenStax figures 1.12, 1.13, and 1.14">
+    <figure>
+      <img src="https://openstax.org/apps/image-cdn/v1/f=webp/apps/archive/20260209.222123/resources/83c2b51d5892328f3e0352519cfc434c867247e8" alt="OpenStax Figure 1.12: anterior and posterior view of the body in anatomical position, with regional terms labeled across face, neck, trunk, upper limb, pelvis, and lower limb." loading="lazy" />
+      <figcaption>Fig 1.12 &middot; Anatomical position &amp; regions</figcaption>
+    </figure>
+    <figure>
+      <img src="https://openstax.org/apps/image-cdn/v1/f=webp/apps/archive/20260209.222123/resources/077db56686dd31b966e5b0f56eefbc6e2ddc7214" alt="OpenStax Figure 1.13: side view and anterior view of a female showing paired directional terms with arrows: cranial/caudal, anterior/posterior, proximal/distal, medial/lateral." loading="lazy" />
+      <figcaption>Fig 1.13 &middot; Directional terms</figcaption>
+    </figure>
+    <figure>
+      <img src="https://openstax.org/apps/image-cdn/v1/f=webp/apps/archive/20260209.222123/resources/380a8c8bbe4346e8fd87c5781e6bbc656f23a6fc" alt="OpenStax Figure 1.14: a body shown with three anatomical planes cutting through it - sagittal (right and left halves), frontal/coronal (anterior and posterior), and transverse (superior and inferior)." loading="lazy" />
+      <figcaption>Fig 1.14 &middot; Body planes</figcaption>
+    </figure>
+  </div>
+  <p style="text-align:center;margin:6px 0 0 0;font-family:'Lora',Georgia,serif;font-style:italic;font-size:12.5px;color:var(--navy);">Click any image to enlarge. Images: OpenStax <em>Anatomy &amp; Physiology 2e</em>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color:var(--terra-dark);">CC BY 4.0</a>.</p>
+
+  <hr class="rule" />
+
+  <!-- Directional Terms -->
+  <section class="directions" aria-labelledby="dir-heading">
+    <h2 id="dir-heading">Directional Terms</h2>
+    <p class="hint">The vocabulary you use to describe where a region sits relative to another. Always given from the patient's perspective in anatomical position.</p>
+    <div class="dir-grid">
+      <ul class="terms">
+        <li class="term"><span class="name">Superior</span><span class="loc">above &middot; toward the head</span><div class="note-field"><label>Your landmark</label><input type="text" aria-label="Your landmark for Superior"/></div></li>
+        <li class="term"><span class="name">Inferior</span><span class="loc">below &middot; toward the feet</span><div class="note-field"><label>Your landmark</label><input type="text" aria-label="Your landmark for Inferior"/></div></li>
+        <li class="term"><span class="name">Anterior &middot; Ventral</span><span class="loc">toward the front of the body</span><div class="note-field"><label>Your landmark</label><input type="text" aria-label="Your landmark for Anterior"/></div></li>
+        <li class="term"><span class="name">Posterior &middot; Dorsal</span><span class="loc">toward the back of the body</span><div class="note-field"><label>Your landmark</label><input type="text" aria-label="Your landmark for Posterior"/></div></li>
+        <li class="term"><span class="name">Medial</span><span class="loc">toward the midline</span><div class="note-field"><label>Your landmark</label><input type="text" aria-label="Your landmark for Medial"/></div></li>
+        <li class="term"><span class="name">Lateral</span><span class="loc">away from the midline</span><div class="note-field"><label>Your landmark</label><input type="text" aria-label="Your landmark for Lateral"/></div></li>
+        <li class="term"><span class="name">Proximal</span><span class="loc">closer to the trunk / point of attachment</span><div class="note-field"><label>Your landmark</label><input type="text" aria-label="Your landmark for Proximal"/></div></li>
+      </ul>
+      <ul class="terms">
+        <li class="term"><span class="name">Distal</span><span class="loc">farther from the trunk / point of attachment</span><div class="note-field"><label>Your landmark</label><input type="text" aria-label="Your landmark for Distal"/></div></li>
+        <li class="term"><span class="name">Superficial</span><span class="loc">closer to the body surface</span><div class="note-field"><label>Your landmark</label><input type="text" aria-label="Your landmark for Superficial"/></div></li>
+        <li class="term"><span class="name">Deep</span><span class="loc">farther from the body surface</span><div class="note-field"><label>Your landmark</label><input type="text" aria-label="Your landmark for Deep"/></div></li>
+        <li class="term"><span class="name">Cranial &middot; Cephalad</span><span class="loc">toward the head</span><div class="note-field"><label>Your landmark</label><input type="text" aria-label="Your landmark for Cranial"/></div></li>
+        <li class="term"><span class="name">Caudal</span><span class="loc">toward the tailbone / inferior</span><div class="note-field"><label>Your landmark</label><input type="text" aria-label="Your landmark for Caudal"/></div></li>
+        <li class="term"><span class="name">Ipsilateral</span><span class="loc">on the same side of the body</span><div class="note-field"><label>Your landmark</label><input type="text" aria-label="Your landmark for Ipsilateral"/></div></li>
+        <li class="term"><span class="name">Contralateral</span><span class="loc">on the opposite side of the body</span><div class="note-field"><label>Your landmark</label><input type="text" aria-label="Your landmark for Contralateral"/></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <div class="columns">
+    <!-- LEFT: Anatomical Position + Body Planes -->
+    <section class="col" aria-labelledby="position-heading">
+      <h2 id="position-heading">Anatomical Position</h2>
+
+      <ul class="terms">
+        <li class="term"><span class="name">Standing upright</span><span class="loc">feet shoulder-width apart, parallel, toes forward</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for standing upright"/></div></li>
+        <li class="term"><span class="name">Arms at sides</span><span class="loc">palms facing forward, thumbs lateral</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for arms at sides"/></div></li>
+        <li class="term"><span class="name">Head &amp; eyes forward</span><span class="loc">looking straight ahead, level</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for head and eyes forward"/></div></li>
+        <li class="term"><span class="name">Supine</span><span class="loc">lying face-up &middot; default in a hospital bed</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for supine"/></div></li>
+        <li class="term"><span class="name">Prone</span><span class="loc">lying face-down &middot; used in COVID care and some surgeries</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for prone"/></div></li>
+      </ul>
+
+      <h2 style="margin-top:20px" id="planes-heading">Body Planes</h2>
+      <ul class="terms" aria-labelledby="planes-heading">
+        <li class="term"><span class="name">Sagittal</span><span class="loc">vertical cut, divides body into right and left</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for sagittal"/></div></li>
+        <li class="term"><span class="name">Midsagittal &middot; median</span><span class="loc">sagittal cut exactly down the midline &middot; equal halves</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for midsagittal"/></div></li>
+        <li class="term"><span class="name">Parasagittal</span><span class="loc">sagittal cut off-center &middot; unequal halves</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for parasagittal"/></div></li>
+        <li class="term"><span class="name">Frontal &middot; coronal</span><span class="loc">vertical cut, divides into anterior and posterior</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for frontal"/></div></li>
+        <li class="term"><span class="name">Transverse</span><span class="loc">horizontal cut, divides into superior and inferior &middot; cross-section</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for transverse"/></div></li>
+        <li class="term"><span class="name">Oblique</span><span class="loc">any angled cut, not parallel to the other three</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for oblique"/></div></li>
+      </ul>
+    </section>
+
+    <!-- RIGHT: Directional terms applied + Clinical tie-in -->
+    <section class="col" aria-labelledby="dirapply-heading">
+      <h2 id="dirapply-heading">Directional Terms in Use</h2>
+      <p class="usage" style="margin-top:0">The relationship goes both ways: if A is superior to B, then B is inferior to A.</p>
+
+      <ul class="terms">
+        <li class="term"><span class="name">Superior &harr; Inferior</span><span class="loc">"The orbits are superior to the oris."</span><div class="note-field"><label>Your example</label><input type="text" aria-label="Your example for superior inferior"/></div></li>
+        <li class="term"><span class="name">Anterior &harr; Posterior</span><span class="loc">"The toes are anterior to the foot."</span><div class="note-field"><label>Your example</label><input type="text" aria-label="Your example for anterior posterior"/></div></li>
+        <li class="term"><span class="name">Medial &harr; Lateral</span><span class="loc">"The hallux is the medial toe; the pollex is lateral."</span><div class="note-field"><label>Your example</label><input type="text" aria-label="Your example for medial lateral"/></div></li>
+        <li class="term"><span class="name">Proximal &harr; Distal</span><span class="loc">"The brachium is proximal to the antebrachium."</span><div class="note-field"><label>Your example</label><input type="text" aria-label="Your example for proximal distal"/></div></li>
+        <li class="term"><span class="name">Superficial &harr; Deep</span><span class="loc">"The skin is superficial to the bones."</span><div class="note-field"><label>Your example</label><input type="text" aria-label="Your example for superficial deep"/></div></li>
+        <li class="term"><span class="name">Ipsilateral &harr; Contralateral</span><span class="loc">"Right-side weakness from a left-sided stroke is contralateral."</span><div class="note-field"><label>Your example</label><input type="text" aria-label="Your example for ipsilateral contralateral"/></div></li>
+      </ul>
+
+      <aside class="tie-in" role="note" aria-label="Clinical tie-in">
+        <p class="eyebrow">Clinical tie-in</p>
+        <h3>The plane is the picture</h3>
+        <p>Every CT and MRI image is a slice along a plane. A radiologist reads <strong>axial</strong> (transverse) slices to look at one level, <strong>coronal</strong> reformats to compare left and right, and <strong>sagittal</strong> views to follow a structure top-to-bottom, like the spinal cord or the aorta.</p>
+        <p>A surgical incision is a directional decision: a <strong>midline laparotomy</strong> follows the median plane; a <strong>Pfannenstiel</strong> incision runs lateral-to-lateral, just superior to the pubic symphysis.</p>
+      </aside>
+    </section>
+  </div>
+
+  <!-- Reflection / drawing-based synthesis -->
+  <section class="notes-block" aria-labelledby="notes-heading">
+    <p class="eyebrow">Given, not Googled</p>
+    <h2 id="notes-heading">Sketch &amp; synthesis</h2>
+    <p class="usage" style="margin-bottom:10px">Draw a stick figure in anatomical position. Add a sagittal, frontal, and transverse plane cutting through it. Label one directional-term pair on each limb (proximal/distal, medial/lateral, superior/inferior).</p>
+    <div class="sketch-space" aria-hidden="true"></div>
+  </section>
+
+  <div class="foot">
+    <span>Dr. Sharilyn Rennie</span>
+    <span>BIO 304 &middot; Module 1 &middot; Anatomical Position</span>
+  </div>
+</main>
+
+<!-- Lightbox dialog -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+  <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close zoomed image">&times;</button>
+    <h2 id="lightbox-title" class="skip">Zoomed image</h2>
+    <img id="lightbox-img" src="" alt="" />
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+</div>
+
+<script>
+  window.__SHEET_ID__ = 'bio304-anatomical-position';
+  // ----------------------------------------------------------------
+  // Per-sheet config ,  edit these two URLs for anatomical-position.
+  // 'video'   : YouTube/Vimeo embed URL (e.g. https://www.youtube.com/embed/XXXXX)
+  // 'prework' : URL into the spaced-repetition pre-work for this topic
+  // ----------------------------------------------------------------
+  window.SHEET_CONFIG = {
+    video:   'https://www.youtube.com/embed/REPLACE_WITH_ANATOMICAL_POSITION_VIDEO_ID',
+    prework: 'bio304-spaced-recall-prototype.html',
+  };
+
+  (function wireResources() {
+    var cfg = window.SHEET_CONFIG || {};
+    var prework = document.getElementById('prework-link');
+    if (prework && cfg.prework) prework.href = cfg.prework;
+
+    var toggle = document.getElementById('video-toggle');
+    var panel  = document.getElementById('video-panel');
+    var iframe = document.getElementById('video-iframe');
+    if (!toggle || !panel || !iframe) return;
+    toggle.addEventListener('click', function () {
+      var expanded = toggle.getAttribute('aria-expanded') === 'true';
+      if (expanded) {
+        panel.hidden = true;
+        iframe.src = 'about:blank';
+        toggle.setAttribute('aria-expanded', 'false');
+      } else {
+        iframe.src = cfg.video || 'about:blank';
+        panel.hidden = false;
+        toggle.setAttribute('aria-expanded', 'true');
+        setTimeout(function () { panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
+      }
+    });
+  })();
+
+
+  // For every .term with a .name and .loc, inject a typing input + reveal button
+  (function injectControls() {
+    document.querySelectorAll('.term').forEach(function (term) {
+      var name = term.querySelector('.name');
+      var loc  = term.querySelector('.loc');
+      if (!name || !loc) return;
+      var termText = name.textContent.trim();
+      var locText  = loc.textContent.trim();
+
+      var wrap = document.createElement('span');
+      wrap.className = 'term-input';
+      var input = document.createElement('input');
+      input.type = 'text';
+      input.setAttribute('aria-label', 'Type the term that matches: ' + locText);
+      input.placeholder = 'type the term';
+      wrap.appendChild(input);
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'reveal-btn';
+      btn.textContent = 'Reveal';
+      btn.setAttribute('aria-label', 'Reveal answer');
+      btn.addEventListener('click', function () {
+        term.classList.add('revealed');
+        if (document.body.classList.contains('quiz')) {
+          var typed = (input.value || '').trim().toLowerCase();
+          var target = termText.toLowerCase();
+          var norm = function (s) { return s.replace(/[\s\u00b7\.\/&;]+/g, ' ').replace(/\s+/g, ' ').trim(); };
+          if (typed && norm(typed) === norm(target)) input.classList.add('correct');
+        }
+      });
+
+      wrap.appendChild(btn);
+      term.appendChild(wrap);
+    });
+  })();
+
+  // Mode toggle: Notes / Study / Quiz me
+  (function () {
+    var body = document.body;
+    var btnNotes = document.getElementById('mode-notes');
+    var btnStudy = document.getElementById('mode-study');
+    var btnQuiz  = document.getElementById('mode-quiz');
+    var btnPrint = document.getElementById('print-btn');
+    var btnReset = document.getElementById('reset-btn');
+    var allButtons = [btnNotes, btnStudy, btnQuiz];
+
+    function setMode(mode) {
+      body.classList.remove('study', 'quiz');
+      if (mode === 'study') body.classList.add('study');
+      if (mode === 'quiz')  body.classList.add('quiz');
+      allButtons.forEach(function (b) {
+        var active =
+          (mode === 'notes' && b === btnNotes) ||
+          (mode === 'study' && b === btnStudy) ||
+          (mode === 'quiz'  && b === btnQuiz);
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      document.querySelectorAll('.term-input input').forEach(function (i) { i.value=''; i.classList.remove('correct'); });
+      document.querySelectorAll('.term.revealed').forEach(function (t) { t.classList.remove('revealed'); });
+    }
+    btnNotes.addEventListener('click', function () { setMode('notes'); });
+    btnStudy.addEventListener('click', function () { setMode('study'); });
+    btnQuiz .addEventListener('click', function () { setMode('quiz'); });
+    btnPrint.addEventListener('click', function () { window.print(); });
+    btnReset.addEventListener('click', function () {
+      document.querySelectorAll('.term-input input').forEach(function (i) { i.value=''; i.classList.remove('correct'); });
+      document.querySelectorAll('.term.revealed').forEach(function (t) { t.classList.remove('revealed'); });
+    });
+  })();
+
+  // Lightbox
+  (function () {
+    var lightbox = document.getElementById('lightbox');
+    if (!lightbox) return;
+    var lbImg = document.getElementById('lightbox-img');
+    var lbCap = document.getElementById('lightbox-caption');
+    var lbClose = document.getElementById('lightbox-close');
+    var lbBack = document.getElementById('lightbox-backdrop');
+    var lastFocus = null;
+    function open(src, alt, caption) {
+      lastFocus = document.activeElement;
+      lbImg.src = src; lbImg.alt = alt; lbCap.textContent = caption;
+      lightbox.hidden = false; document.body.style.overflow = 'hidden';
+      setTimeout(function () { lbClose.focus(); }, 0);
+    }
+    function close() {
+      lightbox.hidden = true; lbImg.src = ''; document.body.style.overflow = '';
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+    document.querySelectorAll('.plate figure').forEach(function (fig) {
+      fig.setAttribute('tabindex', '0'); fig.setAttribute('role', 'button');
+      var img = fig.querySelector('img'); var cap = fig.querySelector('figcaption');
+      var capText = cap ? cap.textContent.trim() : '';
+      fig.setAttribute('aria-label', 'Enlarge: ' + capText);
+      fig.addEventListener('click', function () { open(img.src, img.alt, capText); });
+      fig.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img.src, img.alt, capText); } });
+    });
+    lbClose.addEventListener('click', close);
+    lbBack.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) { if (!lightbox.hidden && e.key === 'Escape') close(); });
+    lightbox.addEventListener('keydown', function (e) { if (e.key !== 'Tab') return; e.preventDefault(); lbClose.focus(); });
+  })();
+
+  // Iframe height-sender
+  (function () {
+    var ID = window.__SHEET_ID__ || 'bio304-sheet';
+    function sendHeight() {
+      try {
+        var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+        parent.postMessage({ id: ID, type: 'resize', height: h }, '*');
+      } catch (e) {}
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+  })();
+</script>
+
+<!-- bio304-lecture-gate-wired -->
+<script>
+// Cross-page video gate: when a student clicks 'Go to the pre-work',
+// set the localStorage flag the spaced recall app reads to unlock Step 2.
+(function () {
+    var TOPIC_ID = 't-anatomical-terminology';
+  var pre = document.getElementById('prework-link');
+  if (!pre) return;
+  pre.addEventListener('click', function () {
+    if (!TOPIC_ID) return;
+    try { window.localStorage.setItem('bio304-video-' + TOPIC_ID, 'true'); } catch (e) {}
+  });
+})();
+// Iframe height-sender for Canvas/Kajabi embeds (no-op if loaded top-level).
+(function () {
+  if (window.self === window.top) return;
+  function send() {
+    try {
+      var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+      window.parent.postMessage({ id: 'bio304-lecture-page', type: 'resize', height: h }, '*');
+    } catch (e) {}
+  }
+  window.addEventListener('load', send);
+  window.addEventListener('resize', send);
+  if ('ResizeObserver' in window) new ResizeObserver(send).observe(document.body);
+})();
+</script>
+</body>
+</html>
