@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 . AI Transparency Document</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1E3D4C;--navy-deep:#142A36;--navy-tint:#EDF1F3;--gold:#B8924A;--gold-deep:#9A7838;--terra:#C2734D;--terra-dark:#A0522D;--sage-dark:#4F6B57;--sage-deeper:#3F5B47;--white:#FFFFFF;--off-white:#FAFAF9;--gray-line:#CFD6DA;--gray-soft:#5C6970;--shadow-rest:0 1px 3px rgba(0,0,0,.08)}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.6}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+header.page-head{background:var(--white);border-bottom:1px solid var(--gray-line);padding:28px 32px 22px}
+.eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--sage-deeper);margin:0 0 6px}
+h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:clamp(24px,3.2vw,32px);color:var(--navy);margin:0 0 4px;letter-spacing:-.01em}
+.subhead{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:clamp(15px,1.6vw,18px);color:var(--sage-deeper);margin:0 0 6px}
+.usage{font-style:italic;color:var(--gray-soft);font-size:14px;margin:6px 0 0;max-width:78ch}
+main{max-width:860px;margin:0 auto;padding:24px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px;align-items:center}
+.btn{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;font-size:14px;padding:10px 18px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block;line-height:1.2}
+.btn-primary{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.btn-primary:hover{background:var(--navy-deep)}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--gray-line)}
+.btn-ghost:hover{background:var(--navy-tint);border-color:var(--navy)}
+.steps-bar{background:var(--white);border:1px solid var(--gray-line);border-left:5px solid var(--sage-dark);border-radius:8px;padding:14px 18px;margin:0 0 18px;box-shadow:var(--shadow-rest)}
+.steps-bar p{margin:0 0 6px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;color:var(--navy);font-size:14px;letter-spacing:.02em}
+.steps-bar ol{margin:0;padding-left:22px}
+.steps-bar li{margin:4px 0;font-size:14.5px}
+section.band{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:22px 26px;margin:0 0 16px;box-shadow:var(--shadow-rest)}
+section.band h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:20px;margin:0 0 8px}
+section.band h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--terra-dark);font-size:16px;margin:18px 0 6px}
+section.band p{margin:0 0 10px}
+section.band ul,section.band ol{padding-left:22px;margin:8px 0}
+section.band li{margin:6px 0;font-size:15px}
+section.band.sign{border-left:5px solid var(--sage-dark)}
+.metabar{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:0 0 14px;padding:14px;background:var(--off-white);border:1px solid var(--gray-line);border-radius:8px}
+.metabar .pair{display:flex;flex-direction:column;gap:2px}
+.metabar .lbl{font-family:'DM Sans',sans-serif;font-weight:700;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--sage-deeper)}
+.metabar .val{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:var(--navy);font-size:15px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:14px 0 6px}
+.form-grid label,.field-block label{display:flex;flex-direction:column;gap:4px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-deeper)}
+.form-grid input,.field-block input,.field-block textarea{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;color:var(--navy);padding:9px 12px;border:1px solid var(--gray-line);border-radius:6px;background:var(--white);min-height:38px;width:100%}
+.field-block textarea{font-family:'Lora',Georgia,serif;min-height:100px;resize:vertical;line-height:1.5}
+.form-grid input:focus,.field-block input:focus,.field-block textarea:focus{outline:3px solid var(--gold);outline-offset:1px;border-color:var(--navy)}
+.field-block{margin:14px 0}
+.field-block .help{font-style:italic;color:var(--gray-soft);font-size:13px;font-family:'Lora',Georgia,serif;font-weight:400;text-transform:none;letter-spacing:0;margin-top:2px}
+.signature-row{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-top:14px}
+@media (max-width: 540px){.signature-row{grid-template-columns:1fr}}
+.signature-line{font-family:'Plus Jakarta Sans',sans-serif;font-style:italic;color:var(--gray-soft);font-size:13px;margin-top:4px}
+.note{background:var(--navy-tint);border-left:4px solid var(--navy);padding:12px 16px;border-radius:6px;margin:10px 0;font-size:14.5px}
+.note strong{color:var(--navy-deep)}
+.check-row{display:flex;gap:10px;align-items:flex-start;background:var(--off-white);border:1px solid var(--gray-line);border-radius:6px;padding:12px;margin:12px 0}
+.check-row input[type=checkbox]{margin-top:4px;width:18px;height:18px;accent-color:var(--sage-dark);flex-shrink:0}
+.check-row label{font-family:'Lora',Georgia,serif;font-size:14.5px;color:var(--navy);line-height:1.5;font-weight:400;text-transform:none;letter-spacing:0}
+footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;font-size:13px}
+@media print{
+  body{background:var(--white);color:#000;font-size:11pt;line-height:1.45}
+  .no-print{display:none!important}
+  header.page-head,main,section.band,.metabar,.steps-bar{box-shadow:none;border-color:#888}
+  section.band{page-break-inside:avoid;padding:14px 16px}
+  h1,h2,h3{color:#000}
+  input,textarea{border:none;border-bottom:1px solid #555;background:transparent;color:#000;padding:2px 0;border-radius:0}
+  input:focus,textarea:focus{outline:none}
+  a{color:#000;text-decoration:underline}
+  .check-row{background:transparent;border:none;padding:4px 0}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<header class="page-head">
+  <p class="eyebrow">BIO 304 . AI TRANSPARENCY DOCUMENT</p>
+  <h1>AI Transparency Document</h1>
+  <p class="subhead">Submit one of these with every assignment where AI use was permitted and used.</p>
+  <p class="usage">If you used AI on an assignment where AI is allowed, fill out this form, print it to PDF, and upload the PDF as a second file with your assignment submission. If you did not use AI on an assignment, you do not need this document.</p>
+</header>
+<main id="main" tabindex="-1">
+
+  <div class="steps-bar no-print" aria-label="How to use this document">
+    <p>How to use this document</p>
+    <ol>
+      <li>Open this document AFTER finishing your AI-assisted assignment.</li>
+      <li>Fill in every field below.</li>
+      <li>Click <strong>Print / Save as PDF</strong> and save as <code>LastName_Assignment_AI_Transparency.pdf</code>.</li>
+      <li>Upload the transparency PDF alongside your assignment file in the Canvas assignment.</li>
+    </ol>
+  </div>
+
+  <div class="toolbar no-print">
+    <button type="button" class="btn btn-primary" onclick="window.print()" aria-label="Print or save this document as PDF">Print / Save as PDF</button>
+    <a class="btn btn-ghost" href="ai_honor_contract.html" target="_top">Back to AI Honor Contract</a>
+  </div>
+
+  <div class="metabar" aria-label="Course identification">
+    <div class="pair"><span class="lbl">Course</span><span class="val">BIO 304 . Human Anatomy and Physiology</span></div>
+    <div class="pair"><span class="lbl">Instructor</span><span class="val">Dr. Sharilyn Rennie</span></div>
+    <div class="pair"><span class="lbl">Term</span><span class="val">Summer 2026</span></div>
+  </div>
+
+  <section class="band" aria-labelledby="ident-h">
+    <h2 id="ident-h">1. Assignment and student identification</h2>
+    <div class="form-grid">
+      <label>Student name (first and last)
+        <input type="text" id="studentName" autocomplete="off" placeholder="e.g., Jordan Smith">
+      </label>
+      <label>Date submitted
+        <input type="text" id="date" autocomplete="off" placeholder="e.g., July 7, 2026">
+      </label>
+      <label>Assignment name
+        <input type="text" id="assignment" autocomplete="off" placeholder="e.g., Week 5 Synthesis Reflection">
+      </label>
+      <label>Week
+        <input type="text" id="week" autocomplete="off" placeholder="e.g., Week 5">
+      </label>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="tool-h">
+    <h2 id="tool-h">2. Which AI tool did you use?</h2>
+    <div class="form-grid">
+      <label>AI tool name and version
+        <input type="text" id="tool" autocomplete="off" placeholder="e.g., ChatGPT (GPT-4o), Claude Sonnet, Gemini, Perplexity">
+      </label>
+      <label>Link to the AI conversation (share link)
+        <input type="url" id="link" autocomplete="off" placeholder="https://chatgpt.com/share/...">
+      </label>
+    </div>
+    <p class="usage">Most AI tools have a "share" or "copy link" button on each chat. Paste the share URL above so I can read the conversation. Make sure the link is set to "anyone with the link can view."</p>
+  </section>
+
+  <section class="band" aria-labelledby="parts-h">
+    <h2 id="parts-h">3. Which parts of the assignment did AI influence?</h2>
+    <div class="field-block">
+      <label>In plain language, describe where AI helped:
+        <textarea id="parts" placeholder="e.g., I asked AI to help me brainstorm three possible angles for the reflection. I used its summary of cardiovascular feedback loops as a starting point, then rewrote it in my own words after checking OpenStax 19.5."></textarea>
+        <span class="help">Be specific. "AI helped with everything" is not specific enough.</span>
+      </label>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="reflect-h">
+    <h2 id="reflect-h">4. Reflection: how did AI help, and where did your own critical thinking take over?</h2>
+    <div class="field-block">
+      <label>2 to 3 sentences in your own words:
+        <textarea id="reflection" placeholder="e.g., AI helped me see that I was missing the link between afterload and stroke volume. I had to look up the actual numbers in OpenStax to verify, and I rewrote the explanation because the AI version used the wrong term for one vessel."></textarea>
+        <span class="help">Where did AI get something wrong, oversimplify, or miss the point? Where did you have to push beyond it?</span>
+      </label>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="verify-h">
+    <h2 id="verify-h">5. Accuracy verification</h2>
+    <p>Every physiological claim from AI must be verified against the OpenStax textbook or another reliable source before it lands in your assignment.</p>
+    <div class="check-row">
+      <input type="checkbox" id="verifiedTextbook" aria-describedby="vt-desc">
+      <label for="verifiedTextbook"><span id="vt-desc">I verified the physiological information from AI against the OpenStax A&amp;P 2e textbook (or another reliable source) before using it.</span></label>
+    </div>
+    <div class="check-row">
+      <input type="checkbox" id="verifiedNoCopy" aria-describedby="vn-desc">
+      <label for="verifiedNoCopy"><span id="vn-desc">No AI-generated text was copied verbatim into my final submission. Anything influenced by AI has been rewritten in my own words.</span></label>
+    </div>
+    <div class="check-row">
+      <input type="checkbox" id="verifiedCited" aria-describedby="vc-desc">
+      <label for="verifiedCited"><span id="vc-desc">I cited AI assistance where appropriate inside the assignment itself, not only on this form.</span></label>
+    </div>
+  </section>
+
+  <section class="band sign" aria-labelledby="sig-h">
+    <h2 id="sig-h">6. Signature</h2>
+    <p>By signing below, I confirm that the information above is accurate and that this assignment reflects my own critical thinking, not AI-generated work passed off as my own.</p>
+    <div class="signature-row">
+      <label>Typed signature
+        <input type="text" id="signature" autocomplete="off" placeholder="Type your full name as your signature">
+        <span class="signature-line">By typing your name above, you are signing this document electronically.</span>
+      </label>
+      <label>Signature date
+        <input type="text" id="sigDate" autocomplete="off" placeholder="e.g., July 7, 2026">
+      </label>
+    </div>
+    <div class="toolbar no-print" style="margin-top:18px">
+      <button type="button" class="btn btn-primary" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+  </section>
+
+  <div class="note no-print">
+    <strong>One more reminder.</strong> This transparency document is required only when AI use was permitted on an assignment AND you used AI. It is NOT required for lab workbooks, discussion posts, or proctored quizzes, because AI is not permitted on those.
+  </div>
+
+</main>
+<footer><p>Dr. Sharilyn Rennie . BIO 304 . American River College . Summer 2026</p></footer>
+<script>
+(function(){
+  if(window.self!==window.top){
+    function sendHeight(){
+      var h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight);
+      try{window.parent.postMessage({type:'iframe-height',id:'bio304-ai-transparency',height:h},'*');}catch(e){}
+    }
+    window.addEventListener('load',sendHeight);
+    window.addEventListener('resize',sendHeight);
+    if(window.ResizeObserver){new ResizeObserver(sendHeight).observe(document.body);}else{setInterval(sendHeight,800);}
+  }
+  // Preserve input values for print preview
+  ['studentName','date','assignment','week','tool','link','signature','sigDate'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(!el) return;
+    el.addEventListener('input', function(){ el.setAttribute('value', el.value); });
+  });
+  ['parts','reflection'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) el.addEventListener('input', function(){ el.textContent = el.value; });
+  });
+})();
+</script>
+</body>
+</html>

@@ -4,11 +4,12 @@ Base URL for all iframes: **`https://drsrennie-stack.github.io/nonmajors/`**
 
 ## The lean approach
 
-Module 0 has **3 native Canvas items**. Both the syllabus and the welcome discussion are iframed from branded HTML pages in the GitHub Pages repo, so they render in your course palette instead of plain Canvas styling.
+Module 0 has **4 native Canvas items**. The syllabus, welcome discussion, and AI Honor Contract are all iframed from branded HTML pages in the GitHub Pages repo, so they render in your course palette instead of plain Canvas styling.
 
 1. **Course Syllabus & Welcome** — Canvas Page that iframes `biol304_syllabus.html`
 2. **Welcome Discussion** — Canvas Discussion topic that iframes `welcome_discussion.html` in the prompt body
-3. **Start-Here Acknowledgment Quiz** — Canvas Quiz with 8 high-yield questions
+3. **Start-Here Syllabus Quiz** — Canvas Quiz with 8 high-yield questions
+4. **AI Honor Contract** — Canvas Assignment where students upload a signed PDF, generated from the branded `ai_honor_contract.html` form
 
 ## How to use this file
 
@@ -143,6 +144,31 @@ Feedback (correct): "The forum is the preferred channel for anything non-confide
 
 ---
 
+## 4. AI Honor Contract (Canvas Assignment)
+
+Students open the branded contract page, type their name, date, statement, and signature, print to PDF, and upload the PDF here.
+
+**Assignment settings:**
+- Title: `AI Honor Contract`
+- Submission type: Online → File upload (PDF)
+- Allowed file extensions: pdf
+- Allowed attempts: unlimited (until due)
+- Due: Tue Jun 9, 11:59 PM (end of Week 1 day 2)
+- Points: 5 (complete or incomplete, all-or-nothing)
+- Module Requirement: must submit before Module 1 unlocks
+
+**Paste this into the assignment body** (Canvas Assignment HTML editor):
+
+```html
+<p>Read the AI Use Policy below, fill in your name, date, statement, and typed signature directly in the embedded form, click <strong>Print / Save as PDF</strong>, save the file as <code>LastName_AI_Honor_Contract.pdf</code>, and upload it here.</p>
+<p><a href="https://drsrennie-stack.github.io/nonmajors/ai_honor_contract.html" target="_blank" rel="noopener"><strong>Open the AI Honor Contract in a new window &#8599;</strong></a></p>
+<p><iframe src="https://drsrennie-stack.github.io/nonmajors/ai_honor_contract.html" width="100%" height="3400" style="border:1px solid #cfd6da;border-radius:8px;" loading="lazy" title="AI Honor Contract"></iframe></p>
+<h3>If you ever need to submit an AI Transparency Document later</h3>
+<p>When an assignment in this course permits AI use AND you use AI, you must submit a completed AI Transparency Document alongside your assignment file. The form lives at <a href="https://drsrennie-stack.github.io/nonmajors/ai_transparency_document.html" target="_blank" rel="noopener"><strong>ai_transparency_document.html &#8599;</strong></a>. Bookmark it. You will not need it for lab workbooks, discussions, or quizzes (AI is not permitted on those).</p>
+```
+
+---
+
 ## What got dropped (and where it lives now)
 
 Everything that used to be a separate Module 0 Canvas Page is now an anchor inside `biol304_syllabus.html`:
@@ -171,5 +197,6 @@ Students hit one Canvas Page, then use the syllabus's sticky TOC to navigate.
 1. Create the **Course Syllabus & Welcome** Page and paste the snippet from section 1.
 2. Create the **Welcome Discussion** topic and paste the snippet from section 2.
 3. Create the **Start-Here Syllabus Quiz** and build the 8 questions from section 3.
-4. In Module 0 settings, set the requirements: students must mark items 1 and 2 as viewed/contributed and score 100% on the syllabus quiz before Module 1 unlocks.
-5. Publish Module 0.
+4. Create the **AI Honor Contract** Assignment and paste the snippet from section 4.
+5. In Module 0 settings, set requirements: students must mark item 1 viewed, contribute to item 2, score 100% on item 3, and submit item 4 before Module 1 unlocks.
+6. Publish Module 0.

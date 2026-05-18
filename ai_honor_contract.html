@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 . AI Use and Academic Integrity Contract</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1E3D4C;--navy-deep:#142A36;--navy-tint:#EDF1F3;--gold:#B8924A;--gold-deep:#9A7838;--terra:#C2734D;--terra-dark:#A0522D;--sage-dark:#4F6B57;--sage-deeper:#3F5B47;--white:#FFFFFF;--off-white:#FAFAF9;--gray-line:#CFD6DA;--gray-soft:#5C6970;--shadow-rest:0 1px 3px rgba(0,0,0,.08)}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.6}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+header.page-head{background:var(--white);border-bottom:1px solid var(--gray-line);padding:28px 32px 22px}
+.eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 6px}
+h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:clamp(24px,3.2vw,32px);color:var(--navy);margin:0 0 4px;letter-spacing:-.01em}
+.subhead{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:clamp(15px,1.6vw,18px);color:var(--terra-dark);margin:0 0 6px}
+.usage{font-style:italic;color:var(--gray-soft);font-size:14px;margin:6px 0 0;max-width:78ch}
+main{max-width:860px;margin:0 auto;padding:24px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px;align-items:center}
+.btn{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;font-size:14px;padding:10px 18px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block;line-height:1.2}
+.btn-primary{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.btn-primary:hover{background:var(--navy-deep)}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--gray-line)}
+.btn-ghost:hover{background:var(--navy-tint);border-color:var(--navy)}
+.steps-bar{background:var(--white);border:1px solid var(--gray-line);border-left:5px solid var(--terra-dark);border-radius:8px;padding:14px 18px;margin:0 0 18px;box-shadow:var(--shadow-rest)}
+.steps-bar p{margin:0 0 6px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;color:var(--navy);font-size:14px;letter-spacing:.02em}
+.steps-bar ol{margin:0;padding-left:22px}
+.steps-bar li{margin:4px 0;font-size:14.5px}
+section.band{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:22px 26px;margin:0 0 16px;box-shadow:var(--shadow-rest)}
+section.band h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:20px;margin:0 0 8px}
+section.band h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--terra-dark);font-size:16px;margin:18px 0 6px}
+section.band p{margin:0 0 10px}
+section.band ul,section.band ol{padding-left:22px;margin:8px 0}
+section.band li{margin:6px 0;font-size:15px}
+section.band.transparency{border-left:5px solid var(--sage-dark);background:#F4F7F4}
+section.band.transparency h2{color:var(--sage-deeper)}
+section.band.agreement{border-left:5px solid var(--terra-dark)}
+.metabar{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:0 0 14px;padding:14px;background:var(--off-white);border:1px solid var(--gray-line);border-radius:8px}
+.metabar .pair{display:flex;flex-direction:column;gap:2px}
+.metabar .lbl{font-family:'DM Sans',sans-serif;font-weight:700;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark)}
+.metabar .val{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:var(--navy);font-size:15px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:14px 0 6px}
+.form-grid label{display:flex;flex-direction:column;gap:4px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark)}
+.form-grid input,.form-grid textarea{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;color:var(--navy);padding:9px 12px;border:1px solid var(--gray-line);border-radius:6px;background:var(--white);min-height:38px}
+.form-grid input:focus,.form-grid textarea:focus{outline:3px solid var(--gold);outline-offset:1px;border-color:var(--navy)}
+textarea{width:100%;resize:vertical;min-height:120px;font-family:'Lora',Georgia,serif;font-size:15px;color:var(--navy);padding:10px 12px;border:1px solid var(--gray-line);border-radius:6px;background:var(--white)}
+textarea:focus{outline:3px solid var(--gold);outline-offset:1px;border-color:var(--navy)}
+label.full{grid-column:1/-1}
+.signature-row{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-top:14px}
+@media (max-width: 540px){.signature-row{grid-template-columns:1fr}}
+.signature-line{font-family:'Plus Jakarta Sans',sans-serif;font-style:italic;color:var(--gray-soft);font-size:13px;margin-top:4px}
+.note{background:var(--navy-tint);border-left:4px solid var(--navy);padding:12px 16px;border-radius:6px;margin:10px 0;font-size:14.5px}
+.note strong{color:var(--navy-deep)}
+footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;font-size:13px}
+@media print{
+  body{background:var(--white);color:#000;font-size:11pt;line-height:1.45}
+  .no-print{display:none!important}
+  header.page-head,main,section.band,.metabar,.steps-bar{box-shadow:none;border-color:#888}
+  section.band{page-break-inside:avoid;padding:14px 16px}
+  h1,h2,h3{color:#000}
+  .form-grid input,textarea,.signature-row input{border:none;border-bottom:1px solid #555;background:transparent;color:#000;padding:2px 0;border-radius:0}
+  .form-grid input:focus,textarea:focus{outline:none}
+  .signature-line{color:#555}
+  .steps-bar,section.band.transparency.no-print{display:none}
+  a{color:#000;text-decoration:underline}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<header class="page-head">
+  <p class="eyebrow">BIO 304 . MODULE 0 . AI HONOR CONTRACT</p>
+  <h1>AI Use and Academic Integrity Contract</h1>
+  <p class="subhead">For Online Anatomy and Physiology Coursework</p>
+  <p class="usage">Sign before Tuesday of Week 1. Fill in your name and statement below, print to PDF, then upload your signed PDF to the AI Honor Contract assignment in Canvas.</p>
+</header>
+<main id="main" tabindex="-1">
+
+  <div class="steps-bar no-print" aria-label="How to complete this contract">
+    <p>How to complete this contract</p>
+    <ol>
+      <li>Read the entire contract below.</li>
+      <li>Fill in your name, date, statement, and typed signature in the form at the bottom.</li>
+      <li>Click <strong>Print / Save as PDF</strong> and save the file as <code>LastName_AI_Honor_Contract.pdf</code>.</li>
+      <li>Upload the PDF to the <strong>AI Honor Contract</strong> assignment in Canvas Module 0.</li>
+    </ol>
+  </div>
+
+  <div class="toolbar no-print">
+    <button type="button" class="btn btn-primary" onclick="window.print()" aria-label="Print or save this contract as PDF">Print / Save as PDF</button>
+    <a class="btn btn-ghost" href="ai_transparency_document.html" target="_top">Open the AI Transparency Document &rarr;</a>
+  </div>
+
+  <div class="metabar" aria-label="Course identification">
+    <div class="pair"><span class="lbl">Course</span><span class="val">BIO 304 . Human Anatomy and Physiology</span></div>
+    <div class="pair"><span class="lbl">Instructor</span><span class="val">Dr. Sharilyn Rennie</span></div>
+    <div class="pair"><span class="lbl">Term</span><span class="val">Summer 2026 . 8-week intensive</span></div>
+  </div>
+
+  <section class="band" aria-labelledby="purpose-h">
+    <h2 id="purpose-h">Purpose</h2>
+    <p>As AI tools become increasingly integrated into education, they provide valuable assistance in brainstorming, refining ideas, and improving clarity in academic work. However, AI should enhance <strong>critical thinking, comprehension, and engagement</strong>, not replace them.</p>
+    <p>This contract outlines the acceptable use of AI in this online course and the expectations for submitting AI-assisted work with integrity. Failure to adhere to these guidelines may result in <strong>point deductions, mandatory rewrites, or other academic consequences</strong> at the instructor's discretion.</p>
+  </section>
+
+  <section class="band" aria-labelledby="acceptable-h">
+    <h2 id="acceptable-h">Acceptable use of AI in this course</h2>
+    <h3>AI tools may be used for:</h3>
+    <ul>
+      <li>Generating ideas and refining arguments <strong>as a starting point</strong>, not a final submission.</li>
+      <li>Clarifying complex physiological concepts through <strong>discussion and explanation</strong>, not copying.</li>
+      <li>Checking for <strong>grammar, spelling, and clarity</strong> in writing.</li>
+      <li>Providing <strong>alternative perspectives</strong> to challenge and enhance your understanding.</li>
+    </ul>
+    <h3>AI tools may NOT be used for:</h3>
+    <ul>
+      <li>Submitting AI-generated responses as your <strong>own original work</strong>.</li>
+      <li>Copying AI-generated answers without <strong>critical analysis</strong>.</li>
+      <li>Using AI to bypass required readings, discussions, or problem-solving.</li>
+      <li>Relying on AI for case study diagnoses, physiological processes, or critical thinking tasks <strong>without verifying accuracy</strong>.</li>
+      <li>Generating workbook labels, drawings, or synthesis answers. Lab workbooks must be hand-labeled.</li>
+      <li>Writing discussion posts or replies in your name.</li>
+      <li>Completing Honorlock-proctored quizzes. AI use during a proctored quiz is automatically a violation.</li>
+    </ul>
+  </section>
+
+  <section class="band" aria-labelledby="expect-h">
+    <h2 id="expect-h">Expectations for AI-generated content submission</h2>
+    <p>To ensure academic integrity, students who use AI in any part of an assignment <strong>where AI use is permitted</strong> must:</p>
+    <ol>
+      <li><strong>Provide full transparency.</strong> Submit a completed AI Transparency Document alongside the assignment. The document lives at <a href="ai_transparency_document.html" target="_top">ai_transparency_document.html</a> and is also linked from the syllabus resources.</li>
+      <li><strong>Use Google Docs or another tool with revision history enabled.</strong> All written assignments where AI is permitted must be submitted with revision history available so I can see how AI-assisted content was refined and how much effort you put into your own learning. Submitting a static final version without revision history may result in point deductions or a requirement to rewrite.</li>
+      <li><strong>Demonstrate critical thinking.</strong> AI responses frequently contain errors, oversimplifications, or outdated information. If you blindly repeat AI-generated mistakes, it suggests a lack of understanding and will be penalized. Any physiological concepts derived from AI must be critically analyzed and verified before inclusion.</li>
+      <li><strong>Cite AI assistance properly.</strong> If AI helped generate specific ideas, acknowledge it (for example: "ChatGPT assisted in brainstorming this explanation, but final analysis and synthesis were my own"). Do not pass AI-generated content off as solely your own work.</li>
+    </ol>
+  </section>
+
+  <section class="band transparency" aria-labelledby="trans-h">
+    <h2 id="trans-h">The AI Transparency Document (review these instructions any time)</h2>
+    <p>When an assignment in this course explicitly permits AI use, you must submit a separate <strong>AI Transparency Document</strong> with your work. The document is a short fillable HTML form you complete, print to PDF, and upload alongside your assignment.</p>
+    <h3>What the AI Transparency Document captures</h3>
+    <ul>
+      <li><strong>Which AI tool you used</strong> (ChatGPT, Claude, Gemini, Perplexity, or other).</li>
+      <li><strong>A link to the AI conversation</strong> (use the share-link feature in your AI tool).</li>
+      <li><strong>Which parts of the assignment AI influenced</strong>, in plain language.</li>
+      <li><strong>A 2 to 3 sentence reflection</strong> on how AI helped you refine your work and where you applied critical thinking beyond AI's suggestions.</li>
+      <li><strong>A statement that you verified accuracy</strong> of any physiological information from AI against the OpenStax textbook or another reliable source.</li>
+      <li><strong>Your typed signature and the date.</strong></li>
+    </ul>
+    <p>Open the fillable transparency document here: <a href="ai_transparency_document.html" target="_top">ai_transparency_document.html</a>. Fill it in, print to PDF, and upload it as a second file when you submit the AI-permitted assignment.</p>
+    <div class="note"><strong>Default rule:</strong> If an assignment does not say AI is permitted, AI is not permitted. Lab workbooks, discussion posts, and proctored quizzes never permit AI.</div>
+  </section>
+
+  <section class="band" aria-labelledby="consequences-h">
+    <h2 id="consequences-h">Consequences for misuse</h2>
+    <p>Violations of this policy are subject to instructor discretion and may include:</p>
+    <ul>
+      <li><strong>Point deductions</strong> for failing to properly analyze, critique, or refine AI-generated responses.</li>
+      <li><strong>Required rewrites</strong> if AI-generated errors are repeated without critical evaluation.</li>
+      <li><strong>Zero credit</strong> for work that appears to be entirely AI-generated without student effort.</li>
+      <li><strong>Further academic penalties</strong> if violations persist (referral to ARC academic standards process).</li>
+    </ul>
+    <h3>Revision penalties</h3>
+    <ul>
+      <li>If a student is required to revise and resubmit an assignment due to AI misuse, the <strong>first revision is penalized 10%</strong>.</li>
+      <li>For each additional revision beyond the first, a <strong>25% reduction</strong> of points is applied after the rubric grade.</li>
+      <li>If revisions are required multiple times because of continued failure to critically analyze AI-generated content, the assignment may be graded as incomplete or receive a failing grade.</li>
+    </ul>
+  </section>
+
+  <section class="band agreement" aria-labelledby="ack-h">
+    <h2 id="ack-h">Acknowledgment and agreement</h2>
+    <p>By signing below, I acknowledge that I have read and understand the AI Use Policy for BIO 304. I agree to abide by the guidelines and understand the consequences of misusing AI.</p>
+
+    <div class="form-grid">
+      <label>Student name (first and last)
+        <input type="text" id="studentName" autocomplete="off" placeholder="e.g., Jordan Smith" aria-required="true">
+      </label>
+      <label>Date
+        <input type="text" id="date" autocomplete="off" placeholder="e.g., June 9, 2026" aria-required="true">
+      </label>
+    </div>
+
+    <label class="full" style="display:block;font-family:'DM Sans',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);margin:12px 0 4px">
+      Your statement (2 to 3 sentences in your own words)
+    </label>
+    <textarea id="statement" placeholder="In your own words: what AI use will look like for you in this course, and what you commit to doing to maintain your own critical thinking. 2 to 3 sentences."></textarea>
+
+    <div class="signature-row">
+      <label style="display:flex;flex-direction:column;gap:4px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark)">
+        Typed signature
+        <input type="text" id="signature" autocomplete="off" placeholder="Type your full name here as your signature">
+        <span class="signature-line">By typing your name above, you are signing this contract electronically.</span>
+      </label>
+    </div>
+
+    <div class="toolbar no-print" style="margin-top:18px">
+      <button type="button" class="btn btn-primary" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+  </section>
+
+</main>
+<footer><p>Dr. Sharilyn Rennie . BIO 304 . American River College . Summer 2026</p></footer>
+<script>
+(function(){
+  // Iframe height sender for Canvas embed
+  if(window.self!==window.top){
+    function sendHeight(){
+      var h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight);
+      try{window.parent.postMessage({type:'iframe-height',id:'bio304-ai-honor',height:h},'*');}catch(e){}
+    }
+    window.addEventListener('load',sendHeight);
+    window.addEventListener('resize',sendHeight);
+    if(window.ResizeObserver){new ResizeObserver(sendHeight).observe(document.body);}else{setInterval(sendHeight,800);}
+  }
+  // Keep input values visible after print preview (browsers preserve input values when printing,
+  // but we set the value attribute on input so print-output matches what's typed).
+  ['studentName','date','signature'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(!el) return;
+    el.addEventListener('input', function(){ el.setAttribute('value', el.value); });
+  });
+  var t=document.getElementById('statement');
+  if(t){ t.addEventListener('input', function(){ t.textContent = t.value; }); }
+})();
+</script>
+</body>
+</html>
