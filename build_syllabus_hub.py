@@ -533,8 +533,17 @@ def render_schedule(course):
             for t in topics:
                 slug = t["id"]
                 title = t["title"]
+                # Pre-work routes to the lecture page (with the video) when one
+                # exists, so students see the video before they hit the cards.
+                # Falls back to the spaced recall app with a #topic= deep link
+                # for topics that don't have a lecture page wired yet.
+                lecture_url = t.get("lecturePageUrl")
+                if lecture_url:
+                    prework_href = lecture_url
+                else:
+                    prework_href = f"bio304-spaced-recall-prototype.html#topic={t['id']}"
                 out.append(f'        <p class="topic">{title}</p>')
-                out.append(f'        <a class="day-pill pill-prework" href="bio304-spaced-recall-prototype.html" target="_top">Pre-work <span class="arrow">&rarr;</span></a>')
+                out.append(f'        <a class="day-pill pill-prework" href="{prework_href}" target="_top">Pre-work <span class="arrow">&rarr;</span></a>')
                 out.append(f'        <a class="day-pill pill-lab" href="workbook_day{day:02d}_{slug}.html" target="_top">Lab workbook <span class="arrow">&rarr;</span></a>')
             out.append(f'      </div>')
 
