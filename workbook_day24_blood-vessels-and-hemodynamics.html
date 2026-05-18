@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#1E3D4C;--navy-deep:#142A36;--navy-tint:#EDF1F3;--gold:#B8924A;--gold-deep:#9A7838;--terra:#C2734D;--terra-dark:#A0522D;--white:#FFFFFF;--off-white:#FAFAF9;--gray-line:#CFD6DA;--gray-soft:#5C6970}
+:root{--navy:#1E3D4C;--navy-deep:#142A36;--navy-tint:#EDF1F3;--gold:#B8924A;--gold-deep:#9A7838;--terra:#C2734D;--terra-dark:#A0522D;--sage-dark:#4F6B57;--sage-deeper:#3F5B47;--white:#FFFFFF;--off-white:#FAFAF9;--gray-line:#CFD6DA;--gray-soft:#5C6970}
 *{box-sizing:border-box}
 body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.55}
 .skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600;border-radius:0 0 6px 0}
@@ -22,8 +22,19 @@ h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-siz
 .usage{font-style:italic;color:var(--gray-soft);font-size:14px;margin:6px 0 0}
 main{max-width:880px;margin:0 auto;padding:24px}
 .card{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:22px 24px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:18px}
-h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--terra-dark);font-size:20px;margin:0 0 10px}
+.section-band{margin:24px 0 8px;padding:14px 18px;border-radius:8px}
+.section-band.anatomy{background:#FAF1EC;border-left:6px solid var(--terra-dark)}
+.section-band.physiology{background:#EEF1EE;border-left:6px solid var(--sage-dark)}
+.section-band p.tag{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 4px;color:var(--terra-dark)}
+.section-band.physiology p.tag{color:var(--sage-deeper)}
+.section-band h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;color:var(--navy);font-size:22px;margin:0;letter-spacing:-.01em}
+h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--terra-dark);font-size:18px;margin:0 0 10px}
 .image-placeholder{background:var(--navy-tint);border:2px dashed var(--navy);border-radius:8px;padding:60px 24px;text-align:center;color:var(--navy);font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;min-height:240px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
+.placeholder-block{background:#F1F4F1;border:2px dashed var(--sage-deeper);border-radius:8px;padding:24px;color:var(--navy);font-family:'Plus Jakarta Sans',sans-serif}
+.placeholder-block strong{font-weight:700;color:var(--sage-deeper);display:block;margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase;font-size:12px}
+.placeholder-block p{margin:6px 0;font-family:'Lora',Georgia,serif;color:var(--navy);font-size:15px}
+.placeholder-block ol{margin:8px 0;padding-left:22px}
+.placeholder-block li{font-family:'Lora',Georgia,serif;color:var(--navy);margin:8px 0}
 .image-placeholder small{display:block;font-weight:400;color:var(--gray-soft);font-style:italic;max-width:60ch}
 ol.structure-list{font-family:'Lora',Georgia,serif;font-size:15px;line-height:1.9;padding-left:24px}
 ol.structure-list li{padding:4px 0;border-bottom:1px dotted var(--gray-line)}
@@ -59,8 +70,13 @@ footer{text-align:center;color:var(--gray-soft);padding:20px;font-style:italic;f
     <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
 
+  <div class="section-band anatomy">
+    <p class="tag">Part 1 of 2</p>
+    <h2>Anatomy Lab</h2>
+  </div>
+
   <article class="card">
-    <h2>1. Unlabeled diagram</h2>
+    <h2>1A. Unlabeled diagram</h2>
     <div class="image-placeholder" role="img" aria-label="Unlabeled diagram placeholder">
       <span>Insert unlabeled image here</span>
       <small>Cross-sections of artery, capillary, and vein with wall layers, unlabeled.</small>
@@ -69,7 +85,7 @@ footer{text-align:center;color:var(--gray-soft);padding:20px;font-style:italic;f
   </article>
 
   <article class="card">
-    <h2>2. Structures to label (9)</h2>
+    <h2>1B. Structures to label (9)</h2>
     <ol class="structure-list">
       <li>Artery (3 wall layers)</li>
       <li>Arteriole</li>
@@ -81,11 +97,39 @@ footer{text-align:center;color:var(--gray-soft);padding:20px;font-style:italic;f
       <li>Tunica externa</li>
       <li>Venous valve</li>
     </ol>
+    <p class="usage">Label each vessel type and its wall layers.</p>
+  </article>
+
+  <div class="section-band physiology">
+    <p class="tag">Part 2 of 2</p>
+    <h2>Physiology Lab</h2>
+  </div>
+
+  <article class="card">
+    <h2>2A. Activity (to be customized)</h2>
+    <div class="placeholder-block" role="region" aria-label="Physiology activity placeholder">
+      <strong>Activity placeholder</strong>
+      <p>This space is reserved for the topic-specific physiology activity (data interpretation, calculation, mechanism walkthrough, simulator, or clinical scenario). Dr. Rennie will fill in the specific activity for this topic.</p>
+      <p style="margin-top:10px;color:var(--gray-soft);font-style:italic">Possible formats for Blood Vessels and Hemodynamics: graph reading, value calculation, scenario reasoning, predicting an outcome from a perturbation, or comparing two conditions.</p>
+    </div>
+  </article>
+
+  <article class="card">
+    <h2>2B. Synthesis questions (to be customized)</h2>
+    <div class="placeholder-block" role="region" aria-label="Synthesis questions placeholder">
+      <strong>Question placeholder</strong>
+      <ol>
+        <li>Synthesis question 1 (links anatomy to the physiology activity above).</li>
+        <li>Synthesis question 2 (applies the concept to a clinical or everyday scenario).</li>
+        <li>Synthesis question 3 (predicts what changes if one variable is altered).</li>
+      </ol>
+      <p style="margin-top:10px;color:var(--gray-soft);font-style:italic">Dr. Rennie will replace these with topic-specific questions tied to the activity above.</p>
+    </div>
   </article>
 
   <article class="card">
     <h2>3. What to submit</h2>
-    <p>Print this workbook. Label every structure by hand. Photograph or scan your finished page and upload to Canvas before the next class. Label each vessel type and its wall layers.</p>
+    <p>Print this workbook. Complete <strong>both</strong> the Anatomy Lab (hand-labeled diagram + structure list) and the Physiology Lab (activity + synthesis questions). Photograph or scan every page and upload to Canvas before Sunday at 11:59 PM. Hand-labeled work is the integrity mechanism for this course.</p>
   </article>
 </main>
 <footer><p>Dr. Sharilyn Rennie . BIO 304 Lab Workbook . Day 24 of 32</p></footer>

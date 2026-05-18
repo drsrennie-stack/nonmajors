@@ -141,9 +141,9 @@ table.grading td.pct{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;
 .deadline-card{padding:14px 16px;border-radius:8px;color:var(--white);box-shadow:var(--shadow-rest)}
 .deadline-card .when{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 6px;opacity:.95}
 .deadline-card .what{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;font-size:15px;margin:0;line-height:1.3}
-.deadline-card.disc{background:var(--terra-dark)}
+.deadline-card.disc{background:#C9A052;color:var(--navy)}
 .deadline-card.quiz{background:var(--sage-dark)}
-.deadline-card.lab{background:#7D5F2C}
+.deadline-card.lab{background:var(--terra-dark)}
 
 /* Do / Don't grid */
 .habits{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:10px 0}
@@ -167,23 +167,25 @@ details.week-group[open]>summary::before{content:"-"}
 .week-label{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark)}
 .week-title{font-weight:700;font-size:15px;color:var(--navy);flex:1;min-width:160px}
 .week-body{padding:14px 18px 18px}
-.flow-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
-@media (max-width: 1080px){.flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width: 600px){.flow-grid{grid-template-columns:1fr}}
+.flow-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+@media (max-width: 1080px){.flow-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width: 720px){.flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width: 480px){.flow-grid{grid-template-columns:1fr}}
+.day-tile.quiz-day{background:#F1F4F1;border-style:dashed;border-color:var(--sage-deeper)}
 .day-tile{background:var(--white);border:1px solid var(--gray-line);border-radius:8px;padding:12px;box-shadow:var(--shadow-rest)}
 .day-tile.lab-day{background:#F7F5EE;border-style:dashed;border-color:var(--gold-deep)}
 .day-label{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 6px}
 .day-tile .topic{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:13.5px;margin:0 0 8px;line-height:1.35}
 
-/* Pill buttons */
-.day-tile a.day-pill,a.day-pill{display:inline-flex;align-items:center;gap:6px;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.04em;padding:8px 14px;border-radius:999px;text-decoration:none;margin:3px 4px 3px 0;transition:background 150ms ease,color 150ms ease,border-color 150ms ease;border:1px solid transparent;line-height:1.2;color:var(--white)!important}
-.day-tile a.day-pill.pill-prework,a.day-pill.pill-prework{background:var(--navy);border-color:var(--navy)}
+/* Pill buttons. Default text is white; the discussion pill overrides to navy. */
+.day-tile a.day-pill,a.day-pill{display:inline-flex;align-items:center;gap:6px;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.04em;padding:8px 14px;border-radius:999px;text-decoration:none;margin:3px 4px 3px 0;transition:background 150ms ease,color 150ms ease,border-color 150ms ease;border:1px solid transparent;line-height:1.2;color:var(--white)}
+.day-tile a.day-pill.pill-prework,a.day-pill.pill-prework{background:var(--navy);border-color:var(--navy);color:var(--white)!important}
 .day-tile a.day-pill.pill-prework:hover,.day-tile a.day-pill.pill-prework:focus-visible{background:var(--navy-deep);border-color:var(--navy-deep)}
-.day-tile a.day-pill.pill-lab,a.day-pill.pill-lab{background:#7D5F2C;border-color:#5C4720}
-.day-tile a.day-pill.pill-lab:hover,.day-tile a.day-pill.pill-lab:focus-visible{background:#5C4720;border-color:#3F3015}
-.day-tile a.day-pill.pill-discussion,a.day-pill.pill-discussion{background:var(--terra-dark);border-color:var(--terra-dark)}
-.day-tile a.day-pill.pill-discussion:hover,.day-tile a.day-pill.pill-discussion:focus-visible{background:#7E3F22;border-color:#7E3F22}
-.day-tile a.day-pill.pill-quiz,a.day-pill.pill-quiz{background:var(--sage-dark);border-color:var(--sage-deeper)}
+.day-tile a.day-pill.pill-lab,a.day-pill.pill-lab{background:var(--terra-dark);border-color:var(--terra-dark);color:var(--white)!important}
+.day-tile a.day-pill.pill-lab:hover,.day-tile a.day-pill.pill-lab:focus-visible{background:#7E3F22;border-color:#7E3F22}
+.day-tile a.day-pill.pill-discussion,a.day-pill.pill-discussion{background:#C9A052;border-color:#9A7838;color:var(--navy)!important}
+.day-tile a.day-pill.pill-discussion:hover,.day-tile a.day-pill.pill-discussion:focus-visible{background:#D9B065;border-color:#9A7838;color:var(--navy)!important}
+.day-tile a.day-pill.pill-quiz,a.day-pill.pill-quiz{background:var(--sage-dark);border-color:var(--sage-deeper);color:var(--white)!important}
 .day-tile a.day-pill.pill-quiz:hover,.day-tile a.day-pill.pill-quiz:focus-visible{background:var(--sage-deeper);border-color:#2F4537}
 .day-pill .arrow{font-size:12px;color:inherit}
 
@@ -367,7 +369,7 @@ DEADLINES = """<section class="band" id="deadlines" aria-labelledby="deadlines-h
     </div>
   </div>
   <h3>Late policy</h3>
-  <p>Late work earns zero points. No exceptions. DSPS accommodations are honored if registered before week 1 begins. If life is hitting hard, email me <strong>before</strong> a deadline. Solutions exist before the deadline. They do not exist after.</p>
+  <p>Late work earns zero points. No exceptions. If you have DSPS accommodations, you are required to present your DSPS letter to me in week 1 so I can set up the adjustments (testing-time extensions, alternate formats, anything else your letter calls for) before your first deadline arrives. If life is hitting hard, email me <strong>before</strong> a deadline. Solutions exist before the deadline. They do not exist after.</p>
   <p>In an 8-week course, falling one week behind is roughly equivalent to falling two weeks behind in a regular semester. The late policy exists to protect your pace, not to punish you.</p>
 </section>
 """
@@ -413,8 +415,8 @@ REACH = """<section class="band" id="reach" aria-labelledby="reach-h">
   <p>Course content questions, assignment clarifications, technical questions about Canvas or Honorlock, study strategies. Anything not confidential goes here. Other students benefit when your question gets answered in public. Response within 24 to 48 hours on weekdays.</p>
   <h3>2. Email or Canvas Inbox (confidential matters)</h3>
   <p>Grade questions, accommodation needs, personal circumstances, anything you would not want classmates to see. Response within 24 to 48 hours on weekdays.</p>
-  <h3>3. One-on-one Zoom (deep conversations, by appointment)</h3>
-  <p>Complex situations that need back-and-forth, study coaching, going over feedback, or getting unstuck on a difficult concept. Schedule by email. Typically within 1 to 3 days.</p>
+  <h3>3. One-on-one Zoom (live walkthroughs, by appointment)</h3>
+  <p>For times when a back-and-forth is faster than typing: walking through a tough concept together, reviewing feedback on a workbook, or working out a study plan. Schedule by email. Typically within 1 to 3 days.</p>
   <p style="margin-top:14px;font-size:14px"><a href="biol304_how_to_reach_me.html" target="_top">Full contact guide and channel examples &rarr;</a></p>
 </section>
 """
@@ -440,7 +442,7 @@ ACCESS = """<section class="band" id="access" aria-labelledby="access-h">
   <h2 id="access-h">Accessibility and Accommodations</h2>
   <p>Accessibility is non-negotiable in this course. For online students it is the difference between access and exclusion. Every page in the course is built to WCAG 2.2 AA standards as a floor, with AAA-level color contrast on most text.</p>
   <h3>If you have a DSPS accommodation</h3>
-  <p>Email me your DSPS letter before week 1 begins, or as soon as your accommodation is approved. I will set up the testing-time extensions in Honorlock and any other adjustments you need.</p>
+  <p>You are required to send me your DSPS letter in week 1. I will set up the testing-time extensions in Honorlock and any other adjustments your letter calls for before your first quiz. If your accommodation is approved partway through the term, send the letter the day it is issued.</p>
   <h3>If something on a course page is hard to use</h3>
   <p>Tell me. The pre-work hub, the lab workbooks, the discussion pages, the syllabus, all of it should work with a keyboard alone, with a screen reader, with reduced motion, and with text scaled up. If something fails any of those, that is a bug in my course, not in you.</p>
   <p style="margin-top:14px;font-size:14px"><a href="biol304_accessibility.html" target="_top">Full accessibility statement and how to request accommodations &rarr;</a></p>
@@ -521,7 +523,7 @@ def render_schedule(course):
         out.append(f'  <div class="week-body">')
         out.append(f'    <div class="flow-grid">')
 
-        # Tiles: Mon, Tue, Wed (lab block), Thu, Fri
+        # Tiles: Mon, Tue, Wed (lab block), Thu, Fri, Sun (quiz check)
         for slot_idx in range(4):
             day = first_day + slot_idx
             dow = SCHED_PATTERN[slot_idx][0]
@@ -543,6 +545,13 @@ def render_schedule(course):
                 out.append(f'        <p class="topic">No new pre-work. Catch up on lab workbooks and join this week\'s discussion thread.</p>')
                 out.append(f'        <a class="day-pill pill-discussion" href="week{week:02d}_discussion.html" target="_top">Discussion <span class="arrow">&rarr;</span></a>')
                 out.append(f'      </div>')
+
+        # Sunday tile: quiz close + final reminder
+        out.append(f'      <div class="day-tile quiz-day">')
+        out.append(f'        <p class="day-label">Sunday . Quiz closes</p>')
+        out.append(f'        <p class="topic">Final check: take the quiz, post your discussion replies, upload all four lab workbooks.</p>')
+        out.append(f'        <a class="day-pill pill-quiz" href="bio304-spaced-recall-prototype.html" target="_top">Quiz check <span class="arrow">&rarr;</span></a>')
+        out.append(f'      </div>')
 
         out.append(f'    </div>')  # flow-grid
         out.append(f'    <p style="margin-top:12px;font-size:13.5px;color:var(--gray-soft);font-style:italic;">Discussion: prompt opens Wednesday, initial post due Friday, replies due Sunday. Quiz opens Friday and closes Sunday.</p>')
