@@ -110,7 +110,7 @@ footer{{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
 <header class="page-header">
-  <p class="eyebrow">BIO 304 . {eyebrow_kind} . MEDMASTERS COLLABORATIVE</p>
+  <p class="eyebrow">BIO 304 . {eyebrow_kind} . AMERICAN RIVER COLLEGE</p>
   <h1>{h1}</h1>
   <p class="subhead">{subhead}</p>
   {intro_html}

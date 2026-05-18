@@ -115,7 +115,7 @@ def build_toc_pdf(course, module_paths, page_counts, output_path):
 
     story = []
     story.append(Spacer(1, 24))
-    story.append(Paragraph("BIO 304  .  HUMAN ANATOMY &amp; PHYSIOLOGY  .  MEDMASTERS COLLABORATIVE", S["eyebrow"]))
+    story.append(Paragraph("BIO 304  .  HUMAN ANATOMY &amp; PHYSIOLOGY  .  AMERICAN RIVER COLLEGE", S["eyebrow"]))
     story.append(Paragraph("Teaching Guide", S["title"]))
     story.append(Paragraph("All 17 modules in one printable volume", S["subtitle"]))
     story.append(HRFlowable(width="100%", thickness=1.5, color=GOLD_DEEP, spaceBefore=2, spaceAfter=16))
