@@ -45,7 +45,7 @@ TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BIO 304 . Week {week_num} Overview</title>
+<title>BIO 304 . Week {week_num} Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -95,7 +95,7 @@ footer{{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;
 <a href="#main" class="skip-link">Skip to main content</a>
 <header class="page-header">
   <p class="eyebrow">BIO 304 . WEEK {week_num} OF 8 . {week_date_range}</p>
-  <h1>Week {week_num} overview</h1>
+  <h1>Week {week_num} hub</h1>
   <p class="subhead">{week_theme}</p>
   <p class="usage">Tonight's pre-work, this week's lab workbooks, the discussion prompt, and the quiz window are all listed below.</p>
 </header>
@@ -243,7 +243,7 @@ def main():
     for wk in range(1, 9):
         days = by_week_day.get(wk, {})
         html = build_week(wk, days)
-        out = os.path.join(HERE, f"week{wk:02d}_overview.html")
+        out = os.path.join(HERE, f"week{wk:02d}_hub.html")
         with open(out, 'w', encoding='utf-8') as f:
             f.write(html)
         built += 1
