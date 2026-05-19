@@ -70,6 +70,12 @@ MAPPING = {
     "male-reproductive.html":          "t-male-reproductive",
     "female-reproductive.html":        "t-female-reproductive",
     "pregnancy-basics.html":           "t-pregnancy-development",
+    # Newly generated pages (5 previously missing):
+    "skin-layers.html":                "t-skin-layers",
+    "skin-functions.html":             "t-skin-functions",
+    "skeletal-muscle-microanatomy.html": "t-skeletal-muscle-microanatomy",
+    "vision.html":                     "t-vision",
+    "tubular-function.html":           "t-tubular-function",
 }
 
 PREWORK_URL = "bio304-spaced-recall-prototype.html"
