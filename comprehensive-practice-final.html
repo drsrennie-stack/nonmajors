@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Practice Final Exam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1E3D4C;
+  --navy-deep:#142A36;
+  --navy-tint:#EDF1F3;
+  --gold:#B8924A;
+  --gold-deep:#9A7838;
+  --terra:#C2734D;
+  --terra-dark:#A0522D;
+  --white:#FFFFFF;
+  --off-white:#FAFAF9;
+  --gray-line:#CFD6DA;
+  --gray-soft:#5C6970;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--off-white);
+  color:var(--navy);
+  font-family:'Lora', Georgia, serif;
+  font-size:17px;
+  line-height:1.6;
+}
+.skip-link{
+  position:absolute;
+  left:-9999px;
+  top:0;
+  background:var(--navy);
+  color:var(--white);
+  padding:10px 14px;
+  z-index:1000;
+  text-decoration:none;
+}
+.skip-link:focus{left:8px;top:8px}
+.wrap{max-width:880px;margin:0 auto;padding:32px 20px 80px}
+header.page-head{margin-bottom:24px}
+.eyebrow{
+  font-family:'DM Sans', system-ui, sans-serif;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--terra-dark);
+  margin:0 0 10px;
+}
+h1{
+  font-family:'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight:800;
+  color:var(--navy);
+  font-size:36px;
+  line-height:1.15;
+  margin:0 0 8px;
+}
+.subhead{
+  font-family:'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight:600;
+  color:var(--terra-dark);
+  font-size:19px;
+  margin:0 0 14px;
+}
+.usage{
+  font-family:'Lora', Georgia, serif;
+  font-style:italic;
+  color:var(--gray-soft);
+  margin:0 0 18px;
+  font-size:16px;
+}
+.score-bar{
+  background:var(--white);
+  border:1px solid var(--gray-line);
+  border-radius:8px;
+  padding:14px 18px;
+  margin:18px 0 30px;
+  box-shadow:0 1px 3px rgba(0,0,0,0.08);
+  position:sticky;
+  top:8px;
+  z-index:10;
+}
+.score-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  align-items:center;
+  justify-content:space-between;
+}
+.score-stats{
+  font-family:'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight:600;
+  color:var(--navy);
+  font-size:15px;
+}
+.score-stats span{color:var(--terra-dark)}
+.progress-track{
+  flex:1 1 200px;
+  min-width:160px;
+  height:10px;
+  background:var(--navy-tint);
+  border-radius:6px;
+  overflow:hidden;
+  border:1px solid var(--gray-line);
+}
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:var(--gold);
+  transition:width 240ms ease;
+}
+@media (prefers-reduced-motion: reduce){
+  .progress-fill,*{transition:none !important}
+}
+.q-card{
+  background:var(--white);
+  border:1px solid var(--gray-line);
+  border-radius:10px;
+  padding:22px 22px 18px;
+  margin:0 0 22px;
+  box-shadow:0 1px 3px rgba(0,0,0,0.08);
+}
+.q-meta{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
+.tag{
+  font-family:'DM Sans', system-ui, sans-serif;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:3px 9px;
+  border-radius:4px;
+  border:1px solid var(--gray-line);
+  color:var(--gray-soft);
+  background:var(--off-white);
+}
+.tag.dok{color:var(--terra-dark);border-color:var(--terra)}
+.tag.week{color:var(--navy);border-color:var(--navy)}
+.q-num{
+  font-family:'DM Sans', system-ui, sans-serif;
+  font-size:11px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--gray-soft);
+  margin-bottom:4px;
+}
+.q-text{
+  font-family:'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight:600;
+  color:var(--navy);
+  font-size:19px;
+  line-height:1.4;
+  margin:4px 0 16px;
+}
+.opts{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin:0 0 14px;
+}
+.opt-btn{
+  font-family:'Lora', Georgia, serif;
+  font-size:16px;
+  text-align:left;
+  background:var(--white);
+  color:var(--navy);
+  border:1px solid var(--gray-line);
+  border-radius:8px;
+  padding:12px 14px;
+  cursor:pointer;
+  transition:background 160ms ease, border-color 160ms ease, transform 160ms ease;
+  line-height:1.45;
+}
+.opt-btn:hover:not(:disabled){
+  border-color:var(--gold);
+  background:var(--off-white);
+}
+.opt-btn:focus-visible{
+  outline:3px solid var(--gold);
+  outline-offset:2px;
+}
+.opt-btn .lbl{
+  font-family:'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight:700;
+  color:var(--terra-dark);
+  margin-right:8px;
+}
+.opt-btn:disabled{cursor:default}
+.opt-btn.correct{
+  background:var(--navy);
+  color:var(--white);
+  border-color:var(--navy);
+}
+.opt-btn.correct .lbl{color:var(--white)}
+.opt-btn.wrong{
+  background:var(--terra);
+  color:var(--white);
+  border-color:var(--terra-dark);
+}
+.opt-btn.wrong .lbl{color:var(--white)}
+.opt-btn.dim{opacity:0.55}
+.explanation{
+  display:none;
+  background:var(--navy-tint);
+  border:1px solid var(--navy);
+  border-radius:8px;
+  padding:14px 16px;
+  margin-top:6px;
+  font-size:15.5px;
+  line-height:1.55;
+  color:var(--navy);
+}
+.explanation.show{display:block}
+.explanation .label{
+  font-family:'DM Sans', system-ui, sans-serif;
+  font-size:11px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  font-weight:500;
+  color:var(--terra-dark);
+  display:block;
+  margin-bottom:6px;
+}
+.footer-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:30px 0 14px;
+}
+.btn{
+  font-family:'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight:600;
+  font-size:15px;
+  padding:11px 18px;
+  border-radius:8px;
+  border:1px solid var(--navy);
+  background:var(--navy);
+  color:var(--white);
+  cursor:pointer;
+  transition:background 160ms ease, transform 160ms ease;
+}
+.btn:hover{background:var(--navy-deep)}
+.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btn.secondary{
+  background:var(--white);
+  color:var(--navy);
+  border-color:var(--navy);
+}
+.btn.secondary:hover{background:var(--navy-tint)}
+.byline{
+  font-family:'DM Sans', system-ui, sans-serif;
+  font-size:12px;
+  color:var(--gray-soft);
+  margin-top:18px;
+  text-align:center;
+}
+@media print{
+  .score-bar, .footer-actions, .skip-link{display:none !important}
+  .opt-btn{border:1px solid #999;background:#fff !important;color:#000 !important}
+  .opt-btn.correct{border:2px solid #000 !important; background:#eee !important; color:#000 !important}
+  .explanation{display:block !important;background:#f7f7f7;border:1px solid #999;color:#000}
+  body{background:#fff;color:#000}
+  .q-card{box-shadow:none;page-break-inside:avoid;margin-bottom:14px}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<div class="wrap">
+<header class="page-head">
+<p class="eyebrow">BIO 304 . COMPREHENSIVE PRACTICE FINAL</p>
+<h1>Practice Final Exam</h1>
+<p class="subhead">50 questions covering Weeks 1 through 8</p>
+<p class="usage">This is a self-paced practice tool. It does NOT count toward your grade. Take it anytime. Pick an answer, see the explanation, then go to the next question. You can retake it as often as you like.</p>
+</header>
+
+<section class="score-bar" aria-label="Score tracker">
+<div class="score-row">
+<div class="score-stats" aria-live="polite" id="scoreStats">
+Correct: <span id="correctCount">0</span> / 50 &nbsp;&middot;&nbsp; Answered: <span id="answeredCount">0</span> / 50
+</div>
+<div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="50" aria-valuenow="0" aria-label="Progress through exam" id="progressBar">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+</div>
+</section>
+
+<main id="main">
+<div id="questions"></div>
+
+<div class="footer-actions">
+<button type="button" class="btn" id="retakeBtn">Retake exam</button>
+<button type="button" class="btn secondary" id="printBtn">Print</button>
+</div>
+<p class="byline">Dr. Sharilyn Rennie &nbsp;&middot;&nbsp; BIO 304 Human Anatomy and Physiology</p>
+</main>
+</div>
+
+<script>
+const QUESTIONS = [
+  // ===== WEEK 1 (6) =====
+  {
+    week:1, dok:1,
+    q:"In standard anatomical position, which directional term describes the relationship of the elbow to the wrist?",
+    options:["Proximal","Distal","Superficial","Medial"],
+    correctIndex:0,
+    explanation:"The elbow is closer to the trunk than the wrist is, so it is proximal to the wrist. Distal would describe the wrist relative to the elbow, not the reverse. Superficial refers to closer to the surface, which is not about limb position. Medial means closer to the body midline, which is also unrelated to elbow versus wrist position."
+  },
+  {
+    week:1, dok:1,
+    q:"A cut that divides the body into equal left and right halves is in which plane?",
+    options:["Frontal (coronal)","Midsagittal","Transverse","Oblique"],
+    correctIndex:1,
+    explanation:"A midsagittal cut runs vertically down the midline, producing equal left and right halves. A frontal (coronal) plane separates anterior from posterior, not left from right. A transverse plane divides superior from inferior. An oblique cut is at an angle and does not produce equal halves by definition."
+  },
+  {
+    week:1, dok:2,
+    q:"Which list places the levels of organization in correct order from smallest to largest?",
+    options:["Cell, tissue, organ, organ system, organism","Tissue, cell, organ, organism, organ system","Organ, tissue, cell, organ system, organism","Cell, organ, tissue, organ system, organism"],
+    correctIndex:0,
+    explanation:"Cells combine into tissues, tissues build organs, organs form organ systems, and organ systems make up the organism. The second choice places cells after tissues, which inverts the actual hierarchy. The third choice places organs before tissues, which is also reversed. The fourth choice places organs before tissues for the same reason it fails."
+  },
+  {
+    week:1, dok:2,
+    q:"Body temperature rises during exercise, triggering sweating, which lowers temperature back to set point. This is best described as:",
+    options:["Negative feedback","Positive feedback","Feedforward control","A reflex arc only"],
+    correctIndex:0,
+    explanation:"Negative feedback opposes the change and returns a variable toward its set point, which is exactly what sweating does to elevated body temperature. Positive feedback amplifies the change rather than reversing it (think labor contractions). Feedforward control anticipates a change before it happens, not after. A reflex arc is a neural pathway, not the regulatory category being described."
+  },
+  {
+    week:1, dok:1,
+    q:"Which organelle is the primary site of ATP production through oxidative phosphorylation?",
+    options:["Rough endoplasmic reticulum","Mitochondrion","Golgi apparatus","Lysosome"],
+    correctIndex:1,
+    explanation:"Mitochondria carry out oxidative phosphorylation along the inner membrane and generate most of the cell's ATP. The rough ER synthesizes membrane and secreted proteins; it does not run the electron transport chain. The Golgi apparatus modifies and sorts proteins for delivery. Lysosomes digest cellular waste using hydrolytic enzymes, not produce ATP."
+  },
+  {
+    week:1, dok:2,
+    q:"A red blood cell placed in a hypertonic solution will:",
+    options:["Swell and possibly burst","Shrink and crenate","Stay the same size","Actively pump water in"],
+    correctIndex:1,
+    explanation:"Water moves out of the cell toward the higher solute concentration outside, causing the cell to shrink and crenate. Swelling and bursting would happen in a hypotonic solution, where water moves in. Staying the same size would happen in an isotonic solution. Cells do not actively pump water; water moves passively by osmosis, following solute gradients."
+  },
+
+  // ===== WEEK 2 (6) =====
+  {
+    week:2, dok:1,
+    q:"Which epithelium lines the alveoli of the lungs and supports rapid gas exchange?",
+    options:["Simple squamous","Stratified squamous","Simple columnar","Pseudostratified columnar"],
+    correctIndex:0,
+    explanation:"Simple squamous epithelium is a single layer of flat cells, ideal for diffusion across the alveolar wall. Stratified squamous has many layers and protects against abrasion (esophagus, skin), which would block gas exchange. Simple columnar lines the gut for absorption and secretion, not gas exchange. Pseudostratified columnar lines the upper airways and traps debris, not the alveolar surface."
+  },
+  {
+    week:2, dok:2,
+    q:"A tendon connects muscle to bone and must resist strong pulling forces in one direction. Which tissue best fits this job?",
+    options:["Dense regular connective tissue","Loose areolar connective tissue","Dense irregular connective tissue","Hyaline cartilage"],
+    correctIndex:0,
+    explanation:"Dense regular connective tissue has collagen fibers aligned in parallel, giving great tensile strength in one direction, which is exactly what a tendon needs. Loose areolar tissue is soft packing material and would not withstand the force. Dense irregular tissue has collagen in many directions and is found in the dermis, suiting it to multidirectional stress, not one-way pull. Hyaline cartilage cushions joints but does not transmit pulling force from muscle to bone."
+  },
+  {
+    week:2, dok:1,
+    q:"Which connective tissue is unique in that its matrix is liquid?",
+    options:["Blood","Bone","Cartilage","Dense irregular connective tissue"],
+    correctIndex:0,
+    explanation:"Blood is a connective tissue whose matrix is plasma, a liquid containing dissolved proteins and electrolytes. Bone has a mineralized solid matrix. Cartilage has a firm, gel-like matrix. Dense irregular connective tissue has a fibrous solid matrix, not a fluid one."
+  },
+  {
+    week:2, dok:1,
+    q:"Which layer of the epidermis contains actively dividing cells that produce the keratinocytes above?",
+    options:["Stratum corneum","Stratum basale","Stratum granulosum","Stratum lucidum"],
+    correctIndex:1,
+    explanation:"The stratum basale sits on the basement membrane and contains the mitotically active cells that generate new keratinocytes pushed upward. The stratum corneum is the outermost dead layer, not a site of cell division. The stratum granulosum is where keratinization begins but cells there are no longer dividing. The stratum lucidum is a thin clear layer in thick skin and also lacks active mitosis."
+  },
+  {
+    week:2, dok:2,
+    q:"Which skin layer contains blood vessels, hair follicles, and sweat glands?",
+    options:["Epidermis","Dermis","Hypodermis (subcutaneous tissue)","Stratum corneum"],
+    correctIndex:1,
+    explanation:"The dermis is the connective tissue layer that houses blood vessels, hair follicles, and sweat glands, along with nerves and sebaceous glands. The epidermis is avascular epithelium and contains no blood vessels. The hypodermis is mostly adipose for insulation and cushioning, deep to the dermis. The stratum corneum is one layer of the epidermis, also without vessels or glands."
+  },
+  {
+    week:2, dok:2,
+    q:"Sebaceous glands are most accurately described as:",
+    options:["Oil glands usually associated with hair follicles","Sweat glands that release a watery secretion","Modified apocrine glands found only in armpits","Endocrine glands that secrete hormones into the blood"],
+    correctIndex:0,
+    explanation:"Sebaceous glands release sebum, an oily secretion, and typically empty into hair follicles. Sweat (eccrine) glands release a watery solution and open to the skin surface, not via hair follicles. Apocrine glands are a separate type of sweat gland concentrated in axilla and groin. Sebaceous glands are exocrine, not endocrine, since they release product onto a surface through a duct, not into the bloodstream."
+  },
+
+  // ===== WEEK 3 (6) =====
+  {
+    week:3, dok:1,
+    q:"Which bone cell is responsible for resorbing bone matrix?",
+    options:["Osteoblast","Osteoclast","Osteocyte","Chondrocyte"],
+    correctIndex:1,
+    explanation:"Osteoclasts are large multinucleated cells that break down bone matrix during remodeling and calcium release. Osteoblasts build new bone matrix, doing the opposite job. Osteocytes are mature osteoblasts trapped in lacunae and primarily maintain bone, not resorb it. Chondrocytes are cartilage cells, not bone cells at all."
+  },
+  {
+    week:3, dok:1,
+    q:"The structural unit of compact bone, consisting of concentric lamellae around a central canal, is the:",
+    options:["Osteon","Trabecula","Lacuna","Canaliculus"],
+    correctIndex:0,
+    explanation:"An osteon (Haversian system) is the cylindrical unit of compact bone with lamellae arranged around a central canal that carries vessels. A trabecula is a spongy bone strut in cancellous bone, not the compact bone unit. A lacuna is the tiny cavity that houses one osteocyte, not the whole system. Canaliculi are the thin channels connecting lacunae for nutrient exchange."
+  },
+  {
+    week:3, dok:2,
+    q:"Long bones grow in length at the:",
+    options:["Epiphyseal (growth) plate","Diaphysis center","Periosteum surface","Medullary cavity"],
+    correctIndex:0,
+    explanation:"Lengthwise growth happens at the epiphyseal plate, a band of hyaline cartilage between epiphysis and diaphysis. The diaphysis center is the primary ossification site but not where ongoing lengthening occurs in a growing child. Appositional growth at the periosteum adds width, not length. The medullary cavity is the marrow space and is not involved in growth in length."
+  },
+  {
+    week:3, dok:1,
+    q:"Which rib pairs are classified as floating ribs?",
+    options:["Pairs 1 through 7","Pairs 11 and 12","Pairs 8 through 10","Pair 1 only"],
+    correctIndex:1,
+    explanation:"Rib pairs 11 and 12 are floating ribs because they have no anterior attachment to the sternum or to costal cartilages of higher ribs. Pairs 1 through 7 are true ribs, attached directly via their own costal cartilage. Pairs 8 through 10 are false ribs, attached indirectly through the cartilage of rib 7. Pair 1 is the topmost true rib, not a floater."
+  },
+  {
+    week:3, dok:1,
+    q:"Which of the following is a bone of the pectoral girdle?",
+    options:["Sacrum","Ilium","Clavicle","Femur"],
+    correctIndex:2,
+    explanation:"The pectoral girdle consists of the clavicle and scapula and connects the upper limb to the axial skeleton. The sacrum is part of the vertebral column, axial skeleton, not the pectoral girdle. The ilium is part of the pelvic (not pectoral) girdle. The femur is the thigh bone of the lower limb, not a girdle bone."
+  },
+  {
+    week:3, dok:2,
+    q:"Bending the elbow so the angle between forearm and upper arm decreases is which movement?",
+    options:["Flexion","Extension","Abduction","Pronation"],
+    correctIndex:0,
+    explanation:"Flexion decreases the angle between two bones at a joint, which is exactly what happens when you bend the elbow. Extension increases that angle, so it is the opposite. Abduction moves a limb away from the midline in the frontal plane, not at the elbow hinge. Pronation rotates the forearm so the palm faces posteriorly, a different motion at the radioulnar joints."
+  },
+
+  // ===== WEEK 4 (7) =====
+  {
+    week:4, dok:1,
+    q:"The functional contractile unit of a skeletal muscle fiber, running from Z disc to Z disc, is the:",
+    options:["Sarcomere","Myofibril","Myofilament","Sarcoplasmic reticulum"],
+    correctIndex:0,
+    explanation:"A sarcomere is the segment between two Z discs and is the functional unit that shortens during contraction. A myofibril is a long bundle of many sarcomeres in series, not a single unit. Myofilaments are the individual thick and thin protein strands within a sarcomere. The sarcoplasmic reticulum is the calcium-storing membrane network, not a contractile unit."
+  },
+  {
+    week:4, dok:2,
+    q:"During skeletal muscle contraction, which band of the sarcomere stays the same width?",
+    options:["I band","H zone","A band","Distance between Z discs"],
+    correctIndex:2,
+    explanation:"The A band corresponds to the length of the thick filaments, which do not change length, so the A band width stays constant. The I band shortens because thin filaments slide over thick filaments. The H zone narrows for the same reason, since it is the central thick-only region that becomes overlapped. The distance between Z discs (the sarcomere itself) shortens during contraction by definition."
+  },
+  {
+    week:4, dok:2,
+    q:"What does calcium bind to in order to expose myosin-binding sites on actin?",
+    options:["Troponin","Myosin head","Tropomyosin","ATP"],
+    correctIndex:0,
+    explanation:"Calcium binds to troponin, which shifts tropomyosin off the myosin-binding sites on actin. Myosin heads bind ATP and actin but do not bind regulatory calcium. Tropomyosin is the blocking strand that gets moved, not the calcium binding site. ATP fuels the cross-bridge cycle and detachment but does not bind calcium to expose sites."
+  },
+  {
+    week:4, dok:3,
+    q:"A patient with poisoning that prevents ATP regeneration would most likely show muscle that is:",
+    options:["Permanently relaxed because no contraction can start","Unable to depolarize the membrane","Twitching uncontrollably at high frequency","Permanently contracted because myosin cannot detach from actin"],
+    correctIndex:3,
+    explanation:"ATP is required for myosin to release actin after the power stroke, so without ATP, cross-bridges stay locked and muscle stiffens (rigor). Contraction can still initiate as long as some calcium is released, so permanent relaxation is wrong. Uncontrolled high-frequency twitching is a sign of motor neuron hyperactivity, not loss of ATP inside fibers. Membrane depolarization depends on ion gradients, not on the muscle's ATP supply in the short term."
+  },
+  {
+    week:4, dok:1,
+    q:"A motor unit is best defined as:",
+    options:["All the muscle fibers in a single muscle","The sarcomere plus its T-tubules","A pair of agonist and antagonist muscles","One motor neuron plus all the muscle fibers it innervates"],
+    correctIndex:3,
+    explanation:"A motor unit is one motor neuron together with every muscle fiber that neuron innervates, so they contract as a group. All fibers in a whole muscle would be many motor units, not just one. An agonist-antagonist pair is a movement relationship across muscles, not a motor unit. The sarcomere with T-tubules describes muscle ultrastructure, not the neural-fiber unit."
+  },
+  {
+    week:4, dok:2,
+    q:"The size principle of motor unit recruitment states that:",
+    options:["The largest motor units are recruited first","Fast-twitch fibers always activate before slow-twitch fibers","All motor units fire together, all or nothing","Small motor units are recruited first, and larger ones are added as force demand rises"],
+    correctIndex:3,
+    explanation:"The size principle says small (low-threshold) motor units fire first for fine, low-force tasks, then larger units join in as force demand increases. Recruiting the largest units first would waste energy for small tasks and is the reverse of what happens. Whole muscles do not fire all-or-nothing as a group; that is the rule for an individual fiber. Slow-twitch fibers (Type I) are recruited before fast-twitch (Type II), opposite of what the distractor claims."
+  },
+  {
+    week:4, dok:1,
+    q:"The resting membrane potential of a typical neuron is closest to:",
+    options:["+30 mV","0 mV","-55 mV","-70 mV"],
+    correctIndex:3,
+    explanation:"The resting potential of a neuron is about -70 mV, set largely by K+ leak channels and the Na+/K+ pump. +30 mV is roughly the peak of an action potential, not rest. 0 mV would mean no charge separation, which does not occur in a living neuron. -55 mV is the typical threshold for triggering an action potential, not the resting value."
+  },
+
+  // ===== WEEK 5 (6) =====
+  {
+    week:5, dok:1,
+    q:"Which lobe of the cerebrum contains the primary visual cortex?",
+    options:["Frontal","Parietal","Temporal","Occipital"],
+    correctIndex:3,
+    explanation:"The primary visual cortex sits in the occipital lobe at the back of the cerebrum. The frontal lobe handles motor planning, executive function, and personality, not vision. The parietal lobe processes somatosensory input and spatial awareness. The temporal lobe processes auditory information and aspects of memory, not the primary visual signal."
+  },
+  {
+    week:5, dok:2,
+    q:"Activation of the sympathetic nervous system would most likely cause:",
+    options:["Pupil constriction and slow heart rate","Decreased blood glucose and pupil constriction","Increased gut motility and salivation","Increased heart rate and bronchodilation"],
+    correctIndex:3,
+    explanation:"Sympathetic activation is the fight-or-flight response, raising heart rate and opening airways to support exertion. Pupil constriction and slow heart rate are parasympathetic effects, the opposite system. Increased gut motility and salivation are also parasympathetic 'rest and digest' responses. Decreased blood glucose with constricted pupils would not match the sympathetic role, which actually raises glucose and dilates pupils."
+  },
+  {
+    week:5, dok:1,
+    q:"Which photoreceptors are responsible for color vision in bright light?",
+    options:["Rods","Ganglion cells","Bipolar cells","Cones"],
+    correctIndex:3,
+    explanation:"Cones contain three photopigments tuned to red, green, or blue wavelengths and work best in bright light, supporting color vision. Rods are sensitive in dim light but cannot distinguish color. Bipolar cells are interneurons that relay signals from photoreceptors, not light detectors themselves. Ganglion cells form the optic nerve output but also do not detect color directly."
+  },
+  {
+    week:5, dok:2,
+    q:"Hair cells in the cochlea that transduce sound vibrations into neural signals sit on the:",
+    options:["Tympanic membrane","Oval window","Basilar membrane (organ of Corti)","Tectorial membrane only"],
+    correctIndex:2,
+    explanation:"The organ of Corti rests on the basilar membrane, and hair cells there bend when traveling waves move the membrane, triggering neural signals. The tympanic membrane is the eardrum and transmits sound mechanically; it is not where transduction into neural signals occurs. The oval window passes vibration from the stapes into the cochlear fluid but does not house hair cells. The tectorial membrane overlies the hair cells and shears their stereocilia but is not the seating membrane."
+  },
+  {
+    week:5, dok:2,
+    q:"Steroid hormones differ from peptide hormones primarily because steroid hormones:",
+    options:["Bind surface receptors and use second messengers","Are stored in large amounts in secretory vesicles","Pass through the plasma membrane and bind intracellular receptors","Cannot cross the blood-brain barrier"],
+    correctIndex:2,
+    explanation:"Steroid hormones are lipid-soluble, so they diffuse across the membrane and bind receptors inside the cell to alter gene transcription. Surface receptors with second messengers describe how peptide hormones work, not steroids. Steroids are not stored in vesicles; they are made on demand. Steroids actually cross the blood-brain barrier readily because they are lipid-soluble, so that claim is reversed."
+  },
+  {
+    week:5, dok:2,
+    q:"Beta cells of the pancreatic islets release which hormone in response to high blood glucose?",
+    options:["Glucagon","Growth hormone","Cortisol","Insulin"],
+    correctIndex:3,
+    explanation:"Beta cells release insulin, which moves glucose from blood into cells and lowers blood glucose. Glucagon is released by alpha cells and raises blood glucose, the opposite signal. Cortisol from the adrenal cortex raises blood glucose over time but is not the immediate beta-cell response. Growth hormone has metabolic effects but is released by the anterior pituitary, not by pancreatic beta cells."
+  },
+
+  // ===== WEEK 6 (6) =====
+  {
+    week:6, dok:1,
+    q:"Which formed element of blood is primarily responsible for transporting oxygen?",
+    options:["Platelet","Lymphocyte","Erythrocyte","Neutrophil"],
+    correctIndex:2,
+    explanation:"Erythrocytes (red blood cells) carry hemoglobin, which binds and transports oxygen. Platelets are cell fragments that participate in clotting, not oxygen transport. Lymphocytes are immune cells, especially involved in adaptive immunity. Neutrophils are phagocytic white blood cells active in early infection response, not oxygen carriers."
+  },
+  {
+    week:6, dok:2,
+    q:"A person with type A-negative blood has which antibodies in plasma?",
+    options:["Anti-A antibodies","Neither anti-A nor anti-B","Both anti-A and anti-B","Anti-B antibodies"],
+    correctIndex:3,
+    explanation:"Type A blood has A antigens on the cells and anti-B antibodies in the plasma, ready to attack any B antigens encountered. Anti-A antibodies would attack the person's own A antigens, which does not happen. Having both anti-A and anti-B is characteristic of type O blood, not type A. Having neither describes type AB blood, the universal recipient pattern."
+  },
+  {
+    week:6, dok:1,
+    q:"Which heart valve sits between the left atrium and left ventricle?",
+    options:["Tricuspid","Aortic semilunar","Pulmonary semilunar","Bicuspid (mitral)"],
+    correctIndex:3,
+    explanation:"The bicuspid (mitral) valve is the left atrioventricular valve, between the left atrium and left ventricle. The tricuspid valve sits between the right atrium and right ventricle, the opposite side. The pulmonary semilunar valve is between the right ventricle and pulmonary trunk. The aortic semilunar valve is between the left ventricle and aorta, downstream of the mitral, not between atrium and ventricle."
+  },
+  {
+    week:6, dok:1,
+    q:"The pacemaker of the heart, which sets the normal rhythm, is the:",
+    options:["AV node","Purkinje fibers","Bundle of His","SA node"],
+    correctIndex:3,
+    explanation:"The SA node in the right atrial wall spontaneously depolarizes fastest and sets the heart's rate. The AV node delays the signal between atria and ventricles but is a backup, slower pacemaker. The bundle of His conducts the impulse into the interventricular septum and does not normally initiate rhythm. Purkinje fibers spread the signal through ventricular muscle but also do not initiate the heartbeat under normal conditions."
+  },
+  {
+    week:6, dok:2,
+    q:"The QRS complex on an ECG represents:",
+    options:["Atrial depolarization","Ventricular repolarization","Atrial repolarization","Ventricular depolarization"],
+    correctIndex:3,
+    explanation:"The QRS complex reflects rapid ventricular depolarization spreading through the ventricular myocardium. Atrial depolarization shows as the P wave. Atrial repolarization is hidden inside the QRS and is not represented as its own visible wave. Ventricular repolarization appears as the T wave, after the QRS."
+  },
+  {
+    week:6, dok:3,
+    q:"All else being equal, if a patient's total peripheral resistance suddenly doubles, mean arterial pressure will tend to:",
+    options:["Decrease","Stay the same","Increase","Drop to zero"],
+    correctIndex:2,
+    explanation:"Because mean arterial pressure equals cardiac output times total peripheral resistance, raising resistance while keeping cardiac output constant pushes pressure up. A decrease would require lower cardiac output or lower resistance, neither of which is happening. Staying the same would require an opposite change in cardiac output, which is not given. Pressure does not drop to zero because the heart is still pumping and the vessels are now more resistant, raising pressure rather than eliminating it."
+  },
+
+  // ===== WEEK 7 (7) =====
+  {
+    week:7, dok:1,
+    q:"Which lymphatic organ is the main site of T cell maturation?",
+    options:["Spleen","Thymus","Tonsil","Lymph node"],
+    correctIndex:1,
+    explanation:"The thymus is where T lymphocytes mature and learn self-tolerance before circulating. The spleen filters blood and serves as a site of immune response but does not mature T cells. Tonsils sample throat antigens and contain lymphoid tissue, not a maturation site for T cells. Lymph nodes filter lymph and host adaptive immune responses but do not generate or mature T cells from precursors."
+  },
+  {
+    week:7, dok:1,
+    q:"Which of the following is part of the innate immune system?",
+    options:["Plasma cell secreting antibody","Memory B cell","Neutrophil performing phagocytosis","Cytotoxic CD8 T cell"],
+    correctIndex:2,
+    explanation:"Neutrophils are nonspecific phagocytes that respond quickly to invaders, a hallmark of innate immunity. Plasma cells make antibodies and belong to adaptive immunity. Memory B cells are formed during adaptive responses and provide faster reactions on re-exposure. Cytotoxic CD8 T cells are adaptive, antigen-specific killers, not innate responders."
+  },
+  {
+    week:7, dok:2,
+    q:"During a secondary immune response, antibody levels rise faster and higher than during the primary response because:",
+    options:["The immune system makes new B cells from scratch each time","Memory B cells from the first exposure rapidly proliferate and produce antibodies","Innate immunity is stronger the second time","Antibodies from the first exposure are still circulating at high levels"],
+    correctIndex:1,
+    explanation:"Memory B cells generated during the first exposure are already specific to the antigen and rapidly proliferate and class-switch on re-exposure, producing a faster, larger response. The body does not need to make brand-new naive B cells when memory cells are present. Innate immunity does not store memory and is not stronger on a second exposure. Antibodies from the first exposure decline over time, so persistent high levels are not the main reason the secondary response is bigger."
+  },
+  {
+    week:7, dok:1,
+    q:"Which structure prevents food from entering the trachea during swallowing?",
+    options:["Soft palate","Uvula","Epiglottis","Vocal folds"],
+    correctIndex:2,
+    explanation:"The epiglottis flips down over the laryngeal opening during swallowing, routing food into the esophagus. The soft palate elevates to seal the nasopharynx, blocking food from the nose, not the trachea. The uvula helps the soft palate seal the nasal route but does not cover the trachea. Vocal folds can close but their main role is sound and protection during a cough, not the primary swallow guard."
+  },
+  {
+    week:7, dok:2,
+    q:"During quiet inspiration, what happens to thoracic volume and intra-alveolar pressure?",
+    options:["Volume decreases, pressure rises above atmospheric","Volume increases, pressure falls below atmospheric","Volume increases, pressure stays equal to atmospheric","Volume decreases, pressure stays equal to atmospheric"],
+    correctIndex:1,
+    explanation:"Inspiration increases thoracic volume as the diaphragm flattens, and Boyle's law says larger volume means lower pressure, so alveolar pressure dips below atmospheric and air flows in. Decreasing volume with rising pressure describes expiration, the opposite phase. Volume cannot rise while pressure stays equal to atmospheric in a closed thorax; that violates Boyle's law. Decreasing volume at constant pressure is also impossible for the same reason."
+  },
+  {
+    week:7, dok:2,
+    q:"In the blood, most carbon dioxide is transported as:",
+    options:["Dissolved CO2 in plasma","Bicarbonate ion in plasma","Carbaminohemoglobin","CO bound to hemoglobin"],
+    correctIndex:1,
+    explanation:"Most CO2 is converted to bicarbonate inside red blood cells and shuttled in plasma, accounting for roughly 70 percent of CO2 transport. Dissolved CO2 in plasma carries only a small fraction. Carbaminohemoglobin carries about 20 to 23 percent, less than bicarbonate. Carbon monoxide bound to hemoglobin is a toxic situation and not a normal CO2 transport form."
+  },
+  {
+    week:7, dok:1,
+    q:"From innermost to outermost, the four layers of the gut tube are:",
+    options:["Mucosa, submucosa, muscularis externa, serosa","Serosa, muscularis, submucosa, mucosa","Submucosa, mucosa, serosa, muscularis","Mucosa, muscularis, submucosa, serosa"],
+    correctIndex:0,
+    explanation:"From inside to outside, the gut tube is mucosa, submucosa, muscularis externa, then serosa. Listing serosa first reverses the order from outside in. Placing submucosa before mucosa swaps the two innermost layers. Putting muscularis between mucosa and submucosa skips the actual middle layer order."
+  },
+
+  // ===== WEEK 8 (6) =====
+  {
+    week:8, dok:1,
+    q:"Which structure inside the kidney holds the glomerulus and the start of the renal tubule?",
+    options:["Renal pyramid","Renal pelvis","Renal corpuscle (in the cortex)","Major calyx"],
+    correctIndex:2,
+    explanation:"The renal corpuscle, sitting in the cortex, contains the glomerulus and Bowman's capsule, where filtration begins. Renal pyramids are bundles of medullary tissue containing collecting ducts, not glomeruli. The renal pelvis collects urine before the ureter and is not a filtering structure. Major calyces gather urine from minor calyces and also play no role in filtration."
+  },
+  {
+    week:8, dok:2,
+    q:"Constriction of the efferent arteriole, with the afferent arteriole unchanged, will most likely:",
+    options:["Decrease glomerular filtration rate","Increase glomerular filtration rate","Have no effect on glomerular filtration rate","Stop blood flow to the kidney entirely"],
+    correctIndex:1,
+    explanation:"Squeezing the efferent arteriole backs up pressure inside the glomerulus, raising filtration pressure and increasing GFR. Filtration would decrease if blood could not be held in the glomerulus, such as during afferent constriction. The change is not neutral because efferent resistance directly influences glomerular hydrostatic pressure. Blood flow to the kidney slows but does not stop, since the afferent vessel is still open."
+  },
+  {
+    week:8, dok:1,
+    q:"Antidiuretic hormone (ADH) acts mainly on which segment of the nephron?",
+    options:["Proximal convoluted tubule","Descending limb of the loop of Henle","Distal convoluted tubule and collecting duct","Glomerulus"],
+    correctIndex:2,
+    explanation:"ADH inserts aquaporins mainly in the collecting duct (and to a lesser extent the distal tubule), allowing water reabsorption and concentrating urine. The proximal convoluted tubule reabsorbs most filtered water but does so without ADH regulation. The descending limb is freely permeable to water by default and does not depend on ADH. The glomerulus is the filter and is not a target for ADH."
+  },
+  {
+    week:8, dok:3,
+    q:"A patient hyperventilates for several minutes from anxiety and blows off too much CO2. What acid-base disturbance is most likely?",
+    options:["Respiratory acidosis","Respiratory alkalosis","Metabolic acidosis","Metabolic alkalosis"],
+    correctIndex:1,
+    explanation:"Blowing off CO2 lowers carbonic acid and raises pH, which is respiratory alkalosis. Respiratory acidosis would come from retaining CO2, the opposite of hyperventilation. Metabolic acidosis stems from gain of non-carbonic acid or loss of bicarbonate, not from CO2 loss. Metabolic alkalosis arises from loss of acid (vomiting) or gain of bicarbonate, again not from a primary respiratory CO2 change."
+  },
+  {
+    week:8, dok:1,
+    q:"Sperm complete their maturation and gain motility primarily in which structure?",
+    options:["Seminiferous tubules","Epididymis","Vas deferens","Prostate gland"],
+    correctIndex:1,
+    explanation:"Sperm produced in the seminiferous tubules finish maturing and acquire motility while stored in the epididymis. Seminiferous tubules are where spermatogenesis begins but the cells released into them are not yet fully motile. The vas deferens transports already-mature sperm during ejaculation. The prostate gland contributes alkaline fluid to semen but does not mature sperm."
+  },
+  {
+    week:8, dok:2,
+    q:"In a typical 28-day ovarian cycle, ovulation usually occurs around:",
+    options:["Day 1","Day 7","Day 14","Day 28"],
+    correctIndex:2,
+    explanation:"Ovulation typically occurs around Day 14, triggered by the LH surge near mid-cycle. Day 1 marks the start of menstruation, well before ovulation. Day 7 is still in the follicular phase, before the LH surge. Day 28 is the end of the luteal phase, by which time the corpus luteum is regressing if no pregnancy occurred."
+  }
+];
+
+(function(){
+  const container = document.getElementById('questions');
+  const correctEl = document.getElementById('correctCount');
+  const answeredEl = document.getElementById('answeredCount');
+  const fillEl = document.getElementById('progressFill');
+  const barEl = document.getElementById('progressBar');
+
+  let state = QUESTIONS.map(function(){ return { answered:false, chosen:-1 }; });
+  const LETTERS = ['A','B','C','D'];
+
+  function render(){
+    container.innerHTML = '';
+    QUESTIONS.forEach(function(q, idx){
+      const card = document.createElement('article');
+      card.className = 'q-card';
+      card.setAttribute('aria-labelledby', 'qh-' + idx);
+
+      const meta = document.createElement('div');
+      meta.className = 'q-meta';
+      const wTag = document.createElement('span');
+      wTag.className = 'tag week';
+      wTag.textContent = 'Week ' + q.week;
+      const dTag = document.createElement('span');
+      dTag.className = 'tag dok';
+      dTag.textContent = 'DOK ' + q.dok;
+      meta.appendChild(wTag);
+      meta.appendChild(dTag);
+      card.appendChild(meta);
+
+      const num = document.createElement('div');
+      num.className = 'q-num';
+      num.textContent = 'Question ' + (idx + 1) + ' of ' + QUESTIONS.length;
+      card.appendChild(num);
+
+      const qh = document.createElement('h3');
+      qh.className = 'q-text';
+      qh.id = 'qh-' + idx;
+      qh.textContent = q.q;
+      card.appendChild(qh);
+
+      const opts = document.createElement('div');
+      opts.className = 'opts';
+      opts.setAttribute('role', 'group');
+      opts.setAttribute('aria-label', 'Answer choices for question ' + (idx + 1));
+
+      q.options.forEach(function(opt, oi){
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'opt-btn';
+        btn.dataset.qi = idx;
+        btn.dataset.oi = oi;
+        const lbl = document.createElement('span');
+        lbl.className = 'lbl';
+        lbl.textContent = LETTERS[oi] + '.';
+        btn.appendChild(lbl);
+        btn.appendChild(document.createTextNode(' ' + opt));
+        btn.addEventListener('click', function(){ choose(idx, oi); });
+        opts.appendChild(btn);
+      });
+      card.appendChild(opts);
+
+      const exp = document.createElement('div');
+      exp.className = 'explanation';
+      exp.id = 'exp-' + idx;
+      exp.setAttribute('role', 'region');
+      exp.setAttribute('aria-label', 'Explanation for question ' + (idx + 1));
+      const expLbl = document.createElement('span');
+      expLbl.className = 'label';
+      expLbl.textContent = 'Explanation';
+      const expP = document.createElement('p');
+      expP.style.margin = '0';
+      expP.textContent = q.explanation;
+      exp.appendChild(expLbl);
+      exp.appendChild(expP);
+      card.appendChild(exp);
+
+      container.appendChild(card);
+    });
+  }
+
+  function choose(qi, oi){
+    const s = state[qi];
+    if(s.answered) return;
+    s.answered = true;
+    s.chosen = oi;
+    const card = container.children[qi];
+    const buttons = card.querySelectorAll('.opt-btn');
+    const correctIdx = QUESTIONS[qi].correctIndex;
+    buttons.forEach(function(b, i){
+      b.disabled = true;
+      if(i === correctIdx){
+        b.classList.add('correct');
+      } else if(i === oi){
+        b.classList.add('wrong');
+      } else {
+        b.classList.add('dim');
+      }
+    });
+    const exp = card.querySelector('.explanation');
+    exp.classList.add('show');
+    updateScore();
+  }
+
+  function updateScore(){
+    let answered = 0, correct = 0;
+    state.forEach(function(s, i){
+      if(s.answered){
+        answered++;
+        if(s.chosen === QUESTIONS[i].correctIndex) correct++;
+      }
+    });
+    correctEl.textContent = correct;
+    answeredEl.textContent = answered;
+    const pct = (answered / QUESTIONS.length) * 100;
+    fillEl.style.width = pct + '%';
+    barEl.setAttribute('aria-valuenow', answered);
+  }
+
+  function retake(){
+    if(!window.confirm('Reset all answers and start over?')) return;
+    state = QUESTIONS.map(function(){ return { answered:false, chosen:-1 }; });
+    render();
+    updateScore();
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+
+  document.getElementById('retakeBtn').addEventListener('click', retake);
+  document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
+
+  render();
+  updateScore();
+})();
+</script>
+
+<script>
+(function(){
+  if(window.self===window.top)return;
+  function sendHeight(){
+    const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+    try{window.parent.postMessage({type:'iframe-height',id:'bio304-final',height:h},'*');}catch(e){}
+  }
+  window.addEventListener('load',sendHeight);
+  window.addEventListener('resize',sendHeight);
+  if(window.ResizeObserver){new ResizeObserver(sendHeight).observe(document.body);}else{setInterval(sendHeight,800);}
+})();
+</script>
+</body>
+</html>

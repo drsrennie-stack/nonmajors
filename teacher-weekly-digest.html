@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dr. Rennie Weekly Teaching Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1E3D4C; --navy-deep:#142A36; --navy-tint:#EDF1F3;
+  --gold:#B8924A; --gold-deep:#9A7838;
+  --terra:#C2734D; --terra-dark:#A0522D;
+  --white:#FFFFFF; --off-white:#FAFAF9;
+  --gray-line:#CFD6DA; --gray-soft:#5C6970;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--off-white);color:var(--navy)}
+body{font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:24px}
+a{color:var(--terra-dark);text-decoration:underline;text-underline-offset:2px}
+a:hover{color:var(--navy-deep)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.skip{position:absolute;left:-9999px;top:auto;background:var(--navy);color:#fff;padding:8px 12px;border-radius:6px;z-index:100}
+.skip:focus{left:16px;top:16px}
+.eyebrow{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--terra-dark);margin:0 0 8px 0}
+h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;color:var(--navy);font-size:34px;line-height:1.15;margin:0 0 12px 0}
+h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;color:var(--terra-dark);font-size:20px;line-height:1.25;margin:0 0 10px 0}
+h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;color:var(--navy);font-size:15px;line-height:1.3;margin:14px 0 6px 0}
+p{margin:0 0 10px 0}
+ul,ol{margin:0 0 10px 18px;padding:0}
+li{margin-bottom:6px}
+em,i{font-style:italic}
+.card{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:22px 24px;box-shadow:0 1px 3px rgba(0,0,0,0.08);transition:transform 200ms ease, box-shadow 200ms ease;margin:0 0 20px 0}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(0,0,0,0.10)}
+.hero{border-color:var(--gold)}
+.placeholder{border-style:dashed;border-color:var(--gray-line);background:var(--navy-tint)}
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;margin:8px 0 4px 0;font-size:15px}
+.kv dt{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;color:var(--navy)}
+.kv dd{margin:0;color:var(--navy)}
+.meta{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--gray-soft)}
+.tag{display:inline-block;background:var(--navy);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-bottom:6px}
+.tag.warn{background:var(--terra)}
+.tag.muted{background:var(--gray-soft)}
+.note{font-style:italic;color:var(--gray-soft);font-size:14px}
+.btn{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:14px;padding:10px 16px;border-radius:8px;border:1px solid var(--navy);background:var(--navy);color:#fff;text-decoration:none;cursor:pointer;transition:transform 150ms ease, background 150ms ease}
+.btn:hover{background:var(--navy-deep);color:#fff;transform:translateY(-1px)}
+.btn-primary{background:var(--gold);border-color:var(--gold);color:var(--navy-deep)}
+.btn-primary:hover{background:var(--gold-deep);color:#fff}
+.btn-ghost{background:transparent;color:var(--navy)}
+.btn-ghost:hover{background:var(--navy-tint);color:var(--navy)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+table.due{width:100%;border-collapse:collapse;margin-top:6px;font-size:15px}
+table.due th,table.due td{border:1px solid var(--gray-line);padding:7px 10px;text-align:left;vertical-align:top}
+table.due th{background:var(--navy-tint);color:var(--navy);font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:14px}
+footer{margin:28px 0 8px 0;text-align:center;font-style:italic;color:var(--gray-soft);font-size:14px}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important;animation:none !important}
+  .card:hover{transform:none}
+}
+@media print{
+  body{background:#fff}
+  .card{box-shadow:none;break-inside:avoid;border:1px solid #999}
+  .btn,.actions,.skip{display:none !important}
+  a{color:#000;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="wrap">
+<main id="main">
+
+<header class="card hero" role="banner">
+  <p class="eyebrow">DR. RENNIE . WEEKLY TEACHING BRIEF</p>
+  <h1 id="hWeekHeading">Week of <span id="weekOf">(loading)</span></h1>
+  <p class="meta">Generated: <span id="todayDate">computed at page load</span></p>
+  <noscript><p class="meta">JavaScript is off. Computed at page load is not available. See the printed calendar for the week reference.</p></noscript>
+  <p><em>Internal teaching brief. Not for student distribution.</em></p>
+</header>
+
+<section class="card" aria-labelledby="h-bio304">
+  <h2 id="h-bio304">BIO 304 (online) this week</h2>
+  <dl class="kv">
+    <dt>Course week:</dt><dd><span id="courseWeek">(loading)</span> of 8</dd>
+    <dt>Term start:</dt><dd>June 8, 2026 (Monday)</dd>
+    <dt>Format:</dt><dd>Fully online, no TBL, no synchronous sessions</dd>
+  </dl>
+
+  <h3>Topics releasing this week</h3>
+  <ul id="topicList">
+    <li class="note">Topics list loads with the course week. If you see this static text, JavaScript is disabled.</li>
+  </ul>
+  <p class="actions">
+    <a class="btn btn-primary" href="schedule.html" target="_top">Open schedule</a>
+    <a class="btn btn-ghost" href="workbook-index.html" target="_top">Workbook index</a>
+  </p>
+
+  <h3>Due dates students see this week</h3>
+  <table class="due" aria-label="Student-visible due dates this week">
+    <thead>
+      <tr><th>Day</th><th>What is due</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Mon, Tue, Thu, Fri</td><td>Pre-work plus lab workbook for the day's topic</td></tr>
+      <tr><td>Wed</td><td>Daily review. Discussion prompt opens.</td></tr>
+      <tr><td>Fri 11:59 pm</td><td>Initial discussion post</td></tr>
+      <tr><td>Fri 8 am to Sun 11:59 pm</td><td>Quiz window (20 min, 1 attempt, Honorlock)</td></tr>
+      <tr><td>Sun 11:59 pm</td><td>Two discussion replies</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="card" aria-labelledby="h-grading">
+  <h2 id="h-grading">What needs grading by end of Monday next week</h2>
+  <ul>
+    <li><strong>Last week's lab workbooks:</strong> roughly 5 to 6 workbooks per student. Plan grading windows Saturday morning and Monday morning. Rubric is 0 / 2 / 3 / 5 (see orientation).</li>
+    <li><strong>Last week's discussion replies:</strong> initial post plus two replies per student. Score on 10-point tiered ceiling rubric.</li>
+    <li><strong>Last week's quiz:</strong> Honorlock auto-scores. Pull the proctoring flag report. Review only flagged sessions, not the full roster.</li>
+  </ul>
+  <p class="note">Block 90 minutes Monday morning for the workbook batch. Hand-drawing review goes faster in a single sitting than spread across days.</p>
+</section>
+
+<section class="card" aria-labelledby="h-prep">
+  <h2 id="h-prep">Prep notes</h2>
+  <ul>
+    <li>Post the Wednesday discussion thread <strong>Tuesday evening</strong>, so it is live when students open their inbox Wednesday morning.</li>
+    <li>Send the Friday reminder announcement <strong>Thursday evening</strong>, framed around the quiz window opening and the discussion deadline.</li>
+    <li>Verify Honorlock is configured for the week's quiz on <strong>Thursday</strong>, before the Friday open.</li>
+    <li>Check the spaced-recall dashboard for cards with unusually high "Again" rates. If a card is failing for most of the cohort, the wording is likely the problem, not the students.</li>
+    <li>Spot-check daily review participation on Wednesday. Low engagement on a Wednesday tends to predict a thin discussion thread.</li>
+  </ul>
+</section>
+
+<section class="card" aria-labelledby="h-oh">
+  <h2 id="h-oh">Office hours this week</h2>
+  <p><span class="tag muted">Placeholder</span></p>
+  <p>Office hours block: TBD. Confirm against the ARC calendar and post in Canvas Announcements at the start of the week.</p>
+  <p class="note">No fabricated days or times in this brief. Fill in here once the term calendar is finalized.</p>
+</section>
+
+<section class="card placeholder" aria-labelledby="h-bio004">
+  <h2 id="h-bio004">BIO 004 (Solano, in-person)</h2>
+  <p><span class="tag">Separate course</span></p>
+  <p>BIO 004 runs on a separate calendar at Solano Community College and is not driven by the BIO 304 weekly rhythm. <strong>TBD until the Solano calendar is connected</strong> to this brief.</p>
+  <p class="note">No content invented for this section. Wire up the Solano calendar feed, then populate here.</p>
+</section>
+
+<section class="card placeholder" aria-labelledby="h-bio431">
+  <h2 id="h-bio431">BIO 431 (ARC, in-person)</h2>
+  <p><span class="tag">Separate course</span></p>
+  <p>BIO 431 is the in-person TBL version of combined A&P at American River College. It runs on the ARC academic calendar, not the BIO 304 8-week intensive calendar. <strong>TBD until the ARC in-person calendar is connected</strong> to this brief.</p>
+  <p class="note">No content invented for this section. Wire up the ARC calendar feed, then populate here.</p>
+</section>
+
+</main>
+
+<footer>
+<p><em>Dr. Sharilyn Rennie . BIO 304 . Weekly Teaching Brief</em></p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  // Hardcoded course start: BIO 304 starts Monday June 8, 2026.
+  // Course week 1 = the week containing June 8, 2026.
+  var COURSE_START=new Date(2026,5,8); // months are 0-indexed: 5 = June
+
+  // BIO 304 topic schedule (Mon/Tue/Thu/Fri are content days; Wed=DR+discussion).
+  // Each week lists the topics released that week, in order.
+  var topicsByWeek={
+    1:[
+      'Anatomical Terminology and Body Regions',
+      'Levels of Organization',
+      'Homeostasis and Feedback Loops',
+      'Cell Structure and Organelles',
+      'Membrane Transport'
+    ],
+    2:[
+      'Epithelial Tissue Classification',
+      'Connective Tissues',
+      'Muscle and Nervous Tissue Overview',
+      'Skin Structure and Layers',
+      'Skin Functions and Accessory Structures'
+    ],
+    3:[
+      'Bone Tissue and Bone Growth',
+      'Axial Skeleton',
+      'Appendicular Skeleton',
+      'Joints and Body Movements'
+    ],
+    4:[
+      'Skeletal Muscle Microanatomy',
+      'Motor Units and Muscle Mechanics',
+      'Sliding Filament and the Cross-Bridge Cycle',
+      'Neurons and Resting Membrane Potential',
+      'Action Potentials and Synaptic Transmission'
+    ],
+    5:[
+      'CNS Organization: Brain and Spinal Cord',
+      'PNS and Autonomic Nervous System',
+      'Vision',
+      'Hearing and Equilibrium',
+      'Hormone Mechanisms',
+      'Major Endocrine Glands'
+    ],
+    6:[
+      'Blood Composition and Hemopoiesis',
+      'Hemostasis and Blood Typing',
+      'Heart Anatomy and the Cardiac Cycle',
+      'Cardiac Conduction System',
+      'Blood Vessels and Hemodynamics'
+    ],
+    7:[
+      'Lymphatic System and Innate Immunity',
+      'Adaptive Immunity',
+      'Respiratory Anatomy and Mechanics',
+      'Gas Exchange and Transport',
+      'GI Tract Anatomy and Motility',
+      'Digestion and Absorption'
+    ],
+    8:[
+      'Kidney Anatomy and Glomerular Filtration',
+      'Tubular Function and Urine Concentration',
+      'Fluid, Electrolyte, and Acid-Base Balance',
+      'Male Reproductive System',
+      'Female Reproductive System',
+      'Pregnancy A&P (Basics)'
+    ]
+  };
+
+  function fmtLong(d){
+    return d.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  }
+  function fmtShort(d){
+    return d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  }
+  function startOfWeekMonday(d){
+    var x=new Date(d.getFullYear(),d.getMonth(),d.getDate());
+    var day=x.getDay(); // 0=Sun,1=Mon,...
+    var diff=(day===0)?-6:(1-day); // shift to Monday
+    x.setDate(x.getDate()+diff);
+    return x;
+  }
+  function daysBetween(a,b){
+    var ms=24*60*60*1000;
+    var a0=new Date(a.getFullYear(),a.getMonth(),a.getDate());
+    var b0=new Date(b.getFullYear(),b.getMonth(),b.getDate());
+    return Math.round((b0-a0)/ms);
+  }
+
+  var now=new Date();
+  var monday=startOfWeekMonday(now);
+  var courseStartMonday=startOfWeekMonday(COURSE_START);
+  var diffDays=daysBetween(courseStartMonday,monday);
+  var courseWeek=Math.floor(diffDays/7)+1;
+
+  var weekOfEl=document.getElementById('weekOf');
+  if(weekOfEl){weekOfEl.textContent=fmtShort(monday);}
+  var todayEl=document.getElementById('todayDate');
+  if(todayEl){todayEl.textContent=fmtLong(now);}
+
+  var courseWeekEl=document.getElementById('courseWeek');
+  var topicList=document.getElementById('topicList');
+
+  if(courseWeek<1){
+    if(courseWeekEl) courseWeekEl.textContent='Pre-term (course starts '+fmtShort(courseStartMonday)+')';
+    if(topicList){
+      topicList.innerHTML='';
+      var li=document.createElement('li');
+      li.className='note';
+      li.textContent='Term has not started. Week 1 topics release the week of '+fmtShort(courseStartMonday)+'.';
+      topicList.appendChild(li);
+    }
+  } else if(courseWeek>8){
+    if(courseWeekEl) courseWeekEl.textContent='Post-term (term ended)';
+    if(topicList){
+      topicList.innerHTML='';
+      var li=document.createElement('li');
+      li.className='note';
+      li.textContent='Term has concluded. No new topics releasing.';
+      topicList.appendChild(li);
+    }
+  } else {
+    if(courseWeekEl) courseWeekEl.textContent=String(courseWeek);
+    var topics=topicsByWeek[courseWeek]||[];
+    if(topicList){
+      topicList.innerHTML='';
+      topics.forEach(function(t){
+        var li=document.createElement('li');
+        var a=document.createElement('a');
+        a.href='schedule.html';
+        a.target='_top';
+        a.textContent=t;
+        li.appendChild(a);
+        topicList.appendChild(li);
+      });
+      if(topics.length===0){
+        var li2=document.createElement('li');
+        li2.className='note';
+        li2.textContent='No topics listed for this week.';
+        topicList.appendChild(li2);
+      }
+    }
+  }
+})();
+</script>
+
+<script>
+(function(){
+  if(window.self===window.top)return;
+  function sendHeight(){
+    const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight);
+    try{window.parent.postMessage({type:'iframe-height',id:'bio304-page',height:h},'*');}catch(e){}
+  }
+  window.addEventListener('load',sendHeight);
+  window.addEventListener('resize',sendHeight);
+  if(window.ResizeObserver){new ResizeObserver(sendHeight).observe(document.body);}else{setInterval(sendHeight,800);}
+})();
+</script>
+</body>
+</html>
