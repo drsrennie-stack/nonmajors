@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Schedule . American River College</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1E3D4C;--navy-deep:#142A36;
+  --gold:#B8924A;--gold-deep:#9A7838;
+  --terra:#D45A36;--terra-dark:#B8442B;
+  --sage-dark:#4F6B57;--sage-deeper:#3F5B47;
+  --white:#FFFFFF;--off-white:#FAFAF9;
+  --gray-line:#CFD6DA;--gray-soft:#5C6970;
+  --shadow-rest:0 1px 3px rgba(0,0,0,.08);
+  --shadow-hover:0 8px 16px rgba(0,0,0,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--off-white)}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;color:var(--navy);line-height:1.6;-webkit-font-smoothing:antialiased}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+.banner{background:var(--navy);color:var(--white);padding:48px 32px 40px}
+.banner-inner{max-width:1040px;margin:0 auto;text-align:center}
+.banner-eyebrow{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 12px}
+.banner-eyebrow-sep{display:inline-block;width:18px;height:1px;background:var(--gold);margin:0 12px;vertical-align:middle;opacity:.6}
+.banner-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(34px,5vw,48px);font-weight:800;color:var(--white);line-height:1.05;letter-spacing:-.03em;margin:0 0 12px}
+.banner-subtitle{font-family:'Lora',Georgia,serif;font-style:italic;font-size:clamp(15px,1.8vw,18px);color:#DCE3E6;max-width:640px;margin:0 auto;line-height:1.55}
+
+main.container{max-width:1040px;margin:0 auto;padding:32px 24px 56px}
+
+.overview-strip{background:var(--white);border:1px solid var(--gray-line);border-radius:12px;padding:16px 24px;margin:0 0 24px;box-shadow:var(--shadow-rest);display:flex;flex-wrap:wrap;justify-content:center;gap:12px 24px;font-size:13px;color:var(--navy);text-align:center;font-weight:500}
+.overview-strip strong{color:var(--terra-dark);font-weight:800;font-variant-numeric:tabular-nums}
+.overview-divider{color:var(--gray-line)}
+
+.status-now{background:var(--navy);color:var(--white);border:none;border-radius:12px;padding:18px 22px;margin:0 0 28px;box-shadow:var(--shadow-rest);display:flex;align-items:center;gap:16px;flex-wrap:wrap;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+.status-now[hidden]{display:none}
+.status-now:hover{transform:translateY(-1px);box-shadow:var(--shadow-hover)}
+.status-now-label{background:var(--gold);color:var(--navy);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:999px;flex-shrink:0}
+.status-now-text{flex:1;min-width:200px;font-size:15px;font-weight:500;line-height:1.5;color:var(--white)}
+.status-now-text strong{color:var(--gold);font-weight:700}
+.status-now-arrow{font-size:20px;color:var(--white);opacity:.85;flex-shrink:0;line-height:1}
+
+.schedule-list{display:flex;flex-direction:column;gap:20px;list-style:none;padding:0;margin:0}
+.week-card{background:var(--white);border:1px solid var(--gray-line);border-radius:14px;box-shadow:var(--shadow-rest);overflow:hidden;display:flex;position:relative}
+.week-card.is-current{border-color:var(--terra-dark);box-shadow:0 6px 18px rgba(184,68,43,.14),0 2px 4px rgba(20,41,64,.08)}
+.week-card.is-past{opacity:.6}
+.week-card.is-past:hover,.week-card.is-past:focus-within{opacity:1}
+
+.week-tab{background:var(--gold);color:var(--navy);padding:24px 14px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+.week-card.is-current .week-tab{background:var(--terra-dark);color:var(--white)}
+@media (max-width:640px){.week-tab{writing-mode:horizontal-tb;transform:none;padding:10px 16px;width:100%;text-align:left}.week-card{flex-direction:column}}
+
+.week-body{flex:1;padding:24px 28px;min-width:0}
+@media (max-width:640px){.week-body{padding:20px}}
+
+.week-header{display:flex;align-items:flex-start;gap:18px;margin:0 0 16px;flex-wrap:wrap}
+.week-number{font-family:'Plus Jakarta Sans',sans-serif;font-size:38px;font-weight:800;color:var(--terra-dark);line-height:.95;letter-spacing:-.03em;font-variant-numeric:tabular-nums;flex-shrink:0}
+.week-meta{flex:1;min-width:200px}
+.week-dates{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:700;color:var(--navy);line-height:1.2;letter-spacing:-.015em;margin:0 0 4px}
+.week-theme{font-family:'DM Sans',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-soft);margin:0}
+.week-status-slot{margin-top:8px}
+.week-status-pill{display:inline-block;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border-radius:999px;font-variant-numeric:tabular-nums}
+.week-status-pill.is-current{background:var(--terra-dark);color:var(--white)}
+.week-status-pill.is-next{background:var(--gold);color:var(--navy)}
+
+.day-list{display:grid;grid-template-columns:auto 1fr;column-gap:18px;row-gap:14px;padding:16px 0;border-top:1px solid var(--gray-line);border-bottom:1px solid var(--gray-line)}
+.day-list dt{font-family:'DM Sans',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-soft);padding-top:6px;font-variant-numeric:tabular-nums;line-height:1.3}
+.day-list dt strong{display:block;color:var(--navy);font-size:13px;font-weight:800;letter-spacing:.1em;margin-bottom:2px}
+.day-list dd{font-size:15px;color:var(--navy);line-height:1.45;font-weight:500;margin:0}
+.day-list .topic-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:var(--navy);font-size:15.5px;display:block;margin-bottom:6px}
+.day-list .topic-pair{display:block;margin-top:10px;padding-top:8px;border-top:1px dashed var(--gray-line)}
+.day-list .row-note{font-family:'Lora',Georgia,serif;font-style:italic;color:var(--gray-soft);font-size:14px;margin-top:2px;display:block}
+
+.day-list dt.is-today,.day-list dd.is-today{position:relative}
+.day-list dt.is-today{padding-left:12px;border-left:3px solid var(--terra-dark);margin-left:-3px}
+.day-list dd.is-today{padding-left:8px}
+.today-arrow{display:inline-block;color:var(--terra-dark);font-size:22px;line-height:1;margin-right:8px;vertical-align:middle;transform:translateY(-2px)}
+.today-label{display:inline-block;font-family:'DM Sans',sans-serif;font-weight:800;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-dark);margin-left:6px;vertical-align:middle}
+
+.pill-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+a.act-pill{display:inline-flex;align-items:center;gap:6px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.04em;padding:8px 14px;border-radius:999px;text-decoration:none;line-height:1.2;border:1px solid transparent;color:var(--white)!important;transition:background 150ms ease,border-color 150ms ease}
+a.act-pill .arrow{font-size:12px;color:inherit}
+.act-pill.pill-prework{background:var(--navy);border-color:var(--navy)}
+.act-pill.pill-prework:hover{background:var(--navy-deep);border-color:var(--navy-deep)}
+.act-pill.pill-lab{background:var(--terra-dark);border-color:var(--terra-dark)}
+.act-pill.pill-lab:hover{background:#94351F;border-color:#94351F}
+.act-pill.pill-discussion{background:#DDB54E;border-color:#B89238;color:var(--navy)!important}
+.act-pill.pill-discussion:hover{background:#E8C462;border-color:#B89238;color:var(--navy)!important}
+.act-pill.pill-quiz{background:var(--sage-dark);border-color:var(--sage-deeper)}
+.act-pill.pill-quiz:hover{background:var(--sage-deeper);border-color:#2F4537}
+.act-badge{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;font-family:'DM Sans',sans-serif;font-weight:800;font-size:11.5px;letter-spacing:.04em;text-decoration:none;line-height:1;border:1px solid transparent;color:var(--white)!important;transition:background 150ms ease,transform 150ms ease;flex-shrink:0}
+.act-badge:hover{transform:translateY(-1px)}
+.act-badge.badge-sr{background:var(--navy);border-color:var(--navy)}
+.act-badge.badge-sr:hover{background:var(--navy-deep);border-color:var(--navy-deep)}
+.act-badge.badge-dr{background:#3F4A54;border-color:#2E3940}
+.act-badge.badge-dr:hover{background:#2E3940;border-color:#1F272D}
+
+footer.course-footer{margin-top:32px;padding:22px 28px;background:var(--white);border:1px solid var(--gray-line);border-radius:12px;box-shadow:var(--shadow-rest);font-family:'Lora',Georgia,serif;font-size:14.5px;color:var(--navy);line-height:1.65}
+footer.course-footer strong{color:var(--navy);font-style:italic;font-weight:700}
+
+@media print{
+  body{background:var(--white)}
+  .skip-link,.status-now{display:none!important}
+  .schedule-list{gap:8px}
+  .week-card{box-shadow:none;border:1px solid #999;page-break-inside:avoid}
+  .pill-row a{color:#000!important;background:var(--white)!important;border:1px solid #555!important}
+}
+</style>
+</head>
+<body>
+<a href="#schedule-list" class="skip-link">Skip to schedule</a>
+
+<header class="banner" role="banner">
+  <div class="banner-inner">
+    <p class="banner-eyebrow">BIO 304 <span class="banner-eyebrow-sep" aria-hidden="true"></span> Summer Session 2026</p>
+    <h1 class="banner-title">Course Schedule</h1>
+    <p class="banner-subtitle">Eight-week online session, June 8 to August 2. Pre-work Monday, Tuesday, Thursday, Friday. Wednesday catch-up and discussion. Weekend is your quiz window.</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="overview-strip" aria-label="Session overview">
+    <span><strong>8</strong> weeks</span>
+    <span class="overview-divider">.</span>
+    <span><strong>16</strong> modules</span>
+    <span class="overview-divider">.</span>
+    <span><strong>42</strong> topics</span>
+    <span class="overview-divider">.</span>
+    <span><strong>8</strong> weekly quizzes</span>
+    <span class="overview-divider">.</span>
+    <span><strong>8</strong> weekly discussions</span>
+  </section>
+
+  <a class="status-now" id="status-now" href="#" hidden>
+    <span class="status-now-label" id="status-now-label">Today</span>
+    <span class="status-now-text" id="status-now-text"></span>
+    <span class="status-now-arrow" aria-hidden="true">&rsaquo;</span>
+  </a>
+
+  <ol id="schedule-list" class="schedule-list" aria-label="Weekly schedule">
+
+    <li class="week-card" id="week-1" aria-label="Week 1, Jun 8 to Jun 14" data-week="1" data-start="2026-06-08" data-end="2026-06-14">
+      <div class="week-tab" aria-hidden="true">Wk 01</div>
+      <div class="week-body">
+        <div class="week-header">
+          <div class="week-number" aria-hidden="true">01</div>
+          <div class="week-meta">
+            <h2 class="week-dates">Jun 8 to Jun 14</h2>
+            <p class="week-theme">Foundations . Cell . Tissues start</p>
+            <div class="week-status-slot"></div>
+          </div>
+        </div>
+        <dl class="day-list" aria-label="Daily schedule for week 1">
+          <dt><strong>Mon</strong>Day 1</dt>
+          <dd>
+            <span class="topic-title">Levels of Organization</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="levels-of-organization.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-levels-of-organization" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Levels of Organization">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day01_levels-of-organization.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            <div class="topic-pair">
+              <span class="topic-title">Anatomical Terminology and Body Regions</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="anatomical-position.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-anatomical-terminology" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Anatomical Terminology and Body Regions">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day01_anatomical-terminology-and-body-regions.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div></div>
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Tue</strong>Day 2</dt>
+          <dd>
+            <span class="topic-title">Homeostasis and Feedback Loops</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="homeostasis-feedback.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-homeostasis" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Homeostasis and Feedback Loops">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day02_homeostasis-and-feedback-loops.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Wed</strong>Catch-up</dt>
+          <dd>
+            <span class="topic-title">Daily review + discussion</span>
+            <span class="row-note">No new pre-work. Run Daily Review, post your initial discussion thoughts, finish any lab workbook still open.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-discussion" href="week01_discussion.html" target="_blank" rel="noopener">Discussion <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+          <dt><strong>Thu</strong>Day 3</dt>
+          <dd>
+            <span class="topic-title">Cell Structure and Organelles</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="cell-structure.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-cell-structure" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Cell Structure and Organelles">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day03_cell-structure-and-organelles.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Fri</strong>Day 4</dt>
+          <dd>
+            <span class="topic-title">Membrane Transport</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="membrane-transport.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-membrane-transport" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Membrane Transport">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day04_membrane-transport.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Sat-Sun</strong>Quiz window</dt>
+          <dd>
+            <span class="topic-title">Lock in the week</span>
+            <span class="row-note">Run Daily Review, take the quiz earlier rather than later, submit discussion replies and lab workbooks before Sun 11:59 PM.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-quiz" href="bio304-spaced-recall-prototype.html" target="_blank" rel="noopener">Quiz check <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="week-card" id="week-2" aria-label="Week 2, Jun 15 to Jun 21" data-week="2" data-start="2026-06-15" data-end="2026-06-21">
+      <div class="week-tab" aria-hidden="true">Wk 02</div>
+      <div class="week-body">
+        <div class="week-header">
+          <div class="week-number" aria-hidden="true">02</div>
+          <div class="week-meta">
+            <h2 class="week-dates">Jun 15 to Jun 21</h2>
+            <p class="week-theme">Tissues . Integumentary</p>
+            <div class="week-status-slot"></div>
+          </div>
+        </div>
+        <dl class="day-list" aria-label="Daily schedule for week 2">
+          <dt><strong>Mon</strong>Day 5</dt>
+          <dd>
+            <span class="topic-title">Epithelial Tissue Classification</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="epithelial-tissue.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-epithelial-tissue" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Epithelial Tissue Classification">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day05_epithelial-tissue-classification.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Tue</strong>Day 6</dt>
+          <dd>
+            <span class="topic-title">Connective Tissues</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="connective-tissues.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-connective-tissue" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Connective Tissues">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day06_connective-tissues.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Wed</strong>Catch-up</dt>
+          <dd>
+            <span class="topic-title">Daily review + discussion</span>
+            <span class="row-note">No new pre-work. Run Daily Review, post your initial discussion thoughts, finish any lab workbook still open.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-discussion" href="week02_discussion.html" target="_blank" rel="noopener">Discussion <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+          <dt><strong>Thu</strong>Day 7</dt>
+          <dd>
+            <span class="topic-title">Muscle and Nervous Tissue Overview</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="muscle-nervous-tissue.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-muscle-nervous-tissue" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Muscle and Nervous Tissue Overview">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day07_muscle-and-nervous-tissue-overview.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            <div class="topic-pair">
+              <span class="topic-title">Skin Structure and Layers</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="skin-layers.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-skin-layers" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Skin Structure and Layers">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day07_skin-structure-and-layers.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div></div>
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Fri</strong>Day 8</dt>
+          <dd>
+            <span class="topic-title">Skin Functions and Accessory Structures</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="skin-functions.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-skin-functions" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Skin Functions and Accessory Structures">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day08_skin-functions-and-accessory-structures.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Sat-Sun</strong>Quiz window</dt>
+          <dd>
+            <span class="topic-title">Lock in the week</span>
+            <span class="row-note">Run Daily Review, take the quiz earlier rather than later, submit discussion replies and lab workbooks before Sun 11:59 PM.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-quiz" href="bio304-spaced-recall-prototype.html" target="_blank" rel="noopener">Quiz check <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="week-card" id="week-3" aria-label="Week 3, Jun 22 to Jun 28" data-week="3" data-start="2026-06-22" data-end="2026-06-28">
+      <div class="week-tab" aria-hidden="true">Wk 03</div>
+      <div class="week-body">
+        <div class="week-header">
+          <div class="week-number" aria-hidden="true">03</div>
+          <div class="week-meta">
+            <h2 class="week-dates">Jun 22 to Jun 28</h2>
+            <p class="week-theme">Skeletal system</p>
+            <div class="week-status-slot"></div>
+          </div>
+        </div>
+        <dl class="day-list" aria-label="Daily schedule for week 3">
+          <dt><strong>Mon</strong>Day 9</dt>
+          <dd>
+            <span class="topic-title">Bone Tissue and Bone Growth</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="bone-tissue.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-bone-tissue" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Bone Tissue and Bone Growth">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day09_bone-tissue-and-bone-growth.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Tue</strong>Day 10</dt>
+          <dd>
+            <span class="topic-title">Axial Skeleton</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="axial-skeleton.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-axial-skeleton" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Axial Skeleton">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day10_axial-skeleton.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Wed</strong>Catch-up</dt>
+          <dd>
+            <span class="topic-title">Daily review + discussion</span>
+            <span class="row-note">No new pre-work. Run Daily Review, post your initial discussion thoughts, finish any lab workbook still open.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-discussion" href="week03_discussion.html" target="_blank" rel="noopener">Discussion <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+          <dt><strong>Thu</strong>Day 11</dt>
+          <dd>
+            <span class="topic-title">Appendicular Skeleton</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="appendicular-skeleton.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-appendicular-skeleton" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Appendicular Skeleton">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day11_appendicular-skeleton.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Fri</strong>Day 12</dt>
+          <dd>
+            <span class="topic-title">Joints and Body Movements</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="joints-and-movements.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-joints-movements" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Joints and Body Movements">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day12_joints-and-body-movements.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Sat-Sun</strong>Quiz window</dt>
+          <dd>
+            <span class="topic-title">Lock in the week</span>
+            <span class="row-note">Run Daily Review, take the quiz earlier rather than later, submit discussion replies and lab workbooks before Sun 11:59 PM.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-quiz" href="bio304-spaced-recall-prototype.html" target="_blank" rel="noopener">Quiz check <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="week-card" id="week-4" aria-label="Week 4, Jun 29 to Jul 5" data-week="4" data-start="2026-06-29" data-end="2026-07-05">
+      <div class="week-tab" aria-hidden="true">Wk 04</div>
+      <div class="week-body">
+        <div class="week-header">
+          <div class="week-number" aria-hidden="true">04</div>
+          <div class="week-meta">
+            <h2 class="week-dates">Jun 29 to Jul 5</h2>
+            <p class="week-theme">Muscle . Nervous start</p>
+            <div class="week-status-slot"></div>
+          </div>
+        </div>
+        <dl class="day-list" aria-label="Daily schedule for week 4">
+          <dt><strong>Mon</strong>Day 13</dt>
+          <dd>
+            <span class="topic-title">Skeletal Muscle Microanatomy</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="skeletal-muscle-microanatomy.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-skeletal-muscle-microanatomy" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Skeletal Muscle Microanatomy">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day13_skeletal-muscle-microanatomy.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            <div class="topic-pair">
+              <span class="topic-title">Motor Units and Muscle Mechanics</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="motor-units.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-motor-units" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Motor Units and Muscle Mechanics">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day13_motor-units-and-muscle-mechanics.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div></div>
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Tue</strong>Day 14</dt>
+          <dd>
+            <span class="topic-title">Sliding Filament and the Cross-Bridge Cycle</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="cross-bridge-cycle.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-sliding-filament" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Sliding Filament and the Cross-Bridge Cycle">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day14_sliding-filament-and-the-cross-bridge-cycle.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Wed</strong>Catch-up</dt>
+          <dd>
+            <span class="topic-title">Daily review + discussion</span>
+            <span class="row-note">No new pre-work. Run Daily Review, post your initial discussion thoughts, finish any lab workbook still open.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-discussion" href="week04_discussion.html" target="_blank" rel="noopener">Discussion <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+          <dt><strong>Thu</strong>Day 15</dt>
+          <dd>
+            <span class="topic-title">Neurons and Resting Membrane Potential</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="neurons-resting-potential.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-neurons-rmp" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Neurons and Resting Membrane Potential">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day15_neurons-and-resting-membrane-potential.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Fri</strong>Day 16</dt>
+          <dd>
+            <span class="topic-title">Action Potentials and Synaptic Transmission</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="action-potentials-synapses.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-action-potentials" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Action Potentials and Synaptic Transmission">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day16_action-potentials-and-synaptic-transmission.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Sat-Sun</strong>Quiz window</dt>
+          <dd>
+            <span class="topic-title">Lock in the week</span>
+            <span class="row-note">Run Daily Review, take the quiz earlier rather than later, submit discussion replies and lab workbooks before Sun 11:59 PM.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-quiz" href="bio304-spaced-recall-prototype.html" target="_blank" rel="noopener">Quiz check <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="week-card" id="week-5" aria-label="Week 5, Jul 6 to Jul 12" data-week="5" data-start="2026-07-06" data-end="2026-07-12">
+      <div class="week-tab" aria-hidden="true">Wk 05</div>
+      <div class="week-body">
+        <div class="week-header">
+          <div class="week-number" aria-hidden="true">05</div>
+          <div class="week-meta">
+            <h2 class="week-dates">Jul 6 to Jul 12</h2>
+            <p class="week-theme">Nervous . Special senses . Endocrine start</p>
+            <div class="week-status-slot"></div>
+          </div>
+        </div>
+        <dl class="day-list" aria-label="Daily schedule for week 5">
+          <dt><strong>Mon</strong>Day 17</dt>
+          <dd>
+            <span class="topic-title">CNS Organization: Brain and Spinal Cord</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="cns-organization.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-cns-organization" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for CNS Organization: Brain and Spinal Cord">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day17_cns-organization-brain-and-spinal-cord.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Tue</strong>Day 18</dt>
+          <dd>
+            <span class="topic-title">PNS and Autonomic Nervous System</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="pns-autonomic.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-pns-autonomic" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for PNS and Autonomic Nervous System">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day18_pns-and-autonomic-nervous-system.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Wed</strong>Catch-up</dt>
+          <dd>
+            <span class="topic-title">Daily review + discussion</span>
+            <span class="row-note">No new pre-work. Run Daily Review, post your initial discussion thoughts, finish any lab workbook still open.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-discussion" href="week05_discussion.html" target="_blank" rel="noopener">Discussion <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+          <dt><strong>Thu</strong>Day 19</dt>
+          <dd>
+            <span class="topic-title">Vision</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="vision.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-vision" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Vision">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day19_vision.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            <div class="topic-pair">
+              <span class="topic-title">Hearing and Equilibrium</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="hearing-equilibrium.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-hearing-equilibrium" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Hearing and Equilibrium">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day19_hearing-and-equilibrium.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div></div>
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Fri</strong>Day 20</dt>
+          <dd>
+            <span class="topic-title">Hormone Mechanisms</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="hormone-mechanisms.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-hormone-mechanisms" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Hormone Mechanisms">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day20_hormone-mechanisms.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            <div class="topic-pair">
+              <span class="topic-title">Major Endocrine Glands</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="major-endocrine-glands.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-major-glands" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Major Endocrine Glands">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day20_major-endocrine-glands.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div></div>
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Sat-Sun</strong>Quiz window</dt>
+          <dd>
+            <span class="topic-title">Lock in the week</span>
+            <span class="row-note">Run Daily Review, take the quiz earlier rather than later, submit discussion replies and lab workbooks before Sun 11:59 PM.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-quiz" href="bio304-spaced-recall-prototype.html" target="_blank" rel="noopener">Quiz check <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="week-card" id="week-6" aria-label="Week 6, Jul 13 to Jul 19" data-week="6" data-start="2026-07-13" data-end="2026-07-19">
+      <div class="week-tab" aria-hidden="true">Wk 06</div>
+      <div class="week-body">
+        <div class="week-header">
+          <div class="week-number" aria-hidden="true">06</div>
+          <div class="week-meta">
+            <h2 class="week-dates">Jul 13 to Jul 19</h2>
+            <p class="week-theme">Endocrine . Blood . Cardiovascular</p>
+            <div class="week-status-slot"></div>
+          </div>
+        </div>
+        <dl class="day-list" aria-label="Daily schedule for week 6">
+          <dt><strong>Mon</strong>Day 21</dt>
+          <dd>
+            <span class="topic-title">Blood Composition and Hemopoiesis</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="blood-composition.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-blood-composition" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Blood Composition and Hemopoiesis">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day21_blood-composition-and-hemopoiesis.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            <div class="topic-pair">
+              <span class="topic-title">Hemostasis and Blood Typing</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="hemostasis-blood-typing.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-hemostasis-blood-typing" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Hemostasis and Blood Typing">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day21_hemostasis-and-blood-typing.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div></div>
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Tue</strong>Day 22</dt>
+          <dd>
+            <span class="topic-title">Heart Anatomy and the Cardiac Cycle</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="heart-anatomy.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-heart-cardiac-cycle" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Heart Anatomy and the Cardiac Cycle">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day22_heart-anatomy-and-the-cardiac-cycle.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Wed</strong>Catch-up</dt>
+          <dd>
+            <span class="topic-title">Daily review + discussion</span>
+            <span class="row-note">No new pre-work. Run Daily Review, post your initial discussion thoughts, finish any lab workbook still open.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-discussion" href="week06_discussion.html" target="_blank" rel="noopener">Discussion <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+          <dt><strong>Thu</strong>Day 23</dt>
+          <dd>
+            <span class="topic-title">Cardiac Conduction System</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="cardiac-conduction.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-conduction-ecg" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Cardiac Conduction System">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day23_cardiac-conduction-system.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Fri</strong>Day 24</dt>
+          <dd>
+            <span class="topic-title">Blood Vessels and Hemodynamics</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="blood-vessels-hemodynamics.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-vessels-hemodynamics" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Blood Vessels and Hemodynamics">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day24_blood-vessels-and-hemodynamics.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Sat-Sun</strong>Quiz window</dt>
+          <dd>
+            <span class="topic-title">Lock in the week</span>
+            <span class="row-note">Run Daily Review, take the quiz earlier rather than later, submit discussion replies and lab workbooks before Sun 11:59 PM.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-quiz" href="bio304-spaced-recall-prototype.html" target="_blank" rel="noopener">Quiz check <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="week-card" id="week-7" aria-label="Week 7, Jul 20 to Jul 26" data-week="7" data-start="2026-07-20" data-end="2026-07-26">
+      <div class="week-tab" aria-hidden="true">Wk 07</div>
+      <div class="week-body">
+        <div class="week-header">
+          <div class="week-number" aria-hidden="true">07</div>
+          <div class="week-meta">
+            <h2 class="week-dates">Jul 20 to Jul 26</h2>
+            <p class="week-theme">Lymphatic . Immune . Respiratory . GI</p>
+            <div class="week-status-slot"></div>
+          </div>
+        </div>
+        <dl class="day-list" aria-label="Daily schedule for week 7">
+          <dt><strong>Mon</strong>Day 25</dt>
+          <dd>
+            <span class="topic-title">Lymphatic System and Innate Immunity</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="lymphatic-innate-immunity.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-lymphatic-innate" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Lymphatic System and Innate Immunity">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day25_lymphatic-system-and-innate-immunity.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Tue</strong>Day 26</dt>
+          <dd>
+            <span class="topic-title">Adaptive Immunity</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="adaptive-immunity.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-adaptive-immunity" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Adaptive Immunity">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day26_adaptive-immunity.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Wed</strong>Catch-up</dt>
+          <dd>
+            <span class="topic-title">Daily review + discussion</span>
+            <span class="row-note">No new pre-work. Run Daily Review, post your initial discussion thoughts, finish any lab workbook still open.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-discussion" href="week07_discussion.html" target="_blank" rel="noopener">Discussion <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+          <dt><strong>Thu</strong>Day 27</dt>
+          <dd>
+            <span class="topic-title">Respiratory Anatomy and Mechanics</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="respiratory-anatomy.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-resp-anatomy-mechanics" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Respiratory Anatomy and Mechanics">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day27_respiratory-anatomy-and-mechanics.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            <div class="topic-pair">
+              <span class="topic-title">Gas Exchange and Transport</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="gas-exchange-transport.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-gas-exchange-transport" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Gas Exchange and Transport">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day27_gas-exchange-and-transport.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div></div>
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Fri</strong>Day 28</dt>
+          <dd>
+            <span class="topic-title">GI Tract Anatomy and Motility</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="gi-anatomy-motility.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-gi-anatomy-motility" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for GI Tract Anatomy and Motility">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day28_gi-tract-anatomy-and-motility.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            <div class="topic-pair">
+              <span class="topic-title">Digestion and Absorption</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="digestion-absorption.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-digestion-absorption" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Digestion and Absorption">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day28_digestion-and-absorption.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div></div>
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Sat-Sun</strong>Quiz window</dt>
+          <dd>
+            <span class="topic-title">Lock in the week</span>
+            <span class="row-note">Run Daily Review, take the quiz earlier rather than later, submit discussion replies and lab workbooks before Sun 11:59 PM.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-quiz" href="bio304-spaced-recall-prototype.html" target="_blank" rel="noopener">Quiz check <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+        </dl>
+      </div>
+    </li>
+
+    <li class="week-card" id="week-8" aria-label="Week 8, Jul 27 to Aug 2" data-week="8" data-start="2026-07-27" data-end="2026-08-02">
+      <div class="week-tab" aria-hidden="true">Wk 08</div>
+      <div class="week-body">
+        <div class="week-header">
+          <div class="week-number" aria-hidden="true">08</div>
+          <div class="week-meta">
+            <h2 class="week-dates">Jul 27 to Aug 2</h2>
+            <p class="week-theme">Urinary . Reproductive</p>
+            <div class="week-status-slot"></div>
+          </div>
+        </div>
+        <dl class="day-list" aria-label="Daily schedule for week 8">
+          <dt><strong>Mon</strong>Day 29</dt>
+          <dd>
+            <span class="topic-title">Kidney Anatomy and Glomerular Filtration</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="kidney-anatomy-gfr.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-kidney-filtration" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Kidney Anatomy and Glomerular Filtration">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day29_kidney-anatomy-and-glomerular-filtration.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Tue</strong>Day 30</dt>
+          <dd>
+            <span class="topic-title">Tubular Function and Urine Concentration</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="tubular-function.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-tubular-function" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Tubular Function and Urine Concentration">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day30_tubular-function-and-urine-concentration.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Wed</strong>Catch-up</dt>
+          <dd>
+            <span class="topic-title">Daily review + discussion</span>
+            <span class="row-note">No new pre-work. Run Daily Review, post your initial discussion thoughts, finish any lab workbook still open.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-discussion" href="week08_discussion.html" target="_blank" rel="noopener">Discussion <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+          <dt><strong>Thu</strong>Day 31</dt>
+          <dd>
+            <span class="topic-title">Fluid, Electrolyte, and Acid-Base Balance</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="fluid-electrolyte-acid-base.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-fluid-acid-base" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Fluid, Electrolyte, and Acid-Base Balance">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day31_fluid-electrolyte-and-acid-base-balance.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            <div class="topic-pair">
+              <span class="topic-title">Male Reproductive System</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="male-reproductive.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-male-reproductive" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Male Reproductive System">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day31_male-reproductive-system.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div></div>
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Fri</strong>Day 32</dt>
+          <dd>
+            <span class="topic-title">Female Reproductive System</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="female-reproductive.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-female-reproductive" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Female Reproductive System">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day32_female-reproductive-system.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div>
+            <div class="topic-pair">
+              <span class="topic-title">Pregnancy A&P (Basics)</span>
+              <div class="pill-row">
+                <a class="act-pill pill-prework" href="pregnancy-basics.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-pregnancy-development" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Pregnancy A&P (Basics)">SR</a>
+                <a class="act-pill pill-lab" href="workbook_day32_pregnancy-aandp-basics.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
+              </div></div>
+            <div class="pill-row" style="margin-top:10px">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+            </div>
+          </dd>
+          <dt><strong>Sat-Sun</strong>Quiz window</dt>
+          <dd>
+            <span class="topic-title">Lock in the week</span>
+            <span class="row-note">Run Daily Review, take the quiz earlier rather than later, submit discussion replies and lab workbooks before Sun 11:59 PM.</span>
+            <div class="pill-row">
+              <a class="act-badge badge-dr" href="bio304-spaced-recall-prototype.html#review" target="_blank" rel="noopener" title="Daily review" aria-label="Daily review">DR</a>
+              <a class="act-pill pill-quiz" href="bio304-spaced-recall-prototype.html" target="_blank" rel="noopener">Quiz check <span class="arrow">&rarr;</span></a>
+            </div>
+          </dd>
+        </dl>
+      </div>
+    </li>
+
+  </ol>
+
+  <footer class="course-footer">
+    <strong>How the week runs.</strong> Pre-work Monday, Tuesday, Thursday, Friday. Each pre-work day opens with a short lecture video on the topic's page; finishing the video plus the retrieval check unlocks the cards. Wednesday is catch-up plus discussion. The weekend is your quiz window.
+    <br><br>
+    <strong>What each button does.</strong> <strong style="color:var(--navy)">Pre-work</strong> opens the lecture page (video first, cards after). The navy <strong style="color:var(--navy)">SR</strong> badge jumps straight to today's spaced-recall cards if you already watched the video. <strong style="color:var(--terra-dark)">Lab workbook</strong> opens the printable workbook for hand-labeling. The dark grey <strong style="color:#3F4A54">DR</strong> badge opens Daily Review for every card that is due across all your topics. <strong style="background:#DDB54E;color:var(--navy);padding:1px 8px;border-radius:4px">Discussion</strong> opens this week's discussion prompt. <strong style="color:var(--sage-deeper)">Quiz check</strong> opens your pre-quiz review. The terra arrow <span style="color:var(--terra-dark);font-size:18px;vertical-align:middle">&#9654;</span> marks today's row.
+  </footer>
+</main>
+
+<script>
+(function () {
+  // Course constants (kept in sync with course-content.js + build_schedule.py)
+  var COURSE_START_ISO = '2026-06-08'; // Monday Week 1
+  var COURSE_END_ISO = '2026-08-02';   // Sunday Week 8
+  // Pattern: Monday=0, Tuesday=1, Thursday=3, Friday=4 (relative to that week's Monday)
+
+  function parseLocalDate(iso) {
+    var p = iso.split('-');
+    return new Date(parseInt(p[0],10), parseInt(p[1],10)-1, parseInt(p[2],10));
+  }
+  function startOfToday() {
+    var t = new Date();
+    t.setHours(0,0,0,0);
+    return t;
+  }
+  function fmtLongDate(d) {
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    return days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate();
+  }
+  function daysBetween(a, b) {
+    return Math.round((b.getTime() - a.getTime()) / 86400000);
+  }
+
+  var today = startOfToday();
+  var courseStart = parseLocalDate(COURSE_START_ISO);
+  var courseEnd = parseLocalDate(COURSE_END_ISO);
+
+  // Find current week + next week
+  var currentWeek = null, nextWeek = null;
+  var weekEls = document.querySelectorAll('.week-card');
+  weekEls.forEach(function (el) {
+    var start = parseLocalDate(el.getAttribute('data-start'));
+    var end = parseLocalDate(el.getAttribute('data-end'));
+    if (today >= start && today <= end) {
+      currentWeek = { num: parseInt(el.getAttribute('data-week'),10), el: el, start: start, end: end };
+    } else if (today < start && !nextWeek) {
+      nextWeek = { num: parseInt(el.getAttribute('data-week'),10), el: el, start: start, end: end };
+    } else if (today > end) {
+      el.classList.add('is-past');
+    }
+  });
+
+  // Add status pills inside week cards
+  if (currentWeek) {
+    currentWeek.el.classList.add('is-current');
+    var slot = currentWeek.el.querySelector('.week-status-slot');
+    if (slot) slot.innerHTML = '<span class="week-status-pill is-current">This week</span>';
+  } else if (nextWeek) {
+    var slot2 = nextWeek.el.querySelector('.week-status-slot');
+    if (slot2) slot2.innerHTML = '<span class="week-status-pill is-next">Up next</span>';
+  }
+
+  // Highlight today's row inside the current week
+  if (currentWeek) {
+    var slotOffsets = { 0: 0, 1: 1, 3: 3, 4: 4 };  // Mon, Tue, Thu, Fri offsets from Monday
+    var weekDayIdx = (today.getDay() === 0) ? 6 : today.getDay() - 1; // 0=Mon..6=Sun
+    var dayList = currentWeek.el.querySelector('.day-list');
+    if (dayList) {
+      // Row order in the dl: Mon-pre, Tue-pre, Wed-catch, Thu-pre, Fri-pre, Weekend
+      var rowMap = { 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 5 };  // weekday → row index
+      var rowIdx = rowMap[weekDayIdx];
+      var dts = dayList.querySelectorAll('dt');
+      var dds = dayList.querySelectorAll('dd');
+      if (dts[rowIdx]) {
+        dts[rowIdx].classList.add('is-today');
+        // inject arrow if not already present
+        if (!dts[rowIdx].querySelector('.today-arrow')) {
+          var arrow = document.createElement('span');
+          arrow.className = 'today-arrow';
+          arrow.setAttribute('aria-hidden', 'true');
+          arrow.innerHTML = '&#9654;';
+          dts[rowIdx].insertBefore(arrow, dts[rowIdx].firstChild);
+        }
+      }
+      if (dds[rowIdx]) {
+        dds[rowIdx].classList.add('is-today');
+        // inject today label after first topic-title
+        var firstTitle = dds[rowIdx].querySelector('.topic-title');
+        if (firstTitle && !firstTitle.querySelector('.today-label')) {
+          var label = document.createElement('span');
+          label.className = 'today-label';
+          label.textContent = 'Today';
+          firstTitle.appendChild(document.createTextNode(' '));
+          firstTitle.appendChild(label);
+        }
+      }
+    }
+  }
+
+  // Status-now banner
+  var statusEl = document.getElementById('status-now');
+  var statusLabelEl = document.getElementById('status-now-label');
+  var statusTextEl = document.getElementById('status-now-text');
+  function showStatus(label, text, href) {
+    statusLabelEl.textContent = label;
+    statusTextEl.innerHTML = text;
+    if (href) statusEl.setAttribute('href', href);
+    statusEl.hidden = false;
+  }
+
+  if (today < courseStart) {
+    var days = daysBetween(today, courseStart);
+    var word = (days === 1) ? 'day' : 'days';
+    showStatus('Coming up',
+      'Term begins <strong>' + fmtLongDate(courseStart) + '</strong>. ' + days + ' ' + word + ' to go. Week 1 opens with Levels of Organization, Anatomical Terminology, Homeostasis, Cell Structure, and Membrane Transport.',
+      '#week-1');
+  } else if (today > courseEnd) {
+    showStatus('Term complete',
+      'Summer 2026 term wrapped on ' + fmtLongDate(courseEnd) + '. Nice work.', null);
+  } else if (currentWeek) {
+    var dayName = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][today.getDay()];
+    var dayNameLong = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][today.getDay()];
+    var label, text;
+    if (dayName === 'Mon' || dayName === 'Tue' || dayName === 'Thu' || dayName === 'Fri') {
+      label = 'Today';
+      text = '<strong>Week ' + currentWeek.num + ', ' + dayNameLong + '.</strong> Pre-work day. Open the lecture page and the lab workbook for today\'s topic.';
+    } else if (dayName === 'Wed') {
+      label = 'Today';
+      text = '<strong>Week ' + currentWeek.num + ', Wednesday.</strong> Catch-up day. Run Daily Review, post your discussion thoughts, finish any open lab workbook.';
+    } else {
+      // Sat or Sun
+      label = 'Today';
+      text = '<strong>Week ' + currentWeek.num + ', ' + dayNameLong + '.</strong> Quiz window open. Take the quiz before Sunday 11:59 PM.';
+    }
+    showStatus(label, text, '#week-' + currentWeek.num);
+  } else if (nextWeek) {
+    var d = daysBetween(today, nextWeek.start);
+    var w = (d === 1) ? 'day' : 'days';
+    showStatus('Up next',
+      '<strong>Week ' + nextWeek.num + '</strong> begins ' + fmtLongDate(nextWeek.start) + ' (' + d + ' ' + w + ').',
+      '#week-' + nextWeek.num);
+  }
+
+  // Scroll to current week on load if present
+  if (currentWeek) {
+    setTimeout(function () {
+      currentWeek.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+  }
+})();
+
+// Iframe height sender for Canvas embed
+(function(){
+  if(window.self===window.top)return;
+  function send(){
+    try{
+      var h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+      window.parent.postMessage({type:'iframe-height',id:'bio304-schedule',height:h},'*');
+    }catch(e){}
+  }
+  window.addEventListener('load',send);
+  window.addEventListener('resize',send);
+  if('ResizeObserver' in window) new ResizeObserver(send).observe(document.body);
+})();
+</script>
+</body>
+</html>
