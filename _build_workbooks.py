@@ -2079,6 +2079,855 @@ WORKBOOKS = [
             "A patient goes into septic shock: massive systemic vasodilation drops their blood pressure dangerously low. Use the BP equation to explain what is changing and why, then predict the body's compensatory responses (heart rate, sympathetic activity, ADH release).",
         ],
     },
+
+    # ==================================================================
+    # WEEK 7
+    # ==================================================================
+    {
+        "filename": "workbook_day25_lymphatic-system-and-innate-immunity.html",
+        "title": "Lymphatic System and Innate Immunity",
+        "subhead": "Lymph nodes, vessels, spleen, thymus; barriers, phagocytes, NK cells, inflammation, complement, fever.",
+        "eyebrow": "BIO 304 . WEEK 7 . MONDAY . LAB WORKBOOK",
+        "day_num": 25,
+        "anatomy_intro": (
+            "The lymphatic system both drains tissue fluid and houses the "
+            "first line of immune defense. Today you'll draw the major "
+            "lymphatic structures across the body, then a close-up of an "
+            "inflammatory response in a tissue."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Major lymphatic structures",
+                "instructions": [
+                    "Draw a simple body outline.",
+                    "Lymph nodes: cluster small ovals at the cervical (neck), axillary (armpit), and inguinal (groin) regions. Label each cluster.",
+                    "Thymus: in the upper chest behind the sternum. Label (note: large in childhood, atrophies with age).",
+                    "Spleen: in the upper left abdomen, behind the stomach. Label.",
+                    "MALT (mucosa-associated lymphoid tissue): mark tonsils in the throat, Peyer's patches in the small intestine, and appendix. Label.",
+                    "Draw a network of lymphatic vessels running through the body, with two large terminal ducts emptying into veins near the heart: thoracic duct (drains most of the body, empties into the left subclavian vein) and right lymphatic duct (drains right upper body, empties into the right subclavian vein). Label.",
+                ],
+                "height": 460,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Acute inflammation in a tissue",
+                "instructions": [
+                    "Draw a section of tissue with a small injury (e.g., a splinter introducing bacteria).",
+                    "Show a nearby blood capillary. Add arrows pointing OUT from the capillary indicating vasodilation and increased permeability.",
+                    "Show fluid leaking from the capillary into the tissue, causing edema (swelling). Label.",
+                    "Draw neutrophils squeezing through the capillary wall (diapedesis or extravasation) and migrating toward the bacteria. Label.",
+                    "Draw the neutrophils phagocytosing bacteria. Label.",
+                    "Mark the four cardinal signs of inflammation around the site: redness (rubor), heat (calor), swelling (tumor), pain (dolor). Add Latin names if you want.",
+                ],
+                "height": 420,
+            },
+        ],
+        "label_list": [
+            "Lymph node", "Cervical nodes", "Axillary nodes", "Inguinal nodes",
+            "Thymus", "Spleen", "Tonsils", "Peyer's patches", "Appendix",
+            "Lymphatic vessel", "Thoracic duct", "Right lymphatic duct",
+            "Vasodilation", "Increased permeability", "Edema",
+            "Neutrophil", "Diapedesis (extravasation)", "Phagocytosis",
+            "Redness", "Heat", "Swelling", "Pain",
+        ],
+        "physio_activity_title": "2A. Innate defense table",
+        "physio_activity_intro": (
+            "Fill in the table classifying innate immune defenses by "
+            "category. After the table, answer the two follow-up "
+            "questions."
+        ),
+        "physio_table": {
+            "headers": ["Category", "Example", "Mechanism of defense"],
+            "rows": [
+                ["Physical barrier", "Skin", ""],
+                ["Chemical barrier", "Stomach acid (low pH)", ""],
+                ["Phagocyte", "Neutrophil", ""],
+                ["Phagocyte", "Macrophage", ""],
+                ["Cytotoxic innate cell", "Natural killer (NK) cell", ""],
+                ["Chemical mediator", "Complement", ""],
+                ["Whole-body response", "Fever", ""],
+                ["Local response", "Inflammation", ""],
+            ],
+        },
+        "physio_followups": [
+            "Fever is a regulated rise in body temperature in response to infection. Explain mechanistically why a moderate fever is BENEFICIAL during a bacterial infection. Why is very high fever (over 41 C) dangerous?",
+            "Complement is a cascade of plasma proteins that can punch holes in bacterial membranes. Explain the term 'cascade' in this context, and how this design lets a small initial signal produce a large response.",
+        ],
+        "synthesis_questions": [
+            "A patient has a breast tumor removed along with several axillary lymph nodes. Predict the long-term consequence in the arm on that side, and explain mechanistically why this complication occurs (lymphedema).",
+            "A patient is taking corticosteroids long-term and develops infections easily. Explain mechanistically how corticosteroids suppress the innate immune response (consider phagocyte activity, inflammation, fever response).",
+            "Compare innate and adaptive immunity in one paragraph: speed of response, specificity, memory, and which cells are involved. Why does the body need BOTH systems?",
+        ],
+    },
+    {
+        "filename": "workbook_day26_adaptive-immunity.html",
+        "title": "Adaptive Immunity",
+        "subhead": "B cells, T cells, antibodies, antigen presentation, memory.",
+        "eyebrow": "BIO 304 . WEEK 7 . TUESDAY . LAB WORKBOOK",
+        "day_num": 26,
+        "anatomy_intro": (
+            "Adaptive immunity is specific (recognizes a particular pathogen) "
+            "and has memory (responds faster on second exposure). Today "
+            "you'll draw the two main effector cell types side by side, "
+            "then an antibody up close."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. B cell vs T cell action",
+                "instructions": [
+                    "Left half: a B cell encountering a free-floating antigen (e.g., a bacterial toxin). Draw the antigen binding the B cell receptor on the surface. Show the B cell differentiating into a plasma cell (label, with rough ER for antibody synthesis) and a memory B cell. Draw antibodies leaving the plasma cell into the surroundings.",
+                    "Right half: a cytotoxic T cell (CD8) encountering an infected host cell. The infected cell presents a viral antigen on its surface bound to MHC class I (draw both). The T cell's T-cell receptor (TCR) binds the MHC-I + antigen complex. The T cell releases perforin and granzymes, punching the infected cell and triggering apoptosis. Draw the infected cell dying.",
+                    "Label B cell, plasma cell, memory B cell, antibody on the left. Label cytotoxic T cell, TCR, MHC I, perforin/granzyme, apoptosis on the right.",
+                ],
+                "height": 460,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Antibody structure",
+                "instructions": [
+                    "Draw a single antibody molecule as a Y shape.",
+                    "Show four protein chains: two heavy chains (long) forming the stem and inner arms of the Y, two light chains (short) on the outer arms. Label.",
+                    "Draw disulfide bonds (small dashes) connecting the chains.",
+                    "Color or shade the TOPS of the two arms differently from the rest: these are the variable regions where antigen binding happens. Label antigen-binding site (two per antibody).",
+                    "The rest of the molecule is the constant region. Label.",
+                    "Below the antibody, draw a small antigen with surface features (epitopes) that fit the antigen-binding sites. Show the antibody-antigen binding.",
+                ],
+                "height": 360,
+            },
+        ],
+        "label_list": [
+            "B cell", "Plasma cell", "Memory B cell",
+            "B cell receptor", "Antibody",
+            "Cytotoxic T cell (CD8)", "Helper T cell (CD4)",
+            "T cell receptor (TCR)", "MHC class I", "MHC class II",
+            "Perforin", "Granzyme", "Apoptosis",
+            "Heavy chain", "Light chain",
+            "Variable region", "Constant region",
+            "Antigen-binding site", "Antigen (epitope)",
+        ],
+        "physio_activity_title": "2A. Primary vs secondary immune response",
+        "physio_activity_intro": (
+            "Draw a graph (x-axis = time in days, y-axis = antibody "
+            "concentration in blood) showing the primary vs secondary "
+            "antibody response. On Day 0, the patient is exposed to "
+            "antigen X. On Day 30, exposed again. Then answer the "
+            "questions."
+        ),
+        "physio_activity_rows": 6,
+        "synthesis_questions": [
+            "Explain how a vaccine works using the primary vs secondary response. Why does a vaccine produce immunity even though no real infection ever occurred?",
+            "HIV preferentially infects and destroys helper T cells (CD4). Predict the consequences for both the B cell response and the cytotoxic T cell response, and explain why HIV patients eventually develop opportunistic infections (AIDS).",
+            "Autoimmune disease occurs when adaptive immunity targets self tissues. Pick one autoimmune disease (e.g., Type 1 diabetes, rheumatoid arthritis, lupus, multiple sclerosis). Identify which self tissue is targeted and predict the consequences when adaptive immunity attacks that tissue.",
+        ],
+    },
+    {
+        "filename": "workbook_day27_respiratory-anatomy-and-mechanics.html",
+        "title": "Respiratory Anatomy and Mechanics",
+        "subhead": "Upper and lower airways, alveoli, and how the chest moves air.",
+        "eyebrow": "BIO 304 . WEEK 7 . THURSDAY . LAB WORKBOOK",
+        "day_num": 27,
+        "anatomy_intro": (
+            "Air follows a specific path from nose to alveolus. The "
+            "chest pulls air in and pushes it out by changing its own "
+            "volume. Today you'll draw the respiratory tract from above, "
+            "then a side view showing inspiration vs expiration."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Respiratory tract from nose to alveoli",
+                "instructions": [
+                    "Draw a head and chest in front view.",
+                    "Label, in order from top to bottom: nasal cavity, pharynx, larynx, trachea, primary bronchi (right and left), secondary bronchi, tertiary bronchi, bronchioles, terminal bronchioles, respiratory bronchioles, alveolar ducts, alveoli.",
+                    "At the bottom, draw a cluster of grape-like alveoli wrapped in capillaries.",
+                    "Note: conducting zone = nose through terminal bronchioles (no gas exchange, just airflow). Respiratory zone = respiratory bronchioles through alveoli (gas exchange happens here).",
+                    "Add the epiglottis at the top of the larynx (closes during swallowing).",
+                ],
+                "height": 460,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Inspiration vs expiration",
+                "instructions": [
+                    "Draw two side views of the thorax side by side.",
+                    "LEFT silhouette: inspiration. Diaphragm contracts and flattens (moves DOWN). External intercostals contract, lifting the rib cage UP and OUT. Thoracic volume INCREASES, pressure DROPS, air flows IN.",
+                    "RIGHT silhouette: expiration (quiet). Diaphragm relaxes and domes upward. Rib cage drops. Thoracic volume DECREASES, pressure RISES, air flows OUT.",
+                    "Label diaphragm position, external intercostals, ribs, lung volume change, airflow direction.",
+                    "Below the silhouettes, write Boyle's Law: at constant temperature, pressure and volume are inversely related. Note that inspiration is an ACTIVE process (muscle contraction); quiet expiration is PASSIVE (elastic recoil).",
+                ],
+                "height": 420,
+            },
+        ],
+        "label_list": [
+            "Nasal cavity", "Pharynx", "Larynx", "Epiglottis", "Trachea",
+            "Primary bronchus", "Bronchioles", "Terminal bronchiole",
+            "Respiratory bronchiole", "Alveolar duct", "Alveolus",
+            "Conducting zone", "Respiratory zone",
+            "Diaphragm", "External intercostal muscles",
+            "Visceral pleura", "Parietal pleura", "Pleural cavity",
+        ],
+        "physio_activity_title": "2A. Lung volumes and capacities",
+        "physio_activity_intro": (
+            "Sketch a single spirometry tracing (volume vs time) on the "
+            "lines below. Then label the four primary volumes and the "
+            "four derived capacities."
+        ),
+        "physio_numbered_qs": [
+            "Tidal volume (TV): the volume of air moved in a single normal quiet breath. Typical value?",
+            "Inspiratory reserve volume (IRV): the extra air you can breathe IN above a normal inspiration.",
+            "Expiratory reserve volume (ERV): the extra air you can breathe OUT below a normal expiration.",
+            "Residual volume (RV): the air remaining in the lungs after maximum expiration. Why is some always left?",
+            "Vital capacity (VC = TV + IRV + ERV): the largest volume you can move from a maximum inspiration to a maximum expiration.",
+            "Total lung capacity (TLC = VC + RV): everything the lungs can hold.",
+        ],
+        "synthesis_questions": [
+            "A patient has a pneumothorax (air enters the pleural cavity, breaking the seal between visceral and parietal pleura). Predict what happens to the affected lung and explain mechanistically why it collapses.",
+            "Compare obstructive (e.g., COPD, asthma) vs restrictive (e.g., pulmonary fibrosis) lung disease. Predict how each affects lung volumes (TV, IRV, FEV1, TLC) and explain the mechanical reason behind each pattern.",
+            "Surfactant is a lipid-protein mixture in the alveoli that reduces surface tension. Premature infants often lack adequate surfactant (respiratory distress syndrome). Predict the consequence for alveolar inflation and explain why this is life-threatening.",
+        ],
+    },
+    {
+        "filename": "workbook_day27_gas-exchange-and-transport.html",
+        "title": "Gas Exchange and Transport",
+        "subhead": "External and internal respiration; how O2 and CO2 ride the bloodstream.",
+        "eyebrow": "BIO 304 . WEEK 7 . THURSDAY . LAB WORKBOOK",
+        "day_num": 27,
+        "anatomy_intro": (
+            "Gas exchange happens twice in every breath cycle: at the "
+            "alveoli (external respiration, lungs pick up O2 and drop "
+            "CO2) and at the tissues (internal respiration, tissues "
+            "pick up O2 and dump CO2). Draw both interfaces and how "
+            "hemoglobin transports the load."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Alveolus and tissue gas exchange",
+                "instructions": [
+                    "Draw two panels side by side: the alveolus (LEFT) and a body tissue (RIGHT).",
+                    "Left panel: an alveolus with air inside. PO2 in alveolus is about 104 mmHg, PCO2 is about 40 mmHg. Wrap the alveolus with a pulmonary capillary. Blood entering the capillary has PO2 about 40, PCO2 about 45. Show O2 diffusing INTO the blood and CO2 diffusing OUT to the alveolus. By the time blood leaves, PO2 is ~100 and PCO2 is ~40.",
+                    "Right panel: a tissue cell. Inside the cell, PO2 is about 40 and PCO2 is about 45 (because the cell is consuming O2 and making CO2). Wrap the tissue with a systemic capillary. Blood entering has PO2 ~100, PCO2 ~40. Show O2 diffusing INTO the tissue and CO2 diffusing OUT to the blood. By the time blood leaves, PO2 is ~40, PCO2 is ~45.",
+                    "Add labels: external respiration (lungs), internal respiration (tissues). Note: diffusion goes down partial pressure gradients.",
+                ],
+                "height": 460,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Hemoglobin transports O2",
+                "instructions": [
+                    "Draw a hemoglobin molecule schematically: four globin chains (subunits) clustered, each containing a heme group with a central iron (Fe). Label one heme.",
+                    "Show the hemoglobin in two states: deoxyhemoglobin (no O2 bound) and oxyhemoglobin (4 O2 molecules bound, one per heme).",
+                    "Draw a hemoglobin LOADING in the pulmonary capillary (high PO2): O2 binds.",
+                    "Draw a hemoglobin UNLOADING in a tissue capillary (low PO2): O2 dissociates.",
+                    "Note: hemoglobin shows cooperative binding (first O2 makes the next easier to bind), producing the S-shaped saturation curve.",
+                    "Below, note three factors that promote unloading: low pH, high PCO2, high temperature (the Bohr effect). These are all features of active tissue.",
+                ],
+                "height": 420,
+            },
+        ],
+        "label_list": [
+            "Alveolus", "Pulmonary capillary",
+            "PO2 (high in alveolus, low in tissue)",
+            "PCO2 (low in alveolus, high in tissue)",
+            "External respiration", "Internal respiration",
+            "Hemoglobin", "Globin chain", "Heme group", "Iron (Fe)",
+            "Oxyhemoglobin", "Deoxyhemoglobin",
+            "Bohr effect",
+        ],
+        "physio_activity_title": "2A. Oxygen-hemoglobin dissociation curve",
+        "physio_activity_intro": (
+            "Sketch the oxygen-hemoglobin dissociation curve on a graph. "
+            "x-axis: PO2 (0 to 100 mmHg). y-axis: percent hemoglobin "
+            "saturation (0 to 100). Then answer the questions below."
+        ),
+        "physio_numbered_qs": [
+            "At PO2 = 100 mmHg (lung capillary), what is hemoglobin saturation?",
+            "At PO2 = 40 mmHg (tissue capillary at rest), what is saturation?",
+            "Why is the curve S-shaped (sigmoidal) rather than linear?",
+            "Predict the direction the curve SHIFTS when blood pH drops, PCO2 rises, or temperature rises. What does the shift accomplish at the tissue?",
+            "A patient is given high-FiO2 oxygen therapy, raising arterial PO2 from 100 to 200 mmHg. Predict the change in hemoglobin saturation (it doesn't double).",
+        ],
+        "synthesis_questions": [
+            "Carbon monoxide (CO) binds hemoglobin with about 200 times the affinity of O2 and forms carboxyhemoglobin. Predict the effects on (a) hemoglobin saturation, (b) the dissociation curve, (c) O2 delivery to tissues. Why is CO poisoning so dangerous even at low concentrations?",
+            "Most CO2 in the blood is transported as bicarbonate (HCO3-), formed inside red blood cells by carbonic anhydrase. Trace this pathway: CO2 enters the RBC, becomes carbonic acid, then dissociates. Where does the H+ go, and where does HCO3- go?",
+            "An athlete in heavy exercise has muscle PCO2 high, pH low, and temperature elevated. Predict (using the Bohr effect) what happens to hemoglobin's affinity for O2 at the muscle, and why this is exactly what the muscle needs.",
+        ],
+    },
+    {
+        "filename": "workbook_day28_gi-tract-anatomy-and-motility.html",
+        "title": "GI Tract Anatomy and Motility",
+        "subhead": "Mouth to anus, plus the accessory organs that empty into the tract.",
+        "eyebrow": "BIO 304 . WEEK 7 . FRIDAY . LAB WORKBOOK",
+        "day_num": 28,
+        "anatomy_intro": (
+            "The GI tract is a tube from mouth to anus. Food and chyme "
+            "move through it by two main mechanisms: peristalsis "
+            "(propulsion) and segmentation (mixing). Today you'll draw "
+            "the GI tract with accessory organs, then the wall layers "
+            "common to most segments."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. GI tract with accessory organs",
+                "instructions": [
+                    "Draw a body outline (head and torso).",
+                    "Label, in order, the tube of the GI tract: mouth (oral cavity), pharynx, esophagus, stomach (J-shaped, in the upper left abdomen), small intestine (long coiled tube with 3 parts: duodenum, jejunum, ileum), large intestine (frames around the small intestine: cecum/appendix, ascending colon, transverse colon, descending colon, sigmoid colon, rectum), anus.",
+                    "Now add accessory organs (they don't carry food but contribute to digestion): salivary glands near the mouth, liver in the upper right abdomen, gallbladder under the liver, pancreas behind the stomach.",
+                    "Show ducts: bile duct from liver and gallbladder, pancreatic duct from pancreas, both emptying into the duodenum.",
+                    "Label every structure.",
+                ],
+                "height": 480,
+            },
+            {
+                "id": "B",
+                "label": "Box B. GI wall layers (cross-section)",
+                "instructions": [
+                    "Draw a cross-section of a typical GI tube (e.g., small intestine). Show the lumen in the center.",
+                    "From the lumen outward, label four layers:",
+                    "Mucosa (innermost): epithelium + lamina propria + muscularis mucosae. This is the absorptive surface; in the small intestine, show villi projecting into the lumen.",
+                    "Submucosa: connective tissue with blood vessels and the submucosal nerve plexus. Label.",
+                    "Muscularis externa: usually two layers of smooth muscle, an inner circular and an outer longitudinal. Between them runs the myenteric nerve plexus. These layers produce peristalsis and segmentation. Label.",
+                    "Serosa (outermost): thin layer of mesothelium and connective tissue (the visceral peritoneum). Label.",
+                ],
+                "height": 380,
+            },
+        ],
+        "label_list": [
+            "Oral cavity", "Pharynx", "Esophagus", "Stomach",
+            "Duodenum", "Jejunum", "Ileum", "Cecum", "Appendix",
+            "Ascending colon", "Transverse colon", "Descending colon",
+            "Sigmoid colon", "Rectum", "Anus",
+            "Salivary glands", "Liver", "Gallbladder", "Pancreas",
+            "Bile duct", "Pancreatic duct",
+            "Mucosa", "Submucosa", "Muscularis externa", "Serosa",
+            "Circular muscle layer", "Longitudinal muscle layer",
+        ],
+        "physio_activity_title": "2A. Peristalsis vs segmentation",
+        "physio_activity_intro": (
+            "Compare the two main GI motility patterns by filling in the "
+            "table. Then answer the follow-up questions."
+        ),
+        "physio_table": {
+            "headers": ["Property", "Peristalsis", "Segmentation"],
+            "rows": [
+                ["Primary function (propulsion / mixing)", "", ""],
+                ["Direction of movement", "", ""],
+                ["Where dominant in GI tract", "", ""],
+                ["Muscle layers involved", "", ""],
+                ["Wave pattern", "", ""],
+            ],
+        },
+        "physio_followups": [
+            "Trace a bite of food from the moment it enters the mouth to the moment chyme leaves the stomach. Identify which motility patterns dominate at each step and approximately how long each stage takes.",
+            "Defecation is a complex motor act involving both involuntary smooth muscle (internal anal sphincter) and voluntary skeletal muscle (external anal sphincter). Explain why a patient with a high spinal cord injury loses voluntary control but may still defecate reflexively.",
+        ],
+        "synthesis_questions": [
+            "Dysphagia (difficulty swallowing) can result from problems with the pharynx, the esophagus, or the lower esophageal sphincter. Predict the symptoms in each case, and which patient population is most affected by each.",
+            "Gastroparesis (delayed gastric emptying) is a common complication of diabetes. Predict the patient's symptoms after a meal and explain why dampened autonomic input to the stomach reduces its motility.",
+            "Irritable bowel syndrome (IBS) is characterized by altered motility, often producing either diarrhea (too fast) or constipation (too slow). Predict what changes in segmentation and peristalsis would produce each pattern.",
+        ],
+    },
+    {
+        "filename": "workbook_day28_digestion-and-absorption.html",
+        "title": "Digestion and Absorption",
+        "subhead": "What breaks down where, and how nutrients cross into the blood.",
+        "eyebrow": "BIO 304 . WEEK 7 . FRIDAY . LAB WORKBOOK",
+        "day_num": 28,
+        "anatomy_intro": (
+            "Digestion happens stepwise: mechanical and chemical. "
+            "Absorption is largely the job of the small intestine, whose "
+            "villi enormously expand surface area. Today you'll draw a "
+            "villus close-up, then the macronutrient digestion pathways."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Intestinal villus close-up",
+                "instructions": [
+                    "Draw a single intestinal villus: a finger-like projection into the lumen.",
+                    "Label the lumen at the top.",
+                    "Show the villus surface lined by absorptive epithelial cells (enterocytes), each with microvilli (brush border) facing the lumen. Label both.",
+                    "Inside the villus, draw a network of blood capillaries (label) and one central lacteal (a lymphatic capillary running up the center). Label.",
+                    "Add a goblet cell (mucus-secreting) in the epithelium. Label.",
+                    "Note the principle: water-soluble nutrients (amino acids, monosaccharides) enter the blood capillaries; fat-soluble nutrients (chylomicrons, fatty acids in lipid form) enter the lacteals and travel via lymph.",
+                ],
+                "height": 380,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Macronutrient digestion pathways",
+                "instructions": [
+                    "Draw three parallel pathways: Carbohydrates, Proteins, Fats. Each pathway shows where digestion begins, where it continues, and what the final absorbed product is.",
+                    "Carbohydrates: starch (mouth, salivary amylase begins) > starch (stomach, no digestion) > maltose (small intestine, pancreatic amylase) > glucose (small intestine, brush-border enzymes like maltase). Absorbed: monosaccharides into blood.",
+                    "Proteins: protein (mouth, no digestion) > peptides (stomach, pepsin) > shorter peptides (small intestine, pancreatic proteases) > amino acids (small intestine, brush-border peptidases). Absorbed: amino acids into blood.",
+                    "Fats: triglycerides (mouth, no digestion) > triglycerides (stomach, minor lingual lipase) > emulsified fat droplets (small intestine, bile salts from gallbladder) > monoglycerides + fatty acids (small intestine, pancreatic lipase). Absorbed: re-formed triglycerides as chylomicrons into lacteal.",
+                    "Label each enzyme, its source (which organ), and the products at each step.",
+                ],
+                "height": 420,
+            },
+        ],
+        "label_list": [
+            "Villus", "Microvilli (brush border)", "Enterocyte",
+            "Goblet cell", "Lumen", "Blood capillary", "Lacteal",
+            "Salivary amylase", "Pepsin", "Pancreatic amylase",
+            "Pancreatic protease (trypsin)", "Pancreatic lipase",
+            "Brush-border enzymes", "Bile salts",
+            "Glucose", "Amino acid", "Fatty acid + monoglyceride",
+            "Chylomicron",
+        ],
+        "physio_activity_title": "2A. Enzyme, source, substrate, product",
+        "physio_activity_intro": (
+            "Fill in the table to map each major digestive enzyme."
+        ),
+        "physio_table": {
+            "headers": ["Enzyme", "Source organ", "Substrate", "Product"],
+            "rows": [
+                ["Salivary amylase", "", "", ""],
+                ["Pepsin", "", "", ""],
+                ["Pancreatic amylase", "", "", ""],
+                ["Trypsin (and other pancreatic proteases)", "", "", ""],
+                ["Pancreatic lipase", "", "", ""],
+                ["Maltase (brush border)", "", "", ""],
+                ["Lactase (brush border)", "", "", ""],
+            ],
+        },
+        "physio_followups": [
+            "Lactose intolerance is caused by deficiency of the brush-border enzyme lactase. Predict the patient's symptoms after consuming dairy, and explain why undigested lactose causes osmotic diarrhea and bacterial gas production.",
+            "Bile salts are NOT enzymes, yet they are essential for fat digestion. Explain mechanistically how bile salts contribute to fat digestion without breaking any chemical bonds themselves (think: emulsification).",
+        ],
+        "synthesis_questions": [
+            "Celiac disease is an autoimmune reaction to gluten that damages and flattens intestinal villi. Predict the consequences for nutrient absorption and the patient's symptoms (weight loss, anemia, fatigue, diarrhea).",
+            "A patient has their gallbladder removed (cholecystectomy). Predict the effect on fat digestion immediately after surgery and over the long term. Why can the patient still digest fats, just less efficiently?",
+            "Pancreatic insufficiency (e.g., from cystic fibrosis or chronic pancreatitis) leads to malabsorption of all three macronutrients, but fat malabsorption is most pronounced. Explain mechanistically why fat absorption is hit hardest.",
+        ],
+    },
+
+    # ==================================================================
+    # WEEK 8
+    # ==================================================================
+    {
+        "filename": "workbook_day29_kidney-anatomy-and-glomerular-filtration.html",
+        "title": "Kidney Anatomy and Glomerular Filtration",
+        "subhead": "Gross kidney structure, the nephron, and how filtration starts.",
+        "eyebrow": "BIO 304 . WEEK 8 . MONDAY . LAB WORKBOOK",
+        "day_num": 29,
+        "anatomy_intro": (
+            "The kidney is built of about a million tiny functional units "
+            "called nephrons. Each nephron starts by filtering blood at "
+            "the glomerulus. Today you'll draw the kidney from outside "
+            "in and one nephron in detail."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Kidney in coronal section + nephron schematic",
+                "instructions": [
+                    "Left half: draw a kidney cut in half (coronal section, kidney bean shape).",
+                    "Label the outer cortex (granular, lighter), then the inner medulla containing several renal pyramids (cone-shaped). Tip of each pyramid (renal papilla) points into a minor calyx. Minor calyces converge into major calyces, which empty into the renal pelvis, which empties into the ureter. Label every structure.",
+                    "Add the renal artery (entering) and renal vein (leaving) at the hilum.",
+                    "Right half: draw a single nephron schematic. Start with the glomerulus inside Bowman's capsule (in the cortex). Continue through the proximal convoluted tubule (PCT, in cortex), down into the loop of Henle (which dips into the medulla, with a thin descending limb and a thick ascending limb), then back up to the distal convoluted tubule (DCT, in cortex), and finally into the collecting duct (which descends through the medulla and empties into the renal papilla).",
+                    "Label every nephron segment.",
+                ],
+                "height": 480,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Glomerulus and Bowman's capsule close-up",
+                "instructions": [
+                    "Draw the glomerulus as a tuft of capillaries enclosed inside Bowman's capsule (a cup-like structure).",
+                    "Show the afferent arteriole (larger diameter) entering the glomerulus, and the efferent arteriole (smaller diameter) leaving the glomerulus. Label both.",
+                    "Note: the difference in arteriole diameters creates high pressure inside the glomerular capillaries, which is what drives filtration.",
+                    "Draw the filtration barrier: capillary endothelial cells (with pores), the glomerular basement membrane (negatively charged, blocks proteins), and the podocyte foot processes (forming filtration slits). Label all three.",
+                    "Show filtered fluid (filtrate) passing into Bowman's space and then into the PCT.",
+                    "Note: filtrate contains water, ions, glucose, amino acids, urea (small things). It excludes RBCs, WBCs, platelets, and large proteins (these stay in the blood).",
+                ],
+                "height": 380,
+            },
+        ],
+        "label_list": [
+            "Renal cortex", "Renal medulla", "Renal pyramid", "Renal papilla",
+            "Minor calyx", "Major calyx", "Renal pelvis", "Ureter",
+            "Renal artery", "Renal vein", "Hilum",
+            "Glomerulus", "Bowman's capsule", "Bowman's space",
+            "Afferent arteriole", "Efferent arteriole",
+            "Proximal convoluted tubule (PCT)", "Loop of Henle",
+            "Distal convoluted tubule (DCT)", "Collecting duct",
+            "Podocyte", "Glomerular basement membrane",
+        ],
+        "physio_activity_title": "2A. Filtration rules: in or out of the filtrate?",
+        "physio_activity_intro": (
+            "For each substance below, decide whether it is FILTERED (passes "
+            "into Bowman's space at the glomerulus) or NOT FILTERED. "
+            "Justify in one phrase based on size or charge."
+        ),
+        "physio_numbered_qs": [
+            "Water (H2O).",
+            "Sodium ions (Na+).",
+            "Glucose.",
+            "Urea.",
+            "Red blood cells.",
+            "Albumin (a small plasma protein, ~67 kDa, negatively charged).",
+            "Creatinine (a small molecule, freely filtered, used clinically to estimate GFR).",
+        ],
+        "synthesis_questions": [
+            "Calculate cardiac output to kidney perfusion: at rest, the kidneys receive about 20 to 25 percent of cardiac output. If CO is 5 L/min, what is renal blood flow? Why is the kidney so heavily perfused?",
+            "Predict what happens to glomerular filtration rate (GFR) if (a) the afferent arteriole constricts, (b) the efferent arteriole constricts. Explain using the pressure-gradient concept.",
+            "A patient with severe hypertension develops kidney damage over years. Predict how chronic high pressure damages the delicate glomerular structures, and explain why proteinuria (protein in the urine) is a hallmark of this damage.",
+        ],
+    },
+    {
+        "filename": "workbook_day30_tubular-function-and-urine-concentration.html",
+        "title": "Tubular Function and Urine Concentration",
+        "subhead": "Reabsorption, secretion, and how the kidney makes concentrated urine.",
+        "eyebrow": "BIO 304 . WEEK 8 . TUESDAY . LAB WORKBOOK",
+        "day_num": 30,
+        "anatomy_intro": (
+            "About 180 L of filtrate is produced every day, but only "
+            "1 to 2 L of urine leaves the body. The nephron tubules "
+            "reclaim everything useful and concentrate the rest. Today "
+            "you'll annotate each tubule segment and then draw the "
+            "medullary osmotic gradient."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Nephron with segment functions",
+                "instructions": [
+                    "Draw a nephron in the same orientation as Day 29: glomerulus, PCT (in cortex), loop of Henle (descending and ascending limbs going into medulla), DCT (back in cortex), collecting duct (going down through medulla to papilla).",
+                    "Beside each segment, write what is REABSORBED (into blood) and what is SECRETED (into filtrate).",
+                    "PCT: ~65 percent of water and Na+, all glucose and amino acids (via co-transport), bicarbonate (HCO3-). Reclaims most filtered nutrients.",
+                    "Loop of Henle, descending limb: water reabsorbed (permeable to water, not solute). Loop of Henle, ascending thick limb: Na+ and Cl- reabsorbed (not permeable to water). This creates the medullary gradient.",
+                    "DCT: fine-tuning. Na+ reabsorbed (aldosterone-regulated), Ca2+ reabsorbed (PTH-regulated), K+ secreted.",
+                    "Collecting duct: water reabsorption controlled by ADH (vasopressin). Urea reabsorbed in deep medulla.",
+                    "Label each segment and its key activity.",
+                ],
+                "height": 480,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Medullary osmotic gradient",
+                "instructions": [
+                    "Draw the kidney section showing cortex at top and deep medulla at bottom.",
+                    "Mark interstitial osmolarity at different depths: 300 mOsm/L at cortex (same as plasma), rising to about 1200 mOsm/L deep in the medulla.",
+                    "Show how the loop of Henle creates this gradient (countercurrent multiplier).",
+                    "Now show two scenarios for the collecting duct passing through this gradient:",
+                    "ADH ABSENT (diabetes insipidus or overhydration): collecting duct is impermeable to water; urine stays dilute (about 50 to 100 mOsm/L); large urine volume.",
+                    "ADH PRESENT (dehydration or normal): aquaporins inserted in collecting duct; water leaves to enter the concentrated medullary interstitium; urine becomes concentrated (up to 1200 mOsm/L); small urine volume.",
+                    "Note: the medullary gradient is what makes concentrated urine POSSIBLE; ADH controls whether the body USES it.",
+                ],
+                "height": 460,
+            },
+        ],
+        "label_list": [
+            "Proximal convoluted tubule (PCT)", "Loop of Henle",
+            "Descending limb", "Ascending thick limb",
+            "Distal convoluted tubule (DCT)", "Collecting duct",
+            "Reabsorption", "Secretion",
+            "Aldosterone", "ADH (vasopressin)", "Parathyroid hormone (PTH)",
+            "Aquaporin (water channel)",
+            "Medullary osmotic gradient",
+            "Countercurrent multiplier",
+        ],
+        "physio_activity_title": "2A. Trace one molecule of filtered glucose",
+        "physio_activity_intro": (
+            "A glucose molecule has just entered Bowman's space at the "
+            "glomerulus. Trace what happens to it segment by segment in "
+            "a healthy person. Then in someone with diabetes mellitus "
+            "and blood glucose of 350 mg/dL."
+        ),
+        "physio_activity_rows": 8,
+        "synthesis_questions": [
+            "A patient with diabetes mellitus has blood glucose of 350 mg/dL (well above the renal threshold of ~200). Predict the urine composition and explain why these patients experience polyuria (excessive urine) and polydipsia (excessive thirst).",
+            "A patient takes a loop diuretic (e.g., furosemide), which blocks Na+/K+/2Cl- reabsorption in the thick ascending limb. Predict the immediate effects on (a) the medullary gradient, (b) urine volume, (c) serum potassium, and (d) blood pressure. Why is this drug used to treat heart failure?",
+            "SIADH (syndrome of inappropriate ADH) causes ADH release even when blood is dilute. Predict the urine osmolarity, blood sodium, and the patient's symptoms. Why is excess water retention more dangerous than excess water loss in terms of brain function?",
+        ],
+    },
+    {
+        "filename": "workbook_day31_fluid-electrolyte-and-acid-base-balance.html",
+        "title": "Fluid, Electrolyte, and Acid-Base Balance",
+        "subhead": "Body water compartments, key electrolytes, and how the body keeps pH at 7.4.",
+        "eyebrow": "BIO 304 . WEEK 8 . THURSDAY . LAB WORKBOOK",
+        "day_num": 31,
+        "anatomy_intro": (
+            "Body water is split between intracellular and extracellular "
+            "compartments, each with its own electrolyte signature. "
+            "Blood pH is maintained near 7.4 by buffers, the lungs, and "
+            "the kidneys. Today you'll draw the compartments, then the "
+            "compensatory pathways."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Body fluid compartments",
+                "instructions": [
+                    "Draw a person silhouette. Show total body water as about 60 percent of body weight.",
+                    "Divide total body water into two compartments:",
+                    "Intracellular fluid (ICF): about 40 percent of body weight, or about 2/3 of total body water. Inside the body's cells. Dominant ions: K+ (high), phosphate (high), proteins (high). Label.",
+                    "Extracellular fluid (ECF): about 20 percent of body weight, or about 1/3 of total body water. Subdivide ECF into: plasma (about 1/4 of ECF, inside blood vessels) and interstitial fluid (about 3/4 of ECF, between cells in tissues). Dominant ions in ECF: Na+ (high), Cl- (high), HCO3-.",
+                    "Mark the cell membrane separating ICF from ECF, and the capillary endothelium separating plasma from interstitial fluid.",
+                    "Note: the Na+/K+ ATPase is what maintains the K+-rich inside and Na+-rich outside.",
+                ],
+                "height": 460,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Acid-base regulation: lungs and kidneys",
+                "instructions": [
+                    "Write the central equation at the top: CO2 + H2O <-> H2CO3 <-> H+ + HCO3-. Note: carbonic anhydrase catalyzes the first step.",
+                    "Show the LUNGS adjusting CO2: increased ventilation blows off more CO2 (shifts the equation LEFT, removing H+, raising pH). Decreased ventilation retains CO2 (shifts RIGHT, raising H+, lowering pH). Label respiratory compensation.",
+                    "Show the KIDNEYS adjusting HCO3- and H+: the kidney can reabsorb HCO3- to raise pH, or excrete H+ into urine to raise pH. Conversely, it can excrete HCO3- and retain H+ to lower pH. Label renal compensation.",
+                    "Note the time courses: respiratory compensation is FAST (minutes). Renal compensation is SLOW (days).",
+                ],
+                "height": 380,
+            },
+        ],
+        "label_list": [
+            "Total body water (~60% body weight)",
+            "Intracellular fluid (ICF)",
+            "Extracellular fluid (ECF)",
+            "Plasma", "Interstitial fluid",
+            "Na+ (high ECF)", "K+ (high ICF)",
+            "HCO3- (bicarbonate)", "H2CO3 (carbonic acid)",
+            "Carbonic anhydrase",
+            "Respiratory compensation", "Renal compensation",
+        ],
+        "physio_activity_title": "2A. Acid-base disorders",
+        "physio_activity_intro": (
+            "For each clinical scenario, identify (a) the primary acid-base "
+            "disorder (respiratory acidosis, respiratory alkalosis, "
+            "metabolic acidosis, or metabolic alkalosis), and (b) the "
+            "expected compensation by the OTHER system."
+        ),
+        "physio_numbered_qs": [
+            "A patient with severe COPD retains CO2 chronically.",
+            "An anxious patient hyperventilates after a panic attack.",
+            "A diabetic patient in DKA produces ketoacids faster than the kidneys can clear them.",
+            "A patient vomits repeatedly for 24 hours, losing large amounts of HCl from the stomach.",
+            "A patient with a heroin overdose has slow, shallow breathing (hypoventilation).",
+            "A patient at high altitude (low atmospheric O2) hyperventilates to maximize oxygen uptake.",
+        ],
+        "synthesis_questions": [
+            "An ABG (arterial blood gas) shows pH 7.25, PCO2 60 mmHg, HCO3- 28 mEq/L. Identify the disorder and the expected compensation. What clinical condition might produce this picture?",
+            "A patient is severely dehydrated from diarrhea. Predict the effects on (a) total body water compartments, (b) serum Na+, (c) blood pressure, (d) the kidney's response (ADH, aldosterone). What IV fluid would you give and why?",
+            "Hyperkalemia (high serum K+) is life-threatening because it depolarizes excitable cells. Explain mechanistically why elevated extracellular K+ depolarizes cells, and predict the consequence for cardiac action potentials.",
+        ],
+    },
+    {
+        "filename": "workbook_day31_male-reproductive-system.html",
+        "title": "Male Reproductive System",
+        "subhead": "Testes, accessory glands, spermatogenesis, and hormonal control.",
+        "eyebrow": "BIO 304 . WEEK 8 . THURSDAY . LAB WORKBOOK",
+        "day_num": 31,
+        "anatomy_intro": (
+            "The male reproductive system produces sperm in the testes, "
+            "matures and stores them in the epididymis, and delivers "
+            "them through a series of ducts with contributions from "
+            "three accessory glands. Today you'll draw both the gross "
+            "anatomy and a seminiferous tubule showing spermatogenesis."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Male reproductive system (sagittal section)",
+                "instructions": [
+                    "Draw a side view of the male pelvis.",
+                    "Show the testis hanging in the scrotum (outside the body cavity to keep cooler).",
+                    "Inside the testis, show coiled seminiferous tubules.",
+                    "Outside the testis but attached to it, draw the epididymis (a tightly coiled tube on the posterior surface).",
+                    "From the epididymis, draw the vas deferens (ductus deferens) ascending up out of the scrotum, looping behind the bladder.",
+                    "Show three accessory glands: seminal vesicles (paired, posterior to bladder), prostate gland (encircling the urethra just below the bladder), bulbourethral (Cowper's) glands (small, below the prostate).",
+                    "Show the ducts of the seminal vesicle joining the vas deferens to form the ejaculatory duct, which passes through the prostate and joins the urethra.",
+                    "Finally, show the urethra exiting through the penis. Label.",
+                ],
+                "height": 480,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Seminiferous tubule with spermatogenesis",
+                "instructions": [
+                    "Draw a cross-section of one seminiferous tubule (round shape with a lumen).",
+                    "Show developing sperm cells in a progression from the OUTSIDE (basement membrane) to the INSIDE (lumen).",
+                    "Outermost: spermatogonia (diploid stem cells, 2n). Label.",
+                    "Inward: primary spermatocytes (2n, undergoing meiosis I). Label.",
+                    "Further inward: secondary spermatocytes (haploid, n, after meiosis I). Label.",
+                    "Closer to lumen: spermatids (n, after meiosis II). Label.",
+                    "At the lumen edge: spermatozoa (mature sperm with head, midpiece, tail). Label.",
+                    "Add Sertoli cells (sustentacular cells) reaching from the basement membrane to the lumen, supporting and nurturing developing sperm. Label.",
+                    "Between tubules, add Leydig cells (interstitial cells) which produce testosterone. Label.",
+                ],
+                "height": 420,
+            },
+        ],
+        "label_list": [
+            "Testis", "Seminiferous tubule", "Epididymis",
+            "Vas deferens (ductus deferens)", "Ejaculatory duct",
+            "Seminal vesicle", "Prostate gland", "Bulbourethral gland",
+            "Urethra", "Penis", "Scrotum",
+            "Spermatogonium", "Primary spermatocyte",
+            "Secondary spermatocyte", "Spermatid", "Spermatozoon",
+            "Sertoli cell", "Leydig cell",
+        ],
+        "physio_activity_title": "2A. Trace a sperm cell from production to ejaculation",
+        "physio_activity_intro": (
+            "List the path a single sperm cell takes from the moment it "
+            "is formed in the seminiferous tubule to the moment it "
+            "leaves the body in semen. Aim for 7 to 9 steps."
+        ),
+        "physio_activity_rows": 9,
+        "synthesis_questions": [
+            "A vasectomy involves cutting and tying the vas deferens. Predict (a) whether sperm production continues, (b) whether ejaculation still occurs, (c) what is missing from the ejaculate. Why does the procedure not affect testosterone levels?",
+            "Hypothalamic-pituitary-gonadal axis: GnRH releases LH and FSH, which act on the testis. LH stimulates Leydig cells (testosterone), FSH stimulates Sertoli cells (sperm maturation). Predict the effects of (a) anabolic steroid abuse, which raises external testosterone, on natural testosterone production and sperm count.",
+            "Benign prostatic hyperplasia (BPH) is enlargement of the prostate, common in older men. Given the prostate's anatomical position (encircling the urethra), predict the patient's urinary symptoms and explain the mechanism.",
+        ],
+    },
+    {
+        "filename": "workbook_day32_female-reproductive-system.html",
+        "title": "Female Reproductive System",
+        "subhead": "Ovaries, uterus, the ovarian cycle, and hormonal control.",
+        "eyebrow": "BIO 304 . WEEK 8 . FRIDAY . LAB WORKBOOK",
+        "day_num": 32,
+        "anatomy_intro": (
+            "The female reproductive system is built around a monthly "
+            "cycle that prepares both an egg and a uterus for possible "
+            "fertilization and pregnancy. Today you'll draw the system "
+            "in sagittal section, then the hormonal cycle that drives it."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Female reproductive system (sagittal section)",
+                "instructions": [
+                    "Draw a side view of the female pelvis.",
+                    "Center the uterus (pear-shaped, anteverted, lying over the bladder).",
+                    "On each side of the uterus, draw a fallopian tube (uterine tube, oviduct) extending laterally and curving toward an ovary. The end of each fallopian tube fans out into fimbriae over the ovary.",
+                    "Below the uterus, draw the cervix (lower narrow portion of the uterus) and the vagina extending down to the vaginal opening.",
+                    "Label uterus, fallopian tube, fimbriae, ovary, cervix, vagina.",
+                    "Inside the uterus wall, label endometrium (inner lining, sheds during menstruation) and myometrium (thick smooth muscle layer).",
+                ],
+                "height": 460,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Ovarian and menstrual cycle",
+                "instructions": [
+                    "Draw a horizontal timeline across 28 days. Mark Day 1 (start of menstruation) at the left and Day 28 at the right. Mark Day 14 as ovulation.",
+                    "Above the timeline, draw the ovarian cycle: Follicular phase (Days 1-13), Ovulation (Day 14), Luteal phase (Days 15-28). Show: developing follicles (small to large) during the follicular phase, ovulation as a small explosion at Day 14, corpus luteum (yellow body) during the luteal phase.",
+                    "Below the timeline, draw the uterine cycle: Menstrual phase (Days 1-5, endometrium sheds), Proliferative phase (Days 6-14, endometrium thickens), Secretory phase (Days 15-28, endometrium becomes vascular and gland-rich, ready for implantation).",
+                    "Above everything, sketch four hormone curves: FSH (peaks early follicular), LH (sharp surge at Day 14 triggering ovulation), Estrogen (rises late follicular, secondary peak in luteal phase), Progesterone (low during follicular, rises in luteal phase after ovulation).",
+                    "Note: if no pregnancy, the corpus luteum degenerates around Day 25-28, progesterone and estrogen drop, the endometrium sheds, and a new cycle begins.",
+                ],
+                "height": 460,
+            },
+        ],
+        "label_list": [
+            "Ovary", "Fallopian tube", "Fimbriae",
+            "Uterus", "Endometrium", "Myometrium",
+            "Cervix", "Vagina",
+            "Follicular phase", "Ovulation", "Luteal phase",
+            "Corpus luteum",
+            "Menstrual phase", "Proliferative phase", "Secretory phase",
+            "FSH", "LH", "Estrogen", "Progesterone",
+        ],
+        "physio_activity_title": "2A. Hormone-organ-action map",
+        "physio_activity_intro": (
+            "Fill in the table to map each hormone to its source, target, "
+            "and main action during the cycle."
+        ),
+        "physio_table": {
+            "headers": ["Hormone", "Source", "Target", "Main action"],
+            "rows": [
+                ["FSH", "", "", ""],
+                ["LH", "", "", ""],
+                ["Estrogen (early/follicular phase)", "", "", ""],
+                ["LH (mid-cycle surge)", "", "", ""],
+                ["Progesterone (luteal phase)", "", "", ""],
+                ["Estrogen + progesterone (high level feedback)", "", "", ""],
+            ],
+        },
+        "physio_followups": [
+            "Hormonal contraceptives (e.g., combined estrogen + progestin pills) prevent ovulation. Explain mechanistically: which hormones do they mimic, and how does that prevent the LH surge?",
+            "Menopause occurs when the ovaries stop responding to FSH and LH. Predict the changes in estrogen and progesterone, the FSH/LH levels (they go UP, due to loss of negative feedback), and explain why hot flashes and bone loss are common consequences.",
+        ],
+        "synthesis_questions": [
+            "A patient is trying to conceive but has irregular ovulation. Predict the effect on her hormonal cycle and uterine lining, and explain why ovulation predictor kits (which detect LH) help with timing.",
+            "Polycystic ovary syndrome (PCOS) involves elevated androgens, irregular ovulation, and insulin resistance. Predict the patient's menstrual pattern and fertility, and explain why follicles fail to mature properly.",
+            "Ectopic pregnancy: a fertilized egg implants in the fallopian tube rather than the uterus. Predict the clinical course (early pregnancy symptoms followed by acute abdominal pain and bleeding) and explain mechanistically why the fallopian tube cannot support a growing embryo.",
+        ],
+    },
+    {
+        "filename": "workbook_day32_pregnancy-a-p-basics.html",
+        "title": "Pregnancy A&P (Basics)",
+        "subhead": "Fertilization, implantation, the placenta, and the major changes of pregnancy.",
+        "eyebrow": "BIO 304 . WEEK 8 . FRIDAY . LAB WORKBOOK",
+        "day_num": 32,
+        "anatomy_intro": (
+            "Pregnancy is an extraordinary integration of multiple "
+            "physiological systems. Today you'll draw the early events "
+            "(fertilization, cleavage, implantation), then the mature "
+            "placenta as the maternal-fetal interface."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Fertilization to implantation",
+                "instructions": [
+                    "Draw a horizontal arrow with five labeled stages, left to right.",
+                    "Stage 1: Fertilization. A sperm meets the egg in the upper fallopian tube. Draw both with the sperm head entering the egg cytoplasm. Result: zygote (2n).",
+                    "Stage 2: Cleavage. Repeated cell divisions, no growth. Show a 2-cell, then 4-cell, then 8-cell embryo.",
+                    "Stage 3: Morula. A solid ball of about 16 cells.",
+                    "Stage 4: Blastocyst. A hollow ball with an inner cell mass (becomes embryo) and outer trophoblast (becomes placenta). Show a fluid-filled cavity inside.",
+                    "Stage 5: Implantation. The blastocyst burrows into the endometrium of the uterus around Day 6 to 7 after fertilization. The trophoblast cells invade and begin forming the placenta.",
+                    "Label every stage.",
+                ],
+                "height": 380,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Mature placenta",
+                "instructions": [
+                    "Draw a cross-section of a mature placenta and the surrounding uterine wall.",
+                    "Show maternal blood spaces (lacunae) in the placenta filled with maternal blood. Show the maternal arteries (spiral arteries) supplying these lacunae.",
+                    "Show fetal villi projecting into the maternal blood spaces. The villi contain fetal capillaries.",
+                    "Critical: maternal and fetal blood DO NOT MIX. They are separated by the placental barrier (trophoblast layer plus fetal capillary endothelium). Gases, nutrients, antibodies, drugs, and wastes diffuse across.",
+                    "Show the umbilical cord leaving the placenta, containing two umbilical arteries (carrying deoxygenated blood FROM fetus TO placenta) and one umbilical vein (carrying oxygenated blood FROM placenta TO fetus). Label.",
+                    "Note: this is the only place in the body where arteries carry deoxygenated blood and a vein carries oxygenated blood.",
+                ],
+                "height": 420,
+            },
+        ],
+        "label_list": [
+            "Zygote", "Cleavage", "Morula", "Blastocyst",
+            "Inner cell mass", "Trophoblast",
+            "Implantation", "Endometrium",
+            "Placenta", "Maternal blood (lacuna)", "Spiral artery",
+            "Fetal villus", "Fetal capillary",
+            "Placental barrier",
+            "Umbilical cord", "Umbilical artery (2)", "Umbilical vein (1)",
+            "hCG", "Estrogen (placental)", "Progesterone (placental)",
+        ],
+        "physio_activity_title": "2A. Hormonal changes through pregnancy",
+        "physio_activity_intro": (
+            "Sketch a graph of major pregnancy hormones over 40 weeks "
+            "(gestational age) on the lines below. Then answer the "
+            "interpretation questions."
+        ),
+        "physio_numbered_qs": [
+            "hCG (human chorionic gonadotropin): peaks at about 8 to 10 weeks, then declines. Source? Function?",
+            "Progesterone: rises throughout pregnancy. Source shifts from corpus luteum to placenta around week 10. Function?",
+            "Estrogen: rises steadily throughout pregnancy, made by the placenta. Function in the third trimester?",
+            "Relaxin: produced by ovary and placenta; rises late in pregnancy. Function at parturition?",
+            "Oxytocin: surges at parturition. Source? Mechanism (positive feedback during labor)?",
+            "Prolactin: rises through pregnancy and after delivery. Function?",
+        ],
+        "synthesis_questions": [
+            "Home pregnancy tests detect hCG in the urine. Explain why hCG is a reliable early marker, why it peaks at 8 to 10 weeks, and why levels in ectopic pregnancy or miscarriage are often lower than expected for gestational age.",
+            "Gestational diabetes develops in some women because placental hormones (especially human placental lactogen) increase insulin resistance. Predict the maternal blood glucose pattern, the consequences for the fetus (macrosomia), and why blood sugar typically normalizes after delivery.",
+            "Parturition (labor) involves a positive feedback loop with oxytocin. Identify the stimulus, the receptor, the response, and the amplifying step. Why is positive feedback (rather than negative feedback) the right architecture for this physiological event?",
+        ],
+    },
 ]
 
 
