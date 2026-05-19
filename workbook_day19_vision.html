@@ -8,7 +8,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#1E3D4C;--navy-deep:#142A36;--navy-tint:#EDF1F3;--gold:#B8924A;--gold-deep:#9A7838;--terra:#C2734D;--terra-dark:#A0522D;--sage-dark:#4F6B57;--sage-deeper:#3F5B47;--white:#FFFFFF;--off-white:#FAFAF9;--gray-line:#CFD6DA;--gray-soft:#5C6970}
+:root{
+  --navy:#1E3D4C; --navy-deep:#142A36; --navy-tint:#EDF1F3;
+  --gold:#B8924A; --gold-deep:#9A7838;
+  --terra:#C2734D; --terra-dark:#A0522D;
+  --white:#FFFFFF; --off-white:#FAFAF9;
+  --gray-line:#CFD6DA; --gray-soft:#5C6970;
+}
 *{box-sizing:border-box}
 body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.55}
 .skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600;border-radius:0 0 6px 0}
@@ -22,23 +28,38 @@ h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-siz
 .usage{font-style:italic;color:var(--gray-soft);font-size:14px;margin:6px 0 0}
 main{max-width:880px;margin:0 auto;padding:24px}
 .card{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:22px 24px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:18px}
-.section-band{margin:24px 0 8px;padding:14px 18px;border-radius:8px}
-.section-band.anatomy{background:#FAF1EC;border-left:6px solid var(--terra-dark)}
-.section-band.physiology{background:#EEF1EE;border-left:6px solid var(--sage-dark)}
+.section-band{margin:24px 0 8px;padding:14px 18px;border-radius:8px;background:var(--white);border:1px solid var(--gray-line)}
+.section-band.anatomy{border-left:6px solid var(--terra-dark)}
+.section-band.physiology{border-left:6px solid var(--gold)}
 .section-band p.tag{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 4px;color:var(--terra-dark)}
-.section-band.physiology p.tag{color:var(--sage-deeper)}
+.section-band.physiology p.tag{color:var(--gold-deep)}
 .section-band h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;color:var(--navy);font-size:22px;margin:0;letter-spacing:-.01em}
 h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--terra-dark);font-size:18px;margin:0 0 10px}
-.image-placeholder{background:var(--navy-tint);border:2px dashed var(--navy);border-radius:8px;padding:60px 24px;text-align:center;color:var(--navy);font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;min-height:240px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
-.placeholder-block{background:#F1F4F1;border:2px dashed var(--sage-deeper);border-radius:8px;padding:24px;color:var(--navy);font-family:'Plus Jakarta Sans',sans-serif}
-.placeholder-block strong{font-weight:700;color:var(--sage-deeper);display:block;margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase;font-size:12px}
-.placeholder-block p{margin:6px 0;font-family:'Lora',Georgia,serif;color:var(--navy);font-size:15px}
-.placeholder-block ol{margin:8px 0;padding-left:22px}
-.placeholder-block li{font-family:'Lora',Georgia,serif;color:var(--navy);margin:8px 0}
-.image-placeholder small{display:block;font-weight:400;color:var(--gray-soft);font-style:italic;max-width:60ch}
-ol.structure-list{font-family:'Lora',Georgia,serif;font-size:15px;line-height:1.9;padding-left:24px}
-ol.structure-list li{padding:4px 0;border-bottom:1px dotted var(--gray-line)}
+h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:15px;margin:14px 0 6px}
+.draw-box{background:var(--white);border:2px dashed var(--navy);border-radius:8px;padding:18px;margin:10px 0 8px;display:flex;flex-direction:column;justify-content:flex-end}
+.draw-box .draw-caption{font-family:'DM Sans',system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-soft);text-align:center;margin-top:auto}
+.draw-instructions{background:var(--navy-tint);border-radius:6px;padding:14px 18px;margin:0 0 10px}
+.draw-instructions h3{margin-top:0}
+.draw-instructions ol{margin:6px 0 0;padding-left:22px}
+.draw-instructions li{margin:6px 0}
+ol.structure-list{font-family:'Lora',Georgia,serif;font-size:15px;line-height:1.9;padding-left:24px;columns:2;column-gap:28px}
+ol.structure-list li{padding:4px 0;border-bottom:1px dotted var(--gray-line);break-inside:avoid}
 ol.structure-list li:last-child{border-bottom:none}
+.activity-prompt{margin:0 0 10px}
+.write-lines{margin:8px 0 0;padding:0;list-style:none}
+.write-lines li{border-bottom:1px solid var(--gray-line);min-height:34px;padding:4px 0 0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;color:var(--gray-soft)}
+.write-lines li:last-child{margin-bottom:0}
+.write-lines li::before{content:attr(data-num) ".";font-weight:700;color:var(--navy);margin-right:8px}
+.scrambled-list{background:var(--navy-tint);border-radius:6px;padding:12px 18px 12px 36px;margin:6px 0 14px}
+.scrambled-list li{margin:6px 0}
+.synthesis-q{border-left:3px solid var(--terra-dark);padding:6px 14px;margin:14px 0}
+.synthesis-q strong{display:block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--navy);margin-bottom:6px}
+.answer-space{border-bottom:1px solid var(--gray-line);min-height:30px;margin-top:6px}
+.answer-space + .answer-space{margin-top:24px}
+table.physio-table{width:100%;border-collapse:collapse;margin:8px 0 12px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px}
+table.physio-table th,table.physio-table td{border:1px solid var(--gray-line);padding:10px 8px;vertical-align:top;text-align:left}
+table.physio-table th{background:var(--navy-tint);color:var(--navy);font-weight:700}
+table.physio-table td{height:48px}
 .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
 .btn{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:14px;padding:10px 18px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block}
 .btn-primary{background:var(--navy);color:var(--white);border-color:var(--navy)}
@@ -51,18 +72,21 @@ footer{text-align:center;color:var(--gray-soft);padding:20px;font-style:italic;f
   .no-print{display:none!important}
   .card{box-shadow:none;border-color:#888;page-break-inside:avoid}
   header{border-bottom:2px solid #333}
-  .image-placeholder{border-color:#555;background:#fafafa;color:#000}
+  .draw-box{border-color:#333;background:#fff}
   h1,h2,h3{color:black}
+  .scrambled-list{background:#f5f5f5;border:1px solid #999}
+  .draw-instructions{background:#f5f5f5;border:1px solid #999}
+  ol.structure-list{columns:2}
 }
 </style>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
 <header>
-  <p class="eyebrow">BIO 304 . WEEK 5 . Thursday . LAB WORKBOOK</p>
+  <p class="eyebrow">BIO 304 . WEEK 5 . THURSDAY . LAB WORKBOOK</p>
   <h1>Vision</h1>
-  <p class="subhead">Eye anatomy, accommodation, and photoreceptor function.</p>
-  <p class="usage">Print this page. Use the structure list below to label the diagram by hand. Hand-labeled work is the integrity mechanism for this course.</p>
+  <p class="subhead">The eye, the retina, and how light becomes a neural signal.</p>
+  <p class="usage">Print this page. You will draw your own diagrams from the directions below, then hand-label the structures listed. Drawing by hand is the integrity mechanism for this course.</p>
 </header>
 <main id="main" tabindex="-1">
   <div class="toolbar no-print">
@@ -76,66 +100,104 @@ footer{text-align:center;color:var(--gray-soft);padding:20px;font-style:italic;f
   </div>
 
   <article class="card">
-    <h2>1A. Unlabeled diagram</h2>
-    <div class="image-placeholder" role="img" aria-label="Unlabeled diagram placeholder">
-      <span>Insert unlabeled image here</span>
-      <small>Sagittal section of the eye + retinal-layer detail, unlabeled.</small>
-    </div>
-    <p class="usage">After printing, label each structure using the list below. Write directly on the printout.</p>
+    <h2>1A. What you will draw</h2>
+    <p>Vision starts with light bending through the cornea and lens, and ends with action potentials traveling up the optic nerve. Today you&#x27;ll draw the eye in sagittal section and the retinal layers in close-up.</p>
   </article>
 
-  <article class="card">
-    <h2>1B. Structures to label (15)</h2>
-    <ol class="structure-list">
-      <li>Cornea</li>
-      <li>Iris</li>
-      <li>Pupil</li>
-      <li>Lens</li>
-      <li>Ciliary body/muscle</li>
-      <li>Sclera</li>
-      <li>Choroid</li>
-      <li>Retina</li>
-      <li>Fovea centralis</li>
-      <li>Optic disc (blind spot)</li>
-      <li>Optic nerve</li>
-      <li>Vitreous humor</li>
-      <li>Aqueous humor</li>
-      <li>Rod</li>
-      <li>Cone</li>
+<article class="card">
+  <h2>Box A. Eye in sagittal section</h2>
+  <div class="draw-instructions" role="region" aria-label="Drawing directions for Box A. Eye in sagittal section">
+    <h3>Directions</h3>
+    <ol>
+    <li>Draw an eye in cross-section as viewed from the side. The front of the eye is on the LEFT, the back is on the RIGHT.</li>
+    <li>Draw the cornea (transparent dome at the front).</li>
+    <li>Draw the iris (colored ring) and the pupil (opening in the center). Label both.</li>
+    <li>Draw the lens behind the iris. Show the ciliary body and suspensory ligaments holding the lens.</li>
+    <li>Label the anterior chamber (between cornea and iris, contains aqueous humor) and the posterior chamber.</li>
+    <li>Fill the rest of the eye (the large back portion) with vitreous humor. Label.</li>
+    <li>Line the back of the eye with the retina. Label.</li>
+    <li>Mark the fovea centralis (small pit in the central retina, point of sharpest vision).</li>
+    <li>Show the optic nerve leaving the back of the eye. Label the optic disc (blind spot) where the nerve exits.</li>
+    <li>Wrap the eye with sclera (white outer layer) and choroid (vascular middle layer).</li>
     </ol>
-    <p class="usage">Label each eye structure. Note which bend light and which detect light.</p>
-  </article>
+  </div>
+  <div class="draw-box" id="draw-panel-a" role="img" aria-label="Blank drawing space for Box A. Eye in sagittal section" style="min-height:460px;">
+    <p class="draw-caption">Draw here. Sketch by hand.</p>
+  </div>
+</article>
+<article class="card">
+  <h2>Box B. Retinal layers (light path)</h2>
+  <div class="draw-instructions" role="region" aria-label="Drawing directions for Box B. Retinal layers (light path)">
+    <h3>Directions</h3>
+    <ol>
+    <li>Draw a horizontal section of retina. The light arrives from the BOTTOM (yes, paradoxically) and the photoreceptors face the TOP (away from the light).</li>
+    <li>Layer 1 (bottom): retinal ganglion cells. Their axons form the optic nerve. Label.</li>
+    <li>Layer 2: bipolar cells.</li>
+    <li>Layer 3 (top): photoreceptors. Draw both rods (long, dim light, peripheral vision) and cones (shorter, bright light, color vision, concentrated at the fovea).</li>
+    <li>Above the photoreceptors, draw the retinal pigment epithelium (RPE, a dark layer that absorbs stray light).</li>
+    <li>Add arrows showing the path of light entering at the bottom and the path of the neural signal going DOWN from photoreceptors to bipolars to ganglion cells.</li>
+    </ol>
+  </div>
+  <div class="draw-box" id="draw-panel-b" role="img" aria-label="Blank drawing space for Box B. Retinal layers (light path)" style="min-height:380px;">
+    <p class="draw-caption">Draw here. Sketch by hand.</p>
+  </div>
+</article>
+
+<article class="card">
+  <h2>1C. Structures to label (20)</h2>
+  <p class="usage">After you finish each drawing, label every structure below directly on your sketch.</p>
+  <ol class="structure-list">
+  <li>Cornea</li>
+  <li>Iris</li>
+  <li>Pupil</li>
+  <li>Lens</li>
+  <li>Ciliary body</li>
+  <li>Suspensory ligaments</li>
+  <li>Aqueous humor</li>
+  <li>Vitreous humor</li>
+  <li>Retina</li>
+  <li>Fovea centralis</li>
+  <li>Optic disc</li>
+  <li>Optic nerve</li>
+  <li>Sclera</li>
+  <li>Choroid</li>
+  <li>Photoreceptor</li>
+  <li>Rod</li>
+  <li>Cone</li>
+  <li>Bipolar cell</li>
+  <li>Retinal ganglion cell</li>
+  <li>Retinal pigment epithelium</li>
+  </ol>
+</article>
 
   <div class="section-band physiology">
     <p class="tag">Part 2 of 2</p>
     <h2>Physiology Lab</h2>
   </div>
 
-  <article class="card">
-    <h2>2A. Activity (to be customized)</h2>
-    <div class="placeholder-block" role="region" aria-label="Physiology activity placeholder">
-      <strong>Activity placeholder</strong>
-      <p>This space is reserved for the topic-specific physiology activity (data interpretation, calculation, mechanism walkthrough, simulator, or clinical scenario). Dr. Rennie will fill in the specific activity for this topic.</p>
-      <p style="margin-top:10px;color:var(--gray-soft);font-style:italic">Possible formats for Vision: graph reading, value calculation, scenario reasoning, predicting an outcome from a perturbation, or comparing two conditions.</p>
-    </div>
-  </article>
+<article class="card"><h2>2A. Trace: from photon to action potential</h2>
+<p class="activity-prompt">List the 7 steps that occur from a photon entering the eye to an action potential traveling up the optic nerve. Be precise about which structures the light passes through and where signal transduction happens.</p>
+<ol class="write-lines">
+  <li data-num="1"></li>
+  <li data-num="2"></li>
+  <li data-num="3"></li>
+  <li data-num="4"></li>
+  <li data-num="5"></li>
+  <li data-num="6"></li>
+  <li data-num="7"></li>
+</ol></article>
 
-  <article class="card">
-    <h2>2B. Synthesis questions (to be customized)</h2>
-    <div class="placeholder-block" role="region" aria-label="Synthesis questions placeholder">
-      <strong>Question placeholder</strong>
-      <ol>
-        <li>Synthesis question 1 (links anatomy to the physiology activity above).</li>
-        <li>Synthesis question 2 (applies the concept to a clinical or everyday scenario).</li>
-        <li>Synthesis question 3 (predicts what changes if one variable is altered).</li>
-      </ol>
-      <p style="margin-top:10px;color:var(--gray-soft);font-style:italic">Dr. Rennie will replace these with topic-specific questions tied to the activity above.</p>
-    </div>
+<article class="card">
+    <h2>2B. Synthesis questions</h2>
+    <p class="usage">Answer each in 2 to 4 sentences. Use the language from this week's lecture and your drawings as evidence.</p>
+<div class="synthesis-q"><strong>1. A patient with myopia (nearsightedness) has trouble seeing distant objects. Explain the optical defect (eyeball shape or lens shape) and how a corrective lens fixes it.</strong><div class="answer-space"></div><div class="answer-space"></div><div class="answer-space"></div></div>
+<div class="synthesis-q"><strong>2. A patient is diagnosed with macular degeneration (loss of cone-rich foveal retina). Predict which type of vision is lost FIRST (peripheral, central, color, night) and which is preserved longest, with a one-sentence reason.</strong><div class="answer-space"></div><div class="answer-space"></div><div class="answer-space"></div></div>
+<div class="synthesis-q"><strong>3. Why is the optic disc called the blind spot? Predict what happens when an image falls on the optic disc, and explain why we don&#x27;t normally notice this gap in our visual field.</strong><div class="answer-space"></div><div class="answer-space"></div><div class="answer-space"></div></div>
   </article>
 
   <article class="card">
     <h2>3. What to submit</h2>
-    <p>Print this workbook. Complete <strong>both</strong> the Anatomy Lab (hand-labeled diagram + structure list) and the Physiology Lab (activity + synthesis questions). Photograph or scan every page and upload to Canvas before Sunday at 11:59 PM. Hand-labeled work is the integrity mechanism for this course.</p>
+    <p>Complete <strong>both</strong> the Anatomy Lab (your own drawings, hand-labeled, plus the structures list) and the Physiology Lab (activity and synthesis questions). Photograph or scan every page and upload to Canvas before the deadline listed on the schedule. Hand-drawn, hand-labeled work is the integrity mechanism for this course. Typed or AI-generated diagrams are not accepted.</p>
   </article>
 </main>
 <footer><p>Dr. Sharilyn Rennie . BIO 304 Lab Workbook . Day 19 of 32</p></footer>

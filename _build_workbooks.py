@@ -1306,6 +1306,779 @@ WORKBOOKS = [
             "SSRIs immediately block serotonin reuptake (within minutes), yet clinical relief from depression takes 4 to 6 weeks. Propose a mechanism for this lag. What downstream changes might account for it?",
         ],
     },
+
+    # ==================================================================
+    # WEEK 5
+    # ==================================================================
+    {
+        "filename": "workbook_day17_cns-organization-brain-and-spinal-cord.html",
+        "title": "CNS Organization: Brain and Spinal Cord",
+        "subhead": "Major brain regions, meninges, ventricles, and the spinal cord.",
+        "eyebrow": "BIO 304 . WEEK 5 . MONDAY . LAB WORKBOOK",
+        "day_num": 17,
+        "anatomy_intro": (
+            "Today you'll draw the brain in lateral view with its lobes "
+            "and major regions, then a spinal cord cross-section with the "
+            "three meningeal layers."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Brain in lateral view",
+                "instructions": [
+                    "Draw the outline of a brain in left lateral view. Show the convoluted surface (gyri and sulci).",
+                    "Divide the cerebrum into four lobes with dashed lines: Frontal (anterior, in front of the central sulcus), Parietal (behind the central sulcus), Temporal (below the lateral sulcus), Occipital (most posterior).",
+                    "Label the central sulcus (separates frontal from parietal) and the lateral sulcus (separates temporal).",
+                    "Draw the cerebellum below the occipital lobe.",
+                    "Draw the brainstem extending down from the center: midbrain, pons, medulla oblongata. Label each.",
+                    "Inside the frontal lobe, label the primary motor cortex (just anterior to the central sulcus). Inside the parietal lobe, label the primary somatosensory cortex (just posterior to the central sulcus).",
+                ],
+                "height": 460,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Spinal cord cross-section with meninges",
+                "instructions": [
+                    "Draw a round cross-section of the spinal cord.",
+                    "Inside, draw a butterfly (H) shape representing gray matter. Label dorsal horn (top), ventral horn (bottom), and central canal (small hole in the middle of the H).",
+                    "Around the gray matter, draw the white matter (it surrounds the H). Label.",
+                    "Wrap the cord in three meningeal layers. Innermost: pia mater (tight on the cord). Middle: arachnoid mater (with subarachnoid space below it where CSF flows). Outermost: dura mater (thick).",
+                    "Label all three layers and the subarachnoid space.",
+                    "Outside the dura, draw vertebral bone (the spinal cord sits inside the vertebral canal).",
+                ],
+                "height": 420,
+            },
+        ],
+        "label_list": [
+            "Frontal lobe", "Parietal lobe", "Temporal lobe", "Occipital lobe",
+            "Central sulcus", "Lateral sulcus",
+            "Cerebellum", "Midbrain", "Pons", "Medulla oblongata",
+            "Primary motor cortex", "Primary somatosensory cortex",
+            "Dorsal horn", "Ventral horn", "Central canal",
+            "Gray matter", "White matter",
+            "Pia mater", "Arachnoid mater", "Dura mater", "Subarachnoid space",
+        ],
+        "physio_activity_title": "2A. Map the function to the brain region",
+        "physio_activity_intro": (
+            "For each function below, name the brain region MOST "
+            "responsible. Be specific about lobe, gyrus, or subcortical "
+            "structure."
+        ),
+        "physio_numbered_qs": [
+            "Voluntary control of skeletal muscle in the right hand.",
+            "Conscious sensation of touch from the left foot.",
+            "Visual processing of the scene in front of you.",
+            "Producing fluent, grammatical speech.",
+            "Understanding spoken language.",
+            "Balance, posture, and coordination of fine motor movements.",
+            "Regulation of heart rate, breathing, and blood pressure (autonomic 'vital signs' centers).",
+        ],
+        "synthesis_questions": [
+            "A patient has a stroke that damages the right primary motor cortex in the region controlling the hand. Predict the side and pattern of weakness, and explain why it's on that side using the concept of decussation.",
+            "Bacterial meningitis is an inflammation of the meninges. Explain why a lumbar puncture (collecting CSF from below the spinal cord) is the diagnostic test, and which meningeal space the needle enters.",
+            "A car accident causes a spinal cord injury at the C7 level. Predict which functions are lost (motor, sensory, autonomic) and which are preserved, and explain why an injury one level higher would be much more dangerous.",
+        ],
+    },
+    {
+        "filename": "workbook_day18_pns-and-autonomic-nervous-system.html",
+        "title": "PNS and Autonomic Nervous System",
+        "subhead": "Cranial and spinal nerves, reflex arcs, and the sympathetic vs parasympathetic divisions.",
+        "eyebrow": "BIO 304 . WEEK 5 . TUESDAY . LAB WORKBOOK",
+        "day_num": 18,
+        "anatomy_intro": (
+            "The peripheral nervous system carries signals to and from the "
+            "CNS. The autonomic nervous system handles involuntary "
+            "control. Today you'll draw a generic reflex arc, then the "
+            "sympathetic vs parasympathetic outflow."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. The reflex arc (5 components)",
+                "instructions": [
+                    "Use the patellar (knee-jerk) reflex as your example. Draw a leg with the patellar tendon being tapped by a reflex hammer.",
+                    "Component 1: Receptor. Draw a muscle spindle in the quadriceps. Label.",
+                    "Component 2: Sensory (afferent) neuron. Draw an axon going from the muscle spindle up to the spinal cord, entering the dorsal horn.",
+                    "Component 3: Integration center. Inside the spinal cord, show a single synapse (this is a monosynaptic reflex). Label.",
+                    "Component 4: Motor (efferent) neuron. Draw an axon leaving the ventral horn and going back down to the quadriceps.",
+                    "Component 5: Effector. The quadriceps contracts, kicking the leg up. Label.",
+                    "Add arrows showing the direction of signal flow.",
+                ],
+                "height": 440,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Sympathetic vs parasympathetic outflow",
+                "instructions": [
+                    "Draw a side view of the spinal column.",
+                    "Sympathetic (thoracolumbar): show preganglionic fibers leaving the spinal cord from T1 through L2. Draw the sympathetic chain ganglia running parallel to the cord. Show short preganglionic fibers ending in chain ganglia, then long postganglionic fibers traveling to target organs.",
+                    "Parasympathetic (craniosacral): show preganglionic fibers leaving from the brainstem (via cranial nerves III, VII, IX, and especially X, the vagus) AND from S2-S4 (sacral). Show long preganglionic fibers traveling to ganglia near or on the target organs, then very short postganglionic fibers.",
+                    "Label two target organs (e.g., heart, lungs, gut) and note opposing effects: sympathetic increases heart rate, parasympathetic decreases it.",
+                ],
+                "height": 460,
+            },
+        ],
+        "label_list": [
+            "Receptor (muscle spindle)", "Sensory neuron (afferent)",
+            "Dorsal horn", "Integration center (spinal cord synapse)",
+            "Motor neuron (efferent)", "Ventral horn", "Effector (skeletal muscle)",
+            "Sympathetic chain ganglia",
+            "Preganglionic fiber (sympathetic)", "Postganglionic fiber (sympathetic)",
+            "Preganglionic fiber (parasympathetic)", "Postganglionic fiber (parasympathetic)",
+            "Vagus nerve (CN X)",
+        ],
+        "physio_activity_title": "2A. Sympathetic vs parasympathetic comparison",
+        "physio_activity_intro": (
+            "Fill in the table comparing the two autonomic divisions. "
+            "Then answer the two follow-up questions."
+        ),
+        "physio_table": {
+            "headers": ["Property", "Sympathetic", "Parasympathetic"],
+            "rows": [
+                ["Origin in CNS (thoracolumbar / craniosacral)", "", ""],
+                ["Preganglionic fiber length (short / long)", "", ""],
+                ["Effect on heart rate", "", ""],
+                ["Effect on pupil diameter", "", ""],
+                ["Effect on GI motility", "", ""],
+                ["Effect on bronchial smooth muscle", "", ""],
+                ["Effect on sweat glands", "", ""],
+            ],
+        },
+        "physio_followups": [
+            "Why are sympathetic effects more widespread (affecting many organs at once) while parasympathetic effects are more targeted? Justify using preganglionic fiber length and ganglion location.",
+            "Both divisions release acetylcholine at preganglionic synapses. At postganglionic targets, sympathetic typically releases norepinephrine and parasympathetic releases acetylcholine. Predict what beta-blocker drugs (which block norepinephrine receptors in the heart) do to heart rate, and why.",
+        ],
+        "synthesis_questions": [
+            "A person is startled by a loud noise. List 5 specific sympathetic effects they experience over the next 10 seconds. For each, identify the target organ and the response.",
+            "After eating a large meal, parasympathetic activity dominates. Predict at least 3 specific physiological changes in this state and explain how 'rest and digest' is the appropriate metabolic context.",
+            "A patient takes an anticholinergic medication for an overactive bladder. Predict the side effects this drug will produce across other organs that also respond to acetylcholine. Why are dry mouth, blurred vision, and constipation common with these drugs?",
+        ],
+    },
+    {
+        "filename": "workbook_day19_vision.html",
+        "title": "Vision",
+        "subhead": "The eye, the retina, and how light becomes a neural signal.",
+        "eyebrow": "BIO 304 . WEEK 5 . THURSDAY . LAB WORKBOOK",
+        "day_num": 19,
+        "anatomy_intro": (
+            "Vision starts with light bending through the cornea and lens, "
+            "and ends with action potentials traveling up the optic nerve. "
+            "Today you'll draw the eye in sagittal section and the retinal "
+            "layers in close-up."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Eye in sagittal section",
+                "instructions": [
+                    "Draw an eye in cross-section as viewed from the side. The front of the eye is on the LEFT, the back is on the RIGHT.",
+                    "Draw the cornea (transparent dome at the front).",
+                    "Draw the iris (colored ring) and the pupil (opening in the center). Label both.",
+                    "Draw the lens behind the iris. Show the ciliary body and suspensory ligaments holding the lens.",
+                    "Label the anterior chamber (between cornea and iris, contains aqueous humor) and the posterior chamber.",
+                    "Fill the rest of the eye (the large back portion) with vitreous humor. Label.",
+                    "Line the back of the eye with the retina. Label.",
+                    "Mark the fovea centralis (small pit in the central retina, point of sharpest vision).",
+                    "Show the optic nerve leaving the back of the eye. Label the optic disc (blind spot) where the nerve exits.",
+                    "Wrap the eye with sclera (white outer layer) and choroid (vascular middle layer).",
+                ],
+                "height": 460,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Retinal layers (light path)",
+                "instructions": [
+                    "Draw a horizontal section of retina. The light arrives from the BOTTOM (yes, paradoxically) and the photoreceptors face the TOP (away from the light).",
+                    "Layer 1 (bottom): retinal ganglion cells. Their axons form the optic nerve. Label.",
+                    "Layer 2: bipolar cells.",
+                    "Layer 3 (top): photoreceptors. Draw both rods (long, dim light, peripheral vision) and cones (shorter, bright light, color vision, concentrated at the fovea).",
+                    "Above the photoreceptors, draw the retinal pigment epithelium (RPE, a dark layer that absorbs stray light).",
+                    "Add arrows showing the path of light entering at the bottom and the path of the neural signal going DOWN from photoreceptors to bipolars to ganglion cells.",
+                ],
+                "height": 380,
+            },
+        ],
+        "label_list": [
+            "Cornea", "Iris", "Pupil", "Lens", "Ciliary body",
+            "Suspensory ligaments", "Aqueous humor", "Vitreous humor",
+            "Retina", "Fovea centralis", "Optic disc", "Optic nerve",
+            "Sclera", "Choroid",
+            "Photoreceptor", "Rod", "Cone",
+            "Bipolar cell", "Retinal ganglion cell",
+            "Retinal pigment epithelium",
+        ],
+        "physio_activity_title": "2A. Trace: from photon to action potential",
+        "physio_activity_intro": (
+            "List the 7 steps that occur from a photon entering the eye "
+            "to an action potential traveling up the optic nerve. Be "
+            "precise about which structures the light passes through and "
+            "where signal transduction happens."
+        ),
+        "physio_activity_rows": 7,
+        "synthesis_questions": [
+            "A patient with myopia (nearsightedness) has trouble seeing distant objects. Explain the optical defect (eyeball shape or lens shape) and how a corrective lens fixes it.",
+            "A patient is diagnosed with macular degeneration (loss of cone-rich foveal retina). Predict which type of vision is lost FIRST (peripheral, central, color, night) and which is preserved longest, with a one-sentence reason.",
+            "Why is the optic disc called the blind spot? Predict what happens when an image falls on the optic disc, and explain why we don't normally notice this gap in our visual field.",
+        ],
+    },
+    {
+        "filename": "workbook_day19_hearing-and-equilibrium.html",
+        "title": "Hearing and Equilibrium",
+        "subhead": "From sound waves at the eardrum to hair cells in the cochlea; and how we sense head position and motion.",
+        "eyebrow": "BIO 304 . WEEK 5 . THURSDAY . LAB WORKBOOK",
+        "day_num": 19,
+        "anatomy_intro": (
+            "The ear handles two senses: hearing (cochlea) and equilibrium "
+            "(vestibular system). Today you'll draw the three regions of "
+            "the ear, then the organ of Corti inside the cochlea."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Outer, middle, and inner ear",
+                "instructions": [
+                    "Draw an ear in cross-section from outside to inside. Divide into three regions with vertical lines.",
+                    "Outer ear (left): pinna (the visible external ear) and external auditory canal leading to the tympanic membrane (eardrum). Label.",
+                    "Middle ear (center): air-filled space behind the eardrum, containing three tiny bones (the ossicles): malleus, incus, stapes. Label each. Show the stapes contacting the oval window of the cochlea.",
+                    "Inner ear (right): draw the cochlea as a snail-shell spiral (fluid-filled, handles hearing). Above it, draw the three semicircular canals (orthogonal loops) and the vestibule (linear motion). Label all four structures.",
+                    "Add the Eustachian tube connecting the middle ear to the throat (pressure equalization).",
+                ],
+                "height": 420,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Organ of Corti close-up",
+                "instructions": [
+                    "Draw a cross-section of the cochlear duct showing the organ of Corti sitting on the basilar membrane.",
+                    "Label the basilar membrane (under the hair cells, vibrates at different frequencies along its length).",
+                    "Draw hair cells: a single row of inner hair cells (the main sensory cells) and three rows of outer hair cells (amplifiers). Label.",
+                    "Show stereocilia (hair-like projections) on top of each hair cell, contacting the tectorial membrane above. Label both.",
+                    "Show the cochlear nerve fibers leaving the base of the hair cells.",
+                    "Note the principle: when the basilar membrane vibrates, the stereocilia bend against the tectorial membrane, opening ion channels in the hair cell, leading to neurotransmitter release.",
+                ],
+                "height": 380,
+            },
+        ],
+        "label_list": [
+            "Pinna", "External auditory canal", "Tympanic membrane",
+            "Malleus", "Incus", "Stapes", "Oval window",
+            "Cochlea", "Vestibule", "Semicircular canals",
+            "Eustachian tube",
+            "Basilar membrane", "Tectorial membrane",
+            "Inner hair cell", "Outer hair cell", "Stereocilia",
+            "Cochlear nerve",
+        ],
+        "physio_activity_title": "2A. Trace: sound wave to action potential",
+        "physio_activity_intro": (
+            "List the 8 steps that occur from a sound wave in air to an "
+            "action potential in the cochlear nerve. Identify each "
+            "structure the signal passes through and what changes."
+        ),
+        "physio_activity_rows": 8,
+        "synthesis_questions": [
+            "A patient has conductive hearing loss (e.g., a fluid-filled middle ear from an infection). Explain mechanistically why sound transmission fails, and contrast with sensorineural hearing loss (damaged hair cells or cochlear nerve).",
+            "A passenger gets out of a spinning teacup ride and feels dizzy. Explain what is happening in their semicircular canals during and just after the spin, and why the world appears to keep moving even after they've stopped.",
+            "High-frequency sounds are detected near the BASE of the cochlea, while low-frequency sounds are detected near the APEX. Explain how the basilar membrane's structural properties produce this 'tonotopic' map.",
+        ],
+    },
+    {
+        "filename": "workbook_day20_hormone-mechanisms.html",
+        "title": "Hormone Mechanisms",
+        "subhead": "Two pathways: steroid hormones acting on intracellular receptors; peptide hormones acting through membrane receptors and second messengers.",
+        "eyebrow": "BIO 304 . WEEK 5 . FRIDAY . LAB WORKBOOK",
+        "day_num": 20,
+        "anatomy_intro": (
+            "Hormones are signaling molecules. The chemistry of the "
+            "hormone determines its mechanism: steroids (lipid-soluble) "
+            "cross the membrane and act on receptors inside the cell; "
+            "peptides (water-soluble) act on receptors at the cell "
+            "surface. Draw both pathways."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Steroid hormone mechanism",
+                "instructions": [
+                    "Draw a target cell with its plasma membrane, cytoplasm, and nucleus visible.",
+                    "Outside the cell, draw a steroid hormone (small ring structure, label e.g., cortisol or estrogen).",
+                    "Show the hormone crossing the plasma membrane (it's lipid-soluble, so it passes directly through).",
+                    "Inside the cytoplasm, show the hormone binding an intracellular receptor protein. Label receptor.",
+                    "Show the hormone-receptor complex moving into the nucleus.",
+                    "Inside the nucleus, show the complex binding DNA at a specific gene. Label DNA, gene.",
+                    "Show transcription starting, then mRNA leaving the nucleus, then a new protein being made on ribosomes in the cytoplasm.",
+                    "Note: response takes hours (gene transcription is slow), but effects last long.",
+                ],
+                "height": 460,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Peptide hormone mechanism",
+                "instructions": [
+                    "Draw a target cell with its plasma membrane and cytoplasm.",
+                    "Outside the cell, draw a peptide hormone (chain structure, label e.g., insulin or glucagon).",
+                    "Show the hormone binding to a receptor on the OUTSIDE of the plasma membrane (it cannot cross). Label the membrane receptor.",
+                    "Show the receptor activating a G-protein on the inside of the membrane. Label G-protein.",
+                    "Show the G-protein activating an enzyme (e.g., adenylyl cyclase), which converts ATP to cAMP. Label the second messenger cAMP.",
+                    "Show cAMP activating protein kinase A, which phosphorylates target proteins inside the cell, changing their activity.",
+                    "Note: response is rapid (seconds to minutes), and amplification means one hormone produces many cellular changes.",
+                ],
+                "height": 460,
+            },
+        ],
+        "label_list": [
+            "Steroid hormone", "Plasma membrane (lipid-soluble crosses)",
+            "Cytoplasmic receptor", "Hormone-receptor complex",
+            "Nucleus", "DNA", "Gene transcription", "mRNA",
+            "Peptide hormone", "Membrane receptor",
+            "G-protein", "Adenylyl cyclase", "cAMP (second messenger)",
+            "Protein kinase A",
+        ],
+        "physio_activity_title": "2A. Steroid vs peptide comparison",
+        "physio_activity_intro": (
+            "Fill in the table. Then answer the two follow-up questions."
+        ),
+        "physio_table": {
+            "headers": ["Property", "Steroid hormones", "Peptide hormones"],
+            "rows": [
+                ["Solubility (lipid / water)", "", ""],
+                ["Receptor location", "", ""],
+                ["Speed of onset (minutes / hours)", "", ""],
+                ["Duration of effect", "", ""],
+                ["Mechanism of action", "", ""],
+                ["Example hormone", "", ""],
+            ],
+        },
+        "physio_followups": [
+            "Peptide hormones use second messengers (cAMP, IP3, Ca-squared-plus, etc.) to amplify their signal. Explain why amplification is important for water-soluble hormones acting at low concentrations.",
+            "Steroid hormones often produce long-lasting effects (hours to days). Explain mechanistically why steroid effects outlast peptide effects, and why steroid pulses are slower than peptide pulses.",
+        ],
+        "synthesis_questions": [
+            "Cortisol (a steroid) and epinephrine (a peptide-like catecholamine) both raise blood glucose during stress. Compare their speeds of action and durations, and explain why the body uses both.",
+            "A patient takes oral prednisone (a synthetic steroid) for several weeks, then suddenly stops. They become very ill (Addisonian crisis). Explain mechanistically why abrupt steroid withdrawal is dangerous, in terms of feedback to the hypothalamus and pituitary.",
+            "Insulin is a peptide and CANNOT be taken orally. Explain mechanistically why oral insulin doesn't work, while a steroid hormone like prednisone CAN be taken orally.",
+        ],
+    },
+    {
+        "filename": "workbook_day20_major-endocrine-glands.html",
+        "title": "Major Endocrine Glands",
+        "subhead": "Pituitary, thyroid, adrenal, pancreas: who makes what, who controls them.",
+        "eyebrow": "BIO 304 . WEEK 5 . FRIDAY . LAB WORKBOOK",
+        "day_num": 20,
+        "anatomy_intro": (
+            "The major endocrine glands sit at predictable locations in "
+            "the body and produce specific hormones with specific targets. "
+            "Today you'll draw a body outline locating each gland, then "
+            "zoom in on the pituitary and its hypothalamic control."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Endocrine gland locations",
+                "instructions": [
+                    "Draw a simple body outline (head, trunk, limbs).",
+                    "At the base of the brain (deep inside the skull): pituitary gland. Label.",
+                    "In the neck (anterior, below the larynx): thyroid gland. Label.",
+                    "On top of each kidney (just above the kidneys): adrenal glands. Label.",
+                    "In the abdomen, behind the stomach: pancreas. Label.",
+                    "In the pelvis: ovaries (in females) or testes (in males). Label.",
+                    "In the chest (upper thorax): thymus (label, large in children, smaller in adults).",
+                    "Add small notes next to each gland with ONE major hormone it produces.",
+                ],
+                "height": 440,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Pituitary close-up",
+                "instructions": [
+                    "Draw the hypothalamus (above) connected to the pituitary gland (below) by a stalk (infundibulum).",
+                    "Split the pituitary into two parts: ANTERIOR pituitary (larger, glandular) and POSTERIOR pituitary (smaller, nervous tissue).",
+                    "Anterior pituitary: hypothalamic neurons release releasing hormones into a portal blood system that travels to the anterior pituitary. The anterior pituitary then releases its OWN hormones into the general circulation. Label hypothalamic-pituitary portal system.",
+                    "List 4 anterior pituitary hormones: TSH, ACTH, FSH/LH, GH, Prolactin (pick any 4 and label).",
+                    "Posterior pituitary: hypothalamic neurons send axons directly into the posterior pituitary. Their hormones (ADH, oxytocin) are stored there and released directly into circulation.",
+                    "Label ADH and oxytocin as posterior pituitary hormones.",
+                ],
+                "height": 420,
+            },
+        ],
+        "label_list": [
+            "Hypothalamus", "Pituitary gland",
+            "Anterior pituitary", "Posterior pituitary",
+            "Thyroid gland", "Adrenal gland", "Pancreas",
+            "Ovary / Testis", "Thymus",
+            "TSH", "ACTH", "Growth hormone (GH)", "ADH (vasopressin)",
+            "Oxytocin", "Insulin", "Glucagon",
+            "Thyroid hormone (T3/T4)", "Cortisol", "Epinephrine",
+        ],
+        "physio_activity_title": "2A. Gland, hormone, target, effect",
+        "physio_activity_intro": (
+            "Fill in the table. Pick one major hormone per gland and "
+            "complete each row."
+        ),
+        "physio_table": {
+            "headers": ["Gland", "Hormone", "Main target tissue", "Main effect"],
+            "rows": [
+                ["Anterior pituitary", "", "", ""],
+                ["Thyroid (follicular cells)", "", "", ""],
+                ["Adrenal cortex", "", "", ""],
+                ["Adrenal medulla", "", "", ""],
+                ["Pancreas (beta cells)", "", "", ""],
+                ["Pancreas (alpha cells)", "", "", ""],
+                ["Posterior pituitary", "", "", ""],
+            ],
+        },
+        "physio_followups": [
+            "Insulin and glucagon are both made by the pancreas but have opposing effects on blood glucose. Predict which is released after a meal, which during fasting, and explain how their opposing actions stabilize blood glucose.",
+            "The anterior pituitary releases trophic hormones (TSH, ACTH, FSH/LH) that act on OTHER endocrine glands. Explain why this multi-step system gives finer regulation than a single hormone acting directly, using the negative feedback concept.",
+        ],
+        "synthesis_questions": [
+            "Type 1 diabetes destroys pancreatic beta cells. Predict the patient's blood glucose level after a meal AND after an overnight fast, and explain mechanistically what is happening in each state.",
+            "Cushing's syndrome is caused by excess cortisol. Predict the patient's symptoms (across blood glucose, body fat distribution, immune function, bone density). For each, explain mechanistically why cortisol produces that effect.",
+            "A pituitary tumor compresses the posterior pituitary and reduces ADH release (diabetes insipidus). Predict the patient's urine output, blood sodium concentration, and behavior. Why is ADH critical for water homeostasis?",
+        ],
+    },
+
+    # ==================================================================
+    # WEEK 6
+    # ==================================================================
+    {
+        "filename": "workbook_day21_blood-composition-and-hemopoiesis.html",
+        "title": "Blood Composition and Hemopoiesis",
+        "subhead": "Plasma, erythrocytes, leukocytes, platelets, and where all of them come from.",
+        "eyebrow": "BIO 304 . WEEK 6 . MONDAY . LAB WORKBOOK",
+        "day_num": 21,
+        "anatomy_intro": (
+            "Blood is a connective tissue with cells suspended in a fluid "
+            "matrix (plasma). Today you'll draw a blood smear with all "
+            "the cell types, then a hemopoiesis tree showing where each "
+            "cell comes from."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Blood smear",
+                "instructions": [
+                    "Draw a blood smear field as if seen through a microscope: lots of small biconcave discs and a few larger nucleated cells.",
+                    "Draw many red blood cells (erythrocytes): small, round, biconcave (pale center), no nucleus. Label.",
+                    "Draw one neutrophil: a leukocyte with a multi-lobed nucleus (3 to 5 lobes) connected by thin strands. Most common WBC. Label.",
+                    "Draw one lymphocyte: a leukocyte with a large round dark nucleus filling most of the cell, very thin rim of cytoplasm. Label.",
+                    "Draw one monocyte: a leukocyte with a kidney-shaped or horseshoe-shaped nucleus, larger than the others. Label.",
+                    "Draw one eosinophil: a leukocyte with a bilobed nucleus and pink-red cytoplasmic granules. Label.",
+                    "Draw a few platelets (thrombocytes): tiny irregular cell fragments, no nucleus. Label.",
+                    "In the background, write Plasma (the yellow fluid between cells, about 55% of blood volume). Label.",
+                ],
+                "height": 460,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Hemopoiesis tree",
+                "instructions": [
+                    "Draw a tree diagram starting at the top with a single cell: the hematopoietic stem cell (HSC) in red bone marrow.",
+                    "Branch downward into two paths: myeloid lineage (left) and lymphoid lineage (right).",
+                    "Myeloid lineage produces: erythrocytes, neutrophils, eosinophils, basophils, monocytes (which become macrophages), and platelets (from megakaryocytes).",
+                    "Lymphoid lineage produces: B lymphocytes, T lymphocytes, natural killer (NK) cells.",
+                    "Draw arrows pointing down at each branch. Label every cell type.",
+                    "At the bottom of the tree, list which cell types END UP IN BLOOD vs which migrate elsewhere (e.g., T cells mature in the thymus, not in marrow).",
+                ],
+                "height": 460,
+            },
+        ],
+        "label_list": [
+            "Red blood cell (erythrocyte)", "Plasma",
+            "Neutrophil", "Lymphocyte", "Monocyte",
+            "Eosinophil", "Basophil",
+            "Platelet (thrombocyte)",
+            "Hematopoietic stem cell (HSC)",
+            "Myeloid lineage", "Lymphoid lineage",
+            "Megakaryocyte", "Macrophage",
+            "B lymphocyte", "T lymphocyte", "Natural killer cell",
+        ],
+        "physio_activity_title": "2A. Match the cell to its job",
+        "physio_activity_intro": (
+            "For each function below, name the blood cell type responsible. "
+            "Be specific where possible."
+        ),
+        "physio_numbered_qs": [
+            "Carries oxygen from lungs to tissues using hemoglobin.",
+            "First responder to a bacterial infection; phagocytoses bacteria.",
+            "Long-term, antibody-based immune response.",
+            "Direct cell-mediated immunity, including killing virus-infected cells.",
+            "Fights parasitic infections and modulates allergic responses.",
+            "Releases histamine in allergic and inflammatory responses.",
+            "Becomes a tissue macrophage after leaving the bloodstream.",
+            "Forms the initial platelet plug at a site of vascular injury.",
+        ],
+        "synthesis_questions": [
+            "Anemia is a deficiency of functional erythrocytes or hemoglobin. Predict the patient's symptoms (energy, exertion tolerance, skin color, heart rate) and explain why each occurs in terms of oxygen delivery.",
+            "Leukemia is a cancer of white blood cell precursors in the bone marrow. The marrow produces many non-functional cells, crowding out normal hemopoiesis. Predict consequences across all three blood cell lineages and explain why patients become both immunocompromised AND anemic AND prone to bleeding.",
+            "An athlete moves to high altitude (lower oxygen). Within weeks, their hematocrit (proportion of red cells) rises. Explain the mechanism, including which hormone signals this change and which organ produces it.",
+        ],
+    },
+    {
+        "filename": "workbook_day21_hemostasis-and-blood-typing.html",
+        "title": "Hemostasis and Blood Typing",
+        "subhead": "How bleeding stops, and why blood types matter for transfusion.",
+        "eyebrow": "BIO 304 . WEEK 6 . MONDAY . LAB WORKBOOK",
+        "day_num": 21,
+        "anatomy_intro": (
+            "Two clinically important topics today. Hemostasis is the "
+            "three-step process that stops bleeding after vascular "
+            "injury. Blood typing determines which transfusions are safe."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. The three steps of hemostasis",
+                "instructions": [
+                    "Draw a cut blood vessel in cross-section. Show blood escaping.",
+                    "Step 1: Vascular spasm. Draw the vessel constricting at the injury site (smaller diameter). Label.",
+                    "Step 2: Platelet plug formation. Draw platelets adhering to exposed collagen at the injury, sticking to each other and forming a soft plug. Label.",
+                    "Step 3: Coagulation. Draw a meshwork of fibrin strands trapping platelets and red blood cells. The platelet plug is now reinforced into a stable clot. Label fibrin, clot.",
+                    "Below the drawing, write a one-sentence summary of what triggers each step.",
+                ],
+                "height": 440,
+            },
+            {
+                "id": "B",
+                "label": "Box B. ABO blood typing matrix",
+                "instructions": [
+                    "Draw a 4-by-3 table.",
+                    "Rows: blood types A, B, AB, O.",
+                    "Columns: antigens present on RBC, antibodies in plasma, can give blood to, can receive blood from.",
+                    "Fill in each cell for each blood type.",
+                    "Examples: Type A has A antigens on RBCs, anti-B antibodies in plasma, can give to A and AB, can receive from A and O.",
+                    "Note Type O is the universal donor (no antigens) and Type AB is the universal recipient (no antibodies).",
+                    "Below the matrix, add Rh: Rh-positive has Rh antigen on RBCs; Rh-negative does not. Anti-Rh antibodies only develop after exposure.",
+                ],
+                "height": 420,
+            },
+        ],
+        "label_list": [
+            "Vascular spasm", "Platelet plug", "Fibrin", "Clot",
+            "Coagulation cascade", "Collagen (exposed)",
+            "Type A", "Type B", "Type AB", "Type O",
+            "A antigen", "B antigen", "Anti-A antibody", "Anti-B antibody",
+            "Rh antigen", "Universal donor (O-negative)",
+            "Universal recipient (AB-positive)",
+        ],
+        "physio_activity_title": "2A. Transfusion compatibility",
+        "physio_activity_intro": (
+            "For each patient-donor pair below, determine if the "
+            "transfusion is SAFE or DANGEROUS, and explain in one "
+            "sentence why."
+        ),
+        "physio_numbered_qs": [
+            "Donor type A blood given to a type B recipient.",
+            "Donor type O blood given to a type AB recipient.",
+            "Donor type AB blood given to a type O recipient.",
+            "Donor Rh-positive blood given to an Rh-negative recipient who has never been transfused before.",
+            "Donor Rh-positive blood given to an Rh-negative recipient who has already received Rh-positive blood once before.",
+            "Donor type O-negative blood given to a type B-positive recipient.",
+        ],
+        "synthesis_questions": [
+            "Hemophilia A is a deficiency of clotting factor VIII. Walk through hemostasis and explain which step fails, while pointing out which steps are still intact. Why do patients still form initial platelet plugs?",
+            "Warfarin (Coumadin) is a common anticoagulant. It blocks the synthesis of vitamin-K-dependent clotting factors. Predict the effect on hemostasis at low and high doses, and explain why patients on warfarin need regular blood tests to monitor clotting time.",
+            "An Rh-negative woman has her first child with an Rh-positive man. The first pregnancy is usually fine, but the second can be dangerous. Explain mechanistically what happens between pregnancies and why Rh immunoglobulin (RhoGAM) is given to prevent this complication.",
+        ],
+    },
+    {
+        "filename": "workbook_day22_heart-anatomy-and-the-cardiac-cycle.html",
+        "title": "Heart Anatomy and the Cardiac Cycle",
+        "subhead": "Four chambers, four valves, two circuits, and the rhythm of systole and diastole.",
+        "eyebrow": "BIO 304 . WEEK 6 . TUESDAY . LAB WORKBOOK",
+        "day_num": 22,
+        "anatomy_intro": (
+            "The heart is two pumps in one organ: the right side serves "
+            "the pulmonary circuit (to lungs), the left side serves the "
+            "systemic circuit (to body). Today you'll draw the heart in "
+            "frontal section, then walk through one cardiac cycle."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Heart in frontal section",
+                "instructions": [
+                    "Draw the heart with the apex pointing down and to the patient's left. Show four chambers separated by septa.",
+                    "Top right: right atrium (RA). Top left: left atrium (LA). Bottom right: right ventricle (RV). Bottom left: left ventricle (LV). Label each.",
+                    "Show the four valves: tricuspid (between RA and RV), pulmonary (between RV and pulmonary trunk), mitral or bicuspid (between LA and LV), aortic (between LV and aorta). Label each valve with arrows showing one-way flow.",
+                    "Show the great vessels: superior vena cava + inferior vena cava draining into RA; pulmonary trunk leaving RV (to lungs); pulmonary veins entering LA (from lungs); aorta leaving LV.",
+                    "Add arrows tracing blood flow: deoxygenated blood enters RA, through tricuspid into RV, out pulmonary to lungs; oxygenated blood returns to LA, through mitral into LV, out aorta to body.",
+                    "Note: the LV wall is thicker than the RV wall. Show this with a thicker line. Label myocardium.",
+                ],
+                "height": 480,
+            },
+            {
+                "id": "B",
+                "label": "Box B. The cardiac cycle (one beat)",
+                "instructions": [
+                    "Draw two heart silhouettes side by side, both showing all four chambers.",
+                    "Left silhouette: DIASTOLE (ventricles relaxed). Show atria contracting and pushing blood into ventricles. Tricuspid and mitral valves OPEN. Pulmonary and aortic valves CLOSED.",
+                    "Right silhouette: SYSTOLE (ventricles contracted). Show ventricles squeezing blood out to lungs and body. Tricuspid and mitral valves CLOSED. Pulmonary and aortic valves OPEN.",
+                    "Below the silhouettes, draw a pressure-time graph. Show LV pressure rising sharply during systole, falling during diastole. Show aortic pressure following LV during systole, holding higher during diastole (because of valve closure).",
+                    "Label end-diastolic volume (EDV, max ventricle volume), end-systolic volume (ESV, min volume after contraction), and stroke volume (SV = EDV minus ESV).",
+                    "Note: the heart sounds 'lub-dub' correspond to valve closure: lub = AV valves close at start of systole; dub = semilunar valves close at start of diastole.",
+                ],
+                "height": 480,
+            },
+        ],
+        "label_list": [
+            "Right atrium", "Left atrium", "Right ventricle", "Left ventricle",
+            "Tricuspid valve", "Mitral (bicuspid) valve",
+            "Pulmonary semilunar valve", "Aortic semilunar valve",
+            "Superior vena cava", "Inferior vena cava",
+            "Pulmonary trunk", "Pulmonary veins", "Aorta",
+            "Interventricular septum", "Myocardium",
+            "Systole", "Diastole",
+            "End-diastolic volume (EDV)", "End-systolic volume (ESV)", "Stroke volume",
+        ],
+        "physio_activity_title": "2A. Trace one drop of blood from RA to body",
+        "physio_activity_intro": (
+            "Trace one drop of blood starting in the right atrium until it "
+            "reaches the systemic capillaries delivering oxygen to body "
+            "tissues. List every chamber, valve, and vessel it passes "
+            "through, in order. Aim for 10 to 12 steps."
+        ),
+        "physio_activity_rows": 12,
+        "synthesis_questions": [
+            "A patient has mitral valve regurgitation (the mitral valve doesn't close fully). Predict the effect on blood flow during left ventricular systole, and predict the symptom the patient most often reports.",
+            "A myocardial infarction (heart attack) damages the LV wall. Predict the effect on stroke volume, ejection fraction, and the patient's exercise tolerance. Why does LV damage cause backup of blood into the lungs (pulmonary congestion)?",
+            "The LV wall is much thicker than the RV wall. Explain why this difference exists, in terms of the pressure the LV must generate vs the RV. What changes in the RV wall when chronic pulmonary hypertension develops?",
+        ],
+    },
+    {
+        "filename": "workbook_day23_cardiac-conduction-system.html",
+        "title": "Cardiac Conduction System",
+        "subhead": "The intrinsic pacemaker, signal propagation, and how the ECG reads it all.",
+        "eyebrow": "BIO 304 . WEEK 6 . THURSDAY . LAB WORKBOOK",
+        "day_num": 23,
+        "anatomy_intro": (
+            "The heart's rhythm is set by specialized cardiac cells, not "
+            "by nerves from the brain. Today you'll draw the conduction "
+            "pathway through the heart, then a normal ECG with its named "
+            "waves."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Conduction pathway",
+                "instructions": [
+                    "Draw a heart silhouette with all four chambers.",
+                    "At the top of the right atrium, draw a small oval: the SA node (sinoatrial node). Label. Note: the natural pacemaker, fires at 60 to 100 bpm.",
+                    "Show the signal spreading across both atria (small arrows), causing them to contract.",
+                    "At the junction of atria and ventricles (in the interatrial septum, near the tricuspid valve), draw the AV node (atrioventricular node). Label. Note: delays the signal by about 0.1 second to let atria empty.",
+                    "From the AV node, draw the bundle of His (AV bundle) descending through the interventricular septum. Label.",
+                    "Split into right and left bundle branches.",
+                    "End in the Purkinje fibers spreading throughout the ventricular walls. Label.",
+                    "Add arrows showing the direction of signal flow: SA node, atria, AV node, bundle of His, bundle branches, Purkinje fibers, ventricles contract.",
+                ],
+                "height": 460,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Normal ECG",
+                "instructions": [
+                    "Draw a single normal ECG cycle (one heartbeat). x-axis is time, y-axis is voltage.",
+                    "Start with a flat baseline. Draw a small upward bump: the P wave. Label.",
+                    "After P, a brief flat segment (PR segment), then a tall sharp downward-upward-downward complex: the QRS complex. Label Q, R, S.",
+                    "After QRS, another flat segment (ST segment), then a smaller rounded upward bump: the T wave. Label.",
+                    "Annotate what each wave represents: P = atrial depolarization (atria contract); QRS = ventricular depolarization (ventricles contract); T = ventricular repolarization (ventricles relax).",
+                    "Note: atrial repolarization is hidden inside the QRS complex.",
+                ],
+                "height": 380,
+            },
+        ],
+        "label_list": [
+            "SA (sinoatrial) node", "AV (atrioventricular) node",
+            "Bundle of His", "Right bundle branch", "Left bundle branch",
+            "Purkinje fibers",
+            "P wave", "QRS complex", "T wave",
+            "PR interval", "ST segment",
+            "Atrial depolarization", "Ventricular depolarization",
+            "Ventricular repolarization",
+        ],
+        "physio_activity_title": "2A. Match ECG component to electrical event",
+        "physio_activity_intro": (
+            "For each ECG feature below, identify the electrical event AND "
+            "the mechanical event that corresponds to it."
+        ),
+        "physio_numbered_qs": [
+            "The P wave.",
+            "The PR interval.",
+            "The QRS complex.",
+            "The ST segment.",
+            "The T wave.",
+            "A flat line between heartbeats (the baseline).",
+        ],
+        "synthesis_questions": [
+            "A patient is in third-degree (complete) heart block: the atria fire normally, but the signal does not pass through the AV node to the ventricles. The ventricles develop their own slower rhythm. Predict the ECG pattern (relationship between P waves and QRS complexes), and predict the heart rate and the patient's symptoms.",
+            "Atrial fibrillation: the atria depolarize chaotically at 400+ times per minute. The AV node filters most of these signals. Predict (a) what happens to the P wave on the ECG, (b) the regularity of QRS complexes, and (c) why patients are at high risk for stroke.",
+            "Ventricular fibrillation: ventricles depolarize chaotically. Unlike atrial fibrillation, this is a cardiac emergency. Explain mechanistically why V-fib is immediately life-threatening but A-fib is not, and why a defibrillator works to reset the heart.",
+        ],
+    },
+    {
+        "filename": "workbook_day24_blood-vessels-and-hemodynamics.html",
+        "title": "Blood Vessels and Hemodynamics",
+        "subhead": "Arteries, veins, capillaries, and the physics of blood pressure and flow.",
+        "eyebrow": "BIO 304 . WEEK 6 . FRIDAY . LAB WORKBOOK",
+        "day_num": 24,
+        "anatomy_intro": (
+            "Blood vessels are not just pipes. Each type has structural "
+            "features tuned to a specific job. Today you'll draw the "
+            "three vessel types in cross-section, then a capillary bed "
+            "in action."
+        ),
+        "anatomy_panels": [
+            {
+                "id": "A",
+                "label": "Box A. Artery, vein, and capillary in cross-section",
+                "instructions": [
+                    "Draw three round vessels side by side: an artery (left), a vein (middle), and a capillary (right). Make them the right relative sizes (capillary is much smaller).",
+                    "Artery: thick wall with three layers. Innermost: tunica intima (endothelium). Middle: tunica media (thick smooth muscle and elastic fibers, this is what makes arteries elastic). Outermost: tunica externa (connective tissue). Lumen is small relative to wall thickness.",
+                    "Vein: thinner wall, also with three layers but tunica media is much thinner. Larger lumen relative to wall. Show one-way valves inside the vein (small flaps).",
+                    "Capillary: very thin wall, just a single layer of endothelium plus a basement membrane. Lumen barely bigger than a single red blood cell.",
+                    "Label all three tunica layers in the artery and vein; label endothelium and basement membrane in the capillary.",
+                ],
+                "height": 420,
+            },
+            {
+                "id": "B",
+                "label": "Box B. Capillary bed",
+                "instructions": [
+                    "Draw an arteriole entering from the left and branching into a meshwork of capillaries. The capillaries reunite into a venule that exits to the right.",
+                    "Label arteriole, capillaries, venule.",
+                    "At the arteriole-capillary junction, draw small smooth muscle rings: precapillary sphincters. Label.",
+                    "Note: precapillary sphincters open or close to direct blood flow into or away from this capillary bed depending on tissue need.",
+                    "In the surrounding tissue, draw 4 to 6 cells. Show arrows of oxygen and nutrients leaving the capillaries to enter the cells, and arrows of carbon dioxide and waste leaving the cells to enter the capillaries.",
+                ],
+                "height": 380,
+            },
+        ],
+        "label_list": [
+            "Tunica intima", "Tunica media", "Tunica externa",
+            "Endothelium", "Basement membrane", "Smooth muscle",
+            "Elastic fibers", "Vein valves",
+            "Arteriole", "Capillary", "Venule",
+            "Precapillary sphincter",
+        ],
+        "physio_activity_title": "2A. Blood pressure relationships",
+        "physio_activity_intro": (
+            "Use the relationship BP equals cardiac output (CO) times "
+            "total peripheral resistance (TPR). Answer each question. "
+            "Show short work where math or reasoning is helpful."
+        ),
+        "physio_numbered_qs": [
+            "If cardiac output increases by 20 percent and peripheral resistance stays the same, what happens to blood pressure?",
+            "If a patient's peripheral resistance drops by half (e.g., during septic shock vasodilation) and cardiac output stays constant, what happens to blood pressure?",
+            "Cardiac output equals heart rate times stroke volume. If heart rate is 70 bpm and stroke volume is 70 mL, what is the cardiac output in liters per minute?",
+            "Predict what happens to mean arterial pressure when a person stands up quickly from lying down (consider gravity and venous return).",
+            "Explain mechanistically why having one-way valves in veins matters for venous return, especially in the lower limbs.",
+            "Capillaries are the site of all exchange between blood and tissues. Explain why capillary walls are so thin and why blood flow through capillaries is slow.",
+        ],
+        "synthesis_questions": [
+            "A patient has chronic hypertension (sustained high blood pressure). Predict the long-term changes in the arterial wall structure, and explain why hypertension increases the risk of stroke, heart attack, and kidney damage.",
+            "Varicose veins are dilated, twisted veins, typically in the legs. Explain mechanistically what fails (which structural feature), and why varicose veins are more common in people who stand for long periods.",
+            "A patient goes into septic shock: massive systemic vasodilation drops their blood pressure dangerously low. Use the BP equation to explain what is changing and why, then predict the body's compensatory responses (heart rate, sympathetic activity, ADH release).",
+        ],
+    },
 ]
 
 
