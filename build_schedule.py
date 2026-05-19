@@ -172,15 +172,16 @@ def render_week_card(week, by_day, today=None):
     return f"""    <li class="week-card" id="{week_id}" aria-label="{aria_label}" data-week="{week}" data-start="{fmt_iso(monday)}" data-end="{fmt_iso(sunday)}">
       <div class="week-tab" aria-hidden="true">Wk {week:02d}</div>
       <div class="week-body">
-        <div class="week-header">
+        <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-{week}">
           <div class="week-number" aria-hidden="true">{week:02d}</div>
           <div class="week-meta">
             <h2 class="week-dates">{fmt_date(monday)} to {fmt_date(sunday)}</h2>
             <p class="week-theme">{WEEK_THEMES.get(week, '')}</p>
             <div class="week-status-slot"></div>
           </div>
+          <div class="week-toggle" aria-hidden="true">+</div>
         </div>
-        <dl class="day-list" aria-label="Daily schedule for week {week}">
+        <dl class="day-list" id="day-list-week-{week}" aria-label="Daily schedule for week {week}">
 {day_list}
         </dl>
       </div>
@@ -281,7 +282,15 @@ main.container{max-width:1040px;margin:0 auto;padding:32px 24px 56px}
 .week-body{flex:1;padding:24px 28px;min-width:0}
 @media (max-width:640px){.week-body{padding:20px}}
 
-.week-header{display:flex;align-items:flex-start;gap:18px;margin:0 0 16px;flex-wrap:wrap}
+.week-header{display:flex;align-items:flex-start;gap:18px;margin:0 0 16px;flex-wrap:wrap;cursor:pointer;user-select:none}
+.week-header:hover{background:transparent}
+.week-header:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+.week-toggle{margin-left:auto;align-self:center;width:32px;height:32px;border-radius:50%;border:1px solid var(--gray-line);display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;font-weight:800;font-size:20px;color:var(--navy);background:var(--white);flex-shrink:0;transition:background 150ms ease,transform 150ms ease}
+.week-card.is-expanded .week-toggle{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.week-card.is-current .week-toggle{background:var(--terra-dark);color:var(--white);border-color:var(--terra-dark)}
+.week-card:not(.is-expanded) .day-list{display:none}
+.week-card:not(.is-expanded) .week-header{margin-bottom:0}
+.week-card:not(.is-expanded) .week-body{padding-bottom:24px}
 .week-number{font-family:'Plus Jakarta Sans',sans-serif;font-size:38px;font-weight:800;color:var(--terra-dark);line-height:.95;letter-spacing:-.03em;font-variant-numeric:tabular-nums;flex-shrink:0}
 .week-meta{flex:1;min-width:200px}
 .week-dates{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:700;color:var(--navy);line-height:1.2;letter-spacing:-.015em;margin:0 0 4px}
@@ -426,6 +435,40 @@ SCRIPT = """
       el.classList.add('is-past');
     }
   });
+
+  // Wire collapse/expand toggle on each week header
+  weekEls.forEach(function (el) {
+    var header = el.querySelector('.week-header');
+    var toggle = el.querySelector('.week-toggle');
+    if (!header) return;
+    function setExpanded(expanded) {
+      el.classList.toggle('is-expanded', expanded);
+      header.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      if (toggle) toggle.textContent = expanded ? '−' : '+';  // minus or plus
+    }
+    header.addEventListener('click', function () {
+      setExpanded(!el.classList.contains('is-expanded'));
+    });
+    header.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setExpanded(!el.classList.contains('is-expanded'));
+      }
+    });
+    // expose for the auto-expand below
+    el._setExpanded = setExpanded;
+  });
+
+  // Auto-expand the right week on load
+  if (currentWeek) {
+    if (currentWeek.el._setExpanded) currentWeek.el._setExpanded(true);
+  } else if (nextWeek) {
+    if (nextWeek.el._setExpanded) nextWeek.el._setExpanded(true);
+  } else if (weekEls.length) {
+    // Post-term: expand the last week so the summary is visible.
+    var lastEl = weekEls[weekEls.length - 1];
+    if (lastEl._setExpanded) lastEl._setExpanded(true);
+  }
 
   // Add status pills inside week cards
   if (currentWeek) {

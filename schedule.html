@@ -60,7 +60,15 @@ main.container{max-width:1040px;margin:0 auto;padding:32px 24px 56px}
 .week-body{flex:1;padding:24px 28px;min-width:0}
 @media (max-width:640px){.week-body{padding:20px}}
 
-.week-header{display:flex;align-items:flex-start;gap:18px;margin:0 0 16px;flex-wrap:wrap}
+.week-header{display:flex;align-items:flex-start;gap:18px;margin:0 0 16px;flex-wrap:wrap;cursor:pointer;user-select:none}
+.week-header:hover{background:transparent}
+.week-header:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+.week-toggle{margin-left:auto;align-self:center;width:32px;height:32px;border-radius:50%;border:1px solid var(--gray-line);display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;font-weight:800;font-size:20px;color:var(--navy);background:var(--white);flex-shrink:0;transition:background 150ms ease,transform 150ms ease}
+.week-card.is-expanded .week-toggle{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.week-card.is-current .week-toggle{background:var(--terra-dark);color:var(--white);border-color:var(--terra-dark)}
+.week-card:not(.is-expanded) .day-list{display:none}
+.week-card:not(.is-expanded) .week-header{margin-bottom:0}
+.week-card:not(.is-expanded) .week-body{padding-bottom:24px}
 .week-number{font-family:'Plus Jakarta Sans',sans-serif;font-size:38px;font-weight:800;color:var(--terra-dark);line-height:.95;letter-spacing:-.03em;font-variant-numeric:tabular-nums;flex-shrink:0}
 .week-meta{flex:1;min-width:200px}
 .week-dates{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:700;color:var(--navy);line-height:1.2;letter-spacing:-.015em;margin:0 0 4px}
@@ -150,15 +158,16 @@ footer.course-footer strong{color:var(--navy);font-style:italic;font-weight:700}
     <li class="week-card" id="week-1" aria-label="Week 1, Jun 8 to Jun 14" data-week="1" data-start="2026-06-08" data-end="2026-06-14">
       <div class="week-tab" aria-hidden="true">Wk 01</div>
       <div class="week-body">
-        <div class="week-header">
+        <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-1">
           <div class="week-number" aria-hidden="true">01</div>
           <div class="week-meta">
             <h2 class="week-dates">Jun 8 to Jun 14</h2>
             <p class="week-theme">Foundations . Cell . Tissues start</p>
             <div class="week-status-slot"></div>
           </div>
+          <div class="week-toggle" aria-hidden="true">+</div>
         </div>
-        <dl class="day-list" aria-label="Daily schedule for week 1">
+        <dl class="day-list" id="day-list-week-1" aria-label="Daily schedule for week 1">
           <dt><strong>Mon</strong>Day 1</dt>
           <dd>
             <span class="topic-title">Levels of Organization</span>
@@ -242,15 +251,16 @@ footer.course-footer strong{color:var(--navy);font-style:italic;font-weight:700}
     <li class="week-card" id="week-2" aria-label="Week 2, Jun 15 to Jun 21" data-week="2" data-start="2026-06-15" data-end="2026-06-21">
       <div class="week-tab" aria-hidden="true">Wk 02</div>
       <div class="week-body">
-        <div class="week-header">
+        <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-2">
           <div class="week-number" aria-hidden="true">02</div>
           <div class="week-meta">
             <h2 class="week-dates">Jun 15 to Jun 21</h2>
             <p class="week-theme">Tissues . Integumentary</p>
             <div class="week-status-slot"></div>
           </div>
+          <div class="week-toggle" aria-hidden="true">+</div>
         </div>
-        <dl class="day-list" aria-label="Daily schedule for week 2">
+        <dl class="day-list" id="day-list-week-2" aria-label="Daily schedule for week 2">
           <dt><strong>Mon</strong>Day 5</dt>
           <dd>
             <span class="topic-title">Epithelial Tissue Classification</span>
@@ -334,15 +344,16 @@ footer.course-footer strong{color:var(--navy);font-style:italic;font-weight:700}
     <li class="week-card" id="week-3" aria-label="Week 3, Jun 22 to Jun 28" data-week="3" data-start="2026-06-22" data-end="2026-06-28">
       <div class="week-tab" aria-hidden="true">Wk 03</div>
       <div class="week-body">
-        <div class="week-header">
+        <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-3">
           <div class="week-number" aria-hidden="true">03</div>
           <div class="week-meta">
             <h2 class="week-dates">Jun 22 to Jun 28</h2>
             <p class="week-theme">Skeletal system</p>
             <div class="week-status-slot"></div>
           </div>
+          <div class="week-toggle" aria-hidden="true">+</div>
         </div>
-        <dl class="day-list" aria-label="Daily schedule for week 3">
+        <dl class="day-list" id="day-list-week-3" aria-label="Daily schedule for week 3">
           <dt><strong>Mon</strong>Day 9</dt>
           <dd>
             <span class="topic-title">Bone Tissue and Bone Growth</span>
@@ -420,15 +431,16 @@ footer.course-footer strong{color:var(--navy);font-style:italic;font-weight:700}
     <li class="week-card" id="week-4" aria-label="Week 4, Jun 29 to Jul 5" data-week="4" data-start="2026-06-29" data-end="2026-07-05">
       <div class="week-tab" aria-hidden="true">Wk 04</div>
       <div class="week-body">
-        <div class="week-header">
+        <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-4">
           <div class="week-number" aria-hidden="true">04</div>
           <div class="week-meta">
             <h2 class="week-dates">Jun 29 to Jul 5</h2>
             <p class="week-theme">Muscle . Nervous start</p>
             <div class="week-status-slot"></div>
           </div>
+          <div class="week-toggle" aria-hidden="true">+</div>
         </div>
-        <dl class="day-list" aria-label="Daily schedule for week 4">
+        <dl class="day-list" id="day-list-week-4" aria-label="Daily schedule for week 4">
           <dt><strong>Mon</strong>Day 13</dt>
           <dd>
             <span class="topic-title">Skeletal Muscle Microanatomy</span>
@@ -512,15 +524,16 @@ footer.course-footer strong{color:var(--navy);font-style:italic;font-weight:700}
     <li class="week-card" id="week-5" aria-label="Week 5, Jul 6 to Jul 12" data-week="5" data-start="2026-07-06" data-end="2026-07-12">
       <div class="week-tab" aria-hidden="true">Wk 05</div>
       <div class="week-body">
-        <div class="week-header">
+        <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-5">
           <div class="week-number" aria-hidden="true">05</div>
           <div class="week-meta">
             <h2 class="week-dates">Jul 6 to Jul 12</h2>
             <p class="week-theme">Nervous . Special senses . Endocrine start</p>
             <div class="week-status-slot"></div>
           </div>
+          <div class="week-toggle" aria-hidden="true">+</div>
         </div>
-        <dl class="day-list" aria-label="Daily schedule for week 5">
+        <dl class="day-list" id="day-list-week-5" aria-label="Daily schedule for week 5">
           <dt><strong>Mon</strong>Day 17</dt>
           <dd>
             <span class="topic-title">CNS Organization: Brain and Spinal Cord</span>
@@ -610,15 +623,16 @@ footer.course-footer strong{color:var(--navy);font-style:italic;font-weight:700}
     <li class="week-card" id="week-6" aria-label="Week 6, Jul 13 to Jul 19" data-week="6" data-start="2026-07-13" data-end="2026-07-19">
       <div class="week-tab" aria-hidden="true">Wk 06</div>
       <div class="week-body">
-        <div class="week-header">
+        <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-6">
           <div class="week-number" aria-hidden="true">06</div>
           <div class="week-meta">
             <h2 class="week-dates">Jul 13 to Jul 19</h2>
             <p class="week-theme">Endocrine . Blood . Cardiovascular</p>
             <div class="week-status-slot"></div>
           </div>
+          <div class="week-toggle" aria-hidden="true">+</div>
         </div>
-        <dl class="day-list" aria-label="Daily schedule for week 6">
+        <dl class="day-list" id="day-list-week-6" aria-label="Daily schedule for week 6">
           <dt><strong>Mon</strong>Day 21</dt>
           <dd>
             <span class="topic-title">Blood Composition and Hemopoiesis</span>
@@ -702,15 +716,16 @@ footer.course-footer strong{color:var(--navy);font-style:italic;font-weight:700}
     <li class="week-card" id="week-7" aria-label="Week 7, Jul 20 to Jul 26" data-week="7" data-start="2026-07-20" data-end="2026-07-26">
       <div class="week-tab" aria-hidden="true">Wk 07</div>
       <div class="week-body">
-        <div class="week-header">
+        <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-7">
           <div class="week-number" aria-hidden="true">07</div>
           <div class="week-meta">
             <h2 class="week-dates">Jul 20 to Jul 26</h2>
             <p class="week-theme">Lymphatic . Immune . Respiratory . GI</p>
             <div class="week-status-slot"></div>
           </div>
+          <div class="week-toggle" aria-hidden="true">+</div>
         </div>
-        <dl class="day-list" aria-label="Daily schedule for week 7">
+        <dl class="day-list" id="day-list-week-7" aria-label="Daily schedule for week 7">
           <dt><strong>Mon</strong>Day 25</dt>
           <dd>
             <span class="topic-title">Lymphatic System and Innate Immunity</span>
@@ -800,15 +815,16 @@ footer.course-footer strong{color:var(--navy);font-style:italic;font-weight:700}
     <li class="week-card" id="week-8" aria-label="Week 8, Jul 27 to Aug 2" data-week="8" data-start="2026-07-27" data-end="2026-08-02">
       <div class="week-tab" aria-hidden="true">Wk 08</div>
       <div class="week-body">
-        <div class="week-header">
+        <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-8">
           <div class="week-number" aria-hidden="true">08</div>
           <div class="week-meta">
             <h2 class="week-dates">Jul 27 to Aug 2</h2>
             <p class="week-theme">Urinary . Reproductive</p>
             <div class="week-status-slot"></div>
           </div>
+          <div class="week-toggle" aria-hidden="true">+</div>
         </div>
-        <dl class="day-list" aria-label="Daily schedule for week 8">
+        <dl class="day-list" id="day-list-week-8" aria-label="Daily schedule for week 8">
           <dt><strong>Mon</strong>Day 29</dt>
           <dd>
             <span class="topic-title">Kidney Anatomy and Glomerular Filtration</span>
@@ -947,6 +963,40 @@ footer.course-footer strong{color:var(--navy);font-style:italic;font-weight:700}
       el.classList.add('is-past');
     }
   });
+
+  // Wire collapse/expand toggle on each week header
+  weekEls.forEach(function (el) {
+    var header = el.querySelector('.week-header');
+    var toggle = el.querySelector('.week-toggle');
+    if (!header) return;
+    function setExpanded(expanded) {
+      el.classList.toggle('is-expanded', expanded);
+      header.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      if (toggle) toggle.textContent = expanded ? '−' : '+';  // minus or plus
+    }
+    header.addEventListener('click', function () {
+      setExpanded(!el.classList.contains('is-expanded'));
+    });
+    header.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setExpanded(!el.classList.contains('is-expanded'));
+      }
+    });
+    // expose for the auto-expand below
+    el._setExpanded = setExpanded;
+  });
+
+  // Auto-expand the right week on load
+  if (currentWeek) {
+    if (currentWeek.el._setExpanded) currentWeek.el._setExpanded(true);
+  } else if (nextWeek) {
+    if (nextWeek.el._setExpanded) nextWeek.el._setExpanded(true);
+  } else if (weekEls.length) {
+    // Post-term: expand the last week so the summary is visible.
+    var lastEl = weekEls[weekEls.length - 1];
+    if (lastEl._setExpanded) lastEl._setExpanded(true);
+  }
 
   // Add status pills inside week cards
   if (currentWeek) {
