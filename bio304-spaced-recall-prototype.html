@@ -640,6 +640,45 @@
     margin-top: 0;
   }
 
+  /* Daily Review nudge banner (dashboard) */
+  .dr-nudge {
+    background: var(--white);
+    border: 1px solid var(--gold);
+    border-left: 4px solid var(--gold);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow-rest);
+  }
+  .dr-nudge-text { flex: 1; min-width: 240px; }
+  .dr-nudge-eyebrow {
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    margin: 0 0 4px;
+  }
+  .dr-nudge-headline {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 17px;
+    margin: 0 0 4px;
+  }
+  .dr-nudge-sub {
+    font-family: "Lora", Georgia, serif;
+    font-style: italic;
+    color: var(--gray-soft);
+    font-size: 14px;
+    margin: 0;
+  }
+
   /* Toolbar */
   .toolbar {
     display: flex;
@@ -1323,6 +1362,23 @@
       return;
     }
 
+    // Daily Review nudge banner: shown when cards are due AND it's not a
+    // recall day (the recall day block already has its own daily-review CTA).
+    const nudgeDue = countDueGlobally();
+    if (nudgeDue > 0 && !(CONTENT.courseStart && todayIsLabRecallDay())) {
+      const nudge = document.createElement("div");
+      nudge.className = "dr-nudge";
+      nudge.setAttribute("role", "status");
+      nudge.innerHTML =
+        '<div class="dr-nudge-text">' +
+          '<p class="dr-nudge-eyebrow">Daily review</p>' +
+          '<p class="dr-nudge-headline">You have ' + nudgeDue + ' card' + (nudgeDue === 1 ? '' : 's') + ' due for review today.</p>' +
+          '<p class="dr-nudge-sub">Take a few minutes before tonight’s pre-work. Cards are sharpest when you review them on the day they’re due.</p>' +
+        '</div>' +
+        '<button type="button" class="btn btn-primary" id="btn-dr-nudge">Start daily review</button>';
+      wrap.appendChild(nudge);
+    }
+
     // Group topics by week (1-8) and day-of-week (0=Mon, 1=Tue, 2=Thu, 3=Fri).
     const byWeek = {};
     all.forEach(t => {
@@ -1494,6 +1550,22 @@
       details.appendChild(body);
       wrap.appendChild(details);
     }
+
+    // Daily Review nudge button: bind directly (data-nav listeners are
+    // wired once at init and don't reach dynamically-inserted elements).
+    var nudgeBtn = document.getElementById("btn-dr-nudge");
+    if (nudgeBtn) {
+      nudgeBtn.addEventListener("click", function () { nav("review"); });
+    }
+
+    // Also bind the recall-day "Open daily review" button if present,
+    // for the same reason. Looking for any data-nav buttons inside the
+    // dashboard's topic-list that haven't been wired yet.
+    $$('#topic-list [data-nav]').forEach(function (b) {
+      if (b.dataset.navWired) return;
+      b.dataset.navWired = "1";
+      b.addEventListener("click", function () { nav(b.dataset.nav); });
+    });
 
     $$('[data-open-topic]').forEach(b => {
       b.addEventListener("click", () => {
