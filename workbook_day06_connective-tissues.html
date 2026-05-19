@@ -8,7 +8,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#1E3D4C;--navy-deep:#142A36;--navy-tint:#EDF1F3;--gold:#B8924A;--gold-deep:#9A7838;--terra:#C2734D;--terra-dark:#A0522D;--sage-dark:#4F6B57;--sage-deeper:#3F5B47;--white:#FFFFFF;--off-white:#FAFAF9;--gray-line:#CFD6DA;--gray-soft:#5C6970}
+:root{
+  --navy:#1E3D4C; --navy-deep:#142A36; --navy-tint:#EDF1F3;
+  --gold:#B8924A; --gold-deep:#9A7838;
+  --terra:#C2734D; --terra-dark:#A0522D;
+  --white:#FFFFFF; --off-white:#FAFAF9;
+  --gray-line:#CFD6DA; --gray-soft:#5C6970;
+}
 *{box-sizing:border-box}
 body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.55}
 .skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600;border-radius:0 0 6px 0}
@@ -22,23 +28,38 @@ h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-siz
 .usage{font-style:italic;color:var(--gray-soft);font-size:14px;margin:6px 0 0}
 main{max-width:880px;margin:0 auto;padding:24px}
 .card{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:22px 24px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:18px}
-.section-band{margin:24px 0 8px;padding:14px 18px;border-radius:8px}
-.section-band.anatomy{background:#FAF1EC;border-left:6px solid var(--terra-dark)}
-.section-band.physiology{background:#EEF1EE;border-left:6px solid var(--sage-dark)}
+.section-band{margin:24px 0 8px;padding:14px 18px;border-radius:8px;background:var(--white);border:1px solid var(--gray-line)}
+.section-band.anatomy{border-left:6px solid var(--terra-dark)}
+.section-band.physiology{border-left:6px solid var(--gold)}
 .section-band p.tag{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 4px;color:var(--terra-dark)}
-.section-band.physiology p.tag{color:var(--sage-deeper)}
+.section-band.physiology p.tag{color:var(--gold-deep)}
 .section-band h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;color:var(--navy);font-size:22px;margin:0;letter-spacing:-.01em}
 h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--terra-dark);font-size:18px;margin:0 0 10px}
-.image-placeholder{background:var(--navy-tint);border:2px dashed var(--navy);border-radius:8px;padding:60px 24px;text-align:center;color:var(--navy);font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;min-height:240px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
-.placeholder-block{background:#F1F4F1;border:2px dashed var(--sage-deeper);border-radius:8px;padding:24px;color:var(--navy);font-family:'Plus Jakarta Sans',sans-serif}
-.placeholder-block strong{font-weight:700;color:var(--sage-deeper);display:block;margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase;font-size:12px}
-.placeholder-block p{margin:6px 0;font-family:'Lora',Georgia,serif;color:var(--navy);font-size:15px}
-.placeholder-block ol{margin:8px 0;padding-left:22px}
-.placeholder-block li{font-family:'Lora',Georgia,serif;color:var(--navy);margin:8px 0}
-.image-placeholder small{display:block;font-weight:400;color:var(--gray-soft);font-style:italic;max-width:60ch}
-ol.structure-list{font-family:'Lora',Georgia,serif;font-size:15px;line-height:1.9;padding-left:24px}
-ol.structure-list li{padding:4px 0;border-bottom:1px dotted var(--gray-line)}
+h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:15px;margin:14px 0 6px}
+.draw-box{background:var(--white);border:2px dashed var(--navy);border-radius:8px;padding:18px;margin:10px 0 8px;display:flex;flex-direction:column;justify-content:flex-end}
+.draw-box .draw-caption{font-family:'DM Sans',system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-soft);text-align:center;margin-top:auto}
+.draw-instructions{background:var(--navy-tint);border-radius:6px;padding:14px 18px;margin:0 0 10px}
+.draw-instructions h3{margin-top:0}
+.draw-instructions ol{margin:6px 0 0;padding-left:22px}
+.draw-instructions li{margin:6px 0}
+ol.structure-list{font-family:'Lora',Georgia,serif;font-size:15px;line-height:1.9;padding-left:24px;columns:2;column-gap:28px}
+ol.structure-list li{padding:4px 0;border-bottom:1px dotted var(--gray-line);break-inside:avoid}
 ol.structure-list li:last-child{border-bottom:none}
+.activity-prompt{margin:0 0 10px}
+.write-lines{margin:8px 0 0;padding:0;list-style:none}
+.write-lines li{border-bottom:1px solid var(--gray-line);min-height:34px;padding:4px 0 0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;color:var(--gray-soft)}
+.write-lines li:last-child{margin-bottom:0}
+.write-lines li::before{content:attr(data-num) ".";font-weight:700;color:var(--navy);margin-right:8px}
+.scrambled-list{background:var(--navy-tint);border-radius:6px;padding:12px 18px 12px 36px;margin:6px 0 14px}
+.scrambled-list li{margin:6px 0}
+.synthesis-q{border-left:3px solid var(--terra-dark);padding:6px 14px;margin:14px 0}
+.synthesis-q strong{display:block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--navy);margin-bottom:6px}
+.answer-space{border-bottom:1px solid var(--gray-line);min-height:30px;margin-top:6px}
+.answer-space + .answer-space{margin-top:24px}
+table.physio-table{width:100%;border-collapse:collapse;margin:8px 0 12px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px}
+table.physio-table th,table.physio-table td{border:1px solid var(--gray-line);padding:10px 8px;vertical-align:top;text-align:left}
+table.physio-table th{background:var(--navy-tint);color:var(--navy);font-weight:700}
+table.physio-table td{height:48px}
 .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
 .btn{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:14px;padding:10px 18px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block}
 .btn-primary{background:var(--navy);color:var(--white);border-color:var(--navy)}
@@ -51,18 +72,21 @@ footer{text-align:center;color:var(--gray-soft);padding:20px;font-style:italic;f
   .no-print{display:none!important}
   .card{box-shadow:none;border-color:#888;page-break-inside:avoid}
   header{border-bottom:2px solid #333}
-  .image-placeholder{border-color:#555;background:#fafafa;color:#000}
+  .draw-box{border-color:#333;background:#fff}
   h1,h2,h3{color:black}
+  .scrambled-list{background:#f5f5f5;border:1px solid #999}
+  .draw-instructions{background:#f5f5f5;border:1px solid #999}
+  ol.structure-list{columns:2}
 }
 </style>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
 <header>
-  <p class="eyebrow">BIO 304 . WEEK 2 . Tuesday . LAB WORKBOOK</p>
+  <p class="eyebrow">BIO 304 . WEEK 2 . TUESDAY . LAB WORKBOOK</p>
   <h1>Connective Tissues</h1>
-  <p class="subhead">Cells embedded in a matrix: loose, dense, cartilage, bone, blood.</p>
-  <p class="usage">Print this page. Use the structure list below to label the diagram by hand. Hand-labeled work is the integrity mechanism for this course.</p>
+  <p class="subhead">Cells, fibers, and ground substance across loose, dense, cartilage, bone, and blood.</p>
+  <p class="usage">Print this page. You will draw your own diagrams from the directions below, then hand-label the structures listed. Drawing by hand is the integrity mechanism for this course.</p>
 </header>
 <main id="main" tabindex="-1">
   <div class="toolbar no-print">
@@ -76,60 +100,91 @@ footer{text-align:center;color:var(--gray-soft);padding:20px;font-style:italic;f
   </div>
 
   <article class="card">
-    <h2>1A. Unlabeled diagram</h2>
-    <div class="image-placeholder" role="img" aria-label="Unlabeled diagram placeholder">
-      <span>Insert unlabeled image here</span>
-      <small>Six unlabeled micrographs of connective tissues.</small>
-    </div>
-    <p class="usage">After printing, label each structure using the list below. Write directly on the printout.</p>
+    <h2>1A. What you will draw</h2>
+    <p>Connective tissues bind, support, and protect. They share a common architecture: cells embedded in an extracellular matrix of fibers and ground substance. The TYPE of fibers and the consistency of the ground substance determine the subtype. Draw the major ones.</p>
   </article>
 
-  <article class="card">
-    <h2>1B. Structures to label (9)</h2>
-    <ol class="structure-list">
-      <li>Loose areolar connective</li>
-      <li>Adipose tissue</li>
-      <li>Dense regular connective</li>
-      <li>Dense irregular connective</li>
-      <li>Hyaline cartilage</li>
-      <li>Elastic cartilage</li>
-      <li>Fibrocartilage</li>
-      <li>Compact bone</li>
-      <li>Blood</li>
+<article class="card">
+  <h2>Box A. Loose vs dense connective tissue</h2>
+  <div class="draw-instructions" role="region" aria-label="Drawing directions for Box A. Loose vs dense connective tissue">
+    <h3>Directions</h3>
+    <ol>
+    <li>Left: draw loose (areolar) connective tissue. Show widely spaced collagen and elastic fibers, with fibroblasts (spindle-shaped cells), adipocytes (large round cells with displaced nucleus), and a macrophage scattered between fibers.</li>
+    <li>Center: draw dense regular connective tissue (tendon or ligament). Show tightly packed parallel collagen fibers with rows of fibroblasts between them.</li>
+    <li>Right: draw dense irregular connective tissue (dermis). Show thick collagen fibers in a random meshwork with fibroblasts scattered.</li>
+    <li>Label fibroblast, adipocyte, macrophage, collagen fiber, elastic fiber.</li>
     </ol>
-    <p class="usage">Identify each connective tissue. Name the dominant cell type and the function for each.</p>
-  </article>
+  </div>
+  <div class="draw-box" id="draw-panel-a" role="img" aria-label="Blank drawing space for Box A. Loose vs dense connective tissue" style="min-height:380px;">
+    <p class="draw-caption">Draw here. Sketch by hand.</p>
+  </div>
+</article>
+<article class="card">
+  <h2>Box B. Cartilage, bone, and blood</h2>
+  <div class="draw-instructions" role="region" aria-label="Drawing directions for Box B. Cartilage, bone, and blood">
+    <h3>Directions</h3>
+    <ol>
+    <li>Left: draw hyaline cartilage. Show chondrocytes inside lacunae (small spaces), embedded in a smooth glassy matrix. Note: no visible fibers under light microscopy.</li>
+    <li>Center: draw a piece of compact bone. Show one osteon: concentric rings (lamellae) around a central canal (Haversian canal). Place osteocytes in lacunae, with canaliculi (small connecting channels) between them.</li>
+    <li>Right: draw a blood smear. Show many red blood cells (biconcave, no nucleus), one neutrophil (multi-lobed nucleus), one lymphocyte (large round nucleus). The yellow background is plasma (the fluid matrix).</li>
+    <li>Label chondrocyte, lacuna, osteocyte, osteon, central canal, canaliculus, red blood cell, white blood cell, plasma.</li>
+    </ol>
+  </div>
+  <div class="draw-box" id="draw-panel-b" role="img" aria-label="Blank drawing space for Box B. Cartilage, bone, and blood" style="min-height:360px;">
+    <p class="draw-caption">Draw here. Sketch by hand.</p>
+  </div>
+</article>
+
+<article class="card">
+  <h2>1C. Structures to label (17)</h2>
+  <p class="usage">After you finish each drawing, label every structure below directly on your sketch.</p>
+  <ol class="structure-list">
+  <li>Fibroblast</li>
+  <li>Adipocyte</li>
+  <li>Macrophage</li>
+  <li>Mast cell</li>
+  <li>Chondrocyte</li>
+  <li>Lacuna</li>
+  <li>Osteocyte</li>
+  <li>Osteon</li>
+  <li>Collagen fiber</li>
+  <li>Elastic fiber</li>
+  <li>Reticular fiber</li>
+  <li>Ground substance</li>
+  <li>Central canal</li>
+  <li>Canaliculus</li>
+  <li>Red blood cell</li>
+  <li>White blood cell</li>
+  <li>Plasma</li>
+  </ol>
+</article>
 
   <div class="section-band physiology">
     <p class="tag">Part 2 of 2</p>
     <h2>Physiology Lab</h2>
   </div>
 
-  <article class="card">
-    <h2>2A. Activity (to be customized)</h2>
-    <div class="placeholder-block" role="region" aria-label="Physiology activity placeholder">
-      <strong>Activity placeholder</strong>
-      <p>This space is reserved for the topic-specific physiology activity (data interpretation, calculation, mechanism walkthrough, simulator, or clinical scenario). Dr. Rennie will fill in the specific activity for this topic.</p>
-      <p style="margin-top:10px;color:var(--gray-soft);font-style:italic">Possible formats for Connective Tissues: graph reading, value calculation, scenario reasoning, predicting an outcome from a perturbation, or comparing two conditions.</p>
-    </div>
-  </article>
+<article class="card"><h2>2A. Match the cell to the tissue and the job</h2>
+<p class="activity-prompt">For each connective tissue cell below, name (a) the tissue it is found in, and (b) one specific function it performs in that tissue.</p>
+<div class="synthesis-q"><strong>1. Fibroblast</strong><div class="answer-space"></div><div class="answer-space"></div></div>
+<div class="synthesis-q"><strong>2. Adipocyte</strong><div class="answer-space"></div><div class="answer-space"></div></div>
+<div class="synthesis-q"><strong>3. Chondrocyte</strong><div class="answer-space"></div><div class="answer-space"></div></div>
+<div class="synthesis-q"><strong>4. Osteoblast</strong><div class="answer-space"></div><div class="answer-space"></div></div>
+<div class="synthesis-q"><strong>5. Osteoclast</strong><div class="answer-space"></div><div class="answer-space"></div></div>
+<div class="synthesis-q"><strong>6. Macrophage</strong><div class="answer-space"></div><div class="answer-space"></div></div>
+<div class="synthesis-q"><strong>7. Mast cell</strong><div class="answer-space"></div><div class="answer-space"></div></div></article>
 
-  <article class="card">
-    <h2>2B. Synthesis questions (to be customized)</h2>
-    <div class="placeholder-block" role="region" aria-label="Synthesis questions placeholder">
-      <strong>Question placeholder</strong>
-      <ol>
-        <li>Synthesis question 1 (links anatomy to the physiology activity above).</li>
-        <li>Synthesis question 2 (applies the concept to a clinical or everyday scenario).</li>
-        <li>Synthesis question 3 (predicts what changes if one variable is altered).</li>
-      </ol>
-      <p style="margin-top:10px;color:var(--gray-soft);font-style:italic">Dr. Rennie will replace these with topic-specific questions tied to the activity above.</p>
-    </div>
+<article class="card">
+    <h2>2B. Synthesis questions</h2>
+    <p class="usage">Answer each in 2 to 4 sentences. Use the language from this week's lecture and your drawings as evidence.</p>
+<div class="synthesis-q"><strong>1. A patient tears their anterior cruciate ligament. Describe the connective tissue that was torn (cells, fibers, arrangement). Why does this tissue heal so slowly?</strong><div class="answer-space"></div><div class="answer-space"></div><div class="answer-space"></div></div>
+<div class="synthesis-q"><strong>2. Cartilage has no blood vessels (it&#x27;s avascular). Predict how this affects healing after an injury, and explain why athletes with cartilage damage often face long recoveries.</strong><div class="answer-space"></div><div class="answer-space"></div><div class="answer-space"></div></div>
+<div class="synthesis-q"><strong>3. Blood is classified as a connective tissue even though it doesn&#x27;t &#x27;connect&#x27; anything visually. Argue, in two or three sentences, why this classification is defensible based on its architecture.</strong><div class="answer-space"></div><div class="answer-space"></div><div class="answer-space"></div></div>
   </article>
 
   <article class="card">
     <h2>3. What to submit</h2>
-    <p>Print this workbook. Complete <strong>both</strong> the Anatomy Lab (hand-labeled diagram + structure list) and the Physiology Lab (activity + synthesis questions). Photograph or scan every page and upload to Canvas before Sunday at 11:59 PM. Hand-labeled work is the integrity mechanism for this course.</p>
+    <p>Complete <strong>both</strong> the Anatomy Lab (your own drawings, hand-labeled, plus the structures list) and the Physiology Lab (activity and synthesis questions). Photograph or scan every page and upload to Canvas before the deadline listed on the schedule. Hand-drawn, hand-labeled work is the integrity mechanism for this course. Typed or AI-generated diagrams are not accepted.</p>
   </article>
 </main>
 <footer><p>Dr. Sharilyn Rennie . BIO 304 Lab Workbook . Day 6 of 32</p></footer>
