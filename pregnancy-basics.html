@@ -248,7 +248,7 @@
     background: var(--white);
   }
 
-  /* Clinical tie-in callout — white on white with terra-cotta border, lifted */
+  /* Clinical tie-in callout ,  white on white with terra-cotta border, lifted */
   .tie-in {
     margin-top: 20px;
     padding: 14px 18px 16px 18px;
@@ -543,7 +543,7 @@
   .reveal-btn:hover { background: var(--terra-dark); color: var(--white); }
   .reveal-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
-  /* Directional Terms section — no card, just heading + grid */
+  /* Directional Terms section ,  no card, just heading + grid */
   .directions { margin: 18px 0 4px 0; }
   .directions h2 {
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
@@ -571,7 +571,7 @@
   @media (max-width: 720px) { .dir-grid { grid-template-columns: 1fr; } }
 
 
-  /* Resource bar (video + pre-work) — screen only */
+  /* Resource bar (video + pre-work) ,  screen only */
   .resource-bar {
     display: flex;
     gap: 10px;
@@ -688,7 +688,7 @@
   @media print { .gate { display: none !important; } }
 
   /* ------------------------------------------------------------------
-     Print styles — what becomes the student PDF
+     Print styles ,  what becomes the student PDF
      ------------------------------------------------------------------ */
   @media print {
     @page { size: letter; margin: 0.45in; }
@@ -705,7 +705,7 @@
     .term-input { display: none !important; }
     .term-input input { display: none !important; }
 
-    /* NOTES (no mode class): everything visible — default print */
+    /* NOTES (no mode class): everything visible ,  default print */
 
     /* STUDY print: terms visible, definitions become a write-on line */
     body.study .term .name { display: inline !important; }
@@ -744,6 +744,32 @@
     a { color: var(--navy); text-decoration: none; }
   }
 </style>
+<style>
+
+  /* Option A: inline explain-back gate (was post-video modal) */
+  #explain-gate { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 26px 30px; margin: 32px 0 0; box-shadow: var(--card-shadow); }
+  #explain-gate[hidden] { display: none; }
+  #explain-gate .gate-eyebrow { font-family: 'DM Sans', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terra-dark); margin: 0 0 6px; }
+  #explain-gate h2 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800; font-size: 22px; color: var(--navy); margin: 0 0 8px; letter-spacing: -0.01em; }
+  #explain-gate p.gate-instr { font-family: 'Lora', Georgia, serif; font-size: 15.5px; color: var(--ink); line-height: 1.55; margin: 0 0 14px; }
+  #gate-input { width: 100%; min-height: 140px; padding: 12px 14px; font-family: 'Lora', Georgia, serif; font-size: 15.5px; color: var(--ink); line-height: 1.55; border: 1px solid var(--rule); border-radius: 8px; background: #FFFFFF; resize: vertical; }
+  #gate-input:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 1px; border-color: var(--navy); }
+  #gate-meter { display: flex; gap: 18px; flex-wrap: wrap; margin: 12px 0 14px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 13px; color: var(--ink-soft); }
+  #gate-meter strong { color: var(--navy); font-weight: 700; font-variant-numeric: tabular-nums; }
+  #gate-meter .met { color: var(--navy); }
+  #gate-submit { font-family: 'DM Sans', system-ui, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 22px; border-radius: 999px; border: 1px solid var(--navy); background: var(--navy); color: #FFFFFF; cursor: pointer; }
+  #gate-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+  #gate-submit:not(:disabled):hover { background: var(--navy-deep, #142a36); }
+  #gate-submit:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
+  #gate-status { font-family: 'DM Sans', system-ui, sans-serif; font-size: 12.5px; color: var(--terra); margin: 10px 0 0; min-height: 18px; }
+  #gate-status.passed { color: var(--navy); font-weight: 700; }
+  .video-watch-prompt { font-family: 'Lora', Georgia, serif; font-style: italic; color: var(--ink-soft); font-size: 14px; margin: 0; }
+  /* Prework button locked state */
+  .resource-btn.gate-locked { opacity: 0.55; cursor: not-allowed; pointer-events: auto; }
+  .gate-hint { display: inline-block; margin-left: 10px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--terra-dark); vertical-align: middle; }
+  .gate-hint[hidden] { display: none; }
+
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -769,7 +795,7 @@
   <p class="usage">A reference for the Pregnancy A&amp;P video. From a single fertilized egg to a delivered newborn is ~40 weeks. Three trimesters, three different physiologic chapters. Almost every organ system in the mother adapts.</p>
   <p class="mode-hint" role="note" style="font-family:'Lora',Georgia,serif;font-size:13px;color:var(--navy);background:transparent;border-left:2px solid var(--gold);padding:6px 0 6px 12px;margin:-6px 0 18px 0;max-width:62ch;">
     <strong style="font-family:'DM Sans',system-ui,sans-serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--terra-dark);display:block;margin-bottom:2px;">How to use this sheet</strong>
-    Toggle the toolbar above. <strong>Notes</strong> prints the full reference for review. <strong>Study</strong> prints as a fill-in-the-blank worksheet — print it, then write each definition while you watch the video or read your book. <strong>Quiz me</strong> is on-screen typing practice; type the term, click <em>Reveal</em> to check yourself.
+    Toggle the toolbar above. <strong>Notes</strong> prints the full reference for review. <strong>Study</strong> prints as a fill-in-the-blank worksheet ,  print it, then write each definition while you watch the video or read your book. <strong>Quiz me</strong> is on-screen typing practice; type the term, click <em>Reveal</em> to check yourself.
   </p>
 
   <div class="resource-bar" role="region" aria-label="Topic resources">
@@ -923,6 +949,20 @@
     <span>Dr. Sharilyn Rennie</span>
     <span>BIO 304 &middot; Module 16 · Pregnancy A&amp;P</span>
   </div>
+
+  <!-- bio304-explain-gate (Option A) -->
+  <section id="explain-gate" hidden aria-labelledby="explain-gate-h">
+    <p class="gate-eyebrow">Step 2 . Retrieval check</p>
+    <h2 id="explain-gate-h">Now explain it back, in your own words.</h2>
+    <p class="gate-instr">In 60 words or more, pull together what the video just taught you. Include the key concepts. This is the point where the learning actually sticks. After you submit, your spaced-recall cards for this topic unlock.</p>
+    <textarea id="gate-input" aria-describedby="gate-meter" placeholder="What did this video teach you?"></textarea>
+    <div id="gate-meter" aria-live="polite">
+      <span>Words: <strong id="gate-word-count">0</strong> / 60</span>
+      <span>Concepts found: <strong id="gate-keyword-count">0</strong> / <span id="gate-keyword-target">0</span></span>
+    </div>
+    <button type="button" id="gate-submit" disabled>Unlock pre-work cards</button>
+    <p id="gate-status" role="status"></p>
+  </section>
 </main>
 
 <!-- Lightbox dialog -->
@@ -939,13 +979,13 @@
 <script>
   window.__SHEET_ID__ = 'bio304-pregnancy-basics';
   // ----------------------------------------------------------------
-  // Per-sheet config — edit these two URLs for body-regions.
+  // Per-sheet config ,  edit these two URLs for body-regions.
   // 'video'   : YouTube/Vimeo embed URL (e.g. https://www.youtube.com/embed/XXXXX)
   // 'prework' : URL into the spaced-repetition pre-work for this topic
   // ----------------------------------------------------------------
   window.SHEET_CONFIG = {
     video:   'https://www.youtube.com/embed/REPLACE_WITH_PREGNANCY_BASICS_VIDEO_ID',
-    prework: 'https://REPLACE_WITH_YOUR_SR_DOMAIN/prework/pregnancy-basics',
+    prework: 'bio304-spaced-recall-prototype.html#topic=t-pregnancy-development',
   };
 
   (function wireResources() {
@@ -1117,5 +1157,173 @@
   </div>
 </div>
 
+
+<!-- bio304-option-a -->
+<script>
+// bio304-option-a: inline explain-back gate on the lecture page.
+(function () {
+  var TOPIC_ID = 't-pregnancy-development';
+  var GATE_KEYWORDS = ["fertilization", "implantation", "placenta", "hCG", "corpus luteum"];
+  var PREWORK_TARGET = "bio304-spaced-recall-prototype.html#topic=t-pregnancy-development";
+  var MIN_WORDS = 60;
+  var MIN_KEYWORDS = GATE_KEYWORDS.length ? Math.max(2, Math.ceil(GATE_KEYWORDS.length * 0.6)) : 0;
+
+  var pre = document.getElementById('prework-link');
+  var gateSection = document.getElementById('explain-gate');
+  var input = document.getElementById('gate-input');
+  var submitBtn = document.getElementById('gate-submit');
+  var statusEl = document.getElementById('gate-status');
+  var wordCountEl = document.getElementById('gate-word-count');
+  var kwCountEl = document.getElementById('gate-keyword-count');
+  var kwTargetEl = document.getElementById('gate-keyword-target');
+  if (kwTargetEl) kwTargetEl.textContent = String(MIN_KEYWORDS);
+
+  // Lock the prework button by default. If this lecture page has no topic
+  // mapping (supplementary pages like body-regions, body-cavities), leave
+  // the prework button as a normal link with no flag-setting.
+  if (!TOPIC_ID) {
+    // Supplementary page: hide the gate section entirely.
+    if (gateSection) gateSection.remove();
+    if (pre) pre.href = PREWORK_TARGET;
+    return;
+  }
+
+  if (pre) {
+    pre.classList.add('gate-locked');
+    pre.setAttribute('aria-disabled', 'true');
+    var hint = document.createElement('span');
+    hint.className = 'gate-hint';
+    hint.id = 'prework-gate-hint';
+    hint.textContent = 'Watch the video and complete the retrieval check to unlock';
+    if (pre.parentNode) pre.parentNode.insertBefore(hint, pre.nextSibling);
+    pre.href = PREWORK_TARGET;
+    pre.addEventListener('click', function (e) {
+      if (pre.classList.contains('gate-locked')) {
+        e.preventDefault();
+        if (gateSection && gateSection.hidden) {
+          alert('Watch the video first. Then complete the retrieval check below.');
+        } else if (gateSection) {
+          gateSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (input) input.focus();
+        }
+      } else {
+        try { window.localStorage.setItem('bio304-gate-' + TOPIC_ID, 'true'); } catch (er) {}
+        try { window.localStorage.setItem('bio304-video-' + TOPIC_ID, 'true'); } catch (er) {}
+      }
+    });
+  }
+
+  // Validate the input
+  function updateMeter() {
+    if (!input) return;
+    var text = input.value.trim();
+    var wordCount = text ? text.split(/\s+/).filter(Boolean).length : 0;
+    var lower = text.toLowerCase();
+    var matched = GATE_KEYWORDS.filter(function (k) { return lower.indexOf(k.toLowerCase()) !== -1; });
+    if (wordCountEl) wordCountEl.textContent = String(wordCount);
+    if (kwCountEl) kwCountEl.textContent = String(matched.length);
+    if (wordCountEl) wordCountEl.parentElement.classList.toggle('met', wordCount >= MIN_WORDS);
+    if (kwCountEl) kwCountEl.parentElement.classList.toggle('met', matched.length >= MIN_KEYWORDS);
+    var passed = wordCount >= MIN_WORDS && matched.length >= MIN_KEYWORDS;
+    if (submitBtn) submitBtn.disabled = !passed;
+  }
+  if (input) input.addEventListener('input', updateMeter);
+
+  // Submit handler
+  if (submitBtn) {
+    submitBtn.addEventListener('click', function () {
+      try { window.localStorage.setItem('bio304-gate-' + TOPIC_ID, 'true'); } catch (e) {}
+      try { window.localStorage.setItem('bio304-video-' + TOPIC_ID, 'true'); } catch (e) {}
+      if (pre) {
+        pre.classList.remove('gate-locked');
+        pre.removeAttribute('aria-disabled');
+      }
+      var hintEl = document.getElementById('prework-gate-hint');
+      if (hintEl) hintEl.hidden = true;
+      if (statusEl) {
+        statusEl.textContent = 'Unlocked. Your pre-work cards are ready.';
+        statusEl.classList.add('passed');
+      }
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Unlocked';
+      // Auto-scroll back up to the prework button so they can act
+      if (pre) {
+        pre.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        pre.focus();
+      }
+    });
+  }
+
+  // ---- YouTube IFrame API: reveal gate when video ends ----
+  var cfg = window.SHEET_CONFIG || {};
+  var rawVideo = (cfg.video || '').trim();
+  var isPlaceholder = !rawVideo || rawVideo.indexOf('REPLACE_WITH_') !== -1 || rawVideo === 'about:blank';
+
+  function revealGate() {
+    if (gateSection && gateSection.hidden) {
+      gateSection.hidden = false;
+      gateSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (input) setTimeout(function () { input.focus(); }, 600);
+    }
+  }
+
+  if (isPlaceholder) {
+    // No real video yet: reveal the gate immediately so the page is testable.
+    revealGate();
+    return;
+  }
+
+  // Ensure enablejsapi on the iframe URL
+  if (cfg.video.indexOf('enablejsapi=1') === -1) {
+    cfg.video = cfg.video + (cfg.video.indexOf('?') !== -1 ? '&' : '?') + 'enablejsapi=1';
+  }
+  if (!window.YT) {
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  }
+
+  var player = null;
+  function tryWrap() {
+    if (player || !window.YT || !window.YT.Player) return;
+    var iframe = document.getElementById('video-iframe');
+    if (!iframe || !iframe.src || iframe.src === 'about:blank') return;
+    player = new YT.Player(iframe, {
+      events: {
+        onStateChange: function (e) {
+          if (e.data === 0) revealGate();
+        }
+      }
+    });
+  }
+  var videoToggle = document.getElementById('video-toggle');
+  if (videoToggle) {
+    videoToggle.addEventListener('click', function () {
+      setTimeout(tryWrap, 400);
+      setTimeout(tryWrap, 1500);
+      setTimeout(tryWrap, 3500);
+    });
+  }
+  var prevReady = window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady = function () {
+    if (typeof prevReady === 'function') { try { prevReady(); } catch (er) {} }
+    tryWrap();
+  };
+})();
+
+// Iframe height-sender for Canvas/Kajabi embeds.
+(function () {
+  if (window.self === window.top) return;
+  function send() {
+    try {
+      var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+      window.parent.postMessage({ id: 'bio304-lecture-page', type: 'resize', height: h }, '*');
+    } catch (e) {}
+  }
+  window.addEventListener('load', send);
+  window.addEventListener('resize', send);
+  if ('ResizeObserver' in window) new ResizeObserver(send).observe(document.body);
+})();
+</script>
 </body>
 </html>

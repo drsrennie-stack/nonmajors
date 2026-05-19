@@ -1500,8 +1500,23 @@
         const id = b.dataset.openTopic;
         CURRENT_TOPIC = id;
         const ts = getTopicState(id);
-        if (ts.gateCompleted) nav("learn", id);
-        else nav("topic", id);
+        // Option A: check the cross-page gate flag set by the lecture page.
+        // If the student has passed the lecture-page gate, jump straight to cards.
+        var gatePassed = false;
+        try {
+          gatePassed = window.localStorage.getItem("bio304-gate-" + id) === "true"
+                    || window.localStorage.getItem("bio304-video-" + id) === "true";
+        } catch (e) {}
+        if (gatePassed || ts.gateCompleted) {
+          if (!ts.gateCompleted) {
+            ts.gateCompleted = true;
+            ts.videoWatched = true;
+            saveTopicState(id, ts);
+          }
+          nav("learn", id);
+        } else {
+          nav("topic", id);
+        }
       });
     });
   }
@@ -1509,89 +1524,69 @@
   /* ---------- TOPIC (video + gate) ---------- */
 
   function renderTopic(topicId){
+    // Option A: the topic view is now a single pointer back to the lecture page.
+    // The cards live behind the lecture-page gate. If a student lands here, the
+    // gate isn't passed yet, so route them to the lecture page (or show a fallback
+    // mark-complete button for topics without a lecture page).
     CURRENT_TOPIC = topicId;
     const topic = topicById(topicId);
     if (!topic) { nav("dashboard"); return; }
     const ts = getTopicState(topicId);
     $("#topic-heading").textContent = topic.title;
     $("#topic-summary").textContent = topic.summary || "";
-    $("#video-placeholder-label").textContent = topic.videoLabel || "Video for this topic is being produced.";
-    $("#gate-keyword-target").textContent = topic.gateKeywords.length;
-    $("#gate-preview-keywords").textContent = topic.gateKeywords.join(", ");
-    $("#gate-preview-hint").hidden = true;
-    $("#btn-toggle-preview-hint").textContent = "Show concepts (preview)";
-    $("#gate-input").value = ts.gateExplanation || "";
-    updateGateMeter(topic, $("#gate-input").value);
-    $("#gate-feedback").textContent = "";
-    $("#gate-feedback").className = "gate-feedback";
 
-    // Check the cross-page video-watched flag set by the topic's lecture page.
-    // The lecture page (one-pager) writes "bio304-video-{topicId}" = "true" when the
-    // student watches the video there. We honor that flag here.
-    var crossPageWatched = false;
-    try {
-      crossPageWatched = window.localStorage.getItem("bio304-video-" + topic.id) === "true";
-    } catch (e) { crossPageWatched = false; }
-    if (crossPageWatched && !ts.videoWatched) {
-      ts.videoWatched = true;
-      saveTopicState(topic.id, ts);
-    }
+    // Hide the legacy Step 1 (video) and Step 2 (gate) cards entirely under Option A.
+    if ($("#video-card")) $("#video-card").hidden = true;
+    if ($("#gate-card")) $("#gate-card").hidden = true;
+    if ($("#gate-locked-note")) $("#gate-locked-note").hidden = true;
 
-    var openLectureBtn = $("#btn-open-lecture-page");
-    var simBtn = $("#btn-simulate-watch");
-    var markBtn = $("#btn-mark-watched");
-    var legacyFrame = $("#video-frame-legacy");
-
-    // Hide legacy player and simulate button by default; only used as fallback.
-    if (legacyFrame) legacyFrame.hidden = true;
-    if (simBtn) { simBtn.hidden = true; simBtn.disabled = true; }
-
+    // Build (or reset) a simple "Watch the lecture first" card injected after the heading.
+    var existing = document.getElementById("lecture-pointer-card");
+    if (existing) existing.remove();
+    var card = document.createElement("div");
+    card.id = "lecture-pointer-card";
+    card.className = "card";
     if (topic.lecturePageUrl) {
-      // Topic has a dedicated lecture page. Point students at it.
-      openLectureBtn.href = topic.lecturePageUrl;
-      openLectureBtn.hidden = false;
+      card.innerHTML =
+        '<h3>Watch the lecture first</h3>' +
+        '<p class="usage">This topic\'s cards unlock after you finish the lecture video and complete the short retrieval check on the lecture page. The lecture page sets a flag that this app reads automatically; once it\'s set, you land here at the cards directly.</p>' +
+        '<div class="toolbar" style="margin-top:14px;">' +
+          '<a class="btn btn-primary" id="btn-go-lecture" href="' + topic.lecturePageUrl + '" target="_top">Open the lecture page &rarr;</a>' +
+          '<button type="button" class="btn btn-ghost" id="btn-back-dashboard" data-nav="dashboard">Back to tonight\'s list</button>' +
+        '</div>';
     } else {
-      openLectureBtn.hidden = true;
-      openLectureBtn.removeAttribute("href");
+      // Fallback for topics without a lecture page yet: a simple "mark complete" button
+      card.innerHTML =
+        '<h3>Lecture page coming soon</h3>' +
+        '<p class="usage">A dedicated lecture page is not wired up yet for this topic. You can mark it complete to preview the cards.</p>' +
+        '<div class="toolbar" style="margin-top:14px;">' +
+          '<button type="button" class="btn btn-primary" id="btn-skip-gate">Mark complete and open cards</button>' +
+          '<button type="button" class="btn btn-ghost" id="btn-back-dashboard" data-nav="dashboard">Back to tonight\'s list</button>' +
+        '</div>';
     }
+    var view = $("#view-topic");
+    view.appendChild(card);
 
-    if (ts.videoWatched) {
-      $("#video-status").textContent = topic.lecturePageUrl
-        ? "Lecture video marked watched."
-        : "Video marked watched.";
-      markBtn.disabled = true;
-      markBtn.textContent = "Watched";
-      // Reveal the gate once the video is finished.
-      $("#gate-card").hidden = false;
-      $("#gate-locked-note").hidden = true;
-    } else if (topic.lecturePageUrl) {
-      $("#video-status").textContent = "Open the lecture page, watch the video, then return here and click I've watched it.";
-      markBtn.disabled = false;
-      markBtn.textContent = "I've watched it";
-      $("#gate-card").hidden = true;
-      $("#gate-locked-note").hidden = false;
-    } else if (!topic.videoUrl) {
-      // No lecture page AND no in-app video: preview mode.
-      if (legacyFrame) legacyFrame.hidden = false;
-      renderVideoPlayer(topic);
-      $("#video-status").textContent = "No lecture page is wired up for this topic yet. Click I've watched it to continue.";
-      $("#video-progress").style.width = "100%";
-      markBtn.disabled = false;
-      markBtn.textContent = "I've watched it";
-      $("#gate-card").hidden = true;
-      $("#gate-locked-note").hidden = false;
-    } else {
-      // Legacy fallback: in-app video player + simulate watch.
-      if (legacyFrame) legacyFrame.hidden = false;
-      renderVideoPlayer(topic);
-      $("#video-status").textContent = "Watch the video below from start to finish.";
-      $("#video-progress").style.width = "0%";
-      markBtn.disabled = true;
-      markBtn.textContent = "Mark watched";
-      simBtn.hidden = false;
-      simBtn.disabled = false;
-      $("#gate-card").hidden = true;
-      $("#gate-locked-note").hidden = false;
+    // Wire the buttons
+    var skipBtn = document.getElementById("btn-skip-gate");
+    if (skipBtn) {
+      skipBtn.addEventListener("click", function () {
+        ts.gateCompleted = true;
+        ts.videoWatched = true;
+        try { window.localStorage.setItem("bio304-gate-" + topic.id, "true"); } catch(e) {}
+        try { window.localStorage.setItem("bio304-video-" + topic.id, "true"); } catch(e) {}
+        saveTopicState(topic.id, ts);
+        nav("learn", topic.id);
+      });
+    }
+    var backBtn = document.getElementById("btn-back-dashboard");
+    if (backBtn) {
+      backBtn.addEventListener("click", function () { nav("dashboard"); });
+    }
+    var goBtn = document.getElementById("btn-go-lecture");
+    if (goBtn) {
+      // When the student returns from the lecture page with the gate passed,
+      // the dashboard's click handler will skip topic view next time.
     }
   }
 
@@ -2186,20 +2181,31 @@
       saveState();
     }
 
-    // Deep-link: if URL hash is #topic=t-X, auto-open that topic.
+    // Deep-link routing based on URL hash.
+    //   #topic=t-X       -> open that topic (cards view if past gate, gate view otherwise)
+    //   #view=review     -> open the Daily Review view
+    //   #view=dashboard  -> open the dashboard (same as no hash)
+    //   anything else    -> dashboard
     var deepLinkTopic = null;
+    var deepLinkView = null;
     try {
       var hash = window.location.hash || "";
-      var m = hash.match(/#topic=([\w-]+)/);
-      if (m && m[1]) deepLinkTopic = m[1];
+      var mTopic = hash.match(/#topic=([\w-]+)/);
+      var mView  = hash.match(/#view=(\w+)/);
+      if (mTopic && mTopic[1]) deepLinkTopic = mTopic[1];
+      if (mView  && mView[1])  deepLinkView  = mView[1];
     } catch (e) {}
     if (deepLinkTopic && topicById(deepLinkTopic)) {
       CURRENT_TOPIC = deepLinkTopic;
       const ts = getTopicState(deepLinkTopic);
       if (ts.gateCompleted) nav("learn", deepLinkTopic);
       else nav("topic", deepLinkTopic);
-      // Clean the URL so refresh doesn't keep auto-navigating.
       try { history.replaceState(null, "", window.location.pathname + window.location.search); } catch (e) {}
+    } else if (deepLinkView === "review") {
+      nav("review");
+      try { history.replaceState(null, "", window.location.pathname + window.location.search); } catch (e) {}
+    } else if (deepLinkView === "dashboard") {
+      nav("dashboard");
     } else {
       nav("dashboard");
     }
