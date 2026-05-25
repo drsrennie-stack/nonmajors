@@ -4,16 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BIO 304 Anatomy &amp; Physiology &middot; Course Home</title>
-<meta name="description" content="Course home for BIO 304 Anatomy and Physiology at American River College. Online, with weekly assignment deadlines. Start with the syllabus, then work through 16 modules and 44 one-pager study sheets.">
+<meta name="description" content="Course home for BIO 304 Anatomy and Physiology at American River College. Online and self-paced: start with the syllabus, then work through 16 modules and 44 one-pager study sheets.">
 <link href="https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css" rel="stylesheet">
 <style>
 /*
   ============================================================
   BIO 304 ANATOMY & PHYSIOLOGY  ·  COURSE HOME PAGE
-  American River College  ·  Online, weekly deadlines (no TBL)
-  The single permanent home page: welcomes students at the top
-  and carries the whole course below. Built on the Course Site
-  Design System (course-design-system.md).
+  American River College  ·  Online, self-paced (no TBL)
+  Built on the Course Site Design System (course-design-system.md).
   Hub-and-spoke: the page embeds in Kajabi via iframe and links
   out to the BIO 304 GitHub Pages one-pagers. Internal links use
   target="_top" so they break out of the iframe.
@@ -266,65 +264,17 @@ h2.section-headline {
 }
 
 /* ===== COURSE MAP (light) ===== */
-.week { margin-top: 30px; }
-.week:first-of-type { margin-top: 4px; }
+.week { margin-top: 44px; }
+.week:first-of-type { margin-top: 8px; }
 .week-head {
-  list-style: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 4px 2px 10px;
-  border-bottom: 2px solid var(--rust);
-}
-.week-head::-webkit-details-marker { display: none; }
-.week-title {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  margin: 0;
-  font-size: 20px;
+  font-size: 21px;
   font-weight: 800;
   color: var(--navy);
   letter-spacing: -0.015em;
+  margin: 0 0 4px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--rust);
 }
-.week-topic { font-size: 12.5px; font-weight: 700; color: var(--rust); }
-.week-count {
-  margin-left: auto;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--navy);
-  opacity: 0.55;
-  white-space: nowrap;
-}
-.week-flag {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--navy);
-  background: var(--gold);
-  padding: 5px 11px;
-  border-radius: 3px;
-  white-space: nowrap;
-}
-.week-toggle {
-  font-size: 30px;
-  font-weight: 300;
-  line-height: 0.7;
-  color: var(--rust);
-  width: 24px;
-  text-align: center;
-  flex-shrink: 0;
-  transition: transform 200ms ease;
-}
-.week[open] .week-toggle { transform: rotate(45deg); }
-.week[open] .week-head { margin-bottom: 6px; }
-.week-body { padding-top: 2px; }
-.week-body > .module:first-of-type { margin-top: 12px; }
-.week.is-current .week-head { border-bottom-color: var(--gold); }
 .module { margin-top: 22px; }
 .module-head {
   font-size: 12px;
@@ -719,13 +669,8 @@ h2.section-headline {
     <h2 class="section-headline" id="map-heading">The whole course, <span class="accent">week by week</span>.</h2>
     <p class="section-intro">Eight weeks, 16 modules, 44 one-pager study sheets. Click any topic to open its sheet. Work through them in order, and check back here whenever you need your bearings.</p>
 
-    <details class="week" id="week-1" open>
-      <summary class="week-head">
-        <h3 class="week-title">Week 1<span class="week-topic">Foundations &amp; the Cell</span></h3>
-        <span class="week-count">7 sheets</span>
-        <span class="week-toggle" aria-hidden="true">+</span>
-      </summary>
-      <div class="week-body">
+    <div class="week" id="week-1">
+      <h3 class="week-head">Week 1</h3>
       <div class="module">
         <h4 class="module-head">Module 1 &middot; Foundations of Anatomy &amp; Physiology</h4>
         <div class="map-grid">
@@ -771,16 +716,10 @@ h2.section-headline {
           </a>
         </div>
       </div>
-      </div>
-    </details>
+    </div>
 
-    <details class="week" id="week-2">
-      <summary class="week-head">
-        <h3 class="week-title">Week 2<span class="week-topic">Tissues &amp; Integumentary System</span></h3>
-        <span class="week-count">5 sheets</span>
-        <span class="week-toggle" aria-hidden="true">+</span>
-      </summary>
-      <div class="week-body">
+    <div class="week" id="week-2">
+      <h3 class="week-head">Week 2</h3>
       <div class="module">
         <h4 class="module-head">Module 3 &middot; Tissues</h4>
         <div class="map-grid">
@@ -816,16 +755,10 @@ h2.section-headline {
           </a>
         </div>
       </div>
-      </div>
-    </details>
+    </div>
 
-    <details class="week" id="week-3">
-      <summary class="week-head">
-        <h3 class="week-title">Week 3<span class="week-topic">Skeletal System</span></h3>
-        <span class="week-count">4 sheets</span>
-        <span class="week-toggle" aria-hidden="true">+</span>
-      </summary>
-      <div class="week-body">
+    <div class="week" id="week-3">
+      <h3 class="week-head">Week 3</h3>
       <div class="module">
         <h4 class="module-head">Module 5 &middot; Skeletal System</h4>
         <div class="map-grid">
@@ -851,16 +784,10 @@ h2.section-headline {
           </a>
         </div>
       </div>
-      </div>
-    </details>
+    </div>
 
-    <details class="week" id="week-4">
-      <summary class="week-head">
-        <h3 class="week-title">Week 4<span class="week-topic">Muscular &amp; Nervous Systems</span></h3>
-        <span class="week-count">7 sheets</span>
-        <span class="week-toggle" aria-hidden="true">+</span>
-      </summary>
-      <div class="week-body">
+    <div class="week" id="week-4">
+      <h3 class="week-head">Week 4</h3>
       <div class="module">
         <h4 class="module-head">Module 6 &middot; Muscular System</h4>
         <div class="map-grid">
@@ -906,16 +833,10 @@ h2.section-headline {
           </a>
         </div>
       </div>
-      </div>
-    </details>
+    </div>
 
-    <details class="week" id="week-5">
-      <summary class="week-head">
-        <h3 class="week-title">Week 5<span class="week-topic">Special Senses &amp; Endocrine</span></h3>
-        <span class="week-count">4 sheets</span>
-        <span class="week-toggle" aria-hidden="true">+</span>
-      </summary>
-      <div class="week-body">
+    <div class="week" id="week-5">
+      <h3 class="week-head">Week 5</h3>
       <div class="module">
         <h4 class="module-head">Module 8 &middot; Special Senses</h4>
         <div class="map-grid">
@@ -946,16 +867,10 @@ h2.section-headline {
           </a>
         </div>
       </div>
-      </div>
-    </details>
+    </div>
 
-    <details class="week" id="week-6">
-      <summary class="week-head">
-        <h3 class="week-title">Week 6<span class="week-topic">Blood &amp; Cardiovascular System</span></h3>
-        <span class="week-count">5 sheets</span>
-        <span class="week-toggle" aria-hidden="true">+</span>
-      </summary>
-      <div class="week-body">
+    <div class="week" id="week-6">
+      <h3 class="week-head">Week 6</h3>
       <div class="module">
         <h4 class="module-head">Module 10 &middot; Blood</h4>
         <div class="map-grid">
@@ -991,16 +906,10 @@ h2.section-headline {
           </a>
         </div>
       </div>
-      </div>
-    </details>
+    </div>
 
-    <details class="week" id="week-7">
-      <summary class="week-head">
-        <h3 class="week-title">Week 7<span class="week-topic">Immune, Respiratory &amp; Digestive</span></h3>
-        <span class="week-count">6 sheets</span>
-        <span class="week-toggle" aria-hidden="true">+</span>
-      </summary>
-      <div class="week-body">
+    <div class="week" id="week-7">
+      <h3 class="week-head">Week 7</h3>
       <div class="module">
         <h4 class="module-head">Module 12 &middot; Lymphatic &amp; Immune System</h4>
         <div class="map-grid">
@@ -1046,16 +955,10 @@ h2.section-headline {
           </a>
         </div>
       </div>
-      </div>
-    </details>
+    </div>
 
-    <details class="week" id="week-8">
-      <summary class="week-head">
-        <h3 class="week-title">Week 8<span class="week-topic">Urinary &amp; Reproductive Systems</span></h3>
-        <span class="week-count">6 sheets</span>
-        <span class="week-toggle" aria-hidden="true">+</span>
-      </summary>
-      <div class="week-body">
+    <div class="week" id="week-8">
+      <h3 class="week-head">Week 8</h3>
       <div class="module">
         <h4 class="module-head">Module 15 &middot; Urinary System &amp; Fluid Balance</h4>
         <div class="map-grid">
@@ -1096,8 +999,7 @@ h2.section-headline {
           </a>
         </div>
       </div>
-      </div>
-    </details>
+    </div>
   </div>
 </section>
 
@@ -1251,54 +1153,6 @@ h2.section-headline {
     setTimeout(sendHeight, 100);
     setTimeout(sendHeight, 500);
     setTimeout(sendHeight, 1500);
-  })();
-</script>
-<script>
-  /* Current-week marker and accordion.
-     Week 1 begins 2026-06-08. Opens the current week, collapses the
-     rest, flags the current week, and opens a week when its anchor
-     link is followed. */
-  (function () {
-    var WEEK_STARTS = [
-      '2026-06-08', '2026-06-15', '2026-06-22', '2026-06-29',
-      '2026-07-06', '2026-07-13', '2026-07-20', '2026-07-27'
-    ];
-    var COURSE_END = '2026-08-03';
-    function d(s) { return new Date(s + 'T00:00:00'); }
-    var now = new Date();
-
-    var current = 0;
-    if (now >= d(WEEK_STARTS[0]) && now < d(COURSE_END)) {
-      for (var i = 0; i < WEEK_STARTS.length; i++) {
-        if (now >= d(WEEK_STARTS[i])) current = i + 1;
-      }
-    }
-    var openWeek = current || 1;
-
-    for (var n = 1; n <= 8; n++) {
-      var wk = document.getElementById('week-' + n);
-      if (!wk) continue;
-      wk.open = (n === openWeek);
-      if (n === current) {
-        wk.classList.add('is-current');
-        var head = wk.querySelector('.week-head');
-        var toggle = wk.querySelector('.week-toggle');
-        if (head && toggle && !head.querySelector('.week-flag')) {
-          var flag = document.createElement('span');
-          flag.className = 'week-flag';
-          flag.textContent = 'This week';
-          head.insertBefore(flag, toggle);
-        }
-      }
-    }
-
-    function openFromHash() {
-      var id = (location.hash || '').replace('#', '');
-      var el = id && document.getElementById(id);
-      if (el && el.tagName === 'DETAILS') { el.open = true; }
-    }
-    openFromHash();
-    window.addEventListener('hashchange', openFromHash);
   })();
 </script>
 </body>
