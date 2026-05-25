@@ -1,375 +1,1069 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>BIO 304 · Course Map</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;1,400&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIO 304 Anatomy &amp; Physiology &middot; Course Home</title>
+<meta name="description" content="Course home for BIO 304 Anatomy and Physiology at American River College. Online and self-paced: start with the syllabus, then work through 16 modules and 44 one-pager study sheets.">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css" rel="stylesheet">
 <style>
-  :root {
-    --navy: #1E3D4C;
-    --navy-deep: #142a36;
-    --navy-tint: #EDF1F3;
-    --gold: #B8924A;
-    --terra: #C2734D;
-    --terra-dark: #A0522D;
-    --white: #FFFFFF;
-    --offwhite: #FAFAF9;
-    --rule: rgba(30,61,76,0.18);
-    --rule-soft: rgba(30,61,76,0.10);
-    --shadow-rest: 0 1px 3px rgba(0,0,0,0.08);
-    --shadow-hover: 0 8px 16px rgba(0,0,0,0.10);
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    background: var(--offwhite);
-    color: var(--navy);
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    font-size: 15px;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-  .skip { position: absolute; left: -9999px; }
-  .skip:focus { position: static; left: auto; padding: 8px 12px; background: var(--navy); color: var(--white); margin: 8px; display: inline-block; }
+/*
+  ============================================================
+  BIO 304 ANATOMY & PHYSIOLOGY  ·  COURSE HOME PAGE
+  American River College  ·  Online, self-paced (no TBL)
+  Built on the Course Site Design System (course-design-system.md).
+  Hub-and-spoke: the page embeds in Kajabi via iframe and links
+  out to the BIO 304 GitHub Pages one-pagers. Internal links use
+  target="_top" so they break out of the iframe.
+  ============================================================
+*/
+:root {
+  --navy:        #0B1530;
+  --card-navy:   #1C2E4F;
+  --near-black:  #060A18;
+  --rust:        #8B3A2E;
+  --rust-hover:  #A0452F;
+  --terra:       #C2734D;
+  --soft-clay:   #CE8166;
+  --gold:        #C9A14A;
+  --cream:       #F5F1E8;
+  --white:       #FFFFFF;
+  --border-slate:#8C90A0;
+  --font: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--white);
+  color: var(--navy);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
 
-  .page { max-width: 9.5in; margin: 28px auto; background: var(--white); padding: 0.55in 0.6in; box-shadow: var(--shadow-rest); border-radius: 2px; }
-  .eyebrow { font-family: 'DM Sans', system-ui, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terra-dark); margin: 0 0 6px 0; }
-  h1 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800; font-size: 36px; line-height: 1.1; color: var(--navy); margin: 0 0 4px 0; letter-spacing: -0.01em; }
-  .subhead { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 600; font-size: 18px; color: var(--terra-dark); margin: 0 0 10px 0; }
-  .summary { font-family: 'Lora', Georgia, serif; font-style: italic; font-size: 14px; max-width: 70ch; margin: 0 0 6px 0; opacity: 0.85; }
-  .count { font-family: 'DM Sans', system-ui, sans-serif; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terra-dark); margin: 14px 0 0 0; }
-  hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
+/* ===== KEYBOARD FOCUS (rust on light, gold on dark) ===== */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--rust);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.band-dark a:focus-visible,
+.band-dark button:focus-visible,
+.band-dark summary:focus-visible {
+  outline-color: var(--gold);
+}
 
-  .week { margin-top: 26px; }
-  .week h2 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800; font-size: 22px; color: var(--navy); margin: 0 0 6px 0; padding-bottom: 6px; border-bottom: 2px solid var(--navy); letter-spacing: -0.005em; }
-  .module h3 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--terra-dark); margin: 16px 0 8px 0; }
+/* ===== SKIP LINK ===== */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 8px;
+  background: var(--navy);
+  color: var(--cream);
+  padding: 12px 20px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 4px;
+  z-index: 9999;
+  letter-spacing: 0.04em;
+}
+.skip-link:focus { top: 8px; }
 
-  .topic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  @media (max-width: 760px) { .topic-grid { grid-template-columns: 1fr; } }
+/* ===== BANDS & LAYOUT ===== */
+.band { padding: 60px max(40px, 5vw); }
+.band-light { background: var(--white); }
+.band-dark  { background: var(--near-black); }
+.wrap { max-width: 1080px; margin: 0 auto; }
 
-  .topic {
-    display: flex; flex-direction: column;
-    padding: 12px 14px;
-    background: var(--white);
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    text-decoration: none;
-    color: var(--navy);
-    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
-    box-shadow: var(--shadow-rest);
-  }
-  .topic:hover, .topic:focus-visible {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--gold);
-    outline: none;
-  }
-  .topic:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-  .topic-title { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700; font-size: 14.5px; color: var(--navy); margin-bottom: 4px; }
-  .topic-blurb { font-family: 'Lora', Georgia, serif; font-size: 13px; color: var(--navy); opacity: 0.8; line-height: 1.45; }
+/* ===== SHARED HEADINGS ===== */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  margin: 0 0 18px;
+}
+.band-light .eyebrow { color: var(--rust); }
+.band-dark  .eyebrow { color: var(--gold); }
+h2.section-headline {
+  font-size: clamp(23px, 3vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.14;
+  margin: 0 0 18px;
+  max-width: 620px;
+}
+.band-light h2.section-headline { color: var(--navy); }
+.band-dark  h2.section-headline { color: var(--cream); }
+.band-light h2.section-headline .accent { color: var(--rust); }
+.band-dark  h2.section-headline .accent { color: var(--terra); }
+.section-intro {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.65;
+  max-width: 640px;
+  margin: 0 0 40px;
+}
+.band-light .section-intro { color: var(--navy); }
+.band-dark  .section-intro { color: var(--cream); }
 
-  .foot { margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: 'DM Sans', system-ui, sans-serif; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); opacity: 0.75; }
+/* ===== SITE HEADER ===== */
+.site-header {
+  background: var(--white);
+  padding: 26px max(40px, 5vw);
+  border-bottom: 1px solid rgba(11, 21, 48, 0.10);
+}
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+}
+.site-logo svg { height: 56px; width: auto; display: block; }
+.logo-text { display: flex; flex-direction: column; gap: 3px; }
+.logo-title {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  line-height: 1;
+}
+.logo-title .logo-accent { color: var(--rust); }
+.logo-sub {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--navy);
+  opacity: 0.72;
+}
+
+/* ===== HERO ===== */
+.hero { background: var(--white); padding: 64px max(40px, 5vw) 56px; }
+.hero-inner { max-width: 1080px; margin: 0 auto; }
+.hero-content { max-width: 760px; }
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--rust);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.hero-headline {
+  font-size: clamp(32px, 5vw, 46px);
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.025em;
+  line-height: 1.07;
+  margin: 0 0 20px;
+}
+.hero-headline .accent { color: var(--rust); }
+.hero-subhead {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.65;
+  opacity: 0.82;
+  margin: 0 0 30px;
+  max-width: 600px;
+}
+.hero-ctas { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+.cta-primary {
+  background: var(--rust);
+  color: var(--white);
+  padding: 14px 26px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 200ms ease;
+}
+.cta-primary:hover { background: var(--rust-hover); }
+.cta-secondary {
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(11, 21, 48, 0.4);
+  padding-bottom: 6px;
+  text-decoration: none;
+  display: inline-block;
+}
+.hero-stats {
+  display: flex;
+  gap: 38px;
+  flex-wrap: wrap;
+  margin-top: 44px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(11, 21, 48, 0.12);
+}
+.stat-num {
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--rust);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--navy);
+  opacity: 0.66;
+  margin-top: 8px;
+}
+
+/* ===== HOW EACH ONE-PAGER WORKS (dark) ===== */
+.hiw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.hiw-card {
+  background: var(--card-navy);
+  border: 1px solid rgba(245, 241, 232, 0.28);
+  border-radius: 12px;
+  padding: 22px;
+}
+.hiw-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.hiw-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  margin: 0 0 9px;
+}
+.hiw-body {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--cream);
+  opacity: 0.9;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===== COURSE MAP (light) ===== */
+.week { margin-top: 44px; }
+.week:first-of-type { margin-top: 8px; }
+.week-head {
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  margin: 0 0 4px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--rust);
+}
+.module { margin-top: 22px; }
+.module-head {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin: 0 0 12px;
+}
+.map-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+  gap: 16px;
+}
+.map-card {
+  background: var(--white);
+  border: 1px solid var(--border-slate);
+  border-radius: 12px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--navy);
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+.map-card:hover,
+.map-card:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(11, 21, 48, 0.12);
+  border-color: var(--rust);
+}
+.map-card-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.map-card-blurb {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--navy);
+  opacity: 0.82;
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex: 1 1 auto;
+}
+.map-card-cta {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rust);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: auto;
+}
+.map-card-cta .arrow { transition: transform 200ms ease; }
+.map-card:hover .map-card-cta .arrow,
+.map-card:focus-visible .map-card-cta .arrow { transform: translateX(4px); }
+
+/* ===== INSTRUCTOR (dark) ===== */
+.about-layout {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 44px;
+  align-items: start;
+}
+.about-photo {
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--card-navy);
+}
+.about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; }
+.about-bio {
+  font-size: 14.5px;
+  font-weight: 400;
+  color: var(--cream);
+  opacity: 0.9;
+  line-height: 1.75;
+  margin: 0 0 20px;
+}
+.about-quote {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: -0.02em;
+  line-height: 1.32;
+  margin: 4px 0 0;
+}
+
+/* ===== START HERE (light) ===== */
+.start-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(238px, 1fr));
+  gap: 16px;
+}
+.start-card {
+  background: var(--white);
+  border: 1px solid var(--border-slate);
+  border-radius: 12px;
+  padding: 22px;
+  text-decoration: none;
+  color: var(--navy);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+.start-card:hover,
+.start-card:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(11, 21, 48, 0.12);
+  border-color: var(--rust);
+}
+.start-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 10px;
+}
+.start-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+.start-desc {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--navy);
+  opacity: 0.82;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ===== FOOTER (dark) ===== */
+.footer { background: var(--near-black); padding: 56px max(40px, 5vw) 32px; }
+.footer-inner { max-width: 1080px; margin: 0 auto; }
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(245, 241, 232, 0.16);
+  margin-bottom: 22px;
+}
+.footer-logo { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; margin-bottom: 16px; }
+.footer-logo svg { height: 48px; width: auto; }
+.footer-logo .logo-title { color: var(--cream); font-size: 21px; }
+.footer-logo .logo-accent { color: var(--gold); }
+.footer-logo .logo-sub { color: var(--cream); opacity: 0.62; }
+.footer-tagline {
+  font-size: 13px;
+  color: var(--cream);
+  opacity: 0.72;
+  line-height: 1.6;
+  max-width: 300px;
+  margin: 0;
+}
+.footer-col-header {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.footer-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cream);
+  opacity: 0.78;
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+.footer-link:hover { opacity: 1; text-decoration: underline; }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.footer-copyright {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--cream);
+  opacity: 0.6;
+  letter-spacing: 0.03em;
+}
+.footer-byline {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 860px) {
+  .about-layout { grid-template-columns: 1fr; gap: 26px; }
+  .about-photo { max-width: 230px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .hero-stats { gap: 26px; }
+}
+@media (max-width: 500px) {
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+  html { scroll-behavior: auto; }
+}
 </style>
 </head>
 <body>
-<a class="skip" href="#main">Skip to main content</a>
+<a href="#main" class="skip-link">Skip to main content</a>
 
-<main class="page" id="main">
-  <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology</p>
-  <h1>Course Map</h1>
-  <p class="subhead">Eight weeks · Sixteen modules · 44 one-pager sheets</p>
-  <p class="summary">Every sheet has three modes. <strong>Notes</strong> prints the full reference. <strong>Study</strong> prints as a fill-in-the-blank worksheet to complete during the video or reading. <strong>Quiz me</strong> is on-screen typing practice for vocabulary. Each sheet also links out to its spaced-recall pre-work once the video is watched.</p>
-  <p class="count">Click a topic to open its one-pager &middot; 44 total</p>
+<!-- ===== SITE HEADER ===== -->
+<header class="site-header">
+  <a href="index.html" class="site-logo" target="_top" aria-label="BIO 304 Anatomy and Physiology, course home">
+    <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+      <g transform="translate(0, 18)">
+        <g transform="translate(60, 0) rotate(8 0 130)">
+          <circle cx="0" cy="20" r="10" fill="#0B1530"/>
+          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
+        </g>
+        <g transform="translate(100, 0)">
+          <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+          <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+        </g>
+        <g transform="translate(140, 0) rotate(-8 0 130)">
+          <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+        </g>
+      </g>
+    </svg>
+    <span class="logo-text">
+      <span class="logo-title">Anatomy <span class="logo-accent">&amp; Physiology</span></span>
+      <span class="logo-sub">BIO 304 &middot; American River College</span>
+    </span>
+  </a>
+</header>
 
-  <hr class="rule" />
-  <section class="week" aria-labelledby="week-1">
-    <h2 id="week-1">Week 1</h2>
-    <section class="module" aria-label="Module 1 · Foundations of Anatomy & Physiology">
-      <h3>Module 1 · Foundations of Anatomy & Physiology</h3>
-      <div class="topic-grid">
-      <a class="topic" href="levels-of-organization.html" target="_top">
-        <span class="topic-title">Levels of Organization</span>
-        <span class="topic-blurb">Atoms to organism — six levels of complexity and what emerges at each.</span>
-      </a>
-      <a class="topic" href="anatomical-position.html" target="_top">
-        <span class="topic-title">Anatomical Position, Planes & Directional Terms</span>
-        <span class="topic-blurb">The standard body map and the vocabulary for talking about it.</span>
-      </a>
-      <a class="topic" href="body-regions.html" target="_top">
-        <span class="topic-title">Body Regions</span>
-        <span class="topic-blurb">Regional terms across anterior, posterior, and lateral views.</span>
-      </a>
-      <a class="topic" href="body-cavities.html" target="_top">
-        <span class="topic-title">Body Cavities & Regions</span>
-        <span class="topic-blurb">Dorsal/ventral cavities, abdominopelvic regions and quadrants.</span>
-      </a>
-      <a class="topic" href="homeostasis-feedback.html" target="_top">
-        <span class="topic-title">Homeostasis & Feedback Loops</span>
-        <span class="topic-blurb">Negative feedback as the default; positive feedback as the exception.</span>
-      </a>
-      </div>
-    </section>
-    <section class="module" aria-label="Module 2 · The Cell">
-      <h3>Module 2 · The Cell</h3>
-      <div class="topic-grid">
-      <a class="topic" href="cell-structure.html" target="_top">
-        <span class="topic-title">Cell Structure & Organelles</span>
-        <span class="topic-blurb">Membrane, nucleus, and the cytoplasmic organelles that do the work.</span>
-      </a>
-      <a class="topic" href="membrane-transport.html" target="_top">
-        <span class="topic-title">Membrane Transport</span>
-        <span class="topic-blurb">Passive, active, and bulk transport across the plasma membrane.</span>
-      </a>
-      </div>
-    </section>
-  </section>
-  <section class="week" aria-labelledby="week-2">
-    <h2 id="week-2">Week 2</h2>
-    <section class="module" aria-label="Module 3 · Tissues">
-      <h3>Module 3 · Tissues</h3>
-      <div class="topic-grid">
-      <a class="topic" href="epithelial-tissue.html" target="_top">
-        <span class="topic-title">Epithelial Tissue Classification</span>
-        <span class="topic-blurb">Classification by shape and layers; exocrine vs endocrine.</span>
-      </a>
-      <a class="topic" href="connective-tissues.html" target="_top">
-        <span class="topic-title">Connective Tissues</span>
-        <span class="topic-blurb">ECM components and the loose, dense, and specialized CTs.</span>
-      </a>
-      <a class="topic" href="muscle-nervous-tissue.html" target="_top">
-        <span class="topic-title">Muscle & Nervous Tissue Overview</span>
-        <span class="topic-blurb">Three muscle types and the cells of the nervous system.</span>
-      </a>
-      </div>
-    </section>
-    <section class="module" aria-label="Module 4 · Integumentary System">
-      <h3>Module 4 · Integumentary System</h3>
-      <div class="topic-grid">
-      <a class="topic" href="skin-structure.html" target="_top">
-        <span class="topic-title">Skin Structure & Layers</span>
-        <span class="topic-blurb">Epidermal strata, dermal layers, and the hypodermis.</span>
-      </a>
-      <a class="topic" href="skin-functions.html" target="_top">
-        <span class="topic-title">Skin Functions & Accessory Structures</span>
-        <span class="topic-blurb">Six functions plus hair, nails, and the cutaneous glands.</span>
-      </a>
-      </div>
-    </section>
-  </section>
-  <section class="week" aria-labelledby="week-3">
-    <h2 id="week-3">Week 3</h2>
-    <section class="module" aria-label="Module 5 · Skeletal System">
-      <h3>Module 5 · Skeletal System</h3>
-      <div class="topic-grid">
-      <a class="topic" href="bone-tissue.html" target="_top">
-        <span class="topic-title">Bone Tissue & Bone Growth</span>
-        <span class="topic-blurb">Bone cells, compact and spongy structure, ossification, calcium balance.</span>
-      </a>
-      <a class="topic" href="axial-skeleton.html" target="_top">
-        <span class="topic-title">Axial Skeleton</span>
-        <span class="topic-blurb">Skull, vertebral column, and thoracic cage.</span>
-      </a>
-      <a class="topic" href="appendicular-skeleton.html" target="_top">
-        <span class="topic-title">Appendicular Skeleton</span>
-        <span class="topic-blurb">Pectoral and pelvic girdles plus the limbs.</span>
-      </a>
-      <a class="topic" href="joints-and-movements.html" target="_top">
-        <span class="topic-title">Joints & Body Movements</span>
-        <span class="topic-blurb">Joint classifications and the catalog of movements.</span>
-      </a>
-      </div>
-    </section>
-  </section>
-  <section class="week" aria-labelledby="week-4">
-    <h2 id="week-4">Week 4</h2>
-    <section class="module" aria-label="Module 6 · Muscular System">
-      <h3>Module 6 · Muscular System</h3>
-      <div class="topic-grid">
-      <a class="topic" href="skeletal-muscle-microanatomy.html" target="_top">
-        <span class="topic-title">Skeletal Muscle Microanatomy</span>
-        <span class="topic-blurb">From whole muscle down to the sarcomere.</span>
-      </a>
-      <a class="topic" href="motor-units.html" target="_top">
-        <span class="topic-title">Motor Units & Muscle Mechanics</span>
-        <span class="topic-blurb">Recruitment, summation, twitch and tetanus, fiber types.</span>
-      </a>
-      <a class="topic" href="cross-bridge-cycle.html" target="_top">
-        <span class="topic-title">Sliding Filament & Cross-Bridge Cycle</span>
-        <span class="topic-blurb">Excitation-contraction coupling and the four-step cycle.</span>
-      </a>
-      </div>
-    </section>
-    <section class="module" aria-label="Module 7 · Nervous System">
-      <h3>Module 7 · Nervous System</h3>
-      <div class="topic-grid">
-      <a class="topic" href="neurons-resting-potential.html" target="_top">
-        <span class="topic-title">Neurons & Resting Membrane Potential</span>
-        <span class="topic-blurb">Neuron types and how the membrane sits at -70 mV.</span>
-      </a>
-      <a class="topic" href="action-potentials-synapses.html" target="_top">
-        <span class="topic-title">Action Potentials & Synaptic Transmission</span>
-        <span class="topic-blurb">AP phases, propagation, and the chemical synapse.</span>
-      </a>
-      <a class="topic" href="cns-organization.html" target="_top">
-        <span class="topic-title">CNS Organization: Brain & Spinal Cord</span>
-        <span class="topic-blurb">Brain regions, lobes, spinal cord, meninges, CSF flow.</span>
-      </a>
-      <a class="topic" href="pns-autonomic.html" target="_top">
-        <span class="topic-title">PNS & Autonomic Nervous System</span>
-        <span class="topic-blurb">Cranial nerves, somatic vs autonomic, sympathetic vs parasympathetic.</span>
-      </a>
-      </div>
-    </section>
-  </section>
-  <section class="week" aria-labelledby="week-5">
-    <h2 id="week-5">Week 5</h2>
-    <section class="module" aria-label="Module 8 · Special Senses">
-      <h3>Module 8 · Special Senses</h3>
-      <div class="topic-grid">
-      <a class="topic" href="vision.html" target="_top">
-        <span class="topic-title">Vision</span>
-        <span class="topic-blurb">Eye anatomy, retinal layers, and the visual pathway.</span>
-      </a>
-      <a class="topic" href="hearing-equilibrium.html" target="_top">
-        <span class="topic-title">Hearing & Equilibrium</span>
-        <span class="topic-blurb">Outer, middle, and inner ear; cochlea and vestibular apparatus.</span>
-      </a>
-      </div>
-    </section>
-    <section class="module" aria-label="Module 9 · Endocrine System">
-      <h3>Module 9 · Endocrine System</h3>
-      <div class="topic-grid">
-      <a class="topic" href="hormone-mechanisms.html" target="_top">
-        <span class="topic-title">Hormone Mechanisms</span>
-        <span class="topic-blurb">Peptide vs steroid; second messengers and gene activation.</span>
-      </a>
-      <a class="topic" href="major-endocrine-glands.html" target="_top">
-        <span class="topic-title">Major Endocrine Glands</span>
-        <span class="topic-blurb">Hypothalamus to gonads, with the hormones each makes.</span>
-      </a>
-      </div>
-    </section>
-  </section>
-  <section class="week" aria-labelledby="week-6">
-    <h2 id="week-6">Week 6</h2>
-    <section class="module" aria-label="Module 10 · Blood">
-      <h3>Module 10 · Blood</h3>
-      <div class="topic-grid">
-      <a class="topic" href="blood-composition.html" target="_top">
-        <span class="topic-title">Blood Composition & Hemopoiesis</span>
-        <span class="topic-blurb">Plasma, formed elements, and the hemopoiesis tree.</span>
-      </a>
-      <a class="topic" href="hemostasis-blood-typing.html" target="_top">
-        <span class="topic-title">Hemostasis & Blood Typing</span>
-        <span class="topic-blurb">Three phases of clotting, ABO and Rh compatibility.</span>
-      </a>
-      </div>
-    </section>
-    <section class="module" aria-label="Module 11 · Cardiovascular System">
-      <h3>Module 11 · Cardiovascular System</h3>
-      <div class="topic-grid">
-      <a class="topic" href="heart-anatomy.html" target="_top">
-        <span class="topic-title">Heart Anatomy & the Cardiac Cycle</span>
-        <span class="topic-blurb">Four chambers, four valves, systole and diastole.</span>
-      </a>
-      <a class="topic" href="cardiac-conduction.html" target="_top">
-        <span class="topic-title">Cardiac Conduction System</span>
-        <span class="topic-blurb">SA to Purkinje, two AP types, and reading an ECG.</span>
-      </a>
-      <a class="topic" href="blood-vessels-hemodynamics.html" target="_top">
-        <span class="topic-title">Blood Vessels & Hemodynamics</span>
-        <span class="topic-blurb">Vessel structure, pressure profile, and Starling forces.</span>
-      </a>
-      </div>
-    </section>
-  </section>
-  <section class="week" aria-labelledby="week-7">
-    <h2 id="week-7">Week 7</h2>
-    <section class="module" aria-label="Module 12 · Lymphatic & Immune System">
-      <h3>Module 12 · Lymphatic & Immune System</h3>
-      <div class="topic-grid">
-      <a class="topic" href="lymphatic-innate-immunity.html" target="_top">
-        <span class="topic-title">Lymphatic System & Innate Immunity</span>
-        <span class="topic-blurb">Lymphatic plumbing and first-line defenses.</span>
-      </a>
-      <a class="topic" href="adaptive-immunity.html" target="_top">
-        <span class="topic-title">Adaptive Immunity</span>
-        <span class="topic-blurb">T cells, B cells, antibodies, and immunologic memory.</span>
-      </a>
-      </div>
-    </section>
-    <section class="module" aria-label="Module 13 · Respiratory System">
-      <h3>Module 13 · Respiratory System</h3>
-      <div class="topic-grid">
-      <a class="topic" href="respiratory-anatomy.html" target="_top">
-        <span class="topic-title">Respiratory Anatomy & Mechanics</span>
-        <span class="topic-blurb">Conducting vs respiratory zone; breathing as pressure work.</span>
-      </a>
-      <a class="topic" href="gas-exchange-transport.html" target="_top">
-        <span class="topic-title">Gas Exchange & Transport</span>
-        <span class="topic-blurb">Partial pressures, oxyhemoglobin curve, and CO₂ transport.</span>
-      </a>
-      </div>
-    </section>
-    <section class="module" aria-label="Module 14 · Digestive System">
-      <h3>Module 14 · Digestive System</h3>
-      <div class="topic-grid">
-      <a class="topic" href="gi-anatomy-motility.html" target="_top">
-        <span class="topic-title">GI Tract Anatomy & Motility</span>
-        <span class="topic-blurb">From mouth to anus; four wall layers; peristalsis and segmentation.</span>
-      </a>
-      <a class="topic" href="digestion-absorption.html" target="_top">
-        <span class="topic-title">Digestion & Absorption</span>
-        <span class="topic-blurb">Macromolecules broken down and absorbed at the brush border.</span>
-      </a>
-      </div>
-    </section>
-  </section>
-  <section class="week" aria-labelledby="week-8">
-    <h2 id="week-8">Week 8</h2>
-    <section class="module" aria-label="Module 15 · Urinary System & Fluid Balance">
-      <h3>Module 15 · Urinary System & Fluid Balance</h3>
-      <div class="topic-grid">
-      <a class="topic" href="kidney-anatomy-gfr.html" target="_top">
-        <span class="topic-title">Kidney Anatomy & Glomerular Filtration</span>
-        <span class="topic-blurb">Nephron parts, the filtration barrier, and how GFR is regulated.</span>
-      </a>
-      <a class="topic" href="tubular-function.html" target="_top">
-        <span class="topic-title">Tubular Function & Urine Concentration</span>
-        <span class="topic-blurb">Segment-by-segment reabsorption, countercurrent multiplication.</span>
-      </a>
-      <a class="topic" href="fluid-electrolyte-acid-base.html" target="_top">
-        <span class="topic-title">Fluid, Electrolyte & Acid-Base Balance</span>
-        <span class="topic-blurb">Body fluid compartments, key electrolytes, ABG analysis.</span>
-      </a>
-      </div>
-    </section>
-    <section class="module" aria-label="Module 16 · Reproductive System">
-      <h3>Module 16 · Reproductive System</h3>
-      <div class="topic-grid">
-      <a class="topic" href="male-reproductive.html" target="_top">
-        <span class="topic-title">Male Reproductive System</span>
-        <span class="topic-blurb">Sperm path, spermatogenesis, HPG axis.</span>
-      </a>
-      <a class="topic" href="female-reproductive.html" target="_top">
-        <span class="topic-title">Female Reproductive System</span>
-        <span class="topic-blurb">Ovaries, oogenesis, and the 28-day cycle.</span>
-      </a>
-      <a class="topic" href="pregnancy-basics.html" target="_top">
-        <span class="topic-title">Pregnancy A&P (Basics)</span>
-        <span class="topic-blurb">Fertilization, placenta, maternal adaptations, stages of labor.</span>
-      </a>
-      </div>
-    </section>
-  </section>
+<main id="main">
 
-  <div class="foot">
-    <span>Dr. Sharilyn Rennie</span>
-    <span>BIO 304 &middot; Course Map</span>
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <p class="hero-eyebrow">BIO 304 &middot; Anatomy &amp; Physiology &middot; Online</p>
+      <h1 class="hero-headline">Welcome. Let's learn the human body, <span class="accent">one module at a time</span>.</h1>
+      <p class="hero-subhead">This is your course home for Anatomy and Physiology. Everything you need lives here: your syllabus, the full course map, and 44 one-pager study sheets across 16 modules. The course is online and self-paced, so work at your own rhythm and come back to this page whenever you need to find your place.</p>
+      <div class="hero-ctas">
+        <a href="biol304_syllabus.html" class="cta-primary" target="_top">Open the syllabus</a>
+        <a href="#modules" class="cta-secondary">See the course map</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">8</div>
+          <div class="stat-label">Weeks</div>
+        </div>
+        <div>
+          <div class="stat-num">16</div>
+          <div class="stat-label">Modules</div>
+        </div>
+        <div>
+          <div class="stat-num">44</div>
+          <div class="stat-label">Study sheets</div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+
+<!-- ===== HOW EACH ONE-PAGER WORKS (dark) ===== -->
+<section class="band band-dark" aria-labelledby="hiw-heading">
+  <div class="wrap">
+    <p class="eyebrow">How the study sheets work</p>
+    <h2 class="section-headline" id="hiw-heading">Every one-pager works the <span class="accent">same way</span>.</h2>
+    <p class="section-intro">Learn the rhythm once and it carries you through all 44 sheets. Each sheet has three modes, plus a link out to spaced-recall practice.</p>
+    <div class="hiw-grid">
+      <div class="hiw-card">
+        <div class="hiw-label">Mode 01</div>
+        <h3 class="hiw-title">Notes</h3>
+        <p class="hiw-body">Read the sheet in Notes mode for the full reference on the topic. This is the complete version you study from and return to.</p>
+      </div>
+      <div class="hiw-card">
+        <div class="hiw-label">Mode 02</div>
+        <h3 class="hiw-title">Study</h3>
+        <p class="hiw-body">Study mode prints as a fill-in-the-blank worksheet. Complete it by hand as you watch the video or work through the reading.</p>
+      </div>
+      <div class="hiw-card">
+        <div class="hiw-label">Mode 03</div>
+        <h3 class="hiw-title">Quiz me</h3>
+        <p class="hiw-body">Quiz me is on-screen typing practice for the vocabulary, so you can test your recall without printing anything.</p>
+      </div>
+      <div class="hiw-card">
+        <div class="hiw-label">Then</div>
+        <h3 class="hiw-title">Spaced recall</h3>
+        <p class="hiw-body">Once you have watched the video, each sheet links out to its spaced-recall pre-work so the terms stay with you over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COURSE MAP (light) ===== -->
+<section class="band band-light" id="modules" aria-labelledby="map-heading">
+  <div class="wrap">
+    <p class="eyebrow">The course map</p>
+    <h2 class="section-headline" id="map-heading">The whole course, <span class="accent">week by week</span>.</h2>
+    <p class="section-intro">Eight weeks, 16 modules, 44 one-pager study sheets. Click any topic to open its sheet. Work through them in order, and check back here whenever you need your bearings.</p>
+
+    <div class="week" id="week-1">
+      <h3 class="week-head">Week 1</h3>
+      <div class="module">
+        <h4 class="module-head">Module 1 &middot; Foundations of Anatomy &amp; Physiology</h4>
+        <div class="map-grid">
+          <a class="map-card" href="levels-of-organization.html" target="_top">
+            <span class="map-card-title">Levels of Organization</span>
+            <span class="map-card-blurb">Atoms to organism, six levels of complexity and what emerges at each.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="anatomical-position.html" target="_top">
+            <span class="map-card-title">Anatomical Position, Planes &amp; Directional Terms</span>
+            <span class="map-card-blurb">The standard body map and the vocabulary for talking about it.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="body-regions.html" target="_top">
+            <span class="map-card-title">Body Regions</span>
+            <span class="map-card-blurb">Regional terms across anterior, posterior, and lateral views.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="body-cavities.html" target="_top">
+            <span class="map-card-title">Body Cavities &amp; Regions</span>
+            <span class="map-card-blurb">Dorsal and ventral cavities, abdominopelvic regions and quadrants.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="homeostasis-feedback.html" target="_top">
+            <span class="map-card-title">Homeostasis &amp; Feedback Loops</span>
+            <span class="map-card-blurb">Negative feedback as the default; positive feedback as the exception.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="module">
+        <h4 class="module-head">Module 2 &middot; The Cell</h4>
+        <div class="map-grid">
+          <a class="map-card" href="cell-structure.html" target="_top">
+            <span class="map-card-title">Cell Structure &amp; Organelles</span>
+            <span class="map-card-blurb">Membrane, nucleus, and the cytoplasmic organelles that do the work.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="membrane-transport.html" target="_top">
+            <span class="map-card-title">Membrane Transport</span>
+            <span class="map-card-blurb">Passive, active, and bulk transport across the plasma membrane.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="week" id="week-2">
+      <h3 class="week-head">Week 2</h3>
+      <div class="module">
+        <h4 class="module-head">Module 3 &middot; Tissues</h4>
+        <div class="map-grid">
+          <a class="map-card" href="epithelial-tissue.html" target="_top">
+            <span class="map-card-title">Epithelial Tissue Classification</span>
+            <span class="map-card-blurb">Classification by shape and layers; exocrine versus endocrine.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="connective-tissues.html" target="_top">
+            <span class="map-card-title">Connective Tissues</span>
+            <span class="map-card-blurb">ECM components and the loose, dense, and specialized connective tissues.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="muscle-nervous-tissue.html" target="_top">
+            <span class="map-card-title">Muscle &amp; Nervous Tissue Overview</span>
+            <span class="map-card-blurb">Three muscle types and the cells of the nervous system.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="module">
+        <h4 class="module-head">Module 4 &middot; Integumentary System</h4>
+        <div class="map-grid">
+          <a class="map-card" href="skin-layers.html" target="_top">
+            <span class="map-card-title">Skin Structure &amp; Layers</span>
+            <span class="map-card-blurb">Epidermal strata, dermal layers, and the hypodermis.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="skin-functions.html" target="_top">
+            <span class="map-card-title">Skin Functions &amp; Accessory Structures</span>
+            <span class="map-card-blurb">Six functions plus hair, nails, and the cutaneous glands.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="week" id="week-3">
+      <h3 class="week-head">Week 3</h3>
+      <div class="module">
+        <h4 class="module-head">Module 5 &middot; Skeletal System</h4>
+        <div class="map-grid">
+          <a class="map-card" href="bone-tissue.html" target="_top">
+            <span class="map-card-title">Bone Tissue &amp; Bone Growth</span>
+            <span class="map-card-blurb">Bone cells, compact and spongy structure, ossification, calcium balance.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="axial-skeleton.html" target="_top">
+            <span class="map-card-title">Axial Skeleton</span>
+            <span class="map-card-blurb">Skull, vertebral column, and thoracic cage.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="appendicular-skeleton.html" target="_top">
+            <span class="map-card-title">Appendicular Skeleton</span>
+            <span class="map-card-blurb">Pectoral and pelvic girdles plus the limbs.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="joints-and-movements.html" target="_top">
+            <span class="map-card-title">Joints &amp; Body Movements</span>
+            <span class="map-card-blurb">Joint classifications and the catalog of movements.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="week" id="week-4">
+      <h3 class="week-head">Week 4</h3>
+      <div class="module">
+        <h4 class="module-head">Module 6 &middot; Muscular System</h4>
+        <div class="map-grid">
+          <a class="map-card" href="skeletal-muscle-microanatomy.html" target="_top">
+            <span class="map-card-title">Skeletal Muscle Microanatomy</span>
+            <span class="map-card-blurb">From whole muscle down to the sarcomere.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="motor-units.html" target="_top">
+            <span class="map-card-title">Motor Units &amp; Muscle Mechanics</span>
+            <span class="map-card-blurb">Recruitment, summation, twitch and tetanus, fiber types.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="cross-bridge-cycle.html" target="_top">
+            <span class="map-card-title">Sliding Filament &amp; Cross-Bridge Cycle</span>
+            <span class="map-card-blurb">Excitation-contraction coupling and the four-step cycle.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="module">
+        <h4 class="module-head">Module 7 &middot; Nervous System</h4>
+        <div class="map-grid">
+          <a class="map-card" href="neurons-resting-potential.html" target="_top">
+            <span class="map-card-title">Neurons &amp; Resting Membrane Potential</span>
+            <span class="map-card-blurb">Neuron types and how the membrane sits at -70 mV.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="action-potentials-synapses.html" target="_top">
+            <span class="map-card-title">Action Potentials &amp; Synaptic Transmission</span>
+            <span class="map-card-blurb">Action potential phases, propagation, and the chemical synapse.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="cns-organization.html" target="_top">
+            <span class="map-card-title">CNS Organization: Brain &amp; Spinal Cord</span>
+            <span class="map-card-blurb">Brain regions, lobes, spinal cord, meninges, CSF flow.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="pns-autonomic.html" target="_top">
+            <span class="map-card-title">PNS &amp; Autonomic Nervous System</span>
+            <span class="map-card-blurb">Cranial nerves, somatic versus autonomic, sympathetic versus parasympathetic.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="week" id="week-5">
+      <h3 class="week-head">Week 5</h3>
+      <div class="module">
+        <h4 class="module-head">Module 8 &middot; Special Senses</h4>
+        <div class="map-grid">
+          <a class="map-card" href="vision.html" target="_top">
+            <span class="map-card-title">Vision</span>
+            <span class="map-card-blurb">Eye anatomy, retinal layers, and the visual pathway.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="hearing-equilibrium.html" target="_top">
+            <span class="map-card-title">Hearing &amp; Equilibrium</span>
+            <span class="map-card-blurb">Outer, middle, and inner ear; cochlea and vestibular apparatus.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="module">
+        <h4 class="module-head">Module 9 &middot; Endocrine System</h4>
+        <div class="map-grid">
+          <a class="map-card" href="hormone-mechanisms.html" target="_top">
+            <span class="map-card-title">Hormone Mechanisms</span>
+            <span class="map-card-blurb">Peptide versus steroid; second messengers and gene activation.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="major-endocrine-glands.html" target="_top">
+            <span class="map-card-title">Major Endocrine Glands</span>
+            <span class="map-card-blurb">Hypothalamus to gonads, with the hormones each one makes.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="week" id="week-6">
+      <h3 class="week-head">Week 6</h3>
+      <div class="module">
+        <h4 class="module-head">Module 10 &middot; Blood</h4>
+        <div class="map-grid">
+          <a class="map-card" href="blood-composition.html" target="_top">
+            <span class="map-card-title">Blood Composition &amp; Hemopoiesis</span>
+            <span class="map-card-blurb">Plasma, formed elements, and the hemopoiesis tree.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="hemostasis-blood-typing.html" target="_top">
+            <span class="map-card-title">Hemostasis &amp; Blood Typing</span>
+            <span class="map-card-blurb">Three phases of clotting, ABO and Rh compatibility.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="module">
+        <h4 class="module-head">Module 11 &middot; Cardiovascular System</h4>
+        <div class="map-grid">
+          <a class="map-card" href="heart-anatomy.html" target="_top">
+            <span class="map-card-title">Heart Anatomy &amp; the Cardiac Cycle</span>
+            <span class="map-card-blurb">Four chambers, four valves, systole and diastole.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="cardiac-conduction.html" target="_top">
+            <span class="map-card-title">Cardiac Conduction System</span>
+            <span class="map-card-blurb">SA node to Purkinje fibers, two action potential types, and reading an ECG.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="blood-vessels-hemodynamics.html" target="_top">
+            <span class="map-card-title">Blood Vessels &amp; Hemodynamics</span>
+            <span class="map-card-blurb">Vessel structure, pressure profile, and Starling forces.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="week" id="week-7">
+      <h3 class="week-head">Week 7</h3>
+      <div class="module">
+        <h4 class="module-head">Module 12 &middot; Lymphatic &amp; Immune System</h4>
+        <div class="map-grid">
+          <a class="map-card" href="lymphatic-innate-immunity.html" target="_top">
+            <span class="map-card-title">Lymphatic System &amp; Innate Immunity</span>
+            <span class="map-card-blurb">Lymphatic plumbing and the first-line defenses.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="adaptive-immunity.html" target="_top">
+            <span class="map-card-title">Adaptive Immunity</span>
+            <span class="map-card-blurb">T cells, B cells, antibodies, and immunologic memory.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="module">
+        <h4 class="module-head">Module 13 &middot; Respiratory System</h4>
+        <div class="map-grid">
+          <a class="map-card" href="respiratory-anatomy.html" target="_top">
+            <span class="map-card-title">Respiratory Anatomy &amp; Mechanics</span>
+            <span class="map-card-blurb">Conducting versus respiratory zone; breathing as pressure work.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="gas-exchange-transport.html" target="_top">
+            <span class="map-card-title">Gas Exchange &amp; Transport</span>
+            <span class="map-card-blurb">Partial pressures, the oxyhemoglobin curve, and CO&#8322; transport.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="module">
+        <h4 class="module-head">Module 14 &middot; Digestive System</h4>
+        <div class="map-grid">
+          <a class="map-card" href="gi-anatomy-motility.html" target="_top">
+            <span class="map-card-title">GI Tract Anatomy &amp; Motility</span>
+            <span class="map-card-blurb">From mouth to anus; four wall layers; peristalsis and segmentation.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="digestion-absorption.html" target="_top">
+            <span class="map-card-title">Digestion &amp; Absorption</span>
+            <span class="map-card-blurb">Macromolecules broken down and absorbed at the brush border.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="week" id="week-8">
+      <h3 class="week-head">Week 8</h3>
+      <div class="module">
+        <h4 class="module-head">Module 15 &middot; Urinary System &amp; Fluid Balance</h4>
+        <div class="map-grid">
+          <a class="map-card" href="kidney-anatomy-gfr.html" target="_top">
+            <span class="map-card-title">Kidney Anatomy &amp; Glomerular Filtration</span>
+            <span class="map-card-blurb">Nephron parts, the filtration barrier, and how GFR is regulated.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="tubular-function.html" target="_top">
+            <span class="map-card-title">Tubular Function &amp; Urine Concentration</span>
+            <span class="map-card-blurb">Segment-by-segment reabsorption and countercurrent multiplication.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="fluid-electrolyte-acid-base.html" target="_top">
+            <span class="map-card-title">Fluid, Electrolyte &amp; Acid-Base Balance</span>
+            <span class="map-card-blurb">Body fluid compartments, the key electrolytes, and ABG analysis.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="module">
+        <h4 class="module-head">Module 16 &middot; Reproductive System</h4>
+        <div class="map-grid">
+          <a class="map-card" href="male-reproductive.html" target="_top">
+            <span class="map-card-title">Male Reproductive System</span>
+            <span class="map-card-blurb">The sperm path, spermatogenesis, and the HPG axis.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="female-reproductive.html" target="_top">
+            <span class="map-card-title">Female Reproductive System</span>
+            <span class="map-card-blurb">Ovaries, oogenesis, and the 28-day cycle.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="map-card" href="pregnancy-basics.html" target="_top">
+            <span class="map-card-title">Pregnancy A&amp;P (Basics)</span>
+            <span class="map-card-blurb">Fertilization, the placenta, maternal adaptations, and the stages of labor.</span>
+            <span class="map-card-cta">Open sheet <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INSTRUCTOR (dark) ===== -->
+<section class="band band-dark" aria-labelledby="about-heading">
+  <div class="wrap">
+    <p class="eyebrow">Meet your instructor</p>
+    <h2 class="section-headline" id="about-heading">A decade of teaching the medical sciences, <span class="accent">in your corner</span>.</h2>
+    <div class="about-layout">
+      <div class="about-photo">
+        <img src="https://raw.githubusercontent.com/drsrennie-stack/STAT/main/sharilyn.jpg" alt="Dr. Sharilyn Rennie">
+      </div>
+      <div>
+        <p class="about-bio">I'm Dr. Sharilyn Rennie. I've taught anatomy, physiology, and the medical sciences for over a decade across California community colleges, and before teaching I spent years in clinical medicine. That clinical background shapes how I teach: every structure connects to something real that happens in a body.</p>
+        <p class="about-bio">Anatomy and physiology is a language. My job is to help you become fluent in it, one module at a time, with a clear path you can follow on your own schedule. Come curious, come prepared, and reach out whenever you need help.</p>
+        <p class="about-quote">"Every structure has a story. We'll learn them together."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== START HERE (light) ===== -->
+<section class="band band-light" aria-labelledby="start-heading">
+  <div class="wrap">
+    <p class="eyebrow">Start here</p>
+    <h2 class="section-headline" id="start-heading">Find your way <span class="accent">around the course</span>.</h2>
+    <p class="section-intro">New to the course, or just need your bearings? These four pages cover how everything fits together.</p>
+    <div class="start-grid">
+      <a class="start-card" href="biol304_syllabus.html" target="_top">
+        <span class="start-label">Read first</span>
+        <span class="start-title">Course syllabus</span>
+        <span class="start-desc">Grading, deadlines, policies, and what to expect across the eight weeks.</span>
+      </a>
+      <a class="start-card" href="course-orientation.html" target="_top">
+        <span class="start-label">Get oriented</span>
+        <span class="start-title">Course orientation</span>
+        <span class="start-desc">How the online course runs and how to set yourself up for the term.</span>
+      </a>
+      <a class="start-card" href="schedule.html" target="_top">
+        <span class="start-label">Plan ahead</span>
+        <span class="start-title">Weekly schedule</span>
+        <span class="start-desc">The week-by-week pacing for all 16 modules and 44 study sheets.</span>
+      </a>
+      <a class="start-card" href="how_spaced_recall_works.html" target="_top">
+        <span class="start-label">Study smart</span>
+        <span class="start-title">How spaced recall works</span>
+        <span class="start-desc">Why the spaced-recall pre-work helps the material stick over time.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 </main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="footer-logo" target="_top" aria-label="BIO 304 Anatomy and Physiology, course home">
+          <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+            <g transform="translate(0, 18)">
+              <g transform="translate(60, 0) rotate(8 0 130)">
+                <circle cx="0" cy="20" r="10" fill="#F5F1E8"/>
+                <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#F5F1E8"/>
+              </g>
+              <g transform="translate(100, 0)">
+                <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+                <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+              </g>
+              <g transform="translate(140, 0) rotate(-8 0 130)">
+                <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+                <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+              </g>
+            </g>
+          </svg>
+          <span class="logo-text">
+            <span class="logo-title">Anatomy <span class="logo-accent">&amp; Physiology</span></span>
+            <span class="logo-sub">BIO 304 &middot; American River College</span>
+          </span>
+        </a>
+        <p class="footer-tagline">Your home base for Anatomy and Physiology. Start with the syllabus, then take it one module at a time.</p>
+      </div>
+      <div>
+        <div class="footer-col-header">Start here</div>
+        <a class="footer-link" href="biol304_syllabus.html" target="_top">Course syllabus</a>
+        <a class="footer-link" href="#modules">Course map</a>
+        <a class="footer-link" href="course-orientation.html" target="_top">Course orientation</a>
+      </div>
+      <div>
+        <div class="footer-col-header">Weeks 1&ndash;4</div>
+        <a class="footer-link" href="#week-1">1 &middot; Foundations &amp; the Cell</a>
+        <a class="footer-link" href="#week-2">2 &middot; Tissues &amp; Integument</a>
+        <a class="footer-link" href="#week-3">3 &middot; Skeletal System</a>
+        <a class="footer-link" href="#week-4">4 &middot; Muscular &amp; Nervous</a>
+      </div>
+      <div>
+        <div class="footer-col-header">Weeks 5&ndash;8</div>
+        <a class="footer-link" href="#week-5">5 &middot; Senses &amp; Endocrine</a>
+        <a class="footer-link" href="#week-6">6 &middot; Blood &amp; Cardiovascular</a>
+        <a class="footer-link" href="#week-7">7 &middot; Immune, Respiratory, GI</a>
+        <a class="footer-link" href="#week-8">8 &middot; Urinary &amp; Reproductive</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">BIO 304 Anatomy &amp; Physiology &middot; American River College &middot; Online</div>
+      <div class="footer-byline">Dr. Sharilyn Rennie</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* iframe height-sender: keeps the embed sized to its content in Kajabi and Canvas */
+  (function () {
+    var FRAME_ID = 'bio304-course-home';
+    function sendHeight() {
+      var h = Math.max(
+        document.documentElement.scrollHeight,
+        document.body ? document.body.scrollHeight : 0,
+        document.documentElement.offsetHeight,
+        document.body ? document.body.offsetHeight : 0
+      );
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'setHeight', id: FRAME_ID, height: h }, '*');
+      }
+    }
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    if (window.ResizeObserver) {
+      new ResizeObserver(sendHeight).observe(document.body);
+    }
+    setTimeout(sendHeight, 100);
+    setTimeout(sendHeight, 500);
+    setTimeout(sendHeight, 1500);
+  })();
+</script>
 </body>
 </html>
