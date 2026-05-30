@@ -932,9 +932,30 @@ body.mcas-page .glance-item:hover {
   font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
   margin-top: 56px;
 }
-.mcas-footer a { color: var(--mcas-cream); text-decoration: none; opacity: 0.88; }
-.mcas-footer a:hover, .mcas-footer a:focus-visible { opacity: 1; text-decoration: underline; }
-.mcas-footer a:focus-visible { outline: 3px solid var(--mcas-gold); outline-offset: 3px; border-radius: 4px; }
+/* Footer link color — bumped to body-scoped selector so it wins
+   specificity against body.mcas-page a (which was forcing rust on dark
+   navy and failing WCAG contrast). White on the near-black footer
+   passes AAA; gold on hover gives brand pop. */
+body.mcas-page .mcas-footer a,
+.mcas-footer a {
+  color: #FFFFFF !important;
+  text-decoration: none;
+  opacity: 0.92;
+}
+body.mcas-page .mcas-footer a:hover,
+body.mcas-page .mcas-footer a:focus-visible,
+.mcas-footer a:hover,
+.mcas-footer a:focus-visible {
+  color: var(--mcas-gold) !important;
+  opacity: 1;
+  text-decoration: underline;
+}
+body.mcas-page .mcas-footer a:focus-visible,
+.mcas-footer a:focus-visible {
+  outline: 3px solid var(--mcas-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
 .mcas-footer-row {
   /* No bookend border — extra padding-top supplies the separation */
   display: flex; justify-content: space-between; align-items: center;
@@ -959,6 +980,28 @@ body.mcas-page .glance-item:hover {
 .mcas-skip:focus { top: 8px; }
 @media (prefers-reduced-motion: reduce) {
   .mcas-chrome *, .mcas-chrome { transition: none !important; animation: none !important; }
+}
+
+/* ----- Primary CTA button (.btn-gold) — accessibility fix -----
+   The underlying page styled .btn-gold as navy bg + white text, but the
+   body.mcas-page anchor color rule (rust on a) won the cascade and gave
+   us rust text on dark navy — fails WCAG contrast. Override: dark terra
+   cotta background (brand rust) with white text. Hover deepens to
+   rust-dark per the MCAS spec.
+*/
+body.mcas-page a.btn-gold,
+body.mcas-page .btn-gold {
+  background: var(--mcas-rust) !important;
+  color: #FFFFFF !important;
+  border: 2px solid var(--mcas-rust) !important;
+}
+body.mcas-page a.btn-gold:hover,
+body.mcas-page a.btn-gold:focus-visible,
+body.mcas-page .btn-gold:hover,
+body.mcas-page .btn-gold:focus-visible {
+  background: #A0452F !important;
+  color: #FFFFFF !important;
+  border-color: #A0452F !important;
 }
 
 /* ----- Pre-work ↔ Workbook wiring asides -----
@@ -1011,6 +1054,113 @@ body.mcas-page a.mcas-prework-link-cta:focus-visible {
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+/* ----- Lecture video notes section (on spoke pages, under the video) -----
+   Freeform textarea that autosaves to localStorage keyed by topic ID.
+   Visible in Notes and Study modes; hidden in Quiz mode. Prints cleanly
+   so handwritten or typed notes can be carried out of class.
+*/
+body.mcas-page .mcas-lecture-notes {
+  background: #FFFFFF;
+  border: none;
+  border-left: 4px solid var(--mcas-gold);
+  border-radius: 6px;
+  padding: 22px 24px 18px;
+  margin: 16px 0 24px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+}
+body.mcas-page .mcas-lecture-notes-eyebrow {
+  font-family: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mcas-rust);
+  margin: 0 0 4px;
+}
+body.mcas-page .mcas-lecture-notes h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--mcas-navy);
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+body.mcas-page .mcas-lecture-notes-instr {
+  font-style: italic;
+  font-size: 13.5px;
+  color: var(--mcas-navy);
+  opacity: 0.78;
+  margin: 0 0 10px;
+}
+body.mcas-page #mcas-lecture-notes-input {
+  width: 100%;
+  min-height: 160px;
+  padding: 14px 16px;
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 15px;
+  color: var(--mcas-navy);
+  line-height: 1.55;
+  border: 1px solid rgba(11, 21, 48, 0.18);
+  border-radius: 6px;
+  background: #FFFFFF;
+  resize: vertical;
+  box-sizing: border-box;
+}
+body.mcas-page #mcas-lecture-notes-input:focus-visible {
+  outline: 3px solid var(--mcas-rust);
+  outline-offset: 1px;
+  border-color: var(--mcas-navy);
+}
+body.mcas-page .mcas-lecture-notes-status {
+  font-size: 12px;
+  color: var(--mcas-navy);
+  opacity: 0.6;
+  margin: 6px 0 0;
+  min-height: 1.2em;
+}
+/* Hide in quiz mode (consistent with other interactive elements). */
+body.mcas-page.quiz .mcas-lecture-notes { display: none; }
+@media print {
+  body.mcas-page .mcas-lecture-notes {
+    box-shadow: none;
+    border: 1px solid rgba(0,0,0,0.15);
+    page-break-inside: avoid;
+  }
+  body.mcas-page #mcas-lecture-notes-input {
+    border: 1px solid rgba(0,0,0,0.3);
+    background: #FFFFFF;
+    color: #000;
+  }
+}
+
+/* Gated state — workbook aside is locked until the spoke page's retrieval
+   check is passed. The gating JS adds .gate-locked to the CTA when the
+   localStorage flag bio304-gate-{TOPIC_ID} is not yet set. */
+body.mcas-page .mcas-next-up.is-gated {
+  border-left-color: rgba(11, 21, 48, 0.25);
+}
+body.mcas-page a.mcas-next-up-cta.gate-locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: auto;
+  color: var(--mcas-navy);
+}
+body.mcas-page a.mcas-next-up-cta.gate-locked:hover,
+body.mcas-page a.mcas-next-up-cta.gate-locked:focus-visible {
+  color: var(--mcas-navy);
+  text-decoration: none;
+}
+body.mcas-page .mcas-next-up-gate-hint {
+  display: block;
+  margin-top: 8px;
+  font-family: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mcas-rust);
+}
+body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 </style>
 <style>
 
@@ -1271,13 +1421,6 @@ body.mcas-page a.mcas-prework-link-cta:focus-visible {
   </div>
 
   <!-- Reflection / drawing-based synthesis -->
-  <section class="notes-block" aria-labelledby="notes-heading">
-    <p class="eyebrow">Given, not Googled</p>
-    <h2 id="notes-heading">Sketch &amp; synthesis</h2>
-    <p class="usage" style="margin-bottom:10px">Pick three regions you mix up. Sketch a stick figure, label them in the right spots, and write one clinical scenario where each term tells you exactly where to act.</p>
-    <div class="sketch-space" aria-hidden="true"></div>
-  </section>
-
   <div class="foot">
     <span>Dr. Sharilyn Rennie</span>
     <span>BIO 304 &middot; Module 1 &middot; Body Regions</span>
@@ -1677,6 +1820,65 @@ body.mcas-page a.mcas-prework-link-cta:focus-visible {
 </footer>
 </div>
 <!-- mcas-chrome-footer-end -->
+<!-- mcas-lecture-notes-injector -->
+<script>
+(function(){
+  function init(){
+    var videoPanel = document.querySelector("#video-panel, .video-panel");
+    if (!videoPanel) return;
+    if (document.getElementById("mcas-lecture-notes-input")) return;
+
+    var cfg = window.SHEET_CONFIG || {};
+    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
+    var topicId = m ? m[1] : null;
+    var keyBase = topicId || (document.title || "page").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    var key = "bio304-lecture-notes-" + keyBase;
+
+    var section = document.createElement("section");
+    section.className = "mcas-lecture-notes";
+    section.setAttribute("aria-labelledby", "mcas-lecture-notes-h");
+    section.innerHTML =
+      '<p class="mcas-lecture-notes-eyebrow">While you watch</p>' +
+      '<h2 id="mcas-lecture-notes-h">Lecture video notes</h2>' +
+      '<p class="mcas-lecture-notes-instr">A scratchpad for what stands out as the video runs. Your notes save on this device and stay here when you come back.</p>' +
+      '<textarea id="mcas-lecture-notes-input" rows="8" aria-describedby="mcas-lecture-notes-status" placeholder="Type what is clicking for you..."></textarea>' +
+      '<p class="mcas-lecture-notes-status" id="mcas-lecture-notes-status" aria-live="polite"></p>';
+
+    if (videoPanel.parentNode) videoPanel.parentNode.insertBefore(section, videoPanel.nextSibling);
+
+    var ta = section.querySelector("#mcas-lecture-notes-input");
+    var status = section.querySelector("#mcas-lecture-notes-status");
+
+    try {
+      var saved = window.localStorage.getItem(key);
+      if (saved) ta.value = saved;
+      if (status) status.textContent = saved ? "Restored from your last session." : "";
+    } catch (e) {}
+
+    var t, debounceTimer;
+    function save(){
+      try { window.localStorage.setItem(key, ta.value); } catch (e) {}
+      if (status) {
+        status.textContent = "Saved on this device";
+        clearTimeout(t);
+        t = setTimeout(function(){ if (status) status.textContent = ""; }, 1400);
+      }
+    }
+    ta.addEventListener("input", function(){
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(save, 350);
+    });
+    ta.addEventListener("blur", save);
+    window.addEventListener("pagehide", save);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+<!-- mcas-lecture-notes-injector-end -->
 <!-- mcas-iframe-height-sender -->
 <script>
 /* MCAS iframe height-sender (rebrand-mcas.py) */

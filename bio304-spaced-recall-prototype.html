@@ -976,9 +976,30 @@ body.mcas-page .glance-item:hover {
   font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
   margin-top: 56px;
 }
-.mcas-footer a { color: var(--mcas-cream); text-decoration: none; opacity: 0.88; }
-.mcas-footer a:hover, .mcas-footer a:focus-visible { opacity: 1; text-decoration: underline; }
-.mcas-footer a:focus-visible { outline: 3px solid var(--mcas-gold); outline-offset: 3px; border-radius: 4px; }
+/* Footer link color — bumped to body-scoped selector so it wins
+   specificity against body.mcas-page a (which was forcing rust on dark
+   navy and failing WCAG contrast). White on the near-black footer
+   passes AAA; gold on hover gives brand pop. */
+body.mcas-page .mcas-footer a,
+.mcas-footer a {
+  color: #FFFFFF !important;
+  text-decoration: none;
+  opacity: 0.92;
+}
+body.mcas-page .mcas-footer a:hover,
+body.mcas-page .mcas-footer a:focus-visible,
+.mcas-footer a:hover,
+.mcas-footer a:focus-visible {
+  color: var(--mcas-gold) !important;
+  opacity: 1;
+  text-decoration: underline;
+}
+body.mcas-page .mcas-footer a:focus-visible,
+.mcas-footer a:focus-visible {
+  outline: 3px solid var(--mcas-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
 .mcas-footer-row {
   /* No bookend border — extra padding-top supplies the separation */
   display: flex; justify-content: space-between; align-items: center;
@@ -1003,6 +1024,28 @@ body.mcas-page .glance-item:hover {
 .mcas-skip:focus { top: 8px; }
 @media (prefers-reduced-motion: reduce) {
   .mcas-chrome *, .mcas-chrome { transition: none !important; animation: none !important; }
+}
+
+/* ----- Primary CTA button (.btn-gold) — accessibility fix -----
+   The underlying page styled .btn-gold as navy bg + white text, but the
+   body.mcas-page anchor color rule (rust on a) won the cascade and gave
+   us rust text on dark navy — fails WCAG contrast. Override: dark terra
+   cotta background (brand rust) with white text. Hover deepens to
+   rust-dark per the MCAS spec.
+*/
+body.mcas-page a.btn-gold,
+body.mcas-page .btn-gold {
+  background: var(--mcas-rust) !important;
+  color: #FFFFFF !important;
+  border: 2px solid var(--mcas-rust) !important;
+}
+body.mcas-page a.btn-gold:hover,
+body.mcas-page a.btn-gold:focus-visible,
+body.mcas-page .btn-gold:hover,
+body.mcas-page .btn-gold:focus-visible {
+  background: #A0452F !important;
+  color: #FFFFFF !important;
+  border-color: #A0452F !important;
 }
 
 /* ----- Pre-work ↔ Workbook wiring asides -----
@@ -1055,6 +1098,113 @@ body.mcas-page a.mcas-prework-link-cta:focus-visible {
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+/* ----- Lecture video notes section (on spoke pages, under the video) -----
+   Freeform textarea that autosaves to localStorage keyed by topic ID.
+   Visible in Notes and Study modes; hidden in Quiz mode. Prints cleanly
+   so handwritten or typed notes can be carried out of class.
+*/
+body.mcas-page .mcas-lecture-notes {
+  background: #FFFFFF;
+  border: none;
+  border-left: 4px solid var(--mcas-gold);
+  border-radius: 6px;
+  padding: 22px 24px 18px;
+  margin: 16px 0 24px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+}
+body.mcas-page .mcas-lecture-notes-eyebrow {
+  font-family: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mcas-rust);
+  margin: 0 0 4px;
+}
+body.mcas-page .mcas-lecture-notes h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--mcas-navy);
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+body.mcas-page .mcas-lecture-notes-instr {
+  font-style: italic;
+  font-size: 13.5px;
+  color: var(--mcas-navy);
+  opacity: 0.78;
+  margin: 0 0 10px;
+}
+body.mcas-page #mcas-lecture-notes-input {
+  width: 100%;
+  min-height: 160px;
+  padding: 14px 16px;
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 15px;
+  color: var(--mcas-navy);
+  line-height: 1.55;
+  border: 1px solid rgba(11, 21, 48, 0.18);
+  border-radius: 6px;
+  background: #FFFFFF;
+  resize: vertical;
+  box-sizing: border-box;
+}
+body.mcas-page #mcas-lecture-notes-input:focus-visible {
+  outline: 3px solid var(--mcas-rust);
+  outline-offset: 1px;
+  border-color: var(--mcas-navy);
+}
+body.mcas-page .mcas-lecture-notes-status {
+  font-size: 12px;
+  color: var(--mcas-navy);
+  opacity: 0.6;
+  margin: 6px 0 0;
+  min-height: 1.2em;
+}
+/* Hide in quiz mode (consistent with other interactive elements). */
+body.mcas-page.quiz .mcas-lecture-notes { display: none; }
+@media print {
+  body.mcas-page .mcas-lecture-notes {
+    box-shadow: none;
+    border: 1px solid rgba(0,0,0,0.15);
+    page-break-inside: avoid;
+  }
+  body.mcas-page #mcas-lecture-notes-input {
+    border: 1px solid rgba(0,0,0,0.3);
+    background: #FFFFFF;
+    color: #000;
+  }
+}
+
+/* Gated state — workbook aside is locked until the spoke page's retrieval
+   check is passed. The gating JS adds .gate-locked to the CTA when the
+   localStorage flag bio304-gate-{TOPIC_ID} is not yet set. */
+body.mcas-page .mcas-next-up.is-gated {
+  border-left-color: rgba(11, 21, 48, 0.25);
+}
+body.mcas-page a.mcas-next-up-cta.gate-locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: auto;
+  color: var(--mcas-navy);
+}
+body.mcas-page a.mcas-next-up-cta.gate-locked:hover,
+body.mcas-page a.mcas-next-up-cta.gate-locked:focus-visible {
+  color: var(--mcas-navy);
+  text-decoration: none;
+}
+body.mcas-page .mcas-next-up-gate-hint {
+  display: block;
+  margin-top: 8px;
+  font-family: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mcas-rust);
+}
+body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 </style>
 </head>
 <body class="mcas-page">
@@ -1106,6 +1256,14 @@ body.mcas-page a.mcas-prework-link-cta:focus-visible {
     <button type="button" data-nav="settings">Settings</button>
   </nav>
 </header>
+
+<!-- mcas-tour-pill -->
+<div class="mcas-tour-pill-row">
+  <button type="button" class="mcas-tour-pill" id="mcas-tour-pill" data-tour-pill>
+    <span id="mcas-tour-pill-label">First time here? Take the guided walkthrough &rarr;</span>
+  </button>
+</div>
+<!-- mcas-tour-pill-end -->
 
 <div role="status" aria-live="polite" class="sr-only" id="live-region"></div>
 
@@ -1189,6 +1347,9 @@ body.mcas-page a.mcas-prework-link-cta:focus-visible {
       <button type="button" class="btn btn-ghost" data-nav="dashboard">&larr; Back to tonight&rsquo;s list</button>
       <a id="link-open-notes" class="btn btn-gold" target="_blank" rel="noopener noreferrer" href="#" hidden>Open notes &#x2197;</a>
       <a id="link-open-reading" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="#" hidden>OpenStax reference &#x2197;</a>
+      <!-- mcas-workbook-btn -->
+      <a id="link-open-workbook" class="btn btn-gold" target="_blank" rel="noopener noreferrer" href="#" hidden>Lab workbook &#x2197;</a>
+      <!-- mcas-workbook-btn-end -->
       <span id="notes-link-pending" class="usage" style="font-style:italic;align-self:center;">Notes link not yet wired for this topic.</span>
     </div>
     <h2 id="learn-heading">Spaced recall</h2>
@@ -1280,6 +1441,132 @@ body.mcas-page a.mcas-prework-link-cta:focus-visible {
 <!-- External course content. Edit course-content.js to add/edit modules, topics, and cards.
      If this file is missing, the engine falls back to a single bundled demo topic. -->
 <script src="course-content.js"></script>
+
+<!-- mcas-topic-lecture-map -->
+<script>
+/* Topic-ID → Lecture (spoke) page URL. Used by the engine's Option A
+   topic-view fallback: when a student hits view-topic without the gate
+   flag set, the engine reads topic.lecturePageUrl. This patch augments
+   each topic with that URL based on the topic id, so course-content.js
+   doesn't have to know spoke filenames. */
+window.MCAS_LECTURE_BY_TOPIC = {
+    "t-action-potentials": "action-potentials-synapses.html",
+    "t-adaptive-immunity": "adaptive-immunity.html",
+    "t-anatomical-terminology": "anatomical-position.html",
+    "t-appendicular-skeleton": "appendicular-skeleton.html",
+    "t-axial-skeleton": "axial-skeleton.html",
+    "t-blood-composition": "blood-composition.html",
+    "t-bone-tissue": "bone-tissue.html",
+    "t-cell-structure": "cell-structure.html",
+    "t-cns-organization": "cns-organization.html",
+    "t-conduction-ecg": "cardiac-conduction.html",
+    "t-connective-tissue": "connective-tissues.html",
+    "t-digestion-absorption": "digestion-absorption.html",
+    "t-epithelial-tissue": "epithelial-tissue.html",
+    "t-female-reproductive": "female-reproductive.html",
+    "t-fluid-acid-base": "fluid-electrolyte-acid-base.html",
+    "t-gas-exchange-transport": "gas-exchange-transport.html",
+    "t-gi-anatomy-motility": "gi-anatomy-motility.html",
+    "t-hearing-equilibrium": "hearing-equilibrium.html",
+    "t-heart-cardiac-cycle": "heart-anatomy.html",
+    "t-hemostasis-blood-typing": "hemostasis-blood-typing.html",
+    "t-homeostasis": "homeostasis-feedback.html",
+    "t-hormone-mechanisms": "hormone-mechanisms.html",
+    "t-joints-movements": "joints-and-movements.html",
+    "t-kidney-filtration": "kidney-anatomy-gfr.html",
+    "t-levels-of-organization": "levels-of-organization.html",
+    "t-lymphatic-innate": "lymphatic-innate-immunity.html",
+    "t-major-glands": "major-endocrine-glands.html",
+    "t-male-reproductive": "male-reproductive.html",
+    "t-membrane-transport": "membrane-transport.html",
+    "t-motor-units": "motor-units.html",
+    "t-muscle-nervous-tissue": "muscle-nervous-tissue.html",
+    "t-neurons-rmp": "neurons-resting-potential.html",
+    "t-pns-autonomic": "pns-autonomic.html",
+    "t-pregnancy-development": "pregnancy-basics.html",
+    "t-resp-anatomy-mechanics": "respiratory-anatomy.html",
+    "t-skeletal-muscle-microanatomy": "skeletal-muscle-microanatomy.html",
+    "t-skin-functions": "skin-functions.html",
+    "t-skin-layers": "skin-layers.html",
+    "t-sliding-filament": "cross-bridge-cycle.html",
+    "t-tubular-function": "tubular-function.html",
+    "t-vessels-hemodynamics": "blood-vessels-hemodynamics.html",
+    "t-vision": "vision.html"
+};
+
+/* Patch the course content: for every topic without a lecturePageUrl,
+   set it from the map above. Runs once at parse time, before the engine
+   IIFE reads the data. */
+(function(){
+  try {
+    var data = window.BIO304_COURSE_CONTENT;
+    if (!data || !data.modules) return;
+    var map = window.MCAS_LECTURE_BY_TOPIC || {};
+    data.modules.forEach(function(mod){
+      (mod.topics || []).forEach(function(t){
+        if (!t || !t.id) return;
+        if (!t.lecturePageUrl && map[t.id]) {
+          t.lecturePageUrl = map[t.id];
+        }
+      });
+    });
+  } catch (e) {}
+})();
+</script>
+<!-- mcas-topic-lecture-map-end -->
+
+<!-- mcas-topic-workbook-map -->
+<script>
+/* Topic-ID → Lab-workbook URL. Derived from schedule.html badge-sr/pill-lab
+   pairings. Injected by the wiring pass; rebuild from schedule with the
+   "topic_workbook_map" extractor in the rebrand toolkit when topic IDs
+   or workbook filenames change. */
+window.MCAS_WORKBOOK_BY_TOPIC = {
+    "t-action-potentials": "workbook_day16_action-potentials-and-synaptic-transmission.html",
+    "t-adaptive-immunity": "workbook_day26_adaptive-immunity.html",
+    "t-anatomical-terminology": "workbook_day01_anatomical-terminology-and-body-regions.html",
+    "t-appendicular-skeleton": "workbook_day11_appendicular-skeleton.html",
+    "t-axial-skeleton": "workbook_day10_axial-skeleton.html",
+    "t-blood-composition": "workbook_day21_blood-composition-and-hemopoiesis.html",
+    "t-bone-tissue": "workbook_day09_bone-tissue-and-bone-growth.html",
+    "t-cell-structure": "workbook_day03_cell-structure-and-organelles.html",
+    "t-cns-organization": "workbook_day17_cns-organization-brain-and-spinal-cord.html",
+    "t-conduction-ecg": "workbook_day23_cardiac-conduction-system.html",
+    "t-connective-tissue": "workbook_day06_connective-tissues.html",
+    "t-digestion-absorption": "workbook_day28_digestion-and-absorption.html",
+    "t-epithelial-tissue": "workbook_day05_epithelial-tissue-classification.html",
+    "t-female-reproductive": "workbook_day32_female-reproductive-system.html",
+    "t-fluid-acid-base": "workbook_day31_fluid-electrolyte-and-acid-base-balance.html",
+    "t-gas-exchange-transport": "workbook_day27_gas-exchange-and-transport.html",
+    "t-gi-anatomy-motility": "workbook_day28_gi-tract-anatomy-and-motility.html",
+    "t-hearing-equilibrium": "workbook_day19_hearing-and-equilibrium.html",
+    "t-heart-cardiac-cycle": "workbook_day22_heart-anatomy-and-the-cardiac-cycle.html",
+    "t-hemostasis-blood-typing": "workbook_day21_hemostasis-and-blood-typing.html",
+    "t-homeostasis": "workbook_day02_homeostasis-and-feedback-loops.html",
+    "t-hormone-mechanisms": "workbook_day20_hormone-mechanisms.html",
+    "t-joints-movements": "workbook_day12_joints-and-body-movements.html",
+    "t-kidney-filtration": "workbook_day29_kidney-anatomy-and-glomerular-filtration.html",
+    "t-levels-of-organization": "workbook_day01_levels-of-organization.html",
+    "t-lymphatic-innate": "workbook_day25_lymphatic-system-and-innate-immunity.html",
+    "t-major-glands": "workbook_day20_major-endocrine-glands.html",
+    "t-male-reproductive": "workbook_day31_male-reproductive-system.html",
+    "t-membrane-transport": "workbook_day04_membrane-transport.html",
+    "t-motor-units": "workbook_day13_motor-units-and-muscle-mechanics.html",
+    "t-muscle-nervous-tissue": "workbook_day07_muscle-and-nervous-tissue-overview.html",
+    "t-neurons-rmp": "workbook_day15_neurons-and-resting-membrane-potential.html",
+    "t-pns-autonomic": "workbook_day18_pns-and-autonomic-nervous-system.html",
+    "t-pregnancy-development": "workbook_day32_pregnancy-aandp-basics.html",
+    "t-resp-anatomy-mechanics": "workbook_day27_respiratory-anatomy-and-mechanics.html",
+    "t-skeletal-muscle-microanatomy": "workbook_day13_skeletal-muscle-microanatomy.html",
+    "t-skin-functions": "workbook_day08_skin-functions-and-accessory-structures.html",
+    "t-skin-layers": "workbook_day07_skin-structure-and-layers.html",
+    "t-sliding-filament": "workbook_day14_sliding-filament-and-the-cross-bridge-cycle.html",
+    "t-tubular-function": "workbook_day30_tubular-function-and-urine-concentration.html",
+    "t-vessels-hemodynamics": "workbook_day24_blood-vessels-and-hemodynamics.html",
+    "t-vision": "workbook_day19_vision.html"
+};
+</script>
+<!-- mcas-topic-workbook-map-end -->
 
 <script>
 /* ============================================================
@@ -2274,6 +2561,22 @@ body.mcas-page a.mcas-prework-link-cta:focus-visible {
       readingLink.hidden = true;
       readingLink.href = "#";
     }
+
+    /* mcas-workbook-link */
+    var workbookLink = document.getElementById("link-open-workbook");
+    if (workbookLink) {
+      var wbMap = window.MCAS_WORKBOOK_BY_TOPIC || {};
+      var wbUrl = (topic && topic.id && wbMap[topic.id]) ? wbMap[topic.id] : null;
+      if (wbUrl) {
+        workbookLink.href = wbUrl;
+        workbookLink.hidden = false;
+        pending.hidden = true;
+      } else {
+        workbookLink.hidden = true;
+        workbookLink.href = "#";
+      }
+    }
+    /* mcas-workbook-link-end */
   }
 
   function renderMastery(topicId){
@@ -2832,6 +3135,456 @@ body.mcas-page a.mcas-prework-link-cta:focus-visible {
   }
 })();
 </script>
+<!-- mcas-tour -->
+<style>
+/* Tour pill — sits between header and dashboard, MCAS-styled */
+.mcas-tour-pill-row {
+  max-width: 1100px;
+  margin: 12px auto 4px;
+  padding: 0 max(20px, 4vw);
+  display: flex;
+  justify-content: flex-start;
+}
+.mcas-tour-pill {
+  appearance: none;
+  background: #FFFFFF;
+  border: 1.5px solid var(--mcas-rust);
+  color: var(--mcas-navy);
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.08);
+}
+.mcas-tour-pill:hover,
+.mcas-tour-pill:focus-visible {
+  background: var(--mcas-rust);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(11, 21, 48, 0.12);
+  outline: none;
+}
+.mcas-tour-pill:focus-visible {
+  outline: 3px solid var(--mcas-gold);
+  outline-offset: 3px;
+}
+
+/* Tour overlay */
+.mcas-tour-active { overflow: hidden; }
+.mcas-tour-scrim {
+  position: fixed; inset: 0;
+  background: rgba(60, 68, 84, 0.35);
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.mcas-tour-scrim.is-visible { opacity: 1; }
+
+.mcas-tour-highlight {
+  position: relative;
+  z-index: 9999;
+  box-shadow: 0 0 0 4px var(--mcas-gold), 0 0 0 9999px rgba(60, 68, 84, 0.35);
+  border-radius: 8px;
+  transition: box-shadow 200ms ease;
+}
+
+.mcas-tour-tooltip {
+  position: fixed;
+  z-index: 10000;
+  max-width: 380px;
+  width: calc(100vw - 40px);
+  background: #FFFFFF;
+  color: var(--mcas-navy);
+  border-radius: 10px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+  padding: 22px 24px 18px;
+  font-family: inherit;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+.mcas-tour-tooltip.is-visible { opacity: 1; transform: translateY(0); }
+.mcas-tour-step-count {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mcas-rust);
+  margin: 0 0 8px 0;
+}
+.mcas-tour-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--mcas-navy);
+  letter-spacing: -0.01em;
+  margin: 0 0 8px 0;
+  line-height: 1.25;
+}
+.mcas-tour-body {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--mcas-navy);
+  margin: 0 0 18px 0;
+}
+.mcas-tour-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.mcas-tour-actions-right { display: flex; gap: 8px; }
+.mcas-tour-btn {
+  appearance: none;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 9px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+.mcas-tour-btn-skip {
+  background: transparent;
+  border: none;
+  color: var(--mcas-navy);
+  opacity: 0.7;
+  padding: 9px 4px;
+}
+.mcas-tour-btn-skip:hover,
+.mcas-tour-btn-skip:focus-visible {
+  opacity: 1;
+  text-decoration: underline;
+  outline: none;
+}
+.mcas-tour-btn-secondary {
+  background: #FFFFFF;
+  border: 1.5px solid var(--mcas-navy);
+  color: var(--mcas-navy);
+}
+.mcas-tour-btn-secondary:hover,
+.mcas-tour-btn-secondary:focus-visible {
+  background: var(--mcas-navy);
+  color: #FFFFFF;
+  outline: none;
+}
+.mcas-tour-btn-primary {
+  background: var(--mcas-rust);
+  border: 1.5px solid var(--mcas-rust);
+  color: #FFFFFF;
+}
+.mcas-tour-btn-primary:hover,
+.mcas-tour-btn-primary:focus-visible {
+  background: #A0452F;
+  border-color: #A0452F;
+  outline: none;
+}
+.mcas-tour-btn:focus-visible {
+  outline: 3px solid var(--mcas-gold);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mcas-tour-scrim,
+  .mcas-tour-tooltip,
+  .mcas-tour-highlight,
+  .mcas-tour-pill { transition: none !important; }
+}
+</style>
+
+<div class="mcas-tour-scrim" id="mcas-tour-scrim" hidden></div>
+<div class="mcas-tour-tooltip" id="mcas-tour-tooltip" role="dialog"
+     aria-modal="true" aria-labelledby="mcas-tour-title" aria-describedby="mcas-tour-body" hidden tabindex="-1">
+  <p class="mcas-tour-step-count" id="mcas-tour-step-count">Step 1 of 4</p>
+  <h2 class="mcas-tour-title" id="mcas-tour-title">Title</h2>
+  <p class="mcas-tour-body" id="mcas-tour-body">Body</p>
+  <div class="mcas-tour-actions">
+    <button type="button" class="mcas-tour-btn mcas-tour-btn-skip" id="mcas-tour-skip">Skip walkthrough</button>
+    <div class="mcas-tour-actions-right">
+      <button type="button" class="mcas-tour-btn mcas-tour-btn-secondary" id="mcas-tour-back" hidden>Back</button>
+      <button type="button" class="mcas-tour-btn mcas-tour-btn-primary" id="mcas-tour-next">Next &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var STORAGE_KEY = "bio304-tour-shown";
+  var STEPS = [
+    {
+      target: "#stat-topics-tonight",
+      title: "Print your workbook first",
+      body: "Each topic on tonight's list pairs with a printed lab workbook. Print or open {days} now so you can write while you watch. The Lab workbook button is also inside each topic view.",
+      fallbackBody: "Each topic on tonight's list pairs with a printed lab workbook. Print or open tonight's workbook(s) now so you can write while you watch. The Lab workbook button is also inside each topic view."
+    },
+    {
+      target: "#topic-list",
+      fallback: "#dash-heading",
+      title: "Watch the video, then explain it",
+      body: "Open a topic and watch the short video. Explain what you learned in your own words to unlock the question set. Given, not Googled — the explanation is the point."
+    },
+    {
+      target: "#topic-list",
+      fallback: "#dash-heading",
+      title: "Rate each card honestly",
+      body: "Once the question set unlocks, rate each card based on how it felt. Easy cards space out further. Harder cards come back sooner. That is how spaced recall locks the material in."
+    },
+    {
+      target: 'button[data-nav="review"]',
+      title: "Daily review, every day",
+      body: "Tomorrow morning, click Daily Review here. The system pulls only the cards that need another look. Five to ten minutes is plenty. Streaks count."
+    }
+  ];
+
+  var currentStep = 0;
+  var lastFocused = null;
+  var highlightedEl = null;
+
+  function $(sel){ return document.querySelector(sel); }
+
+  function getTonightDays(){
+    // Scan the rendered dashboard for "Day N" headers under topic-list.
+    // Returns ["Day 1"] or ["Day 1","Day 2"] etc., deduped + sorted.
+    var list = document.getElementById("topic-list");
+    if (!list) return [];
+    var text = list.textContent || "";
+    var matches = text.match(/Day\s+\d+/gi) || [];
+    var nums = matches.map(function(s){ return parseInt(s.replace(/\D/g, ""), 10); })
+                      .filter(function(n){ return n >= 1 && n <= 32; });
+    var uniq = Array.from(new Set(nums)).sort(function(a,b){ return a - b; });
+    return uniq.map(function(n){ return "Day " + n; });
+  }
+  function formatDayList(days){
+    if (!days.length) return null;
+    if (days.length === 1) return "tonight's " + days[0].toLowerCase() + " workbook";
+    if (days.length === 2) return "tonight's workbooks (" + days.join(" and ") + ")";
+    var last = days[days.length - 1];
+    var rest = days.slice(0, -1).join(", ");
+    return "tonight's workbooks (" + rest + ", and " + last + ")";
+  }
+  function substituteBody(step){
+    var body = step.body || "";
+    if (body.indexOf("{days}") === -1) return body;
+    var formatted = formatDayList(getTonightDays());
+    if (formatted) return body.replace("{days}", formatted);
+    return step.fallbackBody || body.replace("{days}", "tonight's workbook(s)");
+  }
+
+  function isEmbedded(){
+    try { return window.top !== window.self; }
+    catch (e) { return true; }
+  }
+  function tourSeen(){
+    try { return window.localStorage.getItem(STORAGE_KEY) === "1"; }
+    catch (e) { return false; }
+  }
+  function markTourSeen(){
+    try { window.localStorage.setItem(STORAGE_KEY, "1"); } catch (e) {}
+    updatePillLabel();
+  }
+  function updatePillLabel(){
+    var label = $("#mcas-tour-pill-label");
+    if (!label) return;
+    label.innerHTML = tourSeen()
+      ? "Replay the guided walkthrough &rarr;"
+      : "First time here? Take the guided walkthrough &rarr;";
+  }
+
+  function clearHighlight(){
+    if (highlightedEl) {
+      highlightedEl.classList.remove("mcas-tour-highlight");
+      highlightedEl = null;
+    }
+  }
+
+  function positionTooltip(targetEl){
+    var tip = $("#mcas-tour-tooltip");
+    var tipRect = tip.getBoundingClientRect();
+    var tw = tipRect.width, th = tipRect.height;
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var gap = 14;   // space between target rect and tooltip
+    var pad = 16;   // viewport edge padding
+    var top, left;
+
+    if (!targetEl) {
+      top = Math.max(pad, (vh - th) / 2);
+      left = Math.max(pad, (vw - tw) / 2);
+      tip.style.top = top + "px";
+      tip.style.left = left + "px";
+      return;
+    }
+
+    var r = targetEl.getBoundingClientRect();
+    // Available space on each side of the target rect
+    var spaceBelow = vh - r.bottom - gap - pad;
+    var spaceAbove = r.top - gap - pad;
+    var spaceRight = vw - r.right - gap - pad;
+    var spaceLeft  = r.left - gap - pad;
+
+    // Pick the side with the most space that can fit the tooltip.
+    // Preference order if multiple fit: below, above, right, left.
+    var sides = [
+      { id: "below", fits: spaceBelow >= th, score: spaceBelow },
+      { id: "above", fits: spaceAbove >= th, score: spaceAbove },
+      { id: "right", fits: spaceRight >= tw, score: spaceRight },
+      { id: "left",  fits: spaceLeft  >= tw, score: spaceLeft  }
+    ];
+    var fits = sides.filter(function(s){ return s.fits; });
+    var chosen = null;
+    if (fits.length) {
+      fits.sort(function(a, b){ return b.score - a.score; });
+      chosen = fits[0].id;
+    }
+
+    if (chosen === "below") {
+      top  = r.bottom + gap;
+      left = r.left + (r.width - tw) / 2;
+    } else if (chosen === "above") {
+      top  = r.top - th - gap;
+      left = r.left + (r.width - tw) / 2;
+    } else if (chosen === "right") {
+      top  = r.top + (r.height - th) / 2;
+      left = r.right + gap;
+    } else if (chosen === "left") {
+      top  = r.top + (r.height - th) / 2;
+      left = r.left - tw - gap;
+    } else {
+      // Nothing fits beside the target — anchor in the viewport corner
+      // furthest from the target so the spotlight stays visible.
+      var targetCx = r.left + r.width / 2;
+      var targetCy = r.top + r.height / 2;
+      left = (targetCx > vw / 2) ? pad : Math.max(pad, vw - tw - pad);
+      top  = (targetCy > vh / 2) ? pad : Math.max(pad, vh - th - pad);
+    }
+
+    // Final viewport clamp
+    top  = Math.max(pad, Math.min(top,  vh - th - pad));
+    left = Math.max(pad, Math.min(left, vw - tw - pad));
+
+    tip.style.top  = top  + "px";
+    tip.style.left = left + "px";
+  }
+
+  function showStep(i){
+    currentStep = i;
+    var step = STEPS[i];
+    if (!step) return;
+    clearHighlight();
+
+    var target = step.target ? document.querySelector(step.target) : null;
+    if (!target && step.fallback) target = document.querySelector(step.fallback);
+
+    if (target) {
+      target.classList.add("mcas-tour-highlight");
+      highlightedEl = target;
+      try { target.scrollIntoView({ behavior: "smooth", block: "center" }); } catch (e) { target.scrollIntoView(); }
+    }
+
+    $("#mcas-tour-step-count").textContent = "Step " + (i + 1) + " of " + STEPS.length;
+    $("#mcas-tour-title").textContent = step.title;
+    $("#mcas-tour-body").textContent = substituteBody(step);
+    $("#mcas-tour-back").hidden = (i === 0);
+    $("#mcas-tour-next").textContent = (i === STEPS.length - 1) ? "Done" : "Next →";
+
+    // Position after a tick so the tooltip has dimensions
+    setTimeout(function(){ positionTooltip(target); }, 30);
+  }
+
+  function openTour(){
+    lastFocused = document.activeElement;
+    document.body.classList.add("mcas-tour-active");
+    var scrim = $("#mcas-tour-scrim");
+    var tip = $("#mcas-tour-tooltip");
+    scrim.hidden = false;
+    tip.hidden = false;
+    // Force reflow then add visible class for transition
+    void scrim.offsetWidth;
+    scrim.classList.add("is-visible");
+    tip.classList.add("is-visible");
+    showStep(0);
+    tip.focus();
+  }
+
+  function closeTour(){
+    var scrim = $("#mcas-tour-scrim");
+    var tip = $("#mcas-tour-tooltip");
+    clearHighlight();
+    scrim.classList.remove("is-visible");
+    tip.classList.remove("is-visible");
+    document.body.classList.remove("mcas-tour-active");
+    setTimeout(function(){
+      scrim.hidden = true;
+      tip.hidden = true;
+    }, 220);
+    markTourSeen();
+    if (lastFocused && typeof lastFocused.focus === "function") {
+      try { lastFocused.focus(); } catch (e) {}
+    }
+  }
+
+  function nextStep(){
+    if (currentStep >= STEPS.length - 1) {
+      closeTour();
+    } else {
+      showStep(currentStep + 1);
+    }
+  }
+  function prevStep(){
+    if (currentStep > 0) showStep(currentStep - 1);
+  }
+
+  // Wire up controls
+  document.addEventListener("DOMContentLoaded", function(){
+    var pill = $("#mcas-tour-pill");
+    if (pill) pill.addEventListener("click", openTour);
+
+    var nextBtn = $("#mcas-tour-next");
+    var backBtn = $("#mcas-tour-back");
+    var skipBtn = $("#mcas-tour-skip");
+    var scrim   = $("#mcas-tour-scrim");
+    if (nextBtn) nextBtn.addEventListener("click", nextStep);
+    if (backBtn) backBtn.addEventListener("click", prevStep);
+    if (skipBtn) skipBtn.addEventListener("click", closeTour);
+    if (scrim)   scrim.addEventListener("click", closeTour);
+
+    document.addEventListener("keydown", function(e){
+      if ($("#mcas-tour-tooltip").hidden) return;
+      if (e.key === "Escape") { e.preventDefault(); closeTour(); }
+      else if (e.key === "ArrowRight") { e.preventDefault(); nextStep(); }
+      else if (e.key === "ArrowLeft")  { e.preventDefault(); prevStep(); }
+    });
+
+    window.addEventListener("resize", function(){
+      if (!$("#mcas-tour-tooltip").hidden) {
+        var step = STEPS[currentStep];
+        var target = step && step.target ? document.querySelector(step.target) : null;
+        if (!target && step && step.fallback) target = document.querySelector(step.fallback);
+        positionTooltip(target);
+      }
+    });
+
+    updatePillLabel();
+
+    // URL override: ?tour=0 suppresses, ?tour=1 forces
+    var params = new URLSearchParams(window.location.search);
+    var override = params.get("tour");
+
+    if (override === "0") return;
+    if (override === "1") { openTour(); return; }
+
+    // Auto-fire only on first visit, and only when NOT embedded in Canvas
+    if (!tourSeen() && !isEmbedded()) {
+      // Wait for the topic list to render so anchors are in place
+      setTimeout(openTour, 600);
+    }
+  });
+})();
+</script>
+<!-- mcas-tour-end -->
 <!-- mcas-chrome-footer -->
 </main>
 <div class="mcas-chrome">
@@ -2851,6 +3604,65 @@ body.mcas-page a.mcas-prework-link-cta:focus-visible {
 </footer>
 </div>
 <!-- mcas-chrome-footer-end -->
+<!-- mcas-lecture-notes-injector -->
+<script>
+(function(){
+  function init(){
+    var videoPanel = document.querySelector("#video-panel, .video-panel");
+    if (!videoPanel) return;
+    if (document.getElementById("mcas-lecture-notes-input")) return;
+
+    var cfg = window.SHEET_CONFIG || {};
+    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
+    var topicId = m ? m[1] : null;
+    var keyBase = topicId || (document.title || "page").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    var key = "bio304-lecture-notes-" + keyBase;
+
+    var section = document.createElement("section");
+    section.className = "mcas-lecture-notes";
+    section.setAttribute("aria-labelledby", "mcas-lecture-notes-h");
+    section.innerHTML =
+      '<p class="mcas-lecture-notes-eyebrow">While you watch</p>' +
+      '<h2 id="mcas-lecture-notes-h">Lecture video notes</h2>' +
+      '<p class="mcas-lecture-notes-instr">A scratchpad for what stands out as the video runs. Your notes save on this device and stay here when you come back.</p>' +
+      '<textarea id="mcas-lecture-notes-input" rows="8" aria-describedby="mcas-lecture-notes-status" placeholder="Type what is clicking for you..."></textarea>' +
+      '<p class="mcas-lecture-notes-status" id="mcas-lecture-notes-status" aria-live="polite"></p>';
+
+    if (videoPanel.parentNode) videoPanel.parentNode.insertBefore(section, videoPanel.nextSibling);
+
+    var ta = section.querySelector("#mcas-lecture-notes-input");
+    var status = section.querySelector("#mcas-lecture-notes-status");
+
+    try {
+      var saved = window.localStorage.getItem(key);
+      if (saved) ta.value = saved;
+      if (status) status.textContent = saved ? "Restored from your last session." : "";
+    } catch (e) {}
+
+    var t, debounceTimer;
+    function save(){
+      try { window.localStorage.setItem(key, ta.value); } catch (e) {}
+      if (status) {
+        status.textContent = "Saved on this device";
+        clearTimeout(t);
+        t = setTimeout(function(){ if (status) status.textContent = ""; }, 1400);
+      }
+    }
+    ta.addEventListener("input", function(){
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(save, 350);
+    });
+    ta.addEventListener("blur", save);
+    window.addEventListener("pagehide", save);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+<!-- mcas-lecture-notes-injector-end -->
 <!-- mcas-iframe-height-sender -->
 <script>
 /* MCAS iframe height-sender (rebrand-mcas.py) */
