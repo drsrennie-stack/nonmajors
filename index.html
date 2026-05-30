@@ -124,22 +124,20 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   line-height: 1.6; max-width: 680px; margin: 0 0 32px;
 }
 
-/* ===== COURSE AT A GLANCE (light) ===== */
+/* ===== COURSE AT A GLANCE (light, single info panel) =====
+   Read-only info, not clickable. One white box, thin shadow, no hover. */
 .glance-section { background: #FFFFFF; padding-top: 36px; padding-bottom: 36px; }
-.glance-grid {
-  display: grid; gap: 14px;
+.glance-box {
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.08);
+  padding: 30px 34px;
+  display: grid;
+  gap: 24px 36px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 .glance-item {
-  border: 1px solid rgba(11, 21, 48, 0.14);
-  border-radius: 8px; padding: 14px 16px;
-  background: #F5F1E8;
-  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
-  transition: transform 200ms ease, box-shadow 200ms ease;
-}
-.glance-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(11, 21, 48, 0.10);
+  /* Read-only info — no background, no border, no hover, no cursor change */
 }
 .glance-label {
   font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
@@ -553,9 +551,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   </div>
 </div>
 
-<!-- ===== COURSE AT A GLANCE ===== -->
+<!-- ===== COURSE AT A GLANCE (single info panel, not clickable) ===== -->
 <div class="glance-section" aria-label="Course at a glance">
-  <div class="glance-grid">
+  <div class="glance-box">
     <div class="glance-item"><p class="glance-label">Course</p><p class="glance-value">BIO 304: Human A&amp;P</p></div>
     <div class="glance-item"><p class="glance-label">Institution</p><p class="glance-value">American River College</p></div>
     <div class="glance-item"><p class="glance-label">Format</p><p class="glance-value">Fully online, asynchronous</p></div>
