@@ -1,70 +1,126 @@
-# Accessibility Compliance Notes
+# Compliance Notes — BIO 304 MCAS Rebrand
 
-## 1. Project
+**Project:** BIO 304 Human Anatomy &amp; Physiology, American River College (online, summer 2026, 8 weeks, June 8 to August 2)
+**Repo:** drsrennie-stack/nonmajors
+**Files covered:** `canvas-home.html` (hand-crafted Canvas front door), `index.html` (hand-crafted 8-week hub coordinated with syllabus), `rebrand-mcas.py` v2 (bulk rebrand for the remaining ~160 pages including syllabus, schedule, and `_OBSOLETE_*`).
+**Branding applied:** MCAS per Project Update 2026-05-29 — Plus Jakarta Sans · Navy #0B1530 · Rust #8B3A2E · Gold #C9A14A · Cream #F5F1E8 · Dark #060A18
+**Date:** 2026-05-30
+**Reviewer:** Dr. Sharilyn Rennie (pending sign-off)
 
-- Project: BIO 304 Anatomy & Physiology, course revamp (branding pass)
-- Files covered: `index.html` (new course-home page)
-- Repo: drsrennie-stack/nonmajors
-- Date: May 25, 2026
-- Design system: Course Site Design System (`course-design-system.md`)
+## 1. WCAG target
 
-## 2. WCAG version and target level
+- **Floor:** WCAG 2.2 Level AA across every rebranded page
+- **Target:** Level AAA where achievable
 
-WCAG 2.2. Target level AA minimum, AAA where achievable. Status by criterion:
+## 2. Color contrast audit
 
-| Criterion | Level achieved | Notes |
-|-----------|---------------|-------|
-| 1.1.1 Non-text content | AA | Instructor photo has descriptive alt text; logo SVG is `aria-hidden` with an accessible name on its parent link; arrow glyphs are `aria-hidden`. |
-| 1.3.1 Info and relationships | AA | Semantic `header`, `main`, `section`, `footer`; every `section` has `aria-labelledby`; headings nest h1 to h4 with no skipped levels. |
-| 1.4.3 Contrast (minimum) | AAA on body text | See audit in section 3. |
-| 1.4.10 Reflow | AA | Single-column responsive layout; grids collapse with `auto-fill` / `auto-fit`. |
-| 1.4.11 Non-text contrast | AA, one watch-item | Focus rings exceed 3:1; white-card border is below 3:1 (see section 6). |
-| 1.4.12 Text spacing | AA | Relative units and generous line-height; no fixed-height text containers. |
-| 2.1.1 Keyboard | AA | All interactive elements are native links; fully operable by keyboard. |
-| 2.4.1 Bypass blocks | AA | Skip link to `#main` is the first focusable element. |
-| 2.4.7 Focus visible | AAA | 3px focus ring, 3px offset, rust on light bands and gold on dark bands. |
-| 2.4.6 Headings and labels | AA | One h1; descriptive section headings. |
-| 2.5.8 Target size (minimum) | AA | Cards and buttons exceed the 24px minimum. |
-| 2.3.3 Animation from interactions | AAA | `prefers-reduced-motion` disables all transitions and smooth scroll. |
-| 3.1.1 Language of page | AA | `<html lang="en">`. |
-| 4.1.2 Name, role, value | AA | Icon-only and logo links have accessible names; native elements throughout. |
+Ratios computed against the WCAG 2.2 formula. AA-normal requires 4.5:1, AA-large requires 3.0:1, AAA-normal requires 7.0:1.
 
-## 3. Color contrast audit
+| Foreground / background | Ratio | AA normal | AA large | AAA normal |
+|---|---|---|---|---|
+| Navy #0B1530 on White #FFFFFF | 18.04:1 | pass | pass | pass |
+| Navy #0B1530 on Cream #F5F1E8 | 16.00:1 | pass | pass | pass |
+| Cream #F5F1E8 on Dark #060A18 | 17.50:1 | pass | pass | pass |
+| Cream #F5F1E8 on Navy #0B1530 | 16.00:1 | pass | pass | pass |
+| Rust #8B3A2E on White | 7.66:1 | pass | pass | pass |
+| Rust #8B3A2E on Cream | 6.79:1 | pass | pass | fail (AAA) |
+| Rust hover #A0452F on White | 6.20:1 | pass | pass | fail (AAA) |
+| White #FFFFFF on Rust button #8B3A2E | 7.66:1 | pass | pass | pass |
+| Gold #C9A14A on Dark | 8.16:1 | pass | pass | pass |
+| Gold #C9A14A on Navy | 7.46:1 | pass | pass | pass |
+| Gold #C9A14A on Cream | 2.15:1 | **fail** | **fail** | **fail** |
+| Gold #C9A14A on White | 2.42:1 | **fail** | **fail** | **fail** |
+| Navy 0.72-opacity on White (#4D556E) | 7.39:1 | pass | pass | pass |
+| Navy 0.80-opacity on White (#393F58) | 10.37:1 | pass | pass | pass |
+| Cream 0.88-opacity on Dark (#D7D3CB) | 13.22:1 | pass | pass | pass |
 
-All text pairs in `index.html`, measured against the design system tokens.
+**Use rules baked into the design system:**
 
-| Text | Background | Ratio | Level | Where used |
-|------|-----------|-------|-------|------------|
-| Navy `#0B1530` | White `#FFFFFF` | 18:1 | AAA | h1, h2 (light), week and card titles |
-| Navy `#0B1530` at 82% | White `#FFFFFF` | ~13:1 | AAA | card and hero body text |
-| Rust `#8B3A2E` | White `#FFFFFF` | 7.7:1 | AAA | eyebrows, accent words, module labels, CTA text link |
-| White `#FFFFFF` | Rust `#8B3A2E` | 7.7:1 | AAA | primary button label |
-| Cream `#F5F1E8` | Near-black `#060A18` | 17.5:1 | AAA | dark-band headings, body, footer text |
-| Gold `#C9A14A` | Near-black `#060A18` | 8.2:1 | AAA | dark-band eyebrows, footer headers, instructor quote |
-| Gold `#C9A14A` | Card-navy `#1C2E4F` | 5.6:1 | AA | study-sheet card labels (Mode 01, etc.) |
-| Cream `#F5F1E8` | Card-navy `#1C2E4F` | ~13:1 | AAA | study-sheet card titles and body |
-| Terra cotta `#C2734D` | Near-black `#060A18` | 5.5:1 | AA | accent words inside dark-band h2 (large text) |
+- **Gold #C9A14A is decorative on dark backgrounds only.** It is used as a small accent (eyebrow text, footer headers, the closing CTA accent) where the background is Navy or Dark. It is never used as text on White or Cream.
+- **Rust #8B3A2E is the light-section accent.** It is used for CTAs, hover states, and accents on White or Cream backgrounds. Achieves AA on Cream and AAA on White.
+- **Cream is for dark-section text only.** Cream is never used as a light background, only as the foreground color on Navy or Dark sections.
+- **Sage is excluded** from the system entirely, per global rule.
+- **Teal is banned** at the script level — `rebrand-mcas.py` substitutes any `#2F4F4F`, `#008080`, `#5F9EA0`, `teal`, and related teal-family hex codes for Navy on every page it processes.
 
-No failing text pair. Rust is never placed as text on a dark background, per the design system watch-out.
+## 3. Typography
 
-## 4. Keyboard navigation flow
+- Font family: **Plus Jakarta Sans** (variable), loaded via `https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css`, with `system-ui, -apple-system, sans-serif` fallback chain
+- Headings: weight 800, tight tracking (`letter-spacing: -0.015em` to `-0.025em`)
+- Body: 16px / 1.65 line-height; section copy uses 14–15px / 1.6
+- No CSS reductions below 12px anywhere in the hub
+- All headings use semantic levels (h1 → h2 → h3 → h4); no skipped levels
+- Italic Lora is **not** used in this course (per global rule, Lora italic is the Solano teaching family; ARC online uses Plus Jakarta throughout)
 
-Verified tab order: skip link, header logo, hero "Open the syllabus" button, hero "See the course map" link, the 44 course-map cards in reading order, the 4 "Start here" cards, then the footer links. Every interactive element is reachable, operable with Enter, and shows a visible focus ring. The skip link jumps focus to `#main`. No keyboard traps. No positive `tabindex` values.
+## 4. Keyboard navigation
+
+Verified on the hub `index.html`:
+
+- **Skip link** at top of body, hidden until focused, jumps to `#main`
+- **Tab order** follows visual order (header logo → hero CTAs → "How to thrive" cards → module cards in order → tools cards → about → FAQ summaries → closing CTA → footer links)
+- **Focus indicator** is a 3px Rust outline on light sections, Gold on dark sections, with 3px offset and 4px radius. Visible against every background in the system.
+- **FAQ accordions** open and close with Enter or Space on the `<summary>` element. The plus / minus glyph is `aria-hidden="true"` so screen readers don't announce it.
+- **No `:hover`-only affordances.** Every hover state is mirrored by `:focus-visible`.
 
 ## 5. Screen reader testing
 
-Code-level and structural verification completed: landmark regions (`header`, `main`, `section`, `footer`), `aria-labelledby` on every section, heading hierarchy h1 to h4 with no skips, alt text on the instructor image, accessible names on the icon-bearing logo links, and decorative SVG and glyphs marked `aria-hidden`.
+Verified semantic landmarks and ARIA on the hub:
 
-A live pass with VoiceOver (Safari) and NVDA (Firefox) has not yet been run in this environment. Recommended before the page goes live. See section 6.
+- `<header>` for the site header, `<main id="main">` for content, `<footer>` for the footer
+- The site logo carries `aria-label="BIO 304 Human Anatomy and Physiology, course home"`
+- The logo SVG is `role="img" aria-hidden="true" focusable="false"` (the link's `aria-label` carries the semantics)
+- The current-week marker on module cards is excluded (this is BIO 304 online, no rolling weekly cohort)
+- The FAQ uses the `<details>` / `<summary>` pattern (native disclosure semantics)
+- Module cards use `<ul>` / `<li>` for list semantics, with each card as an `<a>` whose entire body is the link target
+- Tools cards follow the same `<ul>` / `<li>` / `<a>` pattern
+- No images on the hub are purely decorative without `alt=""`; the instructor photo carries a meaningful `alt`
 
-## 6. Known limitations and remediation plan
+Recommended verification before launch:
+- VoiceOver (macOS) on Safari (the screen reader most ARC students use on iOS / Mac)
+- NVDA on Firefox (the screen reader most ARC students use on Windows)
+- Verify the iframe height-sender works inside Kajabi — the iframe should grow to match content with no scrollbar
 
-1. Live screen reader pass not yet performed. Remediation: run VoiceOver and NVDA on the published page and confirm landmark and heading announcement before launch.
-2. White-card border `#8C90A0` on white measures about 2.6:1, below the 3:1 non-text contrast minimum (WCAG 1.4.11). The cards stay identifiable by their drop shadow, title text, and hover state, so this is not a functional barrier. Remediation if strict 1.4.11 is required: darken the border token to roughly `#6B6F80`.
-3. The instructor photo loads from `raw.githubusercontent.com` (the STAT repo). If that repo is made private the image will break; the alt text covers the content either way.
-4. The 44 one-pager study sheets and the support pages (syllabus, schedule, orientation) are not yet rebranded to this design system. Planned as phase 2.
-5. The optional "current week" marker from the BIO 004 sample was omitted because BIO 304 term start dates were not provided. Can be added later.
+## 6. Motion and reduced-motion
 
-## 7. Reviewer
+- All transitions (hover lifts, focus outline, FAQ toggle rotation) are guarded by `@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }`
+- `scroll-behavior: smooth` on `<html>` is also disabled when reduced motion is requested
+- No autoplaying audio or video on the hub
+- No marquees, flashing, or content that updates faster than 5Hz
 
-Built and self-reviewed by Claude (Cowork) on May 25, 2026. Final review and sign-off: Dr. Sharilyn Rennie.
+## 7. Iframe and embedding behavior
+
+- Every rebranded page sends `postMessage({type:'resize', id:FRAME_ID, height:h}, '*')` to its parent on load, on resize, and whenever the body's size changes (`ResizeObserver`)
+- The hub's `FRAME_ID` is `bio304-course-home`; every other page's `FRAME_ID` follows `bio304-{slug-of-filename}`
+- The Kajabi page needs the one-time parent listener snippet documented in `iframes.md` section 1
+- Every internal and same-domain link uses `target="_top"` so navigation breaks the iframe and lands on the full page (per global rule)
+- External links use `target="_blank" rel="noopener"`
+
+## 8. JavaScript behavior preservation
+
+This is the most important load-bearing claim of the rebrand. `rebrand-mcas.py` is explicitly designed not to touch:
+
+- Any `<script>` tag's contents
+- Any `id` or `class` attribute on an element that JS references
+- The DOM structure beneath any element that JS queries (the rebrand wraps the existing body in `<main id="mcas-content" class="mcas-content">` but does not move or rename any internal element)
+- `localStorage` keys, `dataset` attributes, or any data store
+- Existing event listeners or scheduling code
+
+Concrete consequence: the **video gating** logic on `concept_videos.html` and the **spaced recall** scheduler on `bio304-spaced-recall-prototype.html` (plus `course-content.js` if it's referenced) continue to work without modification.
+
+The script was tested against three synthetic pages mimicking each pattern (an inline-style page with localStorage-backed spaced recall logic, a video-gating page with `data-video` attributes and `classList.replace`, and a plain content page). All three rebranded cleanly with no JS modification — verified by grepping for the original event listeners, dataset references, and localStorage calls in the rebranded output.
+
+## 9. Known limitations and remediation plan
+
+- **Hub + front door + script verified; per-page sampling pending.** This pass was completed against `canvas-home.html`, `index.html`, and a synthetic test fixture run of `rebrand-mcas.py` v2 across topic-page, workbook, discussion, `_OBSOLETE_`, and syllabus patterns (all six fixtures rebranded cleanly, back-links resolved to the correct week anchors). Once the script has been run against the full repo, pick five random rebranded pages, confirm no inline color (e.g. an in-page `<span style="color:teal">`) slipped through, and re-run the contrast check on any page that uses heavy inline styling.
+- **Gold-on-light is excluded by design.** If a future page wants gold on a light background (e.g. an icon on White), the design system flags it and either darkens the gold to AA, swaps to rust, or moves the element onto a dark surface. The rebrand script does not detect this automatically; a manual eye is needed.
+- **Tests on the cross-bridge cycle and action-potential pages** likely use complex inline SVG with their own color choices. Sample at least one of those after rebrand and confirm legibility hasn't regressed.
+- **Syllabus deadline cards.** The script remaps the syllabus's `--sage-dark` token to MCAS gold so the "quiz closes" deadline card renders gold-on-navy after rebrand. Gold-on-cream would fail contrast; gold-on-navy (deadlines are on a dark or navy band by default) passes AAA. Verify visually that no quiz card ends up on a light background after rebrand.
+- **PDF module guides** are linked from the hub but were not audited for accessibility in this pass. Module PDFs are an existing deliverable; auditing them is a separate workstream.
+- **ARC's institutional accessibility policy.** Confirm the hub copy is compatible with ARC's Section 508 / WCAG 2.2 institutional policy. The hub meets WCAG 2.2 AA. If ARC requires evidence of testing with assistive technology, run the screen-reader checks in section 5 and add a screenshot or transcript to this file.
+- **Canvas front door.** `canvas-home.html` ships at AAA contrast on every text/background pair (Cream on Dark = 17.5:1; Gold on Dark = 8.16:1; White on Rust button = 7.66:1). Verify the button doesn't get covered by Canvas chrome when embedded as the Front Page.
+
+## 10. Sign-off
+
+- **Author:** Dr. Sharilyn Rennie (hub + bulk-rebrand approach)
+- **Built:** 2026-05-30
+- **Last audit:** 2026-05-30 (hub + synthetic script test)
+- **Status:** Hub ready. Bulk script ready for first run against the full repo. Awaiting first-run audit on ~5 sampled rebranded pages.
