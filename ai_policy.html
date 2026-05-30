@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Policy &middot; BIO 304 &middot; American River College</title>
+<meta name="description" content="The AI use policy for BIO 304: what is allowed, what is not, how detection works, and why the policy exists.">
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+
+/* ============================================================
+   BIO 304  ·  AI POLICY (explainer)
+   MCAS palette · No bookend borders · Hover-lifted cards
+   ============================================================ */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-size: 16px; line-height: 1.65; }
+body {
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: #FFFFFF;
+  color: #0B1530;
+}
+img { max-width: 100%; display: block; }
+a { color: #8B3A2E; }
+a:hover { color: #A0452F; }
+a:focus-visible {
+  outline: 3px solid #8B3A2E; outline-offset: 3px; border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute; top: -100px; left: 8px;
+  background: #0B1530; color: #F5F1E8;
+  padding: 12px 20px; text-decoration: none;
+  font-size: 13px; font-weight: 700;
+  border-radius: 4px; z-index: 9999; letter-spacing: 0.04em;
+}
+.skip-link:focus { top: 8px; }
+
+.site-header {
+  background: #FFFFFF;
+  padding: 24px max(40px, 5vw);
+}
+.header-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.brand { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; color: #0B1530; }
+.brand svg { height: 44px; width: auto; display: block; }
+.brand-title { font-size: 18px; font-weight: 800; line-height: 1; letter-spacing: -0.015em; }
+.brand-title .accent { color: #8B3A2E; }
+.brand-sub {
+  font-size: 9.5px; font-weight: 700; letter-spacing: 0.20em;
+  text-transform: uppercase; color: #0B1530; opacity: 0.72;
+  display: block; margin-top: 3px;
+}
+.back-link {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #8B3A2E;
+  text-decoration: none; padding: 8px 14px;
+  border: 1px solid #8B3A2E; border-radius: 4px;
+  transition: background 200ms ease, color 200ms ease;
+}
+.back-link:hover, .back-link:focus-visible {
+  background: #8B3A2E; color: #FFFFFF;
+}
+
+.hero {
+  background: #F5F1E8;
+  padding: 64px max(40px, 5vw) 56px;
+}
+.hero-inner { max-width: 820px; }
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; color: #8B3A2E;
+  letter-spacing: 0.28em; text-transform: uppercase; margin: 0 0 18px;
+}
+.hero-headline {
+  font-size: clamp(32px, 4.5vw, 44px);
+  font-weight: 800; color: #0B1530;
+  letter-spacing: -0.025em; line-height: 1.08; margin: 0 0 18px;
+}
+.hero-headline .accent { color: #8B3A2E; }
+.hero-subhead {
+  font-size: 16px; color: #0B1530; opacity: 0.88;
+  line-height: 1.6; margin: 0 0 24px; max-width: 640px;
+}
+.hero-cta {
+  background: #8B3A2E; color: #FFFFFF;
+  padding: 14px 26px; border-radius: 4px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; display: inline-flex;
+  align-items: center; gap: 10px;
+  transition: background 200ms ease;
+}
+.hero-cta:hover, .hero-cta:focus-visible { background: #A0452F; color: #FFFFFF; }
+
+main { padding: 56px max(40px, 5vw); max-width: 1080px; margin: 0 auto; }
+
+.section + .section { margin-top: 48px; }
+.section-eyebrow {
+  font-size: 11px; font-weight: 700; color: #8B3A2E;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  margin: 0 0 14px;
+}
+.section-headline {
+  font-size: 26px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.02em; line-height: 1.15;
+  margin: 0 0 16px; max-width: 720px;
+}
+.section-intro {
+  font-size: 15px; color: #0B1530; opacity: 0.86;
+  line-height: 1.65; max-width: 720px; margin: 0 0 28px;
+}
+
+.split {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+@media (max-width: 720px) { .split { grid-template-columns: 1fr; } }
+
+.card {
+  background: #FFFFFF;
+  border: 1px solid rgba(11, 21, 48, 0.14);
+  border-radius: 8px;
+  padding: 22px 22px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(11, 21, 48, 0.10);
+  border-color: rgba(11, 21, 48, 0.22);
+}
+.card.allowed { border-left: 4px solid #C9A14A; }
+.card.banned  { border-left: 4px solid #8B3A2E; }
+.card h3 {
+  font-size: 17px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.015em; margin: 0 0 10px;
+}
+.card p, .card li {
+  font-size: 14.5px; color: #0B1530; line-height: 1.6;
+}
+.card ul { padding-left: 22px; margin: 6px 0 0; }
+.card li { margin: 4px 0; }
+.card-eyebrow {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  margin: 0 0 8px;
+}
+.card.allowed .card-eyebrow { color: #C9A14A; }
+.card.banned  .card-eyebrow { color: #8B3A2E; }
+
+.callout {
+  background: #060A18;
+  color: #F5F1E8;
+  padding: 36px 32px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.callout:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(11, 21, 48, 0.18);
+}
+.callout .callout-eyebrow {
+  font-size: 11px; font-weight: 700; color: #C9A14A;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  margin: 0 0 14px;
+}
+.callout h3 {
+  font-size: 22px; font-weight: 800; color: #F5F1E8;
+  letter-spacing: -0.02em; margin: 0 0 12px;
+}
+.callout p {
+  font-size: 15px; color: #F5F1E8; opacity: 0.92;
+  line-height: 1.65; margin: 0 0 12px;
+}
+.callout p:last-child { margin-bottom: 0; }
+.callout strong { color: #C9A14A; }
+
+.detection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.detect-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(11, 21, 48, 0.14);
+  border-radius: 8px;
+  padding: 22px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+.detect-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(11, 21, 48, 0.10);
+  border-color: rgba(11, 21, 48, 0.22);
+}
+.detect-card h3 {
+  font-size: 15px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.015em; margin: 0 0 8px;
+}
+.detect-card p {
+  font-size: 13.5px; color: #0B1530; opacity: 0.86;
+  line-height: 1.55; margin: 0;
+}
+
+.next-step {
+  background: #F5F1E8;
+  padding: 40px 32px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.next-step:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(11, 21, 48, 0.10);
+}
+.next-step-text { flex: 1; min-width: 280px; }
+.next-step h3 {
+  font-size: 20px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.02em; margin: 0 0 6px;
+}
+.next-step p {
+  font-size: 14.5px; color: #0B1530; opacity: 0.88;
+  margin: 0; line-height: 1.55;
+}
+.next-step-cta {
+  background: #8B3A2E; color: #FFFFFF;
+  padding: 14px 26px; border-radius: 4px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; display: inline-flex;
+  align-items: center; gap: 10px;
+  white-space: nowrap;
+  transition: background 200ms ease;
+}
+.next-step-cta:hover, .next-step-cta:focus-visible { background: #A0452F; color: #FFFFFF; }
+
+.foot {
+  background: #060A18;
+  color: #F5F1E8;
+  padding: 36px max(40px, 5vw) 24px;
+  margin-top: 56px;
+}
+.foot-links { display: flex; gap: 26px; flex-wrap: wrap; }
+.foot-links a {
+  color: #F5F1E8; opacity: 0.86;
+  font-size: 13px; font-weight: 500;
+  text-decoration: none;
+}
+.foot-links a:hover, .foot-links a:focus-visible {
+  color: #C9A14A; opacity: 1; text-decoration: underline; text-underline-offset: 4px;
+}
+.foot-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px; padding-top: 32px; margin-top: 24px;
+}
+.foot-copy {
+  font-size: 11px; color: #F5F1E8;
+  opacity: 0.72; letter-spacing: 0.03em;
+}
+.foot-byline {
+  font-size: 11px; font-weight: 700; color: #C9A14A;
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="header-row">
+    <a class="brand" href="index.html" target="_top" aria-label="BIO 304 course home">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/></g>
+          <g transform="translate(100, 0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
+          <g transform="translate(140, 0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+        </g>
+      </svg>
+      <span>
+        <span class="brand-title">Human <span class="accent">A&amp;P</span></span>
+        <span class="brand-sub">BIO 304 &middot; American River College</span>
+      </span>
+    </a>
+    <a class="back-link" href="index.html" target="_top">&larr; Course home</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">BIO 304 &middot; AI Use Policy</p>
+    <h1 class="hero-headline">AI is a <span class="accent">study tool</span>. It is not your ghostwriter.</h1>
+    <p class="hero-subhead">You are training for a career where integrity has direct consequences for human lives. The habits you build now are the habits you carry into clinical practice. This page lays out exactly what AI use is allowed in BIO 304, what is not, and how the difference is detected. When you have read it, sign the AI Honor Contract.</p>
+    <a class="hero-cta" href="ai_honor_contract.html" target="_top">Open the AI Honor Contract <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</div>
+
+<main id="main">
+
+<section class="section">
+  <p class="section-eyebrow">The standard</p>
+  <h2 class="section-headline">All submitted work must be your own.</h2>
+  <p class="section-intro">Academic dishonesty in this course includes copying answers, sharing quiz questions, submitting AI-generated content as your own, plagiarizing text or images, and using unauthorized references during a proctored exam. The full ARC student conduct policy is the institutional standard. This page is how that standard applies to AI in BIO 304.</p>
+</section>
+
+<section class="section">
+  <p class="section-eyebrow">What's allowed and what's not</p>
+  <h2 class="section-headline">AI is a study tool. It is not a substitute for the work.</h2>
+  <div class="split">
+    <div class="card allowed">
+      <p class="card-eyebrow">Allowed</p>
+      <h3>AI as a study tool</h3>
+      <p>Use AI <em>after</em> you have done your own work to:</p>
+      <ul>
+        <li>Clarify concepts that didn't click in the reading or video</li>
+        <li>Quiz yourself with practice questions</li>
+        <li>Organize your own thinking before you write</li>
+        <li>Check your reasoning against an explanation you generated</li>
+        <li>Generate practice scenarios for your own study</li>
+      </ul>
+    </div>
+    <div class="card banned">
+      <p class="card-eyebrow">Not allowed</p>
+      <h3>AI as a ghostwriter</h3>
+      <p>Do not use AI to produce:</p>
+      <ul>
+        <li>Lab workbook drawings</li>
+        <li>Discussion posts or replies</li>
+        <li>Synthesis answers on lab workbooks</li>
+        <li>Clinical portfolio content</li>
+        <li>Any quiz answer (Honorlock treats this as a violation automatically)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="callout">
+    <p class="callout-eyebrow">Why the policy is this strict</p>
+    <h3>Allied health work runs on what's actually in your head.</h3>
+    <p>BIO 304 prepares students for nursing, EMT, paramedic, dental hygiene, respiratory therapy, surgical tech, and mortuary science. In every one of those careers, what you can recall and reason through on the spot is the safety system. There is no AI between you and the patient at 2 a.m. <strong>Building the habit of doing your own thinking now is the point of the course.</strong></p>
+    <p>AI is not bad. AI used to replace the work just deprives you of the practice that builds the recall you will need later.</p>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-eyebrow">How AI use is detected</p>
+  <h2 class="section-headline">The hand-labeled workbook is the primary mechanism.</h2>
+  <p class="section-intro">AI-generated content has predictable signatures: uniform style, certain phrasing patterns, factual hallucinations that conflict with the textbook, and structures that do not match the prompt. The course design exploits this on purpose.</p>
+  <div class="detection-grid">
+    <div class="detect-card">
+      <h3>Handwriting requirement</h3>
+      <p>Lab workbooks are submitted as scanned PDFs of hand-labeled diagrams and handwritten synthesis answers. A digital workbook with no handwriting and no revision history is treated as AI-generated by default.</p>
+    </div>
+    <div class="detect-card">
+      <h3>Style signatures</h3>
+      <p>Uniform sentence rhythm, the same hedging phrases across students, and structures that don't match the actual prompt are all signals. Real student writing has individual fingerprints.</p>
+    </div>
+    <div class="detect-card">
+      <h3>Hallucination checks</h3>
+      <p>When AI invents an anatomical structure or a physiological mechanism that doesn't exist in OpenStax 2e, that's a tell. The textbook is the truth source.</p>
+    </div>
+    <div class="detect-card">
+      <h3>Honorlock on quizzes</h3>
+      <p>Quizzes are proctored. Honorlock treats any AI use during a quiz as a violation automatically. There is no "but I was just looking something up" interpretation.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-eyebrow">What happens if the policy is broken</p>
+  <h2 class="section-headline">First instance, second instance, course-level consequences.</h2>
+  <p class="section-intro">The escalation follows ARC's student conduct procedures. For specifics, see the official ARC student conduct page linked from the syllabus. In this course, the practical path is: first violation gets a zero on the assignment plus a documented conversation with me; second violation goes to the dean of students; quiz violations through Honorlock follow Honorlock's own escalation regardless of severity.</p>
+</section>
+
+<section class="section">
+  <div class="next-step">
+    <div class="next-step-text">
+      <h3>You've read the policy. Now sign the contract.</h3>
+      <p>Every student signs the AI Honor Contract in Week 1. Due Tuesday, June 9, 2026.</p>
+    </div>
+    <a class="next-step-cta" href="ai_honor_contract.html" target="_top">Open the contract <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-links">
+    <a href="index.html" target="_top">Course home</a>
+    <a href="biol304_syllabus.html" target="_top">Syllabus</a>
+    <a href="ai_honor_contract.html" target="_top">AI Honor Contract</a>
+    <a href="integrity.html" target="_top">Full integrity policy</a>
+    <a href="biol304_how_to_reach_me.html" target="_top">How to reach me</a>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-copy">BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Summer 2026</div>
+    <div class="foot-byline">Dr. Sharilyn Rennie</div>
+  </div>
+</footer>
+
+<script>
+  /* iframe height-sender */
+  (function () {
+    var FRAME_ID = 'bio304-ai-policy';
+    function sendHeight() {
+      var h = Math.max(
+        document.documentElement.scrollHeight,
+        document.body ? document.body.scrollHeight : 0
+      );
+      parent.postMessage({ type: 'resize', id: FRAME_ID, height: h }, '*');
+    }
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    if (window.ResizeObserver) new ResizeObserver(sendHeight).observe(document.body);
+  })();
+</script>
+</body>
+</html>

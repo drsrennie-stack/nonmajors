@@ -127,18 +127,18 @@ a:focus-visible, button:focus-visible {
 .cta-secondary {
   color: #F5F1E8; font-size: 11px; font-weight: 700;
   letter-spacing: 0.18em; text-transform: uppercase;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(245, 241, 232, 0.45);
-  padding-bottom: 6px;
+  text-decoration: underline; text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(245, 241, 232, 0.45);
+  padding-bottom: 2px;
 }
-.cta-secondary:hover { color: #C9A14A; border-bottom-color: #C9A14A; }
+.cta-secondary:hover { color: #C9A14A; text-decoration-color: #C9A14A; }
 
 /* ===== AT-A-GLANCE STRIP ===== */
+/* No bookend top border — generous margin separates from CTA */
 .glance {
-  margin: 70px auto 0;
+  margin: 80px auto 0;
   max-width: 880px;
-  border-top: 1px solid rgba(245, 241, 232, 0.16);
-  padding-top: 36px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
@@ -156,10 +156,9 @@ a:focus-visible, button:focus-visible {
 }
 
 /* ===== QUICK LINKS ===== */
+/* No bookend top border — generous margin separates from glance */
 .quick {
-  margin: 36px auto 0; max-width: 880px;
-  border-top: 1px solid rgba(245, 241, 232, 0.16);
-  padding-top: 28px;
+  margin: 56px auto 0; max-width: 880px;
   display: flex; gap: 28px; flex-wrap: wrap;
   justify-content: center;
 }
@@ -175,11 +174,11 @@ a:focus-visible, button:focus-visible {
 }
 
 /* ===== FOOTER ===== */
+/* No bookend top border — generous padding-top separates from hero */
 .foot {
-  padding: 24px max(40px, 5vw) 28px;
+  padding: 36px max(40px, 5vw) 28px;
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 10px;
-  border-top: 1px solid rgba(245, 241, 232, 0.10);
 }
 .foot-copyright {
   font-size: 11px; color: #F5F1E8;

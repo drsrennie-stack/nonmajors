@@ -1,240 +1,472 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BIO 304 . AI Use and Academic Integrity Contract</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Honor Contract &middot; BIO 304 &middot; American River College</title>
+<meta name="description" content="The BIO 304 AI Honor Contract. Read it, complete it, submit by Tuesday, June 9, 2026.">
 <style>
-:root{--navy:#1E3D4C;--navy-deep:#142A36;--navy-tint:#EDF1F3;--gold:#B8924A;--gold-deep:#9A7838;--terra:#C2734D;--terra-dark:#A0522D;--sage-dark:#4F6B57;--sage-deeper:#3F5B47;--white:#FFFFFF;--off-white:#FAFAF9;--gray-line:#CFD6DA;--gray-soft:#5C6970;--shadow-rest:0 1px 3px rgba(0,0,0,.08)}
-*{box-sizing:border-box}
-body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.65;font-size:17px}
-.skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600}
-.skip-link:focus{left:0}
-:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-header.page-head{background:var(--white);border-bottom:1px solid var(--gray-line);padding:32px 40px 26px}
-.eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 8px}
-h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,38px);color:var(--navy);margin:0 0 6px;letter-spacing:-.01em}
-.subhead{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:clamp(17px,1.8vw,20px);color:var(--terra-dark);margin:0 0 8px}
-.usage{font-style:italic;color:var(--gray-soft);font-size:16px;margin:6px 0 0;max-width:90ch;line-height:1.55}
-main{max-width:1180px;margin:0 auto;padding:28px 32px 40px}
-.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 20px;align-items:center}
-.btn{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;font-size:15px;padding:11px 20px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block;line-height:1.2}
-.btn-primary{background:var(--navy);color:var(--white);border-color:var(--navy)}
-.btn-primary:hover{background:var(--navy-deep)}
-.btn-ghost{background:transparent;color:var(--navy);border-color:var(--gray-line)}
-.btn-ghost:hover{background:var(--navy-tint);border-color:var(--navy)}
-.steps-bar{background:var(--white);border:1px solid var(--gray-line);border-left:5px solid var(--terra-dark);border-radius:8px;padding:16px 22px;margin:0 0 20px;box-shadow:var(--shadow-rest)}
-.steps-bar p{margin:0 0 8px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;color:var(--navy);font-size:15px;letter-spacing:.02em}
-.steps-bar ol{margin:0;padding-left:24px}
-.steps-bar li{margin:6px 0;font-size:16px}
-section.band{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:26px 30px;margin:0 0 18px;box-shadow:var(--shadow-rest)}
-section.band h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:23px;margin:0 0 10px}
-section.band h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--terra-dark);font-size:18px;margin:20px 0 8px}
-section.band p{margin:0 0 12px;font-size:16px}
-section.band ul,section.band ol{padding-left:24px;margin:10px 0}
-section.band li{margin:8px 0;font-size:16px;line-height:1.55}
-section.band.transparency{border-left:5px solid var(--sage-dark);background:#F4F7F4}
-section.band.transparency h2{color:var(--sage-deeper)}
-section.band.agreement{border-left:5px solid var(--terra-dark)}
-.metabar{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:0 0 16px;padding:18px 20px;background:var(--off-white);border:1px solid var(--gray-line);border-radius:8px}
-.metabar .pair{display:flex;flex-direction:column;gap:3px}
-.metabar .lbl{font-family:'DM Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark)}
-.metabar .val{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:var(--navy);font-size:17px}
-.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:16px 0 8px}
-.form-grid label{display:flex;flex-direction:column;gap:5px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark)}
-.form-grid input,.form-grid textarea{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;color:var(--navy);padding:11px 14px;border:1px solid var(--gray-line);border-radius:6px;background:var(--white);min-height:44px}
-.form-grid input:focus,.form-grid textarea:focus{outline:3px solid var(--gold);outline-offset:1px;border-color:var(--navy)}
-textarea{width:100%;resize:vertical;min-height:140px;font-family:'Lora',Georgia,serif;font-size:17px;color:var(--navy);padding:12px 14px;border:1px solid var(--gray-line);border-radius:6px;background:var(--white);line-height:1.55}
-textarea:focus{outline:3px solid var(--gold);outline-offset:1px;border-color:var(--navy)}
-label.full{grid-column:1/-1}
-.signature-row{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:16px}
-@media (max-width: 540px){.signature-row{grid-template-columns:1fr}}
-.signature-line{font-family:'Plus Jakarta Sans',sans-serif;font-style:italic;color:var(--gray-soft);font-size:14px;margin-top:5px}
-.note{background:var(--navy-tint);border-left:4px solid var(--navy);padding:14px 18px;border-radius:6px;margin:12px 0;font-size:16px}
-.note strong{color:var(--navy-deep)}
-footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;font-size:13px}
-@media print{
-  body{background:var(--white);color:#000;font-size:11pt;line-height:1.45}
-  .no-print{display:none!important}
-  header.page-head,main,section.band,.metabar,.steps-bar{box-shadow:none;border-color:#888}
-  section.band{page-break-inside:avoid;padding:14px 16px}
-  h1,h2,h3{color:#000}
-  .form-grid input,textarea,.signature-row input{border:none;border-bottom:1px solid #555;background:transparent;color:#000;padding:2px 0;border-radius:0}
-  .form-grid input:focus,textarea:focus{outline:none}
-  .signature-line{color:#555}
-  .steps-bar,section.band.transparency.no-print{display:none}
-  a{color:#000;text-decoration:underline}
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+
+/* ============================================================
+   BIO 304  ·  AI HONOR CONTRACT (signed agreement)
+   MCAS palette · No bookend borders · Hover-lifted cards
+   ============================================================ */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-size: 16px; line-height: 1.65; }
+body {
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: #FFFFFF;
+  color: #0B1530;
+}
+img { max-width: 100%; display: block; }
+a { color: #8B3A2E; }
+a:hover { color: #A0452F; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid #8B3A2E; outline-offset: 3px; border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute; top: -100px; left: 8px;
+  background: #0B1530; color: #F5F1E8;
+  padding: 12px 20px; text-decoration: none;
+  font-size: 13px; font-weight: 700;
+  border-radius: 4px; z-index: 9999; letter-spacing: 0.04em;
+}
+.skip-link:focus { top: 8px; }
+
+.site-header {
+  background: #FFFFFF;
+  padding: 24px max(40px, 5vw);
+}
+.header-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.brand { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; color: #0B1530; }
+.brand svg { height: 44px; width: auto; display: block; }
+.brand-title { font-size: 18px; font-weight: 800; line-height: 1; letter-spacing: -0.015em; }
+.brand-title .accent { color: #8B3A2E; }
+.brand-sub {
+  font-size: 9.5px; font-weight: 700; letter-spacing: 0.20em;
+  text-transform: uppercase; color: #0B1530; opacity: 0.72;
+  display: block; margin-top: 3px;
+}
+.back-link {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #8B3A2E;
+  text-decoration: none; padding: 8px 14px;
+  border: 1px solid #8B3A2E; border-radius: 4px;
+  transition: background 200ms ease, color 200ms ease;
+}
+.back-link:hover, .back-link:focus-visible {
+  background: #8B3A2E; color: #FFFFFF;
+}
+
+.hero {
+  background: #060A18;
+  color: #F5F1E8;
+  padding: 64px max(40px, 5vw) 56px;
+}
+.hero-inner { max-width: 820px; }
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; color: #C9A14A;
+  letter-spacing: 0.28em; text-transform: uppercase; margin: 0 0 18px;
+}
+.hero-headline {
+  font-size: clamp(32px, 4.5vw, 44px);
+  font-weight: 800; color: #F5F1E8;
+  letter-spacing: -0.025em; line-height: 1.08; margin: 0 0 18px;
+}
+.hero-headline .accent { color: #C9A14A; }
+.hero-subhead {
+  font-size: 16px; color: #F5F1E8; opacity: 0.92;
+  line-height: 1.6; margin: 0; max-width: 640px;
+}
+.due-chip {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #C9A14A; color: #0B1530;
+  padding: 8px 16px; border-radius: 999px;
+  font-size: 11px; font-weight: 800;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  margin-top: 24px;
+}
+
+main { padding: 56px max(40px, 5vw); max-width: 880px; margin: 0 auto; }
+
+.section + .section { margin-top: 40px; }
+.section-eyebrow {
+  font-size: 11px; font-weight: 700; color: #8B3A2E;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  margin: 0 0 14px;
+}
+.section-headline {
+  font-size: 24px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.02em; line-height: 1.18;
+  margin: 0 0 14px;
+}
+.section-body p {
+  font-size: 15px; color: #0B1530; opacity: 0.92;
+  line-height: 1.7; margin: 0 0 12px;
+}
+
+.preamble {
+  background: #F5F1E8;
+  padding: 28px 28px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.preamble:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(11, 21, 48, 0.10);
+}
+.preamble p {
+  font-size: 15px; color: #0B1530; line-height: 1.7;
+  margin: 0 0 12px;
+}
+.preamble p:last-child { margin: 0; }
+
+.pledge-list {
+  list-style: none; counter-reset: pledge;
+  padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.pledge {
+  background: #FFFFFF;
+  border: 1px solid rgba(11, 21, 48, 0.14);
+  border-radius: 8px;
+  padding: 22px 24px 22px 80px;
+  position: relative;
+  counter-increment: pledge;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+.pledge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(11, 21, 48, 0.10);
+  border-color: #8B3A2E;
+}
+.pledge::before {
+  content: counter(pledge, decimal-leading-zero);
+  position: absolute;
+  left: 22px; top: 20px;
+  font-size: 28px; font-weight: 800; color: #8B3A2E;
+  letter-spacing: -0.02em; line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.pledge h3 {
+  font-size: 16px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.015em; margin: 0 0 6px;
+}
+.pledge p {
+  font-size: 14px; color: #0B1530; opacity: 0.88;
+  line-height: 1.55; margin: 0;
+}
+
+.consequences {
+  background: #FFFFFF;
+  border: 1px solid rgba(139, 58, 46, 0.4);
+  border-left: 4px solid #8B3A2E;
+  border-radius: 8px;
+  padding: 24px 26px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.consequences:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(11, 21, 48, 0.10);
+}
+.consequences h3 {
+  font-size: 16px; font-weight: 800; color: #8B3A2E;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin: 0 0 12px;
+}
+.consequences ul { padding-left: 22px; margin: 0; }
+.consequences li {
+  font-size: 14.5px; color: #0B1530; line-height: 1.6;
+  margin: 5px 0;
+}
+
+.signature {
+  background: #F5F1E8;
+  padding: 32px 28px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.signature:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(11, 21, 48, 0.10);
+}
+.signature h3 {
+  font-size: 20px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.02em; margin: 0 0 8px;
+}
+.signature .lead {
+  font-size: 14.5px; color: #0B1530; opacity: 0.88;
+  line-height: 1.6; margin: 0 0 22px;
+}
+.field-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 560px) { .field-grid { grid-template-columns: 1fr; } }
+.field-grid .full { grid-column: 1 / -1; }
+.field {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.field label {
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: #8B3A2E;
+}
+.field input, .field textarea {
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 15px; color: #0B1530;
+  background: #FFFFFF;
+  border: 1px solid rgba(11, 21, 48, 0.20);
+  border-radius: 6px;
+  padding: 10px 12px;
+  box-shadow: 0 1px 2px rgba(11, 21, 48, 0.04);
+}
+.field textarea { min-height: 100px; line-height: 1.55; resize: vertical; }
+.field input:focus-visible, .field textarea:focus-visible {
+  border-color: #8B3A2E;
+}
+.checkbox-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: #FFFFFF; border: 1px solid rgba(11, 21, 48, 0.20);
+  border-radius: 6px; padding: 14px 16px;
+}
+.checkbox-row input {
+  margin-top: 3px; width: 18px; height: 18px;
+  accent-color: #8B3A2E;
+  flex-shrink: 0;
+}
+.checkbox-row label {
+  font-size: 14px; color: #0B1530; line-height: 1.5;
+}
+.submit-row {
+  margin-top: 22px;
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+}
+.submit-btn {
+  background: #8B3A2E; color: #FFFFFF;
+  padding: 14px 28px; border-radius: 4px;
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  border: 0; cursor: pointer;
+  transition: background 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  box-shadow: 0 4px 12px rgba(139, 58, 46, 0.28);
+}
+.submit-btn:hover, .submit-btn:focus-visible {
+  background: #A0452F;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(139, 58, 46, 0.34);
+}
+.submit-note {
+  font-size: 13px; color: #0B1530; opacity: 0.78; font-style: italic;
+}
+
+.foot {
+  background: #060A18;
+  color: #F5F1E8;
+  padding: 36px max(40px, 5vw) 24px;
+  margin-top: 56px;
+}
+.foot-links { display: flex; gap: 26px; flex-wrap: wrap; }
+.foot-links a {
+  color: #F5F1E8; opacity: 0.86;
+  font-size: 13px; font-weight: 500;
+  text-decoration: none;
+}
+.foot-links a:hover, .foot-links a:focus-visible {
+  color: #C9A14A; opacity: 1; text-decoration: underline; text-underline-offset: 4px;
+}
+.foot-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px; padding-top: 32px; margin-top: 24px;
+}
+.foot-copy {
+  font-size: 11px; color: #F5F1E8;
+  opacity: 0.72; letter-spacing: 0.03em;
+}
+.foot-byline {
+  font-size: 11px; font-weight: 700; color: #C9A14A;
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
+
+@media print {
+  .back-link, .foot, .submit-row { display: none !important; }
+  body { background: #FFFFFF; }
+  .hero { background: #FFFFFF; color: #0B1530; }
+  .hero-headline, .hero-subhead, .hero-eyebrow, .due-chip { color: #0B1530 !important; }
+  .pledge, .consequences, .signature, .preamble {
+    box-shadow: none; page-break-inside: avoid;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
 }
 </style>
 </head>
 <body>
-<a href="#main" class="skip-link">Skip to main content</a>
-<header class="page-head">
-  <p class="eyebrow">BIO 304 . MODULE 0 . AI HONOR CONTRACT</p>
-  <h1>AI Use and Academic Integrity Contract</h1>
-  <p class="subhead">For Online Anatomy and Physiology Coursework</p>
-  <p class="usage">Sign before Tuesday of Week 1. Fill in your name and statement below, print to PDF, then upload your signed PDF to the AI Honor Contract assignment in Canvas.</p>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="header-row">
+    <a class="brand" href="index.html" target="_top" aria-label="BIO 304 course home">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/></g>
+          <g transform="translate(100, 0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
+          <g transform="translate(140, 0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+        </g>
+      </svg>
+      <span>
+        <span class="brand-title">Human <span class="accent">A&amp;P</span></span>
+        <span class="brand-sub">BIO 304 &middot; American River College</span>
+      </span>
+    </a>
+    <a class="back-link" href="index.html" target="_top">&larr; Course home</a>
+  </div>
 </header>
-<main id="main" tabindex="-1">
 
-  <div class="steps-bar no-print" aria-label="How to complete this contract">
-    <p>How to complete this contract</p>
-    <ol>
-      <li>Read the entire contract below.</li>
-      <li>Fill in your name, date, statement, and typed signature in the form at the bottom.</li>
-      <li>Click <strong>Print / Save as PDF</strong> and save the file as <code>LastName_AI_Honor_Contract.pdf</code>.</li>
-      <li>Upload the PDF to the <strong>AI Honor Contract</strong> assignment in Canvas Module 0.</li>
-    </ol>
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">BIO 304 &middot; AI Honor Contract</p>
+    <h1 class="hero-headline">I will do <span class="accent">my own thinking</span> in this course.</h1>
+    <p class="hero-subhead">This is the agreement you sign before week one begins. It is short on purpose. If you haven't yet read the full policy that explains what AI use is allowed and what is not, do that first, then come back here.</p>
+    <p class="due-chip">Due Tuesday, June 9, 2026</p>
   </div>
+</div>
 
-  <div class="toolbar no-print">
-    <button type="button" class="btn btn-primary" onclick="window.print()" aria-label="Print or save this contract as PDF">Print / Save as PDF</button>
-    <a class="btn btn-ghost" href="ai_transparency_document.html" target="_top">Open the AI Transparency Document &rarr;</a>
+<main id="main">
+
+<section class="section">
+  <div class="preamble">
+    <p><strong>This is a contract between you and your future patients.</strong> The habits you build in this course are the habits you will carry into nursing, EMT, paramedic, dental hygiene, respiratory, surgical tech, or mortuary work. Doing your own thinking now is how you build the recall that keeps people safe later.</p>
+    <p>Read each commitment below. By signing, you agree to all of them for the duration of BIO 304.</p>
   </div>
+</section>
 
-  <div class="metabar" aria-label="Course identification">
-    <div class="pair"><span class="lbl">Course</span><span class="val">BIO 304 . Human Anatomy and Physiology</span></div>
-    <div class="pair"><span class="lbl">Instructor</span><span class="val">Dr. Sharilyn Rennie</span></div>
-    <div class="pair"><span class="lbl">Term</span><span class="val">Summer 2026 . 8-week intensive</span></div>
+<section class="section">
+  <p class="section-eyebrow">My commitments</p>
+  <h2 class="section-headline">For the duration of BIO 304, I will:</h2>
+  <ol class="pledge-list">
+    <li class="pledge">
+      <h3>Do my own thinking on every graded assignment</h3>
+      <p>Lab workbook drawings, synthesis answers, discussion posts and replies, clinical portfolio entries, and quiz answers will be produced by me, from my own reading, viewing, and reasoning.</p>
+    </li>
+    <li class="pledge">
+      <h3>Use AI only after I have done my own work</h3>
+      <p>If I use AI at all, it will be to clarify a concept I'm stuck on, quiz myself, organize my own thinking, or check my reasoning <em>after</em> I have already produced my work. I will not use AI to generate the work itself.</p>
+    </li>
+    <li class="pledge">
+      <h3>Hand-label my lab workbooks</h3>
+      <p>I understand that lab workbooks must be hand-drawn and hand-labeled. A digital workbook with no handwriting and no revision history will be treated as AI-generated by default, and I accept that consequence.</p>
+    </li>
+    <li class="pledge">
+      <h3>Write discussions in my own words</h3>
+      <p>Initial discussion posts and replies will be in my own voice, citing what I have actually read or observed. I will not paste AI-generated text into a discussion thread.</p>
+    </li>
+    <li class="pledge">
+      <h3>Not use AI during a proctored quiz</h3>
+      <p>I understand that Honorlock-proctored quizzes treat any AI use as a violation automatically. I will not have an AI assistant open in another tab, on another device, or in any other form during a quiz.</p>
+    </li>
+    <li class="pledge">
+      <h3>Tell my instructor when I'm stuck instead of outsourcing</h3>
+      <p>When something is hard, the move is to ask Dr. Rennie in the Virtual Office Hours forum or in office hours, not to hand the work to an AI. I will use the channels in the syllabus.</p>
+    </li>
+  </ol>
+</section>
+
+<section class="section">
+  <div class="consequences">
+    <h3>If I break this contract</h3>
+    <ul>
+      <li><strong>First instance:</strong> zero on the assignment plus a documented conversation with Dr. Rennie.</li>
+      <li><strong>Second instance:</strong> the case is referred to the dean of students under ARC student conduct procedures.</li>
+      <li><strong>Honorlock-detected quiz violations</strong> follow Honorlock's escalation regardless of severity and are reported to ARC.</li>
+      <li>I understand that these consequences exist to protect the integrity of my certification and the safety of the patients I will eventually care for.</li>
+    </ul>
   </div>
+</section>
 
-  <section class="band" aria-labelledby="purpose-h">
-    <h2 id="purpose-h">Purpose</h2>
-    <p>As AI tools become increasingly integrated into education, they provide valuable assistance in brainstorming, refining ideas, and improving clarity in academic work. However, AI should enhance <strong>critical thinking, comprehension, and engagement</strong>, not replace them.</p>
-    <p>This contract outlines the acceptable use of AI in this online course and the expectations for submitting AI-assisted work with integrity. Failure to adhere to these guidelines may result in <strong>point deductions, mandatory rewrites, or other academic consequences</strong> at the instructor's discretion.</p>
-  </section>
+<section class="section">
+  <div class="signature">
+    <h3>Sign and submit</h3>
+    <p class="lead">Complete the fields below and submit via Canvas by Tuesday, June 9, 2026 at 11:59 PM. If you are working from a printed copy, sign and date by hand and upload a scan.</p>
 
-  <section class="band" aria-labelledby="acceptable-h">
-    <h2 id="acceptable-h">Acceptable use of AI in this course</h2>
-    <h3>AI tools may be used for:</h3>
-    <ul>
-      <li>Generating ideas and refining arguments <strong>as a starting point</strong>, not a final submission.</li>
-      <li>Clarifying complex physiological concepts through <strong>discussion and explanation</strong>, not copying.</li>
-      <li>Checking for <strong>grammar, spelling, and clarity</strong> in writing.</li>
-      <li>Providing <strong>alternative perspectives</strong> to challenge and enhance your understanding.</li>
-    </ul>
-    <h3>AI tools may NOT be used for:</h3>
-    <ul>
-      <li>Submitting AI-generated responses as your <strong>own original work</strong>.</li>
-      <li>Copying AI-generated answers without <strong>critical analysis</strong>.</li>
-      <li>Using AI to bypass required readings, discussions, or problem-solving.</li>
-      <li>Relying on AI for case study diagnoses, physiological processes, or critical thinking tasks <strong>without verifying accuracy</strong>.</li>
-      <li>Generating workbook labels, drawings, or synthesis answers. Lab workbooks must be hand-labeled.</li>
-      <li>Writing discussion posts or replies in your name.</li>
-      <li>Completing Honorlock-proctored quizzes. AI use during a proctored quiz is automatically a violation.</li>
-    </ul>
-  </section>
-
-  <section class="band" aria-labelledby="expect-h">
-    <h2 id="expect-h">Expectations for AI-generated content submission</h2>
-    <p>To ensure academic integrity, students who use AI in any part of an assignment <strong>where AI use is permitted</strong> must:</p>
-    <ol>
-      <li><strong>Provide full transparency.</strong> Submit a completed AI Transparency Document alongside the assignment. The document lives at <a href="ai_transparency_document.html" target="_top">ai_transparency_document.html</a> and is also linked from the syllabus resources.</li>
-      <li><strong>Use Google Docs or another tool with revision history enabled.</strong> All written assignments where AI is permitted must be submitted with revision history available so I can see how AI-assisted content was refined and how much effort you put into your own learning. Submitting a static final version without revision history may result in point deductions or a requirement to rewrite.</li>
-      <li><strong>Demonstrate critical thinking.</strong> AI responses frequently contain errors, oversimplifications, or outdated information. If you blindly repeat AI-generated mistakes, it suggests a lack of understanding and will be penalized. Any physiological concepts derived from AI must be critically analyzed and verified before inclusion.</li>
-      <li><strong>Cite AI assistance properly.</strong> If AI helped generate specific ideas, acknowledge it (for example: "ChatGPT assisted in brainstorming this explanation, but final analysis and synthesis were my own"). Do not pass AI-generated content off as solely your own work.</li>
-    </ol>
-  </section>
-
-  <section class="band transparency" aria-labelledby="trans-h">
-    <h2 id="trans-h">The AI Transparency Document (review these instructions any time)</h2>
-    <p>When an assignment in this course explicitly permits AI use, you must submit a separate <strong>AI Transparency Document</strong> with your work. The document is a short fillable HTML form you complete, print to PDF, and upload alongside your assignment.</p>
-    <h3>What the AI Transparency Document captures</h3>
-    <ul>
-      <li><strong>Which AI tool you used</strong> (ChatGPT, Claude, Gemini, Perplexity, or other).</li>
-      <li><strong>A link to the AI conversation</strong> (use the share-link feature in your AI tool).</li>
-      <li><strong>Which parts of the assignment AI influenced</strong>, in plain language.</li>
-      <li><strong>A 2 to 3 sentence reflection</strong> on how AI helped you refine your work and where you applied critical thinking beyond AI's suggestions.</li>
-      <li><strong>A statement that you verified accuracy</strong> of any physiological information from AI against the OpenStax textbook or another reliable source.</li>
-      <li><strong>Your typed signature and the date.</strong></li>
-    </ul>
-    <p>Open the fillable transparency document here: <a href="ai_transparency_document.html" target="_top">ai_transparency_document.html</a>. Fill it in, print to PDF, and upload it as a second file when you submit the AI-permitted assignment.</p>
-    <div class="note"><strong>Default rule:</strong> If an assignment does not say AI is permitted, AI is not permitted. Lab workbooks, discussion posts, and proctored quizzes never permit AI.</div>
-  </section>
-
-  <section class="band" aria-labelledby="consequences-h">
-    <h2 id="consequences-h">Consequences for misuse</h2>
-    <p>Violations of this policy carry firm consequences. There is no second-chance grade on an AI-misuse violation.</p>
-    <h3>First confirmed violation</h3>
-    <ul>
-      <li><strong>50% reduction</strong> on the affected assignment.</li>
-      <li>The assignment is <strong>not eligible for revision, rewrite, or any second-chance credit</strong>.</li>
-      <li>The violation is documented in your course file.</li>
-    </ul>
-    <h3>Subsequent confirmed violations</h3>
-    <ul>
-      <li><strong>Zero credit</strong> on the assignment.</li>
-      <li><strong>Referral to the ARC academic standards process.</strong></li>
-      <li>Possible failing grade for the course.</li>
-    </ul>
-    <h3>If you are suspected of AI misuse on any assignment</h3>
-    <ul>
-      <li>You will be <strong>required to complete all subsequent assignments in this course either in person or via Zoom with an ARC Writing Lab tutor present</strong>. You schedule the appointment, the tutor watches you work, and the tutor confirms the work is yours.</li>
-      <li>This requirement remains in effect <strong>for the rest of the term</strong>, even after the original suspected assignment is graded.</li>
-      <li>This is a verification step, not an additional penalty. It exists so you can keep earning credit while the integrity question is being addressed.</li>
-    </ul>
-    <div class="note"><strong>Why this is firm.</strong> Hand-labeled lab workbooks, discussion posts, and proctored quizzes never permit AI. On the assignments where AI IS permitted, you have already been given permission to use it, with transparency. The line between using AI as a study tool and submitting AI as your own work is bright, and it is the line that protects your education and your future patients.</div>
-  </section>
-
-  <section class="band agreement" aria-labelledby="ack-h">
-    <h2 id="ack-h">Acknowledgment and agreement</h2>
-    <p>By signing below, I acknowledge that I have read and understand the AI Use Policy for BIO 304. I agree to abide by the guidelines and understand the consequences of misusing AI.</p>
-
-    <div class="form-grid">
-      <label>Student name (first and last)
-        <input type="text" id="studentName" autocomplete="off" placeholder="e.g., Jordan Smith" aria-required="true">
-      </label>
-      <label>Date
-        <input type="text" id="date" autocomplete="off" placeholder="e.g., June 9, 2026" aria-required="true">
-      </label>
-    </div>
-
-    <label class="full" style="display:block;font-family:'DM Sans',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);margin:12px 0 4px">
-      Your statement (2 to 3 sentences in your own words)
-    </label>
-    <textarea id="statement" placeholder="In your own words: what AI use will look like for you in this course, and what you commit to doing to maintain your own critical thinking. 2 to 3 sentences."></textarea>
-
-    <div class="signature-row">
-      <label style="display:flex;flex-direction:column;gap:4px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark)">
-        Typed signature
-        <input type="text" id="signature" autocomplete="off" placeholder="Type your full name here as your signature">
-        <span class="signature-line">By typing your name above, you are signing this contract electronically.</span>
-      </label>
-    </div>
-
-    <div class="toolbar no-print" style="margin-top:18px">
-      <button type="button" class="btn btn-primary" onclick="window.print()">Print / Save as PDF</button>
-    </div>
-  </section>
+    <form aria-label="AI Honor Contract signature">
+      <div class="field-grid">
+        <div class="field full">
+          <label for="ai-name">Your full name</label>
+          <input id="ai-name" name="name" type="text" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="ai-student-id">Student ID</label>
+          <input id="ai-student-id" name="student_id" type="text" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="ai-date">Today's date</label>
+          <input id="ai-date" name="date" type="date">
+        </div>
+        <div class="field full">
+          <label for="ai-section">Course section</label>
+          <input id="ai-section" name="section" type="text" placeholder="BIO 304 — Summer 2026">
+        </div>
+        <div class="field full">
+          <label for="ai-reflect">In one or two sentences, why does this contract matter to you?</label>
+          <textarea id="ai-reflect" name="reflection" placeholder="In your own words."></textarea>
+        </div>
+        <div class="field full">
+          <div class="checkbox-row">
+            <input id="ai-agree" name="agree" type="checkbox">
+            <label for="ai-agree">I have read the AI policy and the six commitments above. By submitting this contract I agree to all six for the duration of BIO 304.</label>
+          </div>
+        </div>
+      </div>
+      <div class="submit-row">
+        <button class="submit-btn" type="button" onclick="window.print()">Save / print this contract</button>
+        <p class="submit-note">Upload the signed copy in the Week 1 module on Canvas.</p>
+      </div>
+    </form>
+  </div>
+</section>
 
 </main>
-<footer><p>Dr. Sharilyn Rennie . BIO 304 . American River College . Summer 2026</p></footer>
+
+<footer class="foot">
+  <div class="foot-links">
+    <a href="index.html" target="_top">Course home</a>
+    <a href="biol304_syllabus.html" target="_top">Syllabus</a>
+    <a href="ai_policy.html" target="_top">AI policy (explainer)</a>
+    <a href="integrity.html" target="_top">Full integrity policy</a>
+    <a href="biol304_how_to_reach_me.html" target="_top">How to reach me</a>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-copy">BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Summer 2026</div>
+    <div class="foot-byline">Dr. Sharilyn Rennie</div>
+  </div>
+</footer>
+
 <script>
-(function(){
-  // Iframe height sender for Canvas embed
-  if(window.self!==window.top){
-    function sendHeight(){
-      var h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight);
-      try{window.parent.postMessage({type:'iframe-height',id:'bio304-ai-honor',height:h},'*');}catch(e){}
+  /* iframe height-sender */
+  (function () {
+    var FRAME_ID = 'bio304-ai-honor-contract';
+    function sendHeight() {
+      var h = Math.max(
+        document.documentElement.scrollHeight,
+        document.body ? document.body.scrollHeight : 0
+      );
+      parent.postMessage({ type: 'resize', id: FRAME_ID, height: h }, '*');
     }
-    window.addEventListener('load',sendHeight);
-    window.addEventListener('resize',sendHeight);
-    if(window.ResizeObserver){new ResizeObserver(sendHeight).observe(document.body);}else{setInterval(sendHeight,800);}
-  }
-  // Keep input values visible after print preview (browsers preserve input values when printing,
-  // but we set the value attribute on input so print-output matches what's typed).
-  ['studentName','date','signature'].forEach(function(id){
-    var el=document.getElementById(id);
-    if(!el) return;
-    el.addEventListener('input', function(){ el.setAttribute('value', el.value); });
-  });
-  var t=document.getElementById('statement');
-  if(t){ t.addEventListener('input', function(){ t.textContent = t.value; }); }
-})();
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    if (window.ResizeObserver) new ResizeObserver(sendHeight).observe(document.body);
+  })();
 </script>
 </body>
 </html>
