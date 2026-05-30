@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- MCAS_REBRAND_APPLIED v6 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BIO 304 . PNS and Autonomic Nervous System . Lab Workbook</title>
@@ -8,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
 :root{
   --navy:#1E3D4C; --navy-deep:#142A36; --navy-tint:#EDF1F3;
   --gold:#B8924A; --gold-deep:#9A7838;
@@ -78,9 +80,316 @@ footer{text-align:center;color:var(--gray-soft);padding:20px;font-style:italic;f
   .draw-instructions{background:#f5f5f5;border:1px solid #999}
   ol.structure-list{columns:2}
 }
+
+/* ============================================================
+   MCAS REBRAND OVERRIDES — appended by rebrand-mcas.py
+   These rules win the cascade so the underlying page styling
+   does not need to change. JS logic (video gating, spaced recall)
+   is untouched.
+   ============================================================ */
+:root {
+  /* New MCAS tokens for any rule that wants them */
+  --mcas-navy:  #0B1530;
+  --mcas-rust:  #8B3A2E;
+  --mcas-gold:  #C9A14A;
+  --mcas-cream: #F5F1E8;
+  --mcas-dark:  #060A18;
+  /* Remap legacy PRIMARY palette tokens (syllabus, schedule, etc.)
+     so every rule that references them switches to MCAS values
+     automatically. No rule-by-rule rewriting needed. */
+  --navy: #0B1530;
+  --navy-deep: #060A18;
+  --navy-tint: #F5F1E8;
+  --gold: #C9A14A;
+  --gold-deep: #B08B3A;
+  --terra: #8B3A2E;
+  --terra-dark: #8B3A2E;
+  /* Sage is banned. Remap any sage tokens to MCAS gold so legacy
+     sage rules render as gold accents on dark sections. */
+  --sage-dark: #C9A14A;
+  --sage-deeper: #B08B3A;
+  --white: #FFFFFF;
+  --off-white: #FFFFFF;
+  --gray-line: rgba(11, 21, 48, 0.18);
+  --gray-soft: rgba(11, 21, 48, 0.72);
+}
+html, body.mcas-page {
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  background: #FFFFFF !important;
+  color: var(--mcas-navy) !important;
+}
+/* Force Plus Jakarta Sans across EVERY element except code/monospace.
+   This kills Lora, DM Sans, Cormorant Garamond, Georgia, and any other
+   stray font-family declarations on child elements that were winning
+   the specificity fight against the body rule. */
+body.mcas-page,
+body.mcas-page *:not(code):not(pre):not(kbd):not(samp):not(tt) {
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+}
+body.mcas-page h1, body.mcas-page h2, body.mcas-page h3,
+body.mcas-page h4, body.mcas-page h5, body.mcas-page h6 {
+  color: var(--mcas-navy) !important;
+  letter-spacing: -0.015em;
+}
+body.mcas-page a { color: var(--mcas-rust); }
+body.mcas-page a:hover { color: #A0452F; }
+body.mcas-page a:focus-visible {
+  outline: 3px solid var(--mcas-rust);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ----- NO BOOKENDS RULE -----
+   Strip section-edge bookend borders from header.page-head, section.band,
+   nav.toc, .banner, .page-head, the syllabus's section blocks, etc.
+   Cards (.card, [class*="-card"], details, table, button) keep their
+   functional outlines. Sections rely on background contrast and hover
+   lifts for differentiation. */
+body.mcas-page header.page-head,
+body.mcas-page .banner,
+body.mcas-page .page-head,
+body.mcas-page section.band,
+body.mcas-page nav.toc,
+body.mcas-page .footer-section,
+body.mcas-page .footer-top {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+/* Hover lift utility — ONLY on elements that are actually clickable
+   (an anchor) or interactive (FAQ summary). Read-only info elements
+   like .glance-item never lift. */
+body.mcas-page a[class*="-card"],
+body.mcas-page a[class*="-tile"],
+body.mcas-page a.resource-tile,
+body.mcas-page details.faq-item {
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+body.mcas-page a[class*="-card"]:hover,
+body.mcas-page a[class*="-tile"]:hover,
+body.mcas-page a.resource-tile:hover,
+body.mcas-page details.faq-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(11, 21, 48, 0.10);
+}
+
+/* Responsive: stack each day-tile pill button on its own line below 900px.
+   This covers phones AND tablets, so each Pre-work / SR / Lab workbook /
+   Daily Review / Discussion button sits on its own row, full-width,
+   with a comfortable 44px tap target. Above 900px the original inline
+   layout shows. */
+@media (max-width: 900px) {
+  body.mcas-page .day-tile a.day-pill,
+  body.mcas-page a.day-pill {
+    display: flex !important;
+    width: 100% !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 8px 0 !important;
+    padding: 12px 18px !important;
+    min-height: 44px !important;
+    box-sizing: border-box !important;
+  }
+  body.mcas-page .day-tile {
+    padding: 14px !important;
+  }
+}
+
+/* Course-at-a-Glance (syllabus Section 2 / schedule overview) — one info
+   panel, not eight clickable-looking cards. Forces white background,
+   thin shadow, and strips the individual card styling from inner items. */
+body.mcas-page .glance {
+  background: #FFFFFF !important;
+  border: none !important;
+  border-radius: 10px !important;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.08) !important;
+  padding: 30px 34px !important;
+  display: grid !important;
+  gap: 24px 36px !important;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+}
+body.mcas-page .glance-item {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  transform: none !important;
+  cursor: default !important;
+}
+body.mcas-page .glance-item:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* MCAS chrome (site header + footer) — scoped so it never collides
+   with existing IDs/classes on the page */
+.mcas-chrome,
+.mcas-chrome * { box-sizing: border-box; }
+.mcas-header {
+  /* No bookend border per MCAS rule — separation via background contrast */
+  background: #FFFFFF;
+  padding: 24px max(40px, 5vw);
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+.mcas-header-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.mcas-brand { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; color: var(--mcas-navy); }
+.mcas-brand svg { height: 44px; width: auto; display: block; }
+.mcas-brand-title { font-size: 18px; font-weight: 800; line-height: 1; letter-spacing: -0.015em; }
+.mcas-brand-title .accent { color: var(--mcas-rust); }
+.mcas-brand-sub {
+  font-size: 9.5px; font-weight: 700; letter-spacing: 0.20em;
+  text-transform: uppercase; color: var(--mcas-navy); opacity: 0.72;
+  display: block; margin-top: 3px;
+}
+.mcas-back {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mcas-rust);
+  text-decoration: none; padding: 8px 14px; border: 1px solid var(--mcas-rust);
+  border-radius: 4px;
+}
+.mcas-back:hover, .mcas-back:focus-visible {
+  background: var(--mcas-rust); color: #FFFFFF;
+}
+/* Thin back-link strip — used when the page already has its own brand */
+.mcas-backlink-strip {
+  background: #FFFFFF;
+  padding: 14px max(40px, 5vw);
+  display: flex; justify-content: flex-start; align-items: center;
+}
+.mcas-footer {
+  /* No bookend border — dark background is the separator */
+  background: var(--mcas-dark);
+  color: var(--mcas-cream);
+  padding: 40px max(40px, 5vw) 28px;
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  margin-top: 56px;
+}
+.mcas-footer a { color: var(--mcas-cream); text-decoration: none; opacity: 0.88; }
+.mcas-footer a:hover, .mcas-footer a:focus-visible { opacity: 1; text-decoration: underline; }
+.mcas-footer a:focus-visible { outline: 3px solid var(--mcas-gold); outline-offset: 3px; border-radius: 4px; }
+.mcas-footer-row {
+  /* No bookend border — extra padding-top supplies the separation */
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; flex-wrap: wrap; padding-top: 32px; margin-top: 24px;
+}
+.mcas-footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+.mcas-footer-link { font-size: 12.5px; font-weight: 500; letter-spacing: 0.02em; }
+.mcas-footer-copyright {
+  font-size: 11px; opacity: 0.72; letter-spacing: 0.03em;
+}
+.mcas-footer-byline {
+  font-size: 11px; font-weight: 700; color: var(--mcas-gold);
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
+.mcas-skip {
+  position: absolute; top: -100px; left: 8px;
+  background: var(--mcas-navy); color: var(--mcas-cream);
+  padding: 12px 20px; text-decoration: none;
+  font-size: 13px; font-weight: 700;
+  border-radius: 4px; z-index: 9999; letter-spacing: 0.04em;
+}
+.mcas-skip:focus { top: 8px; }
+@media (prefers-reduced-motion: reduce) {
+  .mcas-chrome *, .mcas-chrome { transition: none !important; animation: none !important; }
+}
+
+/* ----- Pre-work ↔ Workbook wiring asides -----
+   .mcas-next-up        appears on a pre-work topic spoke, points forward
+                        to the Day-N lab workbook.
+   .mcas-prework-link   appears on a Day-N workbook, points back to its
+                        pre-work topic spoke.
+   Same visual: white card, thin shadow, gold accent line on the left,
+   no hover-lift (these are read-then-click affordances, not browsing tiles).
+*/
+body.mcas-page .mcas-next-up,
+body.mcas-page .mcas-prework-link {
+  background: #FFFFFF;
+  border: none;
+  border-left: 4px solid var(--mcas-gold);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.08);
+  padding: 20px 24px;
+  margin: 28px 0;
+  display: block;
+}
+body.mcas-page .mcas-next-up-eyebrow,
+body.mcas-page .mcas-prework-link-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mcas-rust);
+  margin: 0 0 6px 0;
+}
+body.mcas-page a.mcas-next-up-cta,
+body.mcas-page a.mcas-prework-link-cta {
+  display: inline-block;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--mcas-navy);
+  text-decoration: none;
+  line-height: 1.35;
+}
+body.mcas-page a.mcas-next-up-cta:hover,
+body.mcas-page a.mcas-prework-link-cta:hover,
+body.mcas-page a.mcas-next-up-cta:focus-visible,
+body.mcas-page a.mcas-prework-link-cta:focus-visible {
+  color: var(--mcas-rust);
+  text-decoration: underline;
+}
+body.mcas-page a.mcas-next-up-cta:focus-visible,
+body.mcas-page a.mcas-prework-link-cta:focus-visible {
+  outline: 3px solid var(--mcas-rust);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
 </style>
 </head>
-<body>
+<body class="mcas-page">
+<!-- mcas-chrome-header -->
+<a href="#mcas-content" class="mcas-skip">Skip to main content</a>
+<div class="mcas-chrome">
+<header class="mcas-header">
+  <div class="mcas-header-row">
+    <a class="mcas-brand" href="index.html" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+<g transform="translate(0, 18)">
+<g transform="translate(60, 0) rotate(8 0 130)">
+<circle cx="0" cy="20" r="10" fill="#0B1530"/>
+<path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
+</g>
+<g transform="translate(100, 0)">
+<circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+<path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+</g>
+<g transform="translate(140, 0) rotate(-8 0 130)">
+<circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+<path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+</g>
+</g>
+</svg>
+      <span>
+        <span class="mcas-brand-title">Human <span class="accent">A&amp;P</span></span>
+        <span class="mcas-brand-sub">BIO 304 &middot; American River College</span>
+      </span>
+    </a>
+    <a class="mcas-back" href="index.html#week-5" target="_top">&larr; Course home (Week 5)</a>
+  </div>
+</header>
+</div>
+<main id="mcas-content" class="mcas-content">
+<!-- mcas-chrome-header-end -->
+
+<!-- mcas-workbook-prework-link -->
+<aside class="mcas-prework-link" aria-label="Pre-work for this lab">
+  <p class="mcas-prework-link-eyebrow">Pre-work for Day 18</p>
+  <a class="mcas-prework-link-cta" href="pns-autonomic.html" target="_top">PNS and Autonomic Nervous System <span aria-hidden="true">&rarr;</span></a>
+</aside>
+<!-- mcas-workbook-prework-link-end -->
+
 <a href="#main" class="skip-link">Skip to main content</a>
 <header>
   <p class="eyebrow">BIO 304 . WEEK 5 . TUESDAY . LAB WORKBOOK</p>
@@ -206,5 +515,40 @@ footer{text-align:center;color:var(--gray-soft);padding:20px;font-style:italic;f
   if(window.ResizeObserver){new ResizeObserver(sendHeight).observe(document.body);}else{setInterval(sendHeight,800);}
 })();
 </script>
+<!-- mcas-chrome-footer -->
+</main>
+<div class="mcas-chrome">
+<footer class="mcas-footer">
+  <div class="mcas-footer-links">
+    <a class="mcas-footer-link" href="index.html" target="_top">Course home</a>
+    <a class="mcas-footer-link" href="biol304_syllabus.html" target="_top">Syllabus</a>
+    <a class="mcas-footer-link" href="course-orientation.html" target="_top">Orientation</a>
+    <a class="mcas-footer-link" href="concept_videos.html" target="_top">Concept videos</a>
+    <a class="mcas-footer-link" href="bio304-spaced-recall-prototype.html" target="_top">Spaced recall</a>
+    <a class="mcas-footer-link" href="biol304_accessibility.html" target="_top">Accessibility</a>
+  </div>
+  <div class="mcas-footer-row">
+    <div class="mcas-footer-copyright">BIO 304 Human Anatomy &amp; Physiology &middot; American River College</div>
+    <div class="mcas-footer-byline">Dr. Sharilyn Rennie</div>
+  </div>
+</footer>
+</div>
+<!-- mcas-chrome-footer-end -->
+<!-- mcas-iframe-height-sender -->
+<script>
+/* MCAS iframe height-sender (rebrand-mcas.py) */
+(function(){
+  var FRAME_ID = "bio304-workbook-day18-pns-and-autonomic-nervous-system";
+  function sendHeight(){
+    var h = Math.max(document.documentElement.scrollHeight,
+                     document.body ? document.body.scrollHeight : 0);
+    parent.postMessage({type:"resize", id:FRAME_ID, height:h}, "*");
+  }
+  window.addEventListener("load", sendHeight);
+  window.addEventListener("resize", sendHeight);
+  if (window.ResizeObserver) new ResizeObserver(sendHeight).observe(document.body);
+})();
+</script>
+<!-- mcas-iframe-height-sender-end -->
 </body>
 </html>
