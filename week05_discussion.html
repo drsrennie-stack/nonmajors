@@ -1,53 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BIO 304 . Week 5 Discussion</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIO 304 &middot; Week 5 Discussion</title>
+<meta name="description" content="Discussion prompt for Week 5 of BIO 304 Human Anatomy and Physiology at American River College.">
 <style>
-:root{--navy:#1E3D4C;--navy-deep:#142A36;--navy-tint:#EDF1F3;--gold:#B8924A;--gold-deep:#9A7838;--terra:#C2734D;--terra-dark:#A0522D;--white:#FFFFFF;--off-white:#FAFAF9;--gray-line:#CFD6DA;--gray-soft:#5C6970;--shadow-rest:0 1px 3px rgba(0,0,0,.08)}
-*{box-sizing:border-box}
-body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.6}
-.skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600}
-.skip-link:focus{left:0}
-:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-header.page-header{background:var(--white);border-bottom:1px solid var(--gray-line);padding:28px 32px 22px}
-.eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 6px}
-h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:clamp(24px,3vw,34px);color:var(--navy);margin:0 0 4px;letter-spacing:-.01em}
-.subhead{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:clamp(15px,1.6vw,18px);color:var(--terra-dark);margin:0 0 6px}
-.usage{font-style:italic;color:var(--gray-soft);font-size:14px;margin:6px 0 0;max-width:70ch}
-main{max-width:820px;margin:0 auto;padding:24px}
-h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);font-size:20px;margin:20px 0 10px}
-.card{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:22px 24px;box-shadow:var(--shadow-rest);margin-bottom:16px}
-.prompt-card{border-left:4px solid var(--terra-dark)}
-.prompt-card ol{padding-left:22px;margin:8px 0}
-.prompt-card li{margin:8px 0}
-.prompt-card blockquote{margin:14px 0;padding:12px 18px;background:var(--off-white);border-left:3px solid var(--gold);font-style:italic;color:var(--navy)}
-.deadlines{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:14px 0}
-.deadline-pill{background:var(--white);border:1px solid var(--gray-line);border-left:4px solid var(--terra-dark);border-radius:6px;padding:12px 16px}
-.deadline-pill .lbl{font-family:'DM Sans',sans-serif;font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 4px}
-.deadline-pill .when{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:var(--navy);font-size:15px;margin:0}
-.deadline-pill .what{font-size:12.5px;color:var(--gray-soft);font-style:italic;margin:4px 0 0}
-footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;font-size:13px}
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-size: 16px; line-height: 1.65; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: #FFFFFF;
+  color: #0B1530;
+}
+a { color: inherit; }
+
+a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #8B3A2E;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.dark-section a:focus-visible { outline-color: #C9A14A; }
+.skip-link {
+  position: absolute; top: -100px; left: 8px;
+  background: #0B1530; color: #F5F1E8;
+  padding: 12px 20px; text-decoration: none;
+  font-size: 13px; font-weight: 700;
+  border-radius: 4px; z-index: 9999; letter-spacing: 0.04em;
+}
+.skip-link:focus { top: 8px; }
+
+.site-header, .hero-card, .deadlines-section, .prompt-section,
+.replies-section, .extras-section, .cta-section, .footer-section {
+  padding-left: max(40px, 5vw);
+  padding-right: max(40px, 5vw);
+}
+
+.site-header { background: #FFFFFF; padding-top: 28px; padding-bottom: 28px; }
+.site-logo { display: inline-flex; align-items: center; gap: 16px; text-decoration: none; }
+.site-logo svg { height: 58px; width: auto; display: block; }
+.logo-text { display: flex; flex-direction: column; gap: 3px; }
+.logo-title { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: #0B1530; line-height: 1; }
+.logo-title .logo-accent { color: #8B3A2E; }
+.logo-sub {
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.20em;
+  text-transform: uppercase; color: #0B1530; opacity: 0.72;
+}
+
+.hero-card { background: #FFFFFF; padding-top: 56px; padding-bottom: 56px; }
+.hero-content { max-width: 760px; }
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; color: #8B3A2E;
+  letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 22px;
+}
+.hero-headline {
+  font-size: 44px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.025em; line-height: 1.06; margin: 0 0 20px;
+}
+.hero-headline .accent { color: #8B3A2E; }
+.hero-subhead {
+  font-size: 16px; font-weight: 400; color: #0B1530;
+  line-height: 1.6; opacity: 0.84; margin-bottom: 16px; max-width: 620px;
+}
+.hero-usage {
+  font-size: 14px; font-style: italic; color: #0B1530;
+  opacity: 0.72; line-height: 1.6; margin: 0 0 28px; max-width: 620px;
+}
+.hero-ctas { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.cta-primary {
+  background: #8B3A2E; color: #FFFFFF;
+  padding: 14px 26px; border-radius: 4px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  transition: background 0.2s ease;
+}
+.cta-primary:hover { background: #A0452F; }
+.cta-secondary {
+  color: #0B1530; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: underline; text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+  display: inline-block; padding-bottom: 2px;
+}
+.cta-secondary:hover { color: #8B3A2E; text-decoration-color: #8B3A2E; }
+
+.section-eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 18px;
+}
+.section-headline {
+  font-size: 31px; font-weight: 800; letter-spacing: -0.02em;
+  line-height: 1.12; margin: 0 0 22px; max-width: 720px;
+}
+.section-intro {
+  font-size: 15px; font-weight: 400;
+  line-height: 1.6; max-width: 680px; margin: 0 0 32px;
+}
+
+/* Deadlines (dark) */
+.deadlines-section { background: #060A18; padding-top: 56px; padding-bottom: 56px; }
+.deadlines-section .section-eyebrow { color: #C9A14A; }
+.deadlines-section .section-headline { color: #F5F1E8; }
+.deadlines-section .section-headline .accent { color: #C9A14A; }
+.deadlines-grid {
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  max-width: 920px;
+}
+.deadline-card {
+  padding: 20px 22px; border-radius: 8px;
+  border: 1px solid rgba(245, 241, 232, 0.20);
+  background: rgba(245, 241, 232, 0.04);
+}
+.deadline-when {
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #C9A14A; margin: 0 0 8px;
+}
+.deadline-what {
+  font-size: 17px; font-weight: 800; color: #F5F1E8;
+  line-height: 1.3; margin: 0 0 4px;
+}
+.deadline-when-detail {
+  font-size: 13px; color: #F5F1E8; opacity: 0.78;
+  margin: 0;
+}
+
+/* Prompt section (light) */
+.prompt-section { background: #FFFFFF; padding-top: 56px; padding-bottom: 56px; }
+.prompt-section .section-eyebrow { color: #8B3A2E; }
+.prompt-section .section-headline { color: #0B1530; }
+.prompt-section .section-headline .accent { color: #8B3A2E; }
+.prompt-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(11, 21, 48, 0.18);
+  border-radius: 8px;
+  padding: 28px 32px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  max-width: 820px;
+}
+.prompt-card p {
+  font-size: 15.5px; line-height: 1.7;
+  color: #0B1530; margin: 0 0 14px;
+}
+.prompt-card p:last-child { margin-bottom: 0; }
+.prompt-card strong { color: #8B3A2E; font-weight: 800; }
+.prompt-card ol, .prompt-card ul {
+  padding-left: 22px; margin: 14px 0;
+}
+.prompt-card li {
+  font-size: 15.5px; line-height: 1.7;
+  color: #0B1530; margin: 10px 0;
+}
+.prompt-card li strong { color: #8B3A2E; }
+.prompt-card blockquote {
+  margin: 16px 0;
+  padding: 14px 20px;
+  background: #F5F1E8;
+  border-radius: 6px;
+  font-style: italic;
+  color: #0B1530;
+  font-size: 15px;
+}
+
+/* Replies section (cream) */
+.replies-section { background: #F5F1E8; padding-top: 56px; padding-bottom: 56px; }
+.replies-section .section-eyebrow { color: #8B3A2E; }
+.replies-section .section-headline { color: #0B1530; }
+.replies-section .section-headline .accent { color: #8B3A2E; }
+.replies-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(11, 21, 48, 0.18);
+  border-radius: 8px;
+  padding: 28px 32px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  max-width: 820px;
+}
+.replies-card ul {
+  padding-left: 22px; margin: 0;
+}
+.replies-card li {
+  font-size: 15.5px; line-height: 1.7;
+  color: #0B1530; margin: 10px 0;
+}
+.replies-card li strong { color: #8B3A2E; font-weight: 800; }
+
+/* Extras (light) */
+.extras-section { background: #FFFFFF; padding-top: 56px; padding-bottom: 56px; }
+.extras-section .section-eyebrow { color: #8B3A2E; }
+.extras-section .section-headline { color: #0B1530; }
+.extras-section .section-headline .accent { color: #8B3A2E; }
+.extras-stack { display: flex; flex-direction: column; gap: 18px; max-width: 820px; }
+.extras-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(11, 21, 48, 0.18);
+  border-radius: 8px;
+  padding: 26px 30px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+}
+.extras-card h3 {
+  font-size: 20px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.015em; line-height: 1.3; margin: 0 0 12px;
+}
+.extras-card p {
+  font-size: 15px; line-height: 1.7;
+  color: #0B1530; margin: 0 0 12px;
+}
+.extras-card p:last-child { margin-bottom: 0; }
+.extras-card strong { color: #8B3A2E; font-weight: 800; }
+.extras-card .signoff {
+  font-weight: 800; color: #8B3A2E;
+  letter-spacing: -0.01em; margin-top: 14px;
+}
+
+/* Closing CTA (dark) */
+.cta-section { background: #060A18; padding-top: 64px; padding-bottom: 64px; text-align: center; }
+.cta-eyebrow {
+  font-size: 11px; font-weight: 700; color: #C9A14A;
+  letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 20px;
+}
+.cta-headline {
+  font-size: 32px; font-weight: 800; color: #F5F1E8;
+  letter-spacing: -0.02em; line-height: 1.15; margin: 0 auto 22px; max-width: 580px;
+}
+.cta-headline .accent { color: #C9A14A; }
+.cta-subhead {
+  font-size: 15px; font-weight: 400; color: #F5F1E8;
+  opacity: 0.88; line-height: 1.6; margin: 0 auto 30px; max-width: 520px;
+}
+.cta-button {
+  background: #8B3A2E; color: #FFFFFF;
+  padding: 14px 28px; border-radius: 4px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  transition: background 0.2s ease;
+}
+.cta-button:hover { background: #A0452F; }
+
+/* Footer (dark) */
+.footer-section { background: #060A18; padding-top: 40px; padding-bottom: 28px; color: #F5F1E8; }
+.footer-row {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-text { font-size: 12px; opacity: 0.72; letter-spacing: 0.03em; margin: 0; }
+.footer-byline {
+  font-size: 11px; font-weight: 700; color: #C9A14A;
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
+
+@media (max-width: 860px) {
+  .hero-headline { font-size: 32px; }
+  .section-headline { font-size: 25px; }
+  .cta-headline { font-size: 24px; }
+}
+@media (max-width: 560px) {
+  .hero-headline { font-size: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  html { scroll-behavior: auto; }
+}
 </style>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
-<header class="page-header">
-  <p class="eyebrow">BIO 304 . WEEK 5 OF 8 . DISCUSSION</p>
-  <h1>A sense or a hormone you took for granted</h1>
-  <p class="subhead">Until something disrupts it, you don't notice this system at all. Tell us about a time you noticed.</p>
-  <p class="usage">Initial post due Friday. Replies due Sunday. Substantive replies build on or respectfully challenge a classmate's thinking.</p>
-</header>
-<main id="main" tabindex="-1">
 
-  <article class="card prompt-card">
-    <h2>Prompt</h2>
-    <p>This week we covered the central and peripheral nervous systems, the special senses, and the endocrine system.</p>
+<header class="site-header">
+  <a href="index.html" class="site-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+    <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+      <g transform="translate(0, 18)">
+        <g transform="translate(60, 0) rotate(8 0 130)">
+          <circle cx="0" cy="20" r="10" fill="#0B1530"/>
+          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
+        </g>
+        <g transform="translate(100, 0)">
+          <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+          <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+        </g>
+        <g transform="translate(140, 0) rotate(-8 0 130)">
+          <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+        </g>
+      </g>
+    </svg>
+    <span class="logo-text">
+      <span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span>
+      <span class="logo-sub">BIO 304 &middot; American River College</span>
+    </span>
+  </a>
+</header>
+
+<main id="main">
+
+<div class="hero-card">
+  <div class="hero-content">
+    <div class="hero-eyebrow">BIO 304 . WEEK 5 OF 8 . DISCUSSION</div>
+    <h1 class="hero-headline">A sense or a hormone you took for granted</h1>
+    <p class="hero-subhead">Until something disrupts it, you don't notice this system at all. Tell us about a time you noticed.</p>
+    <p class="hero-usage">Initial post due Friday. Replies due Sunday. Substantive replies build on or respectfully challenge a classmate's thinking.</p>
+    <div class="hero-ctas">
+      <a href="index.html#week-5" class="cta-primary" target="_top">Back to Week 5 card</a>
+      <a href="#prompt" class="cta-secondary">Jump to the prompt</a>
+    </div>
+  </div>
+</div>
+
+<div class="deadlines-section dark-section">
+  <div class="section-eyebrow">Deadlines and expectations</div>
+  <h2 class="section-headline">Three dates to <span class="accent">put on your calendar</span>.</h2>
+  <div class="deadlines-grid">
+    <div class="deadline-card">
+      <p class="deadline-when">Prompt opens</p>
+      <p class="deadline-what">Wed, Jul 8</p>
+      <p class="deadline-when-detail">Wednesday, 12:00 AM</p>
+    </div>
+    <div class="deadline-card">
+      <p class="deadline-when">Initial post due</p>
+      <p class="deadline-what">Fri, Jul 10</p>
+      <p class="deadline-when-detail">Friday, 11:59 PM</p>
+    </div>
+    <div class="deadline-card">
+      <p class="deadline-when">Replies due</p>
+      <p class="deadline-what">Sun, Jul 12</p>
+      <p class="deadline-when-detail">Sunday, 11:59 PM</p>
+    </div>
+  </div>
+</div>
+
+<div class="prompt-section" id="prompt">
+  <div class="section-eyebrow">Your prompt</div>
+  <h2 class="section-headline">What to <span class="accent">write about</span>.</h2>
+  <article class="prompt-card">
+<p>This week we covered the central and peripheral nervous systems, the special senses, and the endocrine system.</p>
 <p>Pick <strong>one special sense or one hormone</strong> that you take for granted until something disrupts it. Examples: depth perception, balance, color vision, the smell of your own home, thyroid hormone, insulin, cortisol.</p>
 <p>In your initial post (200-300 words):</p>
 <ol>
@@ -57,44 +347,36 @@ footer{text-align:center;color:var(--gray-soft);padding:24px;font-style:italic;f
   <li><strong>Reflect</strong>: what surprised you about how invisible this system is until it fails?</li>
 </ol>
   </article>
+</div>
 
-  <h2>Deadlines and expectations</h2>
-  <div class="deadlines">
-    <div class="deadline-pill">
-      <p class="lbl">Prompt opens</p>
-      <p class="when">Wed, Jul 8</p>
-      <p class="what">Wednesday, 12:00 AM</p>
-    </div>
-    <div class="deadline-pill">
-      <p class="lbl">Initial post due</p>
-      <p class="when">Fri, Jul 10</p>
-      <p class="what">Friday, 11:59 PM</p>
-    </div>
-    <div class="deadline-pill">
-      <p class="lbl">Replies due</p>
-      <p class="when">Sun, Jul 12</p>
-      <p class="what">Sunday, 11:59 PM</p>
-    </div>
-  </div>
-
-  <article class="card">
-    <h2>How replies are evaluated</h2>
-    <ul>
+<div class="replies-section">
+  <div class="section-eyebrow">Replies</div>
+  <h2 class="section-headline">What makes a reply <span class="accent">substantive</span>.</h2>
+  <article class="replies-card">
+<ul>
       <li><strong>Substantive</strong>: at least 75 words. Goes beyond "I agree" or "nice post."</li>
       <li><strong>Builds or challenges</strong>: extend a classmate's idea with new information, OR respectfully push back with reasoning.</li>
       <li><strong>Cite or apply</strong>: reference the OpenStax section, your textbook reading, or a topic from this week's pre-work.</li>
       <li><strong>At least two replies</strong> to different classmates by Sunday.</li>
     </ul>
   </article>
+</div>
 
 </main>
-<footer><p>Dr. Sharilyn Rennie . BIO 304 . American River College . Week 5 of 8</p></footer>
+
+<footer class="footer-section">
+  <div class="footer-row">
+    <p class="footer-text">BIO 304 &middot; American River College &middot; Summer 2026 &middot; Week 5 Discussion</p>
+    <span class="footer-byline">Dr. Sharilyn Rennie</span>
+  </div>
+</footer>
+
 <script>
 (function(){
   if(window.self===window.top)return;
   function sendHeight(){
     const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight);
-    try{window.parent.postMessage({type:'iframe-height',id:'bio304-discussion',height:h},'*');}catch(e){}
+    try{window.parent.postMessage({type:'iframe-height',id:'bio304-week05-discussion',height:h},'*');}catch(e){}
   }
   window.addEventListener('load',sendHeight);
   window.addEventListener('resize',sendHeight);

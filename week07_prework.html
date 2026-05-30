@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIO 304 &middot; Week 7 Pre-Work</title>
+<meta name="description" content="Week 7 pre-work hub for BIO 304 Human Anatomy and Physiology. Four pre-work days. Each topic page gates into your nightly spaced recall.">
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+
+/*
+  ============================================================
+  BIO 304  ·  WEEK 7 PRE-WORK HUB
+  American River College  ·  Online  ·  Summer 2026
+  MCAS palette per Project Update 2026-05-29:
+    Navy #0B1530, Rust #8B3A2E, Gold #C9A14A, Cream #F5F1E8, Dark #060A18
+  Hub-and-spoke: this page is the spoke entry point for Week 7.
+  Each topic card links to its lecture spoke (e.g. levels-of-organization.html),
+  which gates into bio304-spaced-recall-prototype.html for the nightly cards.
+  ============================================================
+*/
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-size: 16px; line-height: 1.65; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: #FFFFFF;
+  color: #0B1530;
+}
+a { color: inherit; }
+
+/* ===== KEYBOARD FOCUS ===== */
+a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #8B3A2E;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.dark-section a:focus-visible { outline-color: #C9A14A; }
+.skip-link {
+  position: absolute; top: -100px; left: 8px;
+  background: #0B1530; color: #F5F1E8;
+  padding: 12px 20px; text-decoration: none;
+  font-size: 13px; font-weight: 700;
+  border-radius: 4px; z-index: 9999; letter-spacing: 0.04em;
+}
+.skip-link:focus { top: 8px; }
+
+/* ===== SECTION PADDING ===== */
+.site-header, .hero-card, .how-section, .deadlines-section, .days-section,
+.note-section, .cta-section, .footer-section {
+  padding-left: max(40px, 5vw);
+  padding-right: max(40px, 5vw);
+}
+
+/* ===== SITE HEADER ===== */
+.site-header { background: #FFFFFF; padding-top: 28px; padding-bottom: 28px; }
+.site-logo { display: inline-flex; align-items: center; gap: 16px; text-decoration: none; }
+.site-logo svg { height: 58px; width: auto; display: block; }
+.logo-text { display: flex; flex-direction: column; gap: 3px; }
+.logo-title { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: #0B1530; line-height: 1; }
+.logo-title .logo-accent { color: #8B3A2E; }
+.logo-sub {
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.20em;
+  text-transform: uppercase; color: #0B1530; opacity: 0.72;
+}
+
+/* ===== HERO ===== */
+.hero-card { background: #FFFFFF; padding-top: 56px; padding-bottom: 56px; }
+.hero-content { max-width: 760px; }
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; color: #8B3A2E;
+  letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 22px;
+}
+.hero-headline {
+  font-size: 44px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.025em; line-height: 1.06; margin: 0 0 20px;
+}
+.hero-headline .accent { color: #8B3A2E; }
+.hero-subhead {
+  font-size: 16px; font-weight: 400; color: #0B1530;
+  line-height: 1.6; opacity: 0.84; margin-bottom: 28px; max-width: 620px;
+}
+.hero-ctas { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.cta-primary {
+  background: #8B3A2E; color: #FFFFFF;
+  padding: 14px 26px; border-radius: 4px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  transition: background 0.2s ease;
+}
+.cta-primary:hover { background: #A0452F; }
+.cta-secondary {
+  color: #0B1530; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: underline; text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+  display: inline-block; padding-bottom: 2px;
+}
+.cta-secondary:hover { color: #8B3A2E; text-decoration-color: #8B3A2E; }
+
+/* ===== SHARED SECTION HEADINGS ===== */
+.section-eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 18px;
+}
+.section-headline {
+  font-size: 31px; font-weight: 800; letter-spacing: -0.02em;
+  line-height: 1.12; margin: 0 0 22px; max-width: 720px;
+}
+.section-intro {
+  font-size: 15px; font-weight: 400;
+  line-height: 1.6; max-width: 680px; margin: 0 0 32px;
+}
+
+/* ===== HOW IT RUNS (dark) ===== */
+.how-section { background: #060A18; padding-top: 64px; padding-bottom: 64px; }
+.how-section .section-eyebrow { color: #C9A14A; }
+.how-section .section-headline { color: #F5F1E8; }
+.how-section .section-headline .accent { color: #C9A14A; }
+.how-section .section-intro { color: #F5F1E8; opacity: 0.88; }
+.how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; max-width: 980px; }
+.how-card { padding: 0; }
+.how-num {
+  font-size: 44px; font-weight: 800; color: #C9A14A;
+  letter-spacing: -0.02em; line-height: 1; margin-bottom: 16px;
+}
+.how-title {
+  font-size: 16px; font-weight: 800; color: #F5F1E8;
+  letter-spacing: -0.01em; margin: 0 0 10px; line-height: 1.3;
+}
+.how-body {
+  font-size: 14.5px; font-weight: 400; color: #F5F1E8;
+  opacity: 0.88; line-height: 1.6; margin: 0;
+}
+
+/* ===== THIS WEEK AT A GLANCE (light, single info panel) ===== */
+.deadlines-section { background: #FFFFFF; padding-top: 48px; padding-bottom: 48px; }
+.deadlines-section .section-eyebrow { color: #8B3A2E; }
+.deadlines-section .section-headline { color: #0B1530; }
+.deadlines-section .section-headline .accent { color: #8B3A2E; }
+.deadlines-box {
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.08);
+  padding: 26px 30px;
+  display: grid;
+  gap: 18px 36px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  max-width: 980px;
+}
+.deadline-item { }
+.deadline-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: #8B3A2E; margin: 0 0 6px;
+}
+.deadline-when {
+  font-size: 15.5px; font-weight: 800; color: #0B1530;
+  margin: 0 0 4px; line-height: 1.3;
+}
+.deadline-what {
+  font-size: 13px; color: #0B1530; opacity: 0.72;
+  margin: 0; line-height: 1.4;
+}
+
+/* ===== FOUR PRE-WORK DAYS (cream) ===== */
+.days-section { background: #F5F1E8; padding-top: 64px; padding-bottom: 64px; }
+.days-section .section-eyebrow { color: #8B3A2E; }
+.days-section .section-headline { color: #0B1530; }
+.days-section .section-headline .accent { color: #8B3A2E; }
+.days-section .section-intro { color: #0B1530; opacity: 0.84; }
+
+.day-stack { display: flex; flex-direction: column; gap: 16px; max-width: 980px; }
+
+.day-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(11, 21, 48, 0.18);
+  border-radius: 8px;
+  padding: 26px 28px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+.day-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(11, 21, 48, 0.10);
+  border-color: rgba(11, 21, 48, 0.22);
+}
+.day-head { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.day-num {
+  font-size: 26px; font-weight: 800; color: #8B3A2E;
+  letter-spacing: 0.04em; line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.day-meta {
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.20em; text-transform: uppercase;
+  color: #0B1530; opacity: 0.62;
+}
+
+.topic-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-items: center;
+  padding: 14px 0;
+  border-top: 1px solid rgba(11, 21, 48, 0.10);
+}
+.topic-row:first-of-type { border-top: none; padding-top: 4px; }
+.topic-name {
+  font-size: 16.5px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.015em; line-height: 1.3; margin: 0 0 4px;
+}
+.topic-blurb {
+  font-size: 13.5px; color: #0B1530; opacity: 0.78;
+  line-height: 1.5; margin: 0; max-width: 56ch;
+}
+.topic-pill {
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.10em; text-transform: uppercase;
+  padding: 9px 16px; border-radius: 999px;
+  text-decoration: none;
+  background: #0B1530; color: #FFFFFF;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: background 0.2s ease;
+}
+.topic-pill:hover, .topic-pill:focus-visible { background: #142A36; }
+.topic-pill .arrow { font-weight: 400; font-size: 13px; }
+
+/* Wednesday catch-up + Weekend quiz callouts
+   Gold differentiation comes from the day-num text only.
+   No bookend border, no frame, no left bar — the card uses the
+   same navy 18% border as the pre-work day cards. */
+.wed-card .day-num, .wkd-card .day-num { color: #C9A14A; }
+.wed-body {
+  font-size: 14.5px; color: #0B1530; opacity: 0.88;
+  line-height: 1.6; margin: 0;
+}
+.wed-body strong { color: #8B3A2E; font-weight: 800; opacity: 1; }
+.wed-body a {
+  color: #8B3A2E; font-weight: 800; text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.wed-body a:hover { color: #0B1530; }
+
+/* ===== INSTRUCTOR NOTE (light) ===== */
+.note-section { background: #FFFFFF; padding-top: 56px; padding-bottom: 56px; }
+.note-section .section-eyebrow { color: #8B3A2E; }
+.note-section .section-headline { color: #0B1530; }
+.note-section .section-headline .accent { color: #8B3A2E; }
+.note-body {
+  font-size: 15px; line-height: 1.7;
+  color: #0B1530; max-width: 720px;
+}
+.note-body p { margin: 0 0 14px; }
+.note-body p:last-child { margin-bottom: 0; }
+.note-signoff {
+  margin-top: 18px; font-size: 14.5px; font-weight: 800;
+  color: #8B3A2E; letter-spacing: -0.01em;
+}
+
+/* ===== CLOSING CTA (dark) ===== */
+.cta-section { background: #060A18; padding-top: 64px; padding-bottom: 64px; text-align: center; }
+.cta-eyebrow {
+  font-size: 11px; font-weight: 700; color: #C9A14A;
+  letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 20px;
+}
+.cta-headline {
+  font-size: 32px; font-weight: 800; color: #F5F1E8;
+  letter-spacing: -0.02em; line-height: 1.15; margin: 0 auto 22px; max-width: 580px;
+}
+.cta-headline .accent { color: #C9A14A; }
+.cta-subhead {
+  font-size: 15px; font-weight: 400; color: #F5F1E8;
+  opacity: 0.88; line-height: 1.6; margin: 0 auto 30px; max-width: 520px;
+}
+.cta-button {
+  background: #8B3A2E; color: #FFFFFF;
+  padding: 14px 28px; border-radius: 4px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  transition: background 0.2s ease;
+}
+.cta-button:hover { background: #A0452F; }
+
+/* ===== FOOTER ===== */
+.footer-section { background: #060A18; padding-top: 40px; padding-bottom: 28px; color: #F5F1E8; }
+.footer-row {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-text { font-size: 12px; opacity: 0.72; letter-spacing: 0.03em; margin: 0; }
+.footer-byline {
+  font-size: 11px; font-weight: 700; color: #C9A14A;
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 860px) {
+  .hero-headline { font-size: 32px; }
+  .section-headline { font-size: 25px; }
+  .cta-headline { font-size: 24px; }
+  .how-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+}
+@media (max-width: 560px) {
+  .how-grid { grid-template-columns: 1fr; gap: 24px; }
+  .topic-row { grid-template-columns: 1fr; gap: 12px; }
+  .topic-pill { justify-self: start; }
+  .hero-headline { font-size: 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- ===== SITE HEADER ===== -->
+<header class="site-header">
+  <a href="index.html" class="site-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+    <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+      <g transform="translate(0, 18)">
+        <g transform="translate(60, 0) rotate(8 0 130)">
+          <circle cx="0" cy="20" r="10" fill="#0B1530"/>
+          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
+        </g>
+        <g transform="translate(100, 0)">
+          <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+          <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+        </g>
+        <g transform="translate(140, 0) rotate(-8 0 130)">
+          <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+        </g>
+      </g>
+    </svg>
+    <span class="logo-text">
+      <span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span>
+      <span class="logo-sub">BIO 304 &middot; American River College</span>
+    </span>
+  </a>
+</header>
+
+<main id="main">
+
+<!-- ===== HERO ===== -->
+<div class="hero-card">
+  <div class="hero-content">
+    <div class="hero-eyebrow">BIO 304 &middot; Week 7 of 8 &middot; Jul 20 to Jul 26 &middot; Nightly Pre-Work</div>
+    <h1 class="hero-headline">Defense, the breath, and <span class="accent">the gut.</span></h1>
+    <p class="hero-subhead">Four pre-work days. Six topics. The immune defense, the breath that brings oxygen in, and the gut that processes everything you eat. Each topic page walks you through the reading, the fill-in-the-blank notes, the video, and then opens your nightly spaced-recall cards. Open one topic on Mon, Tue, Thu, Fri. Wednesday is catch-up and discussion.</p>
+    <div class="hero-ctas">
+      <a href="index.html#week-7" class="cta-primary" target="_top">Back to Week 7 card</a>
+      <a href="#days" class="cta-secondary">Jump to today's topic</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HOW EACH SESSION RUNS (dark) ===== -->
+<div class="how-section dark-section">
+  <div class="section-eyebrow">How each pre-work session runs</div>
+  <h2 class="section-headline">Four steps, <span class="accent">in order</span>.</h2>
+  <p class="section-intro">Same four steps every pre-work day. The order matters. The retrieval check is what makes the cards work.</p>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-num">01</div>
+      <h3 class="how-title">Open the topic, print the workbook</h3>
+      <p class="how-body">Pick the day's topic from the list below. Print that day's lab workbook before you sit down. Breaking flow to find a printer is where good study sessions die.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">02</div>
+      <h3 class="how-title">Watch the short video</h3>
+      <p class="how-body">Finishing the video is what starts the retrieval gate. Read the fill-in-the-blank notes alongside it.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">03</div>
+      <h3 class="how-title">Write the 60-word check</h3>
+      <p class="how-body">Pull together what the video just taught you. Submitting unlocks the spaced-recall cards for the topic.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">04</div>
+      <h3 class="how-title">Run the nightly cards</h3>
+      <p class="how-body">DOK 1 to DOK 3 cards. They carry over into future Daily Reviews so the work compounds.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== THIS WEEK AT A GLANCE ===== -->
+<div class="deadlines-section">
+  <div class="section-eyebrow">This week at a glance</div>
+  <h2 class="section-headline">Six dates to <span class="accent">put on your calendar</span>.</h2>
+  <div class="deadlines-box">
+    <div class="deadline-item">
+      <p class="deadline-label">Week opens</p>
+      <p class="deadline-when">Mon, Jul 20</p>
+      <p class="deadline-what">First pre-work day</p>
+    </div>
+    <div class="deadline-item">
+      <p class="deadline-label">Discussion post</p>
+      <p class="deadline-when">Fri, Jul 24</p>
+      <p class="deadline-what">Initial post, 11:59 PM</p>
+    </div>
+    <div class="deadline-item">
+      <p class="deadline-label">Quiz opens</p>
+      <p class="deadline-when">Fri, Jul 24</p>
+      <p class="deadline-what">20 questions, 20 minutes</p>
+    </div>
+    <div class="deadline-item">
+      <p class="deadline-label">Discussion replies</p>
+      <p class="deadline-when">Sun, Jul 26</p>
+      <p class="deadline-what">Two replies, 11:59 PM</p>
+    </div>
+    <div class="deadline-item">
+      <p class="deadline-label">Lab workbooks</p>
+      <p class="deadline-when">Sun, Jul 26</p>
+      <p class="deadline-what">All four submitted, 11:59 PM</p>
+    </div>
+    <div class="deadline-item">
+      <p class="deadline-label">Quiz closes</p>
+      <p class="deadline-when">Sun, Jul 26</p>
+      <p class="deadline-what">11:59 PM, one attempt</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== YOUR FOUR PRE-WORK DAYS (cream) ===== -->
+<div class="days-section" id="days">
+  <div class="section-eyebrow">Your four pre-work days</div>
+  <h2 class="section-headline">Open one topic <span class="accent">per day</span>.</h2>
+  <p class="section-intro">Each topic links to its lecture page. The lecture page is the gate into your spaced-recall cards for that topic.</p>
+
+  <div class="day-stack">
+
+    <article class="day-card">
+      <div class="day-head">
+        <div class="day-num">MON 20</div>
+        <div class="day-meta">Day 25 . Pre-work</div>
+      </div>
+      <div class="topic-row">
+        <div>
+          <p class="topic-name">Lymphatic System and Innate Immunity</p>
+          <p class="topic-blurb">Lymph vessels, lymphoid organs, and the first line of defense.</p>
+        </div>
+        <a class="topic-pill" href="lymphatic-innate-immunity.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="day-card">
+      <div class="day-head">
+        <div class="day-num">TUE 21</div>
+        <div class="day-meta">Day 26 . Pre-work</div>
+      </div>
+      <div class="topic-row">
+        <div>
+          <p class="topic-name">Adaptive Immunity</p>
+          <p class="topic-blurb">B cells, T cells, antibodies. Specific defense and immunological memory.</p>
+        </div>
+        <a class="topic-pill" href="adaptive-immunity.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+      </div>
+    </article>
+
+    <aside class="day-card wed-card" aria-label="Wednesday catch-up">
+      <div class="day-head">
+        <div class="day-num">WED 22</div>
+        <div class="day-meta">Catch-up . Discussion</div>
+      </div>
+      <p class="wed-body">No new pre-work today. Run your Daily Review, post your initial thoughts in the <a href="week07_discussion.html" target="_top">Week 7 discussion thread</a>, and finish any lab workbook still open from Mon or Tue.</p>
+    </aside>
+
+    <article class="day-card">
+      <div class="day-head">
+        <div class="day-num">THU 23</div>
+        <div class="day-meta">Day 27 . Pre-work</div>
+      </div>
+      <div class="topic-row">
+        <div>
+          <p class="topic-name">Respiratory Anatomy and Mechanics</p>
+          <p class="topic-blurb">Conducting and respiratory zones plus how breathing actually moves air.</p>
+        </div>
+        <a class="topic-pill" href="respiratory-anatomy.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="topic-row">
+        <div>
+          <p class="topic-name">Gas Exchange and Transport</p>
+          <p class="topic-blurb">How O2 and CO2 move across membranes and travel in the blood.</p>
+        </div>
+        <a class="topic-pill" href="gas-exchange-transport.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="day-card">
+      <div class="day-head">
+        <div class="day-num">FRI 24</div>
+        <div class="day-meta">Day 28 . Pre-work . Quiz opens</div>
+      </div>
+      <div class="topic-row">
+        <div>
+          <p class="topic-name">GI Tract Anatomy and Motility</p>
+          <p class="topic-blurb">Mouth to anus. Layers of the tract and how it moves contents along.</p>
+        </div>
+        <a class="topic-pill" href="gi-anatomy-motility.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="topic-row">
+        <div>
+          <p class="topic-name">Digestion and Absorption</p>
+          <p class="topic-blurb">Where each macronutrient is broken down and how it crosses into the body.</p>
+        </div>
+        <a class="topic-pill" href="digestion-absorption.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+      </div>
+    </article>
+
+    <aside class="day-card wkd-card" aria-label="Weekend quiz window">
+      <div class="day-head">
+        <div class="day-num">WKD</div>
+        <div class="day-meta">Sat-Sun . Jul 25 to 26 . Quiz window</div>
+      </div>
+      <p class="wed-body">Lock in the week. Run your Daily Review, take the quiz earlier rather than later, and submit your two discussion replies plus any remaining lab workbooks before <strong>Sun 11:59 PM</strong>. Quiz closes at the same time.</p>
+    </aside>
+
+  </div>
+</div>
+
+<!-- ===== INSTRUCTOR NOTE ===== -->
+<div class="note-section">
+  <div class="section-eyebrow">A note from me</div>
+  <h2 class="section-headline">Week 7, <span class="accent">same rhythm</span>.</h2>
+  <div class="note-body">
+    <p>Each pre-work day takes about 30 to 45 minutes if you sit with it. The retrieval check is the part that makes it stick. Do not skip writing those 60 words, even when the cards look like the easier path.</p>
+    <p>If you fall behind on a day, do that day's topic first before moving to the next. The spaced-recall cards only schedule properly when you have done the work on the topic page first.</p>
+    <p class="note-signoff">Dr. Sharilyn Rennie</p>
+  </div>
+</div>
+
+<!-- ===== CLOSING CTA (dark) ===== -->
+<div class="cta-section dark-section">
+  <div class="cta-eyebrow">Ready to start</div>
+  <h2 class="cta-headline">Day 25 is <span class="accent">the lymphatic system</span>. Open it.</h2>
+  <p class="cta-subhead">Lymph and innate immunity first. Adaptive immunity only makes sense once you have the front line.</p>
+  <a class="cta-button" href="lymphatic-innate-immunity.html" target="_top">Open Lymphatic System</a>
+</div>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-section">
+  <div class="footer-row">
+    <p class="footer-text">BIO 304 &middot; American River College &middot; Summer 2026 &middot; Week 7 Pre-Work Hub</p>
+    <span class="footer-byline">Dr. Sharilyn Rennie</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  if(window.self===window.top)return;
+  function sendHeight(){
+    const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight);
+    try{window.parent.postMessage({type:'iframe-height',id:'bio304-week07-prework',height:h},'*');}catch(e){}
+  }
+  window.addEventListener('load',sendHeight);
+  window.addEventListener('resize',sendHeight);
+  if(window.ResizeObserver){new ResizeObserver(sendHeight).observe(document.body);}else{setInterval(sendHeight,800);}
+})();
+</script>
+</body>
+</html>
