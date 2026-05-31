@@ -1746,7 +1746,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     btnNotes.addEventListener('click', function () { setMode('notes'); });
     btnStudy.addEventListener('click', function () { setMode('study'); });
     btnQuiz .addEventListener('click', function () { setMode('quiz'); });
-    btnPrint.addEventListener('click', function () { window.print(); });
+    if (btnPrint) btnPrint.addEventListener('click', function () { window.print(); });
     btnReset.addEventListener('click', function () {
       document.querySelectorAll('.term-input input').forEach(function (i) { i.value=''; i.classList.remove('correct'); });
       document.querySelectorAll('.term.revealed').forEach(function (t) { t.classList.remove('revealed'); });
