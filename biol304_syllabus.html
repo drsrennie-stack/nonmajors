@@ -213,11 +213,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   max-width: 980px;
 }
-.glance-label {
-  font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+.glance-box .glance-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.20em;
   text-transform: uppercase; color: #8B3A2E; margin: 0 0 6px;
 }
-.glance-value {
+.glance-box .glance-value {
   font-size: 15px; font-weight: 700; color: #0B1530;
   margin: 0; line-height: 1.35;
 }
@@ -293,12 +293,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   border: 1px solid rgba(245, 241, 232, 0.20);
   background: rgba(245, 241, 232, 0.04);
 }
-.deadline-when {
+.deadline-card .deadline-when {
   font-size: 10.5px; font-weight: 700;
   letter-spacing: 0.18em; text-transform: uppercase;
   color: #C9A14A; margin: 0 0 8px;
 }
-.deadline-what {
+.deadline-card .deadline-what {
   font-size: 16px; font-weight: 800; color: #F5F1E8;
   line-height: 1.35; margin: 0;
 }
@@ -336,7 +336,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 
 /* RESOURCE GRID (Section 14) */
 .resource-group { margin-bottom: 28px; max-width: 980px; }
-.resource-group-title {
+.resource-group .resource-group-title {
   font-size: 11px; font-weight: 700; color: #8B3A2E;
   letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 14px;
 }
@@ -363,7 +363,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   font-size: 16.5px; font-weight: 800; color: #0B1530;
   letter-spacing: -0.015em; line-height: 1.3; margin: 0 0 6px;
 }
-.resource-tile p {
+.resource-tile a p {
   font-size: 13px; color: #0B1530; opacity: 0.78;
   line-height: 1.55; margin: 0;
 }
