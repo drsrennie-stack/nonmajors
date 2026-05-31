@@ -498,6 +498,14 @@ body.mcas-page .mcas-next-up-gate-hint {
 }
 body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 </style>
+
+<style id="slide-modal-trigger-styles">
+.draw-btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 20px; padding: 12px 16px; background: rgba(11,21,48,0.04); border-left: 3px solid #8B3A2E; border-radius: 4px; }
+.draw-btn-row::before { content: "Drawing tools"; display: block; width: 100%; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8B3A2E; margin-bottom: 4px; }
+.draw-btn { display: inline-flex; align-items: center; gap: 6px; background: #0B1530; color: #FFFFFF; border: none; padding: 8px 14px; border-radius: 4px; font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; }
+.draw-btn:hover { background: #142A36; }
+.draw-btn::before { content: "\270E"; font-size: 13px; }
+</style>
 </head>
 <body class="mcas-page">
 <!-- mcas-chrome-header -->
@@ -538,6 +546,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 <section class="bundle-cover">
 <p class="eyebrow">BIO 304 . Human Anatomy &amp; Physiology . Week 1</p>
 <h1>Week 1 Workbook — Foundations & The Cell</h1>
+<div class="draw-btn-row"><button type="button" class="draw-btn" data-slide="slides-foundations.html">Draw the anatomical foundations</button></div>
 <p class="subhead">Days 1 through 4 . Print one packet, work the whole week.</p>
 <p class="usage">Print this whole packet at the start of the week and use it as you work through the videos and interactive notes for the days listed below. Each day starts on a fresh page so it&rsquo;s easy to keep them organized.</p>
 <ol>
@@ -1271,4 +1280,5 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 })();
 </script>
 <!-- mcas-iframe-height-sender-end -->
+  <script src="slide-modal.js" defer></script>
 </body></html>
