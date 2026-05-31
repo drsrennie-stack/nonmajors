@@ -114,25 +114,26 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   letter-spacing: -0.01em; margin: 0 0 16px;
 }
 .toc-grid {
-  display: grid; gap: 8px 14px;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  max-width: 980px; margin: 0; padding: 0; list-style: none;
+  columns: 2; column-gap: 48px;
+  max-width: 760px; margin: 0; padding: 0; list-style: none;
 }
-.toc-grid li { margin: 0; }
+.toc-grid li { margin: 0 0 8px; break-inside: avoid; }
 .toc-grid a {
-  display: block; padding: 10px 14px;
-  border: 1px solid rgba(11, 21, 48, 0.14);
-  border-radius: 6px; text-decoration: none;
-  font-size: 13.5px; font-weight: 700; color: #0B1530;
-  background: #FFFFFF;
-  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  display: inline; padding: 0; border: none; background: none;
+  text-decoration: none; color: #0B1530;
+  font-size: 14.5px; font-weight: 700;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 .toc-grid a:hover, .toc-grid a:focus-visible {
-  border-color: #8B3A2E; color: #8B3A2E; background: #FAFAF9;
+  color: #8B3A2E; border-bottom-color: #8B3A2E;
 }
 .toc-grid a span {
   font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em;
-  color: #8B3A2E; opacity: 0.78; margin-right: 8px; text-transform: uppercase;
+  color: #8B3A2E; opacity: 0.78; margin-right: 10px; text-transform: uppercase;
+}
+@media (max-width: 560px) {
+  .toc-grid { columns: 1; }
 }
 
 /* GENERIC DOC SECTION */
@@ -752,7 +753,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
     <div class="resource-group">
       <p class="resource-group-title">Where you do your work</p>
       <div class="resource-grid">
-        <div class="resource-tile"><a href="bio304-spaced-recall-prototype.html" target="_top"><h4>Pre-work hub</h4><p>Daily videos and spaced recall. Pick a week from inside the app.</p></a></div>
+        <div class="resource-tile"><a href="index.html#weeks" target="_top"><h4>Weekly pre-work hubs</h4><p>Eight hubs, one per week. Topic links, daily videos, and spaced recall, organized by week.</p></a></div>
         <div class="resource-tile"><a href="discussions.html" target="_top"><h4>Discussions</h4><p>All eight weekly discussion prompts in one place.</p></a></div>
       </div>
     </div>
@@ -832,7 +833,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
     </div>
     <div>
       <div class="footer-col-header">Study tools</div>
-      <a class="footer-link" href="bio304-spaced-recall-prototype.html" target="_top">Pre-work hub</a>
+      <a class="footer-link" href="index.html#weeks" target="_top">Weekly pre-work</a>
       <a class="footer-link" href="discussions.html" target="_top">Discussions</a>
       <a class="footer-link" href="biol304_textbook.html" target="_top">OpenStax textbook</a>
       <a class="footer-link" href="biol304_reading_map.html" target="_top">Reading map</a>
