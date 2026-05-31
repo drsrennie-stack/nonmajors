@@ -68,10 +68,21 @@ a:focus-visible, button:focus-visible {
 }
 
 /* ===== HERO ===== */
+.hero-card {
+  width: 100%;
+  background: #060A18;
+  display: block;
+}
+.hero-card svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 62vh;
+}
 .hero {
   flex: 1 1 auto;
   display: flex; align-items: center; justify-content: center;
-  padding: 60px max(40px, 5vw) 80px;
+  padding: 32px max(40px, 5vw) 80px;
   position: relative;
   overflow: hidden;
 }
@@ -155,10 +166,50 @@ a:focus-visible, button:focus-visible {
   color: #F5F1E8; line-height: 1.35; margin: 0;
 }
 
+/* ===== START HERE BANNER ===== */
+.start-here {
+  margin: 56px auto 0;
+  max-width: 880px;
+  background: rgba(201, 161, 74, 0.08);
+  border: 1px solid rgba(201, 161, 74, 0.45);
+  border-radius: 10px;
+  padding: 24px 28px;
+  text-align: left;
+}
+.start-here-eyebrow {
+  font-size: 10.5px; font-weight: 700; color: #C9A14A;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  margin: 0 0 10px;
+}
+.start-here-headline {
+  font-size: 19px; font-weight: 800; color: #F5F1E8;
+  letter-spacing: -0.015em; line-height: 1.35;
+  margin: 0 0 16px;
+}
+.start-here-links {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.start-here-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: #F5F1E8;
+  border: 1px solid rgba(245, 241, 232, 0.55);
+  padding: 10px 18px; border-radius: 4px;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.start-here-link:hover, .start-here-link:focus-visible {
+  background: #C9A14A; color: #060A18; border-color: #C9A14A;
+}
+.start-here-link .arrow {
+  font-size: 13px; line-height: 1;
+}
+
 /* ===== QUICK LINKS ===== */
 /* No bookend top border — generous margin separates from glance */
 .quick {
-  margin: 56px auto 0; max-width: 880px;
+  margin: 28px auto 0; max-width: 880px;
   display: flex; gap: 28px; flex-wrap: wrap;
   justify-content: center;
 }
@@ -212,35 +263,43 @@ a:focus-visible, button:focus-visible {
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
 
-<header class="brand-bar">
-  <a class="brand" href="index.html" target="_top" aria-label="BIO 304 course home">
-    <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
-      <g transform="translate(0, 18)">
-        <g transform="translate(60, 0) rotate(8 0 130)">
-          <circle cx="0" cy="20" r="10" fill="#F5F1E8"/>
-          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#F5F1E8"/>
-        </g>
-        <g transform="translate(100, 0)">
-          <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
-          <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
-        </g>
-        <g transform="translate(140, 0) rotate(-8 0 130)">
-          <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
-          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
-        </g>
+<section class="hero-card" aria-labelledby="card-title">
+  <svg viewBox="0 0 1200 670" xmlns="http://www.w3.org/2000/svg"
+       role="img" aria-labelledby="card-title card-desc"
+       preserveAspectRatio="xMidYMid meet">
+    <title id="card-title">BIO 304 Human Anatomy and Physiology, American River College</title>
+    <desc id="card-desc">Course banner: BIO 304 Human Anatomy and Physiology, summer 2026 online session, taught by Dr. Sharilyn Rennie at American River College.</desc>
+    <rect x="0" y="0" width="1200" height="670" fill="#060A18"/>
+    <rect x="72" y="68" width="74" height="5" fill="#C9A14A"/>
+    <text x="72" y="118" fill="#C9A14A" font-family="'Plus Jakarta Sans Variable','Plus Jakarta Sans','DM Sans',system-ui,sans-serif" font-size="22" font-weight="700" letter-spacing="4.4">SUMMER 2026 &#183; ONLINE &#183; 8 WEEKS</text>
+    <text x="72" y="290" fill="#FFFFFF" font-family="'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif" font-size="172" font-weight="800" letter-spacing="-4">BIO 304</text>
+    <text x="72" y="368" fill="#F5F1E8" font-family="'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif" font-size="50" font-weight="700" letter-spacing="-0.8">Human Anatomy &amp; Physiology</text>
+    <text x="72" y="420" fill="#F5F1E8" font-family="'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif" font-size="28" font-weight="500" opacity="0.82">Non-majors essentials for the human body.</text>
+    <line x1="72" y1="540" x2="332" y2="540" stroke="#8B3A2E" stroke-width="3"/>
+    <text x="72" y="586" fill="#FFFFFF" font-family="'Plus Jakarta Sans Variable','Plus Jakarta Sans','DM Sans',system-ui,sans-serif" font-size="22" font-weight="700" letter-spacing="4.4">AMERICAN RIVER COLLEGE</text>
+    <text x="72" y="618" fill="#C9A14A" font-family="'Plus Jakarta Sans Variable','Plus Jakarta Sans','DM Sans',system-ui,sans-serif" font-size="18" font-weight="700" letter-spacing="4">DR. SHARILYN RENNIE</text>
+    <g transform="translate(860, 110) scale(2.85)">
+      <g transform="translate(0, 0) rotate(8 0 130)">
+        <circle cx="0" cy="20" r="10" fill="#0B1530" stroke="#C9A14A" stroke-width="1"/>
+        <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530" stroke="#C9A14A" stroke-width="1"/>
       </g>
-    </svg>
-    <span class="brand-text">
-      <span class="brand-title">Human <span class="accent">A&amp;P</span></span>
-      <span class="brand-sub">BIO 304 &middot; American River College</span>
-    </span>
-  </a>
-</header>
+      <g transform="translate(40, 0)">
+        <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+        <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+      </g>
+      <g transform="translate(80, 0) rotate(-8 0 130)">
+        <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+        <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+      </g>
+    </g>
+    <circle cx="1140" cy="88" r="6" fill="#C9A14A"/>
+    <circle cx="1116" cy="88" r="6" fill="#8B3A2E"/>
+    <circle cx="1092" cy="88" r="6" fill="#F5F1E8"/>
+  </svg>
+</section>
 
 <main id="main" class="hero">
   <div class="hero-content">
-    <p class="hero-eyebrow">Summer 2026 &middot; Online &middot; 8 weeks</p>
-    <h1 class="hero-headline">Welcome to <span class="accent">Human Anatomy &amp; Physiology</span>.</h1>
     <p class="hero-subhead">In eight weeks you will learn how a human body works, top to bottom. Same rhythm every week, hand-labeled lab workbooks, spaced recall practice, and a Wednesday discussion. The course is built to make a 4-credit A&amp;P possible. Step inside when you are ready.</p>
 
     <div class="cta-row">
@@ -270,12 +329,23 @@ a:focus-visible, button:focus-visible {
       </div>
     </div>
 
+    <aside class="start-here" aria-labelledby="start-here-h">
+      <p class="start-here-eyebrow">Start here</p>
+      <p class="start-here-headline" id="start-here-h">Read these two before Monday, June 8.</p>
+      <div class="start-here-links">
+        <a class="start-here-link" href="biol304_syllabus.html" target="_top">
+          Syllabus <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <a class="start-here-link" href="ai_honor_contract.html" target="_top">
+          AI honor contract <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </aside>
+
     <div class="quick">
-      <a href="biol304_syllabus.html" target="_top">Syllabus</a>
       <a href="biol304_how_to_reach_me.html" target="_top">How to reach me</a>
       <a href="biol304_tech_setup.html" target="_top">Tech setup</a>
       <a href="biol304_accessibility.html" target="_top">Accessibility</a>
-      <a href="ai_honor_contract.html" target="_top">AI honor contract</a>
     </div>
   </div>
 </main>
