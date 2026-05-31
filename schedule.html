@@ -310,6 +310,25 @@ body.mcas-page .glance-item:hover {
   font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
   margin-top: 56px;
 }
+/* No italics anywhere in the footer area (page chrome or MCAS chrome).
+   The underlying page styles set Lora italic on .foot and footer text;
+   the MCAS chrome should read as clean upright. */
+body.mcas-page footer,
+body.mcas-page footer *,
+body.mcas-page .mcas-footer,
+body.mcas-page .mcas-footer *,
+body.mcas-page .foot,
+body.mcas-page .foot * {
+  font-style: normal !important;
+}
+
+/* Hide the legacy workbook aside on spoke pages — Step 1 of the step
+   tracker covers it. Keep the markup in DOM so the tracker JS can still
+   read the workbook URL from it. */
+body.mcas-page aside.mcas-next-up {
+  display: none !important;
+}
+
 /* Footer link color — bumped to body-scoped selector so it wins
    specificity against body.mcas-page a (which was forcing rust on dark
    navy and failing WCAG contrast). White on the near-black footer
@@ -431,6 +450,205 @@ body.mcas-page a.mcas-prework-link-cta:focus-visible {
   outline: 3px solid var(--mcas-rust);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+/* ----- Step tracker (on spoke pages, at the top) -----
+   Four-step pre-work flow visualized as horizontal cards:
+     1. Print workbook   2. Watch video   3. Retrieval check   4. Open spaced recall
+   The "current" step renders in dark navy with white text; completed
+   steps render in white with a checkmark; future steps are muted but
+   still clickable. State is read from three localStorage flags
+   (bio304-workbook-{id}, bio304-video-{id}, bio304-gate-{id}) plus the
+   spoke→spaced-recall URL for step 4. */
+body.mcas-page .mcas-step-tracker {
+  margin: 14px 0 28px;
+}
+body.mcas-page .mcas-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+body.mcas-page .mcas-step {
+  display: flex;
+  min-height: 100%;
+}
+body.mcas-page a.mcas-step-btn,
+body.mcas-page button.mcas-step-btn {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+  padding: 16px 16px 14px;
+  border-radius: 10px;
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1.5px solid;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  position: relative;
+}
+body.mcas-page .mcas-step.is-pending a.mcas-step-btn,
+body.mcas-page .mcas-step.is-pending button.mcas-step-btn {
+  background: #FFFFFF;
+  color: rgba(11, 21, 48, 0.55);
+  border-color: rgba(11, 21, 48, 0.16);
+}
+body.mcas-page .mcas-step.is-pending a.mcas-step-btn:hover,
+body.mcas-page .mcas-step.is-pending button.mcas-step-btn:hover,
+body.mcas-page .mcas-step.is-pending a.mcas-step-btn:focus-visible,
+body.mcas-page .mcas-step.is-pending button.mcas-step-btn:focus-visible {
+  color: var(--mcas-navy);
+  border-color: rgba(11, 21, 48, 0.45);
+  transform: translateY(-1px);
+  outline: none;
+}
+body.mcas-page .mcas-step.is-active a.mcas-step-btn,
+body.mcas-page .mcas-step.is-active button.mcas-step-btn {
+  background: var(--mcas-navy);
+  color: #FFFFFF;
+  border-color: var(--mcas-navy);
+  box-shadow: 0 6px 18px rgba(11, 21, 48, 0.18);
+}
+body.mcas-page .mcas-step.is-active a.mcas-step-btn:hover,
+body.mcas-page .mcas-step.is-active button.mcas-step-btn:hover,
+body.mcas-page .mcas-step.is-active a.mcas-step-btn:focus-visible,
+body.mcas-page .mcas-step.is-active button.mcas-step-btn:focus-visible {
+  background: var(--mcas-dark);
+  border-color: var(--mcas-dark);
+  transform: translateY(-1px);
+  outline: 3px solid var(--mcas-gold);
+  outline-offset: 2px;
+}
+body.mcas-page .mcas-step.is-completed a.mcas-step-btn,
+body.mcas-page .mcas-step.is-completed button.mcas-step-btn {
+  background: #FFFFFF;
+  color: var(--mcas-navy);
+  border-color: rgba(11, 21, 48, 0.16);
+}
+body.mcas-page .mcas-step.is-completed a.mcas-step-btn:hover,
+body.mcas-page .mcas-step.is-completed button.mcas-step-btn:hover {
+  border-color: rgba(11, 21, 48, 0.45);
+}
+body.mcas-page .mcas-step.is-completed .mcas-step-btn::after {
+  content: "¹3";
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--mcas-rust);
+}
+body.mcas-page .mcas-step-num {
+  font-family: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.78;
+  margin-bottom: 6px;
+}
+body.mcas-page .mcas-step.is-active .mcas-step-num {
+  color: var(--mcas-gold);
+  opacity: 1;
+}
+body.mcas-page .mcas-step-label {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+body.mcas-page .mcas-step-state {
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  min-height: 1.2em;
+}
+body.mcas-page .mcas-step.is-active .mcas-step-state {
+  color: var(--mcas-gold);
+}
+
+/* Step 1 skip affordance: small link under the main button for students
+   who already have the workbook printed or are doing it on paper. */
+body.mcas-page .mcas-step-skip {
+  appearance: none;
+  background: transparent;
+  border: none;
+  margin: 6px 0 0 4px;
+  padding: 4px 0;
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mcas-rust);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  display: inline-block;
+}
+body.mcas-page .mcas-step-skip:hover,
+body.mcas-page .mcas-step-skip:focus-visible {
+  color: #A0452F;
+  outline: none;
+}
+body.mcas-page .mcas-step-skip[hidden] { display: none; }
+
+/* Persistent reminder banner shown after the student skips Step 1. */
+body.mcas-page .mcas-step-reminder {
+  margin: 12px 0 0;
+  padding: 12px 16px;
+  background: #FFFFFF;
+  border-left: 4px solid var(--mcas-rust);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  font-size: 13.5px;
+  color: var(--mcas-navy);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+body.mcas-page .mcas-step-reminder[hidden] { display: none; }
+body.mcas-page .mcas-step-reminder strong {
+  font-weight: 800;
+  color: var(--mcas-rust);
+  letter-spacing: 0.02em;
+}
+body.mcas-page .mcas-step-reminder-dismiss {
+  appearance: none;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--mcas-navy);
+  opacity: 0.6;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+}
+body.mcas-page .mcas-step-reminder-dismiss:hover,
+body.mcas-page .mcas-step-reminder-dismiss:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+
+@media (max-width: 720px) {
+  body.mcas-page .mcas-steps {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.mcas-page .mcas-step-btn { transition: none !important; }
 }
 
 /* ----- Lecture video notes section (on spoke pages, under the video) -----
@@ -584,7 +802,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 
   <ol id="schedule-list" class="schedule-list" aria-label="Weekly schedule">
 
-    <li class="week-card" id="week-1" aria-label="Week 1, Jun 8 to Jun 14" data-week="1" data-start="2026-06-08" data-end="2026-06-14">
+    <li class="week-card" id="week-1"1 aria-label="Week 1, Jun 8 to Jun 14" data-week="1" data-start="2026-06-08" data-end="2026-06-14">
       <div class="week-tab" aria-hidden="true">Wk 01</div>
       <div class="week-body">
         <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-1">
@@ -601,14 +819,14 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Levels of Organization</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="levels-of-organization.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week01_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-levels-of-organization" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Levels of Organization">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day01_levels-of-organization.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
             <div class="topic-pair">
               <span class="topic-title">Anatomical Terminology and Body Regions</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="anatomical-position.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week01_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-anatomical-terminology" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Anatomical Terminology and Body Regions">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day01_anatomical-terminology-and-body-regions.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div></div>
@@ -620,7 +838,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Homeostasis and Feedback Loops</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="homeostasis-feedback.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week01_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-homeostasis" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Homeostasis and Feedback Loops">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day02_homeostasis-and-feedback-loops.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -642,7 +860,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Cell Structure and Organelles</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="cell-structure.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week01_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-cell-structure" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Cell Structure and Organelles">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day03_cell-structure-and-organelles.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -655,7 +873,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Membrane Transport</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="membrane-transport.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week01_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-membrane-transport" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Membrane Transport">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day04_membrane-transport.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -677,7 +895,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       </div>
     </li>
 
-    <li class="week-card" id="week-2" aria-label="Week 2, Jun 15 to Jun 21" data-week="2" data-start="2026-06-15" data-end="2026-06-21">
+    <li class="week-card" id="week-2"2 aria-label="Week 2, Jun 15 to Jun 21" data-week="2" data-start="2026-06-15" data-end="2026-06-21">
       <div class="week-tab" aria-hidden="true">Wk 02</div>
       <div class="week-body">
         <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-2">
@@ -694,7 +912,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Epithelial Tissue Classification</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="epithelial-tissue.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week02_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-epithelial-tissue" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Epithelial Tissue Classification">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day05_epithelial-tissue-classification.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -707,7 +925,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Connective Tissues</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="connective-tissues.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week02_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-connective-tissue" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Connective Tissues">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day06_connective-tissues.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -729,14 +947,14 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Muscle and Nervous Tissue Overview</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="muscle-nervous-tissue.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week02_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-muscle-nervous-tissue" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Muscle and Nervous Tissue Overview">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day07_muscle-and-nervous-tissue-overview.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
             <div class="topic-pair">
               <span class="topic-title">Skin Structure and Layers</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="skin-layers.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week02_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-skin-layers" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Skin Structure and Layers">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day07_skin-structure-and-layers.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div></div>
@@ -748,7 +966,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Skin Functions and Accessory Structures</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="skin-functions.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week02_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-skin-functions" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Skin Functions and Accessory Structures">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day08_skin-functions-and-accessory-structures.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -770,7 +988,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       </div>
     </li>
 
-    <li class="week-card" id="week-3" aria-label="Week 3, Jun 22 to Jun 28" data-week="3" data-start="2026-06-22" data-end="2026-06-28">
+    <li class="week-card" id="week-3"3 aria-label="Week 3, Jun 22 to Jun 28" data-week="3" data-start="2026-06-22" data-end="2026-06-28">
       <div class="week-tab" aria-hidden="true">Wk 03</div>
       <div class="week-body">
         <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-3">
@@ -787,7 +1005,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Bone Tissue and Bone Growth</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="bone-tissue.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week03_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-bone-tissue" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Bone Tissue and Bone Growth">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day09_bone-tissue-and-bone-growth.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -800,7 +1018,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Axial Skeleton</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="axial-skeleton.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week03_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-axial-skeleton" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Axial Skeleton">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day10_axial-skeleton.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -822,7 +1040,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Appendicular Skeleton</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="appendicular-skeleton.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week03_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-appendicular-skeleton" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Appendicular Skeleton">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day11_appendicular-skeleton.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -835,7 +1053,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Joints and Body Movements</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="joints-and-movements.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week03_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-joints-movements" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Joints and Body Movements">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day12_joints-and-body-movements.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -857,7 +1075,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       </div>
     </li>
 
-    <li class="week-card" id="week-4" aria-label="Week 4, Jun 29 to Jul 5" data-week="4" data-start="2026-06-29" data-end="2026-07-05">
+    <li class="week-card" id="week-4"4 aria-label="Week 4, Jun 29 to Jul 5" data-week="4" data-start="2026-06-29" data-end="2026-07-05">
       <div class="week-tab" aria-hidden="true">Wk 04</div>
       <div class="week-body">
         <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-4">
@@ -874,14 +1092,14 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Skeletal Muscle Microanatomy</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="skeletal-muscle-microanatomy.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week04_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-skeletal-muscle-microanatomy" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Skeletal Muscle Microanatomy">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day13_skeletal-muscle-microanatomy.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
             <div class="topic-pair">
               <span class="topic-title">Motor Units and Muscle Mechanics</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="motor-units.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week04_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-motor-units" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Motor Units and Muscle Mechanics">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day13_motor-units-and-muscle-mechanics.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div></div>
@@ -893,7 +1111,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Sliding Filament and the Cross-Bridge Cycle</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="cross-bridge-cycle.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week04_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-sliding-filament" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Sliding Filament and the Cross-Bridge Cycle">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day14_sliding-filament-and-the-cross-bridge-cycle.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -915,7 +1133,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Neurons and Resting Membrane Potential</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="neurons-resting-potential.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week04_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-neurons-rmp" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Neurons and Resting Membrane Potential">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day15_neurons-and-resting-membrane-potential.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -928,7 +1146,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Action Potentials and Synaptic Transmission</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="action-potentials-synapses.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week04_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-action-potentials" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Action Potentials and Synaptic Transmission">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day16_action-potentials-and-synaptic-transmission.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -950,7 +1168,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       </div>
     </li>
 
-    <li class="week-card" id="week-5" aria-label="Week 5, Jul 6 to Jul 12" data-week="5" data-start="2026-07-06" data-end="2026-07-12">
+    <li class="week-card" id="week-5"5 aria-label="Week 5, Jul 6 to Jul 12" data-week="5" data-start="2026-07-06" data-end="2026-07-12">
       <div class="week-tab" aria-hidden="true">Wk 05</div>
       <div class="week-body">
         <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-5">
@@ -967,7 +1185,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">CNS Organization: Brain and Spinal Cord</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="cns-organization.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week05_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-cns-organization" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for CNS Organization: Brain and Spinal Cord">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day17_cns-organization-brain-and-spinal-cord.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -980,7 +1198,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">PNS and Autonomic Nervous System</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="pns-autonomic.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week05_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-pns-autonomic" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for PNS and Autonomic Nervous System">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day18_pns-and-autonomic-nervous-system.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -1002,14 +1220,14 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Vision</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="vision.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week05_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-vision" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Vision">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day19_vision.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
             <div class="topic-pair">
               <span class="topic-title">Hearing and Equilibrium</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="hearing-equilibrium.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week05_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-hearing-equilibrium" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Hearing and Equilibrium">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day19_hearing-and-equilibrium.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div></div>
@@ -1021,14 +1239,14 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Hormone Mechanisms</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="hormone-mechanisms.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week05_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-hormone-mechanisms" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Hormone Mechanisms">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day20_hormone-mechanisms.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
             <div class="topic-pair">
               <span class="topic-title">Major Endocrine Glands</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="major-endocrine-glands.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week05_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-major-glands" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Major Endocrine Glands">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day20_major-endocrine-glands.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div></div>
@@ -1049,7 +1267,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       </div>
     </li>
 
-    <li class="week-card" id="week-6" aria-label="Week 6, Jul 13 to Jul 19" data-week="6" data-start="2026-07-13" data-end="2026-07-19">
+    <li class="week-card" id="week-6"6 aria-label="Week 6, Jul 13 to Jul 19" data-week="6" data-start="2026-07-13" data-end="2026-07-19">
       <div class="week-tab" aria-hidden="true">Wk 06</div>
       <div class="week-body">
         <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-6">
@@ -1066,14 +1284,14 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Blood Composition and Hemopoiesis</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="blood-composition.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week06_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-blood-composition" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Blood Composition and Hemopoiesis">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day21_blood-composition-and-hemopoiesis.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
             <div class="topic-pair">
               <span class="topic-title">Hemostasis and Blood Typing</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="hemostasis-blood-typing.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week06_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-hemostasis-blood-typing" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Hemostasis and Blood Typing">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day21_hemostasis-and-blood-typing.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div></div>
@@ -1085,7 +1303,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Heart Anatomy and the Cardiac Cycle</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="heart-anatomy.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week06_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-heart-cardiac-cycle" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Heart Anatomy and the Cardiac Cycle">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day22_heart-anatomy-and-the-cardiac-cycle.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -1107,7 +1325,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Cardiac Conduction System</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="cardiac-conduction.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week06_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-conduction-ecg" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Cardiac Conduction System">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day23_cardiac-conduction-system.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -1120,7 +1338,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Blood Vessels and Hemodynamics</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="blood-vessels-hemodynamics.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week06_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-vessels-hemodynamics" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Blood Vessels and Hemodynamics">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day24_blood-vessels-and-hemodynamics.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -1142,7 +1360,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       </div>
     </li>
 
-    <li class="week-card" id="week-7" aria-label="Week 7, Jul 20 to Jul 26" data-week="7" data-start="2026-07-20" data-end="2026-07-26">
+    <li class="week-card" id="week-7"7 aria-label="Week 7, Jul 20 to Jul 26" data-week="7" data-start="2026-07-20" data-end="2026-07-26">
       <div class="week-tab" aria-hidden="true">Wk 07</div>
       <div class="week-body">
         <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-7">
@@ -1159,7 +1377,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Lymphatic System and Innate Immunity</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="lymphatic-innate-immunity.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week07_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-lymphatic-innate" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Lymphatic System and Innate Immunity">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day25_lymphatic-system-and-innate-immunity.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -1172,7 +1390,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Adaptive Immunity</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="adaptive-immunity.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week07_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-adaptive-immunity" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Adaptive Immunity">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day26_adaptive-immunity.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -1194,14 +1412,14 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Respiratory Anatomy and Mechanics</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="respiratory-anatomy.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week07_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-resp-anatomy-mechanics" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Respiratory Anatomy and Mechanics">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day27_respiratory-anatomy-and-mechanics.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
             <div class="topic-pair">
               <span class="topic-title">Gas Exchange and Transport</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="gas-exchange-transport.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week07_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-gas-exchange-transport" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Gas Exchange and Transport">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day27_gas-exchange-and-transport.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div></div>
@@ -1213,14 +1431,14 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">GI Tract Anatomy and Motility</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="gi-anatomy-motility.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week07_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-gi-anatomy-motility" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for GI Tract Anatomy and Motility">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day28_gi-tract-anatomy-and-motility.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
             <div class="topic-pair">
               <span class="topic-title">Digestion and Absorption</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="digestion-absorption.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week07_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-digestion-absorption" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Digestion and Absorption">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day28_digestion-and-absorption.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div></div>
@@ -1241,7 +1459,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       </div>
     </li>
 
-    <li class="week-card" id="week-8" aria-label="Week 8, Jul 27 to Aug 2" data-week="8" data-start="2026-07-27" data-end="2026-08-02">
+    <li class="week-card" id="week-8"8 aria-label="Week 8, Jul 27 to Aug 2" data-week="8" data-start="2026-07-27" data-end="2026-08-02">
       <div class="week-tab" aria-hidden="true">Wk 08</div>
       <div class="week-body">
         <div class="week-header" role="button" tabindex="0" aria-expanded="false" aria-controls="day-list-week-8">
@@ -1258,7 +1476,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Kidney Anatomy and Glomerular Filtration</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="kidney-anatomy-gfr.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week08_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-kidney-filtration" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Kidney Anatomy and Glomerular Filtration">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day29_kidney-anatomy-and-glomerular-filtration.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -1271,7 +1489,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Tubular Function and Urine Concentration</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="tubular-function.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week08_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-tubular-function" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Tubular Function and Urine Concentration">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day30_tubular-function-and-urine-concentration.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
@@ -1293,14 +1511,14 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Fluid, Electrolyte, and Acid-Base Balance</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="fluid-electrolyte-acid-base.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week08_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-fluid-acid-base" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Fluid, Electrolyte, and Acid-Base Balance">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day31_fluid-electrolyte-and-acid-base-balance.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
             <div class="topic-pair">
               <span class="topic-title">Male Reproductive System</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="male-reproductive.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week08_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-male-reproductive" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Male Reproductive System">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day31_male-reproductive-system.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div></div>
@@ -1312,14 +1530,14 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           <dd>
             <span class="topic-title">Female Reproductive System</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="female-reproductive.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week08_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-female-reproductive" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Female Reproductive System">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day32_female-reproductive-system.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div>
             <div class="topic-pair">
               <span class="topic-title">Pregnancy A&P (Basics)</span>
               <div class="pill-row">
-                <a class="act-pill pill-prework" href="pregnancy-basics.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
+                <a class="act-pill pill-prework" href="week08_prework.html" target="_blank" rel="noopener">Pre-work <span class="arrow">&rarr;</span></a>
                 <a class="act-badge badge-sr" href="bio304-spaced-recall-prototype.html#topic=t-pregnancy-development" target="_blank" rel="noopener" title="Spaced recall cards" aria-label="Spaced recall cards for Pregnancy A&P (Basics)">SR</a>
                 <a class="act-pill pill-lab" href="workbook_day32_pregnancy-aandp-basics.html" target="_blank" rel="noopener">Lab workbook <span class="arrow">&rarr;</span></a>
               </div></div>
@@ -1653,6 +1871,246 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 })();
 </script>
 <!-- mcas-lecture-notes-injector-end -->
+<!-- mcas-step-tracker-injector -->
+<script>
+(function(){
+  function init(){
+    var cfg = window.SHEET_CONFIG || {};
+    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
+    var topicId = m ? m[1] : null;
+    if (!topicId) return;
+
+    var resourceBar = document.querySelector(".resource-bar");
+    var workbookAside = document.querySelector("aside.mcas-next-up a.mcas-next-up-cta");
+    var workbookHref = workbookAside ? workbookAside.getAttribute("href") : "#";
+    var preworkHref = cfg.prework || "#";
+
+    // Derive the week number from the workbook URL (workbook_weekNN.html).
+    // Workbook flags are scoped to the week, so printing once on Monday
+    // marks Step 1 complete for every spoke in that week.
+    var weekMatch = (workbookHref || "").match(/workbook_week(\d{2})/);
+    var weekKey   = weekMatch ? weekMatch[1] : null;
+    var weekNum   = weekKey ? parseInt(weekKey, 10) : null;
+    var WB_FLAG          = weekKey ? ("bio304-workbook-week-" + weekKey)              : ("bio304-workbook-" + topicId);
+    var WB_SKIP_FLAG     = weekKey ? ("bio304-workbook-skipped-week-" + weekKey)      : ("bio304-workbook-skipped-" + topicId);
+    var WB_REMINDER_FLAG = weekKey ? ("bio304-workbook-reminder-dismissed-week-" + weekKey) : ("bio304-workbook-reminder-dismissed-" + topicId);
+
+    var tracker = document.createElement("div");
+    tracker.className = "mcas-step-tracker";
+    tracker.setAttribute("data-topic-id", topicId);
+    tracker.innerHTML =
+      '<ol class="mcas-steps" aria-label="Pre-work steps for this topic">' +
+        '<li class="mcas-step" data-step="workbook">' +
+          '<a class="mcas-step-btn" data-step-action="workbook" href="' + workbookHref + '" target="_blank" rel="noopener">' +
+            '<span class="mcas-step-num">Step 1</span>' +
+            '<span class="mcas-step-label">Print the workbook</span>' +
+            '<span class="mcas-step-state"></span>' +
+          '</a>' +
+          '<button type="button" class="mcas-step-skip" data-step-action="workbook-skip" hidden>I will do it by hand &middot; skip this step</button>' +
+        '</li>' +
+        '<li class="mcas-step" data-step="video">' +
+          '<button type="button" class="mcas-step-btn" data-step-action="video">' +
+            '<span class="mcas-step-num">Step 2</span>' +
+            '<span class="mcas-step-label">Watch the video</span>' +
+            '<span class="mcas-step-state"></span>' +
+          '</button>' +
+        '</li>' +
+        '<li class="mcas-step" data-step="gate">' +
+          '<button type="button" class="mcas-step-btn" data-step-action="gate">' +
+            '<span class="mcas-step-num">Step 3</span>' +
+            '<span class="mcas-step-label">Retrieval check</span>' +
+            '<span class="mcas-step-state"></span>' +
+          '</button>' +
+        '</li>' +
+        '<li class="mcas-step" data-step="recall">' +
+          '<a class="mcas-step-btn" data-step-action="recall" href="' + preworkHref + '" target="_top">' +
+            '<span class="mcas-step-num">Step 4</span>' +
+            '<span class="mcas-step-label">Open spaced recall</span>' +
+            '<span class="mcas-step-state"></span>' +
+          '</a>' +
+        '</li>' +
+      '</ol>';
+
+    // Insert before the existing resource-bar (or at top of main content)
+    if (resourceBar && resourceBar.parentNode) {
+      resourceBar.parentNode.insertBefore(tracker, resourceBar);
+      resourceBar.style.display = "none";
+    } else {
+      var anchor = document.querySelector("main .usage, main .subhead, main h1, main");
+      if (anchor && anchor.parentNode) {
+        anchor.parentNode.insertBefore(tracker, anchor.nextSibling);
+      }
+    }
+
+    function readFlag(k){ try { return window.localStorage.getItem(k) === "true"; } catch (e) { return false; } }
+    function writeFlag(k, v){ try { window.localStorage.setItem(k, v ? "true" : ""); } catch (e) {} }
+
+    function state(){
+      return {
+        workbook:        readFlag(WB_FLAG),
+        workbookSkipped: readFlag(WB_SKIP_FLAG),
+        video:           readFlag("bio304-video-" + topicId),
+        gate:            readFlag("bio304-gate-" + topicId)
+      };
+    }
+
+    // Persistent reminder banner: appears when the student skips Step 1
+    // and stays visible until they actively dismiss it (or open the
+    // workbook). Reminds them the workbook still needs to be done and
+    // turned in.
+    var reminder = document.createElement("div");
+    reminder.className = "mcas-step-reminder";
+    reminder.setAttribute("role", "status");
+    reminder.hidden = true;
+    reminder.innerHTML =
+      '<span><strong>Reminder.</strong> The lab workbook still needs to be completed and turned in &mdash; print it or work it by hand.</span>' +
+      '<button type="button" class="mcas-step-reminder-dismiss" aria-label="Dismiss reminder">Dismiss</button>';
+    tracker.appendChild(reminder);
+
+    function updateReminder(s){
+      var visible = s.workbookSkipped && !readFlag(WB_REMINDER_FLAG);
+      reminder.hidden = !visible;
+    }
+    var dismissBtn = reminder.querySelector(".mcas-step-reminder-dismiss");
+    if (dismissBtn) {
+      dismissBtn.addEventListener("click", function(){
+        writeFlag(WB_REMINDER_FLAG, true);
+        reminder.hidden = true;
+      });
+    }
+
+    function render(){
+      var s = state();
+      var current = !s.workbook ? "workbook"
+                  : !s.video    ? "video"
+                  : !s.gate     ? "gate"
+                  :               "recall";
+      var weekLabel = weekNum ? ("Week " + weekNum) : "this week";
+      var stateLabels = {
+        workbook: {
+          active:    "Tap to open and print",
+          completed: s.workbookSkipped
+            ? ("Skipped — do on paper, turn it in")
+            : ("Already printed " + weekLabel + " workbook"),
+          pending:   "Up next"
+        },
+        video:    { active: "Tap to start the video", completed: "Video finished", pending: "Locked until step 1" },
+        gate:     { active: "Tap to write the explanation", completed: "Retrieval check passed", pending: "Locked until step 2" },
+        recall:   { active: "Tap to drill the cards", completed: "Cards opened", pending: "Locked until step 3" }
+      };
+      tracker.querySelectorAll(".mcas-step").forEach(function(li){
+        var step = li.getAttribute("data-step");
+        var done = (step === "workbook" && s.workbook) ||
+                   (step === "video"    && s.video)    ||
+                   (step === "gate"     && s.gate);
+        var cls = done ? "is-completed" : (step === current ? "is-active" : "is-pending");
+        li.classList.remove("is-completed", "is-active", "is-pending");
+        li.classList.add(cls);
+        var stateEl = li.querySelector(".mcas-step-state");
+        if (stateEl) {
+          var labels = stateLabels[step] || {};
+          stateEl.textContent = labels[cls === "is-active" ? "active" : cls === "is-completed" ? "completed" : "pending"] || "";
+        }
+        // Show the skip link only while Step 1 is active
+        if (step === "workbook") {
+          var skipBtn = li.querySelector(".mcas-step-skip");
+          if (skipBtn) skipBtn.hidden = (cls !== "is-active");
+        }
+      });
+      updateReminder(s);
+    }
+
+    // --- Step 1: workbook click sets the WEEK flag, the anchor opens the bundle ---
+    var wbBtn = tracker.querySelector('[data-step-action="workbook"]');
+    if (wbBtn) {
+      wbBtn.addEventListener("click", function(){
+        writeFlag(WB_FLAG, true);
+        // Opening the workbook clears any prior "skipped" state and
+        // re-enables the reminder for future skips.
+        writeFlag(WB_SKIP_FLAG, false);
+        writeFlag(WB_REMINDER_FLAG, false);
+        setTimeout(render, 40);
+      });
+    }
+    var skipBtn = tracker.querySelector('[data-step-action="workbook-skip"]');
+    if (skipBtn) {
+      skipBtn.addEventListener("click", function(){
+        var ok = window.confirm("Skipping the download? The lab workbook still needs to be completed and turned in. Work it on paper or with your printed copy.");
+        if (!ok) return;
+        writeFlag(WB_FLAG, true);
+        writeFlag(WB_SKIP_FLAG, true);
+        writeFlag(WB_REMINDER_FLAG, false);
+        setTimeout(render, 40);
+      });
+    }
+
+    // --- Step 2: video click triggers the existing #video-toggle ---
+    var videoBtn = tracker.querySelector('[data-step-action="video"]');
+    if (videoBtn) {
+      videoBtn.addEventListener("click", function(){
+        var toggle = document.getElementById("video-toggle");
+        if (toggle) toggle.click();
+        var panel = document.getElementById("video-panel");
+        if (panel) setTimeout(function(){ panel.scrollIntoView({ behavior: "smooth", block: "center" }); }, 160);
+      });
+    }
+
+    // --- Step 3: gate click scrolls to the retrieval check ---
+    var gateBtn = tracker.querySelector('[data-step-action="gate"]');
+    if (gateBtn) {
+      gateBtn.addEventListener("click", function(){
+        var gate = document.getElementById("explain-gate");
+        if (gate) {
+          if (gate.hidden) gate.hidden = false;
+          gate.scrollIntoView({ behavior: "smooth", block: "center" });
+          var input = document.getElementById("gate-input");
+          if (input) setTimeout(function(){ input.focus(); }, 380);
+        }
+      });
+    }
+
+    // Watch the explain-gate's hidden attribute. The bio304-option-a IIFE
+    // reveals it via revealGate() when the YouTube video ENDS. That's our
+    // signal to set the bio304-video flag.
+    var gateSection = document.getElementById("explain-gate");
+    if (gateSection && typeof MutationObserver !== "undefined") {
+      var obs = new MutationObserver(function(){
+        if (!gateSection.hidden && !readFlag("bio304-video-" + topicId)) {
+          writeFlag("bio304-video-" + topicId, true);
+          render();
+        }
+      });
+      obs.observe(gateSection, { attributes: true, attributeFilter: ["hidden"] });
+    }
+
+    // Gate submit click → re-render after the existing handler stores its flags
+    var submitBtn = document.getElementById("gate-submit");
+    if (submitBtn) {
+      submitBtn.addEventListener("click", function(){ setTimeout(render, 80); });
+    }
+
+    // Cross-tab updates: re-render when any flag this spoke cares about
+    // changes in another tab (e.g. student opens the workbook from a
+    // sibling spoke and the week flag flips).
+    window.addEventListener("storage", function(e){
+      if (!e.key) return;
+      if (e.key === WB_FLAG || e.key === WB_SKIP_FLAG || e.key === WB_REMINDER_FLAG) {
+        render(); return;
+      }
+      if (e.key.indexOf("bio304-") === 0 && e.key.indexOf(topicId) > -1) render();
+    });
+
+    render();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+<!-- mcas-step-tracker-injector-end -->
 <!-- mcas-iframe-height-sender -->
 <script>
 /* MCAS iframe height-sender (rebrand-mcas.py) */
