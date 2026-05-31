@@ -226,6 +226,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 .topic-pill:hover, .topic-pill:focus-visible { background: #142A36; }
 .topic-pill .arrow { font-weight: 400; font-size: 13px; }
+.topic-pills { display: inline-flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.topic-pill.submit {
+  background: #8B3A2E;
+}
+.topic-pill.submit:hover, .topic-pill.submit:focus-visible { background: #A0452F; }
+@media (max-width: 560px) {
+  .topic-pills { width: 100%; }
+}
 
 /* Wednesday catch-up + Weekend quiz callouts
    Gold differentiation comes from the day-num text only.
@@ -448,14 +456,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Skeletal Muscle Microanatomy</p>
           <p class="topic-blurb">Fascicles, fibers, myofibrils, sarcomeres. How a whole muscle is built from the inside out.</p>
         </div>
-        <a class="topic-pill" href="skeletal-muscle-microanatomy.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="skeletal-muscle-microanatomy.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074909" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
       <div class="topic-row">
         <div>
           <p class="topic-name">Motor Units and Muscle Mechanics</p>
           <p class="topic-blurb">What a motor unit is and how muscles grade their force.</p>
         </div>
-        <a class="topic-pill" href="motor-units.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="motor-units.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074911" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -469,7 +477,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Sliding Filament and the Cross-Bridge Cycle</p>
           <p class="topic-blurb">How actin and myosin actually contract. The molecular event behind every muscle move.</p>
         </div>
-        <a class="topic-pill" href="cross-bridge-cycle.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="cross-bridge-cycle.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074913" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -491,7 +499,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Neurons and Resting Membrane Potential</p>
           <p class="topic-blurb">Neuron parts plus the ion balance that creates the -70 mV resting state.</p>
         </div>
-        <a class="topic-pill" href="neurons-resting-potential.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="neurons-resting-potential.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9122825" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -505,7 +513,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Action Potentials and Synaptic Transmission</p>
           <p class="topic-blurb">Depolarization, repolarization, and how one neuron talks to the next.</p>
         </div>
-        <a class="topic-pill" href="action-potentials-synapses.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="action-potentials-synapses.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074921" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -515,6 +523,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
         <div class="day-meta">Sat-Sun . Jul 4 to 5 . Quiz window</div>
       </div>
       <p class="wed-body">Lock in the week. Run your Daily Review, take the quiz earlier rather than later, and submit your two discussion replies plus any remaining lab workbooks before <strong>Sun 11:59 PM</strong>. Quiz closes at the same time.</p>
+
+      <p style="margin:18px 0 0;"><a href="https://lrccd.instructure.com/courses/317432/quizzes/2879117" target="_top" rel="noopener" style="background:#8B3A2E;color:#FFFFFF;padding:12px 22px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;display:inline-block;">Take the Week 4 quiz &rarr;</a></p>
     </aside>
 
   </div>

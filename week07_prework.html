@@ -226,6 +226,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 .topic-pill:hover, .topic-pill:focus-visible { background: #142A36; }
 .topic-pill .arrow { font-weight: 400; font-size: 13px; }
+.topic-pills { display: inline-flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.topic-pill.submit {
+  background: #8B3A2E;
+}
+.topic-pill.submit:hover, .topic-pill.submit:focus-visible { background: #A0452F; }
+@media (max-width: 560px) {
+  .topic-pills { width: 100%; }
+}
 
 /* Wednesday catch-up + Weekend quiz callouts
    Gold differentiation comes from the day-num text only.
@@ -448,7 +456,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Lymphatic System and Innate Immunity</p>
           <p class="topic-blurb">Lymph vessels, lymphoid organs, and the first line of defense.</p>
         </div>
-        <a class="topic-pill" href="lymphatic-innate-immunity.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="lymphatic-innate-immunity.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075359" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -462,7 +470,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Adaptive Immunity</p>
           <p class="topic-blurb">B cells, T cells, antibodies. Specific defense and immunological memory.</p>
         </div>
-        <a class="topic-pill" href="adaptive-immunity.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="adaptive-immunity.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075361" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -484,14 +492,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Respiratory Anatomy and Mechanics</p>
           <p class="topic-blurb">Conducting and respiratory zones plus how breathing actually moves air.</p>
         </div>
-        <a class="topic-pill" href="respiratory-anatomy.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="respiratory-anatomy.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075363" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
       <div class="topic-row">
         <div>
           <p class="topic-name">Gas Exchange and Transport</p>
           <p class="topic-blurb">How O2 and CO2 move across membranes and travel in the blood.</p>
         </div>
-        <a class="topic-pill" href="gas-exchange-transport.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="gas-exchange-transport.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075365" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -505,14 +513,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">GI Tract Anatomy and Motility</p>
           <p class="topic-blurb">Mouth to anus. Layers of the tract and how it moves contents along.</p>
         </div>
-        <a class="topic-pill" href="gi-anatomy-motility.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="gi-anatomy-motility.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075367" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
       <div class="topic-row">
         <div>
           <p class="topic-name">Digestion and Absorption</p>
           <p class="topic-blurb">Where each macronutrient is broken down and how it crosses into the body.</p>
         </div>
-        <a class="topic-pill" href="digestion-absorption.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="digestion-absorption.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075369" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -522,6 +530,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
         <div class="day-meta">Sat-Sun . Jul 25 to 26 . Quiz window</div>
       </div>
       <p class="wed-body">Lock in the week. Run your Daily Review, take the quiz earlier rather than later, and submit your two discussion replies plus any remaining lab workbooks before <strong>Sun 11:59 PM</strong>. Quiz closes at the same time.</p>
+
+      <p style="margin:18px 0 0;"><a href="https://lrccd.instructure.com/courses/317432/quizzes/2890223" target="_top" rel="noopener" style="background:#8B3A2E;color:#FFFFFF;padding:12px 22px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;display:inline-block;">Take the Week 7 quiz &rarr;</a></p>
     </aside>
 
   </div>

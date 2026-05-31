@@ -226,6 +226,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 .topic-pill:hover, .topic-pill:focus-visible { background: #142A36; }
 .topic-pill .arrow { font-weight: 400; font-size: 13px; }
+.topic-pills { display: inline-flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.topic-pill.submit {
+  background: #8B3A2E;
+}
+.topic-pill.submit:hover, .topic-pill.submit:focus-visible { background: #A0452F; }
+@media (max-width: 560px) {
+  .topic-pills { width: 100%; }
+}
 
 /* Wednesday catch-up + Weekend quiz callouts
    Gold differentiation comes from the day-num text only.
@@ -448,7 +456,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">CNS Organization: Brain and Spinal Cord</p>
           <p class="topic-blurb">Major brain regions, the spinal cord, and what each is responsible for.</p>
         </div>
-        <a class="topic-pill" href="cns-organization.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="cns-organization.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074937" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -462,7 +470,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">PNS and Autonomic Nervous System</p>
           <p class="topic-blurb">Cranial and spinal nerves, plus the sympathetic and parasympathetic split.</p>
         </div>
-        <a class="topic-pill" href="pns-autonomic.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="pns-autonomic.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074939" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -484,14 +492,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Vision</p>
           <p class="topic-blurb">Eye anatomy, image formation, and the visual pathway to the brain.</p>
         </div>
-        <a class="topic-pill" href="vision.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="vision.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074949" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
       <div class="topic-row">
         <div>
           <p class="topic-name">Hearing and Equilibrium</p>
           <p class="topic-blurb">Outer, middle, inner ear. How sound becomes signal and how balance is sensed.</p>
         </div>
-        <a class="topic-pill" href="hearing-equilibrium.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="hearing-equilibrium.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074983" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -505,14 +513,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Hormone Mechanisms</p>
           <p class="topic-blurb">How hormones reach targets and what they do once they get there.</p>
         </div>
-        <a class="topic-pill" href="hormone-mechanisms.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="hormone-mechanisms.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075007" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
       <div class="topic-row">
         <div>
           <p class="topic-name">Major Endocrine Glands</p>
           <p class="topic-blurb">Pituitary, thyroid, adrenals, pancreas, gonads. Who releases what.</p>
         </div>
-        <a class="topic-pill" href="major-endocrine-glands.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="major-endocrine-glands.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075071" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -522,6 +530,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
         <div class="day-meta">Sat-Sun . Jul 11 to 12 . Quiz window</div>
       </div>
       <p class="wed-body">Lock in the week. Run your Daily Review, take the quiz earlier rather than later, and submit your two discussion replies plus any remaining lab workbooks before <strong>Sun 11:59 PM</strong>. Quiz closes at the same time.</p>
+
+      <p style="margin:18px 0 0;"><a href="https://lrccd.instructure.com/courses/317432/quizzes/2879123" target="_top" rel="noopener" style="background:#8B3A2E;color:#FFFFFF;padding:12px 22px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;display:inline-block;">Take the Week 5 quiz &rarr;</a></p>
     </aside>
 
   </div>

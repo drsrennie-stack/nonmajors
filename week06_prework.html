@@ -226,6 +226,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 .topic-pill:hover, .topic-pill:focus-visible { background: #142A36; }
 .topic-pill .arrow { font-weight: 400; font-size: 13px; }
+.topic-pills { display: inline-flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.topic-pill.submit {
+  background: #8B3A2E;
+}
+.topic-pill.submit:hover, .topic-pill.submit:focus-visible { background: #A0452F; }
+@media (max-width: 560px) {
+  .topic-pills { width: 100%; }
+}
 
 /* Wednesday catch-up + Weekend quiz callouts
    Gold differentiation comes from the day-num text only.
@@ -448,14 +456,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Blood Composition and Hemopoiesis</p>
           <p class="topic-blurb">Plasma plus formed elements, and where blood cells come from.</p>
         </div>
-        <a class="topic-pill" href="blood-composition.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="blood-composition.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9122827" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
       <div class="topic-row">
         <div>
           <p class="topic-name">Hemostasis and Blood Typing</p>
           <p class="topic-blurb">How bleeding stops. ABO and Rh, and why type matters.</p>
         </div>
-        <a class="topic-pill" href="hemostasis-blood-typing.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="hemostasis-blood-typing.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075315" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -469,7 +477,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Heart Anatomy and the Cardiac Cycle</p>
           <p class="topic-blurb">Four chambers, four valves, and one beat's worth of pressure and volume.</p>
         </div>
-        <a class="topic-pill" href="heart-anatomy.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="heart-anatomy.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075317" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -491,7 +499,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Cardiac Conduction System</p>
           <p class="topic-blurb">SA node to AV node to bundle branches. How the heart sets its own rhythm.</p>
         </div>
-        <a class="topic-pill" href="cardiac-conduction.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="cardiac-conduction.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075319" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -505,7 +513,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Blood Vessels and Hemodynamics</p>
           <p class="topic-blurb">Arteries, veins, capillaries, and the pressures that move blood through them.</p>
         </div>
-        <a class="topic-pill" href="blood-vessels-hemodynamics.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="blood-vessels-hemodynamics.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075321" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -515,6 +523,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
         <div class="day-meta">Sat-Sun . Jul 18 to 19 . Quiz window</div>
       </div>
       <p class="wed-body">Lock in the week. Run your Daily Review, take the quiz earlier rather than later, and submit your two discussion replies plus any remaining lab workbooks before <strong>Sun 11:59 PM</strong>. Quiz closes at the same time.</p>
+
+      <p style="margin:18px 0 0;"><a href="https://lrccd.instructure.com/courses/317432/quizzes/2890211" target="_top" rel="noopener" style="background:#8B3A2E;color:#FFFFFF;padding:12px 22px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;display:inline-block;">Take the Week 6 quiz &rarr;</a></p>
     </aside>
 
   </div>

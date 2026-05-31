@@ -226,6 +226,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 .topic-pill:hover, .topic-pill:focus-visible { background: #142A36; }
 .topic-pill .arrow { font-weight: 400; font-size: 13px; }
+.topic-pills { display: inline-flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.topic-pill.submit {
+  background: #8B3A2E;
+}
+.topic-pill.submit:hover, .topic-pill.submit:focus-visible { background: #A0452F; }
+@media (max-width: 560px) {
+  .topic-pills { width: 100%; }
+}
 
 /* Wednesday catch-up + Weekend quiz callouts
    Gold differentiation comes from the day-num text only.
@@ -448,7 +456,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Epithelial Tissue Classification</p>
           <p class="topic-blurb">How epithelia are named and what each type does. Sheets that cover, line, and secrete.</p>
         </div>
-        <a class="topic-pill" href="epithelial-tissue.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="epithelial-tissue.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9073305" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -462,7 +470,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Connective Tissues</p>
           <p class="topic-blurb">The most varied tissue type. Cells, fibers, ground substance, and what makes each connective tissue work.</p>
         </div>
-        <a class="topic-pill" href="connective-tissues.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="connective-tissues.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9072951" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -484,14 +492,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Muscle and Nervous Tissue Overview</p>
           <p class="topic-blurb">The two excitable tissues. What makes a muscle a muscle and a neuron a neuron.</p>
         </div>
-        <a class="topic-pill" href="muscle-nervous-tissue.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="muscle-nervous-tissue.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9073761" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
       <div class="topic-row">
         <div>
           <p class="topic-name">Skin Structure and Layers</p>
           <p class="topic-blurb">Epidermis, dermis, hypodermis. The cells and layers that make skin work.</p>
         </div>
-        <a class="topic-pill" href="skin-layers.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="skin-layers.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9073769" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -505,7 +513,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Skin Functions and Accessory Structures</p>
           <p class="topic-blurb">Hair, glands, nails, and what skin does beyond covering you.</p>
         </div>
-        <a class="topic-pill" href="skin-functions.html" target="_top">Open topic <span class="arrow">&rarr;</span></a>
+        <span class="topic-pills"><a class="topic-pill" href="skin-functions.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9073831" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -515,6 +523,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
         <div class="day-meta">Sat-Sun . Jun 20 to 21 . Quiz window</div>
       </div>
       <p class="wed-body">Lock in the week. Run your Daily Review, take the quiz earlier rather than later, and submit your two discussion replies plus any remaining lab workbooks before <strong>Sun 11:59 PM</strong>. Quiz closes at the same time.</p>
+
+      <p style="margin:18px 0 0;"><a href="https://lrccd.instructure.com/courses/317432/quizzes/2879113" target="_top" rel="noopener" style="background:#8B3A2E;color:#FFFFFF;padding:12px 22px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;display:inline-block;">Take the Week 2 quiz &rarr;</a></p>
     </aside>
 
   </div>
