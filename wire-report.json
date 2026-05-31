@@ -1,0 +1,1084 @@
+{
+  "wired": [
+    [
+      "action-potentials-synapses.html",
+      [
+        "slides-neurons-action-potentials.html"
+      ],
+      "Action Potentials &amp; Synaptic Transmission"
+    ],
+    [
+      "adaptive-immunity.html",
+      [
+        "slides-adaptive-immunity.html"
+      ],
+      "Adaptive Immunity"
+    ],
+    [
+      "anatomical-position.html",
+      [
+        "slides-foundations.html"
+      ],
+      "Anatomical Position, Planes &amp; Directional Terms"
+    ],
+    [
+      "appendicular-skeleton.html",
+      [
+        "slides-appendicular-skeleton.html"
+      ],
+      "Appendicular Skeleton"
+    ],
+    [
+      "axial-skeleton.html",
+      [
+        "slides-axial-skeleton.html"
+      ],
+      "Axial Skeleton"
+    ],
+    [
+      "blood-composition.html",
+      [
+        "slides-blood-composition.html"
+      ],
+      "Blood Composition &amp; Hemopoiesis"
+    ],
+    [
+      "blood-vessels-hemodynamics.html",
+      [
+        "slides-blood-vessels.html"
+      ],
+      "Blood Vessels &amp; Hemodynamics"
+    ],
+    [
+      "body-cavities.html",
+      [
+        "slides-foundations.html"
+      ],
+      "Body Cavities &amp; Regions"
+    ],
+    [
+      "body-regions.html",
+      [
+        "slides-foundations.html"
+      ],
+      "Body Regions"
+    ],
+    [
+      "bone-tissue.html",
+      [
+        "slides-bone-tissue.html"
+      ],
+      "Bone Tissue &amp; Bone Growth"
+    ],
+    [
+      "cardiac-conduction.html",
+      [
+        "slides-cardiac-conduction.html"
+      ],
+      "Cardiac Conduction System"
+    ],
+    [
+      "cell-structure.html",
+      [
+        "slides-cell-anatomy.html"
+      ],
+      "Cell Structure &amp; Organelles"
+    ],
+    [
+      "cns-organization.html",
+      [
+        "slides-cns-organization.html"
+      ],
+      "CNS Organization: Brain &amp; Spinal Cord"
+    ],
+    [
+      "connective-tissues.html",
+      [
+        "slides-connective-tissues.html"
+      ],
+      "Connective Tissues"
+    ],
+    [
+      "cross-bridge-cycle.html",
+      [
+        "slides-sliding-filament.html"
+      ],
+      "Sliding Filament &amp; the Cross-Bridge Cycle"
+    ],
+    [
+      "digestion-absorption.html",
+      [
+        "slides-gi-alimentary-canal.html"
+      ],
+      "Digestion &amp; Absorption"
+    ],
+    [
+      "epithelial-tissue.html",
+      [
+        "slides-epithelial-tissue-classification.html"
+      ],
+      "Epithelial Tissue Classification"
+    ],
+    [
+      "female-reproductive.html",
+      [
+        "slides-reproductive-systems.html"
+      ],
+      "Female Reproductive System"
+    ],
+    [
+      "fluid-electrolyte-acid-base.html",
+      [
+        "slides-fluid-electrolyte-acid-base.html"
+      ],
+      "Fluid, Electrolyte &amp; Acid-Base Balance"
+    ],
+    [
+      "gas-exchange-transport.html",
+      [
+        "slides-gas-exchange.html"
+      ],
+      "Gas Exchange &amp; Transport"
+    ],
+    [
+      "gi-anatomy-motility.html",
+      [
+        "slides-gi-alimentary-canal.html"
+      ],
+      "GI Tract Anatomy &amp; Motility"
+    ],
+    [
+      "hearing-equilibrium.html",
+      [
+        "slides-hearing-equilibrium.html"
+      ],
+      "Hearing &amp; Equilibrium"
+    ],
+    [
+      "heart-anatomy.html",
+      [
+        "slides-heart-anatomy.html"
+      ],
+      "Heart Anatomy &amp; the Cardiac Cycle"
+    ],
+    [
+      "hemostasis-blood-typing.html",
+      [
+        "slides-hemostasis-blood-typing.html"
+      ],
+      "Hemostasis &amp; Blood Typing"
+    ],
+    [
+      "homeostasis-feedback.html",
+      [
+        "slides-homeostasis.html"
+      ],
+      "Homeostasis &amp; Feedback Loops"
+    ],
+    [
+      "hormone-mechanisms.html",
+      [
+        "slides-endocrine.html"
+      ],
+      "Hormone Mechanisms"
+    ],
+    [
+      "joints-and-movements.html",
+      [
+        "slides-joints.html"
+      ],
+      "Joints &amp; Body Movements"
+    ],
+    [
+      "kidney-anatomy-gfr.html",
+      [
+        "slides-kidney-anatomy-gfr.html"
+      ],
+      "Kidney Anatomy &amp; Glomerular Filtration"
+    ],
+    [
+      "levels-of-organization.html",
+      [
+        "slides-foundations.html"
+      ],
+      "Levels of Organization"
+    ],
+    [
+      "lymphatic-innate-immunity.html",
+      [
+        "slides-lymphatic-innate-immunity.html"
+      ],
+      "Lymphatic System &amp; Innate Immunity"
+    ],
+    [
+      "major-endocrine-glands.html",
+      [
+        "slides-endocrine.html"
+      ],
+      "Major Endocrine Glands"
+    ],
+    [
+      "male-reproductive.html",
+      [
+        "slides-reproductive-systems.html"
+      ],
+      "Male Reproductive System"
+    ],
+    [
+      "membrane-transport.html",
+      [
+        "slides-cell-membrane-transport.html"
+      ],
+      "Membrane Transport"
+    ],
+    [
+      "motor-units.html",
+      [
+        "slides-skeletal-muscle-physiology.html"
+      ],
+      "Motor Units &amp; Muscle Mechanics"
+    ],
+    [
+      "muscle-nervous-tissue.html",
+      [
+        "slides-muscle-nervous-tissue.html"
+      ],
+      "Muscle &amp; Nervous Tissue Overview"
+    ],
+    [
+      "neurons-resting-potential.html",
+      [
+        "slides-neurons-action-potentials.html"
+      ],
+      "Neurons &amp; Resting Membrane Potential"
+    ],
+    [
+      "pns-autonomic.html",
+      [
+        "slides-pns-autonomic.html"
+      ],
+      "PNS &amp; Autonomic Nervous System"
+    ],
+    [
+      "portfolio_week01_template.html",
+      [
+        "slides-fluid-electrolyte-acid-base.html",
+        "slides-burns.html"
+      ],
+      "Week 01: Fluids, electrolytes, and burns"
+    ],
+    [
+      "portfolio_week03_template.html",
+      [
+        "slides-endocrine.html"
+      ],
+      "Week 03: Endocrine recognition"
+    ],
+    [
+      "pregnancy-basics.html",
+      [
+        "slides-pregnancy-ap.html"
+      ],
+      "Pregnancy A&amp;P (Basics)"
+    ],
+    [
+      "respiratory-anatomy.html",
+      [
+        "slides-respiratory-anatomy.html"
+      ],
+      "Respiratory Anatomy &amp; Mechanics"
+    ],
+    [
+      "skeletal-muscle-microanatomy.html",
+      [
+        "slides-muscle-microanatomy.html"
+      ],
+      "Skeletal Muscle Microanatomy"
+    ],
+    [
+      "skin-functions.html",
+      [
+        "slides-skin-functions.html"
+      ],
+      "Skin Functions and Accessory Structures"
+    ],
+    [
+      "skin-layers.html",
+      [
+        "slides-skin-structure.html"
+      ],
+      "Skin Structure and Layers"
+    ],
+    [
+      "tubular-function.html",
+      [
+        "slides-tubular-function.html"
+      ],
+      "Tubular Function and Urine Concentration"
+    ],
+    [
+      "vision.html",
+      [
+        "slides-vision.html"
+      ],
+      "Vision"
+    ],
+    [
+      "week01_discussion.html",
+      [
+        "slides-homeostasis.html"
+      ],
+      "Finding homeostasis in your own life"
+    ],
+    [
+      "week01_prework.html",
+      [
+        "slides-cell-membrane-transport.html",
+        "slides-foundations.html"
+      ],
+      "Foundations, cell,  membrane transport."
+    ],
+    [
+      "week03_discussion.html",
+      [
+        "slides-bone-development-fractures.html"
+      ],
+      "A fracture story"
+    ],
+    [
+      "week03_physiology_workbook.html",
+      [
+        "slides-reflexes.html",
+        "slides-a1c-glucose.html"
+      ],
+      "Glucose Tolerance &amp; ANS Reflex Testing"
+    ],
+    [
+      "week03_prework.html",
+      [
+        "slides-bone-tissue.html"
+      ],
+      "Bone tissue to  the skeleton."
+    ],
+    [
+      "week04_prework.html",
+      [
+        "slides-neurons-action-potentials.html"
+      ],
+      "How muscles contract, how  neurons fire."
+    ],
+    [
+      "week05_anatomy_workbook.html",
+      [
+        "slides-lymphatic-innate-immunity.html"
+      ],
+      "Transport: Heart, Vessels, Blood, Lymph"
+    ],
+    [
+      "week05_discussion.html",
+      [
+        "slides-endocrine.html"
+      ],
+      "A sense or a hormone you took for granted"
+    ],
+    [
+      "week05_physiology_workbook.html",
+      [
+        "slides-cardiac-conduction.html"
+      ],
+      "ECG Interpretation &amp; ASCVD Risk"
+    ],
+    [
+      "week05_prework.html",
+      [
+        "slides-endocrine.html"
+      ],
+      "The nervous system and  the endocrine system."
+    ],
+    [
+      "week06_anatomy_workbook.html",
+      [
+        "slides-gas-exchange.html"
+      ],
+      "Gas Exchange &amp; Waste"
+    ],
+    [
+      "week06_discussion.html",
+      [
+        "slides-blood-pressure.html"
+      ],
+      "Blood pressure as a story"
+    ],
+    [
+      "week06_trainer.html",
+      [
+        "slides-gas-exchange.html"
+      ],
+      "Gas Exchange &amp;  Waste"
+    ],
+    [
+      "week06_worksheet.html",
+      [
+        "slides-gas-exchange.html"
+      ],
+      "Gas Exchange &amp; Waste"
+    ],
+    [
+      "week07_physiology_workbook.html",
+      [
+        "slides-lipid-panel.html"
+      ],
+      "LFTs, Lipid Panel &amp; Nutrition Audit"
+    ],
+    [
+      "week07_worksheet.html",
+      [
+        "slides-gi-alimentary-canal.html"
+      ],
+      "Nutrition: Digestion, Absorption, Metabolism"
+    ],
+    [
+      "week08_anatomy_workbook.html",
+      [
+        "slides-reproductive-systems.html"
+      ],
+      "Reproductive Systems &amp; Lifespan"
+    ],
+    [
+      "week08_prework.html",
+      [
+        "slides-kidney-anatomy-gfr.html"
+      ],
+      "How the kidneys filter, how bodies  make new people."
+    ],
+    [
+      "workbook_day01_anatomical-terminology-and-body-regions.html",
+      [
+        "slides-foundations.html"
+      ],
+      "Anatomical Terminology and Body Regions"
+    ],
+    [
+      "workbook_day01_levels-of-organization.html",
+      [
+        "slides-foundations.html"
+      ],
+      "Levels of Organization"
+    ],
+    [
+      "workbook_day02_homeostasis-and-feedback-loops.html",
+      [
+        "slides-homeostasis.html"
+      ],
+      "Homeostasis and Feedback Loops"
+    ],
+    [
+      "workbook_day03_cell-structure-and-organelles.html",
+      [
+        "slides-cell-anatomy.html"
+      ],
+      "Cell Structure and Organelles"
+    ],
+    [
+      "workbook_day04_membrane-transport.html",
+      [
+        "slides-cell-membrane-transport.html"
+      ],
+      "Membrane Transport"
+    ],
+    [
+      "workbook_day05_epithelial-tissue-classification.html",
+      [
+        "slides-epithelial-tissue-classification.html"
+      ],
+      "Epithelial Tissue Classification"
+    ],
+    [
+      "workbook_day06_connective-tissues.html",
+      [
+        "slides-connective-tissues.html"
+      ],
+      "Connective Tissues"
+    ],
+    [
+      "workbook_day07_skin-structure-and-layers.html",
+      [
+        "slides-skin-structure.html"
+      ],
+      "Skin Structure and Layers"
+    ],
+    [
+      "workbook_day08_skin-functions-and-accessory-structures.html",
+      [
+        "slides-skin-functions.html"
+      ],
+      "Skin Functions and Accessory Structures"
+    ],
+    [
+      "workbook_day09_bone-tissue-and-bone-growth.html",
+      [
+        "slides-bone-tissue.html"
+      ],
+      "Bone Tissue and Bone Growth"
+    ],
+    [
+      "workbook_day10_axial-skeleton.html",
+      [
+        "slides-axial-skeleton.html"
+      ],
+      "Axial Skeleton"
+    ],
+    [
+      "workbook_day11_appendicular-skeleton.html",
+      [
+        "slides-appendicular-skeleton.html"
+      ],
+      "Appendicular Skeleton"
+    ],
+    [
+      "workbook_day12_joints-and-body-movements.html",
+      [
+        "slides-joints.html"
+      ],
+      "Joints and Body Movements"
+    ],
+    [
+      "workbook_day13_motor-units-and-muscle-mechanics.html",
+      [
+        "slides-skeletal-muscle-physiology.html"
+      ],
+      "Motor Units and Muscle Mechanics"
+    ],
+    [
+      "workbook_day13_skeletal-muscle-microanatomy.html",
+      [
+        "slides-muscle-microanatomy.html"
+      ],
+      "Skeletal Muscle Microanatomy"
+    ],
+    [
+      "workbook_day14_sliding-filament-and-the-cross-bridge-cycle.html",
+      [
+        "slides-sliding-filament.html"
+      ],
+      "Sliding Filament and the Cross-Bridge Cycle"
+    ],
+    [
+      "workbook_day15_neurons-and-resting-membrane-potential.html",
+      [
+        "slides-neurons-action-potentials.html"
+      ],
+      "Neurons and Resting Membrane Potential"
+    ],
+    [
+      "workbook_day16_action-potentials-and-synaptic-transmission.html",
+      [
+        "slides-neurons-action-potentials.html"
+      ],
+      "Action Potentials and Synaptic Transmission"
+    ],
+    [
+      "workbook_day17_cns-organization-brain-and-spinal-cord.html",
+      [
+        "slides-cns-organization.html"
+      ],
+      "CNS Organization: Brain and Spinal Cord"
+    ],
+    [
+      "workbook_day18_pns-and-autonomic-nervous-system.html",
+      [
+        "slides-pns-autonomic.html"
+      ],
+      "PNS and Autonomic Nervous System"
+    ],
+    [
+      "workbook_day19_hearing-and-equilibrium.html",
+      [
+        "slides-hearing-equilibrium.html"
+      ],
+      "Hearing and Equilibrium"
+    ],
+    [
+      "workbook_day19_vision.html",
+      [
+        "slides-vision.html"
+      ],
+      "Vision"
+    ],
+    [
+      "workbook_day20_hormone-mechanisms.html",
+      [
+        "slides-endocrine.html"
+      ],
+      "Hormone Mechanisms"
+    ],
+    [
+      "workbook_day20_major-endocrine-glands.html",
+      [
+        "slides-endocrine.html"
+      ],
+      "Major Endocrine Glands"
+    ],
+    [
+      "workbook_day21_blood-composition-and-hemopoiesis.html",
+      [
+        "slides-blood-composition.html"
+      ],
+      "Blood Composition and Hemopoiesis"
+    ],
+    [
+      "workbook_day21_hemostasis-and-blood-typing.html",
+      [
+        "slides-hemostasis-blood-typing.html"
+      ],
+      "Hemostasis and Blood Typing"
+    ],
+    [
+      "workbook_day22_heart-anatomy-and-the-cardiac-cycle.html",
+      [
+        "slides-heart-anatomy.html"
+      ],
+      "Heart Anatomy and the Cardiac Cycle"
+    ],
+    [
+      "workbook_day23_cardiac-conduction-system.html",
+      [
+        "slides-cardiac-conduction.html"
+      ],
+      "Cardiac Conduction System"
+    ],
+    [
+      "workbook_day24_blood-vessels-and-hemodynamics.html",
+      [
+        "slides-blood-vessels.html"
+      ],
+      "Blood Vessels and Hemodynamics"
+    ],
+    [
+      "workbook_day25_lymphatic-system-and-innate-immunity.html",
+      [
+        "slides-lymphatic-innate-immunity.html"
+      ],
+      "Lymphatic System and Innate Immunity"
+    ],
+    [
+      "workbook_day26_adaptive-immunity.html",
+      [
+        "slides-adaptive-immunity.html"
+      ],
+      "Adaptive Immunity"
+    ],
+    [
+      "workbook_day27_gas-exchange-and-transport.html",
+      [
+        "slides-gas-exchange.html"
+      ],
+      "Gas Exchange and Transport"
+    ],
+    [
+      "workbook_day27_respiratory-anatomy-and-mechanics.html",
+      [
+        "slides-respiratory-anatomy.html"
+      ],
+      "Respiratory Anatomy and Mechanics"
+    ],
+    [
+      "workbook_day28_digestion-and-absorption.html",
+      [
+        "slides-gi-alimentary-canal.html"
+      ],
+      "Digestion and Absorption"
+    ],
+    [
+      "workbook_day28_gi-tract-anatomy-and-motility.html",
+      [
+        "slides-gi-alimentary-canal.html"
+      ],
+      "GI Tract Anatomy and Motility"
+    ],
+    [
+      "workbook_day29_kidney-anatomy-and-glomerular-filtration.html",
+      [
+        "slides-kidney-anatomy-gfr.html"
+      ],
+      "Kidney Anatomy and Glomerular Filtration"
+    ],
+    [
+      "workbook_day30_tubular-function-and-urine-concentration.html",
+      [
+        "slides-tubular-function.html"
+      ],
+      "Tubular Function and Urine Concentration"
+    ],
+    [
+      "workbook_day31_fluid-electrolyte-and-acid-base-balance.html",
+      [
+        "slides-fluid-electrolyte-acid-base.html"
+      ],
+      "Fluid, Electrolyte, and Acid-Base Balance"
+    ],
+    [
+      "workbook_day31_male-reproductive-system.html",
+      [
+        "slides-reproductive-systems.html"
+      ],
+      "Male Reproductive System"
+    ],
+    [
+      "workbook_day32_female-reproductive-system.html",
+      [
+        "slides-reproductive-systems.html"
+      ],
+      "Female Reproductive System"
+    ],
+    [
+      "workbook_day32_pregnancy-a-p-basics.html",
+      [
+        "slides-pregnancy-ap.html"
+      ],
+      "Pregnancy A&amp;P (Basics)"
+    ],
+    [
+      "workbook_day32_pregnancy-aandp-basics.html",
+      [
+        "slides-pregnancy-ap.html"
+      ],
+      "Pregnancy A&amp;P (Basics)"
+    ],
+    [
+      "workbook_week01.html",
+      [
+        "slides-foundations.html"
+      ],
+      "Week 1 Workbook \u2014 Foundations & The Cell"
+    ],
+    [
+      "workbook_week05.html",
+      [
+        "slides-endocrine.html"
+      ],
+      "Week 5 Workbook \u2014 Nervous, Senses & Endocrine"
+    ],
+    [
+      "workbook_week08.html",
+      [
+        "slides-reproductive-systems.html"
+      ],
+      "Week 8 Workbook \u2014 Renal & Reproductive"
+    ]
+  ],
+  "no_match": [
+    [
+      "biol304_how_to_reach_me.html",
+      "How to reach me"
+    ],
+    [
+      "biol304_reading_map.html",
+      "Essentials of Anatomy & Physiology \u00b7 BIOL 304"
+    ],
+    [
+      "biol304_rsi_statement.html",
+      "Regular and Substantive Interaction"
+    ],
+    [
+      "clinical_portfolio_hub.html",
+      "Clinical Portfolio Hub"
+    ],
+    [
+      "comprehensive-practice-final.html",
+      "Practice Final Exam"
+    ],
+    [
+      "concept_videos.html",
+      "Concept & Lab ID Video Library"
+    ],
+    [
+      "course-orientation.html",
+      "Welcome to BIO 304"
+    ],
+    [
+      "course.html",
+      "Welcome. Let's learn the human body,  one module at a time ."
+    ],
+    [
+      "discussions.html",
+      "Discussion Prompts: AI-Resistant by Design"
+    ],
+    [
+      "enter-course.html",
+      "Anatomy &amp; Physiology"
+    ],
+    [
+      "how_spaced_recall_works.html",
+      "How Spaced Recall Works (and what to do each day)"
+    ],
+    [
+      "integrity.html",
+      "Academic Integrity & AI Policy"
+    ],
+    [
+      "nonmajors_ap_rhythm_card.html",
+      "Essentials of Anatomy & Physiology \u00b7 BIOL 304"
+    ],
+    [
+      "portfolio_week02_template.html",
+      "Week 02: Bone health and fall risk"
+    ],
+    [
+      "portfolio_week04_template.html",
+      "Week 04: Bedside neuro exam"
+    ],
+    [
+      "portfolio_week05_template.html",
+      "Week 05: Cardiovascular decisions"
+    ],
+    [
+      "portfolio_week06_template.html",
+      "Week 06: Respiratory and renal triage"
+    ],
+    [
+      "portfolio_week07_template.html",
+      "Week 07: Hepatic and lipid workup"
+    ],
+    [
+      "portfolio_week08_template.html",
+      "Week 08: Neuro-lifespan synthesis"
+    ],
+    [
+      "schedule.html",
+      "Course Schedule"
+    ],
+    [
+      "submission-directions.html",
+      "How to complete and submit your workbooks."
+    ],
+    [
+      "teacher-weekly-digest.html",
+      "Week of  (loading)"
+    ],
+    [
+      "week-1-checklist.html",
+      "Six tasks to be on track  by Friday, Jun 12 ."
+    ],
+    [
+      "week01_anatomy_workbook.html",
+      "Body Basics, Cells &amp; Tissues"
+    ],
+    [
+      "week01_trainer.html",
+      "Body Basics,  Cells &amp; Tissues"
+    ],
+    [
+      "week01_worksheet.html",
+      "Body Basics, Cells &amp; Tissues"
+    ],
+    [
+      "week02_anatomy_workbook.html",
+      "Protection &amp; Support"
+    ],
+    [
+      "week02_discussion.html",
+      "Tissue, location, function"
+    ],
+    [
+      "week02_physiology_workbook.html",
+      "DEXA &amp; Bone Health Assessment"
+    ],
+    [
+      "week02_prework.html",
+      "Tissues and  the integument."
+    ],
+    [
+      "week02_trainer.html",
+      "Protection &amp;  Support"
+    ],
+    [
+      "week02_worksheet.html",
+      "Protection &amp; Support"
+    ],
+    [
+      "week03_anatomy_workbook.html",
+      "Control Systems"
+    ],
+    [
+      "week03_trainer.html",
+      "Control  Systems"
+    ],
+    [
+      "week03_worksheet.html",
+      "Control Systems"
+    ],
+    [
+      "week04_anatomy_workbook.html",
+      "Senses &amp; Integration"
+    ],
+    [
+      "week04_discussion.html",
+      "When the message fails"
+    ],
+    [
+      "week04_physiology_workbook.html",
+      "The Full Neurological Exam"
+    ],
+    [
+      "week04_trainer.html",
+      "Senses &amp;  Integration"
+    ],
+    [
+      "week04_worksheet.html",
+      "Senses &amp; Integration"
+    ],
+    [
+      "week05_trainer.html",
+      "Transport: Heart, Vessels,  Blood"
+    ],
+    [
+      "week05_worksheet.html",
+      "Transport: Heart, Vessels, Blood"
+    ],
+    [
+      "week06_physiology_workbook.html",
+      "Nutrition: Digestive &amp; Accessory Organs"
+    ],
+    [
+      "week06_prework.html",
+      "Blood and how the body  moves blood."
+    ],
+    [
+      "week07_discussion.html",
+      "A barrier breached"
+    ],
+    [
+      "week07_prework.html",
+      "Defense, the breath, and  the gut."
+    ],
+    [
+      "week08_discussion.html",
+      "Looking back across eight weeks"
+    ],
+    [
+      "week08_physiology_workbook.html",
+      "EEG, Apnea Test &amp; Lifespan Integration"
+    ],
+    [
+      "week08_trainer.html",
+      "Life Stages &amp;  Final Synthesis"
+    ],
+    [
+      "week08_worksheet.html",
+      "Life Stages &amp; Final Synthesis"
+    ],
+    [
+      "welcome_discussion.html",
+      "Welcome to BIO 304"
+    ],
+    [
+      "workbook-index.html",
+      "All 42 lab workbooks"
+    ],
+    [
+      "workbook_day07_muscle-and-nervous-tissue-overview.html",
+      "Muscle and Nervous Tissue Overview"
+    ],
+    [
+      "workbook_week02.html",
+      "Week 2 Workbook \u2014 Tissues & Skin"
+    ],
+    [
+      "workbook_week03.html",
+      "Week 3 Workbook \u2014 Skeletal System"
+    ],
+    [
+      "workbook_week04.html",
+      "Week 4 Workbook \u2014 Muscle & Nervous (Start)"
+    ],
+    [
+      "workbook_week06.html",
+      "Week 6 Workbook \u2014 Blood & Cardiovascular"
+    ],
+    [
+      "workbook_week07.html",
+      "Week 7 Workbook \u2014 Immune, Respiratory & GI"
+    ]
+  ],
+  "skipped": [
+    "_OBSOLETE_biol304_week1_discussion.html",
+    "_OBSOLETE_biol304_week1_overview.html",
+    "_OBSOLETE_biol304_week1_trainer.html",
+    "_OBSOLETE_week01_physiology_workbook.html",
+    "_OBSOLETE_week07_anatomy_workbook.html",
+    "_OBSOLETE_week07_trainer.html",
+    "ai_honor_contract.html",
+    "ai_policy.html",
+    "ai_transparency_document.html",
+    "bio304-spaced-recall-prototype.html",
+    "biol304_accessibility.html",
+    "biol304_syllabus.html",
+    "biol304_tech_setup.html",
+    "biol304_textbook.html",
+    "canvas-home.html",
+    "if-you-fall-behind.html",
+    "index.html",
+    "slides-a1c-glucose.html",
+    "slides-adaptive-immunity.html",
+    "slides-appendicular-skeleton.html",
+    "slides-axial-skeleton.html",
+    "slides-biochem-basics.html",
+    "slides-blood-composition.html",
+    "slides-blood-pressure.html",
+    "slides-blood-vessels.html",
+    "slides-bone-development-fractures.html",
+    "slides-bone-tissue.html",
+    "slides-burns.html",
+    "slides-cardiac-conduction.html",
+    "slides-cell-anatomy.html",
+    "slides-cell-cycle.html",
+    "slides-cell-membrane-transport.html",
+    "slides-cellular-respiration.html",
+    "slides-cns-organization.html",
+    "slides-connective-tissues.html",
+    "slides-digestion-absorption.html",
+    "slides-dna-structure.html",
+    "slides-endocrine.html",
+    "slides-epithelial-tissue-classification.html",
+    "slides-fluid-electrolyte-acid-base.html",
+    "slides-foundations.html",
+    "slides-gas-exchange.html",
+    "slides-gi-accessory-structures.html",
+    "slides-gi-alimentary-canal.html",
+    "slides-gi-anatomy-motility.html",
+    "slides-growth-metabolism.html",
+    "slides-hearing-equilibrium.html",
+    "slides-heart-anatomy.html",
+    "slides-hemostasis-blood-typing.html",
+    "slides-homeostasis.html",
+    "slides-joints.html",
+    "slides-kidney-anatomy-gfr.html",
+    "slides-labor-childbirth.html",
+    "slides-lactation.html",
+    "slides-lipid-panel.html",
+    "slides-lymphatic-innate-immunity.html",
+    "slides-muscle-microanatomy.html",
+    "slides-muscle-nervous-tissue.html",
+    "slides-neurons-action-potentials.html",
+    "slides-pns-autonomic.html",
+    "slides-pregnancy-ap.html",
+    "slides-reflexes.html",
+    "slides-reproductive-systems.html",
+    "slides-respiratory-anatomy.html",
+    "slides-skeletal-muscle-physiology.html",
+    "slides-skin-cancer-abcde.html",
+    "slides-skin-functions.html",
+    "slides-skin-structure.html",
+    "slides-sliding-filament.html",
+    "slides-smooth-muscle-physiology.html",
+    "slides-thermoregulation.html",
+    "slides-transcription.html",
+    "slides-translation.html",
+    "slides-tubular-function.html",
+    "slides-vision.html",
+    "slides-whole-body-metabolism.html",
+    "slides-wound-healing.html"
+  ],
+  "already_wired": []
+}

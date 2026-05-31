@@ -1,92 +1,66 @@
-# BIO 304 — Phase A push (slides only)
+# BIO 304 — Phase B push (lecture page wiring)
 
-This folder contains **slide-modal.js + 63 slide HTML files**. NO lecture-page edits yet. Goal: confirm the slides render correctly in production before wiring lecture pages in Phase B.
+This folder contains **167 modified lecture HTML files**. Each one was edited to load `slide-modal.js` and (where the topic matched a slide deck) drop a "Drawing tools" button row right under the page's `<h1>`.
 
-## What's in this bundle
+Phase A (slides) is already live, so this push activates the integration.
 
-- `slide-modal.js` — the iframe-popup script (added but not yet used by any lecture page)
-- 54 master-library slide decks (palette-corrected, print PDF buttons, working toolbar)
-- 9 BIO 16 life-skills overlay decks (cross-applicable: lipid panel, A1C, blood pressure, skin cancer ABCDE that overlap with BIO 304's clinical literacy)
+## What got wired
 
-## What this push does to the existing repo
-
-**Overwrites** 58 existing `slides-*.html` files with the new versions (corrects the cream palette to off-white, fixes the toolbar bug, adds print-PDF buttons).
-
-**Adds** 5 net-new files:
-- slides-heart-risk-calculator.html
-- slides-medication-labels.html
-- slides-mental-health-basics.html
-- slides-vaccines-literacy.html
-- slides-when-to-call-911.html
-
-**Adds** slide-modal.js.
-
-**Leaves alone** two old GI files in your repo that have been replaced in the master library:
-- `slides-digestion-absorption.html` (replaced by `slides-gi-alimentary-canal.html` + `slides-gi-accessory-structures.html`)
-- `slides-gi-anatomy-motility.html` (same replacement)
-
-You can delete those two later if you want (they're not referenced anywhere new). They won't hurt anything if you leave them.
+- **109 lectures** got concept-anchored drawing buttons. Example: `tubular-function.html` now has a "Draw the nephron tubular function" button under its title; clicking opens `slides-tubular-function.html` in a centered floating panel without leaving the page.
+- **58 lectures** got just the `<script src="slide-modal.js" defer></script>` include with no buttons. These are pages where no slide topic matched cleanly (e.g., portfolio templates, weekly checklists, course orientation, the comprehensive practice final). You can add `data-slide` buttons by hand to any of them later — the modal is already loaded.
+- **77 admin pages skipped** entirely (syllabus, accessibility, AI policy, indexes, slide files themselves).
 
 ## Push commands
 
-Open a terminal. Replace `/path/to/nonmajors` with wherever you have the repo cloned locally.
-
 ```bash
-# 1. Navigate to your local clone of the repo
 cd /path/to/nonmajors
-
-# 2. Make sure your local main is up to date
 git checkout main
 git pull origin main
 
-# 3. Copy everything from this bundle into the repo root
-cp "/Users/sharilynrennie/Documents/Claude/Projects/Lecture Slides/_PUSH-TO-GITHUB/BIO-304-PhaseA/"slide-modal.js .
-cp "/Users/sharilynrennie/Documents/Claude/Projects/Lecture Slides/_PUSH-TO-GITHUB/BIO-304-PhaseA/"slides-*.html .
+# Copy all modified lecture HTML files
+cp "/Users/sharilynrennie/Documents/Claude/Projects/Lecture Slides/_PUSH-TO-GITHUB/BIO-304-PhaseB/"*.html .
 
-# 4. Optional: delete the two obsolete GI files
-git rm slides-digestion-absorption.html slides-gi-anatomy-motility.html
+# Sanity check: confirm nothing unexpected staged
+git status
 
-# 5. Stage, commit, push
-git add slide-modal.js slides-*.html
-git commit -m "Phase A: refreshed slide decks (off-white palette, print PDF, toolbar fix) + life-skills overlay decks"
+# Commit + push
+git add *.html
+git commit -m "Phase B: wire slide-modal into lecture pages with concept-anchored drawing buttons"
 git push origin main
 ```
 
 ## What to verify after the push
 
-GitHub Pages takes 1-3 minutes to redeploy. Then open these URLs and check:
+GitHub Pages takes 1-3 minutes. Then test ONE wired lecture:
 
-1. **A migrated slide deck** (palette + print PDF working):
-   https://drsrennie-stack.github.io/nonmajors/slides-tubular-function.html
-   - White cards on off-white background (no cream)
-   - Pen + color + size + eraser + undo + image + save toolbar visible on every drawable slide
-   - Hero buttons: "Download all drawings" + "Clear all canvases" + **"Download blank PDF pack"** (new)
-   - On each slide header, hover to see **"Print this slide"** button (new)
+**Open:** https://drsrennie-stack.github.io/nonmajors/tubular-function.html
 
-2. **A net-new life-skills deck**:
-   https://drsrennie-stack.github.io/nonmajors/slides-blood-pressure.html
-   - Should look identical in style to the tubular function deck
-   - 6 slides, 4 with drawing canvases
+**Look for:**
 
-3. **The modal script loads without error**:
-   https://drsrennie-stack.github.io/nonmajors/slide-modal.js
-   - Should show the JS source. If it 404s, GitHub Pages hasn't deployed yet.
+1. A bordered box right under the H1 title labeled "Drawing tools" with a navy button: **"✎ Draw the nephron tubular function"**
+2. Click the button → a centered white floating panel opens with the tubular function slide deck inside. The rest of the lecture page stays visible behind a barely-tinted layer.
+3. Close the panel: click the X in the top right, or hit Escape, or click outside the panel. Focus returns to the button you clicked.
+4. Click **"Open in new tab"** in the panel's top bar → slide deck opens in a separate browser tab.
 
-4. **Print PDF works**:
-   - On any drawable slide, click "Download blank PDF pack" — should open print dialog showing one slide per page with framed drawing boxes (NOT canvases)
-   - Click "Print this slide" on any single slide — should show just that one slide in the print preview
+**Test a multi-deck page:**
+
+Some lectures match more than one slide deck. Example:
+https://drsrennie-stack.github.io/nonmajors/workbook_day08_skin-functions-and-accessory-structures.html
+
+Should show two buttons in the row: one for skin functions, one possibly for skin structure. Both should work independently.
+
+## What's NOT in Phase B
+
+- BIO 004 — that's a separate repo with its own Phase A + B. Hold off on BIO 004 until you've confirmed Phase B works on BIO 304.
+
+## Full report
+
+`wire-report.json` in this folder lists every lecture file, what slides matched (or didn't), and the H1 text used for matching. Useful if you want to spot-check or add buttons manually to no-match pages.
 
 ## If something's wrong
 
-- **Toolbar missing**: hard refresh (Cmd+Shift+R). If still missing, message me with the URL.
-- **Cream still appearing**: hard refresh. Browser cached the old version.
-- **404 on slide-modal.js**: wait 5 minutes for GitHub Pages to redeploy.
-- **Print PDF shows the live canvas instead of blank box**: that's a print stylesheet issue, message me.
+- **Button shows but click does nothing**: check browser console (Cmd+Option+I → Console tab). Most likely cause is the slide HTML 404ing because the path is wrong. The buttons use `data-slide="slides-tubular-function.html"` (relative path) so it expects the slide files at the same directory level as the lecture page. Phase A put them at repo root, so this should work.
+- **Modal opens but iframe is empty**: same issue — path or 404. Check Network tab.
+- **Modal opens behind Kajabi/Canvas nav**: not relevant since these are GitHub Pages, but if you embed in Kajabi later, add `.slide-modal-shell { z-index: 10001 !important; }` to the page.
 
-## What's NOT in Phase A
-
-- No lecture-page edits. Your existing lecture HTMLs are untouched.
-- No `data-slide` buttons inside lectures yet.
-- The modal script is loaded into the repo but no page triggers it yet.
-
-That's Phase B — once you confirm Phase A renders correctly, I'll generate the lecture-page edits.
+Tell me when this is pushed and confirmed, and I'll prep BIO 004 Phase A.

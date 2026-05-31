@@ -1123,6 +1123,14 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   .gate-hint[hidden] { display: none; }
 
 </style>
+
+<style id="slide-modal-trigger-styles">
+.draw-btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 20px; padding: 12px 16px; background: rgba(11,21,48,0.04); border-left: 3px solid #8B3A2E; border-radius: 4px; }
+.draw-btn-row::before { content: "Drawing tools"; display: block; width: 100%; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8B3A2E; margin-bottom: 4px; }
+.draw-btn { display: inline-flex; align-items: center; gap: 6px; background: #0B1530; color: #FFFFFF; border: none; padding: 8px 14px; border-radius: 4px; font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; }
+.draw-btn:hover { background: #142A36; }
+.draw-btn::before { content: "\270E"; font-size: 13px; }
+</style>
 </head>
 <body class="mcas-page">
 <!-- mcas-chrome-header -->
@@ -1174,6 +1182,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 <main class="sheet" id="main">
   <p class="eyebrow">BIO 304 . Human Anatomy &amp; Physiology . American River College</p>
   <h1 class="title">Tubular Function and Urine Concentration</h1>
+<div class="draw-btn-row"><button type="button" class="draw-btn" data-slide="slides-tubular-function.html">Draw the nephron tubular function</button></div>
   <p class="subhead">Module 15 . Urinary System</p>
   <p class="usage">How the tubules reshape the filtrate into a final urine, and how ADH and aldosterone fine-tune it. Watch the video, then complete the retrieval check below to unlock your spaced-recall cards.</p>
   <p class="mode-hint" role="note" style="font-family:'Lora',Georgia,serif;font-size:13px;color:var(--navy);background:transparent;border-left:2px solid var(--gold);padding:6px 0 6px 12px;margin:-6px 0 18px 0;max-width:62ch;">
@@ -2002,5 +2011,6 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 })();
 </script>
 <!-- mcas-iframe-height-sender-end -->
+  <script src="slide-modal.js" defer></script>
 </body>
 </html>
