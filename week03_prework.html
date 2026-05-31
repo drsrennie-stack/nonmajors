@@ -326,14 +326,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   html { scroll-behavior: auto; }
 }
 </style>
-
-<style id="slide-modal-trigger-styles">
-.draw-btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 20px; padding: 12px 16px; background: rgba(11,21,48,0.04); border-left: 3px solid #8B3A2E; border-radius: 4px; }
-.draw-btn-row::before { content: "Drawing tools"; display: block; width: 100%; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8B3A2E; margin-bottom: 4px; }
-.draw-btn { display: inline-flex; align-items: center; gap: 6px; background: #0B1530; color: #FFFFFF; border: none; padding: 8px 14px; border-radius: 4px; font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; }
-.draw-btn:hover { background: #142A36; }
-.draw-btn::before { content: "\270E"; font-size: 13px; }
-</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -370,9 +362,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 <div class="hero-card">
   <div class="hero-content">
     <div class="hero-eyebrow">BIO 304 &middot; Week 3 of 8 &middot; Jun 22 to Jun 28 &middot; Nightly Pre-Work</div>
-    <h1 class="hero-headline">Bone tissue to <span class="accent">the skeleton.</span></h1>
-<div class="draw-btn-row"><button type="button" class="draw-btn" data-slide="slides-bone-tissue.html">Draw bone tissue</button></div>
-    <p class="hero-subhead">Four pre-work days. Four topics. The skeleton from microscopic bone tissue out to how the bones move at joints. Each topic page walks you through the reading, the fill-in-the-blank notes, the video, and then opens your nightly spaced-recall cards. Open one topic on Mon, Tue, Thu, Fri. Wednesday is catch-up and discussion.</p>
+    <h1 class="hero-headline">Bone tissue to <span class="accent">the skeleton.</span></h1><p class="hero-subhead">Four pre-work days. Four topics. The skeleton from microscopic bone tissue out to how the bones move at joints. Each topic page walks you through the reading, the fill-in-the-blank notes, the video, and then opens your nightly spaced-recall cards. Open one topic on Mon, Tue, Thu, Fri. Wednesday is catch-up and discussion.</p>
     <div class="hero-ctas">
       <a href="index.html#week-3" class="cta-primary" target="_top">Back to Week 3 card</a>
       <a href="#days" class="cta-secondary">Jump to today's topic</a>
@@ -573,6 +563,5 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   if(window.ResizeObserver){new ResizeObserver(sendHeight).observe(document.body);}else{setInterval(sendHeight,800);}
 })();
 </script>
-  <script src="slide-modal.js" defer></script>
 </body>
 </html>
