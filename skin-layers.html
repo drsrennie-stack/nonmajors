@@ -278,6 +278,25 @@ body.mcas-page .glance-item:hover {
   font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
   margin-top: 56px;
 }
+/* No italics anywhere in the footer area (page chrome or MCAS chrome).
+   The underlying page styles set Lora italic on .foot and footer text;
+   the MCAS chrome should read as clean upright. */
+body.mcas-page footer,
+body.mcas-page footer *,
+body.mcas-page .mcas-footer,
+body.mcas-page .mcas-footer *,
+body.mcas-page .foot,
+body.mcas-page .foot * {
+  font-style: normal !important;
+}
+
+/* Hide the legacy workbook aside on spoke pages — Step 1 of the step
+   tracker covers it. Keep the markup in DOM so the tracker JS can still
+   read the workbook URL from it. */
+body.mcas-page aside.mcas-next-up {
+  display: none !important;
+}
+
 /* Footer link color — bumped to body-scoped selector so it wins
    specificity against body.mcas-page a (which was forcing rust on dark
    navy and failing WCAG contrast). White on the near-black footer
@@ -401,6 +420,205 @@ body.mcas-page a.mcas-prework-link-cta:focus-visible {
   border-radius: 4px;
 }
 
+/* ----- Step tracker (on spoke pages, at the top) -----
+   Four-step pre-work flow visualized as horizontal cards:
+     1. Print workbook   2. Watch video   3. Retrieval check   4. Open spaced recall
+   The "current" step renders in dark navy with white text; completed
+   steps render in white with a checkmark; future steps are muted but
+   still clickable. State is read from three localStorage flags
+   (bio304-workbook-{id}, bio304-video-{id}, bio304-gate-{id}) plus the
+   spoke→spaced-recall URL for step 4. */
+body.mcas-page .mcas-step-tracker {
+  margin: 14px 0 28px;
+}
+body.mcas-page .mcas-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+body.mcas-page .mcas-step {
+  display: flex;
+  min-height: 100%;
+}
+body.mcas-page a.mcas-step-btn,
+body.mcas-page button.mcas-step-btn {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+  padding: 16px 16px 14px;
+  border-radius: 10px;
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1.5px solid;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  position: relative;
+}
+body.mcas-page .mcas-step.is-pending a.mcas-step-btn,
+body.mcas-page .mcas-step.is-pending button.mcas-step-btn {
+  background: #FFFFFF;
+  color: rgba(11, 21, 48, 0.55);
+  border-color: rgba(11, 21, 48, 0.16);
+}
+body.mcas-page .mcas-step.is-pending a.mcas-step-btn:hover,
+body.mcas-page .mcas-step.is-pending button.mcas-step-btn:hover,
+body.mcas-page .mcas-step.is-pending a.mcas-step-btn:focus-visible,
+body.mcas-page .mcas-step.is-pending button.mcas-step-btn:focus-visible {
+  color: var(--mcas-navy);
+  border-color: rgba(11, 21, 48, 0.45);
+  transform: translateY(-1px);
+  outline: none;
+}
+body.mcas-page .mcas-step.is-active a.mcas-step-btn,
+body.mcas-page .mcas-step.is-active button.mcas-step-btn {
+  background: var(--mcas-navy);
+  color: #FFFFFF;
+  border-color: var(--mcas-navy);
+  box-shadow: 0 6px 18px rgba(11, 21, 48, 0.18);
+}
+body.mcas-page .mcas-step.is-active a.mcas-step-btn:hover,
+body.mcas-page .mcas-step.is-active button.mcas-step-btn:hover,
+body.mcas-page .mcas-step.is-active a.mcas-step-btn:focus-visible,
+body.mcas-page .mcas-step.is-active button.mcas-step-btn:focus-visible {
+  background: var(--mcas-dark);
+  border-color: var(--mcas-dark);
+  transform: translateY(-1px);
+  outline: 3px solid var(--mcas-gold);
+  outline-offset: 2px;
+}
+body.mcas-page .mcas-step.is-completed a.mcas-step-btn,
+body.mcas-page .mcas-step.is-completed button.mcas-step-btn {
+  background: #FFFFFF;
+  color: var(--mcas-navy);
+  border-color: rgba(11, 21, 48, 0.16);
+}
+body.mcas-page .mcas-step.is-completed a.mcas-step-btn:hover,
+body.mcas-page .mcas-step.is-completed button.mcas-step-btn:hover {
+  border-color: rgba(11, 21, 48, 0.45);
+}
+body.mcas-page .mcas-step.is-completed .mcas-step-btn::after {
+  content: "¹3";
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--mcas-rust);
+}
+body.mcas-page .mcas-step-num {
+  font-family: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.78;
+  margin-bottom: 6px;
+}
+body.mcas-page .mcas-step.is-active .mcas-step-num {
+  color: var(--mcas-gold);
+  opacity: 1;
+}
+body.mcas-page .mcas-step-label {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+body.mcas-page .mcas-step-state {
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  min-height: 1.2em;
+}
+body.mcas-page .mcas-step.is-active .mcas-step-state {
+  color: var(--mcas-gold);
+}
+
+/* Step 1 skip affordance: small link under the main button for students
+   who already have the workbook printed or are doing it on paper. */
+body.mcas-page .mcas-step-skip {
+  appearance: none;
+  background: transparent;
+  border: none;
+  margin: 6px 0 0 4px;
+  padding: 4px 0;
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mcas-rust);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  display: inline-block;
+}
+body.mcas-page .mcas-step-skip:hover,
+body.mcas-page .mcas-step-skip:focus-visible {
+  color: #A0452F;
+  outline: none;
+}
+body.mcas-page .mcas-step-skip[hidden] { display: none; }
+
+/* Persistent reminder banner shown after the student skips Step 1. */
+body.mcas-page .mcas-step-reminder {
+  margin: 12px 0 0;
+  padding: 12px 16px;
+  background: #FFFFFF;
+  border-left: 4px solid var(--mcas-rust);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  font-size: 13.5px;
+  color: var(--mcas-navy);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+body.mcas-page .mcas-step-reminder[hidden] { display: none; }
+body.mcas-page .mcas-step-reminder strong {
+  font-weight: 800;
+  color: var(--mcas-rust);
+  letter-spacing: 0.02em;
+}
+body.mcas-page .mcas-step-reminder-dismiss {
+  appearance: none;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--mcas-navy);
+  opacity: 0.6;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+}
+body.mcas-page .mcas-step-reminder-dismiss:hover,
+body.mcas-page .mcas-step-reminder-dismiss:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+
+@media (max-width: 720px) {
+  body.mcas-page .mcas-steps {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.mcas-page .mcas-step-btn { transition: none !important; }
+}
+
 /* ----- Lecture video notes section (on spoke pages, under the video) -----
    Freeform textarea that autosaves to localStorage keyed by topic ID.
    Visible in Notes and Study modes; hidden in Quiz mode. Prints cleanly
@@ -507,6 +725,377 @@ body.mcas-page .mcas-next-up-gate-hint {
   color: var(--mcas-rust);
 }
 body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
+
+
+  /* =============================================================
+     Notes/Study/Quiz term + lightbox + gate CSS (injected)
+     Source: connective-tissues.html
+     ============================================================= */
+  /* Term rows */
+  .terms { list-style: none; margin: 0; padding: 0; }
+  .term {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 10px;
+    padding: 6px 0 5px 0;
+    border-bottom: 1px dotted var(--rule-soft);
+    align-items: baseline;
+  }
+  .term .name {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--navy);
+  }
+  .term .loc {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--navy);
+    opacity: 0.78;
+  }
+
+  /* Interactive: a "note" input below each term, visible on screen, hidden on print */
+  .note-field {
+    grid-column: 1 / -1;
+    display: none;
+    margin-top: 4px;
+  }
+  body.interactive .note-field { display: block; }
+  body.interactive .term { padding-bottom: 8px; }
+  .note-field input {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--rule);
+    background: transparent;
+    padding: 4px 0;
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--navy);
+  }
+  .note-field input:focus {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    border-bottom-color: var(--gold);
+  }
+  .note-field label {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    display: inline-block;
+    margin-bottom: 2px;
+  }
+
+  /* ------------------------------------------------------------------
+     Mode toolbar (screen-only)
+     ------------------------------------------------------------------ */
+  .toolbar {
+    max-width: 8.5in;
+    margin: 18px auto 0 auto;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 4px;
+  }
+  .toolbar .group {
+    display: inline-flex;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 3px;
+    box-shadow: var(--shadow-rest);
+  }
+  .toolbar button {
+    background: transparent;
+    border: 0;
+    padding: 6px 14px;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 200ms ease, color 200ms ease;
+  }
+  .toolbar button:hover { background: var(--navy-tint); }
+  .toolbar button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .toolbar button.active {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .toolbar .print {
+    background: var(--navy);
+    color: var(--white);
+    border: 1px solid var(--navy);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: var(--shadow-rest);
+    transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+  }
+  .toolbar .print:hover {
+    background: var(--navy-deep);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-hover);
+  }
+  .toolbar .print:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  /* Body region image plate (3-up, click to zoom) */
+  .plate {
+    margin: 14px 0 6px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+  }
+  .plate figure {
+    margin: 0;
+    padding: 4px;
+    text-align: center;
+    cursor: zoom-in;
+    transition: transform 200ms ease;
+  }
+  .plate figure:hover { transform: translateY(-2px) scale(1.01); }
+  .plate figure:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+    transform: translateY(-2px);
+  }
+  .plate img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    pointer-events: none; /* clicks bubble to figure */
+  }
+  .plate figcaption {
+    margin-top: 6px;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    font-weight: 700;
+    pointer-events: none;
+  }
+  @media (max-width: 720px) {
+    .plate { grid-template-columns: 1fr; }
+  }
+
+  /* Lightbox */
+  .lightbox[hidden] { display: none; }
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 42, 54, 0.88);
+  }
+  .lightbox-content {
+    position: relative;
+    background: var(--white);
+    padding: 16px 16px 12px 16px;
+    border-radius: 4px;
+    max-width: min(96vw, 1400px);
+    max-height: 96vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .lightbox-content img {
+    max-width: 100%;
+    max-height: 82vh;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+  .lightbox-caption {
+    margin: 10px 0 0 0;
+    text-align: center;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    font-weight: 700;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    border: 2px solid var(--white);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .lightbox-close:hover { background: var(--navy-deep); }
+  .lightbox-close:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+  /* ------------------------------------------------------------------
+     MODE: Notes (default) / Study / Quiz me
+     ------------------------------------------------------------------ */
+  .term .reveal-btn,
+  .term .term-input { display: none; }
+  .term .note-field { display: none; }   /* old per-term note inputs are retired */
+
+  /* STUDY mode: term visible, definition hidden until click */
+  body.study .term .loc { display: none; }
+  body.study .term .reveal-btn { display: inline-block; }
+  body.study .term.revealed .loc { display: inline; }
+  body.study .term.revealed .reveal-btn { display: none; }
+
+  /* QUIZ mode: definition visible, term hidden, type the term then reveal */
+  body.quiz .term {
+    display: block;
+    padding: 8px 0 10px 0;
+  }
+  body.quiz .term .name { display: none; }
+  body.quiz .term .loc {
+    display: block;
+    font-size: 13.5px;
+    opacity: 1;
+    margin-bottom: 6px;
+    color: var(--navy);
+  }
+  body.quiz .term .term-input {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  body.quiz .term .term-input input {
+    flex: 1 1 220px;
+    min-width: 180px;
+    border: 0;
+    border-bottom: 1px solid var(--rule);
+    background: transparent;
+    padding: 4px 0;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--navy);
+  }
+  body.quiz .term .term-input input:focus {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    border-bottom-color: var(--gold);
+  }
+  body.quiz .term .term-input input.correct {
+    border-bottom-color: var(--navy);
+    color: var(--navy);
+  }
+  body.quiz .term .reveal-btn { display: inline-block; }
+  body.quiz .term.revealed .name {
+    display: inline-block;
+    background: var(--navy-tint);
+    padding: 2px 10px;
+    border-radius: 3px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-top: 4px;
+  }
+  body.quiz .term.revealed .term-input input { opacity: 0.6; }
+  body.quiz .term.revealed .reveal-btn { display: none; }
+
+  .reveal-btn {
+    background: transparent;
+    border: 1px dashed var(--terra-dark);
+    color: var(--terra-dark);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 200ms ease, color 200ms ease;
+  }
+  .reveal-btn:hover { background: var(--terra-dark); color: var(--white); }
+  .reveal-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  /* Post-video gate modal */
+  .gate[hidden] { display: none; }
+  .gate {
+    position: fixed; inset: 0; z-index: 1100;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .gate-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(20,42,54,0.85);
+  }
+  .gate-content {
+    position: relative;
+    background: var(--white);
+    padding: 26px 30px 22px;
+    border: 1.5px solid var(--terra-dark);
+    border-radius: 4px;
+    max-width: 460px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 6px 14px rgba(160,82,45,0.12);
+    text-align: center;
+  }
+  .gate-content .eyebrow {
+    margin: 0 0 6px 0;
+    color: var(--terra-dark);
+  }
+  .gate-content h2 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--navy);
+    margin: 4px 0 8px 0;
+    border: 0;
+    padding: 0;
+    text-transform: none;
+    letter-spacing: -0.005em;
+  }
+  .gate-content p {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 14px;
+    color: var(--navy);
+    margin: 0 0 18px 0;
+  }
+  .gate-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .gate-actions .resource-btn { font-size: 11.5px; }
+
+  @media print { .gate { display: none !important; } }
+
+
 </style>
 <style>
 
@@ -563,7 +1152,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
         <span class="mcas-brand-sub">BIO 304 &middot; American River College</span>
       </span>
     </a>
-    <a class="mcas-back" href="index.html#week-2" target="_top">&larr; Course home (Week 2)</a>
+    <a class="mcas-back" href="week02_prework.html" target="_top">&larr; Week 2 pre-work hub</a>
   </div>
 </header>
 </div>
@@ -572,18 +1161,33 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 
 <a class="skip" href="#main">Skip to main content</a>
 
+<!-- Mode toolbar: screen only -->
+<div class="toolbar" role="toolbar" aria-label="Sheet mode">
+  <div class="group" role="group" aria-label="Mode">
+    <button type="button" id="mode-notes" class="active" aria-pressed="true">Notes</button>
+    <button type="button" id="mode-study" aria-pressed="false">Study</button>
+    <button type="button" id="mode-quiz" aria-pressed="false">Quiz me</button>
+  </div>
+  <button type="button" class="print" id="reset-btn" aria-label="Reset all answers and inputs" style="background:transparent;color:var(--navy);border:1px solid var(--navy);">Reset</button>
+</div>
+
 <main class="sheet" id="main">
   <p class="eyebrow">BIO 304 . Human Anatomy &amp; Physiology . American River College</p>
   <h1 class="title">Skin Structure and Layers</h1>
   <p class="subhead">Module 4 . Integumentary System</p>
   <p class="usage">Epidermis, dermis, hypodermis: who lives where and what they do. Watch the video, then complete the retrieval check below to unlock your spaced-recall cards.</p>
+  <p class="mode-hint" role="note" style="font-family:'Lora',Georgia,serif;font-size:13px;color:var(--navy);background:transparent;border-left:2px solid var(--gold);padding:6px 0 6px 12px;margin:-6px 0 18px 0;max-width:62ch;">
+    <strong style="font-family:'DM Sans',system-ui,sans-serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--terra-dark);display:block;margin-bottom:2px;">How to use this sheet</strong>
+    Toggle the toolbar above. <strong>Notes</strong> prints the full reference for review. <strong>Study</strong> prints as a fill-in-the-blank worksheet, print it, then write each definition while you watch the video or read your book. <strong>Quiz me</strong> is on-screen typing practice; type the term, click <em>Reveal</em> to check yourself.
+  </p>
+
 
   <div class="resource-bar" role="region" aria-label="Topic resources">
     <button type="button" class="resource-btn" id="video-toggle" aria-expanded="false" aria-controls="video-panel">
       <span class="arrow" aria-hidden="true">&#9654;</span> Watch the video
     </button>
     <a class="resource-btn primary" id="prework-link" href="#" target="_top" rel="noopener">
-      Go to the pre-work <span class="arrow" aria-hidden="true">&rarr;</span>
+      Open spaced recall <span class="arrow" aria-hidden="true">&rarr;</span>
     </a>
   </div>
   <div class="video-panel" id="video-panel" hidden>
@@ -608,25 +1212,21 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   <div class="columns">
     <section class="col">
       <h2>Epidermis (top down)</h2>
-      <h3>Stratum corneum</h3>
-      <ul><li><strong>Anucleate keratin sheets</strong>: dead keratinocytes packed with keratin. Waterproof barrier.</li></ul>
-      <h3>Stratum lucidum</h3>
-      <ul><li><strong>Thick skin only</strong>: palms and soles. Translucent dead cells.</li></ul>
-      <h3>Stratum granulosum</h3>
-      <ul><li><strong>Keratohyalin granules</strong>: keratinocytes start dying here, releasing lipids that seal the barrier.</li></ul>
-      <h3>Stratum spinosum</h3>
-      <ul><li><strong>"Prickly" desmosomes</strong>: keratinocyte cohesion plus dendritic cells (immune surveillance).</li></ul>
-      <h3>Stratum basale</h3>
-      <ul><li><strong>Mitotic engine</strong>: new keratinocytes born here. Melanocytes (pigment) and Merkel cells (touch) sit at this layer.</li></ul>
+      <ul class="terms">
+        <li class="term"><span class="name">Stratum corneum</span><span class="loc"><strong>Anucleate keratin sheets</strong>: dead keratinocytes packed with keratin. Waterproof barrier.</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for Stratum corneum"/></div></li>
+        <li class="term"><span class="name">Stratum lucidum</span><span class="loc"><strong>Thick skin only</strong>: palms and soles. Translucent dead cells.</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for Stratum lucidum"/></div></li>
+        <li class="term"><span class="name">Stratum granulosum</span><span class="loc"><strong>Keratohyalin granules</strong>: keratinocytes start dying here, releasing lipids that seal the barrier.</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for Stratum granulosum"/></div></li>
+        <li class="term"><span class="name">Stratum spinosum</span><span class="loc"><strong>&ldquo;Prickly&rdquo; desmosomes</strong>: keratinocyte cohesion plus dendritic cells (immune surveillance).</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for Stratum spinosum"/></div></li>
+        <li class="term"><span class="name">Stratum basale</span><span class="loc"><strong>Mitotic engine</strong>: new keratinocytes born here. Melanocytes (pigment) and Merkel cells (touch) sit at this layer.</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for Stratum basale"/></div></li>
+      </ul>
     </section>
     <section class="col">
       <h2>Dermis &amp; hypodermis</h2>
-      <h3>Papillary dermis (superficial)</h3>
-      <ul><li><strong>Loose areolar tissue</strong>: dermal papillae interlock with epidermis. Holds the capillary network that feeds the epidermis (which has no blood vessels of its own).</li><li><strong>Meissner corpuscles</strong>: light touch receptors.</li></ul>
-      <h3>Reticular dermis (deep)</h3>
-      <ul><li><strong>Dense irregular connective tissue</strong>: collagen and elastin web that gives skin its strength and rebound.</li><li><strong>Hair follicles, sebaceous glands, sweat glands</strong> all live here.</li><li><strong>Pacinian corpuscles</strong>: deep pressure and vibration receptors.</li></ul>
-      <h3>Hypodermis (subcutaneous)</h3>
-      <ul><li><strong>Adipose + loose connective tissue</strong>: anchors skin to underlying fascia. Insulation, energy reserve, shock absorption.</li><li><strong>Not technically part of skin</strong> but everything in skin attaches to it.</li></ul>
+      <ul class="terms">
+        <li class="term"><span class="name">Papillary dermis (superficial)</span><span class="loc"><strong>Loose areolar tissue</strong>: dermal papillae interlock with epidermis. Holds the capillary network that feeds the epidermis (which has no blood vessels of its own). &middot; <strong>Meissner corpuscles</strong>: light touch receptors.</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for Papillary dermis (superficial)"/></div></li>
+        <li class="term"><span class="name">Reticular dermis (deep)</span><span class="loc"><strong>Dense irregular connective tissue</strong>: collagen and elastin web that gives skin its strength and rebound. &middot; <strong>Hair follicles, sebaceous glands, sweat glands</strong> all live here. &middot; <strong>Pacinian corpuscles</strong>: deep pressure and vibration receptors.</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for Reticular dermis (deep)"/></div></li>
+        <li class="term"><span class="name">Hypodermis (subcutaneous)</span><span class="loc"><strong>Adipose + loose connective tissue</strong>: anchors skin to underlying fascia. Insulation, energy reserve, shock absorption. &middot; <strong>Not technically part of skin</strong> but everything in skin attaches to it.</span><div class="note-field"><label>Your note</label><input type="text" aria-label="Your note for Hypodermis (subcutaneous)"/></div></li>
+      </ul>
 
       <aside class="tie-in" role="note" aria-label="Clinical tie-in">
         <p class="eyebrow">Clinical tie-in</p>
@@ -643,7 +1243,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 
   <!-- bio304-explain-gate (Option A) -->
   <section id="explain-gate" hidden aria-labelledby="explain-gate-h">
-    <p class="gate-eyebrow">Step 2 . Retrieval check</p>
+    <p class="gate-eyebrow">Step 3 . Retrieval check</p>
     <h2 id="explain-gate-h">Now explain it back, in your own words.</h2>
     <p class="gate-instr">In 60 words or more, pull together what the video just taught you. Include the key concepts. This is the point where the learning actually sticks. After you submit, your spaced-recall cards for this topic unlock.</p>
     <textarea id="gate-input" aria-describedby="gate-meter" placeholder="What did this video teach you?"></textarea>
@@ -651,12 +1251,26 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       <span>Words: <strong id="gate-word-count">0</strong> / 60</span>
       <span>Concepts found: <strong id="gate-keyword-count">0</strong> / <span id="gate-keyword-target">0</span></span>
     </div>
-    <button type="button" id="gate-submit" disabled>Unlock pre-work cards</button>
+    <button type="button" id="gate-submit" disabled>Unlock spaced recall</button>
     <p id="gate-status" role="status"></p>
   </section>
 </main>
 
+<!-- Lightbox dialog -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+  <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close zoomed image">&times;</button>
+    <h2 id="lightbox-title" class="skip">Zoomed image</h2>
+    <img id="lightbox-img" src="" alt="" />
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+</div>
+
+
+
 <script>
+  window.__SHEET_ID__ = 'bio304-skin-layers';
   window.SHEET_CONFIG = {
     video:   'https://www.youtube.com/embed/REPLACE_WITH_SKIN_LAYERS_VIDEO_ID',
     prework: 'bio304-spaced-recall-prototype.html#topic=t-skin-layers',
@@ -682,7 +1296,128 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       }
     });
   })();
+
+  // For every .term with a .name and .loc, inject a typing input + reveal button
+  (function injectControls() {
+    document.querySelectorAll('.term').forEach(function (term) {
+      var name = term.querySelector('.name');
+      var loc  = term.querySelector('.loc');
+      if (!name || !loc) return;
+      var termText = name.textContent.trim();
+      var locText  = loc.textContent.trim();
+
+      var wrap = document.createElement('span');
+      wrap.className = 'term-input';
+      var input = document.createElement('input');
+      input.type = 'text';
+      input.setAttribute('aria-label', 'Type the term that matches: ' + locText);
+      input.placeholder = 'type the term';
+      wrap.appendChild(input);
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'reveal-btn';
+      btn.textContent = 'Reveal';
+      btn.setAttribute('aria-label', 'Reveal answer');
+      btn.addEventListener('click', function () {
+        term.classList.add('revealed');
+        if (document.body.classList.contains('quiz')) {
+          var typed = (input.value || '').trim().toLowerCase();
+          var target = termText.toLowerCase();
+          var norm = function (s) { return s.replace(/[\s·\.\/&;]+/g, ' ').replace(/\s+/g, ' ').trim(); };
+          if (typed && norm(typed) === norm(target)) input.classList.add('correct');
+        }
+      });
+
+      wrap.appendChild(btn);
+      term.appendChild(wrap);
+    });
+  })();
+
+  // Mode toggle: Notes / Study / Quiz me
+  (function () {
+    var body = document.body;
+    var btnNotes = document.getElementById('mode-notes');
+    var btnStudy = document.getElementById('mode-study');
+    var btnQuiz  = document.getElementById('mode-quiz');
+    var btnReset = document.getElementById('reset-btn');
+    if (!btnNotes || !btnStudy || !btnQuiz) return;
+    var allButtons = [btnNotes, btnStudy, btnQuiz];
+
+    function setMode(mode) {
+      body.classList.remove('study', 'quiz');
+      if (mode === 'study') body.classList.add('study');
+      if (mode === 'quiz')  body.classList.add('quiz');
+      allButtons.forEach(function (b) {
+        var active =
+          (mode === 'notes' && b === btnNotes) ||
+          (mode === 'study' && b === btnStudy) ||
+          (mode === 'quiz'  && b === btnQuiz);
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      document.querySelectorAll('.term-input input').forEach(function (i) { i.value=''; i.classList.remove('correct'); });
+      document.querySelectorAll('.term.revealed').forEach(function (t) { t.classList.remove('revealed'); });
+    }
+    btnNotes.addEventListener('click', function () { setMode('notes'); });
+    btnStudy.addEventListener('click', function () { setMode('study'); });
+    btnQuiz .addEventListener('click', function () { setMode('quiz'); });
+    if (btnReset) btnReset.addEventListener('click', function () {
+      document.querySelectorAll('.term-input input').forEach(function (i) { i.value=''; i.classList.remove('correct'); });
+      document.querySelectorAll('.term.revealed').forEach(function (t) { t.classList.remove('revealed'); });
+    });
+  })();
+
+  // Lightbox (no-op when no .plate figures exist)
+  (function () {
+    var lightbox = document.getElementById('lightbox');
+    if (!lightbox) return;
+    var lbImg = document.getElementById('lightbox-img');
+    var lbCap = document.getElementById('lightbox-caption');
+    var lbClose = document.getElementById('lightbox-close');
+    var lbBack = document.getElementById('lightbox-backdrop');
+    var lastFocus = null;
+    function open(src, alt, caption) {
+      lastFocus = document.activeElement;
+      lbImg.src = src; lbImg.alt = alt; lbCap.textContent = caption;
+      lightbox.hidden = false; document.body.style.overflow = 'hidden';
+      setTimeout(function () { lbClose.focus(); }, 0);
+    }
+    function close() {
+      lightbox.hidden = true; lbImg.src = ''; document.body.style.overflow = '';
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+    document.querySelectorAll('.plate figure').forEach(function (fig) {
+      fig.setAttribute('tabindex', '0'); fig.setAttribute('role', 'button');
+      var img = fig.querySelector('img'); var cap = fig.querySelector('figcaption');
+      var capText = cap ? cap.textContent.trim() : '';
+      fig.setAttribute('aria-label', 'Enlarge: ' + capText);
+      fig.addEventListener('click', function () { open(img.src, img.alt, capText); });
+      fig.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img.src, img.alt, capText); } });
+    });
+    lbClose.addEventListener('click', close);
+    lbBack.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) { if (!lightbox.hidden && e.key === 'Escape') close(); });
+    lightbox.addEventListener('keydown', function (e) { if (e.key !== 'Tab') return; e.preventDefault(); lbClose.focus(); });
+  })();
 </script>
+
+
+<!-- Post-video gate -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title" hidden>
+  <div class="gate-backdrop" id="gate-backdrop"></div>
+  <div class="gate-content">
+    <p class="eyebrow">Spaced recall unlocked</p>
+    <h2 id="gate-title">Nice work finishing the video.</h2>
+    <p>Your spaced-recall cards for this topic are ready. Open the pre-work to activate them and start drilling.</p>
+    <div class="gate-actions">
+      <a class="resource-btn primary" id="gate-prework" target="_top" rel="noopener">
+        Open spaced recall <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <button type="button" class="resource-btn" id="gate-dismiss">Maybe later</button>
+    </div>
+  </div>
+</div>
 
 <!-- bio304-option-a -->
 <script>
@@ -720,7 +1455,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     var hint = document.createElement('span');
     hint.className = 'gate-hint';
     hint.id = 'prework-gate-hint';
-    hint.textContent = 'Watch the video and complete the retrieval check to unlock';
+    hint.textContent = 'Watch the video and finish the retrieval check to unlock spaced recall';
     if (pre.parentNode) pre.parentNode.insertBefore(hint, pre.nextSibling);
     pre.href = PREWORK_TARGET;
     pre.addEventListener('click', function (e) {
@@ -767,7 +1502,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       var hintEl = document.getElementById('prework-gate-hint');
       if (hintEl) hintEl.hidden = true;
       if (statusEl) {
-        statusEl.textContent = 'Unlocked. Your pre-work cards are ready.';
+        statusEl.textContent = 'Unlocked. Your spaced recall is ready.';
         statusEl.classList.add('passed');
       }
       submitBtn.disabled = true;
@@ -1007,6 +1742,246 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 })();
 </script>
 <!-- mcas-lecture-notes-injector-end -->
+<!-- mcas-step-tracker-injector -->
+<script>
+(function(){
+  function init(){
+    var cfg = window.SHEET_CONFIG || {};
+    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
+    var topicId = m ? m[1] : null;
+    if (!topicId) return;
+
+    var resourceBar = document.querySelector(".resource-bar");
+    var workbookAside = document.querySelector("aside.mcas-next-up a.mcas-next-up-cta");
+    var workbookHref = workbookAside ? workbookAside.getAttribute("href") : "#";
+    var preworkHref = cfg.prework || "#";
+
+    // Derive the week number from the workbook URL (workbook_weekNN.html).
+    // Workbook flags are scoped to the week, so printing once on Monday
+    // marks Step 1 complete for every spoke in that week.
+    var weekMatch = (workbookHref || "").match(/workbook_week(\d{2})/);
+    var weekKey   = weekMatch ? weekMatch[1] : null;
+    var weekNum   = weekKey ? parseInt(weekKey, 10) : null;
+    var WB_FLAG          = weekKey ? ("bio304-workbook-week-" + weekKey)              : ("bio304-workbook-" + topicId);
+    var WB_SKIP_FLAG     = weekKey ? ("bio304-workbook-skipped-week-" + weekKey)      : ("bio304-workbook-skipped-" + topicId);
+    var WB_REMINDER_FLAG = weekKey ? ("bio304-workbook-reminder-dismissed-week-" + weekKey) : ("bio304-workbook-reminder-dismissed-" + topicId);
+
+    var tracker = document.createElement("div");
+    tracker.className = "mcas-step-tracker";
+    tracker.setAttribute("data-topic-id", topicId);
+    tracker.innerHTML =
+      '<ol class="mcas-steps" aria-label="Pre-work steps for this topic">' +
+        '<li class="mcas-step" data-step="workbook">' +
+          '<a class="mcas-step-btn" data-step-action="workbook" href="' + workbookHref + '" target="_blank" rel="noopener">' +
+            '<span class="mcas-step-num">Step 1</span>' +
+            '<span class="mcas-step-label">Print the workbook</span>' +
+            '<span class="mcas-step-state"></span>' +
+          '</a>' +
+          '<button type="button" class="mcas-step-skip" data-step-action="workbook-skip" hidden>I will do it by hand &middot; skip this step</button>' +
+        '</li>' +
+        '<li class="mcas-step" data-step="video">' +
+          '<button type="button" class="mcas-step-btn" data-step-action="video">' +
+            '<span class="mcas-step-num">Step 2</span>' +
+            '<span class="mcas-step-label">Watch the video</span>' +
+            '<span class="mcas-step-state"></span>' +
+          '</button>' +
+        '</li>' +
+        '<li class="mcas-step" data-step="gate">' +
+          '<button type="button" class="mcas-step-btn" data-step-action="gate">' +
+            '<span class="mcas-step-num">Step 3</span>' +
+            '<span class="mcas-step-label">Retrieval check</span>' +
+            '<span class="mcas-step-state"></span>' +
+          '</button>' +
+        '</li>' +
+        '<li class="mcas-step" data-step="recall">' +
+          '<a class="mcas-step-btn" data-step-action="recall" href="' + preworkHref + '" target="_top">' +
+            '<span class="mcas-step-num">Step 4</span>' +
+            '<span class="mcas-step-label">Open spaced recall</span>' +
+            '<span class="mcas-step-state"></span>' +
+          '</a>' +
+        '</li>' +
+      '</ol>';
+
+    // Insert before the existing resource-bar (or at top of main content)
+    if (resourceBar && resourceBar.parentNode) {
+      resourceBar.parentNode.insertBefore(tracker, resourceBar);
+      resourceBar.style.display = "none";
+    } else {
+      var anchor = document.querySelector("main .usage, main .subhead, main h1, main");
+      if (anchor && anchor.parentNode) {
+        anchor.parentNode.insertBefore(tracker, anchor.nextSibling);
+      }
+    }
+
+    function readFlag(k){ try { return window.localStorage.getItem(k) === "true"; } catch (e) { return false; } }
+    function writeFlag(k, v){ try { window.localStorage.setItem(k, v ? "true" : ""); } catch (e) {} }
+
+    function state(){
+      return {
+        workbook:        readFlag(WB_FLAG),
+        workbookSkipped: readFlag(WB_SKIP_FLAG),
+        video:           readFlag("bio304-video-" + topicId),
+        gate:            readFlag("bio304-gate-" + topicId)
+      };
+    }
+
+    // Persistent reminder banner: appears when the student skips Step 1
+    // and stays visible until they actively dismiss it (or open the
+    // workbook). Reminds them the workbook still needs to be done and
+    // turned in.
+    var reminder = document.createElement("div");
+    reminder.className = "mcas-step-reminder";
+    reminder.setAttribute("role", "status");
+    reminder.hidden = true;
+    reminder.innerHTML =
+      '<span><strong>Reminder.</strong> The lab workbook still needs to be completed and turned in &mdash; print it or work it by hand.</span>' +
+      '<button type="button" class="mcas-step-reminder-dismiss" aria-label="Dismiss reminder">Dismiss</button>';
+    tracker.appendChild(reminder);
+
+    function updateReminder(s){
+      var visible = s.workbookSkipped && !readFlag(WB_REMINDER_FLAG);
+      reminder.hidden = !visible;
+    }
+    var dismissBtn = reminder.querySelector(".mcas-step-reminder-dismiss");
+    if (dismissBtn) {
+      dismissBtn.addEventListener("click", function(){
+        writeFlag(WB_REMINDER_FLAG, true);
+        reminder.hidden = true;
+      });
+    }
+
+    function render(){
+      var s = state();
+      var current = !s.workbook ? "workbook"
+                  : !s.video    ? "video"
+                  : !s.gate     ? "gate"
+                  :               "recall";
+      var weekLabel = weekNum ? ("Week " + weekNum) : "this week";
+      var stateLabels = {
+        workbook: {
+          active:    "Tap to open and print",
+          completed: s.workbookSkipped
+            ? ("Skipped — do on paper, turn it in")
+            : ("Already printed " + weekLabel + " workbook"),
+          pending:   "Up next"
+        },
+        video:    { active: "Tap to start the video", completed: "Video finished", pending: "Locked until step 1" },
+        gate:     { active: "Tap to write the explanation", completed: "Retrieval check passed", pending: "Locked until step 2" },
+        recall:   { active: "Tap to drill the cards", completed: "Cards opened", pending: "Locked until step 3" }
+      };
+      tracker.querySelectorAll(".mcas-step").forEach(function(li){
+        var step = li.getAttribute("data-step");
+        var done = (step === "workbook" && s.workbook) ||
+                   (step === "video"    && s.video)    ||
+                   (step === "gate"     && s.gate);
+        var cls = done ? "is-completed" : (step === current ? "is-active" : "is-pending");
+        li.classList.remove("is-completed", "is-active", "is-pending");
+        li.classList.add(cls);
+        var stateEl = li.querySelector(".mcas-step-state");
+        if (stateEl) {
+          var labels = stateLabels[step] || {};
+          stateEl.textContent = labels[cls === "is-active" ? "active" : cls === "is-completed" ? "completed" : "pending"] || "";
+        }
+        // Show the skip link only while Step 1 is active
+        if (step === "workbook") {
+          var skipBtn = li.querySelector(".mcas-step-skip");
+          if (skipBtn) skipBtn.hidden = (cls !== "is-active");
+        }
+      });
+      updateReminder(s);
+    }
+
+    // --- Step 1: workbook click sets the WEEK flag, the anchor opens the bundle ---
+    var wbBtn = tracker.querySelector('[data-step-action="workbook"]');
+    if (wbBtn) {
+      wbBtn.addEventListener("click", function(){
+        writeFlag(WB_FLAG, true);
+        // Opening the workbook clears any prior "skipped" state and
+        // re-enables the reminder for future skips.
+        writeFlag(WB_SKIP_FLAG, false);
+        writeFlag(WB_REMINDER_FLAG, false);
+        setTimeout(render, 40);
+      });
+    }
+    var skipBtn = tracker.querySelector('[data-step-action="workbook-skip"]');
+    if (skipBtn) {
+      skipBtn.addEventListener("click", function(){
+        var ok = window.confirm("Skipping the download? The lab workbook still needs to be completed and turned in. Work it on paper or with your printed copy.");
+        if (!ok) return;
+        writeFlag(WB_FLAG, true);
+        writeFlag(WB_SKIP_FLAG, true);
+        writeFlag(WB_REMINDER_FLAG, false);
+        setTimeout(render, 40);
+      });
+    }
+
+    // --- Step 2: video click triggers the existing #video-toggle ---
+    var videoBtn = tracker.querySelector('[data-step-action="video"]');
+    if (videoBtn) {
+      videoBtn.addEventListener("click", function(){
+        var toggle = document.getElementById("video-toggle");
+        if (toggle) toggle.click();
+        var panel = document.getElementById("video-panel");
+        if (panel) setTimeout(function(){ panel.scrollIntoView({ behavior: "smooth", block: "center" }); }, 160);
+      });
+    }
+
+    // --- Step 3: gate click scrolls to the retrieval check ---
+    var gateBtn = tracker.querySelector('[data-step-action="gate"]');
+    if (gateBtn) {
+      gateBtn.addEventListener("click", function(){
+        var gate = document.getElementById("explain-gate");
+        if (gate) {
+          if (gate.hidden) gate.hidden = false;
+          gate.scrollIntoView({ behavior: "smooth", block: "center" });
+          var input = document.getElementById("gate-input");
+          if (input) setTimeout(function(){ input.focus(); }, 380);
+        }
+      });
+    }
+
+    // Watch the explain-gate's hidden attribute. The bio304-option-a IIFE
+    // reveals it via revealGate() when the YouTube video ENDS. That's our
+    // signal to set the bio304-video flag.
+    var gateSection = document.getElementById("explain-gate");
+    if (gateSection && typeof MutationObserver !== "undefined") {
+      var obs = new MutationObserver(function(){
+        if (!gateSection.hidden && !readFlag("bio304-video-" + topicId)) {
+          writeFlag("bio304-video-" + topicId, true);
+          render();
+        }
+      });
+      obs.observe(gateSection, { attributes: true, attributeFilter: ["hidden"] });
+    }
+
+    // Gate submit click → re-render after the existing handler stores its flags
+    var submitBtn = document.getElementById("gate-submit");
+    if (submitBtn) {
+      submitBtn.addEventListener("click", function(){ setTimeout(render, 80); });
+    }
+
+    // Cross-tab updates: re-render when any flag this spoke cares about
+    // changes in another tab (e.g. student opens the workbook from a
+    // sibling spoke and the week flag flips).
+    window.addEventListener("storage", function(e){
+      if (!e.key) return;
+      if (e.key === WB_FLAG || e.key === WB_SKIP_FLAG || e.key === WB_REMINDER_FLAG) {
+        render(); return;
+      }
+      if (e.key.indexOf("bio304-") === 0 && e.key.indexOf(topicId) > -1) render();
+    });
+
+    render();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+<!-- mcas-step-tracker-injector-end -->
 <!-- mcas-iframe-height-sender -->
 <script>
 /* MCAS iframe height-sender (rebrand-mcas.py) */
