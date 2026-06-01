@@ -1417,77 +1417,61 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 
 
 
-<style id="lecture-slider-styles">
-.lecture-slider { max-width: 380px; margin: 24px auto 32px; background: #FFFFFF; border: 1px solid rgba(11,21,48,0.14); border-radius: 8px; box-shadow: 0 1px 3px rgba(11,21,48,0.06); overflow: hidden; }
-.ls-stage { position: relative; min-height: 280px; background: #FAFAF9; }
-.ls-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 200ms ease; cursor: zoom-in; }
-.ls-slide.is-active { opacity: 1; z-index: 1; }
-.ls-slide img { width: 100%; height: 200px; object-fit: contain; display: block; background: #FFFFFF; padding: 8px; }
-.ls-caption { padding: 10px 14px 12px; font-size: 12.5px; line-height: 1.45; color: #0B1530; background: #FFFFFF; }
-.ls-caption .ls-src { display: block; margin-top: 4px; font-size: 11px; color: #5C6970; }
-.ls-caption .ls-src a { color: #8B3A2E; text-decoration: underline; }
-.ls-controls { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; gap: 10px; border-top: 1px solid rgba(11,21,48,0.08); background: #FAFAF9; }
-.ls-btn { background: transparent; border: 1px solid rgba(11,21,48,0.22); border-radius: 4px; padding: 4px 10px; font-family: inherit; font-size: 13px; font-weight: 700; color: #0B1530; cursor: pointer; }
-.ls-btn:hover { border-color: #8B3A2E; color: #8B3A2E; }
-.ls-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-.ls-dots { display: flex; gap: 6px; }
-.ls-dot { width: 8px; height: 8px; border-radius: 50%; border: 1px solid rgba(11,21,48,0.4); background: transparent; cursor: pointer; padding: 0; }
-.ls-dot.is-active { background: #8B3A2E; border-color: #8B3A2E; }
-.ls-counter { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: #5C6970; }
-/* Lightbox */
-.ls-lightbox { position: fixed; inset: 0; z-index: 99999; background: rgba(11,21,48,0.85); display: none; align-items: center; justify-content: center; padding: 24px; }
+
+
+<style id="lecture-card-styles">
+.fig-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 900px; margin: 24px auto 32px; }
+.fig-card { background: #FFFFFF; border: 1px solid rgba(11,21,48,0.18); border-radius: 12px; padding: 16px 18px 18px; box-shadow: 0 1px 3px rgba(11,21,48,0.06); cursor: zoom-in; text-align: left; font-family: inherit; transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease; display: flex; flex-direction: column; }
+.fig-card:hover, .fig-card:focus-visible { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(11,21,48,0.10); border-color: #8B3A2E; outline: none; }
+.fig-card .fc-eyebrow { font-size: 10.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8B3A2E; margin: 0 0 8px; }
+.fig-card .fc-thumb { background: #FAFAF9; border-radius: 6px; padding: 8px; margin-bottom: 12px; aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.fig-card .fc-thumb img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+.fig-card .fc-title { font-size: 15px; font-weight: 800; color: #0B1530; line-height: 1.25; margin: 0 0 6px; letter-spacing: -0.005em; }
+.fig-card .fc-sub { font-size: 12.5px; line-height: 1.4; color: #0B1530; opacity: 0.78; margin: 0 0 12px; flex: 1; }
+.fig-card .fc-cta { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #8B3A2E; margin: 0; }
+.fig-card .fc-src { font-size: 10.5px; color: #5C6970; margin-top: 8px; }
+.fig-card .fc-src a { color: #8B3A2E; text-decoration: underline; }
+@media (max-width: 900px) { .fig-cards { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .fig-cards { grid-template-columns: 1fr; } }
+.ls-lightbox { position: fixed; inset: 0; z-index: 2147483000; background: rgba(11,21,48,0.85); display: none; align-items: center; justify-content: center; padding: 24px; }
 .ls-lightbox.is-open { display: flex; }
-.ls-lightbox img { max-width: 96vw; max-height: 88vh; background: #FFFFFF; border-radius: 4px; }
-.ls-lightbox .ls-close { position: absolute; top: 16px; right: 16px; background: #FFFFFF; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; font-weight: 700; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
-.ls-lightbox .ls-lb-caption { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.95); padding: 10px 16px; border-radius: 4px; max-width: 90vw; font-size: 12.5px; color: #0B1530; text-align: center; }
-@media print { .lecture-slider { box-shadow: none; border: 1px solid rgba(0,0,0,0.2); page-break-inside: avoid; max-width: 100%; } .ls-stage { aspect-ratio: auto; height: auto; } .ls-slide { position: static; opacity: 1; } .ls-slide + .ls-slide { margin-top: 16px; } .ls-controls, .ls-lightbox { display: none !important; } }
+.ls-lightbox img { max-width: 96vw; max-height: 84vh; background: #FFFFFF; border-radius: 4px; padding: 12px; box-sizing: border-box; }
+.ls-lightbox .ls-close { position: absolute; top: 16px; right: 16px; background: #FFFFFF; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 22px; font-weight: 700; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.3); line-height: 1; }
+.ls-lightbox .ls-lb-caption { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.96); padding: 10px 16px; border-radius: 4px; max-width: 90vw; font-size: 12.5px; color: #0B1530; text-align: center; }
+@media print { .fig-cards { grid-template-columns: 1fr 1fr 1fr; } .fig-card { box-shadow: none; cursor: default; page-break-inside: avoid; } .ls-lightbox { display: none !important; } }
 </style>
 <script>
 (function(){
-  function initSlider(slider){
-    var slides = slider.querySelectorAll('.ls-slide');
-    var dots = slider.querySelectorAll('.ls-dot');
-    var prev = slider.querySelector('.ls-prev');
-    var next = slider.querySelector('.ls-next');
-    var counter = slider.querySelector('.ls-counter');
-    var cur = 0;
-    function show(i){
-      cur = (i + slides.length) % slides.length;
-      slides.forEach(function(s, idx){ s.classList.toggle('is-active', idx === cur); });
-      dots.forEach(function(d, idx){ d.classList.toggle('is-active', idx === cur); });
-      if (counter) counter.textContent = (cur+1) + ' / ' + slides.length;
-    }
-    if (prev) prev.addEventListener('click', function(){ show(cur-1); });
-    if (next) next.addEventListener('click', function(){ show(cur+1); });
-    dots.forEach(function(d, idx){ d.addEventListener('click', function(){ show(idx); }); });
-    slides.forEach(function(s){ s.addEventListener('click', function(){
-      var img = s.querySelector('img'); var cap = s.querySelector('.ls-caption');
-      openLightbox(img.src, img.alt, cap ? cap.innerHTML : '');
-    }); });
-    show(0);
-  }
-  // Lightbox
+  function init(){
   var lb = document.createElement('div');
   lb.className = 'ls-lightbox';
-  lb.setAttribute('role', 'dialog');
-  lb.setAttribute('aria-modal', 'true');
-  lb.innerHTML = '<button class="ls-close" aria-label="Close zoomed image">×</button><img alt=""/><div class="ls-lb-caption"></div>';
+  lb.setAttribute('role','dialog'); lb.setAttribute('aria-modal','true');
+  lb.innerHTML = '<button class="ls-close" aria-label="Close">×</button><img alt=""/><div class="ls-lb-caption"></div>';
   document.body.appendChild(lb);
   var lbImg = lb.querySelector('img');
   var lbCap = lb.querySelector('.ls-lb-caption');
   var lbClose = lb.querySelector('.ls-close');
-  function openLightbox(src, alt, captionHtml){
-    lbImg.src = src; lbImg.alt = alt;
-    lbCap.innerHTML = captionHtml;
-    lb.classList.add('is-open');
-    setTimeout(function(){ lbClose.focus(); }, 40);
+  function open(src,alt,cap){ lbImg.src=src; lbImg.alt=alt; lbCap.innerHTML=cap; lb.classList.add('is-open'); setTimeout(function(){lbClose.focus();},40); }
+  function close(){ lb.classList.remove('is-open'); lbImg.src=''; }
+  lbClose.addEventListener('click', close);
+  lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && lb.classList.contains('is-open')) close(); });
+  document.querySelectorAll('.fig-card').forEach(function(card){
+    card.addEventListener('click', function(){
+      var img = card.querySelector('img');
+      var t = card.querySelector('.fc-title');
+      var s = card.querySelector('.fc-sub');
+      var src = card.querySelector('.fc-src');
+      var cap = (t?t.textContent:'') + ' — ' + (s?s.textContent:'') + (src?'<br><span style="font-size:10px;opacity:.75">'+src.innerHTML+'</span>':'');
+      open(img.src, img.alt, cap);
+    });
+  });
   }
-  function closeLightbox(){ lb.classList.remove('is-open'); lbImg.src=''; }
-  lbClose.addEventListener('click', closeLightbox);
-  lb.addEventListener('click', function(e){ if (e.target === lb) closeLightbox(); });
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && lb.classList.contains('is-open')) closeLightbox(); });
-  // Init all sliders
-  document.querySelectorAll('.lecture-slider').forEach(initSlider);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
 </script>
 </head>
@@ -1573,35 +1557,31 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       <li>Name the major cytoplasmic organelles and the job each one performs.</li>
       <li>Trace a protein from its gene in the nucleus to its release outside the cell, naming every organelle it passes through.</li>
     </ol>
-<div class="lecture-slider" role="region" aria-label="Lecture figures">
-  <div class="ls-stage">
-    <figure class="ls-slide is-active" role="group" aria-label="Figure 1 of 3">
-  <img src="https://openstax.org/apps/image-cdn/v1/f=webp/apps/archive/20260209.222123/resources/b43fe17f2018f510b2e76cf067595c36442cf752" alt="Cross-section of the cell membrane showing the phospholipid bilayer with embedded integral and peripheral proteins, cholesterol molecules nestled between phospholipids, and glycoproteins with extracellular carbohydrate chains." loading="lazy" />
-  <figcaption class="ls-caption">
-    Plasma membrane: phospholipid bilayer with embedded proteins and cholesterol.
-    <span class="ls-src">Source: <a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/3-1-the-cell-membrane" target="_blank" rel="noopener">OpenStax A&amp;P 2e, Fig 3.4</a> · CC BY-NC-SA 4.0</span>
-  </figcaption>
-</figure>
-<figure class="ls-slide" role="group" aria-label="Figure 2 of 3">
-  <img src="https://openstax.org/apps/image-cdn/v1/f=webp/apps/archive/20260407.195030/resources/ec6b446074b356cfa75ef69a7987a9ee9256b89c" alt="Diagram of an animal cell with labeled organelles: nucleus, nucleolus, plasma membrane, rough endoplasmic reticulum with ribosomes, smooth endoplasmic reticulum, Golgi apparatus, mitochondria, lysosomes, peroxisomes, centrioles, cytoskeleton, vesicles, and cytoplasm." loading="lazy" />
-  <figcaption class="ls-caption">
-    A prototypical animal cell with major organelles labeled.
-    <span class="ls-src">Source: <a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/3-2-the-cytoplasm-and-cellular-organelles" target="_blank" rel="noopener">OpenStax A&amp;P 2e, Fig 3.13</a> · CC BY-NC-SA 4.0</span>
-  </figcaption>
-</figure>
-<figure class="ls-slide" role="group" aria-label="Figure 3 of 3">
-  <img src="https://openstax.org/apps/image-cdn/v1/f=webp/apps/archive/20260407.195030/resources/c41f125bc91a4c8409bd4be3f2f307723bef9b57" alt="Golgi apparatus as stacked flattened membrane discs. Proteins arrive in vesicles from the rough ER at one face, move through the stacks, get modified and packaged, and exit in new vesicles to fuse with the plasma membrane for secretion." loading="lazy" />
-  <figcaption class="ls-caption">
-    Protein secretion: rough ER → Golgi → vesicle → exocytosis.
-    <span class="ls-src">Source: <a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/3-2-the-cytoplasm-and-cellular-organelles" target="_blank" rel="noopener">OpenStax A&amp;P 2e, Fig 3.15</a> · CC BY-NC-SA 4.0</span>
-  </figcaption>
-</figure>
-  </div>
-  <div class="ls-controls">
-    <button type="button" class="ls-btn ls-prev" aria-label="Previous figure">←</button>
-    <div class="ls-dots"><button type="button" class="ls-dot is-active" aria-label="Show figure 1"></button><button type="button" class="ls-dot" aria-label="Show figure 2"></button><button type="button" class="ls-dot" aria-label="Show figure 3"></button></div>
-    <button type="button" class="ls-btn ls-next" aria-label="Next figure">→</button>
-  </div>
+<div class="fig-cards">
+<button type="button" class="fig-card" aria-label="Open zoomed view of Plasma Membrane">
+  <p class="fc-eyebrow">Fig 1 of 3</p>
+  <div class="fc-thumb"><img src="https://openstax.org/apps/image-cdn/v1/f=webp/apps/archive/20260209.222123/resources/b43fe17f2018f510b2e76cf067595c36442cf752" alt="Cross-section of the cell membrane: phospholipid bilayer with embedded integral and peripheral proteins, cholesterol, glycoproteins." loading="lazy" /></div>
+  <h3 class="fc-title">Plasma Membrane</h3>
+  <p class="fc-sub">Phospholipid bilayer with embedded proteins.</p>
+  <p class="fc-cta">Tap to zoom →</p>
+  <p class="fc-src">Source: <a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/3-1-the-cell-membrane" target="_blank" rel="noopener" onclick="event.stopPropagation()">OpenStax A&amp;P 2e, Fig 3.4</a> · CC BY-NC-SA 4.0</p>
+</button>
+<button type="button" class="fig-card" aria-label="Open zoomed view of Prototypical Cell">
+  <p class="fc-eyebrow">Fig 2 of 3</p>
+  <div class="fc-thumb"><img src="https://openstax.org/apps/image-cdn/v1/f=webp/apps/archive/20260407.195030/resources/ec6b446074b356cfa75ef69a7987a9ee9256b89c" alt="Diagram of an animal cell with labeled organelles: nucleus, plasma membrane, rough ER, smooth ER, Golgi apparatus, mitochondria, lysosomes, peroxisomes, centrioles, cytoskeleton, vesicles." loading="lazy" /></div>
+  <h3 class="fc-title">Prototypical Cell</h3>
+  <p class="fc-sub">All major organelles labeled.</p>
+  <p class="fc-cta">Tap to zoom →</p>
+  <p class="fc-src">Source: <a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/3-2-the-cytoplasm-and-cellular-organelles" target="_blank" rel="noopener" onclick="event.stopPropagation()">OpenStax A&amp;P 2e, Fig 3.13</a> · CC BY-NC-SA 4.0</p>
+</button>
+<button type="button" class="fig-card" aria-label="Open zoomed view of Protein Secretion">
+  <p class="fc-eyebrow">Fig 3 of 3</p>
+  <div class="fc-thumb"><img src="https://openstax.org/apps/image-cdn/v1/f=webp/apps/archive/20260407.195030/resources/c41f125bc91a4c8409bd4be3f2f307723bef9b57" alt="Golgi apparatus as stacked discs. Proteins from rough ER arrive in vesicles, are modified and packaged, exit in vesicles for secretion." loading="lazy" /></div>
+  <h3 class="fc-title">Protein Secretion</h3>
+  <p class="fc-sub">Rough ER → Golgi → vesicle → exocytosis.</p>
+  <p class="fc-cta">Tap to zoom →</p>
+  <p class="fc-src">Source: <a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/3-2-the-cytoplasm-and-cellular-organelles" target="_blank" rel="noopener" onclick="event.stopPropagation()">OpenStax A&amp;P 2e, Fig 3.15</a> · CC BY-NC-SA 4.0</p>
+</button>
 </div>
 
 </div>
