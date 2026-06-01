@@ -1,48 +1,47 @@
-# BIO 304 — Phase B v2 (corrective push)
+# BIO 304 — strip misplaced anatomical position images
 
-**Problem found after v1 push:** Buttons were added to workbooks, lab sprints, weekly trainers, portfolio templates, and obsolete archive pages — not just lecture pages. You only want buttons on lecture pages (the ones that match your videos).
+## What got found
 
-**This bundle fixes it.** Push it as a new commit; the bad buttons disappear from non-lecture pages and the good buttons stay on lecture pages.
+Scanned both repos for the three anatomical position images (anterior-bodyUE, anterior-bodyLE, posterior-lateral):
 
-## What's in this bundle (112 files)
+- **BIO 004**: only on `anatomical-terminology.html` — correct, no action needed
+- **BIO 304**: on 35 pages, only 1 legitimate (`body-regions.html`) → **34 pages have them misplaced**
 
-- **110 non-lecture pages** restored to their original (pre-v1) state. Pushing these overwrites the buttoned versions on GitHub, removing the misplaced buttons from workbooks, sprints, trainers, portfolio templates, weekly worksheets, and `_OBSOLETE_*` archives.
-- **2 lecture pages** that v1 missed (`workbook-index.html` and `_OBSOLETE_biol304_week1_overview.html`) — they get just the script tag with no buttons. Edge case, not critical.
-- Lecture pages that were correctly wired in v1 are NOT in this bundle. They stay as they are on GitHub.
+## What this push fixes
 
-## What this push does on GitHub
+Strips the entire "plate" block (3 images + "Click any image to enlarge" caption) from all 34 misplaced pages. Leaves `body-regions.html` alone since that's where they belong. Pages affected:
 
-| Page type | v1 state | v2 effect |
-|---|---|---|
-| Lecture pages (109) | Had correct buttons | **Unchanged** (not in this bundle) |
-| Workbooks, sprints, trainers, portfolios (110) | Had wrong buttons | **Buttons removed** |
-| Admin pages (93) | Unchanged | **Still unchanged** |
+action-potentials-synapses, adaptive-immunity, appendicular-skeleton, axial-skeleton, blood-composition, blood-vessels-hemodynamics, bone-tissue, cardiac-conduction, cell-structure, cns-organization, connective-tissues, cross-bridge-cycle, digestion-absorption, epithelial-tissue, female-reproductive, fluid-electrolyte-acid-base, gas-exchange-transport, gi-anatomy-motility, hearing-equilibrium, heart-anatomy, hemostasis-blood-typing, hormone-mechanisms, joints-and-movements, kidney-anatomy-gfr, lymphatic-innate-immunity, major-endocrine-glands, male-reproductive, membrane-transport, motor-units, muscle-nervous-tissue, neurons-resting-potential, pns-autonomic, pregnancy-basics, respiratory-anatomy
 
 ## Push commands
 
 ```bash
-cd /path/to/nonmajors
-git checkout main
-git pull origin main
-
-cp "/Users/sharilynrennie/Documents/Claude/Projects/Lecture Slides/_PUSH-TO-GITHUB/BIO-304-PhaseB-v2/"*.html .
-
-git status        # should show ~112 modified files
+cd ~/Documents/nonmajors
+cp "/Users/sharilynrennie/Documents/Claude/Projects/Lecture Slides/_PUSH-TO-GITHUB/BIO-304-strip-misplaced-images/"*.html .
 git add *.html
-git commit -m "Phase B v2: remove drawing buttons from workbooks/sprints/trainers (keep on lecture pages)"
+git status        # should show 34 modified
+git commit -m "Strip misplaced anatomical position images from non-anatomy pages"
 git push origin main
 ```
 
 ## Verify after push
 
-Wait ~2 min, then check ONE workbook and ONE lecture:
+Wait 2 min, open any affected page in incognito, e.g.:
 
-**A workbook page (should NOT have a button after this push):**
-https://drsrennie-stack.github.io/nonmajors/workbook_day30_tubular-function-and-urine-concentration.html
-→ No "Drawing tools" box. Page looks like it always did.
+https://drsrennie-stack.github.io/nonmajors/cell-structure.html
+https://drsrennie-stack.github.io/nonmajors/membrane-transport.html
 
-**A lecture page (should STILL have a button — untouched by this push):**
-https://drsrennie-stack.github.io/nonmajors/tubular-function.html
-→ "Draw the nephron tubular function" button still there.
+The three anatomical-position image cards should be GONE. Page should jump straight from "By the end" learning objectives into the content tables.
 
-If both check out, the correction worked.
+## What's next
+
+After this push, every page will be clean of the wrong images. Then we go page by page and add the RIGHT images (with OpenStax fallback where you don't have your own). Suggest doing 5-10 pages per batch.
+
+First batch I'd recommend (your top-priority lecture pages):
+1. cell-structure.html → labeled cell + plasma membrane + protein secretion (3-image slider)
+2. membrane-transport.html → passive vs active + diffusion types + tonicity (3-image slider)
+3. epithelial-tissue.html → classification grid (single image)
+4. connective-tissues.html → CT types collage
+5. muscle-nervous-tissue.html → muscle + neuron close-ups
+
+Tell me when you've pushed this strip-fix and I'll start on the first batch.
