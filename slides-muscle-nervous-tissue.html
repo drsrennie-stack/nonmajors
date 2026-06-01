@@ -95,9 +95,11 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px s
 .action-btn.primary { background: #8B3A2E; color: #FFFFFF; border-color: #8B3A2E; }
 .action-btn.primary:hover, .action-btn.primary:focus-visible { background: #A0452F; color: #FFFFFF; }
 .action-btn.is-active { background: #0B1530; color: #FFFFFF; border-color: #0B1530; }
-.canvas-wrap { position: relative; background: linear-gradient(rgba(11, 21, 48, 0.04) 1px, transparent 1px) 0 0/24px 24px, linear-gradient(90deg, rgba(11, 21, 48, 0.04) 1px, transparent 1px) 0 0/24px 24px, #FFFFFF; flex: 1; min-height: 520px; cursor: crosshair; touch-action: none; }
+/* canvas-lock-v1 */
+.canvas-col { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.canvas-wrap { position: relative; background: linear-gradient(rgba(11, 21, 48, 0.04) 1px, transparent 1px) 0 0/24px 24px, linear-gradient(90deg, rgba(11, 21, 48, 0.04) 1px, transparent 1px) 0 0/24px 24px, #FFFFFF; flex: 1; min-height: 520px; cursor: crosshair; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; overscroll-behavior: contain; }
 .canvas-wrap.is-erasing { cursor: cell; }
-.draw-canvas { display: block; width: 100%; height: 100%; position: absolute; inset: 0; }
+.draw-canvas { display: block; width: 100%; height: 100%; position: absolute; inset: 0; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-user-drag: none; }
 .image-ref-slide .slide-body { grid-template-columns: 1fr 1fr; }
 .image-ref-slide .image-col { display: flex; align-items: center; justify-content: center; background: #FAFAF9; padding: 22px; }
 .image-ref-slide .image-col img { max-width: 100%; max-height: 540px; height: auto; width: auto; border-radius: 6px; background: #FFFFFF; padding: 8px; box-shadow: 0 4px 12px rgba(11, 21, 48, 0.10); }
@@ -454,6 +456,10 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px s
     function move(ev){ if(!state.currentStroke)return; ev.preventDefault(); var p=getXY(ev); var s=state.currentStroke; var prevIdx=s.points.length-1; s.points.push(p); drawStrokeSegment(state,s,prevIdx); }
     function end(){ if(!state.currentStroke)return; state.currentStroke=null; }
     canvas.addEventListener('pointerdown',start); canvas.addEventListener('pointermove',move); canvas.addEventListener('pointerup',end); canvas.addEventListener('pointercancel',end); canvas.addEventListener('pointerleave',end);
+    canvas.addEventListener('touchstart',function(e){ e.preventDefault(); },{passive:false});
+    canvas.addEventListener('touchmove',function(e){ e.preventDefault(); },{passive:false});
+    canvas.addEventListener('gesturestart',function(e){ e.preventDefault(); });
+    canvas.addEventListener('contextmenu',function(e){ e.preventDefault(); });
     allCanvases.push(state);
   }
   function drawStrokeSegment(state, stroke, fromIdx){ var ctx=state.ctx; ctx.save(); if(stroke.erasing){ctx.globalCompositeOperation='destination-out'; ctx.strokeStyle='rgba(0,0,0,1)';}else{ctx.globalCompositeOperation='source-over'; ctx.strokeStyle=stroke.color;} ctx.lineWidth=stroke.size; ctx.lineCap='round'; ctx.lineJoin='round'; var pts=stroke.points; if(pts.length===1){ctx.beginPath();ctx.arc(pts[0].x,pts[0].y,Math.max(0.5,stroke.size/2),0,Math.PI*2);ctx.fillStyle=stroke.erasing?'rgba(0,0,0,1)':stroke.color;ctx.fill();}else if(fromIdx<pts.length-1){ctx.beginPath();ctx.moveTo(pts[fromIdx].x,pts[fromIdx].y);for(var i=fromIdx+1;i<pts.length;i++)ctx.lineTo(pts[i].x,pts[i].y);ctx.stroke();} ctx.restore(); }
