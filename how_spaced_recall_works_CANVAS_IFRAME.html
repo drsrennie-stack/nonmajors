@@ -1,0 +1,33 @@
+<!-- Paste this into the Canvas page HTML editor.
+     Replace YOUR-DOMAIN with the GitHub Pages or hosting URL where
+     how_spaced_recall_works.html lives. -->
+
+<p><iframe
+    id="bio304-how-spaced-recall-works"
+    src="https://YOUR-DOMAIN/how_spaced_recall_works.html"
+    title="How Spaced Recall Works"
+    width="100%"
+    height="2200"
+    style="width:100%;border:0;display:block;min-height:600px;"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allow="clipboard-read; clipboard-write"
+    sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
+></iframe></p>
+
+<script>
+/* Auto-resize listener: the embedded page posts its height; we resize the iframe to match.
+   Safe to drop on any Canvas page that hosts a spaced-recall iframe. */
+(function () {
+  function onMsg(e) {
+    var d = e.data || {};
+    if (!d || (d.type !== "iframe-height" && d.type !== "resize")) return;
+    if (d.id !== "bio304-how-spaced-recall-works") return;
+    var f = document.getElementById("bio304-how-spaced-recall-works");
+    if (f && typeof d.height === "number" && d.height > 0) {
+      f.style.height = (d.height + 24) + "px";
+    }
+  }
+  window.addEventListener("message", onMsg);
+})();
+</script>
