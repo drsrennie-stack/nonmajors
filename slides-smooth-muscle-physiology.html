@@ -331,8 +331,8 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px s
     canvas.addEventListener('pointerup',end);
     canvas.addEventListener('pointercancel',end);
     canvas.addEventListener('pointerleave',end);
-    canvas.addEventListener('touchstart',function(e){ e.preventDefault(); },{passive:false});
-    canvas.addEventListener('touchmove',function(e){ e.preventDefault(); },{passive:false});
+    canvas.addEventListener('touchstart',function(e){ var t=e.touches&&e.touches[0]; if(t&&t.touchType==='stylus')return; e.preventDefault(); },{passive:false});
+    canvas.addEventListener('touchmove',function(e){ var t=e.touches&&e.touches[0]; if(t&&t.touchType==='stylus')return; e.preventDefault(); },{passive:false});
     canvas.addEventListener('gesturestart',function(e){ e.preventDefault(); });
     canvas.addEventListener('contextmenu',function(e){ e.preventDefault(); });
     allCanvases.push(state);

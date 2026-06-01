@@ -395,8 +395,8 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px s
     function move(ev){ if(!state.currentStroke)return; ev.preventDefault(); var p=getXY(ev); var s=state.currentStroke; var prevIdx=s.points.length-1; s.points.push(p); drawStrokeSegment(state,s,prevIdx); }
     function end(){ if(!state.currentStroke)return; state.currentStroke=null; }
     canvas.addEventListener('pointerdown',start); canvas.addEventListener('pointermove',move); canvas.addEventListener('pointerup',end); canvas.addEventListener('pointercancel',end); canvas.addEventListener('pointerleave',end);
-    canvas.addEventListener('touchstart',function(e){ e.preventDefault(); },{passive:false});
-    canvas.addEventListener('touchmove',function(e){ e.preventDefault(); },{passive:false});
+    canvas.addEventListener('touchstart',function(e){ var t=e.touches&&e.touches[0]; if(t&&t.touchType==='stylus')return; e.preventDefault(); },{passive:false});
+    canvas.addEventListener('touchmove',function(e){ var t=e.touches&&e.touches[0]; if(t&&t.touchType==='stylus')return; e.preventDefault(); },{passive:false});
     canvas.addEventListener('gesturestart',function(e){ e.preventDefault(); });
     canvas.addEventListener('contextmenu',function(e){ e.preventDefault(); });
     allCanvases.push(state);
