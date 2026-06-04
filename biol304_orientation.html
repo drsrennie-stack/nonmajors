@@ -99,8 +99,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .intro-section { background: #F5F1E8; padding-top: 38px; padding-bottom: 38px; }
 .intro-box {
   background: #FFFFFF;
-  border-left: 4px solid #C9A14A;
-  border-radius: 0 8px 8px 0;
+  border-radius: 8px;
   padding: 22px 26px;
   max-width: 820px;
   box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
@@ -286,6 +285,52 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   .hero-headline { font-size: 28px; }
   .video-summary { grid-template-columns: 1fr; }
   .video-play { justify-self: start; }
+}
+
+/* REFERENCE SHELF (attached near the bottom, before CTA) */
+.refshelf-section { background: #FFFFFF; padding-top: 56px; padding-bottom: 56px;
+  padding-left: max(40px, 5vw); padding-right: max(40px, 5vw); }
+.refshelf-section .group-eyebrow { color: #8B3A2E; }
+.refshelf-section .group-headline { color: #0B1530; }
+.refshelf-section .group-headline .accent { color: #8B3A2E; }
+.refshelf-list {
+  list-style: none; margin: 0; padding: 0;
+  max-width: 760px;
+  counter-reset: ref-counter;
+}
+.refshelf-list li {
+  counter-increment: ref-counter;
+  display: flex; align-items: baseline; gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(11, 21, 48, 0.10);
+}
+.refshelf-list li:last-child { border-bottom: none; }
+.refshelf-list li::before {
+  content: counter(ref-counter, decimal-leading-zero);
+  font-weight: 800; color: #8B3A2E;
+  font-variant-numeric: tabular-nums;
+  font-size: 13px; letter-spacing: 0.02em;
+  min-width: 28px; flex-shrink: 0;
+}
+.refshelf-list .ref-name {
+  font-size: 15px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.01em;
+  text-decoration: underline;
+  text-underline-offset: 5px; text-decoration-thickness: 1px;
+  flex-shrink: 0;
+}
+.refshelf-list .ref-name:hover,
+.refshelf-list .ref-name:focus-visible { color: #8B3A2E; text-decoration-color: #8B3A2E; }
+.refshelf-list .ref-desc {
+  font-size: 14px; color: #0B1530; opacity: 0.78;
+  line-height: 1.5;
+}
+.refshelf-list .ext-arrow {
+  display: inline-block;
+  font-size: 0.85em;
+  margin-left: 4px;
+  color: #8B3A2E;
+  opacity: 0.8;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -638,6 +683,27 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
     </li>
 
   </ul>
+</section>
+
+<!-- ===== REFERENCE SHELF ===== -->
+<section class="refshelf-section" id="refshelf" aria-labelledby="refshelf-h">
+  <div class="group-eyebrow">Reference shelf</div>
+  <h2 class="group-headline" id="refshelf-h">Open these <span class="accent">alongside the work</span>.</h2>
+  <p class="group-intro" style="margin-bottom:24px;">Free atlases and the textbook, each in its own tab.</p>
+  <ol class="refshelf-list">
+    <li>
+      <a class="ref-name" href="https://openstax.org/details/books/anatomy-and-physiology-2e" target="_blank" rel="noopener">OpenStax A&amp;P 2e<span class="ext-arrow" aria-hidden="true">&#8599;</span></a>
+      <span class="ref-desc">free peer-reviewed textbook, online or PDF</span>
+    </li>
+    <li>
+      <a class="ref-name" href="https://sites.google.com/a/umich.edu/bluelink/resources/bluelink" target="_blank" rel="noopener">BlueLink, University of Michigan<span class="ext-arrow" aria-hidden="true">&#8599;</span></a>
+      <span class="ref-desc">cadaver atlas, dissection videos, clinical correlates</span>
+    </li>
+    <li>
+      <a class="ref-name" href="https://histology.oit.duke.edu/" target="_blank" rel="noopener">Duke Histology<span class="ext-arrow" aria-hidden="true">&#8599;</span></a>
+      <span class="ref-desc">slide images for every tissue type</span>
+    </li>
+  </ol>
 </section>
 
 <!-- ===== CLOSING CTA ===== -->
