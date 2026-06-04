@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIO 004 Human Anatomy &middot; Course Hub</title>
+<meta name="description" content="One link, every tool. The Human Anatomy course hub for BIO 004 at Solano Community College: this week, all eight weeks, the atlas, study tools, and how to get help.">
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+
+/*
+  ============================================================
+  BIO 004 HUMAN ANATOMY  ·  LMS COURSE HUB
+  One page, every tool. Light-dark-light rhythm matches the
+  existing index.html. Dark sections carry read-once content
+  (dashboard, week-rhythm, instructor). White sections carry
+  high-frequency click targets (8 weeks, tools, help).
+  ============================================================
+*/
+
+:root {
+  --navy:        #0B1530;
+  --navy-deep:   #060A18;
+  --navy-tint:   #EDF1F3;
+  --rust:        #8B3A2E;
+  --rust-hover:  #A0452F;
+  --gold:        #C9A14A;
+  --gold-soft:   rgba(201, 161, 74, 0.18);
+  --terra:       #C2734D;
+  --cream:       #F5F1E8;
+  --paper:       #FAFAF9;
+  --white:       #FFFFFF;
+  --line:        rgba(11, 21, 48, 0.10);
+  --line-dark:   rgba(245, 241, 232, 0.16);
+  --ink-mute:    rgba(11, 21, 48, 0.72);
+  --cream-mute:  rgba(245, 241, 232, 0.78);
+  --rest-shadow: 0 1px 3px rgba(11, 21, 48, 0.08);
+  --hover-shadow:0 10px 22px rgba(11, 21, 48, 0.12);
+  --dark-rest:   0 1px 3px rgba(0, 0, 0, 0.35);
+  --dark-hover:  0 14px 28px rgba(0, 0, 0, 0.45);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-size: 16px; line-height: 1.65; }
+body {
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--navy);
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font-family: inherit; }
+
+/* ===== FOCUS ===== */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--rust);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.dark a:focus-visible,
+.dark button:focus-visible,
+.dark summary:focus-visible { outline-color: var(--gold); }
+
+.skip-link {
+  position: absolute;
+  top: -100px; left: 8px;
+  background: var(--navy); color: var(--cream);
+  padding: 12px 20px;
+  text-decoration: none;
+  font-size: 13px; font-weight: 700;
+  border-radius: 4px;
+  z-index: 9999;
+  letter-spacing: 0.04em;
+}
+.skip-link:focus { top: 8px; }
+
+/* ===== STICKY HEADER + NAV ===== */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px;
+  padding: 14px max(24px, 4vw);
+}
+.site-logo {
+  display: inline-flex; align-items: center; gap: 14px;
+  text-decoration: none; flex-shrink: 0;
+}
+.site-logo svg { height: 44px; width: auto; display: block; }
+.logo-text { display: flex; flex-direction: column; gap: 2px; }
+.logo-title {
+  font-size: 19px; font-weight: 800; letter-spacing: -0.02em;
+  color: var(--navy); line-height: 1;
+}
+.logo-title .logo-accent { color: var(--rust); }
+.logo-sub {
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.20em; text-transform: uppercase;
+  color: var(--navy); opacity: 0.68;
+}
+
+.primary-nav { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.primary-nav a {
+  text-decoration: none;
+  font-size: 13px; font-weight: 600;
+  color: var(--navy);
+  padding: 8px 12px;
+  border-radius: 6px;
+  letter-spacing: 0.01em;
+}
+.primary-nav a:hover { background: var(--navy-tint); }
+.nav-cta {
+  background: var(--rust); color: var(--white) !important;
+  padding: 10px 16px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase;
+}
+.nav-cta:hover { background: var(--rust-hover) !important; }
+
+.nav-toggle {
+  display: none;
+  background: none; border: 1px solid var(--navy);
+  color: var(--navy);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer;
+}
+
+/* ===== SECTION SCAFFOLDING ===== */
+section, .section {
+  padding-left: max(24px, 4vw);
+  padding-right: max(24px, 4vw);
+}
+.section { padding-top: 64px; padding-bottom: 64px; }
+.section.dark { background: var(--navy-deep); color: var(--cream); }
+.section.paper { background: var(--paper); }
+.section.white { background: var(--white); }
+
+.section-eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.26em; text-transform: uppercase;
+  margin-bottom: 14px;
+  color: var(--rust);
+}
+.dark .section-eyebrow { color: var(--gold); }
+.section-headline {
+  font-size: 30px; font-weight: 800;
+  letter-spacing: -0.02em; line-height: 1.14;
+  margin: 0 0 14px;
+  max-width: 720px;
+  color: var(--navy);
+}
+.dark .section-headline { color: var(--cream); }
+.section-headline .accent { color: var(--rust); }
+.dark .section-headline .accent { color: var(--terra); }
+.section-intro {
+  font-size: 15.5px; line-height: 1.6;
+  max-width: 640px;
+  margin: 0 0 36px;
+  color: var(--ink-mute);
+}
+.dark .section-intro { color: var(--cream); opacity: 0.86; }
+
+/* ============================================================
+   DASHBOARD (LIGHT background, DARK status card)
+   The status card is the dark anchor; the rest sits on paper.
+   ============================================================ */
+.dashboard {
+  background:
+    radial-gradient(1100px 360px at 85% -10%, rgba(201, 161, 74, 0.12), transparent 60%),
+    var(--paper);
+  color: var(--navy);
+  padding: 64px max(24px, 4vw) 72px;
+  position: relative;
+}
+.dashboard-eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 14px;
+}
+.dashboard-headline {
+  font-size: 38px; font-weight: 800;
+  letter-spacing: -0.025em; line-height: 1.08;
+  margin: 0 0 12px;
+  max-width: 760px;
+  color: var(--navy);
+}
+.dashboard-headline .accent { color: var(--rust); }
+.dashboard-sub {
+  font-size: 15.5px; line-height: 1.6;
+  max-width: 620px;
+  margin: 0 0 36px;
+  color: var(--ink-mute);
+}
+
+/* Status panel is the dark anchor — lifted card on white */
+.status-panel {
+  background: var(--navy-deep);
+  border: 1px solid var(--navy-deep);
+  border-radius: 14px;
+  padding: 28px 30px;
+  box-shadow: 0 6px 20px rgba(11, 21, 48, 0.18), 0 1px 3px rgba(11, 21, 48, 0.12);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  gap: 28px;
+  align-items: center;
+  max-width: 1100px;
+  margin-bottom: 32px;
+}
+.status-block .status-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.status-block .status-value {
+  font-size: 19px; font-weight: 800;
+  color: var(--cream);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+/* Today's date in terra cotta. Contrast on navy-deep: ~5.2:1.
+   Passes WCAG AAA for large text (19px bold qualifies). */
+#statusDate { color: var(--terra); }
+.status-block .status-meta {
+  font-size: 13px;
+  color: var(--cream-mute);
+  margin-top: 6px;
+}
+.status-block + .status-block {
+  border-left: 1px solid var(--line-dark);
+  padding-left: 28px;
+}
+
+.dash-ctas {
+  display: flex; flex-wrap: wrap; gap: 14px;
+}
+.dash-cta {
+  text-decoration: none;
+  padding: 14px 22px;
+  border-radius: 6px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 9px;
+  transition: transform 200ms ease, background 200ms ease, border-color 200ms ease;
+}
+.dash-cta.primary { background: var(--rust); color: var(--white); }
+.dash-cta.primary:hover { background: var(--rust-hover); transform: translateY(-2px); }
+.dash-cta.gold {
+  background: transparent; color: var(--gold);
+  border: 1.5px solid var(--gold);
+}
+.dash-cta.gold:hover { background: var(--gold); color: var(--navy); transform: translateY(-2px); }
+.dash-cta.ghost {
+  background: transparent; color: var(--navy);
+  border: 1.5px solid rgba(11, 21, 48, 0.30);
+}
+.dash-cta.ghost:hover {
+  border-color: var(--navy);
+  background: rgba(11, 21, 48, 0.04);
+  transform: translateY(-2px);
+}
+.dash-cta .arrow { transition: transform 200ms ease; }
+.dash-cta:hover .arrow { transform: translateX(3px); }
+
+/* ============================================================
+   ROADMAP (white) — primary navigation, return often
+   ============================================================ */
+.roadmap-grid {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+.mod-card {
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px 20px 20px;
+  display: flex; flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: var(--navy);
+  box-shadow: var(--rest-shadow);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+.mod-card:hover,
+.mod-card:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: var(--hover-shadow);
+  border-color: var(--rust);
+}
+.mod-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.mod-num {
+  font-size: 26px; font-weight: 800;
+  color: var(--rust);
+  letter-spacing: -0.02em; line-height: 1;
+}
+.mod-status {
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(11, 21, 48, 0.06);
+  color: var(--ink-mute);
+}
+.mod-status.is-current   { background: var(--gold); color: var(--navy); }
+.mod-status.is-done      { background: var(--navy); color: var(--cream); }
+.mod-status.is-available { background: rgba(139, 58, 46, 0.10); color: var(--rust); }
+.mod-status.is-locked    { background: rgba(11, 21, 48, 0.08); color: rgba(11, 21, 48, 0.55); }
+
+/* Locked card: dashed border, muted, not clickable */
+.mod-card.is-locked {
+  border-style: dashed;
+  border-color: rgba(11, 21, 48, 0.30);
+  background: rgba(11, 21, 48, 0.02);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.mod-card.is-locked:hover,
+.mod-card.is-locked:focus-visible {
+  transform: none;
+  box-shadow: none;
+  border-color: rgba(11, 21, 48, 0.30);
+}
+.mod-card.is-locked .mod-num { color: rgba(11, 21, 48, 0.40); }
+.mod-card.is-locked .mod-title,
+.mod-card.is-locked .mod-desc,
+.mod-card.is-locked .mod-week { opacity: 0.55; }
+.mod-unlock {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(11, 21, 48, 0.62);
+  margin-top: auto;
+}
+.mod-unlock svg { width: 13px; height: 13px; color: rgba(11, 21, 48, 0.55); }
+
+.mod-week {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.20em; text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 8px;
+}
+.mod-title {
+  font-size: 16px; font-weight: 800;
+  letter-spacing: -0.015em; line-height: 1.3;
+  margin: 0 0 8px;
+}
+.mod-desc {
+  font-size: 13px; line-height: 1.55;
+  color: var(--ink-mute);
+  margin: 0 0 16px;
+  flex: 1 1 auto;
+}
+.mod-cta {
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--rust);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.mod-cta .arrow { transition: transform 200ms ease; }
+.mod-card:hover .mod-cta .arrow { transform: translateX(4px); }
+.mod-card.is-current { border-color: var(--gold); }
+.mod-card.is-current .mod-num { color: var(--navy); }
+
+/* ============================================================
+   WEEKLY RHYTHM (dark) — read once, then internalized
+   ============================================================ */
+/* ============================================================
+   SPINE — 5 connected nodes on a horizontal line (rotates vertical on mobile)
+   ============================================================ */
+.spine {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 28px;
+  position: relative;
+}
+/* Horizontal spine line, behind the markers */
+.spine::before {
+  content: '';
+  position: absolute;
+  top: 26px; /* center of 52px marker */
+  left: 8%; right: 8%;
+  height: 1.5px;
+  background: linear-gradient(to right,
+    rgba(201, 161, 74, 0) 0%,
+    rgba(201, 161, 74, 0.55) 12%,
+    rgba(201, 161, 74, 0.55) 88%,
+    rgba(201, 161, 74, 0) 100%);
+  z-index: 0;
+}
+.spine-node {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+.spine-marker {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--navy-deep);
+  border: 1.5px solid var(--gold);
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  margin: 0 auto 18px;
+  position: relative;
+  z-index: 1;
+}
+.spine-num {
+  font-size: 17px; font-weight: 800;
+  color: var(--gold);
+  letter-spacing: -0.02em;
+}
+.spine-day {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.spine-title {
+  font-size: 15.5px; font-weight: 800;
+  color: var(--cream);
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.spine-desc {
+  font-size: 13px; line-height: 1.55;
+  color: var(--cream-mute);
+  margin: 0 auto;
+  max-width: 210px;
+}
+
+/* ============================================================
+   TOOLS LIBRARY (white) — categorized, return often
+   ============================================================ */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+.tools-group {
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  padding: 24px 22px;
+  box-shadow: var(--rest-shadow);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.tools-group:hover { transform: translateY(-2px); box-shadow: var(--hover-shadow); }
+.tools-group-eyebrow {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 6px;
+}
+.tools-group-title {
+  font-size: 17px; font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  margin: 0 0 14px;
+}
+.tools-list { list-style: none; margin: 0; padding: 0; }
+.tools-list li { border-top: 1px solid var(--line); }
+.tools-list li:first-child { border-top: none; }
+.tools-list a {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  text-decoration: none;
+  color: var(--navy);
+  padding: 11px 0;
+  font-size: 14px; font-weight: 600;
+  transition: color 200ms ease;
+}
+.tools-list a:hover, .tools-list a:focus-visible { color: var(--rust); }
+.tools-list a .arrow { color: var(--rust); transition: transform 200ms ease; font-weight: 700; }
+.tools-list a:hover .arrow { transform: translateX(3px); }
+
+/* ============================================================
+   HELP / FAQ (white)
+   ============================================================ */
+.help-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+.faq-list { border-top: 1px solid var(--line); }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 0;
+  display: flex; justify-content: space-between; align-items: center; gap: 20px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-q {
+  font-size: 15.5px; font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  flex: 1;
+}
+.faq-toggle {
+  width: 22px; height: 22px;
+  font-size: 22px; font-weight: 400;
+  color: var(--rust);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+  line-height: 1;
+}
+.faq-item[open] .faq-toggle { transform: rotate(45deg); }
+.faq-a {
+  font-size: 14px; line-height: 1.7;
+  color: var(--ink-mute);
+  padding: 0 0 22px;
+  max-width: 680px;
+}
+.faq-a p { margin: 0 0 10px; }
+.faq-a p:last-child { margin-bottom: 0; }
+.faq-a ol, .faq-a ul {
+  margin: 6px 0 0;
+  padding-left: 22px;
+}
+.faq-a li { margin-bottom: 6px; }
+.faq-a li::marker { color: var(--rust); font-weight: 700; }
+.faq-a li:last-child { margin-bottom: 0; }
+
+.contact-card {
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  padding: 24px 22px;
+  box-shadow: var(--rest-shadow);
+}
+.contact-eyebrow {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--rust); margin-bottom: 6px;
+}
+.contact-title {
+  font-size: 18px; font-weight: 800;
+  color: var(--navy);
+  margin: 0 0 14px;
+  letter-spacing: -0.015em;
+}
+.contact-row {
+  display: flex; gap: 10px; padding: 10px 0;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.contact-row:first-of-type { border-top: none; padding-top: 0; }
+.contact-row .label {
+  flex: 0 0 100px;
+  font-weight: 700;
+  font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  padding-top: 2px;
+}
+.contact-row .value { color: var(--navy); }
+.contact-row a { color: var(--rust); text-decoration: none; font-weight: 600; }
+.contact-row a:hover { text-decoration: underline; }
+
+/* ============================================================
+   INSTRUCTOR + CLOSING (DARK) — first-visit brand moment
+   ============================================================ */
+.instructor-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  align-items: start;
+  max-width: 1080px;
+}
+.instructor-photo {
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: var(--dark-rest);
+}
+.instructor-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+.instructor-bio {
+  font-size: 15px; line-height: 1.75;
+  color: var(--cream); opacity: 0.92;
+  margin: 0 0 18px;
+}
+.instructor-quote {
+  font-size: 22px; font-weight: 800;
+  color: var(--gold);
+  letter-spacing: -0.02em; line-height: 1.3;
+  margin: 0 0 28px;
+}
+.closing-cta {
+  margin-top: 24px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line-dark);
+}
+.closing-line {
+  font-size: 14px;
+  color: var(--cream-mute);
+  font-style: italic;
+  margin: 16px 0 0;
+}
+
+/* ============================================================
+   FOOTER (dark)
+   ============================================================ */
+.footer-section {
+  background: var(--navy-deep);
+  color: var(--cream);
+  padding: 48px max(24px, 4vw) 28px;
+  border-top: 1px solid var(--line-dark);
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line-dark);
+  margin-bottom: 18px;
+}
+.footer-logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 12px; }
+.footer-logo svg { height: 44px; width: auto; }
+.footer-logo .logo-title { color: var(--cream); font-size: 18px; }
+.footer-logo .logo-accent { color: var(--gold); }
+.footer-logo .logo-sub { color: var(--cream); opacity: 0.62; }
+.footer-tagline {
+  font-size: 13px; line-height: 1.6;
+  color: var(--cream); opacity: 0.74;
+  max-width: 300px; margin: 0;
+}
+.footer-col-header {
+  font-size: 10px; font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.22em; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.footer-link {
+  font-size: 13px; font-weight: 500;
+  color: var(--cream); opacity: 0.78;
+  display: block; margin-bottom: 9px;
+  text-decoration: none;
+}
+.footer-link:hover { opacity: 1; text-decoration: underline; }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 10px;
+}
+.footer-copyright {
+  font-size: 11px; color: var(--cream); opacity: 0.6;
+  letter-spacing: 0.03em;
+}
+.footer-byline {
+  font-size: 11px; font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 980px) {
+  .help-layout { grid-template-columns: 1fr; }
+  .status-panel { grid-template-columns: 1fr; gap: 18px; }
+  .status-block + .status-block { border-left: none; border-top: 1px solid var(--line-dark); padding-left: 0; padding-top: 18px; }
+  /* Spine rotates to vertical on narrow screens */
+  .spine {
+    grid-template-columns: 52px 1fr;
+    column-gap: 22px;
+    row-gap: 28px;
+  }
+  .spine::before {
+    top: 26px;
+    bottom: 26px;
+    left: 25px;
+    right: auto;
+    width: 1.5px; height: auto;
+    background: linear-gradient(to bottom,
+      rgba(201, 161, 74, 0) 0%,
+      rgba(201, 161, 74, 0.55) 6%,
+      rgba(201, 161, 74, 0.55) 94%,
+      rgba(201, 161, 74, 0) 100%);
+  }
+  .spine-node { display: contents; }
+  .spine-marker { margin: 0; align-self: start; }
+  .spine-content { text-align: left; padding-bottom: 8px; }
+  .spine-desc { max-width: none; margin: 0; }
+  .instructor-layout { grid-template-columns: 1fr; }
+  .instructor-photo { max-width: 220px; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  .primary-nav { display: none; }
+  .primary-nav.is-open {
+    display: flex; flex-direction: column; align-items: stretch;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    padding: 12px max(24px, 4vw) 18px;
+    gap: 4px;
+  }
+  .primary-nav a { padding: 12px 14px; }
+  .nav-toggle { display: inline-flex; align-items: center; gap: 6px; }
+  .dashboard-headline { font-size: 30px; }
+  .section-headline { font-size: 24px; }
+  .dash-ctas { flex-direction: column; align-items: stretch; }
+  .dash-cta { justify-content: center; }
+}
+@media (max-width: 480px) {
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  html { scroll-behavior: auto; }
+}
+html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- ===== STICKY HEADER + NAV ===== -->
+<header class="site-header" role="banner">
+  <div class="header-inner">
+    <a href="#dashboard" class="site-logo" target="_top" aria-label="BIO 004 Human Anatomy, course hub">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)">
+            <circle cx="0" cy="20" r="10" fill="#0B1530"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
+          </g>
+          <g transform="translate(100, 0)">
+            <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+            <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+          </g>
+          <g transform="translate(140, 0) rotate(-8 0 130)">
+            <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+          </g>
+        </g>
+      </svg>
+      <span class="logo-text">
+        <span class="logo-title">Human <span class="logo-accent">Anatomy</span></span>
+        <span class="logo-sub">BIO 004 &middot; Course Hub</span>
+      </span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav">
+      Menu
+    </button>
+
+    <nav class="primary-nav" id="primaryNav" aria-label="Primary">
+      <a href="#dashboard">Dashboard</a>
+      <a href="#roadmap">All Weeks</a>
+      <a href="#tools">Tools</a>
+      <a href="#help">Help</a>
+      <a class="nav-cta" href="https://drsrennie-stack.github.io/new-build-bio4-solano/bio004-summer-2026-syllabus.html" target="_top">Syllabus</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================
+     DASHBOARD (DARK)
+     ============================================================ -->
+<section class="dashboard" id="dashboard" aria-labelledby="dash-h1">
+  <div class="dashboard-eyebrow">Course Hub &middot; Summer 2026</div>
+  <h1 class="dashboard-headline" id="dash-h1">Welcome back. Everything you need is <span class="accent">in here</span>.</h1>
+  <p class="dashboard-sub">Your dashboard tells you where you are. Pick a primary action below, scroll to the eight weeks, or jump straight into the tool you came for.</p>
+
+  <div class="status-panel" role="region" aria-label="Where you are right now" aria-live="polite" id="statusPanel">
+    <div class="status-block">
+      <div class="status-label">Today</div>
+      <div class="status-value" id="statusDate">Loading...</div>
+      <div class="status-meta" id="statusDay"></div>
+    </div>
+    <div class="status-block">
+      <div class="status-label">Where you are</div>
+      <div class="status-value" id="statusWeek">Before Week 1</div>
+      <div class="status-meta" id="statusWeekMeta">Course opens Monday, June 15</div>
+    </div>
+    <div class="status-block">
+      <div class="status-label">Next milestone</div>
+      <div class="status-value" id="statusNext">First day of class</div>
+      <div class="status-meta" id="statusNextMeta">Monday, June 15</div>
+    </div>
+  </div>
+
+  <div class="dash-ctas">
+    <a class="dash-cta primary" href="https://drsrennie-stack.github.io/new-build-bio4-solano/bio004-summer-2026-syllabus.html" target="_top">
+      Open the syllabus <span class="arrow" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="dash-cta primary" id="dashCurrentWeek" href="#roadmap" target="_top">
+      Enter the course <span class="arrow" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="dash-cta ghost" href="https://drsrennie-stack.github.io/new-build-bio4-solano/course-schedule.html" target="_top">
+      Full course schedule <span class="arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============================================================
+     8 WEEKS ROADMAP (white)
+     ============================================================ -->
+<section class="section paper" id="roadmap" aria-labelledby="rm-h2">
+  <div class="section-eyebrow">Your eight weeks</div>
+  <h2 class="section-headline" id="rm-h2">The whole course, <span class="accent">week by week</span>.</h2>
+  <p class="section-intro">Each week unlocks at 10 PM the Saturday before it begins, giving you the weekend for pre-work. The syllabus is open from day one. Status badges update automatically.</p>
+
+  <ul class="roadmap-grid">
+
+    <li><a class="mod-card" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-1.html" target="_top" data-week="1" data-start="2026-06-15">
+      <div class="mod-row">
+        <div class="mod-num">01</div>
+        <span class="mod-status">Upcoming</span>
+      </div>
+      <div class="mod-week">Week of June 15</div>
+      <h3 class="mod-title">Foundations &amp; the Integumentary System</h3>
+      <p class="mod-desc">Orientation, terminology, the cell, the four tissue types, and skin.</p>
+      <span class="mod-cta">Open Week 1 <span class="arrow" aria-hidden="true">&rarr;</span></span>
+    </a></li>
+
+    <li><a class="mod-card" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-2.html" target="_top" data-week="2" data-start="2026-06-22">
+      <div class="mod-row">
+        <div class="mod-num">02</div>
+        <span class="mod-status">Upcoming</span>
+      </div>
+      <div class="mod-week">Week of June 22</div>
+      <h3 class="mod-title">Skeletal System, Joints &amp; Muscle Microanatomy</h3>
+      <p class="mod-desc">Bone microanatomy, axial and appendicular skeleton, joints, muscle microanatomy.</p>
+      <span class="mod-cta">Open Week 2 <span class="arrow" aria-hidden="true">&rarr;</span></span>
+    </a></li>
+
+    <li><a class="mod-card" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-3.html" target="_top" data-week="3" data-start="2026-06-29">
+      <div class="mod-row">
+        <div class="mod-num">03</div>
+        <span class="mod-status">Upcoming</span>
+      </div>
+      <div class="mod-week">Week of June 29</div>
+      <h3 class="mod-title">Cardiovascular, Blood &amp; Respiratory Systems</h3>
+      <p class="mod-desc">Heart, vessels, blood, the respiratory system, and regional vessels and nerves.</p>
+      <span class="mod-cta">Open Week 3 <span class="arrow" aria-hidden="true">&rarr;</span></span>
+    </a></li>
+
+    <li><a class="mod-card" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-4.html" target="_top" data-week="4" data-start="2026-07-06">
+      <div class="mod-row">
+        <div class="mod-num">04</div>
+        <span class="mod-status">Upcoming</span>
+      </div>
+      <div class="mod-week">Week of July 6</div>
+      <h3 class="mod-title">Upper Limb, Thorax &amp; Lymphatic System</h3>
+      <p class="mod-desc">Thoracic and back muscles, upper extremity, lymphatic and immune system.</p>
+      <span class="mod-cta">Open Week 4 <span class="arrow" aria-hidden="true">&rarr;</span></span>
+    </a></li>
+
+    <li><a class="mod-card" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-5.html" target="_top" data-week="5" data-start="2026-07-13">
+      <div class="mod-row">
+        <div class="mod-num">05</div>
+        <span class="mod-status">Upcoming</span>
+      </div>
+      <div class="mod-week">Week of July 13</div>
+      <h3 class="mod-title">Digestive System &amp; Abdominopelvic Anatomy</h3>
+      <p class="mod-desc">Digestive system, abdominal and pelvic wall, lower extremity, regional vessels.</p>
+      <span class="mod-cta">Open Week 5 <span class="arrow" aria-hidden="true">&rarr;</span></span>
+    </a></li>
+
+    <li><a class="mod-card" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-6.html" target="_top" data-week="6" data-start="2026-07-20">
+      <div class="mod-row">
+        <div class="mod-num">06</div>
+        <span class="mod-status">Upcoming</span>
+      </div>
+      <div class="mod-week">Week of July 20</div>
+      <h3 class="mod-title">Urinary, Reproductive &amp; Endocrine</h3>
+      <p class="mod-desc">Urinary system, male and female reproductive systems, endocrine system.</p>
+      <span class="mod-cta">Open Week 6 <span class="arrow" aria-hidden="true">&rarr;</span></span>
+    </a></li>
+
+    <li><a class="mod-card" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-7.html" target="_top" data-week="7" data-start="2026-07-27">
+      <div class="mod-row">
+        <div class="mod-num">07</div>
+        <span class="mod-status">Upcoming</span>
+      </div>
+      <div class="mod-week">Week of July 27</div>
+      <h3 class="mod-title">Head &amp; Neck Muscles, Brain &amp; Meninges</h3>
+      <p class="mod-desc">Head and neck musculature, the brain, ventricles, CSF, and meninges.</p>
+      <span class="mod-cta">Open Week 7 <span class="arrow" aria-hidden="true">&rarr;</span></span>
+    </a></li>
+
+    <li><a class="mod-card" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-8.html" target="_top" data-week="8" data-start="2026-08-03">
+      <div class="mod-row">
+        <div class="mod-num">08</div>
+        <span class="mod-status">Upcoming</span>
+      </div>
+      <div class="mod-week">Week of August 3</div>
+      <h3 class="mod-title">Spinal Cord, Peripheral &amp; Cranial Nerves</h3>
+      <p class="mod-desc">Spinal cord, peripheral and cranial nerves, plexuses, cumulative review.</p>
+      <span class="mod-cta">Open Week 8 <span class="arrow" aria-hidden="true">&rarr;</span></span>
+    </a></li>
+
+  </ul>
+</section>
+
+<!-- ============================================================
+     WEEKLY RHYTHM (DARK) — read once
+     ============================================================ -->
+<section class="section dark" aria-labelledby="rh-h2">
+  <div class="section-eyebrow">How each week works</div>
+  <h2 class="section-headline" id="rh-h2">A steady rhythm, <span class="accent">Monday through Thursday</span>.</h2>
+  <p class="section-intro">Pre-work nightly, class four days a week. Once the pattern clicks, the workload feels predictable.</p>
+
+  <ol class="spine" aria-label="Weekly rhythm in five steps">
+    <li class="spine-node">
+      <div class="spine-marker"><span class="spine-num">01</span></div>
+      <div class="spine-content">
+        <div class="spine-day">Nightly</div>
+        <h3 class="spine-title">Pre-work</h3>
+        <p class="spine-desc">Lecture videos (about 90 minutes), active recall cards, and workbook pages. Plan on at least 3 focused hours per night.</p>
+      </div>
+    </li>
+    <li class="spine-node">
+      <div class="spine-marker"><span class="spine-num">02</span></div>
+      <div class="spine-content">
+        <div class="spine-day">Monday</div>
+        <h3 class="spine-title">Lab exam</h3>
+        <p class="spine-desc">After Week 1, every Monday opens with a fill-in-the-blank lab exam on the previous week.</p>
+      </div>
+    </li>
+    <li class="spine-node">
+      <div class="spine-marker"><span class="spine-num">03</span></div>
+      <div class="spine-content">
+        <div class="spine-day">Tuesday</div>
+        <h3 class="spine-title">Active learning &amp; success coaching</h3>
+        <p class="spine-desc">Identifying structures and reasoning through the week's material together, with study and recovery strategies woven in.</p>
+      </div>
+    </li>
+    <li class="spine-node">
+      <div class="spine-marker"><span class="spine-num">04</span></div>
+      <div class="spine-content">
+        <div class="spine-day">Wednesday</div>
+        <h3 class="spine-title">SIM case</h3>
+        <p class="spine-desc">A clinical simulation case that puts the week's anatomy into a real scenario you reason through as a team.</p>
+      </div>
+    </li>
+    <li class="spine-node">
+      <div class="spine-marker"><span class="spine-num">05</span></div>
+      <div class="spine-content">
+        <div class="spine-day">Thursday</div>
+        <h3 class="spine-title">Team-based learning</h3>
+        <p class="spine-desc">The week's biggest application problem, solved with your team. iRAT, tRAT, and a 4S application activity.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- ============================================================
+     TOOLS LIBRARY (white) — single source of truth for tools
+     ============================================================ -->
+<section class="section paper" id="tools" aria-labelledby="tl-h2">
+  <div class="section-eyebrow">Tools &amp; resources</div>
+  <h2 class="section-headline" id="tl-h2">Every tool, <span class="accent">grouped by what it does</span>.</h2>
+  <p class="section-intro">One library, six categories. Bookmark this section. Links marked with a dot need real URLs once you paste your filename list.</p>
+
+  <div class="tools-grid">
+
+    <div class="tools-group">
+      <div class="tools-group-eyebrow">Reference</div>
+      <h3 class="tools-group-title">Atlas &amp; image library</h3>
+      <ul class="tools-list">
+        <li><a href="#TODO-atlas-index" target="_top">Atlas home <span class="arrow">&rarr;</span></a></li>
+        <li><a href="#TODO-histology" target="_top">Histology slides <span class="arrow">&rarr;</span></a></li>
+        <li><a href="#TODO-cadaver" target="_top">Cadaver views <span class="arrow">&rarr;</span></a></li>
+        <li><a href="#TODO-models" target="_top">Model identifications <span class="arrow">&rarr;</span></a></li>
+      </ul>
+    </div>
+
+    <div class="tools-group">
+      <div class="tools-group-eyebrow">Practice</div>
+      <h3 class="tools-group-title">Self-test &amp; retrieval</h3>
+      <ul class="tools-list">
+        <li><a href="#TODO-study-cards" target="_top">Spaced-recall study cards <span class="arrow">&rarr;</span></a></li>
+        <li><a href="#TODO-lab-practice" target="_top">Lab exam practice <span class="arrow">&rarr;</span></a></li>
+        <li><a href="#TODO-term-quiz" target="_top">Terminology quiz <span class="arrow">&rarr;</span></a></li>
+        <li><a href="#TODO-final-practice" target="_top">Cumulative final practice <span class="arrow">&rarr;</span></a></li>
+      </ul>
+    </div>
+
+    <div class="tools-group">
+      <div class="tools-group-eyebrow">Active learning</div>
+      <h3 class="tools-group-title">Drawing &amp; sketching</h3>
+      <ul class="tools-list">
+        <li><a href="#TODO-drawing-pad" target="_top">Drawing pad <span class="arrow">&rarr;</span></a></li>
+        <li><a href="#TODO-sketch-prompts" target="_top">Weekly sketch prompts <span class="arrow">&rarr;</span></a></li>
+        <li><a href="#TODO-labeled-blanks" target="_top">Labeled blanks library <span class="arrow">&rarr;</span></a></li>
+      </ul>
+    </div>
+
+    <div class="tools-group">
+      <div class="tools-group-eyebrow">In class</div>
+      <h3 class="tools-group-title">Lab &amp; TBL prep</h3>
+      <ul class="tools-list">
+        <li><a href="#TODO-lab-list" target="_top">Master lab list <span class="arrow">&rarr;</span></a></li>
+        <li><a href="#TODO-tbl-prep" target="_top">TBL readiness prep <span class="arrow">&rarr;</span></a></li>
+        <li><a href="#TODO-team-roles" target="_top">Team roles &amp; norms <span class="arrow">&rarr;</span></a></li>
+      </ul>
+    </div>
+
+    <div class="tools-group">
+      <div class="tools-group-eyebrow">Course basics</div>
+      <h3 class="tools-group-title">Syllabus &amp; schedule</h3>
+      <ul class="tools-list">
+        <li><a href="https://drsrennie-stack.github.io/new-build-bio4-solano/bio004-summer-2026-syllabus.html" target="_top">Course syllabus <span class="arrow">&rarr;</span></a></li>
+        <li><a href="https://drsrennie-stack.github.io/new-build-bio4-solano/course-schedule.html" target="_top">Full course schedule <span class="arrow">&rarr;</span></a></li>
+        <li><a href="#TODO-grading" target="_top">Grading breakdown <span class="arrow">&rarr;</span></a></li>
+      </ul>
+    </div>
+
+    <div class="tools-group">
+      <div class="tools-group-eyebrow">Support</div>
+      <h3 class="tools-group-title">Access &amp; study help</h3>
+      <ul class="tools-list">
+        <li><a href="#TODO-accessibility" target="_top">Accessibility &amp; accommodations <span class="arrow">&rarr;</span></a></li>
+        <li><a href="https://www.solano.edu/student-services/" target="_blank" rel="noopener">Solano student services <span class="arrow">&rarr;</span></a></li>
+        <li><a href="#TODO-study-strategies" target="_top">Study strategies guide <span class="arrow">&rarr;</span></a></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     HELP / FAQ (white)
+     ============================================================ -->
+<section class="section white" id="help" aria-labelledby="hp-h2">
+  <div class="section-eyebrow">Get unstuck</div>
+  <h2 class="section-headline" id="hp-h2">Help is built into <span class="accent">how this course runs</span>.</h2>
+  <p class="section-intro">Start with your team and the weekly module. If you're still stuck, the answers and the door are right here.</p>
+
+  <div class="help-layout">
+    <div>
+      <div class="faq-list">
+
+        <details class="faq-item">
+          <summary>
+            <span class="faq-q">What should I do before the first day?</span>
+            <span class="faq-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-a">
+            <p>Five things to walk in ready:</p>
+            <ol>
+              <li>Read the syllabus end to end.</li>
+              <li>Sign the device policy.</li>
+              <li>Learn where to find your textbook, the cadaver image library, and the rest of your course resources.</li>
+              <li>Read the overview of how Team-Based Learning runs in this course.</li>
+              <li>Take the syllabus quiz.</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <span class="faq-q">How do exams work in this course?</span>
+            <span class="faq-toggle" aria-hidden="true">+</span>
+          </summary>
+          <p class="faq-a">Your grade has four parts. Lab exams are 45%: they run Mondays, each covering the previous week, with fill-in-the-blank identification on histology, slides, models, and cadaver. The weekly TBL is another 45%. A cumulative lecture final at term's end is 5%, and short end-of-day lab quizzes are the last 5%. Dates live in your syllabus.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <span class="faq-q">What if I miss a class?</span>
+            <span class="faq-toggle" aria-hidden="true">+</span>
+          </summary>
+          <p class="faq-a">This is a strict attendance policy: <strong>students are dropped from the course after three absences, no exceptions.</strong> The eight-week format moves quickly and the material does not pause for catch-up. If something comes up, message me as early as possible.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <span class="faq-q">Do I need to buy anything?</span>
+            <span class="faq-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-a">
+            <p>Three things to plan for:</p>
+            <ol>
+              <li><strong>InteDashboard access,</strong> about $40. We will set it up together on the first day of class.</li>
+              <li><strong>A lab coat</strong> that stays in the cadaver lab.</li>
+              <li><strong>Gloves.</strong> You can split a box with your teammates to save on cost.</li>
+            </ol>
+            <p>Bring something to draw with as well. You will sketch and label structures by hand throughout the course. The full required and recommended list is in the syllabus.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <span class="faq-q">Where do I get help when I'm stuck?</span>
+            <span class="faq-toggle" aria-hidden="true">+</span>
+          </summary>
+          <p class="faq-a">Start with your team and the weekly module. For anything beyond that, office hours and contact details are in the card to the right. You are never stuck alone in this course.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <span class="faq-q">Why so much drawing?</span>
+            <span class="faq-toggle" aria-hidden="true">+</span>
+          </summary>
+          <p class="faq-a">Anatomy you can name from a finished textbook isn't the same as anatomy you can identify on a body. Drawing forces you to put each structure in space yourself, which is how it actually moves into memory. Neat art is not the goal. Understanding is.</p>
+        </details>
+
+      </div>
+    </div>
+
+    <aside class="contact-card" aria-labelledby="contact-h">
+      <div class="contact-eyebrow">Stay in touch</div>
+      <h3 class="contact-title" id="contact-h">Reach me</h3>
+      <div class="contact-row">
+        <div class="label">Email</div>
+        <div class="value"><a href="mailto:srennie@solano.edu">srennie@solano.edu</a></div>
+      </div>
+      <div class="contact-row">
+        <div class="label">Office hrs</div>
+        <div class="value">Every day, 30 minutes before class</div>
+      </div>
+      <div class="contact-row">
+        <div class="label">Best for</div>
+        <div class="value">Quick questions: email. Anything thorny: come find me after class.</div>
+      </div>
+      <div class="contact-row">
+        <div class="label">Your team</div>
+        <div class="value">Your first stop. Most "stuck" moments unstick faster with the people next to you.</div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============================================================
+     INSTRUCTOR + CLOSING (DARK) — brand + welcome
+     ============================================================ -->
+<section class="section dark" aria-labelledby="ab-h2">
+  <div class="section-eyebrow">Meet your instructor</div>
+  <h2 class="section-headline" id="ab-h2">A decade of teaching anatomy, <span class="accent">in your corner</span>.</h2>
+
+  <div class="instructor-layout">
+    <div class="instructor-photo">
+      <img src="https://raw.githubusercontent.com/drsrennie-stack/STAT/main/sharilyn.jpg" alt="Dr. Sharilyn Rennie">
+    </div>
+    <div>
+      <p class="instructor-bio">I'm Dr. Sharilyn Rennie. I've taught anatomy, physiology, and the medical sciences for over a decade across California community colleges, and before teaching I spent years in clinical medicine. That clinical background shapes how I teach: every structure connects to something real that happens in a body.</p>
+      <p class="instructor-bio">Anatomy is a language. My job this summer is to help you become fluent in it, one week at a time, with a clear path and a team beside you. Come curious, come prepared, and ask questions often.</p>
+      <p class="instructor-quote">"Every structure has a story. We'll learn them together."</p>
+
+      <div class="closing-cta">
+        <a class="dash-cta primary" href="https://drsrennie-stack.github.io/new-build-bio4-solano/bio004-summer-2026-syllabus.html" target="_top">
+          Start with the syllabus <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <p class="closing-line">Looking forward to a great summer with you. Dr. Sharilyn Rennie</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-section" role="contentinfo">
+  <div class="footer-top">
+    <div>
+      <a href="#dashboard" class="footer-logo" target="_top" aria-label="BIO 004 Human Anatomy, course hub">
+        <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+          <g transform="translate(0, 18)">
+            <g transform="translate(60, 0) rotate(8 0 130)">
+              <circle cx="0" cy="20" r="10" fill="#F5F1E8"/>
+              <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#F5F1E8"/>
+            </g>
+            <g transform="translate(100, 0)">
+              <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+              <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+            </g>
+            <g transform="translate(140, 0) rotate(-8 0 130)">
+              <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+              <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+            </g>
+          </g>
+        </svg>
+        <span class="logo-text">
+          <span class="logo-title">Human <span class="logo-accent">Anatomy</span></span>
+          <span class="logo-sub">BIO 004 &middot; Course Hub</span>
+        </span>
+      </a>
+      <p class="footer-tagline">One link, every tool. Your home base for Human Anatomy this summer.</p>
+    </div>
+    <div>
+      <div class="footer-col-header">Quick access</div>
+      <a class="footer-link" href="#dashboard">Dashboard</a>
+      <a class="footer-link" href="#roadmap">All eight weeks</a>
+      <a class="footer-link" href="#tools">Tools &amp; resources</a>
+      <a class="footer-link" href="#help">Help &amp; FAQ</a>
+    </div>
+    <div>
+      <div class="footer-col-header">Weeks 1 to 4</div>
+      <a class="footer-link" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-1.html" target="_top">1 &middot; Foundations</a>
+      <a class="footer-link" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-2.html" target="_top">2 &middot; Skeletal System</a>
+      <a class="footer-link" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-3.html" target="_top">3 &middot; Cardiovascular</a>
+      <a class="footer-link" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-4.html" target="_top">4 &middot; Upper Limb &amp; Lymph</a>
+    </div>
+    <div>
+      <div class="footer-col-header">Weeks 5 to 8</div>
+      <a class="footer-link" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-5.html" target="_top">5 &middot; Digestive</a>
+      <a class="footer-link" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-6.html" target="_top">6 &middot; Urinary &amp; Reproductive</a>
+      <a class="footer-link" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-7.html" target="_top">7 &middot; Brain &amp; Meninges</a>
+      <a class="footer-link" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-8.html" target="_top">8 &middot; Spinal Cord &amp; Nerves</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copyright">BIO 004 Human Anatomy &middot; Solano Community College &middot; Summer 2026</div>
+    <div class="footer-byline">Dr. Sharilyn Rennie</div>
+  </div>
+</footer>
+
+<script>
+  /* ============================================================
+     iframe height-sender (Kajabi embed support)
+     ============================================================ */
+  (function () {
+    var FRAME_ID = 'bio004-course-hub';
+    function sendHeight() {
+      var h = Math.max(
+        document.documentElement.scrollHeight,
+        document.body ? document.body.scrollHeight : 0
+      );
+      parent.postMessage({ type: 'resize', id: FRAME_ID, height: h }, '*');
+    }
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    if (window.ResizeObserver) {
+      new ResizeObserver(sendHeight).observe(document.body);
+    }
+  })();
+</script>
+
+<script>
+  /* ============================================================
+     Mobile nav toggle
+     ============================================================ */
+  (function () {
+    var btn = document.getElementById('navToggle');
+    var nav = document.getElementById('primaryNav');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
+
+<script>
+  /* ============================================================
+     Dashboard status + roadmap badges
+     Computes today, current week, and next milestone from the
+     BIO 004 Summer 2026 schedule.
+     ============================================================ */
+  (function () {
+    var WEEK_STARTS = [
+      '2026-06-15', '2026-06-22', '2026-06-29', '2026-07-06',
+      '2026-07-13', '2026-07-20', '2026-07-27', '2026-08-03'
+    ];
+    var COURSE_END = '2026-08-10';
+
+    var WEEK_TITLES = [
+      'Week 1, Foundations',
+      'Week 2, Skeletal System',
+      'Week 3, Cardiovascular',
+      'Week 4, Upper Limb & Lymph',
+      'Week 5, Digestive',
+      'Week 6, Urinary & Reproductive',
+      'Week 7, Brain & Meninges',
+      'Week 8, Spinal Cord & Nerves'
+    ];
+
+    var WEEK_URLS = WEEK_STARTS.map(function (_, i) {
+      return 'https://drsrennie-stack.github.io/new-build-bio4-solano/week-' + (i + 1) + '.html';
+    });
+
+    function parseISO(s) { return new Date(s + 'T00:00:00'); }
+    function fmtShort(d) {
+      return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    }
+    function fmtUnlock(d) {
+      var date = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+      var time = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      return date + ', ' + time;
+    }
+    /* Default unlock rule: 10:00 PM local time on the Saturday before
+       the Monday start (Saturday = Monday minus 2 days).
+       Per-index overrides for special cases like Week 1's early opening. */
+    var UNLOCK_OVERRIDES = {
+      /* Week 1 opens early: Sunday, June 7, 2026 at 12:00 AM.
+         (Months are 0-indexed in JS Date.) */
+      0: new Date(2026, 5, 7, 0, 0, 0, 0)
+    };
+    function unlockFor(index, weekStartISO) {
+      if (UNLOCK_OVERRIDES[index]) return UNLOCK_OVERRIDES[index];
+      var d = parseISO(weekStartISO);
+      d.setDate(d.getDate() - 2);
+      d.setHours(22, 0, 0, 0);
+      return d;
+    }
+
+    var now = new Date();
+    var courseEnd = parseISO(COURSE_END);
+
+    /* Today */
+    var statusDate = document.getElementById('statusDate');
+    if (statusDate) {
+      statusDate.textContent = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    }
+    var statusDay = document.getElementById('statusDay');
+    if (statusDay) {
+      statusDay.textContent = now.toLocaleDateString('en-US', { weekday: 'long' });
+    }
+
+    /* Current week index */
+    var currentIdx = -1;
+    for (var i = 0; i < WEEK_STARTS.length; i++) {
+      var ws = parseISO(WEEK_STARTS[i]);
+      var we = (i + 1 < WEEK_STARTS.length) ? parseISO(WEEK_STARTS[i + 1]) : courseEnd;
+      if (now >= ws && now < we) { currentIdx = i; break; }
+    }
+
+    var statusWeek = document.getElementById('statusWeek');
+    var statusWeekMeta = document.getElementById('statusWeekMeta');
+    var statusNext = document.getElementById('statusNext');
+    var statusNextMeta = document.getElementById('statusNextMeta');
+    var dashCurrent = document.getElementById('dashCurrentWeek');
+
+    /* "Enter the course" button: route to the most relevant unlocked week.
+       If nothing is unlocked yet, point at the roadmap so students see
+       the schedule and the unlock dates. */
+    function setEnterHref(href) {
+      if (!dashCurrent) return;
+      dashCurrent.href = href;
+    }
+    var enterTarget = '#roadmap';
+    for (var ei = 0; ei < WEEK_STARTS.length; ei++) {
+      var ews = parseISO(WEEK_STARTS[ei]);
+      var ewe = (ei + 1 < WEEK_STARTS.length) ? parseISO(WEEK_STARTS[ei + 1]) : courseEnd;
+      if (now >= unlockFor(ei, WEEK_STARTS[ei]) && now < ewe) {
+        enterTarget = WEEK_URLS[ei];
+        break;
+      }
+    }
+    setEnterHref(enterTarget);
+
+    /* Status panel meta lines */
+    if (now < parseISO(WEEK_STARTS[0])) {
+      if (statusWeek) statusWeek.textContent = 'Before Week 1';
+      if (statusWeekMeta) statusWeekMeta.textContent = 'Course opens ' + fmtShort(parseISO(WEEK_STARTS[0]));
+      var firstUnlock = unlockFor(0, WEEK_STARTS[0]);
+      if (now < firstUnlock) {
+        if (statusNext) statusNext.textContent = 'Week 1 unlocks';
+        if (statusNextMeta) statusNextMeta.textContent = fmtUnlock(firstUnlock);
+      } else {
+        if (statusNext) statusNext.textContent = 'Week 1 pre-work open';
+        if (statusNextMeta) statusNextMeta.textContent = 'Class begins ' + fmtShort(parseISO(WEEK_STARTS[0]));
+      }
+    } else if (now >= courseEnd) {
+      if (statusWeek) statusWeek.textContent = 'Course complete';
+      if (statusWeekMeta) statusWeekMeta.textContent = 'Term ended ' + fmtShort(courseEnd);
+      if (statusNext) statusNext.textContent = 'Review materials';
+      if (statusNextMeta) statusNextMeta.textContent = 'All weeks remain open';
+    } else {
+      var wk = currentIdx + 1;
+      if (statusWeek) statusWeek.textContent = 'Week ' + wk + ' of 8';
+      if (statusWeekMeta) statusWeekMeta.textContent = WEEK_TITLES[currentIdx];
+      if (currentIdx + 1 < WEEK_STARTS.length) {
+        var nextUnlock = unlockFor(currentIdx + 1, WEEK_STARTS[currentIdx + 1]);
+        if (now < nextUnlock) {
+          if (statusNext) statusNext.textContent = 'Week ' + (wk + 1) + ' unlocks';
+          if (statusNextMeta) statusNextMeta.textContent = fmtUnlock(nextUnlock);
+        } else {
+          if (statusNext) statusNext.textContent = 'Week ' + (wk + 1) + ' pre-work open';
+          if (statusNextMeta) statusNextMeta.textContent = 'Class begins ' + fmtShort(parseISO(WEEK_STARTS[currentIdx + 1]));
+        }
+      } else {
+        if (statusNext) statusNext.textContent = 'Cumulative final';
+        if (statusNextMeta) statusNextMeta.textContent = 'On or before ' + fmtShort(courseEnd);
+      }
+    }
+
+    /* Roadmap card state: locked / pre-work / current / completed */
+    var LOCK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+
+    document.querySelectorAll('.mod-card').forEach(function (card, i) {
+      var start = parseISO(card.dataset.start);
+      var nextStart = (i + 1 < WEEK_STARTS.length) ? parseISO(WEEK_STARTS[i + 1]) : courseEnd;
+      var unlock = unlockFor(i, card.dataset.start);
+      var badge = card.querySelector('.mod-status');
+      var ctaWrap = card.querySelector('.mod-cta');
+      if (!badge) return;
+
+      if (now < unlock) {
+        /* LOCKED */
+        card.classList.add('is-locked');
+        card.setAttribute('aria-disabled', 'true');
+        card.dataset.lockedHref = card.getAttribute('href');
+        card.setAttribute('href', '#roadmap');
+        badge.textContent = 'Locked';
+        badge.classList.add('is-locked');
+        if (ctaWrap) {
+          ctaWrap.outerHTML = '<span class="mod-unlock">' + LOCK_SVG +
+            ' Unlocks ' + fmtUnlock(unlock) + '</span>';
+        }
+      } else if (now < start) {
+        /* PRE-WORK WINDOW (unlocked but week hasn't started yet) */
+        badge.textContent = 'Pre-work open';
+        badge.classList.add('is-available');
+      } else if (now < nextStart) {
+        /* CURRENT WEEK */
+        badge.textContent = 'This week';
+        badge.classList.add('is-current');
+        card.classList.add('is-current');
+      } else {
+        /* COMPLETED */
+        badge.textContent = 'Completed';
+        badge.classList.add('is-done');
+      }
+    });
+
+    /* Prevent navigation on locked cards (mouse + keyboard) */
+    document.querySelectorAll('.mod-card.is-locked').forEach(function (card) {
+      card.addEventListener('click', function (e) { e.preventDefault(); });
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') e.preventDefault();
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
