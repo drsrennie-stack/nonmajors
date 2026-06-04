@@ -619,7 +619,7 @@
     margin: 0 0 18px 0;
     aspect-ratio: 16 / 9;
     width: 100%;
-    background: var(--navy-tint);
+    background: var(--navy-deep);
     border-radius: 4px;
     overflow: hidden;
     box-shadow: var(--shadow-rest);
@@ -1034,8 +1034,7 @@ body.mcas-page .btn-gold:focus-visible {
 body.mcas-page .mcas-next-up,
 body.mcas-page .mcas-prework-link {
   background: #FFFFFF;
-  border: none;
-  border-left: 4px solid var(--mcas-gold);
+  border: 1px solid var(--navy);
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(11, 21, 48, 0.08);
   padding: 20px 24px;
@@ -1227,7 +1226,7 @@ body.mcas-page .mcas-step-reminder {
   margin: 12px 0 0;
   padding: 12px 16px;
   background: #FFFFFF;
-  border-left: 4px solid var(--mcas-rust);
+  border: 1px solid var(--navy);
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
   font-size: 13.5px;
@@ -1280,8 +1279,7 @@ body.mcas-page .mcas-step-reminder-dismiss:focus-visible {
 */
 body.mcas-page .mcas-lecture-notes {
   background: #FFFFFF;
-  border: none;
-  border-left: 4px solid var(--mcas-gold);
+  border: 1px solid var(--navy);
   border-radius: 6px;
   padding: 22px 24px 18px;
   margin: 16px 0 24px;
@@ -1475,15 +1473,15 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   </p>
 
   <div class="resource-bar" role="region" aria-label="Topic resources">
-    <button type="button" class="resource-btn" id="video-toggle" aria-expanded="false" aria-controls="video-panel">
+    <button type="button" class="resource-btn" id="video-toggle" aria-expanded="true" aria-controls="video-panel">
       <span class="arrow" aria-hidden="true">&#9654;</span> Watch the video
     </button>
     <a class="resource-btn primary" id="prework-link" href="#" target="_top" rel="noopener">
       Open spaced recall <span class="arrow" aria-hidden="true">&rarr;</span>
     </a>
   </div>
-  <div class="video-panel" id="video-panel" hidden>
-    <iframe id="video-iframe" src="about:blank" title="Topic video" loading="lazy"
+  <div class="video-panel" id="video-panel">
+    <iframe id="video-iframe" src="https://www.loom.com/embed/621dd7b79a954f09940f45b7b9d5ae59" title="Topic video" loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
   </div>
@@ -1926,12 +1924,9 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   // "ended" event to listen for. Reveal the retrieval gate once the student
   // opens the video panel. The 60-word explain-back still has to be earned.
   if (rawVideo.indexOf('loom.com') !== -1) {
-    var loomToggle = document.getElementById('video-toggle');
-    if (loomToggle) {
-      loomToggle.addEventListener('click', function () {
-        if (loomToggle.getAttribute('aria-expanded') === 'true') revealGate();
-      });
-    }
+    // Video is shown expanded by default. Make the retrieval gate available
+    // without forcing a scroll; the 60-word explain-back still has to be earned.
+    if (gateSection && gateSection.hidden) gateSection.hidden = false;
     return;
   }
 
