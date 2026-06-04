@@ -33,7 +33,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 .skip-link:focus { top: 8px; }
 
-.site-header, .hero-card, .deadlines-section, .prompt-section,
+.site-header, .hero-card, .deadlines-section, .prompt-section, .calc-section,
 .replies-section, .extras-section, .cta-section, .footer-section {
   padding-left: max(40px, 5vw);
   padding-right: max(40px, 5vw);
@@ -166,6 +166,122 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   color: #0B1530;
   font-size: 15px;
 }
+
+/* Calculators section (cream) */
+.calc-section { background: #F5F1E8; padding-top: 56px; padding-bottom: 56px; }
+.calc-section .section-eyebrow { color: #8B3A2E; }
+.calc-section .section-headline { color: #0B1530; }
+.calc-section .section-headline .accent { color: #8B3A2E; }
+.calc-section .section-intro { color: #0B1530; opacity: 0.84; }
+.calc-privacy {
+  font-size: 13.5px; font-style: italic;
+  color: #0B1530; opacity: 0.72;
+  margin: 0 0 28px; max-width: 720px; line-height: 1.6;
+}
+.calc-grid {
+  display: grid; gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  max-width: 980px;
+}
+.calc-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(11, 21, 48, 0.18);
+  border-radius: 8px;
+  padding: 22px 24px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+}
+.calc-card.calc-wide { grid-column: 1 / -1; }
+.calc-card-title {
+  font-size: 16px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.01em; line-height: 1.3; margin: 0 0 4px;
+}
+.calc-card-sub {
+  font-size: 12.5px; color: #0B1530; opacity: 0.72;
+  margin: 0 0 16px; line-height: 1.5;
+}
+.calc-grid-inputs {
+  display: grid; gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  margin: 0 0 14px;
+}
+.calc-field { display: flex; flex-direction: column; gap: 5px; }
+.calc-label {
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: #8B3A2E;
+}
+.calc-input, .calc-select {
+  font-family: inherit; font-size: 14.5px;
+  padding: 8px 10px; border-radius: 4px;
+  border: 1px solid rgba(11, 21, 48, 0.25);
+  background: #FFFFFF; color: #0B1530;
+  width: 100%;
+}
+.calc-input:focus-visible, .calc-select:focus-visible {
+  outline: 2px solid #8B3A2E; outline-offset: 1px;
+  border-color: #8B3A2E;
+}
+.calc-checkbox-list {
+  display: grid; gap: 8px;
+  grid-template-columns: 1fr;
+  margin: 0 0 14px;
+}
+.calc-checkbox-list label {
+  display: flex; gap: 9px; align-items: flex-start;
+  font-size: 13.5px; color: #0B1530; line-height: 1.5;
+  cursor: pointer;
+  padding: 8px 10px; border-radius: 4px;
+  background: #FAFAF9;
+}
+.calc-checkbox-list label:hover {
+  background: #F5F1E8;
+}
+.calc-checkbox-list input[type="checkbox"],
+.calc-checkbox-list input[type="radio"] {
+  width: 16px; height: 16px;
+  accent-color: #8B3A2E;
+  cursor: pointer;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+.calc-pct {
+  font-weight: 700; color: #8B3A2E;
+  font-variant-numeric: tabular-nums;
+  margin-left: 6px;
+}
+.calc-actions {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin: 0 0 14px;
+}
+.calc-btn-reset {
+  appearance: none; cursor: pointer; background: transparent;
+  border: 1px solid rgba(11, 21, 48, 0.25);
+  color: #0B1530;
+  font-family: inherit; font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 8px 14px; border-radius: 4px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.calc-btn-reset:hover, .calc-btn-reset:focus-visible {
+  background: #0B1530; color: #FFFFFF; border-color: #0B1530;
+}
+.calc-result {
+  background: #F5F1E8;
+  border-radius: 6px;
+  padding: 14px 16px;
+  font-size: 14px; line-height: 1.6;
+  color: #0B1530;
+}
+.calc-result-headline {
+  font-size: 18px; font-weight: 800;
+  color: #8B3A2E; margin: 0 0 4px;
+  letter-spacing: -0.01em;
+}
+.calc-result-detail {
+  font-size: 13.5px; color: #0B1530;
+  margin: 4px 0 0; line-height: 1.55;
+}
+.calc-result-detail strong { color: #8B3A2E; font-weight: 800; }
 
 /* Replies section (cream) */
 .replies-section { background: #F5F1E8; padding-top: 56px; padding-bottom: 56px; }
@@ -300,7 +416,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 
 <div class="hero-card">
   <div class="hero-content">
-    <div class="hero-eyebrow">BIO 304 . WEEK 2 OF 8 . DISCUSSION</div>
+    <div class="hero-eyebrow">BIO 304 &middot; Week 2 of 8 &middot; Discussion</div>
     <h1 class="hero-headline">Tissue, location, function</h1>
     <p class="hero-subhead">Predict what's at a real body location, then explain why those tissues are exactly the right tools.</p>
     <p class="hero-usage">Initial post due Friday. Replies due Sunday. Substantive replies build on or respectfully challenge a classmate's thinking.</p>
@@ -338,7 +454,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   <h2 class="section-headline">What to <span class="accent">write about</span>.</h2>
   <article class="prompt-card">
 <p>This week we covered four tissue types (epithelial, connective, muscle, nervous) and how skin layers them together into a complete organ.</p>
-<p>Pick <strong>one specific location in the human body</strong> — a small region (e.g., the lining of the trachea, the inside of a knee joint, the bottom of your foot, the surface of an alveolus).</p>
+<p>Pick <strong>one specific location in the human body</strong>, a small region (e.g., the lining of the trachea, the inside of a knee joint, the bottom of your foot, the surface of an alveolus).</p>
 <p>In your initial post (200-300 words):</p>
 <ol>
   <li><strong>Name the location.</strong></li>
@@ -347,6 +463,78 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 </ol>
   </article>
 </div>
+
+<!-- ===== SKIN SCREENING CALCULATORS ===== -->
+<section class="calc-section" id="calcs" aria-labelledby="calcs-h">
+  <p class="section-eyebrow">Optional: try the tools clinicians use</p>
+  <h2 class="section-headline" id="calcs-h">Skin screening <span class="accent">tools</span>.</h2>
+  <p class="section-intro">Three quick tools that practitioners actually use at the bedside. Try them with a real lesion or burn scenario, your own skin, or a clinical example you've seen.</p>
+  <p class="calc-privacy">If you've had a skin check or burn assessment, you can plug in your own findings for a more authentic exercise. Not required. Nothing is saved on this device. Nothing is shared. Refresh the page to clear everything.</p>
+
+  <div class="calc-grid">
+
+    <!-- ABCDE -->
+    <div class="calc-card">
+      <h3 class="calc-card-title">ABCDE skin lesion screen</h3>
+      <p class="calc-card-sub">Five features that make a mole or lesion suspicious for melanoma. Check anything that applies.</p>
+      <div class="calc-checkbox-list">
+        <label><input type="checkbox" id="abcde-a"> <span><strong>Asymmetry.</strong> One half does not match the other.</span></label>
+        <label><input type="checkbox" id="abcde-b"> <span><strong>Border.</strong> Irregular, scalloped, or poorly defined edges.</span></label>
+        <label><input type="checkbox" id="abcde-c"> <span><strong>Color.</strong> Multiple colors or uneven shades.</span></label>
+        <label><input type="checkbox" id="abcde-d"> <span><strong>Diameter.</strong> Larger than 6 mm (about a pencil eraser).</span></label>
+        <label><input type="checkbox" id="abcde-e"> <span><strong>Evolving.</strong> Changing in size, shape, color, or symptom (itch, bleed).</span></label>
+      </div>
+      <div class="calc-actions">
+        <button type="button" id="abcde-reset" class="calc-btn-reset">Reset</button>
+      </div>
+      <div class="calc-result" id="abcde-result" aria-live="polite"></div>
+    </div>
+
+    <!-- FITZPATRICK -->
+    <div class="calc-card">
+      <h3 class="calc-card-title">Fitzpatrick skin type</h3>
+      <p class="calc-card-sub">Six-type classification based on how your skin reacts to sun. Quick screen, not a clinical diagnosis.</p>
+      <div class="calc-checkbox-list">
+        <label><input type="radio" name="fitz-burn" value="0"> <span>I always burn, never tan.</span></label>
+        <label><input type="radio" name="fitz-burn" value="1"> <span>I usually burn, tan minimally.</span></label>
+        <label><input type="radio" name="fitz-burn" value="2"> <span>I sometimes burn, tan gradually.</span></label>
+        <label><input type="radio" name="fitz-burn" value="3"> <span>I rarely burn, tan easily.</span></label>
+        <label><input type="radio" name="fitz-burn" value="4"> <span>I very rarely burn, tan deeply.</span></label>
+        <label><input type="radio" name="fitz-burn" value="5"> <span>I never burn, deeply pigmented.</span></label>
+      </div>
+      <div class="calc-actions">
+        <button type="button" id="fitz-reset" class="calc-btn-reset">Reset</button>
+      </div>
+      <div class="calc-result" id="fitz-result" aria-live="polite"></div>
+    </div>
+
+    <!-- RULE OF NINES (full width) -->
+    <div class="calc-card calc-wide">
+      <h3 class="calc-card-title">Rule of Nines (burn % TBSA, adult)</h3>
+      <p class="calc-card-sub">Body surface area estimation used in burn triage. Check every region that is burned. The total updates live.</p>
+      <div class="calc-checkbox-list" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+        <label><input type="checkbox" id="ron-head-ant" data-pct="4.5"> <span>Anterior head and neck <span class="calc-pct">4.5%</span></span></label>
+        <label><input type="checkbox" id="ron-head-post" data-pct="4.5"> <span>Posterior head and neck <span class="calc-pct">4.5%</span></span></label>
+        <label><input type="checkbox" id="ron-trunk-ant" data-pct="18"> <span>Anterior trunk (chest + abdomen) <span class="calc-pct">18%</span></span></label>
+        <label><input type="checkbox" id="ron-trunk-post" data-pct="18"> <span>Posterior trunk (upper + lower back) <span class="calc-pct">18%</span></span></label>
+        <label><input type="checkbox" id="ron-arm-r-ant" data-pct="4.5"> <span>Right arm, anterior <span class="calc-pct">4.5%</span></span></label>
+        <label><input type="checkbox" id="ron-arm-r-post" data-pct="4.5"> <span>Right arm, posterior <span class="calc-pct">4.5%</span></span></label>
+        <label><input type="checkbox" id="ron-arm-l-ant" data-pct="4.5"> <span>Left arm, anterior <span class="calc-pct">4.5%</span></span></label>
+        <label><input type="checkbox" id="ron-arm-l-post" data-pct="4.5"> <span>Left arm, posterior <span class="calc-pct">4.5%</span></span></label>
+        <label><input type="checkbox" id="ron-leg-r-ant" data-pct="9"> <span>Right leg, anterior <span class="calc-pct">9%</span></span></label>
+        <label><input type="checkbox" id="ron-leg-r-post" data-pct="9"> <span>Right leg, posterior <span class="calc-pct">9%</span></span></label>
+        <label><input type="checkbox" id="ron-leg-l-ant" data-pct="9"> <span>Left leg, anterior <span class="calc-pct">9%</span></span></label>
+        <label><input type="checkbox" id="ron-leg-l-post" data-pct="9"> <span>Left leg, posterior <span class="calc-pct">9%</span></span></label>
+        <label><input type="checkbox" id="ron-perineum" data-pct="1"> <span>Perineum <span class="calc-pct">1%</span></span></label>
+      </div>
+      <div class="calc-actions">
+        <button type="button" id="ron-reset" class="calc-btn-reset">Reset</button>
+      </div>
+      <div class="calc-result" id="ron-result" aria-live="polite"></div>
+    </div>
+
+  </div>
+</section>
 
 <div class="replies-section">
   <div class="section-eyebrow">Replies</div>
@@ -376,6 +564,138 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
     <span class="footer-byline">Dr. Sharilyn Rennie</span>
   </div>
 </footer>
+
+<script>
+/* ============================================================
+   SKIN SCREENING CALCULATORS
+   1) ABCDE checklist (5 features)
+   2) Fitzpatrick skin type (radio, sun reaction)
+   3) Rule of Nines burn %TBSA (adult)
+   No localStorage. Results update on every input event.
+   ============================================================ */
+(function () {
+
+  // ----- ABCDE -----
+  function renderAbcde() {
+    var ids = ['abcde-a','abcde-b','abcde-c','abcde-d','abcde-e'];
+    var letters = ['A','B','C','D','E'];
+    var checked = ids.filter(function(id){ var el=document.getElementById(id); return el && el.checked; });
+    var matched = letters.filter(function(_, i) { var el = document.getElementById(ids[i]); return el && el.checked; });
+    var out = document.getElementById('abcde-result');
+    if (checked.length === 0) {
+      out.innerHTML = '<p class="calc-result-headline">No flags</p><p class="calc-result-detail">Routine skin monitoring. Standard sun protection, periodic self-check.</p>';
+      return;
+    }
+    var flag = checked.length >= 2 ? 'Multiple features flagged' : 'One feature flagged';
+    var advice = checked.length >= 2
+      ? 'See a dermatologist for evaluation. Two or more ABCDE features warrants in-person assessment.'
+      : 'Recheck in 4 to 6 weeks and document any change. If anything evolves, see a dermatologist.';
+    out.innerHTML =
+      '<p class="calc-result-headline">' + flag + '</p>' +
+      '<p class="calc-result-detail"><strong>Flagged:</strong> ' + matched.join(', ') + '</p>' +
+      '<p class="calc-result-detail">' + advice + '</p>';
+  }
+
+  // ----- FITZPATRICK -----
+  var FITZ_TYPES = {
+    '0': { type: 'Type I', detail: 'Very fair, always burns, never tans. Highest skin cancer risk. Strict sun protection.' },
+    '1': { type: 'Type II', detail: 'Fair, usually burns, tans minimally. High skin cancer risk. Strong sun protection.' },
+    '2': { type: 'Type III', detail: 'Medium, sometimes burns, gradual light brown tan. Moderate skin cancer risk.' },
+    '3': { type: 'Type IV', detail: 'Olive, rarely burns, tans easily. Lower skin cancer risk, but still important to protect.' },
+    '4': { type: 'Type V', detail: 'Brown, very rarely burns, tans deeply. Lower skin cancer risk, watch for hyperpigmentation.' },
+    '5': { type: 'Type VI', detail: 'Deeply pigmented, never burns. Lowest skin cancer risk, but melanomas in this group are often diagnosed later.' }
+  };
+  function renderFitz() {
+    var radios = document.querySelectorAll('input[name="fitz-burn"]');
+    var picked = null;
+    radios.forEach(function(r) { if (r.checked) picked = r.value; });
+    var out = document.getElementById('fitz-result');
+    if (picked == null) {
+      out.innerHTML = '<p class="calc-result-headline">&mdash;</p><p class="calc-result-detail">Select the option that best describes your sun reaction.</p>';
+      return;
+    }
+    var info = FITZ_TYPES[picked];
+    out.innerHTML =
+      '<p class="calc-result-headline">' + info.type + '</p>' +
+      '<p class="calc-result-detail">' + info.detail + '</p>';
+  }
+
+  // ----- RULE OF NINES -----
+  function renderRoN() {
+    var boxes = document.querySelectorAll('#calcs input[type="checkbox"][data-pct]');
+    var total = 0;
+    boxes.forEach(function(b) {
+      if (b.checked) total += parseFloat(b.getAttribute('data-pct')) || 0;
+    });
+    var out = document.getElementById('ron-result');
+    var category, advice;
+    if (total === 0) {
+      out.innerHTML = '<p class="calc-result-headline">0% TBSA</p><p class="calc-result-detail">Check every region that is burned.</p>';
+      return;
+    }
+    if (total < 10) { category = 'Minor burn'; advice = 'Outpatient care typically appropriate (still seek evaluation for deep partial- or full-thickness).'; }
+    else if (total < 20) { category = 'Moderate burn'; advice = 'Evaluation in an emergency department recommended. Fluid resuscitation may be needed.'; }
+    else { category = 'Major burn'; advice = 'Burn center referral and aggressive fluid resuscitation (e.g., Parkland formula). Time-critical.'; }
+    out.innerHTML =
+      '<p class="calc-result-headline">' + total.toFixed(1) + '% TBSA</p>' +
+      '<p class="calc-result-detail"><strong>' + category + '.</strong> ' + advice + '</p>' +
+      '<p class="calc-result-detail" style="opacity:0.7;margin-top:8px;">Adult Rule of Nines. Pediatric burn estimation uses Lund-Browder (different proportions, larger head).</p>';
+  }
+
+  // ----- WIRING -----
+  function reset(ids) {
+    ids.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        if (el.type === 'checkbox' || el.type === 'radio') el.checked = false;
+        else el.value = '';
+      }
+    });
+  }
+  function bind(ids, fn) {
+    ids.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) { el.addEventListener('input', fn); el.addEventListener('change', fn); }
+    });
+  }
+
+  function init() {
+    bind(['abcde-a','abcde-b','abcde-c','abcde-d','abcde-e'], renderAbcde);
+    document.querySelectorAll('input[name="fitz-burn"]').forEach(function(r){
+      r.addEventListener('change', renderFitz);
+    });
+    document.querySelectorAll('#calcs input[type="checkbox"][data-pct]').forEach(function(b){
+      b.addEventListener('change', renderRoN);
+    });
+
+    var abcdeReset = document.getElementById('abcde-reset');
+    if (abcdeReset) abcdeReset.addEventListener('click', function() {
+      reset(['abcde-a','abcde-b','abcde-c','abcde-d','abcde-e']);
+      renderAbcde();
+    });
+    var fitzReset = document.getElementById('fitz-reset');
+    if (fitzReset) fitzReset.addEventListener('click', function() {
+      document.querySelectorAll('input[name="fitz-burn"]').forEach(function(r){ r.checked = false; });
+      renderFitz();
+    });
+    var ronReset = document.getElementById('ron-reset');
+    if (ronReset) ronReset.addEventListener('click', function() {
+      document.querySelectorAll('#calcs input[type="checkbox"][data-pct]').forEach(function(b){ b.checked = false; });
+      renderRoN();
+    });
+
+    renderAbcde();
+    renderFitz();
+    renderRoN();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 
 <script>
 (function(){

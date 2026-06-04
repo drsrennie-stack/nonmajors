@@ -33,7 +33,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 .skip-link:focus { top: 8px; }
 
-.site-header, .hero-card, .deadlines-section, .prompt-section,
+.site-header, .hero-card, .deadlines-section, .prompt-section, .calc-section,
 .replies-section, .extras-section, .cta-section, .footer-section {
   padding-left: max(40px, 5vw);
   padding-right: max(40px, 5vw);
@@ -167,8 +167,110 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   font-size: 15px;
 }
 
+/* Calculators section (cream) */
+.calc-section { background: #F5F1E8; padding-top: 56px; padding-bottom: 56px; }
+.calc-section .section-eyebrow { color: #8B3A2E; }
+.calc-section .section-headline { color: #0B1530; }
+.calc-section .section-headline .accent { color: #8B3A2E; }
+.calc-section .section-intro { color: #0B1530; opacity: 0.84; }
+.calc-privacy {
+  font-size: 13.5px; font-style: italic;
+  color: #0B1530; opacity: 0.72;
+  margin: 0 0 28px; max-width: 720px; line-height: 1.6;
+}
+.calc-grid {
+  display: grid; gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  max-width: 980px;
+}
+.calc-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(11, 21, 48, 0.18);
+  border-radius: 8px;
+  padding: 22px 24px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+}
+.calc-card.calc-wide { grid-column: 1 / -1; }
+.calc-card-title {
+  font-size: 16px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.01em; line-height: 1.3; margin: 0 0 4px;
+}
+.calc-card-sub {
+  font-size: 12.5px; color: #0B1530; opacity: 0.72;
+  margin: 0 0 16px; line-height: 1.5;
+}
+.calc-grid-inputs {
+  display: grid; gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  margin: 0 0 14px;
+}
+.calc-field { display: flex; flex-direction: column; gap: 5px; }
+.calc-label {
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: #8B3A2E;
+}
+.calc-input, .calc-select {
+  font-family: inherit; font-size: 14.5px;
+  padding: 8px 10px; border-radius: 4px;
+  border: 1px solid rgba(11, 21, 48, 0.25);
+  background: #FFFFFF; color: #0B1530;
+  width: 100%;
+}
+.calc-input:focus-visible, .calc-select:focus-visible {
+  outline: 2px solid #8B3A2E; outline-offset: 1px;
+  border-color: #8B3A2E;
+}
+.calc-checkbox-row {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  margin: 4px 0 14px;
+}
+.calc-checkbox-row label {
+  display: inline-flex; gap: 7px; align-items: center;
+  font-size: 13.5px; color: #0B1530;
+  cursor: pointer;
+}
+.calc-checkbox-row input[type="checkbox"] {
+  width: 16px; height: 16px;
+  accent-color: #8B3A2E;
+  cursor: pointer;
+}
+.calc-actions {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin: 0 0 14px;
+}
+.calc-btn-reset {
+  appearance: none; cursor: pointer; background: transparent;
+  border: 1px solid rgba(11, 21, 48, 0.25);
+  color: #0B1530;
+  font-family: inherit; font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 8px 14px; border-radius: 4px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.calc-btn-reset:hover, .calc-btn-reset:focus-visible {
+  background: #0B1530; color: #FFFFFF; border-color: #0B1530;
+}
+.calc-result {
+  background: #F5F1E8;
+  border-radius: 6px;
+  padding: 14px 16px;
+  font-size: 14px; line-height: 1.6;
+  color: #0B1530;
+}
+.calc-result-headline {
+  font-size: 18px; font-weight: 800;
+  color: #8B3A2E; margin: 0 0 4px;
+  letter-spacing: -0.01em;
+}
+.calc-result-detail {
+  font-size: 13.5px; color: #0B1530;
+  margin: 4px 0 0; line-height: 1.55;
+}
+.calc-result-detail strong { color: #8B3A2E; font-weight: 800; }
+
 /* Replies section (cream) */
-.replies-section { background: #F5F1E8; padding-top: 56px; padding-bottom: 56px; }
+.replies-section { background: #FFFFFF; padding-top: 56px; padding-bottom: 56px; }
 .replies-section .section-eyebrow { color: #8B3A2E; }
 .replies-section .section-headline { color: #0B1530; }
 .replies-section .section-headline .accent { color: #8B3A2E; }
@@ -300,7 +402,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 
 <div class="hero-card">
   <div class="hero-content">
-    <div class="hero-eyebrow">BIO 304 . WEEK 6 OF 8 . DISCUSSION</div>
+    <div class="hero-eyebrow">BIO 304 &middot; Week 6 of 8 &middot; Discussion</div>
     <h1 class="hero-headline">Blood pressure as a story</h1><p class="hero-subhead">A real clinical scenario. Reason from the cardiovascular physiology you built this week.</p>
     <p class="hero-usage">Initial post due Friday. Replies due Sunday. Substantive replies build on or respectfully challenge a classmate's thinking.</p>
     <div class="hero-ctas">
@@ -348,6 +450,105 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   </article>
 </div>
 
+<!-- ===== CARDIOVASCULAR SCREENING CALCULATORS ===== -->
+<section class="calc-section" id="calcs" aria-labelledby="calcs-h">
+  <p class="section-eyebrow">Optional: plug in the numbers</p>
+  <h2 class="section-headline" id="calcs-h">Cardiovascular screening <span class="accent">calculators</span>.</h2>
+  <p class="section-intro">Optional tools to explore the patient scenario, or your own numbers. All four fields default to the patient in the prompt above. Change anything and the results update live.</p>
+  <p class="calc-privacy">If you've had these labs in the last year, you can plug in your own numbers for a more authentic exercise. Not required. Nothing is saved on this device. Nothing is shared. Refresh the page to clear everything.</p>
+
+  <div class="calc-grid">
+
+    <!-- BP CATEGORY + MAP + PP -->
+    <div class="calc-card">
+      <h3 class="calc-card-title">BP category, pulse pressure, MAP</h3>
+      <p class="calc-card-sub">AHA 2017 categories. Pulse pressure = SBP &minus; DBP. MAP &asymp; DBP + &frac13;(PP).</p>
+      <div class="calc-grid-inputs">
+        <div class="calc-field">
+          <label class="calc-label" for="bp-sys">Systolic</label>
+          <input class="calc-input" type="number" id="bp-sys" value="158" min="60" max="250" inputmode="numeric">
+        </div>
+        <div class="calc-field">
+          <label class="calc-label" for="bp-dia">Diastolic</label>
+          <input class="calc-input" type="number" id="bp-dia" value="94" min="30" max="150" inputmode="numeric">
+        </div>
+      </div>
+      <div class="calc-actions">
+        <button type="button" id="bp-reset" class="calc-btn-reset">Reset</button>
+      </div>
+      <div class="calc-result" id="bp-result" aria-live="polite"></div>
+    </div>
+
+    <!-- KARVONEN TARGET HEART RATE -->
+    <div class="calc-card">
+      <h3 class="calc-card-title">Target heart rate (Karvonen)</h3>
+      <p class="calc-card-sub">Max HR = 220 &minus; age. Heart rate reserve = Max &minus; Resting. Zones scale from there.</p>
+      <div class="calc-grid-inputs">
+        <div class="calc-field">
+          <label class="calc-label" for="kv-age">Age</label>
+          <input class="calc-input" type="number" id="kv-age" value="68" min="10" max="100" inputmode="numeric">
+        </div>
+        <div class="calc-field">
+          <label class="calc-label" for="kv-rhr">Resting HR</label>
+          <input class="calc-input" type="number" id="kv-rhr" value="76" min="30" max="120" inputmode="numeric">
+        </div>
+      </div>
+      <div class="calc-actions">
+        <button type="button" id="kv-reset" class="calc-btn-reset">Reset</button>
+      </div>
+      <div class="calc-result" id="kv-result" aria-live="polite"></div>
+    </div>
+
+    <!-- ASCVD 10-YEAR RISK (full width) -->
+    <div class="calc-card calc-wide">
+      <h3 class="calc-card-title">ASCVD 10-year risk (Pooled Cohort Equations)</h3>
+      <p class="calc-card-sub">2013 ACC/AHA Pooled Cohort Equations. Valid for ages 40 to 79 without prior ASCVD. Used in clinical practice to guide statin decisions. Total cholesterol and HDL in mg/dL.</p>
+      <div class="calc-grid-inputs">
+        <div class="calc-field">
+          <label class="calc-label" for="asc-age">Age</label>
+          <input class="calc-input" type="number" id="asc-age" value="68" min="40" max="79" inputmode="numeric">
+        </div>
+        <div class="calc-field">
+          <label class="calc-label" for="asc-sex">Sex</label>
+          <select class="calc-select" id="asc-sex">
+            <option value="m" selected>Male</option>
+            <option value="f">Female</option>
+          </select>
+        </div>
+        <div class="calc-field">
+          <label class="calc-label" for="asc-race">Race</label>
+          <select class="calc-select" id="asc-race">
+            <option value="w" selected>White / other</option>
+            <option value="b">Black</option>
+          </select>
+        </div>
+        <div class="calc-field">
+          <label class="calc-label" for="asc-sbp">Systolic BP</label>
+          <input class="calc-input" type="number" id="asc-sbp" value="158" min="90" max="220" inputmode="numeric">
+        </div>
+        <div class="calc-field">
+          <label class="calc-label" for="asc-tc">Total chol</label>
+          <input class="calc-input" type="number" id="asc-tc" value="200" min="100" max="400" inputmode="numeric">
+        </div>
+        <div class="calc-field">
+          <label class="calc-label" for="asc-hdl">HDL</label>
+          <input class="calc-input" type="number" id="asc-hdl" value="50" min="20" max="150" inputmode="numeric">
+        </div>
+      </div>
+      <div class="calc-checkbox-row">
+        <label><input type="checkbox" id="asc-bpmeds"> On BP medication</label>
+        <label><input type="checkbox" id="asc-dm"> Diabetes</label>
+        <label><input type="checkbox" id="asc-smoker"> Current smoker</label>
+      </div>
+      <div class="calc-actions">
+        <button type="button" id="asc-reset" class="calc-btn-reset">Reset to scenario defaults</button>
+      </div>
+      <div class="calc-result" id="asc-result" aria-live="polite"></div>
+    </div>
+
+  </div>
+</section>
+
 <div class="replies-section">
   <div class="section-eyebrow">Replies</div>
   <h2 class="section-headline">What makes a reply <span class="accent">substantive</span>.</h2>
@@ -376,6 +577,213 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
     <span class="footer-byline">Dr. Sharilyn Rennie</span>
   </div>
 </footer>
+
+<script>
+/* ============================================================
+   CARDIOVASCULAR CALCULATORS
+   1) BP category (ACC/AHA 2017) + Pulse pressure + MAP
+   2) Karvonen target heart rate
+   3) ASCVD 10-year risk (2013 Pooled Cohort Equations)
+   No localStorage. Results update on every input event.
+   ============================================================ */
+(function () {
+
+  // ----- BP CATEGORY + MAP + PP -----
+  function bpCategory(sys, dia) {
+    if (sys > 180 || dia > 120) return { cat: 'Hypertensive crisis', note: 'Seek immediate medical evaluation.' };
+    if (sys >= 140 || dia >= 90) return { cat: 'Stage 2 hypertension', note: 'Lifestyle changes plus clinical attention recommended.' };
+    if (sys >= 130 || dia >= 80) return { cat: 'Stage 1 hypertension', note: 'Lifestyle changes, recheck per AHA guidance.' };
+    if (sys >= 120) return { cat: 'Elevated', note: 'Lifestyle changes recommended.' };
+    return { cat: 'Normal', note: 'Within target range.' };
+  }
+  function renderBP() {
+    var sys = parseInt(document.getElementById('bp-sys').value, 10);
+    var dia = parseInt(document.getElementById('bp-dia').value, 10);
+    var out = document.getElementById('bp-result');
+    if (!sys || !dia || sys <= dia) {
+      out.innerHTML = '<p class="calc-result-headline">&mdash;</p><p class="calc-result-detail">Enter systolic and diastolic values (SBP must be greater than DBP).</p>';
+      return;
+    }
+    var r = bpCategory(sys, dia);
+    var pp = sys - dia;
+    var map = Math.round(dia + pp / 3);
+    out.innerHTML =
+      '<p class="calc-result-headline">' + r.cat + '</p>' +
+      '<p class="calc-result-detail">' + r.note + '</p>' +
+      '<p class="calc-result-detail"><strong>Pulse pressure:</strong> ' + pp + ' mmHg &middot; <strong>MAP:</strong> ' + map + ' mmHg</p>';
+  }
+
+  // ----- KARVONEN TARGET HEART RATE -----
+  function renderKarvonen() {
+    var age = parseInt(document.getElementById('kv-age').value, 10);
+    var rhr = parseInt(document.getElementById('kv-rhr').value, 10);
+    var out = document.getElementById('kv-result');
+    if (!age || !rhr || age > 120 || rhr >= 220 - age) {
+      out.innerHTML = '<p class="calc-result-headline">&mdash;</p><p class="calc-result-detail">Enter a valid age and resting heart rate.</p>';
+      return;
+    }
+    var maxHR = 220 - age;
+    var hrr = maxHR - rhr;
+    function zone(p) { return Math.round(hrr * p + rhr); }
+    out.innerHTML =
+      '<p class="calc-result-headline">Max HR: ' + maxHR + ' bpm</p>' +
+      '<p class="calc-result-detail"><strong>Heart rate reserve:</strong> ' + hrr + ' bpm</p>' +
+      '<p class="calc-result-detail"><strong>Light (50&ndash;60%):</strong> ' + zone(0.50) + '&ndash;' + zone(0.60) + ' bpm</p>' +
+      '<p class="calc-result-detail"><strong>Moderate (60&ndash;70%):</strong> ' + zone(0.60) + '&ndash;' + zone(0.70) + ' bpm</p>' +
+      '<p class="calc-result-detail"><strong>Vigorous (70&ndash;85%):</strong> ' + zone(0.70) + '&ndash;' + zone(0.85) + ' bpm</p>';
+  }
+
+  // ----- ASCVD 10-YEAR RISK -----
+  // Goff et al. Circulation 2014, Pooled Cohort Equations.
+  var ASCVD = {
+    wf: {
+      lnAge: -29.799, lnAge2: 4.884, lnTC: 13.540, lnAge_lnTC: -3.114,
+      lnHDL: -13.578, lnAge_lnHDL: 3.149, lnTSBP: 2.019, lnUSBP: 1.957,
+      smoker: 7.574, lnAge_smoker: -1.665, diabetes: 0.661,
+      meanSum: -29.1817, S0: 0.9665
+    },
+    bf: {
+      lnAge: 17.114, lnAge2: 0, lnTC: 0.940, lnAge_lnTC: 0,
+      lnHDL: -18.920, lnAge_lnHDL: 4.475,
+      lnTSBP: 29.291, lnAge_lnTSBP: -6.432,
+      lnUSBP: 27.820, lnAge_lnUSBP: -6.087,
+      smoker: 0.691, lnAge_smoker: 0, diabetes: 0.874,
+      meanSum: 86.6081, S0: 0.9533
+    },
+    wm: {
+      lnAge: 12.344, lnAge2: 0, lnTC: 11.853, lnAge_lnTC: -2.664,
+      lnHDL: -7.990, lnAge_lnHDL: 1.769, lnTSBP: 1.797, lnUSBP: 1.764,
+      smoker: 7.837, lnAge_smoker: -1.795, diabetes: 0.658,
+      meanSum: 61.18, S0: 0.9144
+    },
+    bm: {
+      lnAge: 2.469, lnAge2: 0, lnTC: 0.302, lnAge_lnTC: 0,
+      lnHDL: -0.307, lnAge_lnHDL: 0, lnTSBP: 1.916, lnUSBP: 1.809,
+      smoker: 0.549, lnAge_smoker: 0, diabetes: 0.645,
+      meanSum: 19.5425, S0: 0.8954
+    }
+  };
+  function ascvdRisk(o) {
+    var c = ASCVD[o.group]; if (!c) return null;
+    var lnAge = Math.log(o.age);
+    var sum = c.lnAge * lnAge;
+    if (c.lnAge2) sum += c.lnAge2 * lnAge * lnAge;
+    sum += c.lnTC * Math.log(o.totalChol);
+    if (c.lnAge_lnTC) sum += c.lnAge_lnTC * lnAge * Math.log(o.totalChol);
+    sum += c.lnHDL * Math.log(o.hdl);
+    if (c.lnAge_lnHDL) sum += c.lnAge_lnHDL * lnAge * Math.log(o.hdl);
+    var lnSBP = Math.log(o.sbp);
+    if (o.bpTreated) {
+      sum += c.lnTSBP * lnSBP;
+      if (c.lnAge_lnTSBP) sum += c.lnAge_lnTSBP * lnAge * lnSBP;
+    } else {
+      sum += c.lnUSBP * lnSBP;
+      if (c.lnAge_lnUSBP) sum += c.lnAge_lnUSBP * lnAge * lnSBP;
+    }
+    if (o.smoker) {
+      sum += c.smoker;
+      if (c.lnAge_smoker) sum += c.lnAge_smoker * lnAge;
+    }
+    if (o.diabetes) sum += c.diabetes;
+    var r = 1 - Math.pow(c.S0, Math.exp(sum - c.meanSum));
+    return Math.max(0, Math.min(1, r));
+  }
+  function ascvdCategory(pct) {
+    if (pct < 5) return { label: 'Low risk', detail: 'Less than 5% over 10 years.' };
+    if (pct < 7.5) return { label: 'Borderline risk', detail: '5% to less than 7.5% over 10 years.' };
+    if (pct < 20) return { label: 'Intermediate risk', detail: '7.5% to less than 20% over 10 years. Clinician discussion of statin therapy recommended.' };
+    return { label: 'High risk', detail: '20% or higher over 10 years. Statin therapy typically recommended.' };
+  }
+  function renderAscvd() {
+    var age = parseInt(document.getElementById('asc-age').value, 10);
+    var sex = document.getElementById('asc-sex').value;
+    var race = document.getElementById('asc-race').value;
+    var sbp = parseInt(document.getElementById('asc-sbp').value, 10);
+    var tc = parseInt(document.getElementById('asc-tc').value, 10);
+    var hdl = parseInt(document.getElementById('asc-hdl').value, 10);
+    var bpMeds = document.getElementById('asc-bpmeds').checked;
+    var dm = document.getElementById('asc-dm').checked;
+    var smoker = document.getElementById('asc-smoker').checked;
+    var out = document.getElementById('asc-result');
+    if (!age || age < 40 || age > 79) {
+      out.innerHTML = '<p class="calc-result-headline">&mdash;</p><p class="calc-result-detail">ASCVD Pooled Cohort Equations are validated for ages 40 to 79.</p>';
+      return;
+    }
+    if (!sbp || !tc || !hdl) {
+      out.innerHTML = '<p class="calc-result-headline">&mdash;</p><p class="calc-result-detail">Fill in all required values.</p>';
+      return;
+    }
+    var group = (race === 'b' ? 'b' : 'w') + (sex === 'f' ? 'f' : 'm');
+    var r = ascvdRisk({
+      group: group, age: age, totalChol: tc, hdl: hdl,
+      sbp: sbp, bpTreated: bpMeds, smoker: smoker, diabetes: dm
+    });
+    var pct = r * 100;
+    var cat = ascvdCategory(pct);
+    out.innerHTML =
+      '<p class="calc-result-headline">' + pct.toFixed(1) + '% over 10 years</p>' +
+      '<p class="calc-result-detail"><strong>' + cat.label + '.</strong> ' + cat.detail + '</p>' +
+      '<p class="calc-result-detail" style="margin-top:8px;opacity:0.7;">For races other than White or Black, this estimate is approximate per the original PCE. Always discuss with a clinician.</p>';
+  }
+
+  // ----- DEFAULTS + WIRING -----
+  var defaults = {
+    'bp-sys': '158', 'bp-dia': '94',
+    'kv-age': '68', 'kv-rhr': '76',
+    'asc-age': '68', 'asc-sex': 'm', 'asc-race': 'w',
+    'asc-sbp': '158', 'asc-tc': '200', 'asc-hdl': '50'
+  };
+  function resetFields(ids) {
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (el.type === 'checkbox') el.checked = false;
+      else el.value = (defaults[id] != null) ? defaults[id] : '';
+    });
+  }
+  function bindInputs(ids, fn) {
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', fn);
+        el.addEventListener('change', fn);
+      }
+    });
+  }
+
+  function init() {
+    bindInputs(['bp-sys', 'bp-dia'], renderBP);
+    bindInputs(['kv-age', 'kv-rhr'], renderKarvonen);
+    bindInputs(['asc-age', 'asc-sex', 'asc-race', 'asc-sbp', 'asc-tc', 'asc-hdl',
+                'asc-bpmeds', 'asc-dm', 'asc-smoker'], renderAscvd);
+
+    var bpReset = document.getElementById('bp-reset');
+    if (bpReset) bpReset.addEventListener('click', function () {
+      resetFields(['bp-sys', 'bp-dia']); renderBP();
+    });
+    var kvReset = document.getElementById('kv-reset');
+    if (kvReset) kvReset.addEventListener('click', function () {
+      resetFields(['kv-age', 'kv-rhr']); renderKarvonen();
+    });
+    var ascReset = document.getElementById('asc-reset');
+    if (ascReset) ascReset.addEventListener('click', function () {
+      resetFields(['asc-age', 'asc-sex', 'asc-race', 'asc-sbp', 'asc-tc', 'asc-hdl',
+                   'asc-bpmeds', 'asc-dm', 'asc-smoker']);
+      renderAscvd();
+    });
+
+    renderBP();
+    renderKarvonen();
+    renderAscvd();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 
 <script>
 (function(){
