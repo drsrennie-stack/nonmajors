@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIO 304 &middot; Orientation: How Everything Works</title>
+<meta name="description" content="Short how-to videos for BIO 304 Human Anatomy and Physiology, American River College. Watch before Week 1.">
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+
+/*
+  ============================================================
+  BIO 304 HUMAN ANATOMY & PHYSIOLOGY  ·  ORIENTATION
+  American River College  ·  Online  ·  Summer 2026
+  MCAS palette per Project Update 2026-05-29:
+    Navy #0B1530, Rust #8B3A2E, Gold #C9A14A, Cream #F5F1E8, Dark #060A18
+  Hub-and-spoke: this is a spoke. Back to index.html.
+  Each video uses a native <details>/<summary> so it's keyboard
+  accessible without any JS. Replace the placeholder block with
+  your hosted embed (Loom, Vimeo, YouTube) when each is ready.
+  ============================================================
+*/
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-size: 16px; line-height: 1.65; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: #FFFFFF;
+  color: #0B1530;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* ===== KEYBOARD FOCUS ===== */
+a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #8B3A2E;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.intro-section a:focus-visible,
+.cta-section a:focus-visible,
+.footer-section a:focus-visible { outline-color: #C9A14A; }
+.skip-link {
+  position: absolute; top: -100px; left: 8px;
+  background: #0B1530; color: #F5F1E8;
+  padding: 12px 20px; text-decoration: none;
+  font-size: 13px; font-weight: 700;
+  border-radius: 4px; z-index: 9999; letter-spacing: 0.04em;
+}
+.skip-link:focus { top: 8px; }
+
+/* ===== SECTION PADDING ===== */
+.site-header, .hero-card, .intro-section,
+.section-group, .cta-section, .footer-section {
+  padding-left: max(40px, 5vw);
+  padding-right: max(40px, 5vw);
+}
+
+/* ===== SITE HEADER ===== */
+.site-header { background: #FFFFFF; padding-top: 28px; padding-bottom: 28px; }
+.site-logo { display: inline-flex; align-items: center; gap: 16px; text-decoration: none; }
+.site-logo svg { height: 58px; width: auto; display: block; }
+.logo-text { display: flex; flex-direction: column; gap: 3px; }
+.logo-title { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: #0B1530; line-height: 1; }
+.logo-title .logo-accent { color: #8B3A2E; }
+.logo-sub {
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.20em;
+  text-transform: uppercase; color: #0B1530; opacity: 0.72;
+}
+.back-link {
+  display: inline-block; margin-top: 18px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: underline; text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+  color: #0B1530;
+}
+.back-link:hover { color: #8B3A2E; text-decoration-color: #8B3A2E; }
+
+/* ===== HERO ===== */
+.hero-card { background: #FFFFFF; padding-top: 50px; padding-bottom: 50px; }
+.hero-content { max-width: 760px; }
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; color: #8B3A2E;
+  letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 22px;
+}
+.hero-headline {
+  font-size: 42px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.025em; line-height: 1.08; margin: 0 0 20px;
+}
+.hero-headline .accent { color: #8B3A2E; }
+.hero-subhead {
+  font-size: 16px; font-weight: 400; color: #0B1530;
+  line-height: 1.65; opacity: 0.84; margin: 0; max-width: 620px;
+}
+
+/* ===== HOW TO USE THIS PAGE (cream notice) ===== */
+.intro-section { background: #F5F1E8; padding-top: 38px; padding-bottom: 38px; }
+.intro-box {
+  background: #FFFFFF;
+  border-left: 4px solid #C9A14A;
+  border-radius: 0 8px 8px 0;
+  padding: 22px 26px;
+  max-width: 820px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+}
+.intro-eyebrow {
+  font-size: 10px; font-weight: 700; color: #8B3A2E;
+  letter-spacing: 0.20em; text-transform: uppercase; margin-bottom: 8px;
+}
+.intro-title {
+  font-size: 19px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.01em; margin: 0 0 8px;
+}
+.intro-body {
+  font-size: 14.5px; color: #0B1530; opacity: 0.86;
+  line-height: 1.65; margin: 0;
+}
+
+/* ===== VIDEO SECTION GROUPS ===== */
+.section-group { padding-top: 56px; padding-bottom: 56px; }
+.section-group:nth-of-type(odd) { background: #FFFFFF; }
+.section-group:nth-of-type(even) { background: #F5F1E8; }
+.group-header { max-width: 760px; margin-bottom: 28px; }
+.group-eyebrow {
+  font-size: 11px; font-weight: 700; color: #8B3A2E;
+  letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 14px;
+}
+.group-headline {
+  font-size: 28px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 12px;
+}
+.group-headline .accent { color: #8B3A2E; }
+.group-intro {
+  font-size: 14.5px; color: #0B1530; opacity: 0.84;
+  line-height: 1.6; margin: 0; max-width: 640px;
+}
+
+/* ===== VIDEO CARDS (click to expand) ===== */
+.video-grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+.video-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(11, 21, 48, 0.16);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+.section-group:nth-of-type(even) .video-card {
+  background: #FFFFFF;
+}
+.video-card:hover,
+.video-card[open] {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(11, 21, 48, 0.10);
+  border-color: #8B3A2E;
+}
+.video-summary {
+  list-style: none; cursor: pointer;
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px; align-items: start;
+}
+.video-summary::-webkit-details-marker { display: none; }
+.video-eyebrow {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #8B3A2E; display: block; margin-bottom: 6px;
+}
+.video-title {
+  font-size: 16.5px; font-weight: 800; color: #0B1530;
+  letter-spacing: -0.015em; line-height: 1.3; margin: 0 0 6px;
+}
+.video-desc {
+  font-size: 13px; color: #0B1530; opacity: 0.84;
+  line-height: 1.55; margin: 0;
+}
+.video-play {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: #C9A14A; color: #0B1530;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(11, 21, 48, 0.18);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.video-play svg { width: 14px; height: 14px; }
+.video-card[open] .video-play {
+  background: #0B1530; color: #F5F1E8;
+  transform: rotate(180deg);
+}
+.video-card[open] .video-play svg { transform: rotate(180deg); }
+
+/* Expanded player area */
+.video-player {
+  padding: 0 20px 22px;
+}
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #060A18;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.video-frame iframe,
+.video-frame video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0; display: block;
+}
+/* Placeholder shown when no embed is in place yet */
+.video-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 22px;
+  color: #F5F1E8;
+  background: linear-gradient(135deg, #0B1530 0%, #060A18 100%);
+}
+.video-placeholder-label {
+  font-size: 10px; font-weight: 700; color: #C9A14A;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.video-placeholder-body {
+  font-size: 13.5px; color: #F5F1E8; opacity: 0.82;
+  line-height: 1.55; max-width: 320px; margin: 0;
+}
+.video-notes {
+  font-size: 12.5px; color: #0B1530; opacity: 0.78;
+  line-height: 1.55; margin: 0;
+}
+.video-notes strong { color: #8B3A2E; opacity: 1; }
+
+/* ===== CLOSING CTA ===== */
+.cta-section { background: #060A18; padding-top: 64px; padding-bottom: 64px; text-align: center; }
+.cta-eyebrow {
+  font-size: 11px; font-weight: 700; color: #C9A14A;
+  letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 18px;
+}
+.cta-headline {
+  font-size: 32px; font-weight: 800; color: #F5F1E8;
+  letter-spacing: -0.02em; line-height: 1.15; margin: 0 auto 18px; max-width: 600px;
+}
+.cta-headline .accent { color: #C9A14A; }
+.cta-subhead {
+  font-size: 15px; color: #F5F1E8; opacity: 0.88;
+  line-height: 1.6; margin: 0 auto 28px; max-width: 520px;
+}
+.cta-button {
+  background: #8B3A2E; color: #FFFFFF;
+  padding: 14px 28px; border-radius: 4px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  transition: background 0.2s ease;
+}
+.cta-button:hover { background: #A0452F; }
+
+/* ===== FOOTER ===== */
+.footer-section { background: #060A18; padding-top: 36px; padding-bottom: 28px; }
+.footer-row {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copyright { font-size: 11px; color: #F5F1E8; opacity: 0.72; letter-spacing: 0.03em; }
+.footer-byline {
+  font-size: 11px; font-weight: 700; color: #C9A14A;
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 860px) {
+  .hero-headline { font-size: 32px; }
+  .group-headline { font-size: 24px; }
+  .cta-headline { font-size: 26px; }
+}
+@media (max-width: 500px) {
+  .footer-row { flex-direction: column; align-items: flex-start; }
+  .hero-headline { font-size: 28px; }
+  .video-summary { grid-template-columns: 1fr; }
+  .video-play { justify-self: start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- ===== SITE HEADER ===== -->
+<header class="site-header">
+  <a href="index.html" class="site-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+    <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+      <g transform="translate(0, 18)">
+        <g transform="translate(60, 0) rotate(8 0 130)">
+          <circle cx="0" cy="20" r="10" fill="#0B1530"/>
+          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
+        </g>
+        <g transform="translate(100, 0)">
+          <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+          <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+        </g>
+        <g transform="translate(140, 0) rotate(-8 0 130)">
+          <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+        </g>
+      </g>
+    </svg>
+    <span class="logo-text">
+      <span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span>
+      <span class="logo-sub">BIO 304 &middot; American River College</span>
+    </span>
+  </a>
+  <div><a href="index.html" class="back-link" target="_top">&larr; Back to course home</a></div>
+</header>
+
+<main id="main">
+
+<!-- ===== HERO ===== -->
+<div class="hero-card">
+  <div class="hero-content">
+    <div class="hero-eyebrow">BIO 304 &middot; Orientation &middot; Required before Week 1</div>
+    <h1 class="hero-headline">How everything <span class="accent">works</span>.</h1>
+    <p class="hero-subhead">Short videos, two to five minutes each. By the end you will know where every tool lives, how to use it, and how to turn work in. Watch the Getting Started group before Saturday June 6, the rest before Week 1 ramps up.</p>
+  </div>
+</div>
+
+<!-- ===== HOW TO USE THIS PAGE ===== -->
+<div class="intro-section">
+  <div class="intro-box">
+    <div class="intro-eyebrow">How to use this page</div>
+    <h2 class="intro-title">Click any card to expand the video. Captions are on.</h2>
+    <p class="intro-body">Watch in the order shown the first time through. Come back anytime as a reference. If a tool changes, the video here is the source of truth.</p>
+  </div>
+</div>
+
+<!-- ===== GETTING STARTED ===== -->
+<section class="section-group" aria-labelledby="group-getting-started">
+  <div class="group-header">
+    <div class="group-eyebrow">Group 1</div>
+    <h2 class="group-headline" id="group-getting-started">Getting <span class="accent">started</span>.</h2>
+    <p class="group-intro">Find your way in, find the syllabus, learn the week-card system. Watch these three before Saturday June 6.</p>
+  </div>
+
+  <ul class="video-grid">
+
+    <li>
+      <details class="video-card">
+        <summary class="video-summary">
+          <div>
+            <span class="video-eyebrow">Getting started &middot; 3 min</span>
+            <h3 class="video-title">How to access the course</h3>
+            <p class="video-desc">Log in to Canvas, find the BIO 304 home page, bookmark what you need every day.</p>
+          </div>
+          <span class="video-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </summary>
+        <div class="video-player">
+          <div class="video-frame">
+            <!-- TODO: replace with hosted embed when video is ready -->
+            <div class="video-placeholder">
+              <div class="video-placeholder-label">Video pending</div>
+              <p class="video-placeholder-body">Paste your Loom, Vimeo, or YouTube embed here. Captions must be on.</p>
+            </div>
+          </div>
+          <p class="video-notes"><strong>Covers:</strong> Canvas login, navigating to BIO 304, the course home tour, how to set bookmarks.</p>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <details class="video-card">
+        <summary class="video-summary">
+          <div>
+            <span class="video-eyebrow">Getting started &middot; 2 min</span>
+            <h3 class="video-title">Where to find the syllabus</h3>
+            <p class="video-desc">Two clicks. Plus the sections worth reading twice.</p>
+          </div>
+          <span class="video-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </summary>
+        <div class="video-player">
+          <div class="video-frame">
+            <div class="video-placeholder">
+              <div class="video-placeholder-label">Video pending</div>
+              <p class="video-placeholder-body">Paste your Loom, Vimeo, or YouTube embed here. Captions must be on.</p>
+            </div>
+          </div>
+          <p class="video-notes"><strong>Covers:</strong> finding the syllabus from the home page, the day-by-day flow grid, grading detail, the three weekly deadlines.</p>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <details class="video-card">
+        <summary class="video-summary">
+          <div>
+            <span class="video-eyebrow">Getting started &middot; 3 min</span>
+            <h3 class="video-title">How a week card works</h3>
+            <p class="video-desc">The orientation card is the sample. Learn to read it and you can read all eight.</p>
+          </div>
+          <span class="video-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </summary>
+        <div class="video-player">
+          <div class="video-frame">
+            <div class="video-placeholder">
+              <div class="video-placeholder-label">Video pending</div>
+              <p class="video-placeholder-body">Paste your Loom, Vimeo, or YouTube embed here. Captions must be on.</p>
+            </div>
+          </div>
+          <p class="video-notes"><strong>Covers:</strong> week number, date range, title, topics line, pre-work pill, discussion pill, locked vs. open, when each week opens.</p>
+        </div>
+      </details>
+    </li>
+
+  </ul>
+</section>
+
+<!-- ===== DAILY STUDY TOOLS ===== -->
+<section class="section-group" aria-labelledby="group-daily-tools">
+  <div class="group-header">
+    <div class="group-eyebrow">Group 2</div>
+    <h2 class="group-headline" id="group-daily-tools">Daily <span class="accent">study tools</span>.</h2>
+    <p class="group-intro">The three pieces you touch every day during pre-work. Watch before Monday June 8.</p>
+  </div>
+
+  <ul class="video-grid">
+
+    <li>
+      <details class="video-card">
+        <summary class="video-summary">
+          <div>
+            <span class="video-eyebrow">Daily tools &middot; 4 min</span>
+            <h3 class="video-title">How to use the lecture notes pages</h3>
+            <p class="video-desc">Reading, fill-in-the-blank notes, video, the order that makes the topic stick.</p>
+          </div>
+          <span class="video-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </summary>
+        <div class="video-player">
+          <div class="video-frame">
+            <div class="video-placeholder">
+              <div class="video-placeholder-label">Video pending</div>
+              <p class="video-placeholder-body">Paste your Loom, Vimeo, or YouTube embed here. Captions must be on.</p>
+            </div>
+          </div>
+          <p class="video-notes"><strong>Covers:</strong> opening the day's notes page, working the reading first, filling in by hand, watching the topic video, what to do when something does not click.</p>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <details class="video-card">
+        <summary class="video-summary">
+          <div>
+            <span class="video-eyebrow">Daily tools &middot; 5 min</span>
+            <h3 class="video-title">How to use the drawing pages</h3>
+            <p class="video-desc">Given not Googled. Drawing is the integrity check and the memory hook.</p>
+          </div>
+          <span class="video-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </summary>
+        <div class="video-player">
+          <div class="video-frame">
+            <div class="video-placeholder">
+              <div class="video-placeholder-label">Video pending</div>
+              <p class="video-placeholder-body">Paste your Loom, Vimeo, or YouTube embed here. Captions must be on.</p>
+            </div>
+          </div>
+          <p class="video-notes"><strong>Covers:</strong> printing the drawing page, labeling from memory first, checking against the key, what an honest draw looks like vs. a copy.</p>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <details class="video-card">
+        <summary class="video-summary">
+          <div>
+            <span class="video-eyebrow">Daily tools &middot; 4 min</span>
+            <h3 class="video-title">How to use the spaced recall cards</h3>
+            <p class="video-desc">Retrieval practice, not re-reading. Open after the video, not before.</p>
+          </div>
+          <span class="video-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </summary>
+        <div class="video-player">
+          <div class="video-frame">
+            <div class="video-placeholder">
+              <div class="video-placeholder-label">Video pending</div>
+              <p class="video-placeholder-body">Paste your Loom, Vimeo, or YouTube embed here. Captions must be on.</p>
+            </div>
+          </div>
+          <p class="video-notes"><strong>Covers:</strong> opening the deck for today's topic, the rating buttons, what to do with cards you miss, why daily beats binge.</p>
+        </div>
+      </details>
+    </li>
+
+  </ul>
+</section>
+
+<!-- ===== SUBMITTING WORK ===== -->
+<section class="section-group" aria-labelledby="group-submitting">
+  <div class="group-header">
+    <div class="group-eyebrow">Group 3</div>
+    <h2 class="group-headline" id="group-submitting">Submitting <span class="accent">work</span>.</h2>
+    <p class="group-intro">Three weekly deadlines, three submission paths. Watch before Friday June 12.</p>
+  </div>
+
+  <ul class="video-grid">
+
+    <li>
+      <details class="video-card">
+        <summary class="video-summary">
+          <div>
+            <span class="video-eyebrow">Submitting &middot; 3 min</span>
+            <h3 class="video-title">How to upload lab workbooks</h3>
+            <p class="video-desc">Filename rule, file type, where the upload lives.</p>
+          </div>
+          <span class="video-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </summary>
+        <div class="video-player">
+          <div class="video-frame">
+            <div class="video-placeholder">
+              <div class="video-placeholder-label">Video pending</div>
+              <p class="video-placeholder-body">Paste your Loom, Vimeo, or YouTube embed here. Captions must be on.</p>
+            </div>
+          </div>
+          <p class="video-notes"><strong>Covers:</strong> scanning vs. photographing pages, the filename convention from the syllabus, where to click in Canvas, what success looks like after submit.</p>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <details class="video-card">
+        <summary class="video-summary">
+          <div>
+            <span class="video-eyebrow">Submitting &middot; 2 min</span>
+            <h3 class="video-title">How to post in discussions</h3>
+            <p class="video-desc">Initial post Friday, replies Sunday. What a strong post looks like.</p>
+          </div>
+          <span class="video-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </summary>
+        <div class="video-player">
+          <div class="video-frame">
+            <div class="video-placeholder">
+              <div class="video-placeholder-label">Video pending</div>
+              <p class="video-placeholder-body">Paste your Loom, Vimeo, or YouTube embed here. Captions must be on.</p>
+            </div>
+          </div>
+          <p class="video-notes"><strong>Covers:</strong> opening the thread, structuring the initial post, what a quality reply does, what gets a zero.</p>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <details class="video-card">
+        <summary class="video-summary">
+          <div>
+            <span class="video-eyebrow">Submitting &middot; 4 min</span>
+            <h3 class="video-title">Quiz setup and Honorlock</h3>
+            <p class="video-desc">Browser, webcam, mic, quiet space. Do the setup before your first quiz, not the night of.</p>
+          </div>
+          <span class="video-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </summary>
+        <div class="video-player">
+          <div class="video-frame">
+            <div class="video-placeholder">
+              <div class="video-placeholder-label">Video pending</div>
+              <p class="video-placeholder-body">Paste your Loom, Vimeo, or YouTube embed here. Captions must be on.</p>
+            </div>
+          </div>
+          <p class="video-notes"><strong>Covers:</strong> Honorlock extension install, environment check, ID step, what to do if you get kicked, when the window opens and closes.</p>
+        </div>
+      </details>
+    </li>
+
+  </ul>
+</section>
+
+<!-- ===== REACH OUT ===== -->
+<section class="section-group" aria-labelledby="group-reach-out">
+  <div class="group-header">
+    <div class="group-eyebrow">Group 4</div>
+    <h2 class="group-headline" id="group-reach-out">When you <span class="accent">need me</span>.</h2>
+    <p class="group-intro">Three channels, three purposes. Pick the right one and you get a real answer faster.</p>
+  </div>
+
+  <ul class="video-grid">
+
+    <li>
+      <details class="video-card">
+        <summary class="video-summary">
+          <div>
+            <span class="video-eyebrow">Support &middot; 2 min</span>
+            <h3 class="video-title">How to reach me</h3>
+            <p class="video-desc">Forum for content questions, email for private, Zoom for live help.</p>
+          </div>
+          <span class="video-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </summary>
+        <div class="video-player">
+          <div class="video-frame">
+            <div class="video-placeholder">
+              <div class="video-placeholder-label">Video pending</div>
+              <p class="video-placeholder-body">Paste your Loom, Vimeo, or YouTube embed here. Captions must be on.</p>
+            </div>
+          </div>
+          <p class="video-notes"><strong>Covers:</strong> when each channel is the right one, response time, how to write a subject line that gets answered first.</p>
+        </div>
+      </details>
+    </li>
+
+  </ul>
+</section>
+
+<!-- ===== CLOSING CTA ===== -->
+<div class="cta-section">
+  <div class="cta-eyebrow">When you're ready</div>
+  <h2 class="cta-headline">Head back to the <span class="accent">course home</span>.</h2>
+  <p class="cta-subhead">Week 1 opens Saturday June 6 at 8 PM PT. You'll know where everything is by then.</p>
+  <a href="index.html" class="cta-button" target="_top">Back to course home</a>
+</div>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-section">
+  <div class="footer-row">
+    <div class="footer-copyright">BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Summer 2026</div>
+    <div class="footer-byline">Dr. Sharilyn Rennie</div>
+  </div>
+</footer>
+
+<script>
+  /* iframe height-sender — keeps the embed sized to its content */
+  (function () {
+    var FRAME_ID = 'bio304-orientation';
+    function sendHeight() {
+      var h = Math.max(
+        document.documentElement.scrollHeight,
+        document.body ? document.body.scrollHeight : 0
+      );
+      parent.postMessage({ type: 'resize', id: FRAME_ID, height: h }, '*');
+    }
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    if (window.ResizeObserver) new ResizeObserver(sendHeight).observe(document.body);
+    // Also re-send when any <details> opens or closes
+    document.addEventListener('toggle', sendHeight, true);
+  })();
+</script>
+</body>
+</html>

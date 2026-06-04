@@ -223,6 +223,44 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   scroll-margin-top: 24px;
 }
 .week-card.is-current { border-color: #C9A14A; }
+
+/* ===== ORIENTATION / SAMPLE CARD =====
+   Sits at slot 0 of the grid. Same skeleton, border, and lift shadow
+   as every other week card so students learn the pattern by reading it.
+   Distinction comes from the "Start Here" flag and the in-card legend,
+   not from any bookend border or banner. */
+.week-card .start-flag {
+  position: absolute; top: -11px; right: 16px;
+  background: #C9A14A; color: #0B1530;
+  font-size: 10px; font-weight: 800;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 5px 11px; border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(11, 21, 48, 0.20);
+}
+.orientation-key {
+  margin: 0 0 14px; padding: 12px 14px;
+  background: #F5F1E8;
+  border-left: 3px solid #C9A14A;
+  border-radius: 0 6px 6px 0;
+  font-size: 12.5px; line-height: 1.55;
+  color: #0B1530;
+}
+.orientation-key dt {
+  font-weight: 800; color: #8B3A2E;
+  font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 10px 0 2px;
+}
+.orientation-key dt:first-child { margin-top: 0; }
+.orientation-key dd {
+  margin: 0 0 0 0; padding: 0;
+  opacity: 0.88;
+}
+.week-pill-tour {
+  background: #C9A14A; color: #0B1530;
+}
+.week-pill-tour:hover, .week-pill-tour:focus-visible { background: #D9B065; }
+
 .week-card .flag {
   position: absolute; top: -11px; right: 16px;
   background: #C9A14A; color: #0B1530;
@@ -269,6 +307,84 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   background: #8B3A2E; color: #FFFFFF;
 }
 .week-pill-lab:hover, .week-pill-lab:focus-visible { background: #A0452F; }
+
+/* ===== LOCKED WEEK CARDS =====
+   Locked card still shows topic & title so students can preview structure.
+   Pills are disabled (visual gray, aria-disabled, click prevented). */
+.week-card.is-locked {
+  background: #FAFAF9;
+  border-style: dashed;
+  border-color: rgba(11, 21, 48, 0.32);
+  box-shadow: none;
+}
+.week-card.is-locked .week-num { color: rgba(139, 58, 46, 0.55); }
+.week-card.is-locked .week-title { color: rgba(11, 21, 48, 0.72); }
+.week-card.is-locked .week-topics { opacity: 0.66; }
+.week-card .lock-flag {
+  position: absolute; top: -11px; right: 16px;
+  background: #0B1530; color: #F5F1E8;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 5px 10px 5px 9px; border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(11, 21, 48, 0.18);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.week-card .lock-flag svg {
+  width: 11px; height: 11px; display: block;
+}
+.lock-notice {
+  font-size: 12px; font-weight: 700;
+  color: #0B1530; opacity: 0.78;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  margin: 0 0 14px;
+}
+.lock-notice .lock-notice-label {
+  color: #8B3A2E; text-transform: uppercase;
+  letter-spacing: 0.16em; font-size: 10px;
+  display: block; margin-bottom: 3px;
+}
+.week-pill.is-locked,
+.week-pill.is-locked:hover,
+.week-pill.is-locked:focus-visible {
+  background: rgba(11, 21, 48, 0.10);
+  color: rgba(11, 21, 48, 0.48);
+  cursor: not-allowed;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+.week-pill.is-locked:focus-visible {
+  outline: 3px solid rgba(11, 21, 48, 0.40);
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0;
+  margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+/* ===== INSTRUCTOR PREVIEW BANNER =====
+   Activated via ?preview=1 in the URL, persisted in localStorage.
+   Turn off via ?preview=0. Visible only to whoever has the flag set. */
+.preview-banner {
+  background: #0B1530;
+  color: #C9A14A;
+  padding: 11px 20px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 2px solid #C9A14A;
+  line-height: 1.5;
+}
+.preview-banner strong { color: #F5F1E8; }
+.preview-banner a {
+  color: #F5F1E8;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-left: 4px;
+}
+.preview-banner a:hover { color: #FFFFFF; }
 
 /* ===== GRADING (light) ===== */
 .grading-section { background: #FFFFFF; padding-top: 64px; padding-bottom: 64px; }
@@ -351,6 +467,18 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   transform: translateY(-3px);
   box-shadow: 0 10px 22px rgba(11, 21, 48, 0.12);
   border-color: #8B3A2E;
+}
+/* Note variant — informational only, not clickable, no hover lift */
+.tools-card-note {
+  background: #FAFAF9;
+  border-style: dashed;
+  border-color: rgba(11, 21, 48, 0.22);
+  cursor: default;
+}
+.tools-card-note:hover, .tools-card-note:focus-visible {
+  transform: none;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  border-color: rgba(11, 21, 48, 0.22);
 }
 .tools-eyebrow {
   font-size: 10px; font-weight: 700;
@@ -605,14 +733,38 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   <p class="rhythm-note">The cardiovascular and renal weeks have more moving parts than the others. Schedule them with extra runway.</p>
 </div>
 
-<!-- ===== EIGHT WEEKS (cream) ===== -->
+<!-- ===== EIGHT WEEKS (cream) =====
+     Each card carries a data-unlock ISO8601 timestamp (Pacific Time).
+     Week 1 opens Sat Jun 6 at 8 PM PT; Weeks 2-8 open the Sunday before
+     each week's Monday start, at 8 PM PT. The lock script runs at the
+     bottom of the page. -->
 <div class="week-section" id="weeks">
   <div class="section-eyebrow">Your eight weeks</div>
   <h2 class="section-headline">The whole course, <span class="accent">week by week</span>.</h2>
-  <p class="section-intro">Each card carries the week's topics and quick jumps to the pre-work hub, the discussion thread, and the lab workbooks. Click into the syllabus for the day-by-day flow grid.</p>
+  <p class="section-intro">Start with the orientation card. Each week card shows what's coming. Pre-work and discussion links open at 8 PM PT the night before the week begins (Week 1 opens Saturday June 6 at 8 PM PT). Browse ahead anytime, work the week when it opens.</p>
   <ul class="week-grid">
 
-    <li class="week-card" id="week-1" data-week="1">
+    <li class="week-card is-orientation" id="orientation" data-week="0">
+      <span class="start-flag">Start Here</span>
+      <div class="week-num">00</div>
+      <div class="week-label">Orientation &middot; Required before Week 1</div>
+      <h3 class="week-title">How to read a week card</h3>
+      <p class="week-topics">This card is a sample. Same shape as every other week, so once you can read this one you can read all eight. Take the tour, then come back and the rest will make sense.</p>
+      <dl class="orientation-key" aria-label="Week card legend">
+        <dt>Week number</dt><dd>Which week of the term, 1 through 8.</dd>
+        <dt>Date range</dt><dd>The Monday-to-Sunday window for that week.</dd>
+        <dt>Title</dt><dd>The body system or theme.</dd>
+        <dt>Topics line</dt><dd>What you'll learn that week, in order.</dd>
+        <dt>Pre-work pill</dt><dd>Daily reading, notes, video, flashcards hub.</dd>
+        <dt>Discussion pill</dt><dd>The week's prompt, post Friday, reply Sunday.</dd>
+        <dt>Locked vs. open</dt><dd>Cards open Sunday 8 PM PT before each week (Week 1 opens Saturday June 6 at 8 PM PT).</dd>
+      </dl>
+      <div class="week-actions">
+        <a class="week-pill week-pill-tour" href="biol304_orientation.html" target="_top">Take the 5-min tour</a>
+      </div>
+    </li>
+
+    <li class="week-card" id="week-1" data-week="1" data-unlock="2026-06-06T20:00:00-07:00">
       <div class="week-num">01</div>
       <div class="week-label">Week 1 &middot; Jun 8 to Jun 14</div>
       <h3 class="week-title">Foundations, Cell, Membrane Transport</h3>
@@ -623,7 +775,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       </div>
     </li>
 
-    <li class="week-card" id="week-2" data-week="2">
+    <li class="week-card" id="week-2" data-week="2" data-unlock="2026-06-14T20:00:00-07:00">
       <div class="week-num">02</div>
       <div class="week-label">Week 2 &middot; Jun 15 to Jun 21</div>
       <h3 class="week-title">Tissues &amp; Integument</h3>
@@ -634,7 +786,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       </div>
     </li>
 
-    <li class="week-card" id="week-3" data-week="3">
+    <li class="week-card" id="week-3" data-week="3" data-unlock="2026-06-21T20:00:00-07:00">
       <div class="week-num">03</div>
       <div class="week-label">Week 3 &middot; Jun 22 to Jun 28</div>
       <h3 class="week-title">Skeletal System</h3>
@@ -645,7 +797,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       </div>
     </li>
 
-    <li class="week-card" id="week-4" data-week="4">
+    <li class="week-card" id="week-4" data-week="4" data-unlock="2026-06-28T20:00:00-07:00">
       <div class="week-num">04</div>
       <div class="week-label">Week 4 &middot; Jun 29 to Jul 5</div>
       <h3 class="week-title">Muscle &amp; Nervous System Intro</h3>
@@ -656,7 +808,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       </div>
     </li>
 
-    <li class="week-card" id="week-5" data-week="5">
+    <li class="week-card" id="week-5" data-week="5" data-unlock="2026-07-05T20:00:00-07:00">
       <div class="week-num">05</div>
       <div class="week-label">Week 5 &middot; Jul 6 to Jul 12</div>
       <h3 class="week-title">Nervous System, Senses, Endocrine</h3>
@@ -667,7 +819,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       </div>
     </li>
 
-    <li class="week-card" id="week-6" data-week="6">
+    <li class="week-card" id="week-6" data-week="6" data-unlock="2026-07-12T20:00:00-07:00">
       <div class="week-num">06</div>
       <div class="week-label">Week 6 &middot; Jul 13 to Jul 19</div>
       <h3 class="week-title">Blood &amp; Cardiovascular</h3>
@@ -678,7 +830,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       </div>
     </li>
 
-    <li class="week-card" id="week-7" data-week="7">
+    <li class="week-card" id="week-7" data-week="7" data-unlock="2026-07-19T20:00:00-07:00">
       <div class="week-num">07</div>
       <div class="week-label">Week 7 &middot; Jul 20 to Jul 26</div>
       <h3 class="week-title">Immune, Respiratory, Digestive</h3>
@@ -689,7 +841,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       </div>
     </li>
 
-    <li class="week-card" id="week-8" data-week="8">
+    <li class="week-card" id="week-8" data-week="8" data-unlock="2026-07-26T20:00:00-07:00">
       <div class="week-num">08</div>
       <div class="week-label">Week 8 &middot; Jul 27 to Aug 2</div>
       <h3 class="week-title">Renal, Fluid Balance, Reproductive</h3>
@@ -747,6 +899,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       <h3 class="tools-title">Discussions</h3>
       <p class="tools-desc">All eight weekly discussion prompts in one place. Post Friday, reply Sunday.</p>
     </a></li>
+    <li><div class="tools-card tools-card-note">
+      <div class="tools-eyebrow">Daily &middot; after the videos</div>
+      <h3 class="tools-title">Spaced recall flashcards</h3>
+      <p class="tools-desc">Already wired into your pre-work pages. Open them after the day's reading, notes, and video. Spaced recall is retrieval practice, not a substitute for the work that builds the memory.</p>
+    </div></li>
     <li><a class="tools-card" href="biol304_textbook.html" target="_top">
       <div class="tools-eyebrow">Reference</div>
       <h3 class="tools-title">Textbook (OpenStax 2e)</h3>
@@ -868,6 +1025,163 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   })();
 </script>
 <script>
+  /* ============================================================
+     WEEK-CARD DATE GATE
+     Reads data-unlock on each .week-card (ISO8601, includes
+     Pacific offset). Before the unlock moment:
+       - card gets .is-locked (dashed border, muted)
+       - "Locked" flag pinned to top-right
+       - "Opens [date] at 8 PM PT" notice above pills
+       - Pre-work / Discussion pills become non-navigating
+         (aria-disabled, click prevented, line-through)
+     After unlock: card behaves normally.
+     A timer re-checks every 60s so cards open without refresh
+     if a student is sitting on the page when the time hits.
+     ============================================================ */
+  (function () {
+    var LOCK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg>';
+
+    // ===== INSTRUCTOR PREVIEW =====
+    // ?preview=1 turns it on (saved to localStorage so the URL only
+    // needs the flag once). ?preview=0 turns it off. When on, the
+    // date gate is bypassed and a banner is shown at the top.
+    function isPreviewMode() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (params.has('preview')) {
+          var v = params.get('preview');
+          if (v === '0' || v === 'off' || v === 'false') {
+            try { localStorage.removeItem('bio304_preview'); } catch (e) {}
+            return false;
+          }
+          try { localStorage.setItem('bio304_preview', '1'); } catch (e) {}
+          return true;
+        }
+        return localStorage.getItem('bio304_preview') === '1';
+      } catch (e) { return false; }
+    }
+
+    function showPreviewBanner() {
+      if (document.querySelector('.preview-banner')) return;
+      var banner = document.createElement('div');
+      banner.className = 'preview-banner';
+      banner.setAttribute('role', 'status');
+      banner.innerHTML =
+        '<strong>Instructor preview</strong> &middot; all weeks unlocked for you only &middot; ' +
+        '<a href="?preview=0">turn off</a>';
+      document.body.insertBefore(banner, document.body.firstChild);
+    }
+
+    function formatUnlock(d) {
+      var opts = {
+        weekday: 'short', month: 'short', day: 'numeric',
+        hour: 'numeric', minute: '2-digit',
+        timeZone: 'America/Los_Angeles'
+      };
+      try {
+        return d.toLocaleString('en-US', opts).replace(',', '') + ' PT';
+      } catch (e) {
+        return d.toString();
+      }
+    }
+
+    function applyLockState(card, unlockDate, now) {
+      var locked = now < unlockDate;
+      var wasLocked = card.classList.contains('is-locked');
+
+      if (locked && !wasLocked) {
+        card.classList.add('is-locked');
+
+        // Lock flag (top-right corner)
+        if (!card.querySelector('.lock-flag')) {
+          var flag = document.createElement('span');
+          flag.className = 'lock-flag';
+          flag.setAttribute('aria-hidden', 'true');
+          flag.innerHTML = LOCK_SVG + '<span>Locked</span>';
+          card.appendChild(flag);
+        }
+
+        // Unlock notice above the pills
+        if (!card.querySelector('.lock-notice')) {
+          var notice = document.createElement('p');
+          notice.className = 'lock-notice';
+          notice.innerHTML =
+            '<span class="lock-notice-label">Opens</span>' +
+            formatUnlock(unlockDate);
+          var actions = card.querySelector('.week-actions');
+          if (actions) actions.parentNode.insertBefore(notice, actions);
+        }
+
+        // Disable pills
+        card.querySelectorAll('.week-pill').forEach(function (pill) {
+          pill.classList.add('is-locked');
+          pill.setAttribute('aria-disabled', 'true');
+          pill.setAttribute('title', 'Opens ' + formatUnlock(unlockDate));
+          pill.dataset.originalHref = pill.getAttribute('href') || '';
+          pill.removeAttribute('href');
+          // Screen-reader hint
+          if (!pill.querySelector('.sr-only')) {
+            var sr = document.createElement('span');
+            sr.className = 'sr-only';
+            sr.textContent = ' (locked, opens ' + formatUnlock(unlockDate) + ')';
+            pill.appendChild(sr);
+          }
+        });
+      } else if (!locked && wasLocked) {
+        // Unlock in place
+        card.classList.remove('is-locked');
+        var lf = card.querySelector('.lock-flag'); if (lf) lf.remove();
+        var ln = card.querySelector('.lock-notice'); if (ln) ln.remove();
+        card.querySelectorAll('.week-pill.is-locked').forEach(function (pill) {
+          pill.classList.remove('is-locked');
+          pill.removeAttribute('aria-disabled');
+          pill.removeAttribute('title');
+          if (pill.dataset.originalHref) {
+            pill.setAttribute('href', pill.dataset.originalHref);
+            delete pill.dataset.originalHref;
+          }
+          var sr = pill.querySelector('.sr-only'); if (sr) sr.remove();
+        });
+      }
+    }
+
+    function refresh() {
+      // In instructor preview mode, force every card open and skip
+      // applying any lock UI.
+      if (isPreviewMode()) {
+        var farPast = new Date(0);
+        document.querySelectorAll('.week-card[data-unlock]').forEach(function (card) {
+          var iso = card.getAttribute('data-unlock');
+          if (!iso) return;
+          var unlock = new Date(iso);
+          if (isNaN(unlock.getTime())) return;
+          // Pass a "now" that's after the unlock so applyLockState unlocks it.
+          applyLockState(card, unlock, new Date(unlock.getTime() + 1000));
+        });
+        return;
+      }
+      var now = new Date();
+      document.querySelectorAll('.week-card[data-unlock]').forEach(function (card) {
+        var iso = card.getAttribute('data-unlock');
+        if (!iso) return;
+        var unlock = new Date(iso);
+        if (isNaN(unlock.getTime())) return;
+        applyLockState(card, unlock, now);
+      });
+    }
+
+    // Block clicks on locked pills (including keyboard Enter, which fires click)
+    document.addEventListener('click', function (e) {
+      var pill = e.target.closest && e.target.closest('.week-pill.is-locked');
+      if (pill) { e.preventDefault(); e.stopPropagation(); }
+    }, true);
+
+    if (isPreviewMode()) showPreviewBanner();
+    refresh();
+    setInterval(refresh, 60 * 1000); // re-check every minute
+  })();
+</script>
+<script>
   /* Current-week marker — flags the live week card during the term */
   (function () {
     var starts = ['2026-06-08','2026-06-15','2026-06-22','2026-06-29',
@@ -881,7 +1195,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
     if (now >= courseEnd) current = 0;
     if (current >= 1) {
       var card = document.querySelector('.week-card[data-week="' + current + '"]');
-      if (card) {
+      if (card && !card.classList.contains('is-locked')) {
         card.classList.add('is-current');
         var flag = document.createElement('span');
         flag.className = 'flag';
