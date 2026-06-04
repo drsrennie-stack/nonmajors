@@ -1609,7 +1609,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   // 'prework' : URL into the spaced-repetition pre-work for this topic
   // ----------------------------------------------------------------
   window.SHEET_CONFIG = {
-    video:   'https://www.youtube.com/embed/REPLACE_WITH_LEVELS_OF_ORGANIZATION_VIDEO_ID',
+    video:   'https://www.loom.com/embed/75b980fffad04749a3b4bd01642f7a38',
     prework: 'bio304-spaced-recall-prototype.html#topic=t-levels-of-organization',
   };
 
@@ -1895,6 +1895,19 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   if (isPlaceholder) {
     // No real video yet: reveal the gate immediately so the page is testable.
     revealGate();
+    return;
+  }
+
+  // Loom videos do not expose the YouTube IFrame API, so there is no reliable
+  // "ended" event to listen for. Reveal the retrieval gate once the student
+  // opens the video panel. The 60-word explain-back still has to be earned.
+  if (rawVideo.indexOf('loom.com') !== -1) {
+    var loomToggle = document.getElementById('video-toggle');
+    if (loomToggle) {
+      loomToggle.addEventListener('click', function () {
+        if (loomToggle.getAttribute('aria-expanded') === 'true') revealGate();
+      });
+    }
     return;
   }
 
