@@ -392,6 +392,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   transition: background 0.2s ease;
 }
 .cta-button:hover { background: #A0452F; }
+.cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.cta-button-ghost {
+  background: transparent; color: #F5F1E8;
+  box-shadow: inset 0 0 0 1.5px rgba(245, 241, 232, 0.45);
+}
+.cta-button-ghost:hover { background: rgba(245, 241, 232, 0.10); }
+.cta-section a:focus-visible { outline-color: #C9A14A; }
 
 .footer-section { background: #060A18; padding-top: 56px; padding-bottom: 32px; }
 .footer-top {
@@ -772,10 +779,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 
 <!-- ===== CLOSING CTA (dark) ===== -->
 <div class="cta-section">
-  <p class="cta-eyebrow">Ready to begin</p>
-  <h2 class="cta-headline">Back to the <span class="accent">course home</span> for week 1.</h2>
-  <p class="cta-subhead">The course home has every week card, the discussions, and the pre-work hub. You read the syllabus. Now go open Week 1.</p>
-  <a href="index.html" class="cta-button" target="_top">Open the course home</a>
+  <p class="cta-eyebrow">One last step</p>
+  <h2 class="cta-headline">Confirm you read this. <span class="accent">Take the syllabus quiz.</span></h2>
+  <p class="cta-subhead">A short Canvas quiz confirms you have read the syllabus and understand how the course runs. Take it now, then head to the course home and open Week 1.</p>
+  <div class="cta-actions">
+    <a href="https://lrccd.instructure.com/courses/317432/quizzes/2888521?module_item_id=28323660" class="cta-button" target="_blank" rel="noopener">Take the syllabus quiz</a>
+    <a href="index.html" class="cta-button cta-button-ghost" target="_top">Open the course home</a>
+  </div>
 </div>
 
 </main>
