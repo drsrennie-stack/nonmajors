@@ -53,6 +53,12 @@
   .btn-gold{background:var(--gold);color:var(--navy)}
   .btn-gold:hover,.btn-gold:focus-visible{background:var(--gold-2)}
   .cta-note{display:block;margin-top:14px;font-size:13px;color:var(--ink)}
+  .reply-cue{display:flex;align-items:center;gap:15px;background:var(--off);border:1px solid var(--line);border-radius:8px;padding:18px 20px;max-width:560px}
+  .reply-cue .arrow{flex:0 0 auto;width:40px;height:40px;border-radius:999px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-size:21px;font-weight:800;animation:nudge 1.8s ease-in-out infinite}
+  .reply-cue b{display:block;font-size:15.5px;font-weight:800;color:var(--navy)}
+  .reply-cue span{font-size:13px;color:var(--ink)}
+  @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+  @media(prefers-reduced-motion:reduce){.reply-cue .arrow{animation:none}}
 
   section{padding-top:64px;padding-bottom:64px}
   .white{background:var(--white)}
@@ -167,8 +173,11 @@
       <div class="hero-eyebrow">BIO 304 &middot; Online &middot; Summer 2026</div>
       <h1 class="hero-headline">Virtual <span class="accent">Office Hours</span></h1>
       <p class="hero-subhead">One open forum for any question about the course. Lecture content, lab workbooks, a problem with an assignment, or how something works. Ask it here and the whole class can see the answer.</p>
-      <a class="btn btn-navy" href="https://lrccd.instructure.com/courses/317432/discussion_topics/6464370" target="_blank" rel="noopener" aria-label="Open the office hours forum in Canvas, opens in a new tab">Open the forum &#8599;</a>
-      <span class="cta-note">The question list and all answers live in the forum. Questions are not posted on this page.</span>
+      <div class="reply-cue">
+        <span class="arrow" aria-hidden="true">&#8595;</span>
+        <div><b>To ask, use the Reply button at the bottom of this page.</b>
+        <span>Your question and every answer appear in the discussion thread below.</span></div>
+      </div>
     </div>
   </div>
 </div>
@@ -262,7 +271,11 @@
       <div class="pend"></div>
     </div>
     <div class="endcta">
-      <a class="btn btn-navy" href="https://lrccd.instructure.com/courses/317432/discussion_topics/6464370" target="_blank" rel="noopener" aria-label="Open the office hours forum in Canvas, opens in a new tab">Go to the forum and post &#8599;</a>
+      <div class="reply-cue">
+        <span class="arrow" aria-hidden="true">&#8595;</span>
+        <div><b>Ready? Scroll down and tap Reply to post your question.</b>
+        <span>One question per post, question on the first line.</span></div>
+      </div>
     </div>
   </div>
 </section>
