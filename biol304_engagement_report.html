@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIO 304 · Weekly Engagement Report</title>
+<meta name="meta-description" content="Export your engagement report from your spaced recall deck and submit it here. Daily practice is the surest path to full credit.">
+<style>
+  @import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+  /* ============================================================
+     BIO 304 · WEEKLY ENGAGEMENT REPORT (reusable, all 8 weeks)
+     Branding matched to index: white header and hero with the
+     logo lockup, almost-black navy #060A18 for the emphasis band
+     and footer, NO cream fills, NO bookend borders, lifted cards.
+     No student data here. The upload happens via the Canvas
+     assignment's own submit control, below the embed.
+     ============================================================ */
+  :root{
+    --navy:#0B1530; --navy-2:#142A36; --ink-navy:#060A18;
+    --rust:#8B3A2E; --rust-2:#A0452F; --gold:#C9A14A; --gold-2:#D9B065;
+    --cream:#F5F1E8; --white:#FFFFFF; --off:#FAFAF9; --ink:#33405E;
+    --line:rgba(11,21,48,0.14);
+    --card-sh:0 1px 3px rgba(11,21,48,0.06);
+    --lift:0 6px 16px rgba(11,21,48,0.10),0 3px 6px rgba(11,21,48,0.06);
+  }
+  *{box-sizing:border-box;font-style:normal!important;margin:0;padding:0}
+  html,body{font-size:16px;line-height:1.65}
+  body{font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif;background:var(--white);color:var(--navy);-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .skip{position:absolute;left:-999px;top:0;background:var(--navy);color:#fff;padding:11px 16px;z-index:99;border-radius:4px;text-decoration:none}
+  .skip:focus{left:12px;top:12px}
+  :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .pad{padding-left:max(40px,5vw);padding-right:max(40px,5vw)}
+  .wrap{max-width:920px;margin:0 auto}
+
+  .site-header{background:var(--white);padding-top:28px;padding-bottom:28px}
+  .site-logo{display:inline-flex;align-items:center;gap:16px;text-decoration:none}
+  .site-logo svg{height:58px;width:auto;display:block}
+  .logo-text{display:flex;flex-direction:column;gap:3px}
+  .logo-title{font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--navy);line-height:1}
+  .logo-title .logo-accent{color:var(--rust)}
+  .logo-sub{font-size:10.5px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.72}
+
+  .hero-card{background:var(--white);padding-top:50px;padding-bottom:58px}
+  .hero-content{max-width:760px}
+  .hero-eyebrow{font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.28em;text-transform:uppercase;margin-bottom:22px}
+  .hero-headline{font-size:46px;font-weight:800;color:var(--navy);letter-spacing:-.025em;line-height:1.06;margin:0 0 20px}
+  .hero-headline .accent{color:var(--rust)}
+  .hero-subhead{font-size:16px;font-weight:400;color:var(--navy);line-height:1.6;opacity:.84;margin:0;max-width:600px}
+
+  section{padding-top:64px;padding-bottom:64px}
+  .white{background:var(--white)}
+  .ink{background:var(--ink-navy);color:var(--cream)}
+  .sec-eyebrow{font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--rust);margin-bottom:14px}
+  .ink .sec-eyebrow{color:var(--gold)}
+  .sec-headline{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.14;margin:0 0 8px;color:var(--navy)}
+  .ink .sec-headline{color:#fff}
+  .sec-headline .accent{color:var(--rust)}
+  .ink .sec-headline .accent{color:var(--gold-2)}
+  .sec-intro{font-size:16px;color:var(--ink);max-width:640px;margin:0 0 28px}
+  .ink .sec-intro{color:#c3cbe0}
+
+  .steps{counter-reset:step;display:grid;gap:14px}
+  .step{counter-increment:step;position:relative;background:var(--white);border:1px solid var(--line);border-radius:8px;padding:22px 24px 22px 70px;box-shadow:var(--card-sh);transition:transform .2s ease,box-shadow .2s ease}
+  .step:hover{transform:translateY(-2px);box-shadow:var(--lift)}
+  .step:before{content:counter(step);position:absolute;left:22px;top:20px;width:34px;height:34px;border-radius:999px;background:var(--navy);color:var(--gold);font-size:15px;font-weight:800;display:grid;place-items:center}
+  .step h3{font-size:18px;font-weight:800;letter-spacing:-.01em;margin:0 0 4px}
+  .step p{font-size:14.5px;color:var(--ink);margin:0}
+
+  .submit-cue{display:flex;align-items:center;gap:15px;background:var(--off);border:1px solid var(--line);border-radius:8px;padding:20px 22px;max-width:580px;margin-top:30px}
+  .submit-cue .arrow{flex:0 0 auto;width:40px;height:40px;border-radius:999px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-size:21px;font-weight:800;animation:nudge 1.8s ease-in-out infinite}
+  .submit-cue b{display:block;font-size:15.5px;font-weight:800;color:var(--navy)}
+  .submit-cue span{font-size:13px;color:var(--ink)}
+  @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+  @media(prefers-reduced-motion:reduce){.submit-cue .arrow{animation:none}}
+
+  .footer-section{background:var(--ink-navy);padding-top:56px;padding-bottom:32px;padding-left:max(40px,5vw);padding-right:max(40px,5vw)}
+  .footer-section .wrap{max-width:1080px}
+  .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;margin-bottom:22px}
+  .footer-logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none;margin-bottom:16px}
+  .footer-logo svg{height:50px;width:auto}
+  .footer-logo .logo-text{gap:2px}
+  .footer-logo .logo-title{color:#F5F1E8;font-size:22px}
+  .footer-logo .logo-title .logo-accent{color:#C9A14A}
+  .footer-logo .logo-sub{color:#F5F1E8;opacity:.72}
+  .footer-tagline{font-size:13px;color:#F5F1E8;opacity:.82;line-height:1.6;max-width:320px;margin:0}
+  .footer-col-header{font-size:10px;font-weight:700;color:#C9A14A;letter-spacing:.24em;text-transform:uppercase;margin-bottom:16px}
+  .footer-link{font-size:13px;font-weight:500;color:#F5F1E8;opacity:.88;display:block;margin-bottom:10px;text-decoration:none}
+  .footer-link:hover,.footer-link:focus-visible{opacity:1;text-decoration:underline}
+  .footer-link.help{color:#C9A14A;opacity:1;font-weight:700}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+  .footer-copyright{font-size:11px;color:#F5F1E8;opacity:.72;letter-spacing:.03em}
+  .footer-byline{font-size:11px;font-weight:700;color:#C9A14A;letter-spacing:.16em;text-transform:uppercase}
+  .footer-section a:focus-visible{outline-color:#C9A14A}
+
+  @media(max-width:680px){.footer-top{grid-template-columns:1fr 1fr;gap:32px}.hero-headline{font-size:34px}}
+  @media(max-width:460px){.hero-headline{font-size:29px}.footer-top{grid-template-columns:1fr}.footer-bottom{flex-direction:column;align-items:flex-start}}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}.step:hover{transform:none}}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="site-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)">
+            <circle cx="0" cy="20" r="10" fill="#0B1530"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
+          </g>
+          <g transform="translate(100, 0)">
+            <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+            <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+          </g>
+          <g transform="translate(140, 0) rotate(-8 0 130)">
+            <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+          </g>
+        </g>
+      </svg>
+      <span class="logo-text">
+        <span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span>
+        <span class="logo-sub">BIO 304 &middot; American River College</span>
+      </span>
+    </a>
+  </div>
+</header>
+
+<div class="hero-card" id="main">
+  <div class="wrap">
+    <div class="hero-content">
+      <div class="hero-eyebrow">BIO 304 &middot; Online &middot; Summer 2026</div>
+      <h1 class="hero-headline">Weekly <span class="accent">Engagement Report</span></h1>
+      <p class="hero-subhead">Each week, export the engagement report from your spaced recall deck and submit it here. It is how I see that you have been practicing, and it counts toward your engagement grade.</p>
+    </div>
+  </div>
+</div>
+
+<section class="white">
+  <div class="wrap pad">
+    <p class="sec-eyebrow">How to submit</p>
+    <h2 class="sec-headline">Three steps, <span class="accent">every week.</span></h2>
+    <p class="sec-intro">The same routine each week. Finish your reviews, pull the report, attach it here.</p>
+    <div class="steps">
+      <div class="step">
+        <h3>Finish this week's spaced recall</h3>
+        <p>Open your deck and work through the cards due this week until the deck is current.</p>
+      </div>
+      <div class="step">
+        <h3>Export your engagement report</h3>
+        <p>Your deck keeps a record of your daily activity. Download or screenshot that summary so you have it as a file.</p>
+      </div>
+      <div class="step">
+        <h3>Attach it and submit</h3>
+        <p>Use the submit button on this assignment, below, to upload your report. One file is all you need.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ink">
+  <div class="wrap pad">
+    <p class="sec-eyebrow">Why it is daily</p>
+    <h2 class="sec-headline">A little every day earns <span class="accent">full credit.</span></h2>
+    <p class="sec-intro">Spaced recall works by spacing. A few minutes each day moves what you learn into long-term memory far better than one long session, and the report shows that pattern. Engaging with your deck every day is the surest way to full credit. A single cram the night before will show in the report, and it will not score the same.</p>
+  </div>
+</section>
+
+<section class="white">
+  <div class="wrap pad">
+    <p class="sec-eyebrow">Ready</p>
+    <h2 class="sec-headline">Submit your report.</h2>
+    <p class="sec-intro">Have your report file ready, then use the assignment's own upload button.</p>
+    <div class="submit-cue">
+      <span class="arrow" aria-hidden="true">&#8595;</span>
+      <div><b>Use the submit button on this assignment, below, to upload your report.</b>
+      <span>One file per week. Daily practice is what fills it out.</span></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer-section">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="footer-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+          <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+            <g transform="translate(0, 18)">
+              <g transform="translate(60, 0) rotate(8 0 130)">
+                <circle cx="0" cy="20" r="10" fill="#F5F1E8"/>
+                <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#F5F1E8"/>
+              </g>
+              <g transform="translate(100, 0)">
+                <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+                <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+              </g>
+              <g transform="translate(140, 0) rotate(-8 0 130)">
+                <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+                <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+              </g>
+            </g>
+          </svg>
+          <span class="logo-text">
+            <span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span>
+            <span class="logo-sub">BIO 304 &middot; American River College</span>
+          </span>
+        </a>
+        <p class="footer-tagline">Eight weeks, online, designed to make a 4-credit A&amp;P possible. Same rhythm every week, real deadlines, real support.</p>
+      </div>
+      <div>
+        <div class="footer-col-header">Start here</div>
+        <a class="footer-link help" href="biol304_office_hours.html" target="_top">Virtual office hours</a>
+        <a class="footer-link" href="biol304_syllabus.html" target="_top">Syllabus</a>
+        <a class="footer-link" href="index.html#weeks" target="_top">Eight weeks</a>
+        <a class="footer-link" href="index.html#grading" target="_top">How you are graded</a>
+      </div>
+      <div>
+        <div class="footer-col-header">Study tools</div>
+        <a class="footer-link" href="index.html#weeks" target="_top">Weekly pre-work</a>
+        <a class="footer-link" href="discussions.html" target="_top">Discussions</a>
+        <a class="footer-link" href="biol304_textbook.html" target="_top">OpenStax textbook</a>
+        <a class="footer-link" href="biol304_reading_map.html" target="_top">Reading map</a>
+      </div>
+      <div>
+        <div class="footer-col-header">Policies</div>
+        <a class="footer-link" href="biol304_accessibility.html" target="_top">Accessibility</a>
+        <a class="footer-link" href="biol304_rsi_statement.html" target="_top">RSI statement</a>
+        <a class="footer-link" href="ai_policy.html" target="_top">AI policy (explainer)</a>
+        <a class="footer-link" href="ai_honor_contract.html" target="_top">AI honor contract</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Summer 2026</div>
+      <div class="footer-byline">Dr. Sharilyn Rennie</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* iframe height sender for Canvas embedding */
+(function(){
+  function send(){var h=document.documentElement.scrollHeight;try{window.parent.postMessage({type:"bio304-engagement-height",id:"bio304-engagement",height:h},"*");}catch(e){}}
+  window.addEventListener("load",send);
+  window.addEventListener("resize",send);
+  if(window.ResizeObserver){new ResizeObserver(send).observe(document.body);}
+})();
+</script>
+</body>
+</html>
