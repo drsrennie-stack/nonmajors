@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIO 304 · Virtual Office Hours</title>
+<meta name="meta-description" content="How virtual office hours work in BIO 304. Ask any course question, one at a time, lead with the question, show what you have tried, and search the forum first. Answers within 24 to 72 hours.">
+<style>
+  @import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+  /* ============================================================
+     BIO 304 · VIRTUAL OFFICE HOURS
+     Branding matched to index: white header and hero with the
+     logo lockup, almost-black navy #060A18 for emphasis bands and
+     footer, NO cream fills, NO bookend borders. Lifted white cards.
+     ============================================================ */
+  :root{
+    --navy:#0B1530; --navy-2:#142A36; --ink-navy:#060A18;
+    --rust:#8B3A2E; --rust-2:#A0452F; --gold:#C9A14A; --gold-2:#D9B065;
+    --cream:#F5F1E8; --white:#FFFFFF; --off:#FAFAF9; --ink:#33405E;
+    --line:rgba(11,21,48,0.14);
+    --card-sh:0 1px 3px rgba(11,21,48,0.06);
+    --lift:0 6px 16px rgba(11,21,48,0.10),0 3px 6px rgba(11,21,48,0.06);
+  }
+  *{box-sizing:border-box;font-style:normal!important;margin:0;padding:0}
+  html,body{font-size:16px;line-height:1.65}
+  body{font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif;background:var(--white);color:var(--navy);-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .skip{position:absolute;left:-999px;top:0;background:var(--navy);color:#fff;padding:11px 16px;z-index:99;border-radius:4px;text-decoration:none}
+  .skip:focus{left:12px;top:12px}
+  :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .pad{padding-left:max(40px,5vw);padding-right:max(40px,5vw)}
+  .wrap{max-width:920px;margin:0 auto}
+
+  /* site header (white) with logo lockup, matched to index */
+  .site-header{background:var(--white);padding-top:28px;padding-bottom:28px}
+  .site-logo{display:inline-flex;align-items:center;gap:16px;text-decoration:none}
+  .site-logo svg{height:58px;width:auto;display:block}
+  .logo-text{display:flex;flex-direction:column;gap:3px}
+  .logo-title{font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--navy);line-height:1}
+  .logo-title .logo-accent{color:var(--rust)}
+  .logo-sub{font-size:10.5px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.72}
+
+  /* hero (white) */
+  .hero-card{background:var(--white);padding-top:50px;padding-bottom:60px}
+  .hero-content{max-width:760px}
+  .hero-eyebrow{font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.28em;text-transform:uppercase;margin-bottom:22px}
+  .hero-headline{font-size:46px;font-weight:800;color:var(--navy);letter-spacing:-.025em;line-height:1.06;margin:0 0 20px}
+  .hero-headline .accent{color:var(--rust)}
+  .hero-subhead{font-size:16px;font-weight:400;color:var(--navy);line-height:1.6;opacity:.84;margin-bottom:30px;max-width:600px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:14px 24px;border-radius:999px;text-decoration:none;transition:background .2s ease}
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-navy:hover,.btn-navy:focus-visible{background:var(--navy-2)}
+  .btn-gold{background:var(--gold);color:var(--navy)}
+  .btn-gold:hover,.btn-gold:focus-visible{background:var(--gold-2)}
+  .cta-note{display:block;margin-top:14px;font-size:13px;color:var(--ink)}
+
+  section{padding-top:64px;padding-bottom:64px}
+  .white{background:var(--white)}
+  .ink{background:var(--ink-navy);color:var(--cream)}
+  .sec-eyebrow{font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--rust);margin-bottom:14px}
+  .ink .sec-eyebrow{color:var(--gold)}
+  .sec-headline{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.14;margin:0 0 8px;color:var(--navy)}
+  .ink .sec-headline{color:#fff}
+  .sec-headline .accent{color:var(--rust)}
+  .ink .sec-headline .accent{color:var(--gold-2)}
+  .sec-intro{font-size:16px;color:var(--ink);max-width:640px;margin:0 0 28px}
+  .ink .sec-intro{color:#c3cbe0}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .panel{background:var(--white);border:1px solid var(--line);border-radius:8px;box-shadow:var(--card-sh);padding:24px;transition:transform .2s ease,box-shadow .2s ease}
+  .panel:hover{transform:translateY(-2px);box-shadow:var(--lift)}
+  .panel .k{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--rust);margin-bottom:8px}
+  .panel h3{font-size:18px;font-weight:800;letter-spacing:-.01em;margin:0 0 6px}
+  .panel p{font-size:14.5px;color:var(--ink);margin:0}
+
+  .resp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .resp .r{border-radius:8px;padding:24px;border:1px solid rgba(245,241,232,.16);background:rgba(245,241,232,.05)}
+  .resp .r .when{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+  .resp .r .num{font-size:40px;font-weight:800;letter-spacing:-.02em;margin:8px 0 2px;color:#fff}
+  .resp .r .num small{font-size:16px;font-weight:700;color:#c3cbe0}
+  .resp .r p{font-size:14px;color:#c3cbe0;margin:0}
+
+  .rules{counter-reset:rule;display:grid;gap:14px}
+  .rule{counter-increment:rule;position:relative;background:var(--white);border:1px solid var(--line);border-radius:8px;padding:22px 24px 22px 70px;box-shadow:var(--card-sh);transition:transform .2s ease,box-shadow .2s ease}
+  .rule:hover{transform:translateY(-2px);box-shadow:var(--lift)}
+  .rule:before{content:counter(rule);position:absolute;left:22px;top:20px;width:34px;height:34px;border-radius:999px;background:var(--navy);color:var(--gold);font-size:15px;font-weight:800;display:grid;place-items:center}
+  .rule h3{font-size:18px;font-weight:800;letter-spacing:-.01em;margin:0 0 4px}
+  .rule p{font-size:14.5px;color:var(--ink);margin:0}
+
+  .post{background:var(--white);border:1px solid var(--line);border-radius:8px;box-shadow:var(--card-sh);overflow:hidden;margin-top:6px;max-width:700px}
+  .post .ptop{background:var(--navy);color:var(--cream);padding:14px 22px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+  .post .ptop .tag{color:var(--gold)}
+  .post .pq{padding:20px 22px 8px;font-size:19px;font-weight:800;letter-spacing:-.01em;color:var(--navy)}
+  .post .pblock{padding:0 22px}
+  .post .plabel{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);margin-top:14px}
+  .post .ptext{font-size:14.5px;color:var(--ink);margin-top:3px}
+  .post .pend{padding:8px 22px 22px}
+
+  .endcta{margin-top:34px}
+
+  /* footer (almost-black navy), matched to index */
+  .footer-section{background:var(--ink-navy);padding-top:56px;padding-bottom:32px;padding-left:max(40px,5vw);padding-right:max(40px,5vw)}
+  .footer-section .wrap{max-width:1080px}
+  .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;margin-bottom:22px}
+  .footer-logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none;margin-bottom:16px}
+  .footer-logo svg{height:50px;width:auto}
+  .footer-logo .logo-text{gap:2px}
+  .footer-logo .logo-title{color:#F5F1E8;font-size:22px}
+  .footer-logo .logo-title .logo-accent{color:#C9A14A}
+  .footer-logo .logo-sub{color:#F5F1E8;opacity:.72}
+  .footer-tagline{font-size:13px;color:#F5F1E8;opacity:.82;line-height:1.6;max-width:320px;margin:0}
+  .footer-col-header{font-size:10px;font-weight:700;color:#C9A14A;letter-spacing:.24em;text-transform:uppercase;margin-bottom:16px}
+  .footer-link{font-size:13px;font-weight:500;color:#F5F1E8;opacity:.88;display:block;margin-bottom:10px;text-decoration:none}
+  .footer-link:hover,.footer-link:focus-visible{opacity:1;text-decoration:underline}
+  .footer-link.help{color:#C9A14A;opacity:1;font-weight:700}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+  .footer-copyright{font-size:11px;color:#F5F1E8;opacity:.72;letter-spacing:.03em}
+  .footer-byline{font-size:11px;font-weight:700;color:#C9A14A;letter-spacing:.16em;text-transform:uppercase}
+  .footer-section a:focus-visible{outline-color:#C9A14A}
+
+  @media(max-width:680px){
+    .grid,.resp{grid-template-columns:1fr}
+    .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+    .hero-headline{font-size:34px}
+  }
+  @media(max-width:460px){
+    .hero-headline{font-size:29px}
+    .footer-top{grid-template-columns:1fr}
+    .footer-bottom{flex-direction:column;align-items:flex-start}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}.panel:hover,.rule:hover{transform:none}}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="site-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)">
+            <circle cx="0" cy="20" r="10" fill="#0B1530"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
+          </g>
+          <g transform="translate(100, 0)">
+            <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+            <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+          </g>
+          <g transform="translate(140, 0) rotate(-8 0 130)">
+            <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+          </g>
+        </g>
+      </svg>
+      <span class="logo-text">
+        <span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span>
+        <span class="logo-sub">BIO 304 &middot; American River College</span>
+      </span>
+    </a>
+  </div>
+</header>
+
+<div class="hero-card" id="main">
+  <div class="wrap">
+    <div class="hero-content">
+      <div class="hero-eyebrow">BIO 304 &middot; Online &middot; Summer 2026</div>
+      <h1 class="hero-headline">Virtual <span class="accent">Office Hours</span></h1>
+      <p class="hero-subhead">One open forum for any question about the course. Lecture content, lab workbooks, a problem with an assignment, or how something works. Ask it here and the whole class can see the answer.</p>
+      <!-- Replace href with your Office Hours forum URL (the Canvas discussion board). -->
+      <a class="btn btn-navy" href="#" target="_blank" rel="noopener" aria-label="Open the office hours forum in Canvas, opens in a new tab">Open the forum &#8599;</a>
+      <span class="cta-note">The question list and all answers live in the forum. Questions are not posted on this page.</span>
+    </div>
+  </div>
+</div>
+
+<section class="white">
+  <div class="wrap pad">
+    <p class="sec-eyebrow">How it works</p>
+    <h2 class="sec-headline">Ask in the open. <span class="accent">Everyone benefits.</span></h2>
+    <p class="sec-intro">Most questions a student has, three other students have too. Asking in the forum instead of a private email means the answer helps all of you, and you can read what has already been answered before you even post.</p>
+    <div class="grid">
+      <div class="panel">
+        <div class="k">What to ask</div>
+        <h3>Anything course-related</h3>
+        <p>Content you are stuck on, a confusing lab workbook step, trouble with an assignment, a deadline question, a tech snag. If it touches the course, it belongs here.</p>
+      </div>
+      <div class="panel">
+        <div class="k">Who answers</div>
+        <h3>Me, or a classmate</h3>
+        <p>If a classmate knows the answer and gets there before I do, they are welcome to answer. Helping someone else is one of the best ways to lock in your own understanding.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ink">
+  <div class="wrap pad">
+    <p class="sec-eyebrow">Response time</p>
+    <h2 class="sec-headline">When you will hear back.</h2>
+    <p class="sec-intro">I read the forum regularly and answer in order. Plan ahead near a deadline, because a question posted at 10 PM the night something is due may not be answered in time.</p>
+    <div class="resp">
+      <div class="r">
+        <div class="when">Posted on a weekday</div>
+        <div class="num">24<small> hours</small></div>
+        <p>Monday through Friday, expect a reply within one day.</p>
+      </div>
+      <div class="r">
+        <div class="when">Posted on a weekend</div>
+        <div class="num">up to 72<small> hours</small></div>
+        <p>Friday evening through Sunday, allow up to three days. A classmate may answer sooner.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="white">
+  <div class="wrap pad">
+    <p class="sec-eyebrow">Before you post</p>
+    <h2 class="sec-headline">Five rules that keep the forum useful.</h2>
+    <p class="sec-intro">These are not busywork. They are what makes the forum fast to search and fast to answer, for you and for everyone after you.</p>
+    <div class="rules">
+      <div class="rule">
+        <h3>Search the forum first</h3>
+        <p>Look through the existing questions before you post. If yours is already there, read that thread instead of starting a new one. Duplicates bury the answers everyone needs.</p>
+      </div>
+      <div class="rule">
+        <h3>One question per post</h3>
+        <p>Ask a single question at a time. If you have three things to ask, make three posts. One question per thread keeps each answer easy to find later.</p>
+      </div>
+      <div class="rule">
+        <h3>Lead with the question</h3>
+        <p>Put the actual question on the very first line. Then add the context underneath: which week and which assignment. The question goes on top, the explanation follows.</p>
+      </div>
+      <div class="rule">
+        <h3>Show what you have already tried</h3>
+        <p>List the steps you took to solve it on your own, what you found out when you tried, and the exact point where you got stuck. Name where the lack of clarity is, not just that you are confused. Pinpointing the confusion is what lets someone help you in one reply instead of five.</p>
+      </div>
+      <div class="rule">
+        <h3>Answer if you can</h3>
+        <p>If you scroll past a question you know the answer to, jump in. You do not have to wait for me. A class that helps itself learns faster.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="white" style="padding-top:0">
+  <div class="wrap pad">
+    <p class="sec-eyebrow">The format</p>
+    <h2 class="sec-headline">What a post that gets answered fast looks like.</h2>
+    <p class="sec-intro">Question first, in one clear line. Then your work: what you tried, what you found, and the exact spot you are stuck. Here is the shape to copy.</p>
+    <div class="post">
+      <div class="ptop">Week 4 &middot; <span class="tag">One question</span></div>
+      <div class="pq">Why does the action potential only travel in one direction down the axon?</div>
+      <div class="pblock">
+        <div class="plabel">What I tried</div>
+        <div class="ptext">Reread the Week 4 pre-work on action potentials and watched the linked video twice. I drew the membrane and labeled the sodium and potassium channels.</div>
+        <div class="plabel">What I found out</div>
+        <div class="ptext">I can see that sodium channels open and depolarize the membrane, and that the impulse moves down the axon. So I understand how it moves forward.</div>
+        <div class="plabel">Where I am stuck</div>
+        <div class="ptext">I cannot picture what stops it from also going backward into the part that just fired. I think it is the refractory period, but I do not understand why that period only blocks the backward direction and not the forward one. That is the exact piece that is unclear to me.</div>
+      </div>
+      <div class="pend"></div>
+    </div>
+    <div class="endcta">
+      <!-- Replace href with your Office Hours forum URL (the Canvas discussion board). -->
+      <a class="btn btn-navy" href="#" target="_blank" rel="noopener" aria-label="Open the office hours forum in Canvas, opens in a new tab">Go to the forum and post &#8599;</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer-section">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="footer-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+          <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+            <g transform="translate(0, 18)">
+              <g transform="translate(60, 0) rotate(8 0 130)">
+                <circle cx="0" cy="20" r="10" fill="#F5F1E8"/>
+                <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#F5F1E8"/>
+              </g>
+              <g transform="translate(100, 0)">
+                <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+                <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+              </g>
+              <g transform="translate(140, 0) rotate(-8 0 130)">
+                <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+                <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+              </g>
+            </g>
+          </svg>
+          <span class="logo-text">
+            <span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span>
+            <span class="logo-sub">BIO 304 &middot; American River College</span>
+          </span>
+        </a>
+        <p class="footer-tagline">Eight weeks, online, designed to make a 4-credit A&amp;P possible. Same rhythm every week, real deadlines, real support.</p>
+      </div>
+      <div>
+        <div class="footer-col-header">Start here</div>
+        <a class="footer-link help" href="biol304_office_hours.html" target="_top">Virtual office hours</a>
+        <a class="footer-link" href="biol304_syllabus.html" target="_top">Syllabus</a>
+        <a class="footer-link" href="index.html#weeks" target="_top">Eight weeks</a>
+        <a class="footer-link" href="index.html#grading" target="_top">How you are graded</a>
+      </div>
+      <div>
+        <div class="footer-col-header">Study tools</div>
+        <a class="footer-link" href="index.html#weeks" target="_top">Weekly pre-work</a>
+        <a class="footer-link" href="discussions.html" target="_top">Discussions</a>
+        <a class="footer-link" href="biol304_textbook.html" target="_top">OpenStax textbook</a>
+        <a class="footer-link" href="biol304_reading_map.html" target="_top">Reading map</a>
+      </div>
+      <div>
+        <div class="footer-col-header">Policies</div>
+        <a class="footer-link" href="biol304_accessibility.html" target="_top">Accessibility</a>
+        <a class="footer-link" href="biol304_rsi_statement.html" target="_top">RSI statement</a>
+        <a class="footer-link" href="ai_policy.html" target="_top">AI policy (explainer)</a>
+        <a class="footer-link" href="ai_honor_contract.html" target="_top">AI honor contract</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Summer 2026</div>
+      <div class="footer-byline">Dr. Sharilyn Rennie</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* iframe height sender for Canvas embedding */
+(function(){
+  function send(){var h=document.documentElement.scrollHeight;try{window.parent.postMessage({type:"bio304-officehours-height",id:"bio304-officehours",height:h},"*");}catch(e){}}
+  window.addEventListener("load",send);
+  window.addEventListener("resize",send);
+  if(window.ResizeObserver){new ResizeObserver(send).observe(document.body);}
+})();
+</script>
+</body>
+</html>
