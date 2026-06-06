@@ -628,6 +628,10 @@ table.physio-table td textarea.physio-input:focus{outline:2px solid var(--gold);
   .wb-identity{border:1.5pt solid #000;page-break-inside:avoid;}
   .wb-stamp,.wb-stamp b{color:#000;}
   .wb-flagged{box-shadow:inset 4px 0 0 #7A2F18 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  /* single-day submission: print only the chosen day (identity stamp stays) */
+  body.wb-print-one .bundle-day{display:none !important;}
+  body.wb-print-one .bundle-day.wb-print-target{display:block !important;}
+  body.wb-print-one .bundle-cover{display:none !important;}
 }
 </style>
 
@@ -656,8 +660,8 @@ table.physio-table td textarea.physio-input:focus{outline:2px solid var(--gold);
 </div>
 
 <div class="wb-actionbar no-print" role="region" aria-label="Submission tools">
-  <p>Type every answer, sketch each drawing by hand, then click Save to make your PDF and upload it. Pasting into answers is turned off, so type your own words.</p>
-  <button type="button" class="wb-pdf-btn" id="wbSavePdf" aria-label="Save or submit this workbook as a PDF">Save / Submit as PDF</button>
+  <p>Each day has its own <b>Save this day as PDF</b> button, turn in one day at a time. Type every answer and sketch each drawing by hand. Pasting into answers is turned off.</p>
+  <button type="button" class="wb-pdf-btn" id="wbSavePdf" aria-label="Save the whole week as one PDF">Save whole week as PDF</button>
 </div>
 
 <!-- mcas-chrome-header -->
@@ -734,7 +738,7 @@ table.physio-table td textarea.physio-input:focus{outline:2px solid var(--gold);
 </header>
 <main id="main" tabindex="-1">
   <div class="toolbar no-print">
-    <button type="button" class="btn btn-primary" onclick="window.print()">Save as PDF</button>
+    <button type="button" class="btn btn-primary wb-day-print" data-day-print="1">Save this day as PDF</button>
     <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
 
@@ -863,7 +867,7 @@ table.physio-table td textarea.physio-input:focus{outline:2px solid var(--gold);
 </header>
 <main id="main" tabindex="-1">
   <div class="toolbar no-print">
-    <button type="button" class="btn btn-primary" onclick="window.print()">Save as PDF</button>
+    <button type="button" class="btn btn-primary wb-day-print" data-day-print="1">Save this day as PDF</button>
     <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
 
@@ -989,7 +993,7 @@ table.physio-table td textarea.physio-input:focus{outline:2px solid var(--gold);
 </header>
 <main id="main" tabindex="-1">
   <div class="toolbar no-print">
-    <button type="button" class="btn btn-primary" onclick="window.print()">Save as PDF</button>
+    <button type="button" class="btn btn-primary wb-day-print" data-day-print="1">Save this day as PDF</button>
     <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
 
@@ -1126,7 +1130,7 @@ table.physio-table td textarea.physio-input:focus{outline:2px solid var(--gold);
 </header>
 <main id="main" tabindex="-1">
   <div class="toolbar no-print">
-    <button type="button" class="btn btn-primary" onclick="window.print()">Save as PDF</button>
+    <button type="button" class="btn btn-primary wb-day-print" data-day-print="1">Save this day as PDF</button>
     <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
 
@@ -1251,7 +1255,7 @@ table.physio-table td textarea.physio-input:focus{outline:2px solid var(--gold);
 </header>
 <main id="main" tabindex="-1">
   <div class="toolbar no-print">
-    <button type="button" class="btn btn-primary" onclick="window.print()">Save as PDF</button>
+    <button type="button" class="btn btn-primary wb-day-print" data-day-print="1">Save this day as PDF</button>
     <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
 
@@ -1644,8 +1648,21 @@ table.physio-table td textarea.physio-input:focus{outline:2px solid var(--gold);
   document.querySelectorAll('.draw-box').forEach(setupCanvas);
 
   /* ---- save / submit ---- */
-  var saveBtn=document.getElementById('wbSavePdf');if(saveBtn)saveBtn.addEventListener('click',function(){window.print();});
+  function clearPrintScope(){document.body.classList.remove('wb-print-one');
+    document.querySelectorAll('.bundle-day.wb-print-target').forEach(function(d){d.classList.remove('wb-print-target');});}
+  var saveBtn=document.getElementById('wbSavePdf');
+  if(saveBtn)saveBtn.addEventListener('click',function(){clearPrintScope();window.print();});
+  document.querySelectorAll('.wb-day-print').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var day=btn.closest('.bundle-day');
+      clearPrintScope();
+      if(day)day.classList.add('wb-print-target');
+      document.body.classList.add('wb-print-one');
+      setTimeout(function(){window.print();},50);
+    });
+  });
   window.addEventListener('beforeprint',function(){ST.submittedAt=nowStr();persist();updateStamp();});
+  window.addEventListener('afterprint',clearPrintScope);
 
   /* ---- sign-in cover + lock ---- */
   var cover=document.getElementById('wb-cover');
