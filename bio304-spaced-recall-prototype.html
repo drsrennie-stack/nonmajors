@@ -1206,6 +1206,44 @@ body.mcas-page .mcas-next-up-gate-hint {
 }
 body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 </style>
+<style>
+  /* ---- Weekly engagement grade card (on the report) ---- */
+  .grade-card h3 { margin-bottom: 10px; }
+  .grade-headline { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .grade-card .grade-num { font-size:46px; font-weight:800; line-height:1; color:var(--navy); letter-spacing:-.02em; }
+  .grade-card .grade-num.low { color:var(--terra); }
+  .grade-card .grade-sub { font-size:13px; color:var(--gray-soft); font-weight:600; }
+  .grade-card .grade-sub strong { color:var(--navy); }
+  .grade-bar { position:relative; height:24px; background:var(--navy-tint); border:1px solid var(--gray-line); border-radius:8px; overflow:hidden; margin:14px 0 6px; }
+  .grade-bar-fill { position:absolute; left:0; top:0; bottom:0; background:linear-gradient(90deg,#D9B065,var(--gold-deep)); border-radius:7px 0 0 7px; }
+  .grade-bar-fill.low { background:linear-gradient(90deg,#A0452F,var(--terra)); }
+  .grade-bar-max { position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--navy); opacity:.6; }
+  .grade-bar-max::after { content:attr(data-l); position:absolute; top:-16px; left:50%; transform:translateX(-50%); font-size:9px; font-weight:700; color:var(--navy); white-space:nowrap; }
+  .grade-days { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin:12px 0; }
+  .grade-day { position:relative; border:1px solid var(--gray-line); border-radius:9px; padding:7px 4px 6px; text-align:center; background:var(--white); }
+  .grade-day .gd-n { display:block; font-size:10px; font-weight:700; color:var(--gray-soft); text-transform:uppercase; }
+  .grade-day .gd-m { display:block; font-size:16px; font-weight:700; line-height:1.2; }
+  .grade-day .gd-p { display:block; font-size:10px; font-weight:700; color:var(--gray-soft); }
+  .grade-day .gd-vid { position:absolute; top:4px; right:5px; font-size:8px; color:var(--gold-deep); }
+  .grade-day .gd-opt { position:absolute; top:4px; left:5px; font-size:7.5px; font-weight:700; color:var(--gray-soft); text-transform:uppercase; }
+  .grade-day.full { background:#e6f0e7; border-color:#a9d2ba; } .grade-day.full .gd-m { color:#2e7d52; }
+  .grade-day.partial { background:#fbf4e4; border-color:var(--gold); } .grade-day.partial .gd-m { color:var(--gold-deep); }
+  .grade-ticker { background:var(--navy-tint); border:1px solid var(--gray-line); border-left:4px solid var(--navy); border-radius:8px; padding:10px 13px; font-size:13.5px; margin-top:6px; }
+  .grade-ticker.ok { background:#e6f0e7; border-left-color:#2e7d52; }
+  .grade-ticker.warn { background:#f4e7e2; border-left-color:var(--terra); }
+  .grade-policy { font-size:12.5px; color:#4a4538; background:#fbf8f1; border:1px solid var(--gray-line); border-radius:8px; padding:10px 13px; margin-top:10px; }
+  .grade-goal { font-size:13px; color:var(--navy); background:#f3eee2; border:1px solid #e6dcc2; border-radius:8px; padding:9px 13px; margin:10px 0 0; }
+  .grade-note { font-size:11.5px; color:var(--gray-soft); margin-top:8px; }
+  /* print-only report header */
+  .report-print-head { display:none; }
+  .report-print-head .rph-title { font-size:20px; font-weight:800; color:var(--navy); }
+  .report-print-head .rph-meta { font-size:12.5px; color:#333; margin-top:2px; }
+  @media print {
+    .report-print-head { display:flex; align-items:center; gap:14px; padding-bottom:12px; margin-bottom:14px; border-bottom:2px solid var(--navy); }
+    .grade-card { break-inside:avoid; page-break-inside:avoid; }
+    .grade-bar-fill, .grade-day.full, .grade-day.partial { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
+</style>
 </head>
 <body class="mcas-page">
 <!-- mcas-chrome-header -->
@@ -1246,11 +1284,11 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 
 <header class="page-header">
   <p class="eyebrow">BIO 304 &middot; Human Anatomy &amp; Physiology &middot; American River College</p>
-  <h1 class="page-title">Nightly Pre-Work and Spaced Recall</h1>
-  <p class="subhead" id="subhead-context">Tonight&rsquo;s prep, your daily review, and your engagement record</p>
+  <h1 class="page-title">Daily Pre-Work and Spaced Recall</h1>
+  <p class="subhead" id="subhead-context">Today&rsquo;s prep, your daily review, and your engagement record</p>
   <p class="usage">Watch each video. Explain it in your own words to unlock notes and your question set. Rate how you felt on each card. Come back tomorrow and your cards will be ready for review.</p>
   <nav class="top-nav" aria-label="Primary">
-    <button type="button" data-nav="dashboard" aria-current="page">Tonight&rsquo;s pre-work</button>
+    <button type="button" data-nav="dashboard" aria-current="page">Today&rsquo;s pre-work</button>
     <button type="button" data-nav="review">Daily review</button>
     <button type="button" data-nav="report">Engagement report</button>
     <button type="button" data-nav="settings">Settings</button>
@@ -1271,7 +1309,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 
   <!-- DASHBOARD -->
   <section class="view active" id="view-dashboard" aria-labelledby="dash-heading">
-    <h2 id="dash-heading">Tonight&rsquo;s pre-work</h2>
+    <h2 id="dash-heading">Today&rsquo;s pre-work</h2>
     <div class="stats-row">
       <div class="stat">
         <p class="stat-label">Streak</p>
@@ -1284,7 +1322,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
         <p class="stat-sub">from prior sessions</p>
       </div>
       <div class="stat">
-        <p class="stat-label">Topics tonight</p>
+        <p class="stat-label">Topics today</p>
         <p class="stat-value" id="stat-topics-tonight">0</p>
         <p class="stat-sub" id="stat-topics-tonight-sub">today&rsquo;s pre-work</p>
       </div>
@@ -1299,7 +1337,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 
   <!-- TOPIC LOCKED (video + gate) -->
   <section class="view" id="view-topic" aria-labelledby="topic-heading">
-    <button type="button" class="btn btn-ghost" data-nav="dashboard" style="margin-bottom:14px;">&larr; Back to tonight&rsquo;s list</button>
+    <button type="button" class="btn btn-ghost" data-nav="dashboard" style="margin-bottom:14px;">&larr; Back to today&rsquo;s list</button>
     <h2 id="topic-heading">Topic</h2>
     <p class="usage" id="topic-summary"></p>
 
@@ -1344,7 +1382,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   <!-- LEARNING VIEW (cards; notes link out to the existing notes hub) -->
   <section class="view" id="view-learn" aria-labelledby="learn-heading">
     <div class="toolbar" style="margin-bottom:14px;">
-      <button type="button" class="btn btn-ghost" data-nav="dashboard">&larr; Back to tonight&rsquo;s list</button>
+      <button type="button" class="btn btn-ghost" data-nav="dashboard">&larr; Back to today&rsquo;s list</button>
       <a id="link-open-notes" class="btn btn-gold" target="_blank" rel="noopener noreferrer" href="#" hidden>Open notes &#x2197;</a>
       <a id="link-open-reading" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="#" hidden>OpenStax reference &#x2197;</a>
       <!-- mcas-workbook-btn -->
@@ -1399,14 +1437,48 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       <span style="font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);">Show</span>
       <button type="button" class="btn btn-primary" id="btn-review-due" aria-pressed="true">Due today only</button>
       <button type="button" class="btn btn-ghost" id="btn-review-all" aria-pressed="false">All unlocked cards</button>
+      <button type="button" class="btn btn-ghost" id="btn-review-mixed" aria-pressed="false">Cumulative mix</button>
     </div>
     <div id="review-body"></div>
   </section>
 
   <!-- ENGAGEMENT REPORT -->
   <section class="view print-view" id="view-report" aria-labelledby="report-heading">
+    <!-- print-only identifying header (logo + name/week/date) -->
+    <div class="report-print-head" id="report-print-head" aria-hidden="true">
+      <span class="rph-logo">
+        <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false" style="height:46px;width:auto;">
+          <g transform="translate(0,18)">
+            <g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/></g>
+            <g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
+            <g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+          </g>
+        </svg>
+      </span>
+      <div class="rph-text">
+        <div class="rph-title">Weekly Engagement Report</div>
+        <div class="rph-meta">Name: <strong id="rph-name">__________________</strong> &nbsp;·&nbsp; Week: <strong id="rph-week">1</strong> &nbsp;·&nbsp; Date: <strong id="rph-date"></strong></div>
+      </div>
+    </div>
+
     <h2 id="report-heading">Engagement report</h2>
-    <p class="usage">A printable record of your nightly work. Hand this in or save it as a PDF.</p>
+    <p class="usage">A printable record of your daily prework and your engagement grade. Print it or save it as a PDF, then upload that file.</p>
+    <div class="toolbar no-print" style="flex-wrap:wrap;gap:10px;align-items:flex-end;">
+      <div id="name-set-wrap" style="display:none;">
+        <label for="report-name" style="display:block;font-size:11px;font-weight:700;color:var(--gray-soft);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Your name (locks to your report)</label>
+        <span style="display:inline-flex;gap:8px;align-items:center;">
+          <input type="text" id="report-name" placeholder="First Last" style="font-family:inherit;font-size:14px;border:1px solid var(--gray-line);border-radius:8px;padding:8px 10px;min-width:190px;">
+          <button type="button" class="btn btn-gold" id="btn-save-name">Save &amp; lock</button>
+        </span>
+      </div>
+      <div id="name-locked-wrap" style="display:none;">
+        <label style="display:block;font-size:11px;font-weight:700;color:var(--gray-soft);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Name on this report</label>
+        <span style="font-weight:700;color:var(--navy);font-size:15px;">🔒 <span id="name-locked-val"></span></span>
+      </div>
+      <div><label for="report-week" style="display:block;font-size:11px;font-weight:700;color:var(--gray-soft);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Week</label>
+        <select id="report-week" style="font-family:inherit;font-size:14px;border:1px solid var(--gray-line);border-radius:8px;padding:8px 10px;"></select></div>
+    </div>
+    <p class="usage no-print" id="name-help" style="font-size:12px;margin-top:-4px;"></p>
     <div class="toolbar no-print">
       <button type="button" class="btn btn-primary" id="btn-print">Print or save as PDF</button>
       <button type="button" class="btn btn-ghost" id="btn-export">Export progress code</button>
@@ -1428,7 +1500,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     </div>
     <div class="card">
       <h3>About this prototype</h3>
-      <p class="usage">BIO 304 nightly pre-work tool. Forces video watch, requires a written explanation gate, then unlocks notes and an adaptive spaced-recall card set across DOK 1 to 3. Reviews carry across days using a lightweight SM2-style scheduler.</p>
+      <p class="usage">BIO 304 daily pre-work tool. Forces video watch, requires a written explanation gate, then unlocks notes and an adaptive spaced-recall card set across DOK 1 to 3. Reviews carry across days using a lightweight SM2-style scheduler.</p>
     </div>
   </section>
 
@@ -1667,10 +1739,17 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   const STORAGE_KEY = "bio304_spaced_recall_v1";
   const DAY_MS = 24 * 60 * 60 * 1000;
 
+  // The course runs on Pacific time, so a "course day" is the same calendar day
+  // for everyone regardless of the device's timezone. All day keys go through this.
+  function pacificDateStr(ms){
+    try { return new Date(ms).toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' }); }
+    catch(e){ return new Date(ms).toISOString().slice(0,10); }
+  }
+
   function todayKey(offsetDays){
     // Single source of truth for "now" with the simulated-day offset applied once.
     const ms = Date.now() + (((offsetDays || 0) + (STATE.daysSimulated || 0)) * DAY_MS);
-    return new Date(ms).toISOString().slice(0,10);
+    return pacificDateStr(ms);
   }
 
   // Fisher-Yates shuffle. Returns a new array so callers don't have to clone.
@@ -1694,6 +1773,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       daysSimulated: 0,
       topics: {},
       sessions: [],
+      studentName: "",
       lastOpenedDate: ""
     };
   }
@@ -1720,6 +1800,16 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
 
   let STATE = loadState();
 
+  // Instructor preview. When ON, topics with no lecture page wired up can be
+  // opened to review their cards. OFF by default, so students have no back door
+  // into locked material. Enable with ?preview=1 or localStorage bio304-preview="1".
+  var PREVIEW_MODE = false;
+  try {
+    var _pu = new URL(window.location.href);
+    PREVIEW_MODE = _pu.searchParams.get("preview") === "1"
+                || window.localStorage.getItem("bio304-preview") === "1";
+  } catch (e) {}
+
   function getTopicState(topicId){
     if (!STATE.topics[topicId]) {
       STATE.topics[topicId] = {
@@ -1734,6 +1824,128 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       };
     }
     return STATE.topics[topicId];
+  }
+
+  // Persist a single topic's state. This was referenced but never defined,
+  // so every call threw a ReferenceError and aborted the unlock handler
+  // before it could navigate or save — which is why completed topics
+  // "didn't take" and re-locked on reload. Writing through to saveState()
+  // persists the whole STATE (ts is a live reference into STATE.topics).
+  function saveTopicState(topicId, ts){
+    if (topicId && ts) STATE.topics[topicId] = ts;
+    saveState();
+  }
+
+  /* ===== WEEKLY ENGAGEMENT GRADE (fixed policy — students cannot change) =====
+     The grade lives on the engagement report so the printed/uploaded report IS
+     the grade record. It reads real data: videos watched (topic state) and cards
+     completed (session log + topic state). */
+  var GRADE = { required: 5, total: 7, mode: "perday", penalty: 5, cardsPerDay: 8 };
+  var REPORT_WEEK = null;   // selected week on the report (null = current)
+  var REPORT_NAME = "";     // student name typed for the printout
+
+  function gradeScore(effDays){
+    var req = GRADE.required;
+    if (GRADE.mode === "perday") return Math.max(0, Math.min(100, Math.round(effDays * (100/req))));
+    var missing = Math.max(0, req - effDays);
+    return Math.max(0, Math.min(100, Math.round(100 - GRADE.penalty*missing)));
+  }
+  function weekDateISO(week, dayIdx){
+    if (!CONTENT.courseStart) return null;
+    var startMs = Date.parse(CONTENT.courseStart);
+    if (isNaN(startMs)) return null;
+    return pacificDateStr(startMs + ((week-1)*7 + dayIdx)*DAY_MS);
+  }
+  function topicsForWeek(week){
+    return allTopics().filter(function(t){ return t.dayInCourse && Math.ceil(t.dayInCourse/4) === week; });
+  }
+  function currentCourseWeek(){
+    var d = (typeof currentDayInCourse === "function") ? currentDayInCourse() : 0;
+    return d > 0 ? Math.ceil(d/4) : 1;
+  }
+  function totalWeeks(){
+    var mx = 1;
+    allTopics().forEach(function(t){ if (t.dayInCourse) mx = Math.max(mx, Math.ceil(t.dayInCourse/4)); });
+    return mx;
+  }
+  // Build everything the report's grade card needs for a given week.
+  /* The week is Mon..Sun. New prework topics land on Mon, Tue, Thu, Fri (the four
+     "opportunities for all the cards"); Wednesday is the recall/daily-review day.
+     Mon–Fri are the 5 required days; Sat/Sun are optional makeup. A prework day is
+     complete when that day's NEW cards are done (video is the gate to them); the
+     recall day is complete when the daily review is done. Partial days earn their
+     fraction. Card totals/seen come from topic state; the recall + weekend days read
+     the session log (which needs courseStart for real dates). */
+  function weekGradeData(week){
+    var wt = topicsForWeek(week);                 // this week's prework topics (≤4)
+    var videosTotal = wt.length;
+    var videosWatched = wt.filter(function(t){ var ts=STATE.topics[t.id]; return ts && ts.videoWatched; }).length;
+
+    // map prework topics to weekday offsets: dayInCourse idx 0,1,2,3 -> Mon,Tue,Thu,Fri (offsets 0,1,3,4)
+    var IDX2OFF = {0:0, 1:1, 2:3, 3:4};
+    var byOff = {};
+    wt.forEach(function(t){ var off = IDX2OFF[(t.dayInCourse-1)%4]; (byOff[off]=byOff[off]||[]).push(t); });
+
+    var hasDates = !!CONTENT.courseStart;
+    var NAMES = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+    var days = [];
+    for (var off=0; off<7; off++){
+      var iso = hasDates ? weekDateISO(week, off) : null;
+      var sess = iso ? STATE.sessions.find(function(x){ return x.date === iso; }) : null;
+      var d = { off: off, name: NAMES[off], iso: iso, kind: "", required: (off<=4), frac: null, video: false, label: "" };
+      if (off===0||off===1||off===3||off===4){
+        // prework day — new cards of that day's topics
+        var topics = byOff[off] || [];
+        d.kind = "prework";
+        if (!topics.length){ d.required = false; d.label = "—"; d.frac = null; }
+        else {
+          var tot  = topics.reduce(function(a,t){ return a + (t.cards?t.cards.length:0); }, 0);
+          var seen = topics.reduce(function(a,t){ var ts=STATE.topics[t.id]; return a + (ts?Object.keys(ts.cards||{}).length:0); }, 0);
+          d.frac  = tot ? seen/tot : 0;
+          d.video = topics.every(function(t){ var ts=STATE.topics[t.id]; return ts && ts.videoWatched; });
+          d.label = topics.length + " new";
+        }
+      } else if (off===2){
+        d.kind = "recall"; d.label = "review";
+        d.frac = hasDates ? (sess && sess.cardsReviewed>0 ? 1 : 0) : null;  // daily review done?
+      } else {
+        d.kind = "optional"; d.required = false; d.label = "review";
+        d.frac = hasDates ? (sess && sess.cardsReviewed>0 ? 1 : 0) : 0;
+      }
+      days.push(d);
+    }
+
+    // Required graded days actually available this week (prework days with topics + Wed recall when dated).
+    var requiredDays = days.filter(function(d){ return d.required && d.frac !== null; });
+    var req = requiredDays.length || GRADE.required;     // adapt if a week has fewer
+    var eff = requiredDays.reduce(function(a,d){ return a + Math.min(1, Math.max(0,d.frac)); }, 0);
+    // weekend makeup: optional days completed can offset, up to the required cap
+    var makeup = days.filter(function(d){ return d.kind==="optional" && d.frac; }).reduce(function(a,d){ return a + Math.min(1,d.frac); }, 0);
+    var effWithMakeup = Math.min(req, eff + makeup);
+
+    function score(e){ return gradeScoreReq(e, req); }
+    var cardsTotal = wt.reduce(function(a,t){ return a + (t.cards?t.cards.length:0); }, 0);
+    var cardsSeen  = wt.reduce(function(a,t){ var ts=STATE.topics[t.id]; return a + (ts?Object.keys(ts.cards||{}).length:0); }, 0);
+    // DOK-3 goal: how many of this week's topics has the student worked up to DOK 3?
+    var dok3 = wt.filter(function(t){ var ts=STATE.topics[t.id]; return ts && (ts.adaptiveLevel||1) >= 3; }).length;
+
+    // remaining capacity (required days not yet full) for the "max reachable" marker
+    var capacity = requiredDays.reduce(function(a,d){ return a + (1 - Math.min(1,Math.max(0,d.frac))); }, 0);
+
+    return {
+      week: week, days: days, hasDates: hasDates, req: req,
+      eff: effWithMakeup, score: score(effWithMakeup), maxScore: score(Math.min(req, eff + makeup + capacity)),
+      videosWatched: videosWatched, videosTotal: videosTotal,
+      cardsSeen: cardsSeen, cardsTotal: cardsTotal, cardsPct: cardsTotal ? Math.round(cardsSeen/cardsTotal*100) : 0,
+      dok3: dok3, dok3Total: wt.length,
+      needDays: Math.max(0, Math.ceil(req - effWithMakeup - 1e-9))
+    };
+  }
+  // grade against a (possibly week-specific) required-day count
+  function gradeScoreReq(effDays, req){
+    if (GRADE.mode === "perday") return Math.max(0, Math.min(100, Math.round(effDays * (100/req))));
+    var missing = Math.max(0, req - effDays);
+    return Math.max(0, Math.min(100, Math.round(100 - GRADE.penalty*missing)));
   }
 
   function getCardState(topicId, cardId, dok){
@@ -1754,6 +1966,12 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   }
 
   /* ---------- SCHEDULER (SM2-lite) ---------- */
+
+  // Cap how far out a card can be scheduled. Uncapped SM2 pushes well-known cards
+  // to 40+ day intervals, so a topic mastered in week 2 could vanish until after
+  // the cumulative final. Capping at ~2 weeks keeps mastered material cycling back
+  // a few times across the term, which is the point of cumulative spaced recall.
+  var MAX_INTERVAL_DAYS = 14;
 
   function scheduleCard(cardState, rating, wasCorrect){
     // Correctness is now captured directly from the multiple-choice click.
@@ -1795,6 +2013,8 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       cardState.ease = cardState.ease + 0.15;
       cardState.interval = Math.round(cardState.interval * 1.2);
     }
+    // Keep mastered cards in semester-wide rotation (see MAX_INTERVAL_DAYS).
+    cardState.interval = Math.min(cardState.interval, MAX_INTERVAL_DAYS);
     cardState.nextDue = nowSim() + cardState.interval * DAY_MS;
   }
 
@@ -1821,6 +2041,14 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     const b = ts.dok[dok];
     if (!b || b.total < 3) return 0;
     return b.correct / b.total;
+  }
+
+  // Does this topic have any seen card that's due now? Used for retention status:
+  // a mastered topic with due cards is "slipping" (needs review) vs "holding".
+  function topicHasDue(topicId){
+    const ts = STATE.topics[topicId]; if (!ts) return false;
+    const t = topicById(topicId); if (!t) return false;
+    return t.cards.some(function(c){ const st = ts.cards[c.id]; return st && st.reps > 0 && st.nextDue <= nowSim(); });
   }
 
   function computeAdaptiveLevel(topicId){
@@ -1917,15 +2145,15 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     const dates = STATE.sessions.map(s => s.date).sort();
     const today = todayKey(0);
     let streak = 0;
-    let cursor = new Date(today + "T00:00:00");
+    let cursor = Date.parse(today + "T12:00:00-07:00"); // noon Pacific of today, robust to TZ
     for (let i = 0; i < 365; i++){
-      const key = cursor.toISOString().slice(0,10);
+      const key = pacificDateStr(cursor);
       if (dates.includes(key)) {
         streak += 1;
-        cursor = new Date(cursor.getTime() - DAY_MS);
+        cursor = cursor - DAY_MS;
       } else if (i === 0) {
         // No activity today yet. Look at yesterday for a streak.
-        cursor = new Date(cursor.getTime() - DAY_MS);
+        cursor = cursor - DAY_MS;
       } else {
         break;
       }
@@ -1990,7 +2218,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
      courseStart is not set (release scheduling disabled). */
   function currentDayInCourse(){
     if (!CONTENT.courseStart) return 0;
-    const start = new Date(CONTENT.courseStart + "T00:00:00");
+    const start = new Date(CONTENT.courseStart);
     const now = new Date(nowSim());
     const startMs = start.getTime();
     const nowMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
@@ -2078,7 +2306,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         '<div class="dr-nudge-text">' +
           '<p class="dr-nudge-eyebrow">Daily review</p>' +
           '<p class="dr-nudge-headline">You have ' + nudgeDue + ' card' + (nudgeDue === 1 ? '' : 's') + ' due for review today.</p>' +
-          '<p class="dr-nudge-sub">Take a few minutes before tonight’s pre-work. Cards are sharpest when you review them on the day they’re due.</p>' +
+          '<p class="dr-nudge-sub">Take a few minutes before today’s pre-work. Cards are sharpest when you review them on the day they’re due.</p>' +
         '</div>' +
         '<button type="button" class="btn btn-primary" id="btn-dr-nudge">Start daily review</button>';
       wrap.appendChild(nudge);
@@ -2118,7 +2346,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
           const dayName = COURSE_DAY_NAMES[(todayDay - 1) % 4];
           const tonight = document.createElement("div");
           tonight.className = "tonight-block";
-          tonight.innerHTML = `<h3>Tonight (Week ${wk}, ${dayName})</h3>`;
+          tonight.innerHTML = `<h3>Today (Week ${wk}, ${dayName})</h3>`;
           todaysTopics.forEach(t => {
             const status = topicStatus(t.id);
             const btnLabel = status === "completed" ? "Reopen" : status === "unlocked" ? "Continue" : "Start";
@@ -2277,19 +2505,16 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         const id = b.dataset.openTopic;
         CURRENT_TOPIC = id;
         const ts = getTopicState(id);
-        // Option A: check the cross-page gate flag set by the lecture page.
-        // If the student has passed the lecture-page gate, jump straight to cards.
-        var gatePassed = false;
-        try {
-          gatePassed = window.localStorage.getItem("bio304-gate-" + id) === "true"
-                    || window.localStorage.getItem("bio304-video-" + id) === "true";
-        } catch (e) {}
-        if (gatePassed || ts.gateCompleted) {
-          if (!ts.gateCompleted) {
-            ts.gateCompleted = true;
-            ts.videoWatched = true;
-            saveTopicState(id, ts);
-          }
+        // The video is the gate to THIS topic's cards. When the lecture page
+        // (or the in-app player) records that this topic's video was watched,
+        // its cards unlock and stay unlocked. Watching one topic's video never
+        // unlocks another topic — state is keyed per topic id. There is no other
+        // path in: a missing/stray gate flag can't open cards, and the only
+        // setter of the video flag is actually finishing the video.
+        var videoFlag = false;
+        try { videoFlag = window.localStorage.getItem("bio304-video-" + id) === "true"; } catch (e) {}
+        if (videoFlag && !ts.videoWatched) { ts.videoWatched = true; saveTopicState(id, ts); }
+        if (ts.videoWatched) {
           nav("learn", id);
         } else {
           nav("topic", id);
@@ -2329,16 +2554,25 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         '<p class="usage">This topic\'s cards unlock after you finish the lecture video and complete the short retrieval check on the lecture page. The lecture page sets a flag that this app reads automatically; once it\'s set, you land here at the cards directly.</p>' +
         '<div class="toolbar" style="margin-top:14px;">' +
           '<a class="btn btn-primary" id="btn-go-lecture" href="' + topic.lecturePageUrl + '" target="_top">Open the lecture page &rarr;</a>' +
-          '<button type="button" class="btn btn-ghost" id="btn-back-dashboard" data-nav="dashboard">Back to tonight\'s list</button>' +
+          '<button type="button" class="btn btn-ghost" id="btn-back-dashboard" data-nav="dashboard">Back to today\'s list</button>' +
+        '</div>';
+    } else if (PREVIEW_MODE) {
+      // Instructor preview only: open cards for a topic whose lecture page
+      // isn't wired up yet. Never shown to students.
+      card.innerHTML =
+        '<h3>Instructor preview</h3>' +
+        '<p class="usage">No lecture page is wired up for this topic yet. Because preview mode is on, you can open its cards to review them. Students cannot do this.</p>' +
+        '<div class="toolbar" style="margin-top:14px;">' +
+          '<button type="button" class="btn btn-primary" id="btn-skip-gate">Open cards (preview)</button>' +
+          '<button type="button" class="btn btn-ghost" id="btn-back-dashboard" data-nav="dashboard">Back to today\'s list</button>' +
         '</div>';
     } else {
-      // Fallback for topics without a lecture page yet: a simple "mark complete" button
+      // Student, no lecture page yet: stays locked. No unlock control = no back door.
       card.innerHTML =
-        '<h3>Lecture page coming soon</h3>' +
-        '<p class="usage">A dedicated lecture page is not wired up yet for this topic. You can mark it complete to preview the cards.</p>' +
+        '<h3>Not open yet</h3>' +
+        '<p class="usage">This topic\'s lecture page isn\'t available yet, so its cards are still locked. Once the lecture video and retrieval check are published, this topic opens automatically.</p>' +
         '<div class="toolbar" style="margin-top:14px;">' +
-          '<button type="button" class="btn btn-primary" id="btn-skip-gate">Mark complete and open cards</button>' +
-          '<button type="button" class="btn btn-ghost" id="btn-back-dashboard" data-nav="dashboard">Back to tonight\'s list</button>' +
+          '<button type="button" class="btn btn-ghost" id="btn-back-dashboard" data-nav="dashboard">Back to today\'s list</button>' +
         '</div>';
     }
     var view = $("#view-topic");
@@ -2348,10 +2582,11 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     var skipBtn = document.getElementById("btn-skip-gate");
     if (skipBtn) {
       skipBtn.addEventListener("click", function () {
-        ts.gateCompleted = true;
+        // Preview-only unlock: set persistent state and save. We deliberately do
+        // NOT write the bio304-gate-/bio304-video- cross-page flags, so a preview
+        // never masquerades as a real lecture-page pass for other surfaces.
         ts.videoWatched = true;
-        try { window.localStorage.setItem("bio304-gate-" + topic.id, "true"); } catch(e) {}
-        try { window.localStorage.setItem("bio304-video-" + topic.id, "true"); } catch(e) {}
+        ts.gateCompleted = true;
         saveTopicState(topic.id, ts);
         nav("learn", topic.id);
       });
@@ -2530,7 +2765,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     const topic = topicById(topicId);
     if (!topic) { nav("dashboard"); return; }
     const ts = getTopicState(topicId);
-    if (!ts.gateCompleted) { nav("topic", topicId); return; }
+    if (!ts.videoWatched) { nav("topic", topicId); return; }  // video is the gate to this topic's cards
     $("#learn-heading").textContent = topic.title;
     renderNotesLink(topic);
     renderMastery(topicId);
@@ -2759,53 +2994,77 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   function renderReview(){
     const body = $("#review-body");
     body.innerHTML = "";
-    const items = [];
+    let items = [];
     allTopics().forEach(t => {
       const ts = STATE.topics[t.id];
-      if (REVIEW_MODE === "all" && !(ts && ts.gateCompleted)) return; // skip locked topics
+      const unlocked = ts && ts.videoWatched;
+      if ((REVIEW_MODE === "all" || REVIEW_MODE === "mixed") && !unlocked) return; // skip locked topics
       t.cards.forEach(c => {
         const st = getCardState(t.id, c.id, c.dok);
         if (REVIEW_MODE === "due") {
           if (st.reps > 0 && st.nextDue <= nowSim()) items.push({ topic: t, card: c, st: st });
         } else {
-          // "all unlocked": include every card from an unlocked topic, whether seen or not.
+          // "all unlocked" and "mixed": include every card from an unlocked topic.
           items.push({ topic: t, card: c, st: st });
         }
       });
     });
 
     // Update the mode toggle UI and the helper paragraph.
-    const btnDue = $("#btn-review-due");
-    const btnAll = $("#btn-review-all");
-    if (btnDue && btnAll) {
-      btnDue.classList.toggle("btn-primary", REVIEW_MODE === "due");
-      btnDue.classList.toggle("btn-ghost", REVIEW_MODE !== "due");
-      btnDue.setAttribute("aria-pressed", REVIEW_MODE === "due" ? "true" : "false");
-      btnAll.classList.toggle("btn-primary", REVIEW_MODE === "all");
-      btnAll.classList.toggle("btn-ghost", REVIEW_MODE !== "all");
-      btnAll.setAttribute("aria-pressed", REVIEW_MODE === "all" ? "true" : "false");
-    }
+    [["btn-review-due","due"],["btn-review-all","all"],["btn-review-mixed","mixed"]].forEach(function(pair){
+      var b = $("#"+pair[0]); if (!b) return;
+      var on = REVIEW_MODE === pair[1];
+      b.classList.toggle("btn-primary", on); b.classList.toggle("btn-ghost", !on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
     const note = $("#review-mode-note");
     if (note) {
       note.textContent = REVIEW_MODE === "due"
-        ? "These cards are due based on how you rated them last time. Lower confidence resurfaces first."
+        ? "Due cards, with this week's material first and a small share of earlier units mixed in so they stay fresh."
+        : REVIEW_MODE === "mixed"
+        ? "A shuffled mix drawn from every topic you've unlocked, all weeks, in random order — the closest practice to a cumulative exam. Best in the days before a test."
         : "Drill every card from topics you've unlocked, regardless of due date. Useful before a quiz. Topics you haven't unlocked yet are not shown.";
     }
 
     if (!items.length) {
       body.innerHTML = REVIEW_MODE === "due"
-        ? '<div class="card"><p class="empty">No cards are due right now. Come back tomorrow, or start a new topic from tonight’s pre-work.</p></div>'
-        : '<div class="card"><p class="empty">No unlocked topics yet. Start tonight’s pre-work first, then come back here.</p></div>';
+        ? '<div class="card"><p class="empty">No cards are due right now. Come back tomorrow, or start a new topic from today’s pre-work.</p></div>'
+        : '<div class="card"><p class="empty">No unlocked topics yet. Start today’s pre-work first, then come back here.</p></div>';
       return;
     }
 
-    // Order: lowest ease first (struggle cards), then earliest due.
-    items.sort((a,b) => a.st.ease - b.st.ease || a.st.nextDue - b.st.nextDue);
+    // Order:
+    //  - mixed  = random across all topics (cumulative practice)
+    //  - due    = current week first, with ~10% earlier-unit cards mixed in so
+    //             prior material stays fresh without crowding out this week's work
+    //  - all    = struggle-first, then earliest due
+    if (REVIEW_MODE === "mixed") {
+      items = shuffleArray(items);
+    } else if (REVIEW_MODE === "due") {
+      const curWk = currentCourseWeek();
+      const wkOf = function(t){ return t.dayInCourse ? Math.ceil(t.dayInCourse/4) : 0; };
+      const byDue = function(a,b){ return a.st.ease - b.st.ease || a.st.nextDue - b.st.nextDue; };
+      const cur  = items.filter(function(x){ return wkOf(x.topic) >= curWk; }).sort(byDue);
+      const prev = items.filter(function(x){ return wkOf(x.topic) <  curWk; }).sort(byDue);
+      const blended = [];
+      let ci = 0, pi = 0;
+      // 9 current : 1 previous → ≈90/10 while both last; falls back to whatever remains
+      while (ci < cur.length || pi < prev.length) {
+        for (let k = 0; k < 9 && ci < cur.length; k++) blended.push(cur[ci++]);
+        if (pi < prev.length) blended.push(prev[pi++]);
+        if (ci >= cur.length && pi >= prev.length) break;
+      }
+      items = blended;
+    } else {
+      items.sort((a,b) => a.st.ease - b.st.ease || a.st.nextDue - b.st.nextDue);
+    }
     const wrap = document.createElement("div");
     wrap.className = "card";
     const total = items.length;
     const heading = REVIEW_MODE === "due"
       ? total + " card" + (total === 1 ? "" : "s") + " due across topics"
+      : REVIEW_MODE === "mixed"
+      ? total + " card" + (total === 1 ? "" : "s") + " in your cumulative mix (all weeks)"
       : total + " card" + (total === 1 ? "" : "s") + " in your unlocked deck";
     wrap.innerHTML = "<h3>" + heading + "</h3>";
     const list = document.createElement("div");
@@ -2835,7 +3094,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       b.addEventListener("click", () => {
         const tid = b.dataset.reviewOpen;
         const ts = getTopicState(tid);
-        if (!ts.gateCompleted) nav("topic", tid);
+        if (!ts.videoWatched) nav("topic", tid);
         else nav("learn", tid);
       });
     });
@@ -2852,31 +3111,96 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     const body = $("#report-body");
     body.innerHTML = "";
 
+    // ---- Weekly engagement grade (top of the report) ----
+    const wk = REPORT_WEEK || currentCourseWeek();
+    const g = weekGradeData(wk);
+
+    let tickerCls = "", tickerMsg = "";
+    if (g.eff >= g.req - 1e-9) { tickerCls = "ok"; tickerMsg = "You've reached 100% for the week. Anything more is optional buffer."; }
+    else if (!g.hasDates) { tickerCls = ""; tickerMsg = "You're at " + g.cardsPct + "% of this week's new cards. Finishing them brings you to 100%. (Daily Mon–Sun tracking turns on once courseStart is set.)"; }
+    else if (g.needDays <= 0 || g.score >= g.maxScore) { tickerCls = ""; tickerMsg = "You're at " + g.score + "%. Finish the rest of this week's required cards to reach 100%."; }
+    else if (g.maxScore >= 100) { tickerCls = ""; tickerMsg = "You're at " + g.score + "%. Finish about " + g.needDays + " more day" + (g.needDays===1?"":"s") + " of cards this week to reach 100%."; }
+    else { tickerCls = "warn"; tickerMsg = "You're at " + g.score + "%. Even finishing every remaining day, the most you can reach this week is " + g.maxScore + "%."; }
+
+    let dayGrid = "";
+    if (g.hasDates) {
+      dayGrid = '<div class="grade-days">' + g.days.map(function(d){
+        if (d.frac === null && d.kind==="prework") return '<div class="grade-day none" style="opacity:.45"><span class="gd-n">'+d.name+'</span><span class="gd-m">·</span><span class="gd-p">—</span></div>';
+        const f = Math.min(1, Math.max(0, d.frac||0));
+        const st = f>=1 ? "full" : (f>0 ? "partial" : "none");
+        const mark = f>=1 ? "✓" : (f>0 ? "◑" : (d.required ? "✗" : "·"));
+        const vid = (d.kind==="prework" && d.video) ? '<span class="gd-vid" title="video watched">▶</span>' : '';
+        const opt = d.required ? '' : '<span class="gd-opt">opt</span>';
+        return '<div class="grade-day '+st+'"><span class="gd-n">'+d.name+'</span><span class="gd-m">'+mark+'</span><span class="gd-p">'+d.label+'</span>'+vid+opt+'</div>';
+      }).join("") + '</div>';
+    }
+
+    const ppd = (GRADE.mode === "penalty");
+    const policyText = ppd
+      ? "Watch the video and finish the <strong>new cards</strong> on each of the four prework days (Mon, Tue, Thu, Fri), plus the <strong>daily review</strong> on Wednesday \u2014 five required days. Each required day not fully done costs <strong>"+GRADE.penalty+"%</strong>; a partly-done day costs a proportional slice. Sat/Sun are optional makeup. Lowest possible weekly grade: <strong>"+gradeScoreReq(0, g.req)+"%</strong>."
+      : "Each of the five required days (four prework + Wednesday review) is worth <strong>"+Math.round(100/g.req)+"%</strong>; a half-done day earns half. Sat/Sun are optional makeup.";
+
+    const gradeCard = document.createElement("div");
+    gradeCard.className = "card grade-card";
+    gradeCard.innerHTML =
+      '<h3>Week '+wk+' engagement grade</h3>' +
+      '<div class="grade-headline"><span class="grade-num'+(g.score<80?' low':'')+'">'+g.score+'%</span>'+
+        '<span class="grade-sub">videos watched: <strong>'+g.videosWatched+'/'+g.videosTotal+'</strong> &nbsp;·&nbsp; new cards completed: <strong>'+g.cardsPct+'%</strong> ('+g.cardsSeen+'/'+g.cardsTotal+')</span></div>' +
+      '<p class="grade-goal">🎯 <strong>Goal: reach DOK 3</strong> on every topic &mdash; you\u2019re at DOK 3 on <strong>'+g.dok3+'/'+g.dok3Total+'</strong> of this week\u2019s topics. (DOK 3 is the deepest "analyze &amp; apply" level; see Mastery by topic below.)</p>' +
+      '<div class="grade-bar"><div class="grade-bar-fill'+(g.score<80?' low':'')+'" style="width:'+g.score+'%"></div>' +
+        (g.hasDates && g.maxScore>g.score ? '<div class="grade-bar-max" style="left:'+g.maxScore+'%" data-l="max '+g.maxScore+'%"></div>' : '') + '</div>' +
+      dayGrid +
+      '<div class="grade-ticker '+tickerCls+'">'+tickerMsg+'</div>' +
+      '<p class="grade-policy">🔒 '+policyText+'</p>' +
+      (g.hasDates ? '' : '<p class="grade-note no-print">Daily (Mon\u2013Sun) tracking turns on once <code>courseStart</code> is set in course-content.js. Until then, the grade reflects this week\u2019s video + new-card completion.</p>');
+    body.appendChild(gradeCard);
+
+    // print header mirrors (name comes from locked state)
+    REPORT_NAME = STATE.studentName || "";
+    var rphN = $("#rph-name"), rphW = $("#rph-week");
+    if (rphN) rphN.textContent = REPORT_NAME ? REPORT_NAME : "__________________";
+    if (rphW) rphW.textContent = wk;
+
+    // Week-scoped figures for the rest of the report
+    const weekTopics = topicsForWeek(wk);
+    const weekISO = g.hasDates ? [0,1,2,3,4,5,6].map(function(o){ return weekDateISO(wk,o); }) : null;
+    const weekSessions = g.hasDates
+      ? STATE.sessions.filter(function(s){ return weekISO.indexOf(s.date) !== -1; })
+      : STATE.sessions.slice();
+    const weekCardReviews = weekSessions.reduce(function(a,s){ return a + (s.cardsReviewed||0); }, 0);
+    const daysActive = weekSessions.filter(function(s){ return (s.cardsReviewed>0) || (s.topicsCompleted && s.topicsCompleted.length); }).length;
+
     const stats = document.createElement("div");
     stats.className = "stats-row";
     stats.innerHTML = `
-      <div class="stat"><p class="stat-label">Streak</p><p class="stat-value">${computeStreak()}</p><p class="stat-sub">days</p></div>
-      <div class="stat"><p class="stat-label">Sessions logged</p><p class="stat-value">${STATE.sessions.length}</p><p class="stat-sub">total</p></div>
-      <div class="stat"><p class="stat-label">Card reviews</p><p class="stat-value">${totalCardsReviewed()}</p><p class="stat-sub">all time</p></div>
-      <div class="stat"><p class="stat-label">Cards due now</p><p class="stat-value">${countDueGlobally()}</p><p class="stat-sub">across topics</p></div>
+      <div class="stat"><p class="stat-label">Days active</p><p class="stat-value">${daysActive}</p><p class="stat-sub">this week</p></div>
+      <div class="stat"><p class="stat-label">Card reviews</p><p class="stat-value">${weekCardReviews}</p><p class="stat-sub">this week</p></div>
+      <div class="stat"><p class="stat-label">Mastered (DOK 3)</p><p class="stat-value">${g.dok3}/${g.dok3Total}</p><p class="stat-sub">this week's topics</p></div>
+      <div class="stat"><p class="stat-label">Streak</p><p class="stat-value">${computeStreak()}</p><p class="stat-sub">days in a row</p></div>
     `;
     body.appendChild(stats);
 
-    // Per-topic mastery
+    // Per-topic mastery — every topic in THIS WEEK, with DOK-3 status
     const masteryCard = document.createElement("div");
     masteryCard.className = "card";
-    masteryCard.innerHTML = "<h3>Mastery by topic</h3>";
-    allTopics().forEach(t => {
+    masteryCard.innerHTML = '<h3>Week '+wk+' mastery by topic</h3><p class="usage">Reaching <strong>DOK 3</strong> is the bar for mastering a topic. Seeing the cards once is not the same as mastering them &mdash; keep reviewing as the cards come due so mastery holds for the cumulative exam.</p>';
+    if (!weekTopics.length) masteryCard.innerHTML += '<p class="empty">No topics scheduled for this week.</p>';
+    weekTopics.forEach(t => {
       const ts = STATE.topics[t.id];
-      if (!ts) return;
+      const level = ts ? (ts.adaptiveLevel||1) : 1;
+      const mastered = ts && level >= 3;
+      const started = !!ts;
       const tWrap = document.createElement("div");
       tWrap.style.cssText = "margin:10px 0;padding:8px 0;border-bottom:1px solid var(--gray-line);";
-      const tt = document.createElement("h4");
-      tt.textContent = t.title;
-      tWrap.appendChild(tt);
+      const status = mastered
+        ? (topicHasDue(t.id)
+            ? '<span style="color:var(--gold-deep);font-weight:700;">DOK 3 \u2713 \u2014 review due</span>'
+            : '<span style="color:#2e7d52;font-weight:700;">DOK 3 \u2713 holding</span>')
+        : started ? '<span style="color:var(--gold-deep);font-weight:700;">working at DOK '+level+'</span>'
+                  : '<span style="color:var(--gray-soft);font-weight:700;">not started</span>';
+      tWrap.innerHTML = '<h4 style="display:flex;justify-content:space-between;gap:10px;align-items:baseline;"><span>'+escapeHtml(t.title)+'</span><span style="font-size:12px;">'+status+'</span></h4>';
       [1,2,3].forEach(lv => {
-        const m = masteryFor(t.id, lv);
-        const pct = Math.round(m * 100);
+        const pct = ts ? Math.round(masteryFor(t.id, lv) * 100) : 0;
         const row = document.createElement("div");
         row.className = "mastery-row";
         row.innerHTML = `<span>DOK ${lv}</span><div class="mastery-bar"><div class="mastery-fill l${lv}" style="width:${pct}%"></div></div><span>${pct}%</span>`;
@@ -2886,36 +3210,33 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     });
     body.appendChild(masteryCard);
 
-    // Sessions list
+    // Session log — this week's days
     const sessionsCard = document.createElement("div");
     sessionsCard.className = "card";
-    sessionsCard.innerHTML = "<h3>Session log</h3>";
-    if (!STATE.sessions.length) {
-      sessionsCard.innerHTML += '<p class="empty">No sessions yet. Complete tonight’s pre-work to start the log.</p>';
+    sessionsCard.innerHTML = "<h3>Week "+wk+" session log</h3>";
+    if (!weekSessions.length) {
+      sessionsCard.innerHTML += '<p class="empty">No sessions logged for this week yet.</p>';
     } else {
       const headerRow = document.createElement("div");
       headerRow.className = "session-row";
       headerRow.innerHTML = '<div class="date">Date</div><div class="topics">Topics covered</div><div>Cards</div><div>Gates</div>';
       sessionsCard.appendChild(headerRow);
-      STATE.sessions.slice().reverse().forEach(s => {
+      weekSessions.slice().reverse().forEach(s => {
         const row = document.createElement("div");
         row.className = "session-row";
-        const titles = s.topicsCompleted.map(id => {
-          const t = topicById(id);
-          return t ? t.title : id;
-        }).join(", ") || "(in progress)";
+        const titles = s.topicsCompleted.map(id => { const t = topicById(id); return t ? t.title : id; }).join(", ") || "(review only)";
         row.innerHTML = `<div class="date">${s.date}</div><div class="topics">${escapeHtml(titles)}</div><div>${s.cardsReviewed}</div><div>${(s.gates || []).length}</div>`;
         sessionsCard.appendChild(row);
       });
     }
     body.appendChild(sessionsCard);
 
-    // Gate explanations (so professor can see understanding)
+    // Gate explanations — this week's topics
     const gateCard = document.createElement("div");
     gateCard.className = "card";
-    gateCard.innerHTML = "<h3>Your gate explanations</h3><p class=\"usage\">What you wrote in your own words to unlock each topic.</p>";
+    gateCard.innerHTML = "<h3>Your explanations</h3><p class=\"usage\">What you wrote in your own words for this week's topics.</p>";
     let any = false;
-    allTopics().forEach(t => {
+    weekTopics.forEach(t => {
       const ts = STATE.topics[t.id];
       if (ts && ts.gateCompleted && ts.gateExplanation) {
         any = true;
@@ -2925,8 +3246,33 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         gateCard.appendChild(block);
       }
     });
-    if (!any) gateCard.innerHTML += '<p class="empty">No gate explanations submitted yet.</p>';
+    if (!any) gateCard.innerHTML += '<p class="empty">No written explanations for this week yet.</p>';
     body.appendChild(gateCard);
+
+    // ---- Cumulative readiness (all weeks) — supports the cumulative exam ----
+    const allT = allTopics();
+    let masteredAll = 0, holding = 0, dueBack = 0, started = 0;
+    allT.forEach(function(t){
+      const ts = STATE.topics[t.id];
+      if (!ts) return;
+      started++;
+      if ((ts.adaptiveLevel||1) >= 3){ masteredAll++; if (topicHasDue(t.id)) dueBack++; else holding++; }
+    });
+    const cumCard = document.createElement("div");
+    cumCard.className = "card";
+    cumCard.innerHTML =
+      '<h3>Cumulative readiness <span style="font-weight:600;font-size:13px;color:var(--gray-soft);">(all weeks)</span></h3>' +
+      '<p class="usage">Mastery has to be <em>kept</em>, not banked once. This is your whole-course picture for the cumulative final.</p>' +
+      '<div class="stats-row" style="margin-top:8px;">' +
+        '<div class="stat"><p class="stat-label">Mastered</p><p class="stat-value">'+masteredAll+'</p><p class="stat-sub">topics at DOK 3</p></div>' +
+        '<div class="stat"><p class="stat-label">Holding</p><p class="stat-value" style="color:#2e7d52;">'+holding+'</p><p class="stat-sub">still strong</p></div>' +
+        '<div class="stat"><p class="stat-label">Slipping</p><p class="stat-value" style="color:var(--gold-deep);">'+dueBack+'</p><p class="stat-sub">due for review</p></div>' +
+        '<div class="stat"><p class="stat-label">Topics started</p><p class="stat-value">'+started+'</p><p class="stat-sub">of '+allT.length+'</p></div>' +
+      '</div>' +
+      (dueBack>0
+        ? '<p class="usage" style="margin-top:8px;">You have <strong>'+dueBack+'</strong> mastered topic'+(dueBack===1?'':'s')+' drifting out of memory. Run a <strong>Cumulative mix</strong> in Daily review to pull them back.</p>'
+        : (masteredAll>0 ? '<p class="usage" style="margin-top:8px;">Everything you\u2019ve mastered is currently holding. Keep up the daily review to stay exam-ready.</p>' : '')) ;
+    body.appendChild(cumCard);
   }
 
   /* ---------- SETTINGS ---------- */
@@ -3045,11 +3391,47 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     // Review mode toggle
     const btnReviewDue = $("#btn-review-due");
     const btnReviewAll = $("#btn-review-all");
+    const btnReviewMixed = $("#btn-review-mixed");
     if (btnReviewDue) btnReviewDue.addEventListener("click", () => setReviewMode("due"));
     if (btnReviewAll) btnReviewAll.addEventListener("click", () => setReviewMode("all"));
+    if (btnReviewMixed) btnReviewMixed.addEventListener("click", () => setReviewMode("mixed"));
 
     // Report
-    $("#btn-print").addEventListener("click", () => { nav("report"); setTimeout(() => window.print(), 200); });
+    $("#btn-print").addEventListener("click", () => {
+      var rd = $("#rph-date"); if (rd) rd.textContent = new Date().toLocaleDateString();
+      nav("report"); setTimeout(() => window.print(), 200);
+    });
+
+    // Report: week selector + name (name is for the printout only; not stored on server)
+    var rw = $("#report-week");
+    if (rw) {
+      var tw = totalWeeks();
+      for (var w=1; w<=tw; w++){ var o=document.createElement("option"); o.value=w; o.textContent="Week "+w; rw.appendChild(o); }
+      rw.value = currentCourseWeek();
+      rw.addEventListener("change", function(){ REPORT_WEEK = parseInt(rw.value,10); renderReport(); });
+    }
+    // Report: name is set once and then locks onto the report (deterrent against
+    // printing under another person's name). Canvas submission identity is the real
+    // backstop; this just keeps the printed report honest.
+    function refreshNameUI(){
+      var setWrap = $("#name-set-wrap"), lockWrap = $("#name-locked-wrap"), help = $("#name-help");
+      var locked = !!(STATE.studentName && STATE.studentName.trim());
+      if (setWrap) setWrap.style.display = locked ? "none" : "";
+      if (lockWrap) lockWrap.style.display = locked ? "" : "none";
+      if (locked && $("#name-locked-val")) $("#name-locked-val").textContent = STATE.studentName;
+      if (help) help.innerHTML = locked
+        ? "Locked to your report. To change it you must reset all progress (Settings), which clears your data. Your instructor also sees who submitted on Canvas."
+        : "Type your name once. It locks to your printed report and can't be edited afterward without resetting your progress.";
+      REPORT_NAME = STATE.studentName || "";
+      var n = $("#rph-name"); if (n) n.textContent = REPORT_NAME || "__________________";
+    }
+    var saveNameBtn = $("#btn-save-name");
+    if (saveNameBtn) saveNameBtn.addEventListener("click", function(){
+      var v = ($("#report-name").value || "").trim();
+      if (v.length < 2) { announce("Enter your name first."); return; }
+      STATE.studentName = v; saveState(); refreshNameUI(); renderReport();
+    });
+    refreshNameUI();
     $("#btn-export").addEventListener("click", exportProgress);
     $("#btn-import").addEventListener("click", importProgress);
 
@@ -3318,8 +3700,8 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     {
       target: "#stat-topics-tonight",
       title: "Print your workbook first",
-      body: "Each topic on tonight's list pairs with a printed lab workbook. Print or open {days} now so you can write while you watch. The Lab workbook button is also inside each topic view.",
-      fallbackBody: "Each topic on tonight's list pairs with a printed lab workbook. Print or open tonight's workbook(s) now so you can write while you watch. The Lab workbook button is also inside each topic view."
+      body: "Each topic on today's list pairs with a printed lab workbook. Print or open {days} now so you can write while you watch. The Lab workbook button is also inside each topic view.",
+      fallbackBody: "Each topic on today's list pairs with a printed lab workbook. Print or open tonight's workbook(s) now so you can write while you watch. The Lab workbook button is also inside each topic view."
     },
     {
       target: "#topic-list",
