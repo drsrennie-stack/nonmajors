@@ -1,628 +1,317 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BIO 304 - Lab Workbook Upload Schedule</title>
-<style>
+<title>BIO 304 - Upload Schedule</title><style>
 @import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
-:root{
-  --navy:#0B1530; --navy-soft:#1c2b50; --terra:#8B3A2E; --terra-soft:#A0452F;
-  --gold:#C9A14A; --gold-deep:#9c7a2f; --cream:#F5F1E8; --paper:#FBF9F4;
-  --ink:#0B1530; --muted:#5b6275; --line:#e4ddcd;
-}
+:root{--navy:#0B1530;--navy-soft:#1c2b50;--terra:#8B3A2E;--terra-soft:#A0452F;
+ --gold:#C9A14A;--gold-deep:#9c7a2f;--cream:#F5F1E8;--paper:#FBF9F4;--ink:#0B1530;
+ --muted:#5b6275;--line:#e4ddcd}
 *{box-sizing:border-box}
 body{margin:0;background:var(--cream);color:var(--ink);
-  font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif;
-  -webkit-font-smoothing:antialiased;line-height:1.5;padding:28px 16px}
+ font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif;
+ -webkit-font-smoothing:antialiased;line-height:1.5;padding:28px 16px}
 .wrap{max-width:880px;margin:0 auto}
 .sheet{background:var(--paper);border:1px solid var(--line);border-radius:18px;
-  box-shadow:0 24px 60px -36px rgba(11,21,48,.5);overflow:hidden}
+ box-shadow:0 24px 60px -36px rgba(11,21,48,.5);overflow:hidden}
 .masthead{background:var(--navy);color:#fff;padding:30px 34px 26px;position:relative}
 .masthead::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;
-  background:linear-gradient(90deg,var(--terra) 0 33%,var(--gold) 33% 66%,var(--cream) 66% 100%)}
-.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--gold);margin:0 0 8px}
+ background:linear-gradient(90deg,var(--terra) 0 33%,var(--gold) 33% 66%,var(--cream) 66% 100%)}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
 .masthead h1{font-size:30px;font-weight:800;letter-spacing:-.01em;margin:0 0 6px;line-height:1.1}
 .masthead .sub{margin:0;color:#c5cbdb;font-size:14.5px;font-weight:500}
-.howto{display:flex;gap:14px;flex-wrap:wrap;padding:18px 34px;background:var(--cream);
-  border-bottom:1px solid var(--line)}
+.howto{display:flex;gap:14px;flex-wrap:wrap;padding:18px 34px;background:var(--cream);border-bottom:1px solid var(--line)}
 .howto .rule{flex:1 1 230px;display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted)}
 .howto .rule b{color:var(--navy);font-weight:700}
 .howto .n{flex:none;width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;
-  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+ font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
 .week{padding:6px 0}
-.week-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
-  padding:16px 34px 8px}
+.week-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:16px 34px 8px}
 .week-no{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--terra)}
 .week-range{font-size:13px;font-weight:600;color:var(--muted)}
 .days{list-style:none;margin:0;padding:0 18px 8px}
 .day{display:grid;grid-template-columns:150px 1fr 150px;gap:14px;align-items:center;
-  padding:13px 16px;border-radius:12px;border:1px solid transparent}
-.day + .day{margin-top:2px}
+ padding:13px 16px;border-radius:12px;border:1px solid transparent}
+.day+.day{margin-top:2px}
 .day:nth-child(odd){background:rgba(11,21,48,.025)}
 .day-dbl{border-color:rgba(201,161,74,.5);background:rgba(201,161,74,.08)}
-.day-num{display:block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--navy)}
+.day-num{display:block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy)}
 .day-date{display:block;font-size:13.5px;color:var(--muted);font-weight:600;margin-top:2px}
 .day-label{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--terra-soft);margin-bottom:5px;display:flex;align-items:center;gap:8px}
+ color:var(--terra-soft);margin-bottom:5px;display:flex;align-items:center;gap:8px}
 .dbl{font-size:9.5px;font-weight:800;letter-spacing:.06em;color:var(--gold-deep);
-  background:rgba(201,161,74,.18);border:1px solid rgba(201,161,74,.45);
-  padding:1px 7px;border-radius:999px;text-transform:uppercase}
-.wb{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--navy);
-  font-weight:600;font-size:15px;padding:2px 0;transition:color .15s}
-.wb + .wb{margin-top:3px}
+ background:rgba(201,161,74,.18);border:1px solid rgba(201,161,74,.45);padding:1px 7px;border-radius:999px;text-transform:uppercase}
+.wb{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--navy);font-weight:600;font-size:15px;padding:2px 0;transition:color .15s}
+.wb+.wb{margin-top:3px}
 .wb:hover{color:var(--terra)}
 .wb-dot{flex:none;width:7px;height:7px;border-radius:2px;background:var(--terra);transform:rotate(45deg)}
 .day-due{justify-self:end;text-align:right;min-width:128px}
 .due-tag{display:block;font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .due-date{display:block;font-size:14px;font-weight:800;color:var(--navy);margin-top:1px}
-.due-time{display:inline-block;margin-top:3px;font-size:11px;font-weight:700;color:var(--navy);
-  background:var(--gold);padding:2px 9px;border-radius:999px}
-footer{padding:18px 34px 26px;background:var(--navy);color:#aab2c8;font-size:12.5px;
-  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.due-time{display:inline-block;margin-top:3px;font-size:11px;font-weight:700;color:var(--navy);background:var(--gold);padding:2px 9px;border-radius:999px}
+/* weekly band (engagement report) */
+.weekly{display:grid;grid-template-columns:150px 1fr 150px;gap:14px;align-items:center;
+ margin:6px 16px 2px;padding:13px 16px;border-radius:12px;background:var(--navy);color:#fff}
+.weekly .day-num{color:var(--gold)}
+.weekly .day-date{color:#aeb6cc}
+.weekly .day-label{color:var(--gold)}
+.weekly .wb{color:#fff}
+.weekly .wb-dot{background:var(--gold)}
+.weekly .due-tag{color:#aeb6cc}
+.weekly .due-date{color:#fff}
+/* discussion + quiz cards */
+.topic{margin:4px 34px 2px;padding:14px 18px;background:rgba(139,58,46,.06);
+ border:1px solid rgba(139,58,46,.18);border-radius:12px}
+.topic .t-eyebrow{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-soft);margin:0 0 4px}
+.topic .t-title{font-size:19px;font-weight:800;color:var(--navy);margin:0;line-height:1.2}
+.topic .t-covers{font-size:13px;color:var(--muted);margin:7px 0 0}
+.topic .t-covers b{color:var(--navy);font-weight:700}
+.milestones{list-style:none;margin:0;padding:4px 34px 10px}
+.ms{display:grid;grid-template-columns:1fr 168px;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.ms:last-child{border-bottom:none}
+.ms-what{font-size:15px;font-weight:700;color:var(--navy)}
+.ms-sub{display:block;font-size:12.5px;font-weight:500;color:var(--muted);margin-top:2px}
+.ms-due{justify-self:end;text-align:right}
+.spec{margin:0 34px 14px;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.01em}
+.spec b{color:var(--navy)}
+footer{padding:18px 34px 26px;background:var(--navy);color:#aab2c8;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 footer em{color:#fff;font-style:normal;font-weight:700;letter-spacing:.02em}
-.printbtn{position:fixed;right:18px;bottom:18px;background:var(--terra);color:#fff;border:none;
-  font:inherit;font-weight:700;font-size:13px;padding:11px 18px;border-radius:999px;cursor:pointer;
-  box-shadow:0 12px 28px -12px rgba(139,58,46,.8)}
+.printbtn{position:fixed;right:18px;bottom:18px;background:var(--terra);color:#fff;border:none;font:inherit;
+ font-weight:700;font-size:13px;padding:11px 18px;border-radius:999px;cursor:pointer;box-shadow:0 12px 28px -12px rgba(139,58,46,.8)}
 .printbtn:hover{background:var(--terra-soft)}
 @media(max-width:620px){
-  body{padding:14px 8px}
-  .masthead,.howto,.week-head,footer{padding-left:18px;padding-right:18px}
-  .day{grid-template-columns:1fr;gap:8px;padding:13px 14px;
-    border-bottom:1px solid var(--line);border-radius:10px}
-  .day-due{justify-self:start;text-align:left}
-  .due-date{display:inline;margin-right:8px}
+ body{padding:14px 8px}
+ .masthead,.howto,.week-head,footer,.topic,.milestones,.spec{padding-left:18px;padding-right:18px}
+ .topic,.weekly{margin-left:14px;margin-right:14px}
+ .day,.weekly{grid-template-columns:1fr;gap:8px;padding:13px 14px;border-bottom:1px solid var(--line);border-radius:10px}
+ .day-due,.ms-due{justify-self:start;text-align:left}
+ .ms{grid-template-columns:1fr}
+ .due-date{display:inline;margin-right:8px}
 }
 @media print{
-  body{background:#fff;padding:0}
-  .sheet{box-shadow:none;border:none;border-radius:0}
-  .printbtn{display:none}
-  .week{break-inside:avoid}
-  .day:nth-child(odd){background:#f3f1ea}
+ body{background:#fff;padding:0}.sheet{box-shadow:none;border:none;border-radius:0}
+ .printbtn{display:none}.week{break-inside:avoid}.day:nth-child(odd){background:#f3f1ea}
 }
-</style>
-</head>
-<body>
-<div class="wrap">
-  <div class="sheet">
-    <div class="masthead">
-      <p class="eyebrow">BIO 304 &middot; Lab Workbooks</p>
-      <h1>Workbook Upload Schedule</h1>
-      <p class="sub">8 weeks &middot; June 8 &ndash; August 2, 2026 &middot; 42 workbooks across 32 days</p>
-    </div>
-    <div class="howto">
-      <div class="rule"><span class="n">1</span><span><b>Print &amp; label by hand.</b> Open each day&rsquo;s page and complete it on paper &mdash; given, not Googled.</span></div>
-      <div class="rule"><span class="n">2</span><span><b>Upload to Canvas</b> by <b>11:59 PM the day after</b> each workbook day.</span></div>
-      <div class="rule"><span class="n">3</span><span><b>Gold tag = two uploads.</b> Those days have two workbooks due together.</span></div>
-    </div>
+</style></head>
+<body><div class="wrap"><div class="sheet">
+  <div class="masthead"><p class="eyebrow">BIO 304 &middot; What to Upload</p><h1>Upload Schedule</h1><p class="sub">8 weeks &middot; June 8 &ndash; August 2, 2026 &middot; 42 workbooks + weekly engagement report</p></div>
+  <div class="howto"><div class="rule"><span class="n">1</span><span><b>Print &amp; label by hand.</b> Open each day&rsquo;s page and complete it on paper &mdash; given, not Googled.</span></div><div class="rule"><span class="n">2</span><span><b>Workbooks:</b> upload to Canvas by <b>11:59 PM the day after</b> each workbook day. A gold tag means two are due that day.</span></div><div class="rule"><span class="n">3</span><span><b>Engagement Report:</b> upload once a week, every <b>Sunday by 11:59 PM</b>.</span></div></div>
     <section class="week" id="week-1">
-      <header class="week-head">
-        <span class="week-no">Week 1</span>
-        <span class="week-range">Jun 8 &ndash; Jun 14</span>
-      </header>
+      <header class="week-head"><span class="week-no">Week 1</span><span class="week-range">Jun 8 &ndash; Jun 14</span></header>
       <ol class="days">
         <li class="day day-dbl">
-          <div class="day-when">
-            <span class="day-num">Day 1</span>
-            <span class="day-date">Monday, June 8</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day01_anatomical-terminology-and-body-regions.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Anatomical Terminology and Body Regions</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day01_levels-of-organization.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Levels of Organization</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Tue, Jun 9</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 1</span><span class="day-date">Monday, June 8</span></div>
+          <div class="day-work"><div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day01_anatomical-terminology-and-body-regions.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Anatomical Terminology and Body Regions</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day01_levels-of-organization.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Levels of Organization</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Tue, Jun 9</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 2</span>
-            <span class="day-date">Tuesday, June 9</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day02_homeostasis-and-feedback-loops.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Homeostasis and Feedback Loops</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Wed, Jun 10</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 2</span><span class="day-date">Tuesday, June 9</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day02_homeostasis-and-feedback-loops.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Homeostasis and Feedback Loops</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Wed, Jun 10</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 3</span>
-            <span class="day-date">Thursday, June 11</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day03_cell-structure-and-organelles.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Cell Structure and Organelles</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Fri, Jun 12</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 3</span><span class="day-date">Thursday, June 11</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day03_cell-structure-and-organelles.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Cell Structure and Organelles</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Fri, Jun 12</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 4</span>
-            <span class="day-date">Friday, June 12</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day04_membrane-transport.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Membrane Transport</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Sat, Jun 13</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 4</span><span class="day-date">Friday, June 12</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day04_membrane-transport.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Membrane Transport</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sat, Jun 13</span><span class="due-time">11:59 PM</span></div>
         </li>
       </ol>
+      <div class="weekly">
+        <div class="day-when"><span class="day-num">Weekly</span><span class="day-date">End of Week 1</span></div>
+        <div class="day-work"><div class="day-label">Also upload</div><span class="wb"><span class="wb-dot"></span>Engagement Report</span></div>
+        <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sun, Jun 14</span><span class="due-time">11:59 PM</span></div>
+      </div>
     </section>
     <section class="week" id="week-2">
-      <header class="week-head">
-        <span class="week-no">Week 2</span>
-        <span class="week-range">Jun 15 &ndash; Jun 21</span>
-      </header>
+      <header class="week-head"><span class="week-no">Week 2</span><span class="week-range">Jun 15 &ndash; Jun 21</span></header>
       <ol class="days">
         <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 5</span>
-            <span class="day-date">Monday, June 15</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day05_epithelial-tissue-classification.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Epithelial Tissue Classification</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Tue, Jun 16</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 5</span><span class="day-date">Monday, June 15</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day05_epithelial-tissue-classification.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Epithelial Tissue Classification</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Tue, Jun 16</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 6</span>
-            <span class="day-date">Tuesday, June 16</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day06_connective-tissues.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Connective Tissues</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Wed, Jun 17</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 6</span><span class="day-date">Tuesday, June 16</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day06_connective-tissues.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Connective Tissues</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Wed, Jun 17</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day day-dbl">
-          <div class="day-when">
-            <span class="day-num">Day 7</span>
-            <span class="day-date">Thursday, June 18</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day07_muscle-and-nervous-tissue-overview.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Muscle and Nervous Tissue Overview</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day07_skin-structure-and-layers.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Skin Structure and Layers</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Fri, Jun 19</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 7</span><span class="day-date">Thursday, June 18</span></div>
+          <div class="day-work"><div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day07_muscle-and-nervous-tissue-overview.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Muscle and Nervous Tissue Overview</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day07_skin-structure-and-layers.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Skin Structure and Layers</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Fri, Jun 19</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 8</span>
-            <span class="day-date">Friday, June 19</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day08_skin-functions-and-accessory-structures.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Skin Functions and Accessory Structures</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Sat, Jun 20</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 8</span><span class="day-date">Friday, June 19</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day08_skin-functions-and-accessory-structures.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Skin Functions and Accessory Structures</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sat, Jun 20</span><span class="due-time">11:59 PM</span></div>
         </li>
       </ol>
+      <div class="weekly">
+        <div class="day-when"><span class="day-num">Weekly</span><span class="day-date">End of Week 2</span></div>
+        <div class="day-work"><div class="day-label">Also upload</div><span class="wb"><span class="wb-dot"></span>Engagement Report</span></div>
+        <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sun, Jun 21</span><span class="due-time">11:59 PM</span></div>
+      </div>
     </section>
     <section class="week" id="week-3">
-      <header class="week-head">
-        <span class="week-no">Week 3</span>
-        <span class="week-range">Jun 22 &ndash; Jun 28</span>
-      </header>
+      <header class="week-head"><span class="week-no">Week 3</span><span class="week-range">Jun 22 &ndash; Jun 28</span></header>
       <ol class="days">
         <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 9</span>
-            <span class="day-date">Monday, June 22</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day09_bone-tissue-and-bone-growth.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Bone Tissue and Bone Growth</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Tue, Jun 23</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 9</span><span class="day-date">Monday, June 22</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day09_bone-tissue-and-bone-growth.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Bone Tissue and Bone Growth</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Tue, Jun 23</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 10</span>
-            <span class="day-date">Tuesday, June 23</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day10_axial-skeleton.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Axial Skeleton</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Wed, Jun 24</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 10</span><span class="day-date">Tuesday, June 23</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day10_axial-skeleton.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Axial Skeleton</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Wed, Jun 24</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 11</span>
-            <span class="day-date">Thursday, June 25</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day11_appendicular-skeleton.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Appendicular Skeleton</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Fri, Jun 26</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 11</span><span class="day-date">Thursday, June 25</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day11_appendicular-skeleton.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Appendicular Skeleton</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Fri, Jun 26</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 12</span>
-            <span class="day-date">Friday, June 26</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day12_joints-and-body-movements.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Joints and Body Movements</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Sat, Jun 27</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 12</span><span class="day-date">Friday, June 26</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day12_joints-and-body-movements.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Joints and Body Movements</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sat, Jun 27</span><span class="due-time">11:59 PM</span></div>
         </li>
       </ol>
+      <div class="weekly">
+        <div class="day-when"><span class="day-num">Weekly</span><span class="day-date">End of Week 3</span></div>
+        <div class="day-work"><div class="day-label">Also upload</div><span class="wb"><span class="wb-dot"></span>Engagement Report</span></div>
+        <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sun, Jun 28</span><span class="due-time">11:59 PM</span></div>
+      </div>
     </section>
     <section class="week" id="week-4">
-      <header class="week-head">
-        <span class="week-no">Week 4</span>
-        <span class="week-range">Jun 29 &ndash; Jul 5</span>
-      </header>
+      <header class="week-head"><span class="week-no">Week 4</span><span class="week-range">Jun 29 &ndash; Jul 5</span></header>
       <ol class="days">
         <li class="day day-dbl">
-          <div class="day-when">
-            <span class="day-num">Day 13</span>
-            <span class="day-date">Monday, June 29</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day13_skeletal-muscle-microanatomy.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Skeletal Muscle Microanatomy</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day13_motor-units-and-muscle-mechanics.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Motor Units and Muscle Mechanics</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Tue, Jun 30</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 13</span><span class="day-date">Monday, June 29</span></div>
+          <div class="day-work"><div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day13_skeletal-muscle-microanatomy.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Skeletal Muscle Microanatomy</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day13_motor-units-and-muscle-mechanics.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Motor Units and Muscle Mechanics</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Tue, Jun 30</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 14</span>
-            <span class="day-date">Tuesday, June 30</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day14_sliding-filament-and-the-cross-bridge-cycle.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Sliding Filament and the Cross-Bridge Cycle</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Wed, Jul 1</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 14</span><span class="day-date">Tuesday, June 30</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day14_sliding-filament-and-the-cross-bridge-cycle.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Sliding Filament and the Cross-Bridge Cycle</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Wed, Jul 1</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 15</span>
-            <span class="day-date">Thursday, July 2</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day15_neurons-and-resting-membrane-potential.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Neurons and Resting Membrane Potential</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Fri, Jul 3</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 15</span><span class="day-date">Thursday, July 2</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day15_neurons-and-resting-membrane-potential.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Neurons and Resting Membrane Potential</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Fri, Jul 3</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 16</span>
-            <span class="day-date">Friday, July 3</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day16_action-potentials-and-synaptic-transmission.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Action Potentials and Synaptic Transmission</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Sat, Jul 4</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 16</span><span class="day-date">Friday, July 3</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day16_action-potentials-and-synaptic-transmission.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Action Potentials and Synaptic Transmission</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sat, Jul 4</span><span class="due-time">11:59 PM</span></div>
         </li>
       </ol>
+      <div class="weekly">
+        <div class="day-when"><span class="day-num">Weekly</span><span class="day-date">End of Week 4</span></div>
+        <div class="day-work"><div class="day-label">Also upload</div><span class="wb"><span class="wb-dot"></span>Engagement Report</span></div>
+        <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sun, Jul 5</span><span class="due-time">11:59 PM</span></div>
+      </div>
     </section>
     <section class="week" id="week-5">
-      <header class="week-head">
-        <span class="week-no">Week 5</span>
-        <span class="week-range">Jul 6 &ndash; Jul 12</span>
-      </header>
+      <header class="week-head"><span class="week-no">Week 5</span><span class="week-range">Jul 6 &ndash; Jul 12</span></header>
       <ol class="days">
         <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 17</span>
-            <span class="day-date">Monday, July 6</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day17_cns-organization-brain-and-spinal-cord.html" target="_blank" rel="noopener"><span class="wb-dot"></span>CNS Organization: Brain and Spinal Cord</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Tue, Jul 7</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 17</span><span class="day-date">Monday, July 6</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day17_cns-organization-brain-and-spinal-cord.html" target="_blank" rel="noopener"><span class="wb-dot"></span>CNS Organization: Brain and Spinal Cord</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Tue, Jul 7</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 18</span>
-            <span class="day-date">Tuesday, July 7</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day18_pns-and-autonomic-nervous-system.html" target="_blank" rel="noopener"><span class="wb-dot"></span>PNS and Autonomic Nervous System</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Wed, Jul 8</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 18</span><span class="day-date">Tuesday, July 7</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day18_pns-and-autonomic-nervous-system.html" target="_blank" rel="noopener"><span class="wb-dot"></span>PNS and Autonomic Nervous System</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Wed, Jul 8</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day day-dbl">
-          <div class="day-when">
-            <span class="day-num">Day 19</span>
-            <span class="day-date">Thursday, July 9</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day19_vision.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Vision</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day19_hearing-and-equilibrium.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Hearing and Equilibrium</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Fri, Jul 10</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 19</span><span class="day-date">Thursday, July 9</span></div>
+          <div class="day-work"><div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day19_vision.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Vision</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day19_hearing-and-equilibrium.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Hearing and Equilibrium</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Fri, Jul 10</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day day-dbl">
-          <div class="day-when">
-            <span class="day-num">Day 20</span>
-            <span class="day-date">Friday, July 10</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day20_hormone-mechanisms.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Hormone Mechanisms</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day20_major-endocrine-glands.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Major Endocrine Glands</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Sat, Jul 11</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 20</span><span class="day-date">Friday, July 10</span></div>
+          <div class="day-work"><div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day20_hormone-mechanisms.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Hormone Mechanisms</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day20_major-endocrine-glands.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Major Endocrine Glands</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sat, Jul 11</span><span class="due-time">11:59 PM</span></div>
         </li>
       </ol>
+      <div class="weekly">
+        <div class="day-when"><span class="day-num">Weekly</span><span class="day-date">End of Week 5</span></div>
+        <div class="day-work"><div class="day-label">Also upload</div><span class="wb"><span class="wb-dot"></span>Engagement Report</span></div>
+        <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sun, Jul 12</span><span class="due-time">11:59 PM</span></div>
+      </div>
     </section>
     <section class="week" id="week-6">
-      <header class="week-head">
-        <span class="week-no">Week 6</span>
-        <span class="week-range">Jul 13 &ndash; Jul 19</span>
-      </header>
+      <header class="week-head"><span class="week-no">Week 6</span><span class="week-range">Jul 13 &ndash; Jul 19</span></header>
       <ol class="days">
         <li class="day day-dbl">
-          <div class="day-when">
-            <span class="day-num">Day 21</span>
-            <span class="day-date">Monday, July 13</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day21_blood-composition-and-hemopoiesis.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Blood Composition and Hemopoiesis</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day21_hemostasis-and-blood-typing.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Hemostasis and Blood Typing</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Tue, Jul 14</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 21</span><span class="day-date">Monday, July 13</span></div>
+          <div class="day-work"><div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day21_blood-composition-and-hemopoiesis.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Blood Composition and Hemopoiesis</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day21_hemostasis-and-blood-typing.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Hemostasis and Blood Typing</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Tue, Jul 14</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 22</span>
-            <span class="day-date">Tuesday, July 14</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day22_heart-anatomy-and-the-cardiac-cycle.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Heart Anatomy and the Cardiac Cycle</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Wed, Jul 15</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 22</span><span class="day-date">Tuesday, July 14</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day22_heart-anatomy-and-the-cardiac-cycle.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Heart Anatomy and the Cardiac Cycle</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Wed, Jul 15</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 23</span>
-            <span class="day-date">Thursday, July 16</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day23_cardiac-conduction-system.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Cardiac Conduction System</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Fri, Jul 17</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 23</span><span class="day-date">Thursday, July 16</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day23_cardiac-conduction-system.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Cardiac Conduction System</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Fri, Jul 17</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 24</span>
-            <span class="day-date">Friday, July 17</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day24_blood-vessels-and-hemodynamics.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Blood Vessels and Hemodynamics</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Sat, Jul 18</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 24</span><span class="day-date">Friday, July 17</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day24_blood-vessels-and-hemodynamics.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Blood Vessels and Hemodynamics</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sat, Jul 18</span><span class="due-time">11:59 PM</span></div>
         </li>
       </ol>
+      <div class="weekly">
+        <div class="day-when"><span class="day-num">Weekly</span><span class="day-date">End of Week 6</span></div>
+        <div class="day-work"><div class="day-label">Also upload</div><span class="wb"><span class="wb-dot"></span>Engagement Report</span></div>
+        <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sun, Jul 19</span><span class="due-time">11:59 PM</span></div>
+      </div>
     </section>
     <section class="week" id="week-7">
-      <header class="week-head">
-        <span class="week-no">Week 7</span>
-        <span class="week-range">Jul 20 &ndash; Jul 26</span>
-      </header>
+      <header class="week-head"><span class="week-no">Week 7</span><span class="week-range">Jul 20 &ndash; Jul 26</span></header>
       <ol class="days">
         <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 25</span>
-            <span class="day-date">Monday, July 20</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day25_lymphatic-system-and-innate-immunity.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Lymphatic System and Innate Immunity</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Tue, Jul 21</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 25</span><span class="day-date">Monday, July 20</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day25_lymphatic-system-and-innate-immunity.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Lymphatic System and Innate Immunity</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Tue, Jul 21</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 26</span>
-            <span class="day-date">Tuesday, July 21</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day26_adaptive-immunity.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Adaptive Immunity</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Wed, Jul 22</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 26</span><span class="day-date">Tuesday, July 21</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day26_adaptive-immunity.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Adaptive Immunity</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Wed, Jul 22</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day day-dbl">
-          <div class="day-when">
-            <span class="day-num">Day 27</span>
-            <span class="day-date">Thursday, July 23</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day27_respiratory-anatomy-and-mechanics.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Respiratory Anatomy and Mechanics</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day27_gas-exchange-and-transport.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Gas Exchange and Transport</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Fri, Jul 24</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 27</span><span class="day-date">Thursday, July 23</span></div>
+          <div class="day-work"><div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day27_respiratory-anatomy-and-mechanics.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Respiratory Anatomy and Mechanics</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day27_gas-exchange-and-transport.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Gas Exchange and Transport</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Fri, Jul 24</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day day-dbl">
-          <div class="day-when">
-            <span class="day-num">Day 28</span>
-            <span class="day-date">Friday, July 24</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day28_gi-tract-anatomy-and-motility.html" target="_blank" rel="noopener"><span class="wb-dot"></span>GI Tract Anatomy and Motility</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day28_digestion-and-absorption.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Digestion and Absorption</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Sat, Jul 25</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 28</span><span class="day-date">Friday, July 24</span></div>
+          <div class="day-work"><div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day28_gi-tract-anatomy-and-motility.html" target="_blank" rel="noopener"><span class="wb-dot"></span>GI Tract Anatomy and Motility</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day28_digestion-and-absorption.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Digestion and Absorption</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sat, Jul 25</span><span class="due-time">11:59 PM</span></div>
         </li>
       </ol>
+      <div class="weekly">
+        <div class="day-when"><span class="day-num">Weekly</span><span class="day-date">End of Week 7</span></div>
+        <div class="day-work"><div class="day-label">Also upload</div><span class="wb"><span class="wb-dot"></span>Engagement Report</span></div>
+        <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sun, Jul 26</span><span class="due-time">11:59 PM</span></div>
+      </div>
     </section>
     <section class="week" id="week-8">
-      <header class="week-head">
-        <span class="week-no">Week 8</span>
-        <span class="week-range">Jul 27 &ndash; Aug 2</span>
-      </header>
+      <header class="week-head"><span class="week-no">Week 8</span><span class="week-range">Jul 27 &ndash; Aug 2</span></header>
       <ol class="days">
         <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 29</span>
-            <span class="day-date">Monday, July 27</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day29_kidney-anatomy-and-glomerular-filtration.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Kidney Anatomy and Glomerular Filtration</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Tue, Jul 28</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 29</span><span class="day-date">Monday, July 27</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day29_kidney-anatomy-and-glomerular-filtration.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Kidney Anatomy and Glomerular Filtration</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Tue, Jul 28</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day">
-          <div class="day-when">
-            <span class="day-num">Day 30</span>
-            <span class="day-date">Tuesday, July 28</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload this workbook</div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day30_tubular-function-and-urine-concentration.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Tubular Function and Urine Concentration</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Wed, Jul 29</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 30</span><span class="day-date">Tuesday, July 28</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day30_tubular-function-and-urine-concentration.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Tubular Function and Urine Concentration</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Wed, Jul 29</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day day-dbl">
-          <div class="day-when">
-            <span class="day-num">Day 31</span>
-            <span class="day-date">Thursday, July 30</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day31_fluid-electrolyte-and-acid-base-balance.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Fluid, Electrolyte, and Acid-Base Balance</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day31_male-reproductive-system.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Male Reproductive System</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Fri, Jul 31</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 31</span><span class="day-date">Thursday, July 30</span></div>
+          <div class="day-work"><div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day31_fluid-electrolyte-and-acid-base-balance.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Fluid, Electrolyte, and Acid-Base Balance</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day31_male-reproductive-system.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Male Reproductive System</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Fri, Jul 31</span><span class="due-time">11:59 PM</span></div>
         </li>        <li class="day day-dbl">
-          <div class="day-when">
-            <span class="day-num">Day 32</span>
-            <span class="day-date">Friday, July 31</span>
-          </div>
-          <div class="day-work">
-            <div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div>
-            <a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day32_female-reproductive-system.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Female Reproductive System</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day32_pregnancy-a-p-basics.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Pregnancy A&amp;P (Basics)</a>
-          </div>
-          <div class="day-due">
-            <span class="due-tag">Due</span>
-            <span class="due-date">Sat, Aug 1</span>
-            <span class="due-time">11:59 PM</span>
-          </div>
+          <div class="day-when"><span class="day-num">Day 32</span><span class="day-date">Friday, July 31</span></div>
+          <div class="day-work"><div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day32_female-reproductive-system.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Female Reproductive System</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day32_pregnancy-a-p-basics.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Pregnancy A&amp;P (Basics)</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sat, Aug 1</span><span class="due-time">11:59 PM</span></div>
         </li>
       </ol>
+      <div class="weekly">
+        <div class="day-when"><span class="day-num">Weekly</span><span class="day-date">End of Week 8</span></div>
+        <div class="day-work"><div class="day-label">Also upload</div><span class="wb"><span class="wb-dot"></span>Engagement Report</span></div>
+        <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sun, Aug 2</span><span class="due-time">11:59 PM</span></div>
+      </div>
     </section>
-    <footer>
-      <span>Workbook days: Monday, Tuesday, Thursday, Friday</span>
-      <em>Dr. Sharilyn Rennie &middot; BIO 304</em>
-    </footer>
-  </div>
-</div>
-<button class="printbtn no-print" onclick="window.print()">Print this sheet</button>
-</body>
-</html>
+  <footer><span>Workbook days: Mon, Tue, Thu, Fri &middot; Engagement report: Sun</span><em>Dr. Sharilyn Rennie &middot; BIO 304</em></footer>
+</div></div>
+<button class="printbtn" onclick="window.print()">Print this sheet</button>
+</body></html>
