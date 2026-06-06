@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIO 304 &middot; Cumulative Final Exam</title>
+<meta name="description" content="The BIO 304 cumulative final exam. One hundred questions, equal weight from all eight units, ninety minutes, in the Honorlock lockdown browser.">
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-size: 16px; line-height: 1.65; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body { font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif; background: #FFFFFF; color: #0B1530; font-style: normal; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #8B3A2E; outline-offset: 3px; border-radius: 4px; }
+.cta-section a:focus-visible, .footer-section a:focus-visible, .help-section a:focus-visible { outline-color: #C9A14A; }
+.skip-link { position: absolute; top: -100px; left: 8px; background: #0B1530; color: #F5F1E8; padding: 12px 20px; text-decoration: none; font-size: 13px; font-weight: 700; border-radius: 4px; z-index: 9999; letter-spacing: 0.04em; }
+.skip-link:focus { top: 8px; }
+.site-header, .hero-card, .alert-section, .facts-section, .units-section, .rules-section, .help-section, .cta-section, .footer-section { padding-left: max(40px, 5vw); padding-right: max(40px, 5vw); }
+
+/* header */
+.site-header { background: #FFFFFF; padding-top: 28px; padding-bottom: 28px; }
+.site-header-row { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
+.site-logo { display: inline-flex; align-items: center; gap: 16px; text-decoration: none; }
+.site-logo svg { height: 52px; width: auto; display: block; }
+.logo-text { display: flex; flex-direction: column; gap: 3px; }
+.logo-title { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #0B1530; line-height: 1; }
+.logo-title .logo-accent { color: #8B3A2E; }
+.logo-sub { font-size: 10px; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: #0B1530; opacity: 0.72; }
+.back-link { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; color: #8B3A2E; padding: 8px 14px; border: 1px solid #8B3A2E; border-radius: 4px; transition: background 0.2s ease, color 0.2s ease; }
+.back-link:hover, .back-link:focus-visible { background: #8B3A2E; color: #FFFFFF; }
+
+/* hero */
+.hero-card { background: #FFFFFF; padding-top: 50px; padding-bottom: 34px; }
+.hero-content { max-width: 760px; }
+.hero-eyebrow { font-size: 11px; font-weight: 700; color: #8B3A2E; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 22px; }
+.hero-headline { font-size: 42px; font-weight: 800; color: #0B1530; letter-spacing: -0.025em; line-height: 1.08; margin: 0 0 20px; }
+.hero-headline .accent { color: #8B3A2E; }
+.hero-subhead { font-size: 16px; font-weight: 400; color: #0B1530; line-height: 1.65; opacity: 0.84; margin: 0; max-width: 640px; }
+
+/* section headings */
+.section-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 14px; color: #8B3A2E; }
+.section-headline { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 14px; max-width: 720px; color: #0B1530; }
+.section-headline .accent { color: #8B3A2E; }
+.section-intro { font-size: 15px; font-weight: 400; line-height: 1.6; max-width: 680px; margin: 0 0 28px; color: #0B1530; opacity: 0.84; }
+
+/* facts */
+.facts-section { background: #FFFFFF; padding-top: 8px; padding-bottom: 40px; }
+.facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); max-width: 860px; }
+.fact { background: #FFFFFF; border-radius: 4px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(10, 19, 34, 0.08); }
+.fact-num { font-size: 30px; font-weight: 800; color: #0B1530; letter-spacing: -0.02em; line-height: 1; display: block; }
+.fact-num.sm { font-size: 19px; line-height: 1.2; }
+.fact-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #8B3A2E; margin-top: 10px; display: block; }
+
+/* alert (white, lifted) */
+.alert-section { background: #FFFFFF; padding-top: 8px; padding-bottom: 20px; }
+.alert-card { background: #FFFFFF; color: #0B1530; border-radius: 4px; padding: 26px 28px; max-width: 900px; box-shadow: 0 6px 18px rgba(10, 19, 34, 0.12); }
+.alert-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.alert-head svg { width: 24px; height: 24px; flex: 0 0 auto; }
+.alert-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: #8B3A2E; }
+.alert-title { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.2; color: #060A18; margin: 0 0 14px; }
+.alert-body { font-size: 14.5px; line-height: 1.65; color: #0B1530; margin: 0 0 12px; }
+.alert-body:last-child { margin-bottom: 0; }
+.alert-body strong { color: #8B3A2E; }
+.alert-body a { color: #8B3A2E; text-decoration: underline; text-underline-offset: 3px; }
+.alert-body a:hover { color: #060A18; }
+
+/* setup card (lifted, with button) */
+.setup-card { background: #FFFFFF; border-radius: 4px; padding: 24px 26px; max-width: 860px; box-shadow: 0 6px 18px rgba(10, 19, 34, 0.12); display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.setup-text { max-width: 540px; }
+.setup-text h3 { font-size: 19px; font-weight: 800; color: #060A18; margin: 0 0 8px; letter-spacing: -0.01em; }
+.setup-text p { font-size: 14.5px; color: #0B1530; opacity: 0.88; line-height: 1.6; margin: 0; }
+
+/* rules */
+.rules-section { background: #F5F1E8; padding-top: 56px; padding-bottom: 56px; }
+.rules-list { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 10px; max-width: 800px; }
+.rule-item { display: flex; gap: 14px; align-items: flex-start; background: #FFFFFF; border-radius: 4px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(10, 19, 34, 0.08); }
+.rule-glyph { flex: 0 0 auto; width: 24px; height: 24px; border-radius: 999px; background: #8B3A2E; color: #FFFFFF; font-weight: 800; font-size: 15px; line-height: 1; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.rule-text { font-size: 14.5px; color: #0B1530; line-height: 1.55; margin: 0; }
+.rule-text strong { color: #8B3A2E; }
+.allowed-note { background: #FFFFFF; border-radius: 4px; padding: 16px 18px; max-width: 800px; box-shadow: 0 1px 3px rgba(10, 19, 34, 0.08); }
+.allowed-note .allowed-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #0B1530; margin: 0 0 6px; }
+.allowed-note p { font-size: 14px; color: #0B1530; opacity: 0.88; line-height: 1.6; margin: 0; }
+
+/* units coverage */
+.units-section { background: #FFFFFF; padding-top: 56px; padding-bottom: 56px; }
+.units-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); max-width: 880px; }
+.unit-card { background: #FFFFFF; border-radius: 4px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(10, 19, 34, 0.08); }
+.unit-num { font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #8B3A2E; display: block; margin-bottom: 6px; }
+.unit-title { font-size: 15px; font-weight: 700; color: #0B1530; line-height: 1.35; }
+
+/* help (dark) checklist */
+.help-section { background: #060A18; padding-top: 56px; padding-bottom: 56px; }
+.help-section .section-eyebrow { color: #C9A14A; }
+.help-section .section-headline { color: #F5F1E8; }
+.help-section .section-headline .accent { color: #C9A14A; }
+.help-section .section-intro { color: #F5F1E8; opacity: 0.88; }
+.check-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; grid-template-columns: 1fr 1fr; max-width: 920px; }
+.check-item { display: flex; gap: 12px; align-items: flex-start; background: rgba(245, 241, 232, 0.04); border: 1px solid rgba(245, 241, 232, 0.20); border-radius: 8px; padding: 16px 18px; }
+.check-glyph { flex: 0 0 auto; width: 22px; height: 22px; border-radius: 4px; border: 2px solid #C9A14A; margin-top: 1px; }
+.check-text { font-size: 14px; color: #F5F1E8; opacity: 0.92; line-height: 1.55; margin: 0; }
+.check-text strong { color: #C9A14A; opacity: 1; }
+
+/* cta */
+.cta-section { background: #FFFFFF; padding-top: 60px; padding-bottom: 64px; text-align: center; }
+.cta-eyebrow { font-size: 11px; font-weight: 700; color: #8B3A2E; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 18px; }
+.cta-headline { font-size: 28px; font-weight: 800; color: #0B1530; letter-spacing: -0.02em; line-height: 1.15; margin: 0 auto 26px; max-width: 560px; }
+.cta-headline .accent { color: #8B3A2E; }
+.cta-buttons { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.cta-button { background: #8B3A2E; color: #FFFFFF; padding: 14px 26px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: background 0.2s ease; }
+.cta-button:hover { background: #A0452F; }
+.cta-button-ghost { background: transparent; color: #0B1530; border: 1px solid rgba(11, 21, 48, 0.30); }
+.cta-button-ghost:hover { background: #0B1530; color: #FFFFFF; border-color: #0B1530; }
+
+/* footer */
+.footer-section { background: #060A18; padding-top: 36px; padding-bottom: 28px; }
+.footer-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-copyright { font-size: 11px; color: #F5F1E8; opacity: 0.72; letter-spacing: 0.03em; }
+.footer-byline { font-size: 11px; font-weight: 700; color: #C9A14A; letter-spacing: 0.16em; text-transform: uppercase; }
+
+@media (max-width: 860px) { .hero-headline { font-size: 32px; } .section-headline { font-size: 24px; } .cta-headline { font-size: 24px; } .check-list { grid-template-columns: 1fr; } }
+@media (max-width: 500px) { .footer-row { flex-direction: column; align-items: flex-start; } .hero-headline { font-size: 28px; } .site-header-row { flex-direction: column; align-items: flex-start; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<header class="site-header">
+  <div class="site-header-row">
+    <a href="index.html" class="site-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/></g>
+          <g transform="translate(100, 0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
+          <g transform="translate(140, 0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+        </g>
+      </svg>
+      <span class="logo-text"><span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span><span class="logo-sub">BIO 304 &middot; American River College</span></span>
+    </a>
+    <a class="back-link" href="index.html" target="_top">&larr; Course home</a>
+  </div>
+</header>
+<main id="main">
+<div class="hero-card"><div class="hero-content">
+  <div class="hero-eyebrow">BIO 304 &middot; Cumulative final</div>
+  <h1 class="hero-headline">The final exam. <span class="accent">The whole course, one sitting.</span></h1>
+  <p class="hero-subhead">One hundred questions across all eight units, ninety minutes, in the Honorlock lockdown browser. It is cumulative and evenly weighted, so everything from the first unit to the last is fair game. Read this, set up early, and go in ready.</p>
+</div></div>
+<section class="facts-section" aria-label="Final exam format"><ul class="facts">
+  <li class="fact"><span class="fact-num">100</span><span class="fact-label">Questions</span></li>
+  <li class="fact"><span class="fact-num">90</span><span class="fact-label">Minutes</span></li>
+  <li class="fact"><span class="fact-num sm">Multiple choice</span><span class="fact-label">Format</span></li>
+  <li class="fact"><span class="fact-num sm">Browser lockdown</span><span class="fact-label">Honorlock</span></li>
+</ul>
+<p class="section-intro" style="margin-top:18px">The clock starts when you begin and does not pause. Ninety minutes for one hundred questions is a little over half a minute each, so keep moving and come back to anything you want to recheck. Some questions may have more than one correct answer.</p>
+</section>
+<section class="units-section" aria-labelledby="units-heading">
+  <div class="section-eyebrow">What it covers</div>
+  <h2 class="section-headline" id="units-heading">All eight units, <span class="accent">equal weight</span>.</h2>
+  <p class="section-intro">Roughly twelve to thirteen questions come from each unit, so no single week carries the exam. Study across the whole course, not just the most recent material.</p>
+  <ul class="units-grid">
+    <li class="unit-card"><span class="unit-num">Unit 1</span><span class="unit-title">Foundations, Cell, Membrane Transport</span></li>
+    <li class="unit-card"><span class="unit-num">Unit 2</span><span class="unit-title">Tissues and Integument</span></li>
+    <li class="unit-card"><span class="unit-num">Unit 3</span><span class="unit-title">Skeletal System</span></li>
+    <li class="unit-card"><span class="unit-num">Unit 4</span><span class="unit-title">Muscle and Nervous System Intro</span></li>
+    <li class="unit-card"><span class="unit-num">Unit 5</span><span class="unit-title">Nervous System, Senses, Endocrine</span></li>
+    <li class="unit-card"><span class="unit-num">Unit 6</span><span class="unit-title">Blood and Cardiovascular</span></li>
+    <li class="unit-card"><span class="unit-num">Unit 7</span><span class="unit-title">Immune, Respiratory, Digestive</span></li>
+    <li class="unit-card"><span class="unit-num">Unit 8</span><span class="unit-title">Renal, Fluid Balance, Reproductive</span></li>
+  </ul>
+</section><section class="rules-section" aria-labelledby="rules-heading">
+  <div class="section-eyebrow">Academic integrity</div>
+  <h2 class="section-headline" id="rules-heading">What is <span class="accent">not allowed</span>.</h2>
+  <p class="section-intro">This is a closed-book, closed-notes, individual quiz in a locked-down browser. The lockdown blocks other tabs, windows, and apps while you test. Everything on this list is required by the course academic integrity policy, so follow it even where the browser does not stop you. Breaking any of these is an academic integrity violation.</p>
+  <ul class="rules-list">
+    <li class="rule-item"><span class="rule-glyph" aria-hidden="true">&times;</span><p class="rule-text"><strong>No AI tools of any kind.</strong> ChatGPT, Gemini, Copilot, photo answer apps, browser assistants, or anything similar.</p></li>
+    <li class="rule-item"><span class="rule-glyph" aria-hidden="true">&times;</span><p class="rule-text"><strong>No textbook, notes, study guides, or printouts.</strong> Nothing written or printed within reach.</p></li>
+    <li class="rule-item"><span class="rule-glyph" aria-hidden="true">&times;</span><p class="rule-text"><strong>No phone, tablet, smartwatch, second monitor, or extra device.</strong> Disconnect or remove them before you start, or the lockdown may not let you begin.</p></li>
+    <li class="rule-item"><span class="rule-glyph" aria-hidden="true">&times;</span><p class="rule-text"><strong>No other tabs, windows, or apps open.</strong> Only the quiz. The lockdown browser blocks the rest.</p></li>
+    <li class="rule-item"><span class="rule-glyph" aria-hidden="true">&times;</span><p class="rule-text"><strong>No other people in the room</strong> and no talking to anyone while you test.</p></li>
+    <li class="rule-item"><span class="rule-glyph" aria-hidden="true">&times;</span><p class="rule-text"><strong>No copying, screenshotting, photographing, or writing down questions.</strong></p></li>
+    <li class="rule-item"><span class="rule-glyph" aria-hidden="true">&times;</span><p class="rule-text"><strong>No sharing questions or answers with anyone, during or after the quiz, ever.</strong> This includes group chats, classmates, and posting online.</p></li>
+    <li class="rule-item"><span class="rule-glyph" aria-hidden="true">&times;</span><p class="rule-text"><strong>No searching the web</strong> for any question.</p></li>
+  </ul>
+  <div class="allowed-note">
+    <p class="allowed-eyebrow">What you may have</p>
+    <p>A quiet room with the door closed, a single screen with other apps and devices disconnected, a steady internet connection, and water if you need it. That is all.</p>
+  </div>
+</section><section class="alert-section" aria-labelledby="alert-heading">
+  <div class="alert-card" role="note">
+    <div class="alert-head"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 L22.5 20.5 H1.5 Z" fill="#8B3A2E"/><rect x="11" y="9" width="2" height="6.5" rx="1" fill="#FFFFFF"/><rect x="11" y="16.6" width="2" height="2" rx="1" fill="#FFFFFF"/></svg><span class="alert-eyebrow">Important &middot; read before you start</span></div>
+    <h2 class="alert-title" id="alert-heading">I do not have the Honorlock password. Honorlock does.</h2>
+    
+    <p class="alert-body">If Honorlock will not approve you or let you start, it is almost always because the requirements for the lockdown are not met. The most common causes are <strong>more than one browser open, extra tabs, a second monitor, or another device connected</strong>. The lockdown browser will not start until your setup is clean, so it will not let you begin.</p>
+    <p class="alert-body">When that happens, <strong>do not email me for a password</strong>. There is none for me to give you. Picture it: 11:50 at night, ten minutes left on the clock. I will not be awake to rescue you, and even if you did reach me, I still would not have a password to send.</p>
+    <p class="alert-body">If you hit a wall, <strong>start a live chat with Honorlock right away</strong>. They are available 24 hours a day and they are the only ones who can get you in. If chat is down, call <strong>844-243-2500</strong> or email <a href="mailto:support@honorlock.com">support@honorlock.com</a>.</p>
+    <p class="alert-body"><strong>So do not wait until the last minute.</strong> Open your quiz early in the window. That way, if something goes sideways, you still have time to chat with Honorlock and finish before it closes.</p>
+  </div>
+</section><section class="help-section" aria-labelledby="check-heading">
+  <div class="section-eyebrow">Before you click start</div>
+  <h2 class="section-headline" id="check-heading">Quick <span class="accent">readiness check</span>.</h2>
+  <p class="section-intro">Run through this once before you launch. Two minutes here saves a panicked email later.</p>
+  <ul class="check-list">
+    <li class="check-item"><span class="check-glyph" aria-hidden="true"></span><p class="check-text"><strong>Quiet room, door closed,</strong> phone in another room.</p></li>
+    <li class="check-item"><span class="check-glyph" aria-hidden="true"></span><p class="check-text"><strong>Only Google Chrome open,</strong> every other app and tab closed.</p></li>
+    <li class="check-item"><span class="check-glyph" aria-hidden="true"></span><p class="check-text"><strong>Honorlock extension installed</strong> and any other proctoring extensions disabled.</p></li>
+    <li class="check-item"><span class="check-glyph" aria-hidden="true"></span><p class="check-text"><strong>One screen only,</strong> second monitors and extra devices disconnected.</p></li>
+    <li class="check-item"><span class="check-glyph" aria-hidden="true"></span><p class="check-text"><strong>Strong internet</strong> in the spot where you are testing.</p></li>
+    <li class="check-item"><span class="check-glyph" aria-hidden="true"></span><p class="check-text"><strong>Plenty of time left</strong> in the window, not the last ten minutes.</p></li>
+  </ul>
+</section>
+<section class="cta-section" aria-labelledby="cta-heading">
+  <div class="cta-eyebrow">Before exam day</div>
+  <h2 class="cta-headline" id="cta-heading">Set up Honorlock <span class="accent">before the final</span>.</h2>
+  <div class="cta-buttons">
+    <a class="cta-button" href="biol304_honorlock_setup.html" target="_top">Honorlock setup guide</a>
+    <a class="cta-button cta-button-ghost" href="index.html" target="_top">Course home</a>
+  </div>
+</section>
+</main>
+<footer class="footer-section"><div class="footer-row"><div class="footer-copyright">BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Summer 2026</div><div class="footer-byline">Dr. Sharilyn Rennie</div></div></footer>
+<script>
+  (function () {
+    var FRAME_ID = 'bio304-final-exam';
+    function sendHeight() { var h = Math.max(document.documentElement.scrollHeight, document.body ? document.body.scrollHeight : 0); parent.postMessage({ type: 'resize', id: FRAME_ID, height: h }, '*'); }
+    window.addEventListener('load', sendHeight); window.addEventListener('resize', sendHeight);
+    if (window.ResizeObserver) new ResizeObserver(sendHeight).observe(document.body);
+  })();
+</script>
+</body>
+</html>
