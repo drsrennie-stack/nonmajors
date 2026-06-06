@@ -1837,6 +1837,25 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     return STATE.topics[topicId];
   }
 
+  // Authoritative gate: a topic's cards are unlocked only by ACTUALLY watching its
+  // lecture video, which the lecture page records in the cross-page flag
+  // bio304-video-<id>. We re-read that flag at open time instead of trusting a
+  // cached videoWatched bool, so a stale value or an imported progress code can't
+  // slip past the gate. If the flag isn't set, a student is sent back to watch the
+  // video. Instructor PREVIEW_MODE may additionally rely on the in-app test-watch.
+  function videoWatchedFor(topicId){
+    var flag = false;
+    try { flag = window.localStorage.getItem("bio304-video-" + topicId) === "true"; } catch (e) {}
+    var ts = getTopicState(topicId);
+    if (flag && !ts.videoWatched) { ts.videoWatched = true; saveTopicState(topicId, ts); }
+    if (!flag && ts.videoWatched && !PREVIEW_MODE) {
+      // videoWatched is set but the real flag is missing (e.g. imported code) —
+      // re-lock for students so the only way in is genuinely watching the video.
+      ts.videoWatched = false; saveTopicState(topicId, ts);
+    }
+    return flag || (PREVIEW_MODE && ts.videoWatched);
+  }
+
   // Persist a single topic's state. This was referenced but never defined,
   // so every call threw a ReferenceError and aborted the unlock handler
   // before it could navigate or save — which is why completed topics
@@ -2557,17 +2576,10 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       b.addEventListener("click", () => {
         const id = b.dataset.openTopic;
         CURRENT_TOPIC = id;
-        const ts = getTopicState(id);
-        // The video is the gate to THIS topic's cards. When the lecture page
-        // (or the in-app player) records that this topic's video was watched,
-        // its cards unlock and stay unlocked. Watching one topic's video never
-        // unlocks another topic — state is keyed per topic id. There is no other
-        // path in: a missing/stray gate flag can't open cards, and the only
-        // setter of the video flag is actually finishing the video.
-        var videoFlag = false;
-        try { videoFlag = window.localStorage.getItem("bio304-video-" + id) === "true"; } catch (e) {}
-        if (videoFlag && !ts.videoWatched) { ts.videoWatched = true; saveTopicState(id, ts); }
-        if (ts.videoWatched) {
+        // Re-check the real video flag every time. If the lecture video for this
+        // topic hasn't been watched, route the student to watch it first; only a
+        // genuine watch opens the cards.
+        if (videoWatchedFor(id)) {
           nav("learn", id);
         } else {
           nav("topic", id);
@@ -2832,7 +2844,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     const topic = topicById(topicId);
     if (!topic) { nav("dashboard"); return; }
     const ts = getTopicState(topicId);
-    if (!ts.videoWatched) { nav("topic", topicId); return; }  // video is the gate to this topic's cards
+    if (!videoWatchedFor(topicId)) { nav("topic", topicId); return; }  // video is the gate to this topic's cards
     $("#learn-heading").textContent = topic.title;
     renderNotesLink(topic);
     renderMastery(topicId);
@@ -3068,7 +3080,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     let items = [];
     allTopics().forEach(t => {
       const ts = STATE.topics[t.id];
-      const unlocked = ts && ts.videoWatched;
+      const unlocked = ts && videoWatchedFor(t.id);
       if ((REVIEW_MODE === "all" || REVIEW_MODE === "mixed") && !unlocked) return; // skip locked topics
       t.cards.forEach(c => {
         const st = getCardState(t.id, c.id, c.dok);
@@ -3173,8 +3185,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     $$('[data-review-open]').forEach(b => {
       b.addEventListener("click", () => {
         const tid = b.dataset.reviewOpen;
-        const ts = getTopicState(tid);
-        if (!ts.videoWatched) nav("topic", tid);
+        if (!videoWatchedFor(tid)) nav("topic", tid);
         else nav("learn", tid);
       });
     });
