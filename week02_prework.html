@@ -237,7 +237,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 
 /* Wednesday catch-up + Weekend quiz callouts
    Gold differentiation comes from the day-num text only.
-   No bookend border, no frame, no left bar — the card uses the
+   No bookend border, no frame, no left bar - the card uses the
    same navy 18% border as the pre-work day cards. */
 .wed-card .day-num, .wkd-card .day-num { color: #C9A14A; }
 .wed-body {
@@ -326,6 +326,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   html { scroll-behavior: auto; }
 }
 </style>
+
+<style id="wb-weeknav-css">
+.wb-weeknav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;}
+.wb-weeknav-label{font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8B3A2E;margin-right:2px;}
+.wb-weeknav-pill{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:8px 16px;
+  font-weight:700;font-size:14px;line-height:1;text-decoration:none;background:#8B3A2E;color:#fff !important;border:1px solid #8B3A2E;}
+.wb-weeknav-pill:hover{background:#75301F;border-color:#75301F;color:#fff !important;}
+.wb-weeknav-pill:focus-visible{outline:3px solid #D4A24C;outline-offset:2px;}
+.wb-weeknav-pill.is-current{background:#5E2418;border-color:#5E2418;cursor:default;}
+@media print{.wb-weeknav{display:none !important;}}
+</style>
+
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -357,6 +370,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 </header>
 
 <main id="main">
+<nav class="wb-weeknav" aria-label="Week 2 navigation"><span class="wb-weeknav-label">Week 2</span><a class="wb-weeknav-pill" href="workbook_week02.html" target="_top">Workbook</a><a class="wb-weeknav-pill is-current" aria-current="page" href="week02_prework.html" target="_top">Pre-work</a><a class="wb-weeknav-pill" href="week02_discussion.html" target="_top">Discussion</a></nav>
 
 <!-- ===== HERO ===== -->
 <div class="hero-card">
