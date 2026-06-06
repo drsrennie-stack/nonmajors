@@ -1900,7 +1900,10 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         if (!topics.length){ d.required = false; d.label = "—"; d.frac = null; }
         else {
           var tot  = topics.reduce(function(a,t){ return a + (t.cards?t.cards.length:0); }, 0);
-          var seen = topics.reduce(function(a,t){ var ts=STATE.topics[t.id]; return a + (ts?Object.keys(ts.cards||{}).length:0); }, 0);
+          // Credit only counts cards from topics whose video was actually watched.
+          // Cards on a topic with no watched video earn 0 — you can't get card credit
+          // for material you reached without passing the video gate.
+          var seen = topics.reduce(function(a,t){ var ts=STATE.topics[t.id]; return a + ((ts && ts.videoWatched)?Object.keys(ts.cards||{}).length:0); }, 0);
           d.frac  = tot ? seen/tot : 0;
           d.video = topics.every(function(t){ var ts=STATE.topics[t.id]; return ts && ts.videoWatched; });
           d.label = topics.length + " new";
@@ -1925,7 +1928,10 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
 
     function score(e){ return gradeScoreReq(e, req); }
     var cardsTotal = wt.reduce(function(a,t){ return a + (t.cards?t.cards.length:0); }, 0);
-    var cardsSeen  = wt.reduce(function(a,t){ var ts=STATE.topics[t.id]; return a + (ts?Object.keys(ts.cards||{}).length:0); }, 0);
+    var cardsSeen  = wt.reduce(function(a,t){ var ts=STATE.topics[t.id]; return a + ((ts && ts.videoWatched)?Object.keys(ts.cards||{}).length:0); }, 0);
+    // Integrity flag: a topic with card progress but NO watched video means the cards
+    // were reached without passing the gate ("broke in"). Those cards earn no credit.
+    var brokeIn = wt.filter(function(t){ var ts=STATE.topics[t.id]; return ts && !ts.videoWatched && Object.keys(ts.cards||{}).length>0; }).length;
     // DOK-3 goal: how many of this week's topics has the student worked up to DOK 3?
     var dok3 = wt.filter(function(t){ var ts=STATE.topics[t.id]; return ts && (ts.adaptiveLevel||1) >= 3; }).length;
 
@@ -1937,7 +1943,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       eff: effWithMakeup, score: score(effWithMakeup), maxScore: score(Math.min(req, eff + makeup + capacity)),
       videosWatched: videosWatched, videosTotal: videosTotal,
       cardsSeen: cardsSeen, cardsTotal: cardsTotal, cardsPct: cardsTotal ? Math.round(cardsSeen/cardsTotal*100) : 0,
-      dok3: dok3, dok3Total: wt.length,
+      dok3: dok3, dok3Total: wt.length, brokeIn: brokeIn,
       needDays: Math.max(0, Math.ceil(req - effWithMakeup - 1e-9))
     };
   }
@@ -3137,8 +3143,8 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
 
     const ppd = (GRADE.mode === "penalty");
     const policyText = ppd
-      ? "Watch the video and finish the <strong>new cards</strong> on each of the four prework days (Mon, Tue, Thu, Fri), plus the <strong>daily review</strong> on Wednesday \u2014 five required days. Each required day not fully done costs <strong>"+GRADE.penalty+"%</strong>; a partly-done day costs a proportional slice. Sat/Sun are optional makeup. Lowest possible weekly grade: <strong>"+gradeScoreReq(0, g.req)+"%</strong>."
-      : "Each of the five required days (four prework + Wednesday review) is worth <strong>"+Math.round(100/g.req)+"%</strong>; a half-done day earns half. Sat/Sun are optional makeup.";
+      ? "Watch the video and finish the <strong>new cards</strong> on each of the four prework days (Mon, Tue, Thu, Fri), plus the <strong>daily review</strong> on Wednesday \u2014 five required days. Cards only earn credit once that topic's video is watched. Each required day not fully done costs <strong>"+GRADE.penalty+"%</strong>; a partly-done day costs a proportional slice. Sat/Sun are optional makeup. Lowest possible weekly grade: <strong>"+gradeScoreReq(0, g.req)+"%</strong>."
+      : "Each of the five required days (four prework + Wednesday review) is worth <strong>"+Math.round(100/g.req)+"%</strong>; a half-done day earns half. Cards only earn credit once that topic's video is watched. Sat/Sun are optional makeup.";
 
     const gradeCard = document.createElement("div");
     gradeCard.className = "card grade-card";
@@ -3151,6 +3157,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         (g.hasDates && g.maxScore>g.score ? '<div class="grade-bar-max" style="left:'+g.maxScore+'%" data-l="max '+g.maxScore+'%"></div>' : '') + '</div>' +
       dayGrid +
       '<div class="grade-ticker '+tickerCls+'">'+tickerMsg+'</div>' +
+      (g.brokeIn ? '<p class="grade-policy" style="background:#f7ece4;border-color:#e3c3ad;">⚠️ <strong>'+g.brokeIn+' topic'+(g.brokeIn===1?'':'s')+'</strong> this week show card activity with no video watched. Cards reached without watching the video earn <strong>no credit</strong> — watch the video to count them.</p>' : '') +
       '<p class="grade-policy">🔒 '+policyText+'</p>' +
       (g.hasDates ? '' : '<p class="grade-note no-print">Daily (Mon\u2013Sun) tracking turns on once <code>courseStart</code> is set in course-content.js. Until then, the grade reflects this week\u2019s video + new-card completion.</p>');
     body.appendChild(gradeCard);
