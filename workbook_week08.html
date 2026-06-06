@@ -4,7 +4,7 @@
 <!-- MCAS_REBRAND_APPLIED v6 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Week 8 Workbook — Renal & Reproductive . BIO 304</title>
+<title>Week 8 Workbook: Renal & Reproductive . BIO 304</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
@@ -83,7 +83,7 @@ footer{text-align:center;color:var(--gray-soft);padding:20px;font-style:italic;f
 }
 
 /* ============================================================
-   MCAS REBRAND OVERRIDES — appended by rebrand-mcas.py
+   MCAS REBRAND OVERRIDES - appended by rebrand-mcas.py
    These rules win the cascade so the underlying page styling
    does not need to change. JS logic (video gating, spaced recall)
    is untouched.
@@ -156,7 +156,7 @@ body.mcas-page .footer-top {
   border-top: none !important;
   border-bottom: none !important;
 }
-/* Hover lift utility — ONLY on elements that are actually clickable
+/* Hover lift utility - ONLY on elements that are actually clickable
    (an anchor) or interactive (FAQ summary). Read-only info elements
    like .glance-item never lift. */
 body.mcas-page a[class*="-card"],
@@ -195,7 +195,7 @@ body.mcas-page details.faq-item:hover {
   }
 }
 
-/* Course-at-a-Glance (syllabus Section 2 / schedule overview) — one info
+/* Course-at-a-Glance (syllabus Section 2 / schedule overview) - one info
    panel, not eight clickable-looking cards. Forces white background,
    thin shadow, and strips the individual card styling from inner items. */
 body.mcas-page .glance {
@@ -222,12 +222,12 @@ body.mcas-page .glance-item:hover {
   box-shadow: none !important;
 }
 
-/* MCAS chrome (site header + footer) — scoped so it never collides
+/* MCAS chrome (site header + footer) - scoped so it never collides
    with existing IDs/classes on the page */
 .mcas-chrome,
 .mcas-chrome * { box-sizing: border-box; }
 .mcas-header {
-  /* No bookend border per MCAS rule — separation via background contrast */
+  /* No bookend border per MCAS rule - separation via background contrast */
   background: #FFFFFF;
   padding: 24px max(40px, 5vw);
   font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
@@ -254,21 +254,21 @@ body.mcas-page .glance-item:hover {
 .mcas-back:hover, .mcas-back:focus-visible {
   background: var(--mcas-rust); color: #FFFFFF;
 }
-/* Thin back-link strip — used when the page already has its own brand */
+/* Thin back-link strip - used when the page already has its own brand */
 .mcas-backlink-strip {
   background: #FFFFFF;
   padding: 14px max(40px, 5vw);
   display: flex; justify-content: flex-start; align-items: center;
 }
 .mcas-footer {
-  /* No bookend border — dark background is the separator */
+  /* No bookend border - dark background is the separator */
   background: var(--mcas-dark);
   color: var(--mcas-cream);
   padding: 40px max(40px, 5vw) 28px;
   font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
   margin-top: 56px;
 }
-/* Footer link color — bumped to body-scoped selector so it wins
+/* Footer link color - bumped to body-scoped selector so it wins
    specificity against body.mcas-page a (which was forcing rust on dark
    navy and failing WCAG contrast). White on the near-black footer
    passes AAA; gold on hover gives brand pop. */
@@ -293,7 +293,7 @@ body.mcas-page .mcas-footer a:focus-visible,
   border-radius: 4px;
 }
 .mcas-footer-row {
-  /* No bookend border — extra padding-top supplies the separation */
+  /* No bookend border - extra padding-top supplies the separation */
   display: flex; justify-content: space-between; align-items: center;
   gap: 16px; flex-wrap: wrap; padding-top: 32px; margin-top: 24px;
 }
@@ -318,10 +318,10 @@ body.mcas-page .mcas-footer a:focus-visible,
   .mcas-chrome *, .mcas-chrome { transition: none !important; animation: none !important; }
 }
 
-/* ----- Primary CTA button (.btn-gold) — accessibility fix -----
+/* ----- Primary CTA button (.btn-gold) - accessibility fix -----
    The underlying page styled .btn-gold as navy bg + white text, but the
    body.mcas-page anchor color rule (rust on a) won the cascade and gave
-   us rust text on dark navy — fails WCAG contrast. Override: dark terra
+   us rust text on dark navy - fails WCAG contrast. Override: dark terra
    cotta background (brand rust) with white text. Hover deepens to
    rust-dark per the MCAS spec.
 */
@@ -469,7 +469,7 @@ body.mcas-page.quiz .mcas-lecture-notes { display: none; }
   }
 }
 
-/* Gated state — workbook aside is locked until the spoke page's retrieval
+/* Gated state - workbook aside is locked until the spoke page's retrieval
    check is passed. The gating JS adds .gate-locked to the CTA when the
    localStorage flag bio304-gate-{TOPIC_ID} is not yet set. */
 body.mcas-page .mcas-next-up.is-gated {
@@ -498,8 +498,168 @@ body.mcas-page .mcas-next-up-gate-hint {
 }
 body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 </style>
+
+<style id="interactive-workbook-css">
+/* ============================================================
+   INTERACTIVE WORKBOOK LAYER (fillable + drawable + locked sign-in)
+   ============================================================ */
+.answer-space{border-bottom:none !important;min-height:0 !important;}
+textarea.answer-input{display:block;width:100%;margin:6px 0 0;
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;line-height:1.55;
+  color:var(--navy);background:#ffffff;border:1px solid var(--gray-line);border-radius:4px;
+  padding:8px 10px;resize:none;overflow:hidden;min-height:38px;}
+textarea.answer-input:focus{outline:3px solid var(--gold);outline-offset:1px;border-color:var(--navy);}
+input.answer-input-line{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;color:var(--navy);
+  background:#ffffff;border:none;border-bottom:1px solid var(--gray-line);width:calc(100% - 28px);padding:4px 2px;}
+input.answer-input-line:focus{outline:none;border-bottom:2px solid var(--gold);}
+.write-lines li{min-height:38px;}
+table.physio-table td textarea.physio-input{display:block;width:100%;min-height:42px;margin:0;
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;line-height:1.5;color:var(--navy);
+  background:#ffffff;border:1px solid transparent;border-radius:4px;padding:6px;resize:none;overflow:hidden;}
+table.physio-table td{padding:2px !important;}
+table.physio-table td textarea.physio-input:focus{outline:2px solid var(--gold);outline-offset:-1px;border-color:var(--navy);}
+
+/* flagged (unusual bulk text insertion) */
+.wb-flagged{box-shadow:inset 4px 0 0 var(--terra) !important;}
+
+/* drawing canvas */
+.draw-box.is-interactive{padding:0;display:block;border:1px solid var(--gray-line);background:#ffffff;overflow:hidden;}
+.draw-box .canvas-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 10px;
+  background:var(--navy-tint);border-bottom:1px solid var(--gray-line);}
+.draw-box .tool-group{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.draw-box .tool-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--gray-soft);}
+.draw-box .swatch{width:22px;height:22px;border-radius:99px;border:2px solid #ffffff;
+  box-shadow:0 0 0 1px var(--gray-line);cursor:pointer;padding:0;}
+.draw-box .swatch.is-active{box-shadow:0 0 0 2px var(--navy);}
+.draw-box .swatch.navy{background:#0B1530;} .draw-box .swatch.rust{background:#8B3A2E;}
+.draw-box .swatch.gold{background:#C9A14A;} .draw-box .swatch.red{background:#C0392B;}
+.draw-box .swatch.teal{background:#2A6F7A;} .draw-box .swatch.dark{background:#060A18;}
+.draw-box .size-btn{width:26px;height:26px;border-radius:99px;border:1px solid var(--gray-line);background:#fff;
+  cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0;}
+.draw-box .size-btn.is-active{border-color:var(--navy);background:var(--navy-tint);}
+.draw-box .size-btn .dot{display:block;border-radius:99px;background:var(--navy);width:8px;height:8px;}
+.draw-box .size-btn[data-size="2"] .dot{width:4px;height:4px;}
+.draw-box .size-btn[data-size="4"] .dot{width:7px;height:7px;}
+.draw-box .size-btn[data-size="8"] .dot{width:11px;height:11px;}
+.draw-box .size-btn[data-size="14"] .dot{width:15px;height:15px;}
+.draw-box .action-btn{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:13px;
+  padding:6px 12px;border-radius:4px;border:1px solid var(--gray-line);background:#fff;color:var(--navy);cursor:pointer;}
+.draw-box .action-btn:hover{background:var(--navy-tint);border-color:var(--navy);}
+.draw-box .action-btn.is-active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.draw-box .action-btn.primary{background:var(--navy);color:#fff;border-color:var(--navy);}
+.draw-box .canvas-wrap{position:relative;width:100%;
+  background:linear-gradient(rgba(11,21,48,.04) 1px,transparent 1px) 0 0/24px 24px,
+             linear-gradient(90deg,rgba(11,21,48,.04) 1px,transparent 1px) 0 0/24px 24px,#ffffff;
+  cursor:crosshair;touch-action:none;-webkit-user-select:none;user-select:none;overscroll-behavior:contain;}
+.draw-box .canvas-wrap.is-erasing{cursor:cell;}
+.draw-box .draw-canvas{display:block;width:100%;height:100%;position:absolute;inset:0;touch-action:none;
+  -webkit-user-select:none;user-select:none;-webkit-user-drag:none;}
+.draw-box .draw-caption{display:none;}
+
+/* identity + integrity stamp (prints) */
+.wb-identity{background:#ffffff;border:1px solid var(--gray-line);border-radius:4px;padding:16px 18px;margin:0 0 18px;}
+.wb-id-row{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;}
+.wb-identity .field{display:flex;flex-direction:column;gap:4px;flex:1;min-width:180px;}
+.wb-identity label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--gray-soft);}
+.wb-identity .locked-value{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:700;
+  color:var(--navy);border-bottom:1px solid var(--gray-line);padding:6px 2px;min-height:30px;}
+.wb-stamp{margin-top:14px;padding-top:12px;border-top:1px solid var(--rule-soft,var(--gray-line));
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;color:var(--gray-soft);
+  display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;}
+.wb-stamp b{color:var(--navy);font-weight:700;}
+.wb-stamp .pill{display:inline-block;border-radius:99px;padding:2px 10px;font-weight:700;font-size:11px;
+  letter-spacing:.04em;border:1px solid var(--gray-line);color:var(--navy);background:#fff;}
+.wb-stamp .pill.ok{color:#1E3D4C;border-color:var(--gray-line);}
+.wb-stamp .pill.warn{color:#7A2F18;border-color:#7A2F18;background:#fff;}
+.wb-reset{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:600;
+  background:none;border:none;color:var(--terra-dark);cursor:pointer;text-decoration:underline;padding:0;}
+
+/* sticky action bar */
+.wb-actionbar{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;display:flex;flex-wrap:wrap;
+  gap:12px;align-items:center;justify-content:space-between;padding:10px 18px;border-bottom:2px solid var(--gold);}
+.wb-actionbar p{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;color:#fff;max-width:640px;}
+.wb-actionbar .wb-pdf-btn{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;font-size:15px;
+  padding:10px 20px;border-radius:4px;border:1px solid var(--gold);background:var(--gold);color:#0B1530;cursor:pointer;white-space:nowrap;}
+.wb-actionbar .wb-pdf-btn:hover{background:#fff;border-color:#fff;}
+
+/* no-paste toast */
+.wb-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--navy);
+  color:#fff;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;padding:12px 18px;
+  border-radius:4px;box-shadow:0 6px 16px rgba(10,19,34,.25);opacity:0;pointer-events:none;
+  transition:opacity .2s ease,transform .2s ease;z-index:1200;}
+.wb-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* sign-in cover */
+.wb-cover{position:fixed;inset:0;z-index:1000;background:var(--navy);display:flex;align-items:center;justify-content:center;padding:24px;overflow:auto;}
+.wb-cover-card{background:#fff;border-radius:6px;max-width:520px;width:100%;padding:30px 30px 26px;box-shadow:0 10px 40px rgba(0,0,0,.35);}
+.wb-cover-eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--terra-dark);margin:0 0 6px;}
+.wb-cover-card h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;color:var(--navy);font-size:24px;margin:0 0 6px;}
+.wb-cover-card .sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;color:var(--gray-soft);margin:0 0 18px;line-height:1.5;}
+.wb-cover-card .field{display:flex;flex-direction:column;gap:5px;margin:0 0 14px;}
+.wb-cover-card label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;font-size:12px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--gray-soft);}
+.wb-cover-card input[type=text]{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;color:var(--navy);
+  background:#fff;border:1px solid var(--gray-line);border-radius:4px;padding:11px 12px;}
+.wb-cover-card input[type=text]:focus{outline:3px solid var(--gold);outline-offset:1px;border-color:var(--navy);}
+.wb-cover-honor{display:flex;gap:10px;align-items:flex-start;margin:4px 0 18px;
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;color:var(--navy);line-height:1.45;}
+.wb-cover-honor input{margin-top:3px;width:18px;height:18px;flex:0 0 auto;}
+.wb-cover-unlock{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;font-size:16px;width:100%;
+  padding:13px;border-radius:4px;border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer;}
+.wb-cover-unlock:hover{background:var(--navy-deep);}
+.wb-cover-error{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:600;color:#7A2F18;margin:0 0 12px;min-height:18px;}
+.wb-cover-note{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;color:var(--gray-soft);margin:14px 0 0;line-height:1.5;}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@media print{
+  .wb-actionbar,.wb-toast,.wb-cover{display:none !important;}
+  .draw-box .canvas-toolbar{display:none !important;}
+  .btn,.bundle-btn,.wb-reset{display:none !important;}
+  .draw-box.is-interactive{border:1.5pt solid #0B1530;page-break-inside:avoid;}
+  .draw-box .canvas-wrap{background:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .draw-box .draw-canvas{position:absolute;inset:0;width:100%;height:100%;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  textarea.answer-input,textarea.physio-input{border:1px solid #999 !important;overflow:visible !important;color:#000 !important;background:#fff !important;}
+  input.answer-input-line{color:#000 !important;border-bottom:1px solid #999 !important;}
+  .wb-identity{border:1.5pt solid #000;page-break-inside:avoid;}
+  .wb-stamp,.wb-stamp b{color:#000;}
+  .wb-flagged{box-shadow:inset 4px 0 0 #7A2F18 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+
 </head>
 <body class="mcas-page">
+
+<div class="wb-cover no-print" id="wb-cover" role="dialog" aria-modal="true" aria-labelledby="wb-cover-title">
+  <div class="wb-cover-card">
+    <p class="wb-cover-eyebrow">BIO 304 . Human Anatomy &amp; Physiology</p>
+    <h2 id="wb-cover-title">Sign in to begin</h2>
+    <p class="sub">Type your name to unlock this workbook. Your name locks to this copy and prints on every page you submit. You cannot change it afterward without resetting, which clears your work.</p>
+    <div class="field">
+      <label for="wb-cover-name">Your full name</label>
+      <input type="text" id="wb-cover-name" autocomplete="off" placeholder="First and last name">
+    </div>
+    <div class="field">
+      <label for="wb-cover-date">Date</label>
+      <input type="text" id="wb-cover-date" autocomplete="off" placeholder="Month / Day / Year">
+    </div>
+    <label class="wb-cover-honor"><input type="checkbox" id="wb-cover-honor">
+      <span>This is my own work. I will type my answers and draw every diagram by hand, following the course academic integrity policy.</span></label>
+    <p class="wb-cover-error" id="wb-cover-error" role="alert"></p>
+    <button type="button" class="wb-cover-unlock" id="wb-cover-unlock">Unlock workbook</button>
+    <p class="wb-cover-note">Tip: complete the workbook in one sitting. Typed answers are saved on this device as you go, but hand drawings are not auto-saved, so finish your sketches before you close the page.</p>
+  </div>
+</div>
+
+<div class="wb-actionbar no-print" role="region" aria-label="Submission tools">
+  <p>Type every answer, sketch each drawing by hand, then click Save to make your PDF and upload it. Pasting into answers is turned off, so type your own words.</p>
+  <button type="button" class="wb-pdf-btn" id="wbSavePdf" aria-label="Save or submit this workbook as a PDF">Save / Submit as PDF</button>
+</div>
+
 <!-- mcas-chrome-header -->
 <a href="#mcas-content" class="mcas-skip">Skip to main content</a>
 <div class="mcas-chrome">
@@ -532,14 +692,29 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 </header>
 </div>
 <main id="mcas-content" class="mcas-content">
+
+<div class="wb-identity">
+  <div class="wb-id-row">
+    <div class="field"><label>Student</label><div class="locked-value" id="wb-name-display" aria-live="polite"></div></div>
+    <div class="field"><label>Date</label><div class="locked-value" id="wb-date-display"></div></div>
+  </div>
+  <div class="wb-stamp" id="wb-stamp" aria-live="polite">
+    <span>Signed in: <b id="wb-stamp-unlocked">-</b></span>
+    <span>Saved/printed: <b id="wb-stamp-submitted">-</b></span>
+    <span>Paste attempts blocked: <b id="wb-stamp-paste">0</b></span>
+    <span id="wb-stamp-bulk-wrap">Unusual text insertions: <span class="pill ok" id="wb-stamp-bulk">none</span></span>
+    <button type="button" class="wb-reset no-print" id="wb-reset" aria-label="Reset this workbook and clear your name and answers">Reset workbook</button>
+  </div>
+</div>
+
 <!-- mcas-chrome-header-end -->
 
-<div class="bundle-toolbar" role="toolbar" aria-label="Week workbook"><div class="bundle-toolbar-title">Week 8 Workbook — Renal & Reproductive</div><div class="bundle-toolbar-actions"><button type="button" class="bundle-btn-ghost bundle-btn" onclick="window.history.back();">&larr; Back</button><button type="button" class="bundle-btn" id="bundle-print">Print this week's workbook</button></div></div>
+<div class="bundle-toolbar" role="toolbar" aria-label="Week workbook"><div class="bundle-toolbar-title">Week 8 Workbook: Renal & Reproductive</div><div class="bundle-toolbar-actions"><button type="button" class="bundle-btn-ghost bundle-btn" onclick="window.history.back();">&larr; Back</button><button type="button" class="bundle-btn" id="bundle-print">Save the week as PDF</button></div></div>
 <section class="bundle-cover">
 <p class="eyebrow">BIO 304 . Human Anatomy &amp; Physiology . Week 8</p>
-<h1>Week 8 Workbook — Renal & Reproductive</h1>
-<p class="subhead">Days 29 through 32 . Print one packet, work the whole week.</p>
-<p class="usage">Print this whole packet at the start of the week and use it as you work through the videos and interactive notes for the days listed below. Each day starts on a fresh page so it&rsquo;s easy to keep them organized.</p>
+<h1>Week 8 Workbook: Renal & Reproductive</h1>
+<p class="subhead">Days 29 through 32 . Complete it on screen across the whole week.</p>
+<p class="usage">Open this packet at the start of the week and work through it on screen alongside the videos and interactive notes for the days listed below. Each day starts on a fresh page so it&rsquo;s easy to keep them organized.</p>
 <ol>
   <li><strong>Day 29</strong> &middot; Kidney Anatomy & Glomerular Filtration</li>
   <li><strong>Day 30</strong> &middot; Tubular Function & Urine Concentration</li>
@@ -556,11 +731,11 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   <p class="eyebrow">BIO 304 . WEEK 8 . MONDAY . LAB WORKBOOK</p>
   <h1>Kidney Anatomy and Glomerular Filtration</h1>
   <p class="subhead">Gross kidney structure, the nephron, and how filtration starts.</p>
-  <p class="usage">Print this page. You will draw your own diagrams from the directions below, then hand-label the structures listed. Drawing by hand is the integrity mechanism for this course.</p>
+  <p class="usage">Complete this page on screen. Type your answers and draw your own diagrams from the directions below, then hand-label the structures listed. Drawing by hand is the integrity mechanism for this course.</p>
 </header>
 <main id="main" tabindex="-1">
   <div class="toolbar no-print">
-    <button type="button" class="btn btn-primary" onclick="window.print()">Print this workbook</button>
+    <button type="button" class="btn btn-primary" onclick="window.print()">Save as PDF</button>
     <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
 
@@ -586,7 +761,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     <li>Label every nephron segment.</li>
     </ol>
   </div>
-  <div class="draw-box" id="draw-panel-a" role="img" aria-label="Blank drawing space for Box A. Kidney in coronal section + nephron schematic" style="min-height:480px;">
+  <div class="draw-box" data-draw="1" id="draw-panel-a" role="img" aria-label="Blank drawing space for Box A. Kidney in coronal section + nephron schematic" style="min-height:480px;">
     <p class="draw-caption">Draw here. Sketch by hand.</p>
   </div>
 </article>
@@ -603,7 +778,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     <li>Note: filtrate contains water, ions, glucose, amino acids, urea (small things). It excludes RBCs, WBCs, platelets, and large proteins (these stay in the blood).</li>
     </ol>
   </div>
-  <div class="draw-box" id="draw-panel-b" role="img" aria-label="Blank drawing space for Box B. Glomerulus and Bowman&#x27;s capsule close-up" style="min-height:380px;">
+  <div class="draw-box" data-draw="1" id="draw-panel-b" role="img" aria-label="Blank drawing space for Box B. Glomerulus and Bowman&#x27;s capsule close-up" style="min-height:380px;">
     <p class="draw-caption">Draw here. Sketch by hand.</p>
   </div>
 </article>
@@ -687,11 +862,11 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   <p class="eyebrow">BIO 304 . WEEK 8 . TUESDAY . LAB WORKBOOK</p>
   <h1>Tubular Function and Urine Concentration</h1>
   <p class="subhead">Reabsorption, secretion, and how the kidney makes concentrated urine.</p>
-  <p class="usage">Print this page. You will draw your own diagrams from the directions below, then hand-label the structures listed. Drawing by hand is the integrity mechanism for this course.</p>
+  <p class="usage">Complete this page on screen. Type your answers and draw your own diagrams from the directions below, then hand-label the structures listed. Drawing by hand is the integrity mechanism for this course.</p>
 </header>
 <main id="main" tabindex="-1">
   <div class="toolbar no-print">
-    <button type="button" class="btn btn-primary" onclick="window.print()">Print this workbook</button>
+    <button type="button" class="btn btn-primary" onclick="window.print()">Save as PDF</button>
     <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
 
@@ -719,7 +894,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     <li>Label each segment and its key activity.</li>
     </ol>
   </div>
-  <div class="draw-box" id="draw-panel-a" role="img" aria-label="Blank drawing space for Box A. Nephron with segment functions" style="min-height:480px;">
+  <div class="draw-box" data-draw="1" id="draw-panel-a" role="img" aria-label="Blank drawing space for Box A. Nephron with segment functions" style="min-height:480px;">
     <p class="draw-caption">Draw here. Sketch by hand.</p>
   </div>
 </article>
@@ -737,7 +912,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     <li>Note: the medullary gradient is what makes concentrated urine POSSIBLE; ADH controls whether the body USES it.</li>
     </ol>
   </div>
-  <div class="draw-box" id="draw-panel-b" role="img" aria-label="Blank drawing space for Box B. Medullary osmotic gradient" style="min-height:460px;">
+  <div class="draw-box" data-draw="1" id="draw-panel-b" role="img" aria-label="Blank drawing space for Box B. Medullary osmotic gradient" style="min-height:460px;">
     <p class="draw-caption">Draw here. Sketch by hand.</p>
   </div>
 </article>
@@ -816,11 +991,11 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   <p class="eyebrow">BIO 304 . WEEK 8 . THURSDAY . LAB WORKBOOK</p>
   <h1>Fluid, Electrolyte, and Acid-Base Balance</h1>
   <p class="subhead">Body water compartments, key electrolytes, and how the body keeps pH at 7.4.</p>
-  <p class="usage">Print this page. You will draw your own diagrams from the directions below, then hand-label the structures listed. Drawing by hand is the integrity mechanism for this course.</p>
+  <p class="usage">Complete this page on screen. Type your answers and draw your own diagrams from the directions below, then hand-label the structures listed. Drawing by hand is the integrity mechanism for this course.</p>
 </header>
 <main id="main" tabindex="-1">
   <div class="toolbar no-print">
-    <button type="button" class="btn btn-primary" onclick="window.print()">Print this workbook</button>
+    <button type="button" class="btn btn-primary" onclick="window.print()">Save as PDF</button>
     <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
 
@@ -847,7 +1022,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     <li>Note: the Na+/K+ ATPase is what maintains the K+-rich inside and Na+-rich outside.</li>
     </ol>
   </div>
-  <div class="draw-box" id="draw-panel-a" role="img" aria-label="Blank drawing space for Box A. Body fluid compartments" style="min-height:460px;">
+  <div class="draw-box" data-draw="1" id="draw-panel-a" role="img" aria-label="Blank drawing space for Box A. Body fluid compartments" style="min-height:460px;">
     <p class="draw-caption">Draw here. Sketch by hand.</p>
   </div>
 </article>
@@ -862,7 +1037,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     <li>Note the time courses: respiratory compensation is FAST (minutes). Renal compensation is SLOW (days).</li>
     </ol>
   </div>
-  <div class="draw-box" id="draw-panel-b" role="img" aria-label="Blank drawing space for Box B. Acid-base regulation: lungs and kidneys" style="min-height:380px;">
+  <div class="draw-box" data-draw="1" id="draw-panel-b" role="img" aria-label="Blank drawing space for Box B. Acid-base regulation: lungs and kidneys" style="min-height:380px;">
     <p class="draw-caption">Draw here. Sketch by hand.</p>
   </div>
 </article>
@@ -935,11 +1110,11 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   <p class="eyebrow">BIO 304 . WEEK 8 . THURSDAY . LAB WORKBOOK</p>
   <h1>Male Reproductive System</h1>
   <p class="subhead">Testes, accessory glands, spermatogenesis, and hormonal control.</p>
-  <p class="usage">Print this page. You will draw your own diagrams from the directions below, then hand-label the structures listed. Drawing by hand is the integrity mechanism for this course.</p>
+  <p class="usage">Complete this page on screen. Type your answers and draw your own diagrams from the directions below, then hand-label the structures listed. Drawing by hand is the integrity mechanism for this course.</p>
 </header>
 <main id="main" tabindex="-1">
   <div class="toolbar no-print">
-    <button type="button" class="btn btn-primary" onclick="window.print()">Print this workbook</button>
+    <button type="button" class="btn btn-primary" onclick="window.print()">Save as PDF</button>
     <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
 
@@ -968,7 +1143,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     <li>Finally, show the urethra exiting through the penis. Label.</li>
     </ol>
   </div>
-  <div class="draw-box" id="draw-panel-a" role="img" aria-label="Blank drawing space for Box A. Male reproductive system (sagittal section)" style="min-height:480px;">
+  <div class="draw-box" data-draw="1" id="draw-panel-a" role="img" aria-label="Blank drawing space for Box A. Male reproductive system (sagittal section)" style="min-height:480px;">
     <p class="draw-caption">Draw here. Sketch by hand.</p>
   </div>
 </article>
@@ -988,7 +1163,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     <li>Between tubules, add Leydig cells (interstitial cells) which produce testosterone. Label.</li>
     </ol>
   </div>
-  <div class="draw-box" id="draw-panel-b" role="img" aria-label="Blank drawing space for Box B. Seminiferous tubule with spermatogenesis" style="min-height:420px;">
+  <div class="draw-box" data-draw="1" id="draw-panel-b" role="img" aria-label="Blank drawing space for Box B. Seminiferous tubule with spermatogenesis" style="min-height:420px;">
     <p class="draw-caption">Draw here. Sketch by hand.</p>
   </div>
 </article>
@@ -1072,11 +1247,11 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   <p class="eyebrow">BIO 304 . WEEK 8 . FRIDAY . LAB WORKBOOK</p>
   <h1>Female Reproductive System</h1>
   <p class="subhead">Ovaries, uterus, the ovarian cycle, and hormonal control.</p>
-  <p class="usage">Print this page. You will draw your own diagrams from the directions below, then hand-label the structures listed. Drawing by hand is the integrity mechanism for this course.</p>
+  <p class="usage">Complete this page on screen. Type your answers and draw your own diagrams from the directions below, then hand-label the structures listed. Drawing by hand is the integrity mechanism for this course.</p>
 </header>
 <main id="main" tabindex="-1">
   <div class="toolbar no-print">
-    <button type="button" class="btn btn-primary" onclick="window.print()">Print this workbook</button>
+    <button type="button" class="btn btn-primary" onclick="window.print()">Save as PDF</button>
     <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
 
@@ -1103,7 +1278,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     <li>Inside the uterus wall, label endometrium (inner lining, sheds during menstruation) and myometrium (thick smooth muscle layer).</li>
     </ol>
   </div>
-  <div class="draw-box" id="draw-panel-a" role="img" aria-label="Blank drawing space for Box A. Female reproductive system (sagittal section)" style="min-height:460px;">
+  <div class="draw-box" data-draw="1" id="draw-panel-a" role="img" aria-label="Blank drawing space for Box A. Female reproductive system (sagittal section)" style="min-height:460px;">
     <p class="draw-caption">Draw here. Sketch by hand.</p>
   </div>
 </article>
@@ -1119,7 +1294,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     <li>Note: if no pregnancy, the corpus luteum degenerates around Day 25-28, progesterone and estrogen drop, the endometrium sheds, and a new cycle begins.</li>
     </ol>
   </div>
-  <div class="draw-box" id="draw-panel-b" role="img" aria-label="Blank drawing space for Box B. Ovarian and menstrual cycle" style="min-height:460px;">
+  <div class="draw-box" data-draw="1" id="draw-panel-b" role="img" aria-label="Blank drawing space for Box B. Ovarian and menstrual cycle" style="min-height:460px;">
     <p class="draw-caption">Draw here. Sketch by hand.</p>
   </div>
 </article>
@@ -1206,11 +1381,11 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   <p class="eyebrow">BIO 304 . WEEK 8 . FRIDAY . LAB WORKBOOK</p>
   <h1>Pregnancy A&amp;P (Basics)</h1>
   <p class="subhead">Fertilization, implantation, the placenta, and the major changes of pregnancy.</p>
-  <p class="usage">Print this page. You will draw your own diagrams from the directions below, then hand-label the structures listed. Drawing by hand is the integrity mechanism for this course.</p>
+  <p class="usage">Complete this page on screen. Type your answers and draw your own diagrams from the directions below, then hand-label the structures listed. Drawing by hand is the integrity mechanism for this course.</p>
 </header>
 <main id="main" tabindex="-1">
   <div class="toolbar no-print">
-    <button type="button" class="btn btn-primary" onclick="window.print()">Print this workbook</button>
+    <button type="button" class="btn btn-primary" onclick="window.print()">Save as PDF</button>
     <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
   </div>
 
@@ -1238,7 +1413,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     <li>Label every stage.</li>
     </ol>
   </div>
-  <div class="draw-box" id="draw-panel-a" role="img" aria-label="Blank drawing space for Box A. Fertilization to implantation" style="min-height:380px;">
+  <div class="draw-box" data-draw="1" id="draw-panel-a" role="img" aria-label="Blank drawing space for Box A. Fertilization to implantation" style="min-height:380px;">
     <p class="draw-caption">Draw here. Sketch by hand.</p>
   </div>
 </article>
@@ -1255,7 +1430,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     <li>Note: this is the only place in the body where arteries carry deoxygenated blood and a vein carries oxygenated blood.</li>
     </ol>
   </div>
-  <div class="draw-box" id="draw-panel-b" role="img" aria-label="Blank drawing space for Box B. Mature placenta" style="min-height:420px;">
+  <div class="draw-box" data-draw="1" id="draw-panel-b" role="img" aria-label="Blank drawing space for Box B. Mature placenta" style="min-height:420px;">
     <p class="draw-caption">Draw here. Sketch by hand.</p>
   </div>
 </article>
@@ -1433,4 +1608,234 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 })();
 </script>
 <!-- mcas-iframe-height-sender-end -->
+
+<script id="interactive-workbook-js">
+(function(){
+  "use strict";
+  var WB_ID="bio304-wb-week08";
+
+  /* ---- safe storage (localStorage with in-memory fallback) ---- */
+  var mem={};
+  function lsGet(k){try{var v=localStorage.getItem(k);return v==null?(k in mem?mem[k]:null):v;}catch(e){return (k in mem)?mem[k]:null;}}
+  function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){mem[k]=v;}}
+  function lsDel(k){try{localStorage.removeItem(k);}catch(e){}delete mem[k];}
+  var SKEY="wb:"+WB_ID;
+  function loadState(){try{return JSON.parse(lsGet(SKEY)||"{}")||{};}catch(e){return {};}}
+  var ST=loadState();
+  ST.fields=ST.fields||{};
+  ST.integrity=ST.integrity||{blockedPaste:0,blockedDrop:0,bulkInsert:0};
+  var pT=null;
+  function persist(){clearTimeout(pT);pT=setTimeout(function(){lsSet(SKEY,JSON.stringify(ST));},250);}
+  function nowStr(){var d=new Date();function p(n){return (n<10?"0":"")+n;}
+    return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes());}
+  function today(){var d=new Date();return (d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear();}
+
+  /* ---- toast ---- */
+  var toast=document.createElement('div');toast.className='wb-toast';toast.setAttribute('role','status');
+  toast.setAttribute('aria-live','polite');toast.textContent='Pasting is turned off. Please type your answer.';
+  var toastTimer=null;
+  function showToast(){if(!toast.parentNode)document.body.appendChild(toast);
+    requestAnimationFrame(function(){toast.classList.add('show');});
+    clearTimeout(toastTimer);toastTimer=setTimeout(function(){toast.classList.remove('show');},2200);}
+
+  /* ---- integrity stamp ---- */
+  function updateStamp(){
+    var u=document.getElementById('wb-stamp-unlocked');if(u)u.textContent=ST.unlockedAt||'-';
+    var s=document.getElementById('wb-stamp-submitted');if(s)s.textContent=ST.submittedAt||'-';
+    var p=document.getElementById('wb-stamp-paste');if(p)p.textContent=ST.integrity.blockedPaste+ST.integrity.blockedDrop;
+    var b=document.getElementById('wb-stamp-bulk');
+    if(b){var n=ST.integrity.bulkInsert;
+      if(n>0){b.textContent='review needed ('+n+')';b.className='pill warn';}
+      else{b.textContent='none';b.className='pill ok';}}
+  }
+  function bumpPaste(){ST.integrity.blockedPaste++;persist();updateStamp();}
+  function bumpDrop(){ST.integrity.blockedDrop++;persist();updateStamp();}
+  function bumpBulk(field){ST.integrity.bulkInsert++;if(field)field.classList.add('wb-flagged');persist();updateStamp();}
+
+  function lockField(el){
+    el.setAttribute('autocomplete','off');
+    el.addEventListener('paste',function(e){e.preventDefault();showToast();bumpPaste();});
+    el.addEventListener('drop',function(e){e.preventDefault();showToast();bumpDrop();});
+    el.addEventListener('dragover',function(e){e.preventDefault();});
+    el.addEventListener('beforeinput',function(e){var t=e.inputType||'';
+      if(t.indexOf('insertFromPaste')===0||t.indexOf('insertFromDrop')===0){e.preventDefault();showToast();bumpPaste();}});
+    el.addEventListener('contextmenu',function(e){e.preventDefault();});
+  }
+  function autogrow(el){el.style.height='auto';el.style.height=(el.scrollHeight)+'px';if(window.__wbHeight)window.__wbHeight();}
+  function track(el,key,isTextarea){
+    var last=el.value?el.value.length:0;
+    el.addEventListener('input',function(){
+      var len=el.value.length;
+      if(len-last>=25)bumpBulk(el);
+      last=len;ST.fields[key]=el.value;persist();
+      if(isTextarea)autogrow(el);
+    });
+  }
+
+  /* ---- build typed answer fields (merge consecutive answer lines) ---- */
+  var ansN=0;var seen=(typeof WeakSet!=='undefined')?new WeakSet():null;var seenArr=[];
+  function markSeen(el){if(seen)seen.add(el);else seenArr.push(el);}
+  function isSeen(el){return seen?seen.has(el):seenArr.indexOf(el)>-1;}
+  document.querySelectorAll('.answer-space').forEach(function(box){
+    if(isSeen(box))return;if(box.querySelector('textarea'))return;
+    var group=[box];var nx=box.nextElementSibling;
+    while(nx&&nx.classList&&nx.classList.contains('answer-space')&&!nx.querySelector('textarea')){group.push(nx);nx=nx.nextElementSibling;}
+    group.forEach(markSeen);ansN++;
+    var key='a'+ansN;
+    var ta=document.createElement('textarea');ta.className='answer-input';ta.rows=Math.min(8,group.length+1);
+    ta.setAttribute('aria-label','Your answer '+ansN);ta.setAttribute('spellcheck','true');
+    if(ST.fields[key])ta.value=ST.fields[key];
+    box.appendChild(ta);lockField(ta);track(ta,key,true);
+    for(var k=1;k<group.length;k++){if(group[k].parentNode)group[k].parentNode.removeChild(group[k]);}
+    if(ta.value)autogrow(ta);
+  });
+  var lineN=0;
+  document.querySelectorAll('.write-lines li').forEach(function(li){
+    if(li.querySelector('input,textarea'))return;lineN++;var key='l'+lineN;
+    var num=li.getAttribute('data-num')||'';
+    var inp=document.createElement('input');inp.type='text';inp.className='answer-input-line';inp.setAttribute('aria-label','Line '+num);
+    if(ST.fields[key])inp.value=ST.fields[key];
+    li.appendChild(inp);lockField(inp);track(inp,key,false);
+  });
+  var pN=0;
+  document.querySelectorAll('table.physio-table tbody td').forEach(function(td){
+    if(td.children.length||td.textContent.trim()!=='')return;pN++;var key='p'+pN;
+    var ta=document.createElement('textarea');ta.className='physio-input';ta.rows=2;ta.setAttribute('aria-label','Table answer');
+    if(ST.fields[key])ta.value=ST.fields[key];
+    td.appendChild(ta);lockField(ta);track(ta,key,true);
+    if(ta.value)autogrow(ta);
+  });
+
+  /* ---- drawing canvases ---- */
+  var COLORS=[{name:'navy',hex:'#0B1530'},{name:'rust',hex:'#8B3A2E'},{name:'gold',hex:'#C9A14A'},
+              {name:'red',hex:'#C0392B'},{name:'teal',hex:'#2A6F7A'},{name:'dark',hex:'#060A18'}];
+  var SIZES=[2,4,8,14];var allCanvases=[];
+  function buildToolbar(box,state){
+    var bar=document.createElement('div');bar.className='canvas-toolbar no-print';bar.setAttribute('role','toolbar');bar.setAttribute('aria-label','Drawing tools');
+    var cg=document.createElement('div');cg.className='tool-group';
+    var cl=document.createElement('span');cl.className='tool-label';cl.textContent='Pen';cg.appendChild(cl);var eraseBtn;
+    COLORS.forEach(function(c,idx){var b=document.createElement('button');b.type='button';
+      b.className='swatch '+c.name+(idx===0?' is-active':'');b.setAttribute('aria-label','Pen color '+c.name);
+      b.addEventListener('click',function(){state.color=c.hex;state.erasing=false;
+        cg.querySelectorAll('.swatch').forEach(function(s){s.classList.remove('is-active');});b.classList.add('is-active');
+        if(eraseBtn)eraseBtn.classList.remove('is-active');state.wrap.classList.remove('is-erasing');});cg.appendChild(b);});
+    bar.appendChild(cg);
+    var sg=document.createElement('div');sg.className='tool-group';
+    var sl=document.createElement('span');sl.className='tool-label';sl.textContent='Size';sg.appendChild(sl);
+    SIZES.forEach(function(sz,idx){var b=document.createElement('button');b.type='button';b.className='size-btn'+(idx===1?' is-active':'');
+      b.setAttribute('aria-label','Pen size '+sz);b.setAttribute('data-size',sz);
+      var dot=document.createElement('span');dot.className='dot';b.appendChild(dot);
+      b.addEventListener('click',function(){state.size=sz;sg.querySelectorAll('.size-btn').forEach(function(s){s.classList.remove('is-active');});b.classList.add('is-active');});sg.appendChild(b);});
+    bar.appendChild(sg);
+    var act=document.createElement('div');act.className='tool-group';
+    eraseBtn=document.createElement('button');eraseBtn.type='button';eraseBtn.className='action-btn';eraseBtn.textContent='Eraser';
+    eraseBtn.addEventListener('click',function(){state.erasing=!state.erasing;eraseBtn.classList.toggle('is-active',state.erasing);state.wrap.classList.toggle('is-erasing',state.erasing);});act.appendChild(eraseBtn);
+    var undoBtn=document.createElement('button');undoBtn.type='button';undoBtn.className='action-btn';undoBtn.textContent='Undo';
+    undoBtn.addEventListener('click',function(){undo(state);});act.appendChild(undoBtn);
+    var clearBtn=document.createElement('button');clearBtn.type='button';clearBtn.className='action-btn';clearBtn.textContent='Clear';
+    clearBtn.addEventListener('click',function(){if(state.strokes.length===0)return;if(confirm('Clear this drawing?')){state.strokes=[];redraw(state);}});act.appendChild(clearBtn);
+    var imgBtn=document.createElement('button');imgBtn.type='button';imgBtn.className='action-btn';imgBtn.textContent='Add image to label';
+    var fileInput=document.createElement('input');fileInput.type='file';fileInput.accept='image/*';fileInput.style.display='none';
+    imgBtn.addEventListener('click',function(){if(state.bgImage){if(confirm('Remove the background image? Your hand-drawn labels stay.')){state.bgImage=null;state.wrap.style.background='';imgBtn.textContent='Add image to label';}}else{fileInput.click();}});
+    fileInput.addEventListener('change',function(e){var file=e.target.files&&e.target.files[0];if(!file)return;var reader=new FileReader();
+      reader.onload=function(ev){var img=new Image();img.onload=function(){state.bgImage=img;
+        state.wrap.style.background="url('"+ev.target.result+"') center/contain no-repeat #FFFFFF";imgBtn.textContent='Remove image';};img.src=ev.target.result;};
+      reader.readAsDataURL(file);e.target.value='';});
+    act.appendChild(imgBtn);act.appendChild(fileInput);
+    var saveBtn=document.createElement('button');saveBtn.type='button';saveBtn.className='action-btn primary';saveBtn.textContent='Save PNG';
+    saveBtn.addEventListener('click',function(){savePNG(state);});act.appendChild(saveBtn);
+    bar.appendChild(act);box.insertBefore(bar,box.firstChild);return bar;
+  }
+  function setupCanvas(box){
+    box.classList.add('is-interactive');var cap=box.querySelector('.draw-caption');if(cap)cap.style.display='none';
+    var minH=420;var m=(box.getAttribute('style')||'').match(/min-height\s*:\s*(\d+)/);if(m)minH=parseInt(m[1],10);
+    box.style.minHeight='0';
+    var state={color:COLORS[0].hex,size:SIZES[1],erasing:false,strokes:[],currentStroke:null,wrap:null,canvas:null,ctx:null,dpr:window.devicePixelRatio||1,bgImage:null,
+      title:(box.getAttribute('aria-label')||box.id||'drawing').replace(/[^a-z0-9]+/gi,'-').toLowerCase()};
+    buildToolbar(box,state);
+    var wrap=document.createElement('div');wrap.className='canvas-wrap';wrap.style.minHeight=minH+'px';wrap.style.height=minH+'px';state.wrap=wrap;
+    var canvas=document.createElement('canvas');canvas.className='draw-canvas';canvas.setAttribute('role','img');canvas.setAttribute('aria-label',box.getAttribute('aria-label')||'Drawing canvas');
+    wrap.appendChild(canvas);box.appendChild(wrap);state.canvas=canvas;state.ctx=canvas.getContext('2d');box.removeAttribute('role');
+    function resize(){var rect=wrap.getBoundingClientRect();var dpr=window.devicePixelRatio||1;state.dpr=dpr;if(rect.width<1)return;
+      canvas.width=Math.max(1,Math.floor(rect.width*dpr));canvas.height=Math.max(1,Math.floor(rect.height*dpr));
+      canvas.style.width=rect.width+'px';canvas.style.height=rect.height+'px';state.ctx.setTransform(dpr,0,0,dpr,0,0);redraw(state);}
+    resize();window.addEventListener('resize',resize);if(window.ResizeObserver)new ResizeObserver(resize).observe(wrap);
+    function getXY(ev){var r=canvas.getBoundingClientRect();return{x:ev.clientX-r.left,y:ev.clientY-r.top};}
+    function start(ev){ev.preventDefault();if(canvas.setPointerCapture){try{canvas.setPointerCapture(ev.pointerId);}catch(e){}}
+      var p=getXY(ev);state.currentStroke={color:state.erasing?null:state.color,size:state.erasing?Math.max(12,state.size*4):state.size,erasing:state.erasing,points:[p]};
+      state.currentPointerId=ev.pointerId;state.currentPointerType=ev.pointerType;state.strokes.push(state.currentStroke);drawSeg(state,state.currentStroke,0);}
+    function move(ev){if(!state.currentStroke)return;ev.preventDefault();var p=getXY(ev);var s=state.currentStroke;var prev=s.points.length-1;s.points.push(p);drawSeg(state,s,prev);}
+    function end(ev){if(!state.currentStroke)return;if(ev&&ev.pointerId!=null&&state.currentPointerId!=null&&ev.pointerId!==state.currentPointerId)return;state.currentStroke=null;state.currentPointerId=null;state.currentPointerType=null;}
+    canvas.addEventListener('pointerdown',start);canvas.addEventListener('pointermove',move);canvas.addEventListener('pointerup',end);canvas.addEventListener('pointercancel',end);
+    canvas.addEventListener('touchstart',function(e){e.preventDefault();},{passive:false});
+    canvas.addEventListener('touchmove',function(e){e.preventDefault();},{passive:false});
+    canvas.addEventListener('contextmenu',function(e){e.preventDefault();});
+    allCanvases.push(state);
+  }
+  function drawSeg(state,stroke,fromIdx){var ctx=state.ctx;ctx.save();
+    if(stroke.erasing){ctx.globalCompositeOperation='destination-out';ctx.strokeStyle='rgba(0,0,0,1)';}
+    else{ctx.globalCompositeOperation='source-over';ctx.strokeStyle=stroke.color;}
+    ctx.lineWidth=stroke.size;ctx.lineCap='round';ctx.lineJoin='round';var pts=stroke.points;
+    if(pts.length===1){ctx.beginPath();ctx.arc(pts[0].x,pts[0].y,Math.max(.5,stroke.size/2),0,Math.PI*2);ctx.fillStyle=stroke.erasing?'rgba(0,0,0,1)':stroke.color;ctx.fill();}
+    else if(fromIdx<pts.length-1){ctx.beginPath();ctx.moveTo(pts[fromIdx].x,pts[fromIdx].y);for(var i=fromIdx+1;i<pts.length;i++)ctx.lineTo(pts[i].x,pts[i].y);ctx.stroke();}
+    ctx.restore();}
+  function redraw(state){var r=state.canvas.getBoundingClientRect();state.ctx.clearRect(0,0,r.width,r.height);state.strokes.forEach(function(s){drawSeg(state,s,0);});}
+  function undo(state){if(state.strokes.length===0)return;state.strokes.pop();redraw(state);}
+  function savePNG(state){var r=state.canvas.getBoundingClientRect();var out=document.createElement('canvas');var dpr=state.dpr;out.width=r.width*dpr;out.height=r.height*dpr;
+    var oc=out.getContext('2d');oc.fillStyle='#FFFFFF';oc.fillRect(0,0,out.width,out.height);
+    if(state.bgImage){var bg=state.bgImage;var iw=bg.naturalWidth,ih=bg.naturalHeight;var cw=out.width,ch=out.height;var scale=Math.min(cw/iw,ch/ih);var dw=iw*scale,dh=ih*scale;oc.drawImage(bg,(cw-dw)/2,(ch-dh)/2,dw,dh);}
+    oc.drawImage(state.canvas,0,0);var link=document.createElement('a');link.download='drawing-'+(ST.name||'student').replace(/[^a-z0-9]+/gi,'-').toLowerCase()+'-'+state.title+'.png';
+    link.href=out.toDataURL('image/png');document.body.appendChild(link);link.click();document.body.removeChild(link);}
+  document.querySelectorAll('.draw-box').forEach(setupCanvas);
+
+  /* ---- save / submit ---- */
+  var saveBtn=document.getElementById('wbSavePdf');if(saveBtn)saveBtn.addEventListener('click',function(){window.print();});
+  window.addEventListener('beforeprint',function(){ST.submittedAt=nowStr();persist();updateStamp();});
+
+  /* ---- sign-in cover + lock ---- */
+  var cover=document.getElementById('wb-cover');
+  var nameInput=document.getElementById('wb-cover-name');
+  var dateInput=document.getElementById('wb-cover-date');
+  var honor=document.getElementById('wb-cover-honor');
+  var unlockBtn=document.getElementById('wb-cover-unlock');
+  var errEl=document.getElementById('wb-cover-error');
+  if(nameInput)lockField(nameInput);
+  function applyLocked(){
+    var nd=document.getElementById('wb-name-display');if(nd)nd.textContent=ST.name||'';
+    var dd=document.getElementById('wb-date-display');if(dd)dd.textContent=ST.date||'';
+    updateStamp();
+    if(cover){cover.style.display='none';cover.setAttribute('aria-hidden','true');}
+    document.body.style.overflow='';
+    var main=document.querySelector('main');if(main&&main.focus){try{main.focus();}catch(e){}}
+  }
+  function gate(){
+    document.body.style.overflow='hidden';
+    if(nameInput){try{nameInput.focus();}catch(e){}}
+  }
+  if(ST.locked&&ST.name){applyLocked();}
+  else{gate();}
+  if(unlockBtn){
+    unlockBtn.addEventListener('click',function(){
+      var nm=(nameInput&&nameInput.value||'').trim().replace(/\s+/g,' ');
+      if(nm.length<2){errEl.textContent='Please type your full name to continue.';nameInput.focus();return;}
+      if(honor&&!honor.checked){errEl.textContent='Please confirm the statement before you begin.';return;}
+      errEl.textContent='';
+      ST.name=nm;ST.date=(dateInput&&dateInput.value||'').trim()||today();ST.unlockedAt=nowStr();ST.locked=true;
+      persist();applyLocked();
+    });
+  }
+  if(nameInput){nameInput.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();unlockBtn&&unlockBtn.click();}});}
+
+  /* ---- reset ---- */
+  var resetBtn=document.getElementById('wb-reset');
+  if(resetBtn){resetBtn.addEventListener('click',function(){
+    if(confirm('Reset clears your name, every typed answer, and the integrity record, then starts over. Drawings are also cleared. Continue?')){
+      lsDel(SKEY);location.reload();
+    }
+  });}
+
+  updateStamp();
+})();
+</script>
+
 </body></html>
