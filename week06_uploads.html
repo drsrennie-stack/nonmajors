@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIO 304 - Week 6 Uploads</title><style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+:root{--navy:#0B1530;--navy-soft:#1c2b50;--terra:#8B3A2E;--terra-soft:#A0452F;
+ --gold:#C9A14A;--gold-deep:#9c7a2f;--cream:#F5F1E8;--paper:#FBF9F4;--ink:#0B1530;
+ --muted:#5b6275;--line:#e4ddcd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);
+ font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif;
+ -webkit-font-smoothing:antialiased;line-height:1.5;padding:28px 16px}
+.wrap{max-width:880px;margin:0 auto}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:18px;
+ box-shadow:0 24px 60px -36px rgba(11,21,48,.5);overflow:hidden}
+.masthead{background:var(--navy);color:#fff;padding:30px 34px 26px;position:relative}
+.masthead::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;
+ background:linear-gradient(90deg,var(--terra) 0 33%,var(--gold) 33% 66%,var(--cream) 66% 100%)}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+.masthead h1{font-size:30px;font-weight:800;letter-spacing:-.01em;margin:0 0 6px;line-height:1.1}
+.masthead .sub{margin:0;color:#c5cbdb;font-size:14.5px;font-weight:500}
+.howto{display:flex;gap:14px;flex-wrap:wrap;padding:18px 34px;background:var(--cream);border-bottom:1px solid var(--line)}
+.howto .rule{flex:1 1 230px;display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted)}
+.howto .rule b{color:var(--navy);font-weight:700}
+.howto .n{flex:none;width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;
+ font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.week{padding:6px 0}
+.week-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:16px 34px 8px}
+.week-no{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--terra)}
+.week-range{font-size:13px;font-weight:600;color:var(--muted)}
+.days{list-style:none;margin:0;padding:0 18px 8px}
+.day{display:grid;grid-template-columns:150px 1fr 150px;gap:14px;align-items:center;
+ padding:13px 16px;border-radius:12px;border:1px solid transparent}
+.day+.day{margin-top:2px}
+.day:nth-child(odd){background:rgba(11,21,48,.025)}
+.day-dbl{border-color:rgba(201,161,74,.5);background:rgba(201,161,74,.08)}
+.day-num{display:block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy)}
+.day-date{display:block;font-size:13.5px;color:var(--muted);font-weight:600;margin-top:2px}
+.day-label{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+ color:var(--terra-soft);margin-bottom:5px;display:flex;align-items:center;gap:8px}
+.dbl{font-size:9.5px;font-weight:800;letter-spacing:.06em;color:var(--gold-deep);
+ background:rgba(201,161,74,.18);border:1px solid rgba(201,161,74,.45);padding:1px 7px;border-radius:999px;text-transform:uppercase}
+.wb{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--navy);font-weight:600;font-size:15px;padding:2px 0;transition:color .15s}
+.wb+.wb{margin-top:3px}
+.wb:hover{color:var(--terra)}
+.wb-dot{flex:none;width:7px;height:7px;border-radius:2px;background:var(--terra);transform:rotate(45deg)}
+.day-due{justify-self:end;text-align:right;min-width:128px}
+.due-tag{display:block;font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.due-date{display:block;font-size:14px;font-weight:800;color:var(--navy);margin-top:1px}
+.due-time{display:inline-block;margin-top:3px;font-size:11px;font-weight:700;color:var(--navy);background:var(--gold);padding:2px 9px;border-radius:999px}
+/* weekly band (engagement report) */
+.weekly{display:grid;grid-template-columns:150px 1fr 150px;gap:14px;align-items:center;
+ margin:6px 16px 2px;padding:13px 16px;border-radius:12px;background:var(--navy);color:#fff}
+.weekly .day-num{color:var(--gold)}
+.weekly .day-date{color:#aeb6cc}
+.weekly .day-label{color:var(--gold)}
+.weekly .wb{color:#fff}
+.weekly .wb-dot{background:var(--gold)}
+.weekly .due-tag{color:#aeb6cc}
+.weekly .due-date{color:#fff}
+/* discussion + quiz cards */
+.topic{margin:4px 34px 2px;padding:14px 18px;background:rgba(139,58,46,.06);
+ border:1px solid rgba(139,58,46,.18);border-radius:12px}
+.topic .t-eyebrow{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-soft);margin:0 0 4px}
+.topic .t-title{font-size:19px;font-weight:800;color:var(--navy);margin:0;line-height:1.2}
+.topic .t-covers{font-size:13px;color:var(--muted);margin:7px 0 0}
+.topic .t-covers b{color:var(--navy);font-weight:700}
+.milestones{list-style:none;margin:0;padding:4px 34px 10px}
+.ms{display:grid;grid-template-columns:1fr 168px;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.ms:last-child{border-bottom:none}
+.ms-what{font-size:15px;font-weight:700;color:var(--navy)}
+.ms-sub{display:block;font-size:12.5px;font-weight:500;color:var(--muted);margin-top:2px}
+.ms-due{justify-self:end;text-align:right}
+.spec{margin:0 34px 14px;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.01em}
+.spec b{color:var(--navy)}
+footer{padding:18px 34px 26px;background:var(--navy);color:#aab2c8;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer em{color:#fff;font-style:normal;font-weight:700;letter-spacing:.02em}
+.printbtn{position:fixed;right:18px;bottom:18px;background:var(--terra);color:#fff;border:none;font:inherit;
+ font-weight:700;font-size:13px;padding:11px 18px;border-radius:999px;cursor:pointer;box-shadow:0 12px 28px -12px rgba(139,58,46,.8)}
+.printbtn:hover{background:var(--terra-soft)}
+@media(max-width:620px){
+ body{padding:14px 8px}
+ .masthead,.howto,.week-head,footer,.topic,.milestones,.spec{padding-left:18px;padding-right:18px}
+ .topic,.weekly{margin-left:14px;margin-right:14px}
+ .day,.weekly{grid-template-columns:1fr;gap:8px;padding:13px 14px;border-bottom:1px solid var(--line);border-radius:10px}
+ .day-due,.ms-due{justify-self:start;text-align:left}
+ .ms{grid-template-columns:1fr}
+ .due-date{display:inline;margin-right:8px}
+}
+@media print{
+ body{background:#fff;padding:0}.sheet{box-shadow:none;border:none;border-radius:0}
+ .printbtn{display:none}.week{break-inside:avoid}.day:nth-child(odd){background:#f3f1ea}
+}
+</style></head>
+<body><div class="wrap"><div class="sheet">
+  <div class="masthead"><p class="eyebrow">BIO 304 &middot; What to Upload</p><h1>Week 6: What to Upload</h1><p class="sub">Week 6 &middot; July 13 &ndash; July 19, 2026</p></div>
+  <div class="howto"><div class="rule"><span class="n">1</span><span><b>Print &amp; label by hand.</b> Open each day&rsquo;s page and complete it on paper &mdash; given, not Googled.</span></div><div class="rule"><span class="n">2</span><span><b>Workbooks:</b> upload to Canvas by <b>11:59 PM the day after</b> each workbook day. A gold tag means two are due that day.</span></div><div class="rule"><span class="n">3</span><span><b>Engagement Report:</b> upload once a week, every <b>Sunday by 11:59 PM</b>.</span></div></div>
+    <section class="week" id="week-6">
+      <header class="week-head"><span class="week-no">Week 6</span><span class="week-range">Jul 13 &ndash; Jul 19</span></header>
+      <ol class="days">
+        <li class="day day-dbl">
+          <div class="day-when"><span class="day-num">Day 21</span><span class="day-date">Monday, July 13</span></div>
+          <div class="day-work"><div class="day-label">Upload these workbooks<span class="dbl">2 uploads</span></div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day21_blood-composition-and-hemopoiesis.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Blood Composition and Hemopoiesis</a><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day21_hemostasis-and-blood-typing.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Hemostasis and Blood Typing</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Tue, Jul 14</span><span class="due-time">11:59 PM</span></div>
+        </li>        <li class="day">
+          <div class="day-when"><span class="day-num">Day 22</span><span class="day-date">Tuesday, July 14</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day22_heart-anatomy-and-the-cardiac-cycle.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Heart Anatomy and the Cardiac Cycle</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Wed, Jul 15</span><span class="due-time">11:59 PM</span></div>
+        </li>        <li class="day">
+          <div class="day-when"><span class="day-num">Day 23</span><span class="day-date">Thursday, July 16</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day23_cardiac-conduction-system.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Cardiac Conduction System</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Fri, Jul 17</span><span class="due-time">11:59 PM</span></div>
+        </li>        <li class="day">
+          <div class="day-when"><span class="day-num">Day 24</span><span class="day-date">Friday, July 17</span></div>
+          <div class="day-work"><div class="day-label">Upload this workbook</div><a class="wb" href="https://drsrennie-stack.github.io/nonmajors/workbook_day24_blood-vessels-and-hemodynamics.html" target="_blank" rel="noopener"><span class="wb-dot"></span>Blood Vessels and Hemodynamics</a></div>
+          <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sat, Jul 18</span><span class="due-time">11:59 PM</span></div>
+        </li>
+      </ol>
+      <div class="weekly">
+        <div class="day-when"><span class="day-num">Weekly</span><span class="day-date">End of Week 6</span></div>
+        <div class="day-work"><div class="day-label">Also upload</div><span class="wb"><span class="wb-dot"></span>Engagement Report</span></div>
+        <div class="day-due"><span class="due-tag">Due</span><span class="due-date">Sun, Jul 19</span><span class="due-time">11:59 PM</span></div>
+      </div>
+    </section>
+  <footer><span>Workbook days: Mon, Tue, Thu, Fri &middot; Engagement report: Sun</span><em>Dr. Sharilyn Rennie &middot; BIO 304</em></footer>
+</div></div>
+<button class="printbtn" onclick="window.print()">Print this sheet</button>
+</body></html>
