@@ -848,6 +848,16 @@ body.mcas-page a:focus-visible {
   border-radius: 4px;
 }
 
+/* Button-styled anchors must keep their button text color, not the global link
+   color. The global "body.mcas-page a { color: rust }" rule was overriding
+   .btn-primary's white, leaving unreadable rust-on-navy text. These higher-
+   specificity rules restore the correct, high-contrast button colors. */
+body.mcas-page a.btn-primary, body.mcas-page a.btn-primary:hover, body.mcas-page a.btn-primary:focus-visible,
+body.mcas-page a.btn-gold, body.mcas-page a.btn-gold:hover, body.mcas-page a.btn-gold:focus-visible,
+a.btn-primary, a.btn-gold { color: var(--white); }
+body.mcas-page a.btn-ghost, body.mcas-page a.btn-ghost:hover, body.mcas-page a.btn-ghost:focus-visible,
+a.btn-ghost { color: var(--navy); }
+
 /* ----- NO BOOKENDS RULE -----
    Strip section-edge bookend borders from header.page-head, section.band,
    nav.toc, .banner, .page-head, the syllabus's section blocks, etc.
@@ -1820,7 +1830,8 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         unlockedAt: "",
         cards: {},
         dok: { 1: { correct: 0, total: 0 }, 2: { correct: 0, total: 0 }, 3: { correct: 0, total: 0 } },
-        adaptiveLevel: 1
+        adaptiveLevel: 1,
+        maxLevel: 1   // highest DOK level reached; ratchets up, never demotes
       };
     }
     return STATE.topics[topicId];
@@ -1933,7 +1944,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     // were reached without passing the gate ("broke in"). Those cards earn no credit.
     var brokeIn = wt.filter(function(t){ var ts=STATE.topics[t.id]; return ts && !ts.videoWatched && Object.keys(ts.cards||{}).length>0; }).length;
     // DOK-3 goal: how many of this week's topics has the student worked up to DOK 3?
-    var dok3 = wt.filter(function(t){ var ts=STATE.topics[t.id]; return ts && (ts.adaptiveLevel||1) >= 3; }).length;
+    var dok3 = wt.filter(function(t){ return reachedDok3(t.id); }).length;
 
     // remaining capacity (required days not yet full) for the "max reachable" marker
     var capacity = requiredDays.reduce(function(a,d){ return a + (1 - Math.min(1,Math.max(0,d.frac))); }, 0);
@@ -1965,6 +1976,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         interval: 0,
         nextDue: nowSim(),
         lastRating: "",
+        lastCorrect: null,   // most recent answer correct? drives coverage-based mastery
         history: []
       };
     }
@@ -2019,8 +2031,17 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       cardState.ease = cardState.ease + 0.15;
       cardState.interval = Math.round(cardState.interval * 1.2);
     }
+    // Jitter so a batch answered on the same day doesn't all come due on the same
+    // future day (which would spike the workload). Spread them ±~15%, and for the
+    // 1-day case randomly push some to day 2, so a Monday batch fans across the week.
+    if (cardState.interval <= 1) {
+      cardState.interval = (Math.random() < 0.5) ? 1 : 2;
+    } else {
+      var fuzz = Math.round(cardState.interval * (Math.random() * 0.3 - 0.15));
+      cardState.interval = cardState.interval + fuzz;
+    }
     // Keep mastered cards in semester-wide rotation (see MAX_INTERVAL_DAYS).
-    cardState.interval = Math.min(cardState.interval, MAX_INTERVAL_DAYS);
+    cardState.interval = Math.max(1, Math.min(cardState.interval, MAX_INTERVAL_DAYS));
     cardState.nextDue = nowSim() + cardState.interval * DAY_MS;
   }
 
@@ -2043,10 +2064,24 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   }
 
   function masteryFor(topicId, dok){
-    const ts = getTopicState(topicId);
-    const b = ts.dok[dok];
-    if (!b || b.total < 3) return 0;
-    return b.correct / b.total;
+    // Coverage, not lifetime batting average: the share of DISTINCT cards at this
+    // level whose most recent answer was correct. This can reach 100% (answer every
+    // card correctly once), isn't permanently dragged down by an early miss, and a
+    // wrong answer on review drops only that one card's share (recoverable). The old
+    // correct/total-over-all-attempts ratio got "sticky" — 47 attempts barely moved it.
+    const t = topicById(topicId); const ts = getTopicState(topicId);
+    if (!t) return 0;
+    const levelCards = t.cards.filter(function(c){ return c.dok === dok; });
+    if (!levelCards.length) return 0;
+    var known = 0;
+    levelCards.forEach(function(c){ var st = ts.cards[c.id]; if (st && st.lastCorrect) known++; });
+    return known / levelCards.length;
+  }
+  function levelMastered(topicId, dok, thresh){
+    const t = topicById(topicId);
+    const total = t ? t.cards.filter(function(c){ return c.dok === dok; }).length : 0;
+    if (total === 0) return true; // nothing to master at this level → don't block progression
+    return masteryFor(topicId, dok) >= thresh;
   }
 
   // Does this topic have any seen card that's due now? Used for retention status:
@@ -2057,17 +2092,26 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     return t.cards.some(function(c){ const st = ts.cards[c.id]; return st && st.reps > 0 && st.nextDue <= nowSim(); });
   }
 
+  // Single, live definition of "reached DOK 3" used everywhere (report + topic view).
+  // It reflects demonstrated DOK-3 work — answering DOK-3 questions at >=70% (the
+  // masteryFor guard needs >=3 of them) — NOT the legacy ts.adaptiveLevel field,
+  // which was initialized to 1 and never updated (that caused the report to show
+  // 0 mastered while a topic clearly showed DOK 3 at 100%).
+  function reachedDok3(topicId){
+    return masteryFor(topicId, 3) >= 0.7;
+  }
+
   function computeAdaptiveLevel(topicId){
+    // Threshold-based promotion, and MONOTONIC: once a topic reaches a level it
+    // never demotes. The old version recomputed a "3 correct in a row" streak every
+    // answer, so a single miss on a resurfaced DOK-1 card reset the streak and threw
+    // the student all the way back to DOK 1. Now a miss lowers coverage slightly but
+    // the level holds (ts.maxLevel), so they keep working at their hardest level.
     const ts = getTopicState(topicId);
-    const m1 = masteryFor(topicId, 1);
-    const m2 = masteryFor(topicId, 2);
-    // New rule: also require 3 consecutive correct at level N before
-    // unlocking level N+1. Streak is tracked in recordDokOutcome.
-    const streak1 = (ts.dok[1] && ts.dok[1].streak) || 0;
-    const streak2 = (ts.dok[2] && ts.dok[2].streak) || 0;
-    if (m1 >= 0.7 && streak1 >= 3 && m2 >= 0.6 && streak2 >= 3) return 3;
-    if (m1 >= 0.7 && streak1 >= 3) return 2;
-    return 1;
+    var lvl = 1;
+    if (levelMastered(topicId, 1, 0.7)) lvl = 2;
+    if (levelMastered(topicId, 1, 0.7) && levelMastered(topicId, 2, 0.6)) lvl = 3;
+    return Math.max(ts.maxLevel || 1, lvl);
   }
 
   function pickCardForTopic(topicId){
@@ -2470,7 +2514,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
                   ${hasVideo ? "" : '<span style="color:var(--terra-dark);">video pending</span>'}
                 </div>
               </div>
-              <div class="toolbar" style="margin:0;">
+              <div class="toolbar" style="margin:0;gap:6px;">
                 ${ !released
                   ? `<button class="btn btn-ghost" disabled>Locked</button>`
                   : status === "completed"
@@ -2479,6 +2523,9 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
                       ? `<button class="btn btn-gold" data-open-topic="${t.id}">Continue</button>`
                       : `<button class="btn btn-primary" data-open-topic="${t.id}">Start</button>`
                 }
+                ${ (PREVIEW_MODE && released && status === "locked")
+                  ? `<button class="btn btn-ghost" data-testwatch="${t.id}" title="Instructor test: simulate watching this topic's video">Mark watched (test)</button>`
+                  : "" }
               </div>
             </div>
           `;
@@ -2525,6 +2572,20 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         } else {
           nav("topic", id);
         }
+      });
+    });
+
+    // Instructor test only (preview mode): simulate watching a topic's video so the
+    // unlock/credit flow can be exercised without opening each lecture page. Sets the
+    // same video flag the real lecture page would set.
+    $$('[data-testwatch]').forEach(b => {
+      b.addEventListener("click", () => {
+        const id = b.dataset.testwatch;
+        const ts = getTopicState(id);
+        ts.videoWatched = true;
+        saveTopicState(id, ts);
+        try { window.localStorage.setItem("bio304-video-" + id, "true"); } catch (e) {}
+        renderDashboard();
       });
     });
   }
@@ -2970,8 +3031,12 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     // If for some reason it wasn't recorded (legacy data), assume correct
     // so the rating still functions.
     const wasCorrect = (CURRENT_CARD_CORRECT === null) ? true : !!CURRENT_CARD_CORRECT;
+    cardSt.lastCorrect = wasCorrect;            // drives coverage-based mastery
     scheduleCard(cardSt, rating, wasCorrect);
     recordDokOutcome(CURRENT_TOPIC, CURRENT_CARD.dok, rating, wasCorrect);
+    // Ratchet the topic's level up to whatever it now qualifies for (never down).
+    const tsLvl = getTopicState(CURRENT_TOPIC);
+    tsLvl.maxLevel = Math.max(tsLvl.maxLevel || 1, computeAdaptiveLevel(CURRENT_TOPIC));
     logSessionActivity({ cardReview: true });
     saveState();
 
@@ -3073,6 +3138,15 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       ? total + " card" + (total === 1 ? "" : "s") + " in your cumulative mix (all weeks)"
       : total + " card" + (total === 1 ? "" : "s") + " in your unlocked deck";
     wrap.innerHTML = "<h3>" + heading + "</h3>";
+    // Level mix: show how the queue breaks down across DOK levels.
+    var mix = {1:0,2:0,3:0};
+    items.forEach(function(it){ if (mix[it.card.dok] !== undefined) mix[it.card.dok]++; });
+    if (total > 0) {
+      var mixP = document.createElement("p");
+      mixP.style.cssText = "font-family:'DM Sans',sans-serif;font-size:12.5px;color:var(--gray-soft);margin:-4px 0 10px;";
+      mixP.innerHTML = "Level mix: <strong>" + mix[1] + "</strong> DOK 1 &middot; <strong>" + mix[2] + "</strong> DOK 2 &middot; <strong>" + mix[3] + "</strong> DOK 3 &nbsp;·&nbsp; about " + Math.max(1, Math.round(total * 0.5)) + "&ndash;" + Math.round(total * 0.75) + " min";
+      wrap.appendChild(mixP);
+    }
     const list = document.createElement("div");
     items.slice(0, 30).forEach(item => {
       const row = document.createElement("div");
@@ -3194,9 +3268,9 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     if (!weekTopics.length) masteryCard.innerHTML += '<p class="empty">No topics scheduled for this week.</p>';
     weekTopics.forEach(t => {
       const ts = STATE.topics[t.id];
-      const level = ts ? (ts.adaptiveLevel||1) : 1;
-      const mastered = ts && level >= 3;
       const started = !!ts;
+      const level = started ? computeAdaptiveLevel(t.id) : 1;
+      const mastered = started && reachedDok3(t.id);
       const tWrap = document.createElement("div");
       tWrap.style.cssText = "margin:10px 0;padding:8px 0;border-bottom:1px solid var(--gray-line);";
       const status = mastered
@@ -3263,7 +3337,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       const ts = STATE.topics[t.id];
       if (!ts) return;
       started++;
-      if ((ts.adaptiveLevel||1) >= 3){ masteredAll++; if (topicHasDue(t.id)) dueBack++; else holding++; }
+      if (reachedDok3(t.id)){ masteredAll++; if (topicHasDue(t.id)) dueBack++; else holding++; }
     });
     const cumCard = document.createElement("div");
     cumCard.className = "card";
