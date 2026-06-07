@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welcome to BIO 304 &middot; Summer 2026</title>
+<meta name="description" content="Welcome to BIO 304 Human Anatomy and Physiology at American River College. Online, eight weeks, summer 2026. Meet your professor, learn the participation rules, and enter the course.">
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+
+/*
+  ============================================================
+  BIO 304 HUMAN ANATOMY & PHYSIOLOGY  .  WELCOME / ANNOUNCEMENT
+  American River College  .  Online  .  Summer 2026
+  MCAS palette (matches index.html):
+    Navy #0B1530, Rust #8B3A2E (hover #A0452F), Gold #C9A14A,
+    Cream #F5F1E8, Dark #060A18, White #FFFFFF
+  Embed-safe: iframe height-sender baked in. Internal links target=_top.
+  Fireworks are decorative, brand colors only (no teal), with a
+  pause control and a prefers-reduced-motion static fallback.
+  ============================================================
+*/
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-size: 16px; line-height: 1.65; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: #FFFFFF;
+  color: #0B1530;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* ===== KEYBOARD FOCUS ===== */
+a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #8B3A2E;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.hero-section a:focus-visible,
+.hero-section button:focus-visible,
+.cta-section a:focus-visible,
+.footer-section a:focus-visible { outline-color: #C9A14A; }
+.skip-link {
+  position: absolute; top: -100px; left: 8px;
+  background: #0B1530; color: #F5F1E8;
+  padding: 12px 20px; text-decoration: none;
+  font-size: 13px; font-weight: 700;
+  border-radius: 4px; z-index: 9999; letter-spacing: 0.04em;
+}
+.skip-link:focus { top: 8px; }
+
+/* ===== SECTION PADDING ===== */
+.site-header, .notice-section, .steps-section, .cta-section, .footer-section {
+  padding-left: max(40px, 5vw);
+  padding-right: max(40px, 5vw);
+}
+
+/* ===== SITE HEADER ===== */
+.site-header { background: #FFFFFF; padding-top: 28px; padding-bottom: 28px; }
+.site-logo { display: inline-flex; align-items: center; gap: 16px; text-decoration: none; }
+.site-logo svg { height: 58px; width: auto; display: block; }
+.logo-text { display: flex; flex-direction: column; gap: 3px; }
+.logo-title { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: #0B1530; line-height: 1; }
+.logo-title .logo-accent { color: #8B3A2E; }
+.logo-sub {
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.20em;
+  text-transform: uppercase; color: #0B1530; opacity: 0.72;
+}
+
+/* ===== HERO (dark, fireworks behind) ===== */
+.hero-section { position: relative; background: #060A18; overflow: hidden; }
+.hero-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  display: block; z-index: 0;
+}
+/* Scrim guarantees text contrast even when a bright burst passes behind it */
+.hero-scrim {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(6,10,24,0.30) 0%, rgba(6,10,24,0.55) 55%, rgba(6,10,24,0.78) 100%);
+  pointer-events: none;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 760px;
+  padding: 96px max(40px, 5vw) 104px;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; color: #C9A14A;
+  letter-spacing: 0.28em; text-transform: uppercase; margin: 0 0 22px;
+}
+.hero-headline {
+  font-size: 50px; font-weight: 800; color: #F5F1E8;
+  letter-spacing: -0.025em; line-height: 1.05; margin: 0 0 22px;
+}
+.hero-headline .accent { color: #C9A14A; }
+.hero-intro {
+  font-size: 17px; font-weight: 400; color: #F5F1E8;
+  opacity: 0.92; line-height: 1.62; margin: 0 0 18px; max-width: 620px;
+}
+.hero-intro strong { font-weight: 700; color: #FFFFFF; }
+.hero-ctas { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; margin-top: 14px; }
+.cta-primary {
+  background: #8B3A2E; color: #FFFFFF;
+  padding: 15px 30px; border-radius: 4px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  transition: background 0.2s ease;
+}
+.cta-primary:hover { background: #A0452F; }
+
+/* Fireworks pause/play control */
+.fw-toggle {
+  position: absolute; top: 18px; right: 18px; z-index: 3;
+  background: rgba(6,10,24,0.55); color: #F5F1E8;
+  border: 1px solid rgba(245,241,232,0.55);
+  padding: 8px 14px; border-radius: 999px;
+  font-family: inherit; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.10em; text-transform: uppercase; cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.fw-toggle:hover { background: rgba(6,10,24,0.78); border-color: #C9A14A; }
+
+/* ===== SHARED HEADINGS ===== */
+.section-eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.28em; text-transform: uppercase; margin: 0 0 16px;
+}
+.section-headline {
+  font-size: 31px; font-weight: 800; letter-spacing: -0.02em;
+  line-height: 1.12; margin: 0 0 18px; max-width: 720px;
+}
+
+/* ===== PARTICIPATION NOTICE (white, firm) ===== */
+.notice-section { background: #FFFFFF; padding-top: 60px; padding-bottom: 28px; }
+.notice-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(11,21,48,0.16);
+  border-left: 5px solid #8B3A2E;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(11,21,48,0.08);
+  padding: 30px 34px;
+  max-width: 820px;
+}
+.notice-card .section-eyebrow { color: #8B3A2E; }
+.notice-card h2 { font-size: 27px; font-weight: 800; color: #0B1530; letter-spacing: -0.02em; line-height: 1.14; margin: 0 0 16px; }
+.notice-card p { font-size: 16px; line-height: 1.62; margin: 0 0 14px; color: #0B1530; }
+.notice-card p:last-child { margin-bottom: 0; }
+.notice-card strong { font-weight: 800; }
+.notice-list { margin: 0 0 14px; padding: 0; list-style: none; }
+.notice-list li {
+  position: relative; padding-left: 28px; margin-bottom: 10px;
+  font-size: 16px; line-height: 1.55; color: #0B1530;
+}
+.notice-list li::before {
+  content: ""; position: absolute; left: 4px; top: 9px;
+  width: 8px; height: 8px; border-radius: 50%; background: #8B3A2E;
+}
+
+/* ===== FIRST STEPS (white, read-only info box) ===== */
+.steps-section { background: #FFFFFF; padding-top: 28px; padding-bottom: 60px; }
+.steps-section .section-eyebrow { color: #8B3A2E; }
+.steps-box {
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(11,21,48,0.08);
+  border: 1px solid rgba(11,21,48,0.10);
+  padding: 30px 34px;
+  max-width: 820px;
+  display: grid; gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.step-item { display: flex; gap: 14px; align-items: flex-start; }
+.step-num {
+  flex: 0 0 auto;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: #0B1530; color: #F5F1E8;
+  font-size: 15px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.step-text h3 { font-size: 16px; font-weight: 800; color: #0B1530; margin: 2px 0 5px; letter-spacing: -0.01em; }
+.step-text p { font-size: 14.5px; line-height: 1.5; margin: 0; color: #0B1530; opacity: 0.86; }
+
+/* ===== CLOSING CTA (dark) ===== */
+.cta-section { background: #060A18; padding-top: 76px; padding-bottom: 76px; text-align: center; }
+.cta-eyebrow {
+  font-size: 11px; font-weight: 700; color: #C9A14A;
+  letter-spacing: 0.28em; text-transform: uppercase; margin: 0 0 20px;
+}
+.cta-headline {
+  font-size: 38px; font-weight: 800; color: #F5F1E8;
+  letter-spacing: -0.02em; line-height: 1.1; margin: 0 auto 20px; max-width: 640px;
+}
+.cta-headline .accent { color: #C9A14A; }
+.cta-subhead {
+  font-size: 15.5px; font-weight: 400; color: #F5F1E8;
+  opacity: 0.88; line-height: 1.65; margin: 0 auto 36px; max-width: 540px;
+}
+.cta-button {
+  background: #8B3A2E; color: #FFFFFF;
+  padding: 15px 30px; border-radius: 4px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  transition: background 0.2s ease;
+}
+.cta-button:hover { background: #A0452F; }
+.cta-signoff { margin: 30px 0 0; font-size: 15px; color: #F5F1E8; opacity: 0.9; font-style: italic; }
+
+/* ===== FOOTER ===== */
+.footer-section { background: #060A18; padding-top: 40px; padding-bottom: 32px; }
+.footer-copyright { font-size: 13px; color: #F5F1E8; opacity: 0.72; }
+.footer-byline { font-size: 14px; color: #F5F1E8; font-weight: 700; margin-top: 6px; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .hero-headline { font-size: 36px; }
+  .hero-content { padding-top: 72px; padding-bottom: 80px; }
+  .cta-headline { font-size: 29px; }
+  .notice-card h2 { font-size: 23px; }
+}
+
+/* Reduced motion: stop the firework toggle pulse-style transitions */
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- ===== SITE HEADER ===== -->
+<header class="site-header">
+  <a href="index.html" class="site-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+    <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+      <g transform="translate(0, 18)">
+        <g transform="translate(60, 0) rotate(8 0 130)">
+          <circle cx="0" cy="20" r="10" fill="#0B1530"/>
+          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
+        </g>
+        <g transform="translate(100, 0)">
+          <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+          <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+        </g>
+        <g transform="translate(140, 0) rotate(-8 0 130)">
+          <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+        </g>
+      </g>
+    </svg>
+    <span class="logo-text">
+      <span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span>
+      <span class="logo-sub">BIO 304 &middot; American River College</span>
+    </span>
+  </a>
+</header>
+
+<main id="main">
+
+<!-- ===== HERO ===== -->
+<section class="hero-section" aria-labelledby="welcome-h1">
+  <canvas class="hero-canvas" id="fireworks" aria-hidden="true"></canvas>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <button type="button" class="fw-toggle" id="fw-toggle" aria-pressed="false">Pause fireworks</button>
+  <div class="hero-content">
+    <p class="hero-eyebrow">BIO 304 &middot; Online &middot; Summer 2026 &middot; June 8 to August 2</p>
+    <h1 class="hero-headline" id="welcome-h1">Welcome to <span class="accent">BIO 304</span></h1>
+    <p class="hero-intro">Hi, I'm Dr. Sharilyn Rennie, your professor. Welcome to eight weeks of Human Anatomy and Physiology, online and built to make a real four-credit course doable over the summer.</p>
+    <p class="hero-intro">I'm glad you're here. This course moves fast and rewards students who show up and stay with it. When you're ready, step inside and let's get started.</p>
+    <div class="hero-ctas">
+      <a href="index.html" class="cta-primary" target="_top">Enter the course</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PARTICIPATION NOTICE ===== -->
+<section class="notice-section" aria-labelledby="notice-h">
+  <div class="notice-card">
+    <p class="section-eyebrow">One important thing</p>
+    <h2 id="notice-h">You've got one job, and this is it</h2>
+    <p>Here's the good news: this class doesn't ask you to memorize a textbook or sweat through high-stakes exams. Your one job is to <strong>participate</strong>. Do that consistently and you are set up to succeed.</p>
+    <p>Participating means, every week:</p>
+    <ul class="notice-list">
+      <li>Log in and engage with that week's material.</li>
+      <li>Submit your assigned documents and workbooks on time.</li>
+      <li>Complete the weekly quiz within its window.</li>
+    </ul>
+    <p>I'll be straight with you, because that's only fair. I am <strong>required to drop any student who has not participated by the first day of class</strong>, and to drop students who don't keep participating through these opening weeks. I am also not flexible about late work. The deadlines are the deadlines. This isn't about being tough on you. It's the one rule that keeps a fast summer course fair for everyone in it.</p>
+    <p>So make it easy on yourself: log in on day one, do the work, and hit every deadline. That really is the whole game, and you can absolutely do it.</p>
+  </div>
+</section>
+
+<!-- ===== FIRST STEPS ===== -->
+<section class="steps-section" aria-labelledby="steps-h">
+  <p class="section-eyebrow">Your first move</p>
+  <h2 class="section-headline" id="steps-h">Start here, this week</h2>
+  <div class="steps-box">
+    <div class="step-item">
+      <span class="step-num" aria-hidden="true">1</span>
+      <span class="step-text">
+        <h3>Enter the course hub</h3>
+        <p>The hub is your home base. From there you can reach the syllabus, the AI Honor Contract, and every week.</p>
+      </span>
+    </div>
+    <div class="step-item">
+      <span class="step-num" aria-hidden="true">2</span>
+      <span class="step-text">
+        <h3>Read the syllabus</h3>
+        <p>Know the deadlines, the grading, and the participation rules before you begin. The AI Honor Contract is due Tuesday, June 9.</p>
+      </span>
+    </div>
+    <div class="step-item">
+      <span class="step-num" aria-hidden="true">3</span>
+      <span class="step-text">
+        <h3>Begin Week 1 now</h3>
+        <p>Start the Week 1 pre-work and submit on time. Getting your first week in is what keeps you enrolled.</p>
+      </span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== CLOSING CTA ===== -->
+<section class="cta-section" aria-labelledby="cta-h">
+  <p class="cta-eyebrow">Your summer starts now</p>
+  <h2 class="cta-headline" id="cta-h">Ready when <span class="accent">you are.</span></h2>
+  <p class="cta-subhead">Step into the hub, start your first week, and let's make this anatomy and physiology course happen together.</p>
+  <a href="index.html" class="cta-button" target="_top">Enter the course</a>
+  <p class="cta-signoff">See you inside.<br>Dr. Sharilyn Rennie</p>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-section">
+  <div class="footer-copyright">BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Summer 2026</div>
+  <div class="footer-byline">Dr. Sharilyn Rennie</div>
+</footer>
+
+<script>
+  /* iframe height-sender - keeps the Canvas embed sized to its content */
+  (function () {
+    var FRAME_ID = 'bio304-welcome';
+    function sendHeight() {
+      var h = Math.max(
+        document.documentElement.scrollHeight,
+        document.body ? document.body.scrollHeight : 0
+      );
+      parent.postMessage({ type: 'resize', id: FRAME_ID, height: h }, '*');
+    }
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    if (window.ResizeObserver) new ResizeObserver(sendHeight).observe(document.body);
+  })();
+</script>
+
+<script>
+  /* ============================================================
+     FIREWORKS OVER A NIGHT BEACH  (decorative)
+     Brand colors only: gold, rust, cream, white. No teal.
+     Honors prefers-reduced-motion (starts paused, draws a calm
+     static scene) and provides a keyboard-operable pause control
+     so it satisfies WCAG 2.2.2 (pause, stop, hide).
+     ============================================================ */
+  (function () {
+    var canvas = document.getElementById('fireworks');
+    var toggle = document.getElementById('fw-toggle');
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+
+    var BURST_COLORS = ['#C9A14A', '#8B3A2E', '#F5F1E8', '#FFFFFF', '#E0B85E'];
+    var W = 0, H = 0, dpr = 1;
+    var rockets = [], sparks = [], stars = [];
+    var running = false, rafId = null, lastLaunch = 0;
+
+    var reduceMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function size() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = canvas.clientWidth;
+      H = canvas.clientHeight;
+      canvas.width = Math.max(1, Math.floor(W * dpr));
+      canvas.height = Math.max(1, Math.floor(H * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      makeStars();
+    }
+
+    function makeStars() {
+      stars = [];
+      var count = Math.round((W * H) / 9000);
+      for (var i = 0; i < count; i++) {
+        stars.push({
+          x: Math.random() * W,
+          y: Math.random() * H * 0.62,
+          r: Math.random() * 1.3 + 0.2,
+          a: Math.random() * 0.6 + 0.2
+        });
+      }
+    }
+
+    function drawScene() {
+      // Sky
+      var sky = ctx.createLinearGradient(0, 0, 0, H);
+      sky.addColorStop(0, '#060A18');
+      sky.addColorStop(0.55, '#0B1530');
+      sky.addColorStop(0.66, '#10203B');
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, W, H);
+
+      // Stars
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        ctx.globalAlpha = s.a;
+        ctx.fillStyle = '#F5F1E8';
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+
+      // Moon with soft glow
+      var moonX = W * 0.80, moonY = H * 0.22, moonR = Math.max(16, W * 0.026);
+      var glow = ctx.createRadialGradient(moonX, moonY, moonR * 0.4, moonX, moonY, moonR * 3.2);
+      glow.addColorStop(0, 'rgba(245,241,232,0.35)');
+      glow.addColorStop(1, 'rgba(245,241,232,0)');
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(moonX, moonY, moonR * 3.2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#F5F1E8';
+      ctx.beginPath();
+      ctx.arc(moonX, moonY, moonR, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Water
+      var waterTop = H * 0.66;
+      var water = ctx.createLinearGradient(0, waterTop, 0, H);
+      water.addColorStop(0, '#0B1530');
+      water.addColorStop(1, '#060A18');
+      ctx.fillStyle = water;
+      ctx.fillRect(0, waterTop, W, H - waterTop);
+
+      // Moon reflection on the water
+      ctx.globalAlpha = 0.20;
+      ctx.fillStyle = '#F5F1E8';
+      ctx.fillRect(moonX - moonR * 0.5, waterTop, moonR, H - waterTop);
+      ctx.globalAlpha = 1;
+
+      // Sand / shoreline silhouette
+      ctx.fillStyle = '#05070F';
+      ctx.beginPath();
+      ctx.moveTo(0, H);
+      ctx.lineTo(0, H - 14);
+      ctx.quadraticCurveTo(W * 0.5, H - 26, W, H - 12);
+      ctx.lineTo(W, H);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function launchRocket() {
+      rockets.push({
+        x: Math.random() * W * 0.8 + W * 0.1,
+        y: H * 0.64,
+        vy: -(Math.random() * 2.2 + 5.4),
+        targetY: Math.random() * H * 0.30 + H * 0.08,
+        color: BURST_COLORS[(Math.random() * BURST_COLORS.length) | 0]
+      });
+    }
+
+    function explode(x, y, color) {
+      var n = (Math.random() * 26 + 38) | 0;
+      for (var i = 0; i < n; i++) {
+        var ang = (Math.PI * 2 * i) / n + Math.random() * 0.2;
+        var spd = Math.random() * 3.2 + 1.2;
+        sparks.push({
+          x: x, y: y,
+          vx: Math.cos(ang) * spd,
+          vy: Math.sin(ang) * spd,
+          life: 1,
+          decay: Math.random() * 0.012 + 0.008,
+          color: Math.random() < 0.18 ? '#FFFFFF' : color,
+          r: Math.random() * 1.6 + 1
+        });
+      }
+    }
+
+    function step(ts) {
+      drawScene();
+
+      // Launch on a gentle random cadence
+      if (ts - lastLaunch > (Math.random() * 520 + 620)) {
+        launchRocket();
+        lastLaunch = ts;
+      }
+
+      // Rockets
+      for (var i = rockets.length - 1; i >= 0; i--) {
+        var r = rockets[i];
+        r.x += 0; r.y += r.vy; r.vy += 0.04;
+        ctx.globalAlpha = 0.9;
+        ctx.fillStyle = r.color;
+        ctx.beginPath();
+        ctx.arc(r.x, r.y, 2, 0, Math.PI * 2);
+        ctx.fill();
+        if (r.y <= r.targetY || r.vy >= 0) {
+          explode(r.x, r.y, r.color);
+          rockets.splice(i, 1);
+        }
+      }
+      ctx.globalAlpha = 1;
+
+      // Sparks (with faint mirrored reflection in the water)
+      var waterTop = H * 0.66;
+      for (var j = sparks.length - 1; j >= 0; j--) {
+        var s = sparks[j];
+        s.x += s.vx; s.y += s.vy; s.vy += 0.03; s.vx *= 0.99; s.life -= s.decay;
+        if (s.life <= 0) { sparks.splice(j, 1); continue; }
+        ctx.globalAlpha = Math.max(0, s.life);
+        ctx.fillStyle = s.color;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+        if (s.y < waterTop) {
+          var mirrorY = waterTop + (waterTop - s.y);
+          ctx.globalAlpha = Math.max(0, s.life) * 0.18;
+          ctx.beginPath();
+          ctx.arc(s.x, mirrorY, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      ctx.globalAlpha = 1;
+
+      rafId = window.requestAnimationFrame(step);
+    }
+
+    function drawStaticCelebration() {
+      drawScene();
+      // A few calm, pre-placed bursts so the static scene still feels festive
+      var spots = [
+        { x: W * 0.26, y: H * 0.24, c: '#C9A14A', n: 16, rad: 30 },
+        { x: W * 0.50, y: H * 0.16, c: '#F5F1E8', n: 20, rad: 38 },
+        { x: W * 0.68, y: H * 0.30, c: '#8B3A2E', n: 14, rad: 26 }
+      ];
+      spots.forEach(function (sp) {
+        for (var i = 0; i < sp.n; i++) {
+          var a = (Math.PI * 2 * i) / sp.n;
+          var ex = sp.x + Math.cos(a) * sp.rad;
+          var ey = sp.y + Math.sin(a) * sp.rad;
+          ctx.strokeStyle = sp.c;
+          ctx.globalAlpha = 0.65;
+          ctx.lineWidth = 1.4;
+          ctx.beginPath();
+          ctx.moveTo(sp.x, sp.y);
+          ctx.lineTo(ex, ey);
+          ctx.stroke();
+          ctx.globalAlpha = 0.9;
+          ctx.fillStyle = sp.c;
+          ctx.beginPath();
+          ctx.arc(ex, ey, 1.8, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      });
+      ctx.globalAlpha = 1;
+    }
+
+    function play() {
+      if (running) return;
+      running = true;
+      toggle.textContent = 'Pause fireworks';
+      toggle.setAttribute('aria-pressed', 'false');
+      lastLaunch = 0;
+      rafId = window.requestAnimationFrame(step);
+    }
+
+    function pause() {
+      running = false;
+      if (rafId) window.cancelAnimationFrame(rafId);
+      rafId = null;
+      toggle.textContent = 'Play fireworks';
+      toggle.setAttribute('aria-pressed', 'true');
+      drawStaticCelebration();
+    }
+
+    toggle.addEventListener('click', function () {
+      if (running) pause(); else play();
+    });
+
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        size();
+        if (!running) drawStaticCelebration();
+      }, 150);
+    });
+
+    // Init
+    size();
+    if (reduceMotion) {
+      // Respect the user's setting: start calm and static. They can opt in.
+      pause();
+    } else {
+      drawScene();
+      play();
+    }
+  })();
+</script>
+</body>
+</html>
