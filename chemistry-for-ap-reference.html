@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 &middot; Chemistry for A&amp;P (Reference)</title>
+<meta name="description" content="A look-it-up chemistry reference for BIO 304 Human Anatomy and Physiology: atoms and ions, bonds, water, solutions and concentration, gradients, pH and buffers, biomolecules and ATP.">
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+/*
+  ============================================================
+  BIO 304 CHEMISTRY-FOR-A&P REFERENCE  ·  MCAS template
+  Palette (dark only): Dark #060A18  Rust #8B3A2E  Gold #C9A14A  Cream #F5F1E8  White
+  Font: Plus Jakarta Sans Variable. No bookend borders. Printable.
+  Byline: Dr. Sharilyn Rennie.
+  ============================================================
+*/
+  :root{
+    --navy:#060A18;
+    --rust:#8B3A2E;
+    --rust-hover:#A0452F;
+    --gold:#C9A14A;
+    --cream:#F5F1E8;
+    --dark:#060A18;
+    --white:#FFFFFF;
+    --line:rgba(6,10,24,0.18);
+    --line-soft:rgba(6,10,24,0.10);
+    --rest-shadow:0 1px 3px rgba(6,10,24,0.06);
+    --hover-shadow:0 8px 16px rgba(6,10,24,0.10);
+    --ease:transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:20px;}
+  body{
+    margin:0;background:var(--white);color:var(--navy);
+    font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif;
+    font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1060px;margin:0 auto;padding:0 max(20px,4vw) 64px;}
+  .site-header{padding:24px 0 6px;}
+  .site-logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none;}
+  .site-logo svg{height:50px;width:auto;display:block;}
+  .logo-title{font-size:22px;font-weight:800;letter-spacing:-0.02em;color:var(--navy);line-height:1;}
+  .logo-title .logo-accent{color:var(--rust);}
+  .logo-sub{font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.72;margin-top:4px;display:block;}
+
+  .doc-eyebrow{font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.28em;text-transform:uppercase;margin:26px 0 14px;}
+  h1.doc-title{font-size:38px;font-weight:800;color:var(--navy);letter-spacing:-0.025em;line-height:1.08;margin:0 0 12px;}
+  h1.doc-title .accent{color:var(--rust);}
+  .doc-sub{font-size:15px;font-weight:700;color:var(--navy);opacity:.78;letter-spacing:.02em;margin:0 0 6px;}
+  .meta-line{font-size:14px;color:var(--navy);opacity:.84;line-height:1.6;margin:0;max-width:760px;}
+  h2{font-size:25px;font-weight:800;color:var(--navy);letter-spacing:-0.02em;line-height:1.14;margin:0 0 4px;}
+  h3{font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.16em;text-transform:uppercase;margin:20px 0 8px;}
+  p{margin:0 0 9px;}
+  .lede{font-size:16px;color:var(--navy);opacity:.9;margin:0 0 12px;max-width:760px;}
+  strong{font-weight:800;color:var(--navy);}
+  em{font-style:italic;}
+
+  .card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:22px 24px;box-shadow:var(--rest-shadow);margin:0 0 18px;}
+  .topic{transition:var(--ease);scroll-margin-top:16px;}
+  .topic:hover{transform:translateY(-2px);box-shadow:var(--hover-shadow);border-color:rgba(6,10,24,0.26);}
+  .topic-tag{font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.62;margin:0 0 4px;}
+  .topic-head{display:flex;align-items:baseline;gap:14px;margin:0 0 4px;}
+  .topic-num{font-size:34px;font-weight:800;color:var(--rust);letter-spacing:-0.02em;line-height:1;flex-shrink:0;}
+
+  header.doc-head{padding:2px 0;margin:4px 0 24px;}
+
+  nav.toc{background:var(--white);border:1px solid var(--line);border-radius:10px;box-shadow:var(--rest-shadow);padding:20px 24px;margin:0 0 24px;}
+  nav.toc h2{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin:0 0 10px;}
+  nav.toc ol{margin:0;padding:0;list-style:none;counter-reset:toc;}
+  nav.toc li{counter-increment:toc;font-size:14.5px;padding:9px 0;border-bottom:1px solid var(--line-soft);display:flex;gap:14px;align-items:baseline;}
+  nav.toc li:last-of-type{border-bottom:none;}
+  nav.toc li::before{content:counter(toc,decimal-leading-zero);font-weight:800;color:var(--rust);font-variant-numeric:tabular-nums;font-size:13px;min-width:26px;flex-shrink:0;}
+  nav.toc a{color:var(--navy);text-decoration:none;font-weight:700;letter-spacing:-0.01em;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--rust);text-decoration:underline;text-underline-offset:4px;}
+  .toc-hint{margin-top:12px;font-size:13px;font-style:italic;color:var(--navy);opacity:.72;}
+
+  ul{margin:4px 0 11px;padding-left:20px;}
+  li{margin:4px 0;}
+  ul.tight li{margin:2px 0;}
+  ol{margin:4px 0 11px;padding-left:22px;}
+  ul.check{list-style:none;padding-left:2px;}
+  ul.check li{padding-left:24px;position:relative;}
+  ul.check li::before{content:"";position:absolute;left:2px;top:8px;width:9px;height:9px;border-radius:2px;background:var(--rust);}
+
+  table{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:13.5px;}
+  caption{font-size:10.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);text-align:left;font-weight:700;padding:0 0 7px;}
+  th,td{padding:8px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);}
+  thead th{background:var(--cream);color:var(--navy);font-weight:800;font-size:12.5px;letter-spacing:.01em;}
+  tbody th{background:rgba(245,241,232,0.5);color:var(--navy);font-weight:800;width:24%;}
+  tbody tr:last-child td,tbody tr:last-child th{border-bottom:1px solid var(--line);}
+
+  .cols{column-count:2;column-gap:30px;}
+  .cols > *{break-inside:avoid;}
+  @media(max-width:780px){.cols{column-count:1;}}
+
+  .highlight{border:1px solid var(--gold);background:var(--cream);border-radius:8px;padding:14px 17px;margin:14px 0;}
+  .highlight h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);margin:0 0 6px;}
+  .highlight p{margin:0 0 6px;font-size:14px;}
+  .highlight p:last-child{margin:0;}
+
+  .eli10{border:1px solid var(--line);border-radius:8px;padding:13px 16px;margin:13px 0;background:var(--white);}
+  .eli10 h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--rust);margin:0 0 6px;}
+  .eli10 h4::before{content:"\1F4A1  ";}
+  .eli10 p{margin:0 0 6px;font-size:14.5px;}
+  .eli10 p:last-child{margin:0;}
+
+  .keyterms{border:1px solid var(--line);border-radius:8px;padding:13px 16px;margin:12px 0;background:var(--white);}
+  .keyterms h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);margin:0 0 8px;}
+  .keyterms dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;font-size:13.5px;}
+  .keyterms dt{font-weight:800;color:var(--navy);}
+  .keyterms dd{margin:0;}
+  @media(max-width:560px){.keyterms dl{grid-template-columns:1fr;}.keyterms dd{margin:0 0 6px;}}
+
+  /* Context callout (where you'll meet this in A&P) - dark, on-brand */
+  .context{background:var(--dark);border-radius:8px;padding:16px 19px;margin:14px 0;}
+  .context h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin:0 0 7px;}
+  .context p{margin:0;font-size:14px;color:var(--cream);opacity:.94;line-height:1.6;}
+  .context strong{color:var(--white);}
+
+  figure{margin:10px 0 14px;}
+  figure figcaption{font-size:12px;color:var(--rust);margin-top:6px;font-weight:600;}
+  .seqfig figcaption{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--rust);margin:0 0 8px;}
+  ol.sequence{list-style:none;display:flex;flex-wrap:wrap;align-items:stretch;gap:8px 4px;padding:0;margin:0;}
+  ol.sequence li{background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:8px 12px;font-size:12.5px;font-weight:700;color:var(--dark);display:flex;align-items:center;line-height:1.3;}
+  ol.sequence li::after{content:"\2192";margin-left:8px;color:var(--rust);font-weight:800;font-size:15px;}
+  ol.sequence li:last-child::after{content:none;}
+  ol.sequence li.start{background:var(--white);border-color:var(--rust);}
+  ol.sequence li.end{background:var(--rust);border-color:var(--rust);color:var(--white);}
+  ol.sequence li .num{display:inline-flex;justify-content:center;align-items:center;width:18px;height:18px;border-radius:50%;background:var(--rust);color:var(--white);font-size:10px;font-weight:800;margin-right:8px;flex-shrink:0;}
+  ol.sequence li.end .num{background:var(--white);color:var(--rust);}
+
+  a{color:var(--rust);}
+  a:focus-visible{outline:3px solid var(--rust);outline-offset:3px;border-radius:4px;}
+  .skip{position:absolute;top:-100px;left:8px;background:var(--navy);color:var(--cream);padding:12px 20px;text-decoration:none;font-size:13px;font-weight:700;border-radius:4px;z-index:9999;letter-spacing:.04em;}
+  .skip:focus{top:8px;}
+  footer.doc-foot{margin-top:30px;background:var(--dark);border-radius:8px;padding:24px 26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer.doc-foot p{margin:0;font-size:12.5px;color:var(--cream);opacity:.86;line-height:1.6;}
+  footer.doc-foot .byline{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;opacity:1;}
+
+  @media(prefers-reduced-motion:reduce){
+    *{transition:none!important;scroll-behavior:auto!important;}
+    .topic:hover{transform:none;}
+  }
+  @media print{
+    @page{margin:14mm;}
+    body{font-size:10.5pt;}
+    .wrap{max-width:none;padding:0;}
+    .skip,.toc-hint{display:none;}
+    .site-header{padding:0 0 8px;}
+    .card{box-shadow:none;border:1px solid #bbb;break-inside:avoid;}
+    .topic{page-break-before:always;}
+    .topic:first-of-type{page-break-before:avoid;}
+    a{color:var(--navy);text-decoration:none;}
+    thead th,tbody th,.context,.highlight,.eli10,footer.doc-foot{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .context p{color:#F5F1E8;}
+    .topic:hover{transform:none;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to reference</a>
+<div class="wrap">
+
+  <header class="site-header">
+    <a class="site-logo" href="index.html" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)">
+            <circle cx="0" cy="20" r="10" fill="#060A18"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#060A18"/>
+          </g>
+          <g transform="translate(100, 0)">
+            <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+            <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+          </g>
+          <g transform="translate(140, 0) rotate(-8 0 130)">
+            <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+          </g>
+        </g>
+      </svg>
+      <span class="logo-text">
+        <span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span>
+        <span class="logo-sub">BIO 304 &middot; American River College</span>
+      </span>
+    </a>
+  </header>
+
+  <header class="doc-head">
+    <p class="doc-eyebrow">BIO 304 &middot; Reference &middot; Not a graded unit</p>
+    <h1 class="doc-title">Chemistry for <span class="accent">A&amp;P</span></h1>
+    <p class="doc-sub">A look-it-up reference, learned in context</p>
+    <p class="meta-line">You will not be tested on chemistry by itself in this course. This page is here so that when a chemistry idea shows up inside a physiology topic, you have a clean place to look it up. Each section ends with where it appears in A&amp;P.</p>
+  </header>
+
+  <nav class="toc" aria-label="Sections on this page">
+    <h2>On this page</h2>
+    <ol>
+      <li><a href="#t1" target="_top">Atoms, Ions, and Electrolytes</a></li>
+      <li><a href="#t2" target="_top">Chemical Bonds</a></li>
+      <li><a href="#t3" target="_top">Water, the Body's Solvent</a></li>
+      <li><a href="#t4" target="_top">Solutions and Concentration</a></li>
+      <li><a href="#t5" target="_top">Gradients: Chemical and Electrical</a></li>
+      <li><a href="#t6" target="_top">Acids, Bases, pH, and Buffers</a></li>
+      <li><a href="#t7" target="_top">Biomolecules and ATP</a></li>
+      <li><a href="#t8" target="_top">Reactions and Enzymes</a></li>
+    </ol>
+    <p class="toc-hint">Built to print. Use your browser's Print command for a clean, textbook-style handout (each section starts on its own page).</p>
+  </nav>
+
+  <main id="main">
+
+  <!-- ===== 1 ===== -->
+  <section class="card topic" id="t1" aria-labelledby="t1h">
+    <p class="topic-tag">Reference &middot; Section 1</p>
+    <div class="topic-head"><span class="topic-num">01</span><h2 id="t1h">Atoms, Ions, and Electrolytes</h2></div>
+    <p class="lede">Everything in the body is built from atoms, and many of the body's signals come from charged atoms called ions.</p>
+
+    <p>An <strong>atom</strong> is the smallest unit of matter. It has a nucleus of <strong>protons</strong> (positive charge) and <strong>neutrons</strong> (no charge), surrounded by <strong>electrons</strong> (negative charge). An <strong>element</strong> is one type of atom. Just six elements, <strong>oxygen, carbon, hydrogen, nitrogen, calcium, and phosphorus</strong>, make up about 99% of body weight.</p>
+
+    <p>An <strong>ion</strong> is an atom that has gained or lost electrons, so it now carries a charge. A <strong>cation</strong> is positive (it <em>lost</em> electrons); an <strong>anion</strong> is negative (it <em>gained</em> electrons). An <strong>electrolyte</strong> is an ion that conducts electricity when dissolved in water. These are the workhorses of nerve, muscle, fluid, and pH balance.</p>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>An atom is like a tiny LEGO brick that everything is made of. An <strong>ion</strong> is just an atom wearing a "+" or "&minus;" sticker because it traded away or grabbed an extra electron. Those little charges are what let your nerves and muscles send electrical signals.</p>
+    </div>
+
+    <table>
+      <caption>The electrolytes you will see again and again</caption>
+      <thead><tr><th scope="col">Ion</th><th scope="col">Symbol</th><th scope="col">Charge</th><th scope="col">Main job in A&amp;P</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Sodium</th><td>Na&#8314;</td><td>Cation (+)</td><td>Nerve and muscle signals; main solute outside cells; fluid balance</td></tr>
+        <tr><th scope="row">Potassium</th><td>K&#8314;</td><td>Cation (+)</td><td>Resting membrane potential; main solute inside cells</td></tr>
+        <tr><th scope="row">Calcium</th><td>Ca&#178;&#8314;</td><td>Cation (+)</td><td>Muscle contraction; nerve signaling; clotting; bone</td></tr>
+        <tr><th scope="row">Hydrogen</th><td>H&#8314;</td><td>Cation (+)</td><td>Sets pH; more H&#8314; means more acidic</td></tr>
+        <tr><th scope="row">Chloride</th><td>Cl&#8315;</td><td>Anion (&minus;)</td><td>Follows sodium; fluid balance; stomach acid</td></tr>
+        <tr><th scope="row">Bicarbonate</th><td>HCO&#8323;&#8315;</td><td>Anion (&minus;)</td><td>The body's main pH buffer</td></tr>
+      </tbody>
+    </table>
+
+    <div class="context">
+      <h4>Where you'll meet this in A&amp;P</h4>
+      <p>Nerve impulses and muscle contraction (<strong>Na&#8314;, K&#8314;, Ca&#178;&#8314;</strong>), acid-base balance (<strong>H&#8314;, HCO&#8323;&#8315;</strong>), and every "electrolyte panel" lab value. When a patient is "low potassium" or "high calcium," this is the chemistry behind it.</p>
+    </div>
+  </section>
+
+  <!-- ===== 2 ===== -->
+  <section class="card topic" id="t2" aria-labelledby="t2h">
+    <p class="topic-tag">Reference &middot; Section 2</p>
+    <div class="topic-head"><span class="topic-num">02</span><h2 id="t2h">Chemical Bonds</h2></div>
+    <p class="lede">Atoms join by sharing or transferring electrons. The type of bond decides how a molecule behaves in water.</p>
+
+    <table>
+      <caption>Three bonds, from strongest to weakest</caption>
+      <thead><tr><th scope="col">Bond</th><th scope="col">What happens</th><th scope="col">Strength</th><th scope="col">Example</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Ionic</th><td>One atom gives electrons to another; the resulting + and &minus; ions attract</td><td>Strong (dry), but breaks apart in water</td><td>Table salt, NaCl, splits into Na&#8314; and Cl&#8315;</td></tr>
+        <tr><th scope="row">Covalent</th><td>Atoms <em>share</em> electrons. Equal share = nonpolar; unequal = polar</td><td>Strongest</td><td>Water (polar); fats (nonpolar)</td></tr>
+        <tr><th scope="row">Hydrogen</th><td>A weak attraction between polar molecules (a slightly + part pulls on a slightly &minus; part)</td><td>Weak, but powerful in large numbers</td><td>Holds water together; shapes proteins and DNA</td></tr>
+      </tbody>
+    </table>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p><strong>Ionic</strong> = one atom gives, the other takes, then they stick together because opposite charges attract. <strong>Covalent</strong> = they share, like two kids holding the same toy. <strong>Hydrogen</strong> bonds = light static-cling between neighboring molecules, weak alone but strong when there are millions.</p>
+    </div>
+
+    <div class="context">
+      <h4>Where you'll meet this in A&amp;P</h4>
+      <p>Why water dissolves salts but not fats, why the membrane's <strong>phospholipid bilayer</strong> forms, and why <strong>protein shape</strong> (held by hydrogen bonds) makes enzymes, receptors, and antibodies work. Break the bonds with heat or wrong pH and the protein stops working (denatures).</p>
+    </div>
+  </section>
+
+  <!-- ===== 3 ===== -->
+  <section class="card topic" id="t3" aria-labelledby="t3h">
+    <p class="topic-tag">Reference &middot; Section 3</p>
+    <div class="topic-head"><span class="topic-num">03</span><h2 id="t3h">Water, the Body's Solvent</h2></div>
+    <p class="lede">You are roughly 50 to 60% water. Almost every reaction in the body happens dissolved in it.</p>
+
+    <p>Water is a <strong>polar</strong> molecule: one end is slightly positive, the other slightly negative. That single fact explains most of what water does for the body.</p>
+    <table>
+      <caption>Water's properties and why they matter</caption>
+      <thead><tr><th scope="col">Property</th><th scope="col">What it means</th><th scope="col">Why the body cares</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Universal solvent</th><td>Dissolves charged and polar substances (these are "water-loving," hydrophilic)</td><td>Blood, cytoplasm, and urine are water carrying dissolved cargo</td></tr>
+        <tr><th scope="row">Does not dissolve fats</th><td>Nonpolar substances are "water-fearing" (hydrophobic)</td><td>This is why cell membranes form and stay intact</td></tr>
+        <tr><th scope="row">High heat capacity</th><td>Absorbs a lot of heat with little temperature change</td><td>Stabilizes body temperature</td></tr>
+        <tr><th scope="row">Cohesion</th><td>Water molecules stick together</td><td>Surface tension; helps blood and fluids move</td></tr>
+        <tr><th scope="row">Reactant</th><td>Used to build (dehydration synthesis) and break (hydrolysis) molecules</td><td>Digestion and metabolism run on these reactions</td></tr>
+      </tbody>
+    </table>
+
+    <div class="context">
+      <h4>Where you'll meet this in A&amp;P</h4>
+      <p>Blood plasma and body fluids, <strong>thermoregulation</strong> (sweat), why the membrane bilayer exists, and why a drug being <strong>water-soluble vs. fat-soluble</strong> changes how it crosses membranes and travels in blood.</p>
+    </div>
+  </section>
+
+  <!-- ===== 4 ===== -->
+  <section class="card topic" id="t4" aria-labelledby="t4h">
+    <p class="topic-tag">Reference &middot; Section 4</p>
+    <div class="topic-head"><span class="topic-num">04</span><h2 id="t4h">Solutions and Concentration</h2></div>
+    <p class="lede">A solution is a solute dissolved in a solvent. Concentration is how much solute is packed into a given volume, and the body regulates it tightly.</p>
+
+    <div class="cols">
+      <div class="keyterms">
+        <h4>The vocabulary</h4>
+        <dl>
+          <dt>Solvent</dt><dd>The dissolver (in the body, almost always water).</dd>
+          <dt>Solute</dt><dd>What gets dissolved (salt, sugar, ions).</dd>
+          <dt>Solution</dt><dd>Solute fully and evenly dissolved in solvent.</dd>
+          <dt>Concentration</dt><dd>Amount of solute per volume of solution.</dd>
+          <dt>Osmolarity</dt><dd>Total solute particles per liter (drives osmosis).</dd>
+        </dl>
+      </div>
+      <div class="eli10">
+        <h4>Explain it simply (like you're 10)</h4>
+        <p>Think of mixing a drink. The <strong>water</strong> is the solvent, the <strong>powder</strong> is the solute, and the mixed drink is the <strong>solution</strong>. <strong>Concentration</strong> is just how strong you made it: a little powder is weak, a lot is strong.</p>
+      </div>
+    </div>
+
+    <table>
+      <caption>How concentration is measured in A&amp;P (and typical reference values)</caption>
+      <thead><tr><th scope="col">Unit</th><th scope="col">Means</th><th scope="col">Example value</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Percent (%)</th><td>Grams of solute per 100 mL</td><td>0.9% normal saline (isotonic IV fluid)</td></tr>
+        <tr><th scope="row">mg/dL</th><td>Milligrams per deciliter</td><td>Blood glucose ~70 to 99 mg/dL (fasting)</td></tr>
+        <tr><th scope="row">mEq/L</th><td>Milliequivalents per liter (for ions)</td><td>Sodium ~135 to 145; potassium ~3.5 to 5.0</td></tr>
+        <tr><th scope="row">Molarity (mol/L)</th><td>Moles of solute per liter</td><td>Used for lab and reaction chemistry</td></tr>
+        <tr><th scope="row">Osmolarity (Osm/L)</th><td>Solute particles per liter</td><td>Blood plasma ~285 to 295 mOsm/L</td></tr>
+      </tbody>
+    </table>
+
+    <div class="context">
+      <h4>Where you'll meet this in A&amp;P</h4>
+      <p><strong>Osmosis and tonicity</strong> (isotonic, hypotonic, hypertonic depend on concentration), <strong>IV fluids</strong>, and every lab value you will read. When osmolarity differs across a membrane, water moves, that is the entire basis of fluid balance.</p>
+    </div>
+  </section>
+
+  <!-- ===== 5 ===== -->
+  <section class="card topic" id="t5" aria-labelledby="t5h">
+    <p class="topic-tag">Reference &middot; Section 5</p>
+    <div class="topic-head"><span class="topic-num">05</span><h2 id="t5h">Gradients: Chemical and Electrical</h2></div>
+    <p class="lede">A gradient is a difference across a space. Things tend to move "down" a gradient, and cells use gradients to move substances and to send signals.</p>
+
+    <table>
+      <caption>Three gradients that drive physiology</caption>
+      <thead><tr><th scope="col">Gradient</th><th scope="col">The difference</th><th scope="col">What it drives</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Chemical (concentration)</th><td>More of a substance on one side than the other</td><td>Diffusion and osmosis (high to low)</td></tr>
+        <tr><th scope="row">Electrical</th><td>More charge on one side than the other</td><td>Ions move toward the opposite charge</td></tr>
+        <tr><th scope="row">Electrochemical</th><td>Both combined</td><td>The true driving force on ions across a membrane</td></tr>
+      </tbody>
+    </table>
+
+    <p>Cells keep a small voltage across the membrane called the <strong>membrane potential</strong>, with the inside slightly negative compared to the outside (about <strong>&minus;70 mV</strong> at rest in a neuron). It is set up by uneven ion distribution: <strong>sodium (Na&#8314;) is high outside</strong> and <strong>potassium (K&#8314;) is high inside</strong>, maintained by the <strong>Na&#8314;/K&#8314; pump</strong> (active transport, costs ATP). When channels open, ions rush down their electrochemical gradient and the voltage changes, that change <em>is</em> the signal.</p>
+
+    <figure class="seqfig" aria-labelledby="seqcap">
+      <figcaption id="seqcap">How a gradient becomes a signal</figcaption>
+      <ol class="sequence">
+        <li class="start"><span class="num">1</span>Na&#8314;/K&#8314; pump builds the gradients (ATP)</li>
+        <li><span class="num">2</span>Charge is stored across the membrane</li>
+        <li><span class="num">3</span>A channel opens</li>
+        <li><span class="num">4</span>Ions flow down the electrochemical gradient</li>
+        <li class="end"><span class="num">5</span>Membrane voltage changes: a signal</li>
+      </ol>
+    </figure>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>A <strong>chemical gradient</strong> is like a crowd squished in one corner, they spread out on their own. An <strong>electrical gradient</strong> is like magnets, opposite charges pull together. Your cells keep a tiny charged "battery" across their skin (membrane). When they flip a switch (open a channel), the battery discharges a little, and that flicker is how nerves and muscles send messages.</p>
+    </div>
+
+    <div class="context">
+      <h4>Where you'll meet this in A&amp;P</h4>
+      <p><strong>Resting membrane potential</strong>, <strong>action potentials</strong> in neurons and muscle, the <strong>heart's electrical conduction</strong> (the ECG), and <strong>secondary active transport</strong>, where the sodium gradient pulls glucose into cells. Almost all "excitable tissue" runs on this.</p>
+    </div>
+  </section>
+
+  <!-- ===== 6 ===== -->
+  <section class="card topic" id="t6" aria-labelledby="t6h">
+    <p class="topic-tag">Reference &middot; Section 6</p>
+    <div class="topic-head"><span class="topic-num">06</span><h2 id="t6h">Acids, Bases, pH, and Buffers</h2></div>
+    <p class="lede">pH measures how acidic or basic a fluid is. The body holds blood pH in a tiny window, and buffers are how it does it.</p>
+
+    <p>An <strong>acid</strong> releases hydrogen ions (H&#8314;), which lowers pH. A <strong>base</strong> accepts H&#8314;, which raises pH. The <strong>pH scale</strong> runs 0 to 14, where 7 is neutral. It is <strong>logarithmic</strong>: each whole number is a tenfold change, so pH 5 is ten times more acidic than pH 6.</p>
+
+    <p>Blood pH is held between <strong>7.35 and 7.45</strong>. Below 7.35 is <strong>acidosis</strong>; above 7.45 is <strong>alkalosis</strong>. A <strong>buffer</strong> resists pH change by soaking up extra H&#8314; or releasing it as needed. The body's main one is the <strong>bicarbonate buffer system</strong> (HCO&#8323;&#8315;).</p>
+
+    <div class="cols">
+      <div>
+        <table>
+          <caption>pH of some body fluids</caption>
+          <thead><tr><th scope="col">Fluid</th><th scope="col">Approx. pH</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Gastric (stomach) acid</th><td>1.5 to 3.5</td></tr>
+            <tr><th scope="row">Urine</th><td>4.5 to 8 (avg ~6)</td></tr>
+            <tr><th scope="row">Blood</th><td>7.35 to 7.45</td></tr>
+            <tr><th scope="row">Pancreatic juice</th><td>~8</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="eli10">
+        <h4>Explain it simply (like you're 10)</h4>
+        <p><strong>pH</strong> tells you how sour (acid) or slippery-soapy (base) something is. Lemon juice is a strong acid; baking soda is a base. A <strong>buffer</strong> is like a sponge that grabs or squeezes out acid to keep your blood at just the right "not too sour, not too soapy" level.</p>
+      </div>
+    </div>
+
+    <div class="context">
+      <h4>Where you'll meet this in A&amp;P</h4>
+      <p><strong>Acid-base balance</strong> handled by the <strong>lungs</strong> (breathe off CO&#8322;) and <strong>kidneys</strong> (adjust HCO&#8323;&#8315; and H&#8314;), enzyme function (each enzyme has an ideal pH), stomach digestion, and the acidosis/alkalosis you will study in respiratory and renal physiology.</p>
+    </div>
+  </section>
+
+  <!-- ===== 7 ===== -->
+  <section class="card topic" id="t7" aria-labelledby="t7h">
+    <p class="topic-tag">Reference &middot; Section 7</p>
+    <div class="topic-head"><span class="topic-num">07</span><h2 id="t7h">Biomolecules and ATP</h2></div>
+    <p class="lede">Four families of large molecules build and run the body, and ATP is the energy that powers it.</p>
+
+    <table>
+      <caption>The four biomolecules</caption>
+      <thead><tr><th scope="col">Class</th><th scope="col">Building block</th><th scope="col">Main jobs</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Carbohydrates</th><td>Monosaccharides (e.g., glucose)</td><td>Quick energy; glucose is the body's main fuel</td></tr>
+        <tr><th scope="row">Lipids</th><td>Fatty acids and glycerol</td><td>Energy storage, cell membranes, steroid hormones, insulation</td></tr>
+        <tr><th scope="row">Proteins</th><td>Amino acids</td><td>Enzymes, structure, transport, receptors, muscle contraction, antibodies</td></tr>
+        <tr><th scope="row">Nucleic acids</th><td>Nucleotides</td><td>DNA and RNA store and carry genetic instructions</td></tr>
+      </tbody>
+    </table>
+
+    <p>The body builds big molecules by <strong>dehydration synthesis</strong> (joining blocks and removing water) and breaks them by <strong>hydrolysis</strong> (adding water to split them). <strong>ATP</strong> (adenosine triphosphate) is the cell's energy currency: splitting off one phosphate (ATP to ADP) releases energy the cell uses for work.</p>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p><strong>Carbs</strong> are quick cash, <strong>fats</strong> are the savings account, <strong>proteins</strong> are the workers and machines, and <strong>nucleic acids</strong> are the instruction manual. <strong>ATP</strong> is a rechargeable battery: use it, recharge it, use it again.</p>
+    </div>
+
+    <div class="context">
+      <h4>Where you'll meet this in A&amp;P</h4>
+      <p><strong>Metabolism</strong> and cellular respiration, <strong>muscle contraction</strong> (powered by ATP), enzymes (proteins) in every pathway, the <strong>phospholipids</strong> that form membranes, and <strong>steroid hormones</strong> (lipids) in the endocrine system.</p>
+    </div>
+  </section>
+
+  <!-- ===== 8 ===== -->
+  <section class="card topic" id="t8" aria-labelledby="t8h">
+    <p class="topic-tag">Reference &middot; Section 8</p>
+    <div class="topic-head"><span class="topic-num">08</span><h2 id="t8h">Reactions and Enzymes</h2></div>
+    <p class="lede">Chemical reactions build and break molecules. Enzymes are what make those reactions fast enough for life.</p>
+
+    <table>
+      <caption>Types of chemical reactions</caption>
+      <thead><tr><th scope="col">Reaction</th><th scope="col">What happens</th><th scope="col">Body example</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Synthesis (anabolic)</th><td>Small parts join into a bigger molecule (A + B &rarr; AB)</td><td>Building protein from amino acids</td></tr>
+        <tr><th scope="row">Decomposition (catabolic)</th><td>A molecule breaks into parts (AB &rarr; A + B)</td><td>Digesting food; breaking glycogen for glucose</td></tr>
+        <tr><th scope="row">Exchange</th><td>Parts swap places</td><td>The bicarbonate buffer trading H&#8314;</td></tr>
+      </tbody>
+    </table>
+
+    <p>Most reactions need a push of energy to start, called <strong>activation energy</strong>. An <strong>enzyme</strong> is a biological <strong>catalyst</strong> (usually a protein) that lowers that push, so the reaction runs fast at body temperature. The molecule an enzyme works on is its <strong>substrate</strong>, which fits the enzyme's <strong>active site</strong> like a key in a lock. Enzymes are sensitive to <strong>temperature and pH</strong>, push those too far and the enzyme denatures and stops working.</p>
+
+    <div class="context">
+      <h4>Where you'll meet this in A&amp;P</h4>
+      <p>Digestion (digestive enzymes), <strong>cellular respiration</strong> (making ATP), blood clotting, and every metabolic pathway. It also explains why <strong>fever or severe pH changes are dangerous</strong>: they disable the enzymes the body runs on.</p>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="doc-foot">
+    <p>BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Chemistry for A&amp;P (reference, not a graded unit)</p>
+    <p class="byline">Dr. Sharilyn Rennie</p>
+  </footer>
+
+</div>
+
+<!-- iframe height-sender (Kajabi / GitHub Pages embed) -->
+<script>
+(function(){
+  var FRAME_ID = (function(){ try{ return window.frameElement && window.frameElement.id; }catch(e){ return ""; } })() || "bio304-chem-reference";
+  function sendHeight(){
+    var h = Math.max(
+      document.documentElement.scrollHeight,
+      document.body ? document.body.scrollHeight : 0
+    );
+    try{ parent.postMessage({ type:"resize", id:FRAME_ID, height:h }, "*"); }catch(e){}
+  }
+  window.addEventListener("load", sendHeight);
+  window.addEventListener("resize", sendHeight);
+  if (window.ResizeObserver){ new ResizeObserver(sendHeight).observe(document.body); }
+})();
+</script>
+</body>
+</html>

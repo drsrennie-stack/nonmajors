@@ -1,126 +1,97 @@
-# Compliance Notes — BIO 304 MCAS Rebrand
+# Accessibility Compliance Notes
 
-**Project:** BIO 304 Human Anatomy &amp; Physiology, American River College (online, summer 2026, 8 weeks, June 8 to August 2)
-**Repo:** drsrennie-stack/nonmajors
-**Files covered:** `canvas-home.html` (hand-crafted Canvas front door), `index.html` (hand-crafted 8-week hub coordinated with syllabus), `rebrand-mcas.py` v2 (bulk rebrand for the remaining ~160 pages including syllabus, schedule, and `_OBSOLETE_*`).
-**Branding applied:** MCAS per Project Update 2026-05-29 — Plus Jakarta Sans · Navy #0B1530 · Rust #8B3A2E · Gold #C9A14A · Cream #F5F1E8 · Dark #060A18
-**Date:** 2026-05-30
-**Reviewer:** Dr. Sharilyn Rennie (pending sign-off)
+**Project:** BIO 304 Student Reference Notes
+**Files covered:** module-01-foundations.html, chemistry-for-ap-reference.html
+**Date:** 2026-06-09
+**Reviewer:** Dr. Sharilyn Rennie
 
-## 1. WCAG target
+---
 
-- **Floor:** WCAG 2.2 Level AA across every rebranded page
-- **Target:** Level AAA where achievable
+## 1. Project name and scope
 
-## 2. Color contrast audit
+BIO 304 Human Anatomy & Physiology (online, no TBL). Module 1 of 16, Week 1. Student-facing "look-it-up" reference notes for non-majors, with plain-language ("explain like you're 10") boxes for the harder concepts. Four topics: Levels of Organization; Anatomical Terminology and Body Regions; Homeostasis and Feedback Loops (including two filled feedback grid charts); Cell Anatomy and Physiology (membrane transport, tonicity and RBCs, exocytosis and endocytosis). Built as a reusable single-file template for Modules 2 to 16.
 
-Ratios computed against the WCAG 2.2 formula. AA-normal requires 4.5:1, AA-large requires 3.0:1, AAA-normal requires 7.0:1.
+## 2. Brand and palette
 
-| Foreground / background | Ratio | AA normal | AA large | AAA normal |
+MCAS palette per Project Update 2026-05-29, dark-only variant per instruction (navy #0B1530 removed entirely; only the dark #060A18 is used):
+
+- Dark #060A18 (primary text, dark callout/footer panels)
+- Rust #8B3A2E (eyebrows, accents, labels, links)
+- Gold #C9A14A (accents and labels on dark backgrounds only)
+- Cream #F5F1E8 (table headers, highlight and self-check panels, text on dark)
+- White #FFFFFF (page and card background)
+
+Font: Plus Jakarta Sans Variable (single family). No bookend borders or decorative left-bars anywhere (verified: zero `border-left` rules); section and box differentiation comes from background and a uniform 1px card border only, consistent with the MCAS course-home brand.
+
+## 3. WCAG version and target level
+
+Target WCAG 2.2. AA met across all criteria; AAA met for contrast on all body text, headings, table content, and dark-panel text.
+
+## 4. Color contrast audit
+
+| Text / element | Foreground | Background | Ratio | Result |
 |---|---|---|---|---|
-| Navy #0B1530 on White #FFFFFF | 18.04:1 | pass | pass | pass |
-| Navy #0B1530 on Cream #F5F1E8 | 16.00:1 | pass | pass | pass |
-| Cream #F5F1E8 on Dark #060A18 | 17.50:1 | pass | pass | pass |
-| Cream #F5F1E8 on Navy #0B1530 | 16.00:1 | pass | pass | pass |
-| Rust #8B3A2E on White | 7.66:1 | pass | pass | pass |
-| Rust #8B3A2E on Cream | 6.79:1 | pass | pass | fail (AAA) |
-| Rust hover #A0452F on White | 6.20:1 | pass | pass | fail (AAA) |
-| White #FFFFFF on Rust button #8B3A2E | 7.66:1 | pass | pass | pass |
-| Gold #C9A14A on Dark | 8.16:1 | pass | pass | pass |
-| Gold #C9A14A on Navy | 7.46:1 | pass | pass | pass |
-| Gold #C9A14A on Cream | 2.15:1 | **fail** | **fail** | **fail** |
-| Gold #C9A14A on White | 2.42:1 | **fail** | **fail** | **fail** |
-| Navy 0.72-opacity on White (#4D556E) | 7.39:1 | pass | pass | pass |
-| Navy 0.80-opacity on White (#393F58) | 10.37:1 | pass | pass | pass |
-| Cream 0.88-opacity on Dark (#D7D3CB) | 13.22:1 | pass | pass | pass |
+| Body text | Dark #060A18 | White #FFFFFF | 19.73:1 | AAA |
+| Text on cream panels | Dark #060A18 | Cream #F5F1E8 | 17.5:1 | AAA |
+| Eyebrows, labels, links | Rust #8B3A2E | White #FFFFFF | 7.66:1 | AAA |
+| Rust labels on cream | Rust #8B3A2E | Cream #F5F1E8 | 6.79:1 | AAA (large) / AA (normal) |
+| Clinical + footer labels | Gold #C9A14A | Dark #060A18 | 8.16:1 | AAA |
+| Clinical body text | Cream #F5F1E8 | Dark #060A18 | 17.5:1 | AAA |
+| Emphasis on dark | White #FFFFFF | Dark #060A18 | 19.73:1 | AAA |
 
-**Use rules baked into the design system:**
+Gold is never used as text on a white background (would be 2.42:1). Gold appears only as: a label/heading color on dark panels (8.16:1), dark text placed on a gold fill in the SVG diagram (high contrast), and decorative box borders where a background-color change already distinguishes the box.
 
-- **Gold #C9A14A is decorative on dark backgrounds only.** It is used as a small accent (eyebrow text, footer headers, the closing CTA accent) where the background is Navy or Dark. It is never used as text on White or Cream.
-- **Rust #8B3A2E is the light-section accent.** It is used for CTAs, hover states, and accents on White or Cream backgrounds. Achieves AA on Cream and AAA on White.
-- **Cream is for dark-section text only.** Cream is never used as a light background, only as the foreground color on Navy or Dark sections.
-- **Sage is excluded** from the system entirely, per global rule.
-- **Teal is banned** at the script level — `rebrand-mcas.py` substitutes any `#2F4F4F`, `#008080`, `#5F9EA0`, `teal`, and related teal-family hex codes for Navy on every page it processes.
+## 5. Keyboard navigation and focus
 
-## 3. Typography
+Tab order: skip link to `#main`, TOC links (4), in-content links, then each topic's self-check `summary` (Enter/Space toggles). No keyboard traps. Focus indicator is a 3px rust outline (gold inside dark clinical panels) with offset, visible at every stop.
 
-- Font family: **Plus Jakarta Sans** (variable), loaded via `https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css`, with `system-ui, -apple-system, sans-serif` fallback chain
-- Headings: weight 800, tight tracking (`letter-spacing: -0.015em` to `-0.025em`)
-- Body: 16px / 1.65 line-height; section copy uses 14–15px / 1.6
-- No CSS reductions below 12px anywhere in the hub
-- All headings use semantic levels (h1 → h2 → h3 → h4); no skipped levels
-- Italic Lora is **not** used in this course (per global rule, Lora italic is the Solano teaching family; ARC online uses Plus Jakarta throughout)
+## 6. Screen reader testing
 
-## 4. Keyboard navigation
+Structurally verified (recommend a live VoiceOver/NVDA pass before publishing):
 
-Verified on the hub `index.html`:
+- Landmarks reach banner, navigation, main, contentinfo.
+- One h1, h2 per topic, h3 per subsection; no skipped levels.
+- All tables are real data tables with `scope` on column and row headers. This includes the two new feedback grid charts, where the loop components are row headers (vertical axis) and the regulated variables are column headers (horizontal axis).
+- SVG diagrams expose `title` + `desc` via `aria-labelledby`.
+- `details` self-checks announce expanded/collapsed; all default to open.
 
-- **Skip link** at top of body, hidden until focused, jumps to `#main`
-- **Tab order** follows visual order (header logo → hero CTAs → "How to thrive" cards → module cards in order → tools cards → about → FAQ summaries → closing CTA → footer links)
-- **Focus indicator** is a 3px Rust outline on light sections, Gold on dark sections, with 3px offset and 4px radius. Visible against every background in the system.
-- **FAQ accordions** open and close with Enter or Space on the `<summary>` element. The plus / minus glyph is `aria-hidden="true"` so screen readers don't announce it.
-- **No `:hover`-only affordances.** Every hover state is mirrored by `:focus-visible`.
+## 7. Content design notes
 
-## 5. Screen reader testing
+- Plain-language boxes ("Explain it simply, like you're 10") added for the four hardest concepts: emergence, negative feedback, diffusion and gradients, osmosis and tonicity. Non-major-level prose carries the rest.
+- Two filled feedback grid charts: Chart 1 (negative feedback) across body temperature, blood glucose, and blood pressure; Chart 2 (positive feedback) across childbirth, blood clotting, and milk let-down. Components run down the side; regulated variables run across the top.
+- Emergent property is stated explicitly with a worked cardiac example plus a second table of two emergence examples.
 
-Verified semantic landmarks and ARIA on the hub:
+## 8. Print rendering
 
-- `<header>` for the site header, `<main id="main">` for content, `<footer>` for the footer
-- The site logo carries `aria-label="BIO 304 Human Anatomy and Physiology, course home"`
-- The logo SVG is `role="img" aria-hidden="true" focusable="false"` (the link's `aria-label` carries the semantics)
-- The current-week marker on module cards is excluded (this is BIO 304 online, no rolling weekly cohort)
-- The FAQ uses the `<details>` / `<summary>` pattern (native disclosure semantics)
-- Module cards use `<ul>` / `<li>` for list semantics, with each card as an `<a>` whose entire body is the link target
-- Tools cards follow the same `<ul>` / `<li>` / `<a>` pattern
-- No images on the hub are purely decorative without `alt=""`; the instructor photo carries a meaningful `alt`
+`@media print`: each topic starts on its own page, cards avoid internal breaks, all self-check prompts force-expand, dark and cream panels keep their fills via `print-color-adjust:exact`. Produces a clean textbook-style handout from the browser Print command.
 
-Recommended verification before launch:
-- VoiceOver (macOS) on Safari (the screen reader most ARC students use on iOS / Mac)
-- NVDA on Firefox (the screen reader most ARC students use on Windows)
-- Verify the iframe height-sender works inside Kajabi — the iframe should grow to match content with no scrollbar
+## 9. House rules verified
 
-## 6. Motion and reduced-motion
+- No em dashes (0 in file).
+- Byline "Dr. Sharilyn Rennie" with no credential suffix; no ", ND" / ", MD".
+- Dark-only palette; navy #0B1530 fully removed (0 occurrences); no sage.
+- No bookend borders (0 `border-left` rules).
+- iframe height-sender (postMessage with id, ResizeObserver, load/resize listeners, plus a toggle listener for the disclosure widgets) baked in before `</body>`, message shape matched to the MCAS course-home page (`type:"resize"`).
+- All internal/same-page links carry `target="_top"`. No external links present.
 
-- All transitions (hover lifts, focus outline, FAQ toggle rotation) are guarded by `@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }`
-- `scroll-behavior: smooth` on `<html>` is also disabled when reduced motion is requested
-- No autoplaying audio or video on the hub
-- No marquees, flashing, or content that updates faster than 5Hz
+## 10. Known limitations and remediation plan
 
-## 7. Iframe and embedding behavior
+1. Live screen-reader pass not yet performed this session. Remediation: run VoiceOver and NVDA before assigning.
+2. Cell Anatomy and Physiology (Topic 4) and both feedback grid charts were authored from standard non-majors A&P content, since the uploaded teaching guide covered Topics 1 to 3 only. Remediation: reconcile against your own cards/notes when available.
+3. Web fonts load from a CDN (@fontsource Plus Jakarta Sans, matching the brand file). If the embed environment blocks external fonts, system sans-serif fallback applies without breaking layout.
 
-- Every rebranded page sends `postMessage({type:'resize', id:FRAME_ID, height:h}, '*')` to its parent on load, on resize, and whenever the body's size changes (`ResizeObserver`)
-- The hub's `FRAME_ID` is `bio304-course-home`; every other page's `FRAME_ID` follows `bio304-{slug-of-filename}`
-- The Kajabi page needs the one-time parent listener snippet documented in `iframes.md` section 1
-- Every internal and same-domain link uses `target="_top"` so navigation breaks the iframe and lands on the full page (per global rule)
-- External links use `target="_blank" rel="noopener"`
+## 11. Addendum (2026-06-09): content additions and second file
 
-## 8. JavaScript behavior preservation
+**module-01-foundations.html, added after audit:**
 
-This is the most important load-bearing claim of the rebrand. `rebrand-mcas.py` is explicitly designed not to touch:
+- Topic 1: anatomy vs. physiology opener (structure-determines-function rule, gross vs. microscopic); characteristics of life table (organization, metabolism, responsiveness, movement, growth, reproduction); survival needs table (oxygen, nutrients, water, normal temperature, atmospheric pressure).
+- Topic 2: serous membranes (parietal vs. visceral, pleura/pericardium/peritoneum, plus inflammation terms); compact medical imaging table (X-ray, CT, MRI, ultrasound, PET).
+- Topic 4: organelle table expanded (cytoskeleton, rough vs. smooth ER split, peroxisomes, cilia and microvilli).
 
-- Any `<script>` tag's contents
-- Any `id` or `class` attribute on an element that JS references
-- The DOM structure beneath any element that JS queries (the rebrand wraps the existing body in `<main id="mcas-content" class="mcas-content">` but does not move or rename any internal element)
-- `localStorage` keys, `dataset` attributes, or any data store
-- Existing event listeners or scheduling code
+All additions use the same MCAS dark-only palette, real table markup with `scope`, and carry no bookend borders.
 
-Concrete consequence: the **video gating** logic on `concept_videos.html` and the **spaced recall** scheduler on `bio304-spaced-recall-prototype.html` (plus `course-content.js` if it's referenced) continue to work without modification.
+**chemistry-for-ap-reference.html (new):** standalone, ungraded look-it-up chemistry companion. Eight sections (atoms/ions/electrolytes, bonds, water/solvent, solutions and concentration, gradients, pH and buffers, biomolecules and ATP, reactions and enzymes), each ending in a "Where you'll meet this in A&P" dark callout. Includes one sequence diagram (gradient to signal). Same template, palette, fonts, print rules, skip link, focus model, and height-sender as the module file. Verified: 0 em dashes, 0 navy #0B1530, 0 bookend borders, byline correct, all internal links `target="_top"`, contrast identical to the audited module values (dark on white 19.73:1; rust on white 7.66:1; gold and cream on dark 8.16:1 and 17.5:1). Reference values (electrolyte ranges, blood pH 7.35 to 7.45, plasma osmolarity ~285 to 295 mOsm/L, fasting glucose 70 to 99 mg/dL, resting membrane potential ~-70 mV) are standard clinical figures.
 
-The script was tested against three synthetic pages mimicking each pattern (an inline-style page with localStorage-backed spaced recall logic, a video-gating page with `data-video` attributes and `classList.replace`, and a plain content page). All three rebranded cleanly with no JS modification — verified by grepping for the original event listeners, dataset references, and localStorage calls in the rebranded output.
+## 12. Reviewer
 
-## 9. Known limitations and remediation plan
-
-- **Hub + front door + script verified; per-page sampling pending.** This pass was completed against `canvas-home.html`, `index.html`, and a synthetic test fixture run of `rebrand-mcas.py` v2 across topic-page, workbook, discussion, `_OBSOLETE_`, and syllabus patterns (all six fixtures rebranded cleanly, back-links resolved to the correct week anchors). Once the script has been run against the full repo, pick five random rebranded pages, confirm no inline color (e.g. an in-page `<span style="color:teal">`) slipped through, and re-run the contrast check on any page that uses heavy inline styling.
-- **Gold-on-light is excluded by design.** If a future page wants gold on a light background (e.g. an icon on White), the design system flags it and either darkens the gold to AA, swaps to rust, or moves the element onto a dark surface. The rebrand script does not detect this automatically; a manual eye is needed.
-- **Tests on the cross-bridge cycle and action-potential pages** likely use complex inline SVG with their own color choices. Sample at least one of those after rebrand and confirm legibility hasn't regressed.
-- **Syllabus deadline cards.** The script remaps the syllabus's `--sage-dark` token to MCAS gold so the "quiz closes" deadline card renders gold-on-navy after rebrand. Gold-on-cream would fail contrast; gold-on-navy (deadlines are on a dark or navy band by default) passes AAA. Verify visually that no quiz card ends up on a light background after rebrand.
-- **PDF module guides** are linked from the hub but were not audited for accessibility in this pass. Module PDFs are an existing deliverable; auditing them is a separate workstream.
-- **ARC's institutional accessibility policy.** Confirm the hub copy is compatible with ARC's Section 508 / WCAG 2.2 institutional policy. The hub meets WCAG 2.2 AA. If ARC requires evidence of testing with assistive technology, run the screen-reader checks in section 5 and add a screenshot or transcript to this file.
-- **Canvas front door.** `canvas-home.html` ships at AAA contrast on every text/background pair (Cream on Dark = 17.5:1; Gold on Dark = 8.16:1; White on Rust button = 7.66:1). Verify the button doesn't get covered by Canvas chrome when embedded as the Front Page.
-
-## 10. Sign-off
-
-- **Author:** Dr. Sharilyn Rennie (hub + bulk-rebrand approach)
-- **Built:** 2026-05-30
-- **Last audit:** 2026-05-30 (hub + synthetic script test)
-- **Status:** Hub ready. Bulk script ready for first run against the full repo. Awaiting first-run audit on ~5 sampled rebranded pages.
+Dr. Sharilyn Rennie

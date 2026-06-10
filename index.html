@@ -288,6 +288,20 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   background: #8B3A2E; color: #FFFFFF;
 }
 .week-pill-lab:hover, .week-pill-lab:focus-visible { background: #A0452F; }
+/* Notes pill: white, lifted off the card with a light grey shadow */
+.week-pill-notes {
+  background: #FFFFFF;
+  color: #0B1530;
+  border: 1px solid rgba(11, 21, 48, 0.12);
+  box-shadow: 0 2px 6px rgba(11, 21, 48, 0.16);
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.week-pill-notes:hover, .week-pill-notes:focus-visible {
+  background: #FFFFFF;
+  color: #0B1530;
+  box-shadow: 0 6px 14px rgba(11, 21, 48, 0.22);
+  transform: translateY(-1px);
+}
 
 /* ===== LOCKED WEEK CARDS =====
    Locked card still shows topic & title so students can preview structure.
@@ -748,6 +762,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
         <a class="week-pill week-pill-lab" href="workbook_week01.html" target="_top">Workbook</a>
         <a class="week-pill week-pill-prework" href="week01_prework.html" target="_top">Pre-work</a>
         <a class="week-pill week-pill-discussion" href="week01_discussion.html" target="_top">Discussion</a>
+        <a class="week-pill week-pill-notes" href="module-01-foundations.html" target="_top">Notes</a>
       </div>
     </li>
 

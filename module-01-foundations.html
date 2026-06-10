@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Notes &middot; Module 1: Foundations of Anatomy and Physiology</title>
+<meta name="description" content="Student reference notes for BIO 304 Module 1: levels of organization, anatomical terminology, homeostasis, and cell anatomy and physiology.">
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+/*
+  ============================================================
+  BIO 304 STUDENT NOTES  ·  REUSABLE MODULE TEMPLATE
+  MCAS palette per Project Update 2026-05-29:
+    Navy #060A18  Rust #8B3A2E  Gold #C9A14A  Cream #F5F1E8  Dark #060A18
+  Font: Plus Jakarta Sans Variable (single family).
+  To build later modules: copy this file, swap the <title>,
+  the .doc-eyebrow / .doc-title / .doc-sub text, the .toc items,
+  and each <section class="topic"> block. Styling stays fixed.
+  Byline stays "Dr. Sharilyn Rennie" (no suffix).
+  ============================================================
+*/
+  :root{
+    --navy:#060A18;
+    --rust:#8B3A2E;
+    --rust-hover:#A0452F;
+    --gold:#C9A14A;
+    --cream:#F5F1E8;
+    --dark:#060A18;
+    --white:#FFFFFF;
+    --line:rgba(6,10,24,0.18);
+    --line-soft:rgba(6,10,24,0.10);
+    --rest-shadow:0 1px 3px rgba(6,10,24,0.06);
+    --hover-shadow:0 8px 16px rgba(6,10,24,0.10);
+    --ease:transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:20px;}
+  body{
+    margin:0;background:var(--white);color:var(--navy);
+    font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif;
+    font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1060px;margin:0 auto;padding:0 max(20px,4vw) 64px;}
+
+  /* ---------- Site header / logo ---------- */
+  .site-header{padding:24px 0 6px;}
+  .site-logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none;}
+  .site-logo svg{height:50px;width:auto;display:block;}
+  .logo-title{font-size:22px;font-weight:800;letter-spacing:-0.02em;color:var(--navy);line-height:1;}
+  .logo-title .logo-accent{color:var(--rust);}
+  .logo-sub{font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.72;margin-top:4px;display:block;}
+
+  /* ---------- Typography ---------- */
+  .doc-eyebrow{font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.28em;text-transform:uppercase;margin:26px 0 14px;}
+  h1.doc-title{font-size:38px;font-weight:800;color:var(--navy);letter-spacing:-0.025em;line-height:1.08;margin:0 0 12px;}
+  h1.doc-title .accent{color:var(--rust);}
+  .doc-sub{font-size:15px;font-weight:700;color:var(--navy);opacity:.78;letter-spacing:.02em;margin:0 0 6px;}
+  .meta-line{font-size:14px;color:var(--navy);opacity:.84;line-height:1.6;margin:0;max-width:760px;}
+  h2{font-size:25px;font-weight:800;color:var(--navy);letter-spacing:-0.02em;line-height:1.14;margin:0 0 4px;}
+  h3{font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.16em;text-transform:uppercase;margin:20px 0 8px;}
+  p{margin:0 0 9px;}
+  .lede{font-size:16px;color:var(--navy);opacity:.9;margin:0 0 12px;max-width:760px;}
+  strong{font-weight:800;color:var(--navy);}
+  em{font-style:italic;}
+
+  /* ---------- Cards ---------- */
+  .card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:22px 24px;box-shadow:var(--rest-shadow);margin:0 0 18px;}
+  .topic{transition:var(--ease);scroll-margin-top:16px;}
+  .topic:hover{transform:translateY(-2px);box-shadow:var(--hover-shadow);border-color:rgba(6,10,24,0.26);}
+  .topic-tag{font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.62;margin:0 0 4px;}
+  .topic-head{display:flex;align-items:baseline;gap:14px;margin:0 0 4px;}
+  .topic-num{font-size:34px;font-weight:800;color:var(--rust);letter-spacing:-0.02em;line-height:1;flex-shrink:0;}
+
+  /* ---------- Header band (no bookend bar) ---------- */
+  header.doc-head{padding:2px 0;margin:4px 0 24px;}
+
+  /* ---------- Table of contents ---------- */
+  nav.toc{background:var(--white);border:1px solid var(--line);border-radius:10px;box-shadow:var(--rest-shadow);padding:20px 24px;margin:0 0 24px;}
+  nav.toc h2{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin:0 0 10px;}
+  nav.toc ol{margin:0;padding:0;list-style:none;counter-reset:toc;}
+  nav.toc li{counter-increment:toc;font-size:14.5px;padding:9px 0;border-bottom:1px solid var(--line-soft);display:flex;gap:14px;align-items:baseline;}
+  nav.toc li:last-of-type{border-bottom:none;}
+  nav.toc li::before{content:counter(toc,decimal-leading-zero);font-weight:800;color:var(--rust);font-variant-numeric:tabular-nums;font-size:13px;min-width:26px;flex-shrink:0;}
+  nav.toc a{color:var(--navy);text-decoration:none;font-weight:700;letter-spacing:-0.01em;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--rust);text-decoration:underline;text-underline-offset:4px;}
+  .toc-hint{margin-top:12px;font-size:13px;font-style:italic;color:var(--navy);opacity:.72;}
+
+  /* ---------- Lists ---------- */
+  ul{margin:4px 0 11px;padding-left:20px;}
+  li{margin:4px 0;}
+  ul.tight li{margin:2px 0;}
+  ol{margin:4px 0 11px;padding-left:22px;}
+  ul.check{list-style:none;padding-left:2px;}
+  ul.check li{padding-left:24px;position:relative;}
+  ul.check li::before{content:"";position:absolute;left:2px;top:8px;width:9px;height:9px;border-radius:2px;background:var(--rust);}
+
+  /* ---------- Tables ---------- */
+  table{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:13.5px;}
+  caption{font-size:10.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);text-align:left;font-weight:700;padding:0 0 7px;}
+  th,td{padding:8px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);}
+  thead th{background:var(--cream);color:var(--navy);font-weight:800;font-size:12.5px;letter-spacing:.01em;}
+  tbody th{background:rgba(245,241,232,0.5);color:var(--navy);font-weight:800;width:26%;}
+  tbody tr:last-child td,tbody tr:last-child th{border-bottom:1px solid var(--line);}
+  table.gridchart{font-size:12.5px;}
+  table.gridchart th,table.gridchart td{padding:7px 9px;}
+  table.gridchart tbody th{width:18%;}
+
+  /* ---------- Two-column flow (screen) ---------- */
+  .cols{column-count:2;column-gap:30px;}
+  .cols > *{break-inside:avoid;}
+  @media(max-width:780px){.cols{column-count:1;}}
+
+  /* ---------- Emergent-property highlight (uniform border, no bookend) ---------- */
+  .highlight{border:1px solid var(--gold);background:var(--cream);border-radius:8px;padding:14px 17px;margin:14px 0;}
+  .highlight h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);margin:0 0 6px;}
+  .highlight p{margin:0 0 6px;font-size:14px;}
+  .highlight p:last-child{margin:0;}
+
+  /* ---------- Plain-language box (explain like you're 10) ---------- */
+  .eli10{border:1px solid var(--line);border-radius:8px;padding:13px 16px;margin:13px 0;background:var(--white);}
+  .eli10 h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--rust);margin:0 0 6px;}
+  .eli10 h4::before{content:"\1F4A1  ";}
+  .eli10 p{margin:0 0 6px;font-size:14.5px;}
+  .eli10 p:last-child{margin:0;}
+
+  /* ---------- Key terms (uniform border, no bookend) ---------- */
+  .keyterms{border:1px solid var(--line);border-radius:8px;padding:13px 16px;margin:12px 0;background:var(--white);}
+  .keyterms h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);margin:0 0 8px;}
+  .keyterms dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;font-size:13.5px;}
+  .keyterms dt{font-weight:800;color:var(--navy);}
+  .keyterms dd{margin:0;}
+  @media(max-width:560px){.keyterms dl{grid-template-columns:1fr;}.keyterms dd{margin:0 0 6px;}}
+
+  /* ---------- Clinical callout (dark, on-brand) ---------- */
+  .clinical{background:var(--dark);border-radius:8px;padding:16px 19px;margin:14px 0;}
+  .clinical h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin:0 0 7px;}
+  .clinical p{margin:0 0 7px;font-size:14px;color:var(--cream);opacity:.94;line-height:1.6;}
+  .clinical p:last-child{margin:0;}
+  .clinical strong{color:var(--white);}
+
+  /* ---------- Self-check (cream, open) ---------- */
+  details.selfcheck{background:var(--cream);border:1px solid rgba(201,161,74,0.55);border-radius:8px;padding:0 16px;margin:14px 0 2px;}
+  details.selfcheck summary{cursor:pointer;padding:12px 0;font-weight:800;color:var(--navy);font-size:13.5px;list-style:none;letter-spacing:.01em;}
+  details.selfcheck summary::-webkit-details-marker{display:none;}
+  details.selfcheck summary::before{content:"\25B8  ";color:var(--rust);}
+  details.selfcheck[open] summary::before{content:"\25BE  ";}
+  details.selfcheck ol{margin:0 0 14px;padding-left:24px;font-size:13.5px;}
+  details.selfcheck li{margin:5px 0;}
+
+  /* ---------- SVG figures ---------- */
+  figure{margin:10px 0 14px;}
+  figure figcaption{font-size:12px;color:var(--rust);margin-top:6px;font-weight:600;}
+
+  /* ---------- Sequence flow (boxes + arrows) ---------- */
+  .seqfig{margin:12px 0 14px;}
+  .seqfig figcaption{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--rust);margin:0 0 8px;}
+  ol.sequence{list-style:none;display:flex;flex-wrap:wrap;align-items:stretch;gap:8px 4px;padding:0;margin:0;}
+  ol.sequence li{background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:8px 12px;font-size:12.5px;font-weight:700;color:var(--dark);display:flex;align-items:center;line-height:1.3;}
+  ol.sequence li::after{content:"\2192";margin-left:8px;color:var(--rust);font-weight:800;font-size:15px;}
+  ol.sequence li:last-child::after{content:none;}
+  ol.sequence li.start{background:var(--white);border-color:var(--rust);}
+  ol.sequence li.end{background:var(--rust);border-color:var(--rust);color:var(--white);}
+  ol.sequence li .num{display:inline-flex;justify-content:center;align-items:center;width:18px;height:18px;border-radius:50%;background:var(--rust);color:var(--white);font-size:10px;font-weight:800;margin-right:8px;flex-shrink:0;}
+  ol.sequence li.end .num{background:var(--white);color:var(--rust);}
+
+  /* ---------- Links / focus / a11y ---------- */
+  a{color:var(--rust);}
+  a:focus-visible,summary:focus-visible{outline:3px solid var(--rust);outline-offset:3px;border-radius:4px;}
+  .clinical a:focus-visible{outline-color:var(--gold);}
+  .skip{position:absolute;top:-100px;left:8px;background:var(--navy);color:var(--cream);padding:12px 20px;text-decoration:none;font-size:13px;font-weight:700;border-radius:4px;z-index:9999;letter-spacing:.04em;}
+  .skip:focus{top:8px;}
+  footer.doc-foot{margin-top:30px;background:var(--dark);border-radius:8px;padding:24px 26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer.doc-foot p{margin:0;font-size:12.5px;color:var(--cream);opacity:.86;line-height:1.6;}
+  footer.doc-foot .byline{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;opacity:1;}
+
+  @media(prefers-reduced-motion:reduce){
+    *{transition:none!important;scroll-behavior:auto!important;}
+    .topic:hover{transform:none;}
+  }
+
+  /* ---------- Print: textbook, dense, page-per-topic ---------- */
+  @media print{
+    @page{margin:14mm;}
+    body{font-size:10.5pt;}
+    .wrap{max-width:none;padding:0;}
+    .skip,.toc-hint{display:none;}
+    .site-header{padding:0 0 8px;}
+    .card{box-shadow:none;border:1px solid #bbb;break-inside:avoid;}
+    .topic{page-break-before:always;}
+    .topic:first-of-type{page-break-before:avoid;}
+    details.selfcheck ol{display:block!important;}
+    a{color:var(--navy);text-decoration:none;}
+    thead th,tbody th{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .clinical{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .clinical p{color:#F5F1E8;}
+    .highlight,details.selfcheck,footer.doc-foot{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .topic:hover{transform:none;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to notes</a>
+<div class="wrap">
+
+  <header class="site-header">
+    <a class="site-logo" href="index.html" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)">
+            <circle cx="0" cy="20" r="10" fill="#060A18"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#060A18"/>
+          </g>
+          <g transform="translate(100, 0)">
+            <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+            <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+          </g>
+          <g transform="translate(140, 0) rotate(-8 0 130)">
+            <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+          </g>
+        </g>
+      </svg>
+      <span class="logo-text">
+        <span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span>
+        <span class="logo-sub">BIO 304 &middot; American River College</span>
+      </span>
+    </a>
+  </header>
+
+  <header class="doc-head">
+    <p class="doc-eyebrow">BIO 304 &middot; Week 1 &middot; Module 1</p>
+    <h1 class="doc-title">Foundations of <span class="accent">Anatomy and Physiology</span></h1>
+    <p class="doc-sub">Student Reference Notes &middot; Built to look things up</p>
+    <p class="meta-line">Four topics: Levels of Organization &middot; Anatomical Terminology and Body Regions &middot; Homeostasis and Feedback Loops &middot; Cell Anatomy and Physiology (membrane transport, tonicity and RBCs, exocytosis and endocytosis).</p>
+  </header>
+
+  <nav class="toc" aria-label="Topics in this module">
+    <h2>On this page</h2>
+    <ol>
+      <li><a href="#t1" target="_top">Levels of Organization</a></li>
+      <li><a href="#t2" target="_top">Anatomical Terminology and Body Regions</a></li>
+      <li><a href="#t3" target="_top">Homeostasis and Feedback Loops</a></li>
+      <li><a href="#t4" target="_top">Cell Anatomy and Physiology (membrane transport, tonicity, exo/endocytosis)</a></li>
+    </ol>
+    <p class="toc-hint">Tip: this page is built to print. Use your browser's Print command for a clean, textbook-style handout (each topic starts on its own page).</p>
+  </nav>
+
+  <main id="main">
+
+  <!-- =================== TOPIC 1 =================== -->
+  <section class="card topic" id="t1" data-topic="1" aria-labelledby="t1h">
+    <p class="topic-tag">Topic 1 of 4 &middot; Week 1</p>
+    <div class="topic-head"><span class="topic-num">01</span><h2 id="t1h">Levels of Organization</h2></div>
+    <p class="lede">From atoms to organism: how complexity scales, and where brand-new function appears.</p>
+
+    <div class="highlight">
+      <h4>Start here: anatomy vs. physiology</h4>
+      <p><strong>Anatomy</strong> is the study of <strong>structure</strong>, what a part is and where it sits. <strong>Physiology</strong> is the study of <strong>function</strong>, what a part does and how. The two are inseparable because of one rule you will use all course long: <strong>structure determines function</strong>. The shape of a part is the reason it can do its job. A red blood cell's flattened disc shape is exactly what lets it carry oxygen efficiently.</p>
+      <p>Anatomy splits into <strong>gross (macroscopic)</strong> anatomy, seen with the naked eye, and <strong>microscopic</strong> anatomy (histology), seen only under a microscope.</p>
+    </div>
+
+    <h3>What makes something alive, and what it needs to stay alive</h3>
+    <div class="cols">
+      <div>
+        <table>
+          <caption>Characteristics of life</caption>
+          <thead><tr><th scope="col">Characteristic</th><th scope="col">Meaning</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Organization</th><td>Has a specific structure with parts that work together</td></tr>
+            <tr><th scope="row">Metabolism</th><td>All chemical reactions in the body (building up and breaking down)</td></tr>
+            <tr><th scope="row">Responsiveness</th><td>Senses and reacts to changes inside and outside</td></tr>
+            <tr><th scope="row">Movement</th><td>Of the whole body, its parts, or substances inside it</td></tr>
+            <tr><th scope="row">Growth</th><td>Increase in size or cell number</td></tr>
+            <tr><th scope="row">Reproduction</th><td>Making new cells or new individuals</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <table>
+          <caption>Survival needs (what the body must have)</caption>
+          <thead><tr><th scope="col">Need</th><th scope="col">Why</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Oxygen</th><td>Required to release energy (ATP) from nutrients</td></tr>
+            <tr><th scope="row">Nutrients</th><td>Supply energy and raw materials (from food)</td></tr>
+            <tr><th scope="row">Water</th><td>The body's solvent and the site of most reactions</td></tr>
+            <tr><th scope="row">Normal body temperature</th><td>Too hot or cold and reactions/enzymes fail</td></tr>
+            <tr><th scope="row">Atmospheric pressure</th><td>Needed for breathing and gas exchange in the lungs</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p>The body is organized as a <strong>hierarchy</strong>. Each level is built from the level below it, and at each step up, a new <strong>function appears that the smaller parts did not have on their own</strong>. A single sodium atom does nothing interesting. Billions of them, arranged as a gradient across a membrane, produce a nerve impulse. Biology lives in the <em>relationships</em> between parts, not in the parts by themselves.</p>
+
+    <div class="highlight">
+      <h4>Key idea: emergent property</h4>
+      <p>An <strong>emergent property</strong> is a function or characteristic that appears only when parts combine at a higher level. It does not exist in the individual parts.</p>
+      <p><strong>Worked example:</strong> a single heart muscle cell can twitch, but it cannot pump blood. Link millions of them with intercalated discs so they contract as one coordinated sheet (tissue level), build them into the four-chambered heart (organ level), and a brand-new function emerges, <strong>pumping blood through the whole body</strong>. "Pumping" exists at the organ level, not in any one cell. That is emergence.</p>
+    </div>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>One LEGO brick can't do much. But snap thousands together the right way and you get a spaceship that can "fly" across the room. The flying isn't hiding inside any single brick, it shows up only when the bricks are put together. Your body works the same way: tiny parts team up, and brand-new powers appear that none of the parts had alone.</p>
+    </div>
+
+    <div class="cols">
+      <figure>
+        <svg viewBox="0 0 300 220" width="100%" role="img" aria-labelledby="ladderTitle ladderDesc" style="max-width:340px;">
+          <title id="ladderTitle">Six levels of organization</title>
+          <desc id="ladderDesc">A ladder rising from chemical, to cellular, tissue, organ, organ system, and organism.</desc>
+          <g font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600">
+            <rect x="6"  y="186" width="184" height="26" rx="4" fill="#F5F1E8" stroke="#060A18"/>
+            <text x="14" y="203" fill="#060A18">1. Chemical (atoms, molecules)</text>
+            <rect x="26" y="154" width="184" height="26" rx="4" fill="#F5F1E8" stroke="#060A18"/>
+            <text x="34" y="171" fill="#060A18">2. Cellular (cells)</text>
+            <rect x="46" y="122" width="184" height="26" rx="4" fill="#F5F1E8" stroke="#060A18"/>
+            <text x="54" y="139" fill="#060A18">3. Tissue</text>
+            <rect x="66" y="90" width="184" height="26" rx="4" fill="#F5F1E8" stroke="#060A18"/>
+            <text x="74" y="107" fill="#060A18">4. Organ</text>
+            <rect x="86" y="58" width="194" height="26" rx="4" fill="#C9A14A" stroke="#060A18"/>
+            <text x="94" y="75" fill="#060A18">5. Organ system</text>
+            <rect x="106" y="26" width="184" height="26" rx="4" fill="#8B3A2E" stroke="#060A18"/>
+            <text x="114" y="43" fill="#F5F1E8">6. Organism</text>
+          </g>
+        </svg>
+        <figcaption>Each rung is built from the one below. Read bottom to top.</figcaption>
+      </figure>
+
+      <div>
+        <h3>The six levels (bottom to top)</h3>
+        <ul class="tight">
+          <li><strong>Chemical:</strong> atoms join into molecules (water, proteins, DNA).</li>
+          <li><strong>Cellular:</strong> molecules build the cell, the smallest living unit.</li>
+          <li><strong>Tissue:</strong> similar cells working together (e.g., muscle tissue).</li>
+          <li><strong>Organ:</strong> two or more tissue types forming a structure with a job (the heart).</li>
+          <li><strong>Organ system:</strong> organs cooperating toward a shared goal (cardiovascular system).</li>
+          <li><strong>Organism:</strong> all systems together, a living person.</li>
+        </ul>
+        <div class="keyterms">
+          <h4>Don't mix these up</h4>
+          <dl>
+            <dt>Organ</dt><dd>One structure, e.g., the kidney.</dd>
+            <dt>Organ system</dt><dd>The kidney <em>plus</em> ureters, bladder, urethra (the urinary system).</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <h3>The eleven organ systems, anchored by what they DO</h3>
+    <table>
+      <caption>Learn the job first, the parts second</caption>
+      <thead>
+        <tr><th scope="col">System</th><th scope="col">Core job</th><th scope="col">Memory anchor</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Integumentary</th><td>Covers and protects the body</td><td>Protects</td></tr>
+        <tr><th scope="row">Skeletal</th><td>Frames and supports; protects organs; stores minerals</td><td>Supports</td></tr>
+        <tr><th scope="row">Muscular</th><td>Produces movement and heat</td><td>Moves</td></tr>
+        <tr><th scope="row">Nervous</th><td>Fast communication and control</td><td>Communicates (fast)</td></tr>
+        <tr><th scope="row">Endocrine</th><td>Slow communication using hormones</td><td>Communicates (slow)</td></tr>
+        <tr><th scope="row">Cardiovascular</th><td>Pumps and transports blood</td><td>Transports</td></tr>
+        <tr><th scope="row">Lymphatic / Immune</th><td>Returns fluid; defends against pathogens</td><td>Transports + defends</td></tr>
+        <tr><th scope="row">Respiratory</th><td>Brings in oxygen, removes carbon dioxide</td><td>Brings in O&#8322; / removes waste</td></tr>
+        <tr><th scope="row">Digestive</th><td>Breaks down food, absorbs nutrients</td><td>Brings in nutrients</td></tr>
+        <tr><th scope="row">Urinary</th><td>Filters blood, removes waste, balances fluid</td><td>Removes waste</td></tr>
+        <tr><th scope="row">Reproductive</th><td>Produces offspring</td><td>Perpetuates</td></tr>
+      </tbody>
+    </table>
+    <ul class="check tight">
+      <li><strong>Communicate:</strong> nervous (fast) and endocrine (slow).</li>
+      <li><strong>Transport:</strong> cardiovascular and lymphatic.</li>
+      <li><strong>Bring in:</strong> respiratory (oxygen) and digestive (nutrients).</li>
+      <li><strong>Remove waste:</strong> urinary and respiratory.</li>
+    </ul>
+
+    <h3>More emergence, made concrete (two examples)</h3>
+    <table>
+      <thead>
+        <tr><th scope="col">Example</th><th scope="col">Cellular structure</th><th scope="col">Tissue behavior</th><th scope="col">Emergent organ function</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Cardiac contraction</th><td>Intercalated discs link cells</td><td>Cells act as one functional syncytium</td><td>Coordinated ejection of blood</td></tr>
+        <tr><th scope="row">Gas exchange</th><td>Alveolar wall is one cell thick</td><td>Diffusion distance is tiny</td><td>Gas exchange fast enough for the whole body</td></tr>
+      </tbody>
+    </table>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>When a patient has a problem, you have to locate it at the right level. A drug acts at the chemical or cellular level, but the patient feels it at the organism level. Treatment-resistant high blood pressure might be chemical (a receptor mutation), cellular (kidney cells malfunctioning), an organ problem (kidney damage), or a system problem (hormone dysregulation). Each level needs a different fix.</p>
+      <p>Clinicians who move fluently between levels catch what others miss, like the patient whose "fatigue" turns out to be a cellular side effect of a medication rather than something psychological.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>List the six levels of organization in order, from atoms to organism.</li>
+        <li>Pick three organ systems and write one sentence on each one's job.</li>
+        <li>Explain "emergent property" using an example of your own.</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- =================== TOPIC 2 =================== -->
+  <section class="card topic" id="t2" data-topic="2" aria-labelledby="t2h">
+    <p class="topic-tag">Topic 2 of 4 &middot; Week 1</p>
+    <div class="topic-head"><span class="topic-num">02</span><h2 id="t2h">Anatomical Terminology and Body Regions</h2></div>
+    <p class="lede">Anatomical position, directional terms, body planes, cavities, and abdominal regions.</p>
+
+    <p><strong>Anatomical position</strong> is the agreed-on reference frame: standing upright, facing forward, feet together, arms at the sides, palms facing forward. <strong>Every</strong> directional term, plane, and region name assumes this position, even if the patient is lying face-down on a table. That is the whole point: the vocabulary stays consistent no matter how the patient is actually lying.</p>
+
+    <div class="cols">
+      <div>
+        <h3>Directional terms (always learned in pairs)</h3>
+        <table>
+          <caption>Terms are relative, so memorize the opposites together</caption>
+          <thead><tr><th scope="col">Term</th><th scope="col">Means</th><th scope="col">Opposite</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Superior</th><td>Toward the head / above</td><td>Inferior</td></tr>
+            <tr><th scope="row">Anterior (ventral)</th><td>Toward the front</td><td>Posterior (dorsal)</td></tr>
+            <tr><th scope="row">Medial</th><td>Toward the midline</td><td>Lateral</td></tr>
+            <tr><th scope="row">Proximal</th><td>Closer to the trunk / origin</td><td>Distal</td></tr>
+            <tr><th scope="row">Superficial</th><td>Closer to the surface</td><td>Deep</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Proximal and distal are relative to an origin</strong> (usually the trunk). The wrist is distal to the elbow but proximal to the fingers.</p>
+      </div>
+
+      <div>
+        <h3>The three planes</h3>
+        <table>
+          <caption>The vocabulary of every imaging study</caption>
+          <thead><tr><th scope="col">Plane</th><th scope="col">Divides body into</th><th scope="col">Imaging example</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Sagittal</th><td>Left and right</td><td>Sagittal MRI shows corpus callosum lengthwise</td></tr>
+            <tr><th scope="row">Frontal (coronal)</th><td>Front and back</td><td>Front-to-back chest view</td></tr>
+            <tr><th scope="row">Transverse</th><td>Top and bottom (cross-section)</td><td>CT slice shows kidneys and vertebra in cross-section</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Midsagittal</strong> is the single plane straight down the middle (equal left and right halves). Any parallel cut off-center is just <strong>sagittal</strong>.</p>
+      </div>
+    </div>
+
+    <h3>Body cavities</h3>
+    <table>
+      <thead><tr><th scope="col">Main cavity</th><th scope="col">Subdivisions</th><th scope="col">Key contents</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Dorsal (back)</th><td>Cranial; vertebral (spinal)</td><td>Brain; spinal cord</td></tr>
+        <tr><th scope="row">Ventral (front): thoracic</th><td>Two pleural; pericardial; mediastinum</td><td>Lungs; heart; trachea and esophagus</td></tr>
+        <tr><th scope="row">Ventral (front): abdominopelvic</th><td>Abdominal; pelvic</td><td>Stomach, intestines, liver, kidneys; bladder, reproductive organs</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Serous membranes (the slippery linings)</h3>
+    <p>A <strong>serous membrane</strong> is a thin, double-layered sheet that lines a ventral cavity and folds back to cover the organs inside it. The <strong>parietal layer</strong> lines the cavity wall; the <strong>visceral layer</strong> hugs the organ. Between them is a film of <strong>serous fluid</strong> that lets organs glide without friction as you breathe, beat, and digest.</p>
+    <table>
+      <caption>Same design, three locations</caption>
+      <thead><tr><th scope="col">Membrane</th><th scope="col">Wraps</th><th scope="col">Parietal layer</th><th scope="col">Visceral layer</th><th scope="col">Inflammation</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Pleura</th><td>Lungs</td><td>Lines the chest wall</td><td>Covers the lung</td><td>Pleurisy</td></tr>
+        <tr><th scope="row">Pericardium</th><td>Heart</td><td>Lines the fibrous sac</td><td>Covers the heart</td><td>Pericarditis</td></tr>
+        <tr><th scope="row">Peritoneum</th><td>Abdominal organs</td><td>Lines the abdominal wall</td><td>Covers the organs</td><td>Peritonitis</td></tr>
+      </tbody>
+    </table>
+    <ul class="check tight">
+      <li>Memory hook: <strong>parietal</strong> = the <strong>p</strong>arking-lot <strong>wall</strong>; <strong>visceral</strong> = the <strong>viscera</strong> (organs) themselves.</li>
+    </ul>
+
+    <h3>Medical imaging at a glance</h3>
+    <table>
+      <caption>How clinicians see inside without cutting (each produces sectional views along the planes above)</caption>
+      <thead><tr><th scope="col">Method</th><th scope="col">How it works</th><th scope="col">Best for</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">X-ray (radiograph)</th><td>X-rays pass through; dense tissue blocks them</td><td>Bones, dense structures</td></tr>
+        <tr><th scope="row">CT scan</th><td>Many X-rays combined into cross-sectional slices</td><td>Detailed cross-sections, trauma</td></tr>
+        <tr><th scope="row">MRI</th><td>Magnetic field and radio waves (no radiation)</td><td>Soft tissue, brain, joints</td></tr>
+        <tr><th scope="row">Ultrasound</th><td>High-frequency sound echoes</td><td>Real-time soft tissue, pregnancy, heart</td></tr>
+        <tr><th scope="row">PET scan</th><td>A radioactive tracer reveals metabolic activity</td><td>Function and metabolism, cancer, brain</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Mapping the abdomen</h3>
+    <div class="cols">
+      <div>
+        <p><strong>Four quadrants</strong> (quick clinical shorthand), split at the navel:</p>
+        <ul class="tight">
+          <li><strong>RUQ</strong> right upper: liver, gallbladder</li>
+          <li><strong>LUQ</strong> left upper: stomach, spleen</li>
+          <li><strong>RLQ</strong> right lower: appendix, right ovary</li>
+          <li><strong>LLQ</strong> left lower: descending/sigmoid colon, left ovary</li>
+        </ul>
+      </div>
+      <div>
+        <p><strong>Nine regions</strong> (more precise), like a tic-tac-toe grid:</p>
+        <ul class="tight">
+          <li>Top row: right hypochondriac, epigastric, left hypochondriac</li>
+          <li>Middle row: right lumbar, umbilical, left lumbar</li>
+          <li>Bottom row: right iliac (inguinal), hypogastric (pubic), left iliac</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>This is the language every clinical report uses. A radiology read says "mass in the right upper quadrant, anterior to the kidney." A nursing note documents pain "lateral to the umbilicus, radiating distally down the right leg." You cannot follow, or write, the report without the vocabulary.</p>
+      <p>It is not academic decoration; it is the minimum standard for safe handoffs. A patient with <strong>right</strong> lower quadrant pain (think appendix) gets a very different workup than one with <strong>left</strong> lower quadrant pain.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>Give five pairs of directional terms from memory.</li>
+        <li>Sketch a transverse, frontal, and sagittal plane through the body.</li>
+        <li>Put your hand on the upper-right region of your abdomen; name the region and the likely organs.</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- =================== TOPIC 3 =================== -->
+  <section class="card topic" id="t3" data-topic="3" aria-labelledby="t3h">
+    <p class="topic-tag">Topic 3 of 4 &middot; Week 1</p>
+    <div class="topic-head"><span class="topic-num">03</span><h2 id="t3h">Homeostasis and Feedback Loops</h2></div>
+    <p class="lede">Set points, the four-part negative feedback loop, and why positive feedback is the rare exception.</p>
+
+    <p><strong>Homeostasis</strong> is the body keeping its internal conditions steady within a narrow range. It is the deepest idea in physiology: almost every system you study exists to <strong>regulate something</strong> (temperature, blood glucose, blood pressure, pH, fluid balance, calcium). Master the template once and the rest of the course becomes variations on a theme.</p>
+
+    <div class="cols">
+      <div>
+        <h3>The four parts of a negative feedback loop</h3>
+        <ol>
+          <li><strong>Stimulus:</strong> a change pushes a value away from its target.</li>
+          <li><strong>Receptor:</strong> a sensor detects the change.</li>
+          <li><strong>Control center:</strong> compares the value to the set point and decides the response.</li>
+          <li><strong>Effector:</strong> carries out the response that opposes the change.</li>
+        </ol>
+        <div class="keyterms">
+          <h4>Set point vs. current value</h4>
+          <dl>
+            <dt>Set point</dt><dd>The target the body aims for (e.g., 37&deg;C).</dd>
+            <dt>Current value</dt><dd>What the receptor is actually measuring right now.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <figure>
+        <svg viewBox="0 0 300 200" width="100%" role="img" aria-labelledby="loopTitle loopDesc" style="max-width:340px;">
+          <title id="loopTitle">Negative feedback loop</title>
+          <desc id="loopDesc">Stimulus is sensed by a receptor, sent to a control center, which signals an effector whose response reduces the original stimulus.</desc>
+          <defs>
+            <marker id="arr" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#8B3A2E"/>
+            </marker>
+          </defs>
+          <g font-family="'Plus Jakarta Sans', sans-serif" font-size="10.5" font-weight="600" fill="#060A18">
+            <rect x="100" y="6"   width="100" height="30" rx="5" fill="#F5F1E8" stroke="#060A18"/><text x="150" y="25" text-anchor="middle">Stimulus</text>
+            <rect x="200" y="78"  width="92"  height="30" rx="5" fill="#F5F1E8" stroke="#060A18"/><text x="246" y="97" text-anchor="middle">Receptor</text>
+            <rect x="104" y="150" width="92"  height="30" rx="5" fill="#060A18" stroke="#060A18"/><text x="150" y="169" text-anchor="middle" fill="#F5F1E8">Control center</text>
+            <rect x="8"   y="78"  width="92"  height="30" rx="5" fill="#C9A14A" stroke="#060A18"/><text x="54" y="97" text-anchor="middle" fill="#060A18">Effector</text>
+            <path d="M180,30 Q250,40 246,76" fill="none" stroke="#8B3A2E" stroke-width="2" marker-end="url(#arr)"/>
+            <path d="M232,108 Q205,150 198,158" fill="none" stroke="#8B3A2E" stroke-width="2" marker-end="url(#arr)"/>
+            <path d="M104,162 Q40,150 54,110" fill="none" stroke="#8B3A2E" stroke-width="2" marker-end="url(#arr)"/>
+            <path d="M60,78 Q90,30 118,32" fill="none" stroke="#8B3A2E" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+            <text x="92" y="52" font-style="italic" fill="#8B3A2E">response opposes change</text>
+          </g>
+        </svg>
+        <figcaption>Negative feedback: the effector's response reduces the original stimulus.</figcaption>
+      </figure>
+    </div>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Negative feedback is just a thermostat. You pick a temperature you want (the set point). If the room gets too cold, the heater kicks on. Once the room warms back up, the heater shuts off. The system is always nudging things back to "just right." Your body has thermostats like this for temperature, blood sugar, and lots more, all keeping you steady.</p>
+    </div>
+
+    <h3>Negative vs. positive feedback</h3>
+    <table>
+      <thead><tr><th scope="col"></th><th scope="col">Negative feedback</th><th scope="col">Positive feedback</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Effect on change</th><td>Opposes it (stabilizes)</td><td>Amplifies it (drives to an endpoint)</td></tr>
+        <tr><th scope="row">How common</th><td>The norm, runs everywhere</td><td>Rare, because it is risky</td></tr>
+        <tr><th scope="row">Examples</th><td>Body temperature, blood glucose, blood pressure, pH</td><td>Childbirth (labor), blood clotting</td></tr>
+        <tr><th scope="row">Shut-off</th><td>Stops as value returns to set point</td><td>Stops only when the endpoint is reached</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Reframe the names:</strong> "negative" does not mean bad, it means <em>stabilizing</em>. Positive feedback is rare because it is dangerous, not because it is unimportant. The body uses it only to reach an endpoint fast (deliver a baby, seal a wound) and then shuts it off. Whenever a system runs to extremes, suspect a broken negative loop or a positive loop that won't turn off.</p>
+
+    <h3>When the set point itself moves: fever</h3>
+    <p>Disease often <strong>resets the set point</strong> rather than breaking the machinery. In fever, chemicals called pyrogens tell the hypothalamus to defend 39&deg;C instead of 37&deg;C. The feedback system dutifully drives toward the new target: the patient <strong>shivers</strong> and <strong>vasoconstricts</strong> (effector responses) to raise heat, which is why a rising fever feels cold. Once body temperature reaches the new set point, the patient feels hot, because the body actually is hot.</p>
+
+    <h3>Chart 1 &middot; Negative feedback across three regulated variables</h3>
+    <p>Read down a column to trace one loop from start to finish. Read across a row to see how the <em>same part</em> of the loop shows up in different systems.</p>
+    <table class="gridchart">
+      <caption>Components (down the side) &middot; regulated variable (across the top)</caption>
+      <thead>
+        <tr>
+          <th scope="col">Loop component</th>
+          <th scope="col">Body temperature (too cold)</th>
+          <th scope="col">Blood glucose (too high)</th>
+          <th scope="col">Blood pressure (too high)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Set point (target)</th><td>~37&deg;C (98.6&deg;F)</td><td>~90 mg/dL</td><td>~120/80 mmHg</td></tr>
+        <tr><th scope="row">Stimulus</th><td>Body temperature drops</td><td>Glucose rises after a meal</td><td>Blood pressure rises</td></tr>
+        <tr><th scope="row">Receptor (sensor)</th><td>Thermoreceptors in skin and hypothalamus</td><td>Beta cells of the pancreas</td><td>Baroreceptors in carotid sinus and aortic arch</td></tr>
+        <tr><th scope="row">Control center</th><td>Hypothalamus</td><td>Pancreatic islets</td><td>Cardiovascular center (medulla)</td></tr>
+        <tr><th scope="row">Effector</th><td>Skeletal muscles; skin blood vessels</td><td>Beta cells release insulin (to liver, muscle, fat)</td><td>Heart and blood vessels</td></tr>
+        <tr><th scope="row">Response</th><td>Shivering makes heat; vessels constrict to hold heat in</td><td>Cells take up glucose; liver stores it as glycogen</td><td>Heart rate slows; vessels widen (dilate)</td></tr>
+        <tr><th scope="row">Result</th><td>Temperature rises back to set point</td><td>Glucose falls back to set point</td><td>Pressure falls back to set point</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Chart 2 &middot; Positive feedback across three regulated variables</h3>
+    <p>Same components, but here each response <strong>amplifies</strong> the stimulus instead of opposing it, until a clear endpoint shuts the loop off.</p>
+    <table class="gridchart">
+      <caption>Components (down the side) &middot; regulated variable (across the top)</caption>
+      <thead>
+        <tr>
+          <th scope="col">Loop component</th>
+          <th scope="col">Childbirth (labor)</th>
+          <th scope="col">Blood clotting</th>
+          <th scope="col">Milk let-down (breastfeeding)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Trigger</th><td>Baby's head pushes on the cervix</td><td>A blood vessel is cut or torn</td><td>Baby suckles at the breast</td></tr>
+        <tr><th scope="row">Stimulus</th><td>Cervix stretches</td><td>Vessel damage exposes collagen</td><td>Suckling stimulates the nipple</td></tr>
+        <tr><th scope="row">Receptor (sensor)</th><td>Stretch receptors in the cervix</td><td>Platelets contacting exposed collagen</td><td>Sensory receptors in the nipple</td></tr>
+        <tr><th scope="row">Control center</th><td>Hypothalamus and posterior pituitary</td><td>Clotting-factor cascade in the plasma</td><td>Hypothalamus and posterior pituitary</td></tr>
+        <tr><th scope="row">Effector</th><td>Uterine (smooth) muscle</td><td>Platelets and clotting factors</td><td>Myoepithelial cells around the milk glands</td></tr>
+        <tr><th scope="row">Response (amplifies)</th><td>Oxytocin drives stronger contractions, pushing the baby and stretching the cervix more</td><td>Activated platelets recruit more platelets, so the clot grows</td><td>Oxytocin ejects milk, so the baby suckles more and triggers more oxytocin</td></tr>
+        <tr><th scope="row">Endpoint (shut-off)</th><td>Baby is delivered; stretch stops</td><td>Clot seals the break; bleeding stops</td><td>Baby stops feeding; suckling stops</td></tr>
+      </tbody>
+    </table>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>Almost every disease is a homeostatic failure. Diabetes is broken glucose homeostasis; hypertension is broken blood-pressure homeostasis; acidosis and alkalosis are broken pH homeostasis. Heart failure breaks pressure, then volume, then breathing, in a cascade.</p>
+      <p>Every set of vital signs is a homeostatic readout. A patient who is tachycardic and hypotensive is showing you their baroreflex fighting to save their blood pressure. Reading vitals as <strong>feedback loops</strong>, not just numbers, changes the level of care you can give.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>List the four components of a negative feedback loop from memory.</li>
+        <li>Identify the receptor, control center, and effector in the baroreflex (blood-pressure reflex).</li>
+        <li>Explain in your own words why a fever feels cold at the start and hot at the end.</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- =================== TOPIC 4 =================== -->
+  <section class="card topic" id="t4" data-topic="4" aria-labelledby="t4h">
+    <p class="topic-tag">Topic 4 of 4 &middot; Week 1</p>
+    <div class="topic-head"><span class="topic-num">04</span><h2 id="t4h">Cell Anatomy and Physiology</h2></div>
+    <p class="lede">The cell is the smallest living unit. Its membrane decides what gets in and what gets out, and that single job drives most of what cells do.</p>
+
+    <p>Every cell is wrapped in a <strong>plasma membrane</strong> built from a <strong>phospholipid bilayer</strong>: two sheets of fat molecules with water-loving heads facing out and water-fearing tails tucked inside. Proteins float in this layer (the "fluid mosaic" model). The membrane is <strong>selectively permeable</strong>, meaning it lets some things cross freely and blocks others. Three sub-topics below all come back to this one idea.</p>
+
+    <h3>Quick cell parts (orientation)</h3>
+    <table>
+      <caption>The main organelles and what each one does</caption>
+      <thead><tr><th scope="col">Part</th><th scope="col">Job</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Plasma membrane</th><td>Gatekeeper; controls entry and exit</td></tr>
+        <tr><th scope="row">Cytoplasm / cytosol</th><td>Fluid where reactions happen</td></tr>
+        <tr><th scope="row">Cytoskeleton</th><td>Internal scaffold; gives the cell shape, anchors organelles, and enables movement</td></tr>
+        <tr><th scope="row">Nucleus</th><td>Holds DNA; the cell's control center</td></tr>
+        <tr><th scope="row">Mitochondria</th><td>Make ATP (cell energy)</td></tr>
+        <tr><th scope="row">Ribosomes</th><td>Build proteins (floating free or attached to rough ER)</td></tr>
+        <tr><th scope="row">Rough ER</th><td>Studded with ribosomes; builds and folds proteins for export</td></tr>
+        <tr><th scope="row">Smooth ER</th><td>Makes lipids and steroids, detoxifies chemicals, and stores calcium (no ribosomes)</td></tr>
+        <tr><th scope="row">Golgi apparatus</th><td>Finishes, sorts, and ships proteins in vesicles</td></tr>
+        <tr><th scope="row">Lysosomes</th><td>Digest material brought in; recycle worn-out parts</td></tr>
+        <tr><th scope="row">Peroxisomes</th><td>Break down fatty acids and neutralize toxins and free radicals</td></tr>
+        <tr><th scope="row">Cilia &amp; microvilli</th><td>Cilia sweep fluid across the surface; microvilli increase surface area for absorption</td></tr>
+      </tbody>
+    </table>
+    <ul class="check tight">
+      <li><strong>Rough vs. smooth ER:</strong> rough has ribosomes and makes <em>proteins</em>; smooth has none and makes <em>lipids</em> (plus detox and calcium storage).</li>
+    </ul>
+    <div class="keyterms">
+      <h4>The one rule to anchor everything</h4>
+      <dl>
+        <dt>Gradient</dt><dd>A difference in concentration between two sides of the membrane.</dd>
+        <dt>Down the gradient</dt><dd>High to low. No energy needed (passive).</dd>
+        <dt>Up the gradient</dt><dd>Low to high. Costs ATP (active).</dd>
+        <dt>Selectively permeable</dt><dd>Some molecules pass freely; others need help or are blocked.</dd>
+      </dl>
+    </div>
+
+    <!-- 4A -->
+    <h3>4A &middot; Transport across the cell membrane</h3>
+    <p>Sort every transport method by two questions: <strong>does it need ATP?</strong> and <strong>does it need a protein?</strong></p>
+    <table>
+      <caption>Passive needs no ATP; active spends ATP to push uphill</caption>
+      <thead>
+        <tr><th scope="col">Method</th><th scope="col">Energy</th><th scope="col">Direction</th><th scope="col">Needs a protein?</th><th scope="col">Example</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Simple diffusion</th><td>Passive</td><td>High &rarr; low</td><td>No (crosses bilayer)</td><td>O&#8322; and CO&#8322; in the lungs</td></tr>
+        <tr><th scope="row">Facilitated diffusion</th><td>Passive</td><td>High &rarr; low</td><td>Yes (channel/carrier)</td><td>Glucose into most cells</td></tr>
+        <tr><th scope="row">Osmosis</th><td>Passive</td><td>Water to higher solute</td><td>Yes (aquaporins)</td><td>Water across an RBC membrane</td></tr>
+        <tr><th scope="row">Primary active transport</th><td>Active (ATP)</td><td>Low &rarr; high</td><td>Yes (pump)</td><td>Sodium-potassium (Na&#8314;/K&#8314;) pump</td></tr>
+        <tr><th scope="row">Secondary active transport</th><td>Active (uses a gradient)</td><td>Low &rarr; high for the rider</td><td>Yes (cotransporter)</td><td>Glucose pulled in with sodium in the gut</td></tr>
+      </tbody>
+    </table>
+    <ul class="check tight">
+      <li><strong>Passive transport</strong> moves substances <em>down</em> the gradient and is free.</li>
+      <li><strong>Active transport</strong> moves substances <em>up</em> the gradient and burns ATP.</li>
+      <li><strong>Channels</strong> are open pores; <strong>carriers</strong> change shape to ferry molecules across.</li>
+    </ul>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Imagine a crowd squished into one corner of a gym. Open the doors and people naturally spread out until they're evenly scattered. They didn't need a push, crowding does it for free. That's <strong>diffusion</strong> going "downhill," and it costs the cell no energy. But if you wanted to herd everyone <em>back</em> into that one corner, you'd have to push them, that takes work. That's <strong>active transport</strong> going "uphill," and the cell pays with ATP energy.</p>
+    </div>
+
+    <!-- 4B -->
+    <h3>4B &middot; Tonicity and red blood cells (RBCs)</h3>
+    <p><strong>Osmosis</strong> is the diffusion of <strong>water</strong> across a membrane toward the side with <em>more</em> dissolved solute. <strong>Tonicity</strong> describes how a solution outside the cell affects the cell's water, and therefore its size. Red blood cells are the classic demonstration because they swell or shrink visibly.</p>
+    <table>
+      <caption>Compare the solution OUTSIDE the cell to the inside</caption>
+      <thead>
+        <tr><th scope="col">Solution outside</th><th scope="col">Solute vs. cell</th><th scope="col">Water moves</th><th scope="col">RBC result</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Isotonic</th><td>Equal</td><td>No net movement</td><td>Normal shape (stable)</td></tr>
+        <tr><th scope="row">Hypotonic</th><td>Less solute outside</td><td>Into the cell</td><td>Swells, can burst (hemolysis)</td></tr>
+        <tr><th scope="row">Hypertonic</th><td>More solute outside</td><td>Out of the cell</td><td>Shrinks and shrivels (crenation)</td></tr>
+      </tbody>
+    </table>
+    <ul class="check tight">
+      <li>Water chases solute. It moves <em>toward</em> the saltier side.</li>
+      <li><strong>Hypo</strong> = low outside, so water rushes <strong>in</strong>: think "hippo swells up."</li>
+      <li><strong>Hyper</strong> = high outside, so water leaves: the cell shrivels.</li>
+    </ul>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Water likes to even things out, so it always sneaks toward the saltier side. Put a grape in very salty water and water leaves the grape, it turns into a wrinkly raisin (that's a cell shrinking). Put a raisin in plain water and water rushes in until it puffs back up into a grape, and if too much water piles in, it could pop. Your red blood cells do the exact same thing depending on what they're floating in.</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>IV fluids are chosen by tonicity. <strong>Isotonic</strong> fluids (like 0.9% normal saline) stay put and expand blood volume without shifting water into or out of cells. A <strong>hypotonic</strong> fluid drives water into cells and can make them swell, which is dangerous in the brain. A <strong>hypertonic</strong> fluid pulls water out of cells. Giving pure water IV would make RBCs burst, which is why IV fluids are never plain water.</p>
+    </div>
+
+    <!-- 4C -->
+    <h3>4C &middot; Exocytosis and endocytosis (bulk transport)</h3>
+    <p>Some cargo is too big to cross the membrane by diffusion or pumps, so the cell wraps it in a membrane bubble called a <strong>vesicle</strong>. This <strong>bulk (vesicular) transport always costs ATP.</strong> The direction is in the name: <em>endo</em> = into the cell, <em>exo</em> = exit the cell.</p>
+
+    <p>Exocytosis is the last stop on a <strong>sequence</strong> the cell uses to build and ship a protein. Follow the arrows, each step hands off to the next:</p>
+    <figure class="seqfig" aria-labelledby="seqcap">
+      <figcaption id="seqcap">The protein production line: a secreted protein's route through the cell</figcaption>
+      <ol class="sequence">
+        <li class="start"><span class="num">1</span>Nucleus (DNA &rarr; mRNA)</li>
+        <li><span class="num">2</span>Nuclear pore (mRNA exits)</li>
+        <li><span class="num">3</span>Rough ER (ribosomes build the protein)</li>
+        <li><span class="num">4</span>Transport vesicle</li>
+        <li><span class="num">5</span>Golgi apparatus (modify &amp; package)</li>
+        <li><span class="num">6</span>Secretory vesicle</li>
+        <li class="end"><span class="num">7</span>Plasma membrane: exocytosis (out of cell)</li>
+      </ol>
+    </figure>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Think of a factory shipping a toy. The instructions come from the office (nucleus), the toy gets built on the assembly line (rough ER), it rides a cart to the wrapping station (Golgi) where it's boxed up, then a delivery cart (vesicle) carries it to the front door (plasma membrane) and tosses it outside (exocytosis). Each station passes the package to the next, in order.</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th scope="col">Process</th><th scope="col">Direction</th><th scope="col">What it moves</th><th scope="col">Types / examples</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Endocytosis</th><td>Into the cell</td><td>Large particles, fluid, targeted molecules</td><td><strong>Phagocytosis</strong> (cell eating: immune cells engulf bacteria); <strong>pinocytosis</strong> (cell drinking: sips fluid); <strong>receptor-mediated</strong> (grabs specific molecules, e.g., cholesterol/LDL)</td></tr>
+        <tr><th scope="row">Exocytosis</th><td>Out of the cell</td><td>Secretions made inside the cell</td><td>Releasing neurotransmitters, hormones, digestive enzymes, mucus</td></tr>
+      </tbody>
+    </table>
+    <ul class="check tight">
+      <li><strong>Phago</strong>cytosis = solid particles (immune defense).</li>
+      <li><strong>Pino</strong>cytosis = fluids and dissolved bits.</li>
+      <li><strong>Exo</strong>cytosis = the cell's way of secreting and signaling.</li>
+    </ul>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>These processes run the body's communication and defense. Nerve cells use <strong>exocytosis</strong> to release neurotransmitters across a synapse, which is where many drugs act. White blood cells use <strong>phagocytosis</strong> to clear infection. Faulty <strong>receptor-mediated endocytosis</strong> of LDL is the cause of familial high cholesterol, because cells cannot pull cholesterol out of the blood.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>Sort these as passive or active: simple diffusion, the Na&#8314;/K&#8314; pump, osmosis, facilitated diffusion.</li>
+        <li>An RBC is placed in a hypotonic solution. Which way does water move, and what happens to the cell?</li>
+        <li>Name the three types of endocytosis and give one example of exocytosis.</li>
+      </ol>
+    </details>
+  </section>
+
+  </main>
+
+  <footer class="doc-foot">
+    <p>BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Module 1 &middot; Student Reference Notes</p>
+    <p class="byline">Dr. Sharilyn Rennie</p>
+  </footer>
+
+</div>
+
+<!-- iframe height-sender (Kajabi / GitHub Pages embed) -->
+<script>
+(function(){
+  var FRAME_ID = (function(){ try{ return window.frameElement && window.frameElement.id; }catch(e){ return ""; } })() || "bio304-module-01";
+  function sendHeight(){
+    var h = Math.max(
+      document.documentElement.scrollHeight,
+      document.body ? document.body.scrollHeight : 0
+    );
+    try{ parent.postMessage({ type:"resize", id:FRAME_ID, height:h }, "*"); }catch(e){}
+  }
+  window.addEventListener("load", sendHeight);
+  window.addEventListener("resize", sendHeight);
+  if (window.ResizeObserver){ new ResizeObserver(sendHeight).observe(document.body); }
+  document.addEventListener("toggle", function(e){ if(e.target && e.target.tagName==="DETAILS"){ sendHeight(); } }, true);
+})();
+</script>
+</body>
+</html>
