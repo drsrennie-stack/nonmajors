@@ -1490,7 +1490,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
        ============================================================ -->
   <section class="vpack-section" aria-labelledby="vpack-h">
     <h2 id="vpack-h" class="vpack-h">Lecture videos</h2>
-    <p class="vpack-sub">Five short videos, each with a notes sheet. Open a card to watch it full screen with the notes beside the video. Print or download the notes so you can write while you watch. Finish one to open the next.</p>
+    <p class="vpack-sub">Five short videos, each with a notes sheet. Open a card to watch it full screen with the notes beside the video. Print or download the notes so you can write while you watch. All five are open, watch them in any order.</p>
 
     <div class="vpack-progress" aria-hidden="true">
       <span id="vpack-progress-text">0 of 5 watched</span>
@@ -1682,19 +1682,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     <span>BIO 304 &middot; Module 1 &middot; Homeostasis &amp; Feedback Loops</span>
   </div>
 
-  <!-- bio304-explain-gate (Option A) -->
-  <section id="explain-gate" hidden aria-labelledby="explain-gate-h">
-    <p class="gate-eyebrow">Step 3 . Retrieval check</p>
-    <h2 id="explain-gate-h">Now explain it back, in your own words.</h2>
-    <p class="gate-instr">In 60 words or more, pull together what the video just taught you. Include the key concepts. This is the point where the learning actually sticks. After you submit, your spaced-recall cards for this topic unlock.</p>
-    <textarea id="gate-input" aria-describedby="gate-meter" placeholder="What did this video teach you?"></textarea>
-    <div id="gate-meter" aria-live="polite">
-      <span>Words: <strong id="gate-word-count">0</strong> / 60</span>
-      <span>Concepts found: <strong id="gate-keyword-count">0</strong> / <span id="gate-keyword-target">0</span></span>
-    </div>
-    <button type="button" id="gate-submit" disabled>Unlock spaced recall</button>
-    <p id="gate-status" role="status"></p>
-  </section>
+  <!-- teach-back (retrieval check) removed per instructor -->
 </main>
 
 <!-- Lightbox dialog -->
@@ -2560,7 +2548,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     </div>
     <div class="vmodal-body" id="vmodal-body"></div>
     <div class="vmodal-foot">
-      <p class="vfoot-note">Print or download the notes, watch the video, then mark it finished to open the next.</p>
+      <p class="vfoot-note">Print or download the notes, watch the video, then mark it finished to track your progress.</p>
       <button type="button" class="vcontinue" id="vmodal-continue"></button>
     </div>
   </div>
@@ -2761,18 +2749,19 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       if (th) th.style.backgroundImage = "url(https://img.youtube.com/vi/" + thumbId + "/hqdefault.jpg)";
     }
     var done = isDone(card.getAttribute("data-id"));
-    var prevDone = i === 0 ? true : isDone(cards[i - 1].getAttribute("data-id"));
+    // No sequential lock: every video is open from the start. Difficulty
+    // accessing a video is never a barrier. (Homeostasis is the untracked
+    // catch-up day; watching is not graded here.)
     if (done) { card.classList.add("is-completed"); unlock(card); status(card, "Completed"); }
-    else if (i === 0 || prevDone) { unlock(card); status(card, i === 0 ? "Start here" : "Ready"); }
-    else { lock(card); }
+    else { unlock(card); status(card, i === 0 ? "Start here" : "Ready"); }
     card.querySelector(".vcard-btn").addEventListener("click", function () {
-      if (card.classList.contains("is-locked")) { say("Finish the previous video to unlock this one."); return; }
       openCard(card);
     });
   });
   progress();
-  // returning student who already finished everything: surface the teach-back (no scroll)
-  if (allDone()) { var gs = document.getElementById("explain-gate"); if (gs) gs.hidden = false; }
+  // Teach-back is optional practice and always available (no longer gated
+  // behind finishing all five videos).
+  var gs = document.getElementById("explain-gate"); if (gs) gs.hidden = false;
 
   contBtn.addEventListener("click", finish);
   closeBtn.addEventListener("click", closeModal);
@@ -2786,6 +2775,41 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
+})();
+</script>
+
+
+
+
+<!-- mcas-unlock-override: cards always open, teach-back removed, student notices (instructor) -->
+<script>
+(function(){
+  var TRACKED = false;
+  function apply(){
+    var g=document.getElementById('explain-gate'); if(g) g.remove();
+    document.querySelectorAll('.gate-locked').forEach(function(x){ x.classList.remove('gate-locked'); x.removeAttribute('aria-disabled'); });
+    document.querySelectorAll('.gate-hint,#prework-gate-hint,.mcas-next-up-gate-hint').forEach(function(x){ x.hidden=true; });
+    document.querySelectorAll('.mcas-next-up.is-gated').forEach(function(x){ x.classList.remove('is-gated'); });
+    if(document.getElementById('mcas-notices')) return;
+    var wrap=document.createElement('div'); wrap.id='mcas-notices'; wrap.style.cssText='margin:0 0 18px;';
+    var sameDevice='<aside role="note" aria-label="Same device reminder" style="display:flex;gap:11px;align-items:flex-start;background:#FFFFFF;border:1px solid #0B1530;border-left:5px solid #C9A14A;border-radius:8px;padding:13px 16px;margin:0 0 12px;color:#0B1530;">'
+      +'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B1530" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:1px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>'
+      +'<div><strong style="display:block;font-size:14px;font-weight:800;margin-bottom:3px;">Use the same browser and device all semester.</strong>'
+      +'<span style="font-size:13.5px;line-height:1.5;">Your work and your cards are saved in this browser only. If you watch videos or do your cards in a different browser, on your phone, or on another computer, your progress will not carry over, your cards may not activate, and it will throw off your daily review schedule. Pick one device and use it for the whole semester.</span></div></aside>';
+    wrap.insertAdjacentHTML('beforeend', sameDevice);
+    if(TRACKED){
+      var track='<aside role="note" aria-label="Video tracking notice" style="display:flex;gap:11px;align-items:flex-start;background:#8B3A2E;color:#FFFFFF;border-radius:8px;padding:13px 16px;margin:0;">'
+        +'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:1px;"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>'
+        +'<div><strong style="display:block;font-size:14px;font-weight:800;margin-bottom:3px;">Video watching is tracked and counts toward your grade.</strong>'
+        +'<span style="font-size:13.5px;line-height:1.5;color:#FFFFFF;">The cards are no longer locked, so trouble opening them is never a barrier. You are still responsible for watching each assigned video all the way through. Your watch percentage is recorded on your engagement report, and not finishing a video reduces your participation points.</span></div></aside>';
+      wrap.insertAdjacentHTML('beforeend', track);
+    }
+    var anchor=document.querySelector('.resource-bar')||document.querySelector('.vpack-section');
+    if(anchor&&anchor.parentNode){ anchor.parentNode.insertBefore(wrap, anchor); }
+    else { var host=document.querySelector('main.sheet, main#mcas-content, main')||document.body; host.insertBefore(wrap, host.firstChild); }
+  }
+  if(document.readyState==='complete') apply(); else window.addEventListener('load', apply);
+  setTimeout(apply, 320);
 })();
 </script>
 
