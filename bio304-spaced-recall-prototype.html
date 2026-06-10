@@ -2579,11 +2579,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         // Re-check the real video flag every time. If the lecture video for this
         // topic hasn't been watched, route the student to watch it first; only a
         // genuine watch opens the cards.
-        if (videoWatchedFor(id)) {
-          nav("learn", id);
-        } else {
-          nav("topic", id);
-        }
+        nav("learn", id);  // unlock: open the cards directly (no video gate)
       });
     });
 
@@ -2844,7 +2840,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     const topic = topicById(topicId);
     if (!topic) { nav("dashboard"); return; }
     const ts = getTopicState(topicId);
-    if (!videoWatchedFor(topicId)) { nav("topic", topicId); return; }  // video is the gate to this topic's cards
+    // Unlock: a topic's cards open directly. Watching is tracked separately for the grade, not as an access gate.
     $("#learn-heading").textContent = topic.title;
     renderNotesLink(topic);
     renderMastery(topicId);
@@ -3080,7 +3076,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     let items = [];
     allTopics().forEach(t => {
       const ts = STATE.topics[t.id];
-      const unlocked = ts && videoWatchedFor(t.id);
+      const unlocked = !!ts; // available once the student has opened the topic (activates into review)
       if ((REVIEW_MODE === "all" || REVIEW_MODE === "mixed") && !unlocked) return; // skip locked topics
       t.cards.forEach(c => {
         const st = getCardState(t.id, c.id, c.dok);
@@ -3185,8 +3181,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     $$('[data-review-open]').forEach(b => {
       b.addEventListener("click", () => {
         const tid = b.dataset.reviewOpen;
-        if (!videoWatchedFor(tid)) nav("topic", tid);
-        else nav("learn", tid);
+        nav("learn", tid);  // unlock: open the cards directly
       });
     });
   }
@@ -3559,8 +3554,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     if (deepLinkTopic && topicById(deepLinkTopic)) {
       CURRENT_TOPIC = deepLinkTopic;
       const ts = getTopicState(deepLinkTopic);
-      if (ts.gateCompleted) nav("learn", deepLinkTopic);
-      else nav("topic", deepLinkTopic);
+      nav("learn", deepLinkTopic);  // unlock: deep-link opens the cards directly
       try { history.replaceState(null, "", window.location.pathname + window.location.search); } catch (e) {}
     } else if (deepLinkView === "review") {
       nav("review");
