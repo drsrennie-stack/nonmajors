@@ -4008,7 +4008,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   // Wire up controls
   document.addEventListener("DOMContentLoaded", function(){
     var pill = $("#mcas-tour-pill");
-    if (pill) pill.addEventListener("click", openTour);
+    if (pill) pill.style.display = "none"; // walkthrough removed (instructor)
 
     var nextBtn = $("#mcas-tour-next");
     var backBtn = $("#mcas-tour-back");
@@ -4044,11 +4044,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     if (override === "0") return;
     if (override === "1") { openTour(); return; }
 
-    // Auto-fire only on first visit, and only when NOT embedded in Canvas
-    if (!tourSeen() && !isEmbedded()) {
-      // Wait for the topic list to render so anchors are in place
-      setTimeout(openTour, 600);
-    }
+    // Walkthrough auto-fire disabled (instructor): it never pops up on its own.
   });
 })();
 </script>

@@ -1952,395 +1952,217 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 <!-- mcas-chrome-footer-end -->
 <!-- mcas-workbook-aside-gate -->
 <script>
-/* Gate the lab-workbook CTA on this spoke until the retrieval check is
-   passed. Re-derives the topic id from SHEET_CONFIG.prework so the same
-   block works on any spoke page that follows the bio304-option-a pattern.
-   On pages without a SHEET_CONFIG, this is a no-op (aside stays unlocked). */
-(function(){
-  function init(){
-    var cfg = window.SHEET_CONFIG || {};
-    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
-    var topicId = m ? m[1] : null;
-    if (!topicId) return;
+/* ============================================================
+   BIO 304 YouTube watch tracker
+   Dr. Sharilyn Rennie
 
-    var aside = document.querySelector("aside.mcas-next-up");
-    var cta   = aside ? aside.querySelector("a.mcas-next-up-cta") : null;
-    var hint  = document.getElementById("mcas-next-up-gate-hint");
-    if (!cta) return;
+   WHAT IT DOES
+   Embeds a YouTube video and measures how much of it a student
+   GENUINELY watched, then records that to the engagement report.
+   Because it samples real playback, dragging the scrubber to the
+   end does NOT count as watched. Skipped seconds are never filled.
 
-    function gatePassed(){
-      try { return window.localStorage.getItem("bio304-gate-" + topicId) === "true"; }
-      catch (e) { return false; }
-    }
-    function lock(){
-      cta.classList.add("gate-locked");
-      cta.setAttribute("aria-disabled", "true");
-      if (hint) hint.hidden = false;
-      if (aside) aside.classList.add("is-gated");
-    }
-    function unlock(){
-      cta.classList.remove("gate-locked");
-      cta.removeAttribute("aria-disabled");
-      if (hint) hint.hidden = true;
-      if (aside) aside.classList.remove("is-gated");
-    }
+   It writes two same-origin localStorage values per topic:
+     bio304-video-<topicId>     = "true" once the watch threshold is met
+     bio304-videopct-<topicId>  = highest true percentage watched (0..100)
+   The cards page reads these for the report and the 5%-per-video policy.
 
-    if (gatePassed()) {
-      unlock();
+   HOW TO USE
+   Put a mount element wherever the video should appear, then load
+   this script once:
+
+     <div class="video-tracker"
+          data-youtube="B2ww2P8itW4"
+          data-topic="t-cell-membrane-transport"
+          data-threshold="95"
+          data-title="Cell membrane and transport"></div>
+     <script src="video-tracker.js" defer><\/script>
+
+   You can place several mounts on one page; each tracks its own
+   topic. data-threshold is optional (default 95).
+   ============================================================ */
+(function () {
+  "use strict";
+  if (window.__bio304VideoTracker) return;
+  window.__bio304VideoTracker = true;
+
+  var instances = [];
+
+  function parseId(v) {
+    if (!v) return "";
+    v = String(v).trim();
+    if (v.indexOf("http") !== 0 && v.indexOf("/") === -1) return v; // already an id
+    var m = v.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([A-Za-z0-9_-]{6,})/);
+    return m ? m[1] : v;
+  }
+  function readPct(topicId) {
+    try { return parseInt(localStorage.getItem("bio304-videopct-" + topicId) || "0", 10) || 0; } catch (e) { return 0; }
+  }
+  function writePct(topicId, pct) {
+    try { localStorage.setItem("bio304-videopct-" + topicId, String(pct)); } catch (e) {}
+  }
+  function markWatched(topicId) {
+    try { localStorage.setItem("bio304-video-" + topicId, "true"); } catch (e) {}
+    try { localStorage.setItem("bio304-gate-" + topicId, "true"); } catch (e) {} // backward compat
+  }
+
+  /* ---- Styles (injected once) ---- */
+  function injectCSS() {
+    if (document.getElementById("video-tracker-css")) return;
+    var css =
+      '.video-tracker{font-family:"Plus Jakarta Sans Variable","Plus Jakarta Sans",system-ui,sans-serif;margin:0 0 20px;}' +
+      '.video-tracker .vt-frame{position:relative;width:100%;aspect-ratio:16/9;background:#060A18;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(11,21,48,0.10);}' +
+      '.video-tracker .vt-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}' +
+      '.video-tracker .vt-readout{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px;}' +
+      '.video-tracker .vt-bar{flex:1 1 200px;min-width:160px;height:10px;border-radius:999px;background:rgba(11,21,48,0.12);overflow:hidden;}' +
+      '.video-tracker .vt-fill{height:100%;width:0%;background:#C9A14A;transition:width 300ms ease;}' +
+      '.video-tracker .vt-pct{font-weight:800;font-size:15px;color:#0B1530;font-variant-numeric:tabular-nums;min-width:3.2em;}' +
+      '.video-tracker .vt-state{font-size:12.5px;font-weight:700;letter-spacing:0.04em;color:#8B3A2E;flex-basis:100%;}' +
+      '.video-tracker .vt-state.is-done{color:#0B1530;}' +
+      '@media (prefers-reduced-motion: reduce){.video-tracker .vt-fill{transition:none;}}' +
+      '@media print{.video-tracker{display:none !important;}}';
+    var st = document.createElement("style");
+    st.id = "video-tracker-css";
+    st.textContent = css;
+    document.head.appendChild(st);
+  }
+
+  /* ---- Build one tracker ---- */
+  function build(mount) {
+    var youtubeId = parseId(mount.getAttribute("data-youtube"));
+    var topicId   = (mount.getAttribute("data-topic") || "").trim();
+    var threshold = parseInt(mount.getAttribute("data-threshold") || "95", 10);
+    var title     = mount.getAttribute("data-title") || "Lecture video";
+    if (!youtubeId || !topicId) return null;
+
+    var frameId = "vt-frame-" + topicId.replace(/[^a-z0-9]+/gi, "-");
+    mount.innerHTML =
+      '<div class="vt-frame"><iframe id="' + frameId + '" src="https://www.youtube.com/embed/' + youtubeId + '?enablejsapi=1&rel=0&playsinline=1" title="' + title + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>' +
+      '<div class="vt-readout">' +
+        '<div class="vt-bar" role="progressbar" aria-label="Percent of video watched" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="vt-fill"></div></div>' +
+        '<span class="vt-pct">0%</span>' +
+        '<span class="vt-state" role="status" aria-live="polite"></span>' +
+      '</div>';
+
+    var inst = {
+      frameId: frameId, topicId: topicId, threshold: threshold,
+      player: null, duration: 0, watched: {}, watchedCount: 0,
+      lastSec: null, timer: null,
+      fill: mount.querySelector(".vt-fill"),
+      pctEl: mount.querySelector(".vt-pct"),
+      bar: mount.querySelector(".vt-bar"),
+      stateEl: mount.querySelector(".vt-state"),
+      best: readPct(topicId)
+    };
+    paint(inst, inst.best);
+    if (localStorage.getItem("bio304-video-" + topicId) === "true") {
+      setDone(inst);
+    } else if (inst.best > 0) {
+      inst.stateEl.textContent = "Last time you watched " + inst.best + "%. Pick up where you left off.";
     } else {
-      lock();
-      cta.addEventListener("click", function(e){
-        if (!cta.classList.contains("gate-locked")) return;
-        e.preventDefault();
-        var gateSection = document.getElementById("explain-gate");
-        if (gateSection && gateSection.hidden) {
-          alert("Watch the video first, then complete the retrieval check below.");
-        } else if (gateSection) {
-          gateSection.scrollIntoView({ behavior: "smooth", block: "center" });
-          var input = document.getElementById("gate-input");
-          if (input) input.focus();
-        }
-      });
-      var submitBtn = document.getElementById("gate-submit");
-      if (submitBtn) {
-        submitBtn.addEventListener("click", function(){
-          setTimeout(function(){ if (gatePassed()) unlock(); }, 60);
-        });
-      }
-      window.addEventListener("storage", function(e){
-        if (e.key === "bio304-gate-" + topicId && e.newValue === "true") unlock();
-      });
+      inst.stateEl.textContent = "Press play. We will record how much you watch.";
     }
+    instances.push(inst);
+    return inst;
   }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
+
+  function paint(inst, pct) {
+    pct = Math.max(0, Math.min(100, Math.round(pct)));
+    if (inst.fill) inst.fill.style.width = pct + "%";
+    if (inst.pctEl) inst.pctEl.textContent = pct + "%";
+    if (inst.bar) inst.bar.setAttribute("aria-valuenow", String(pct));
   }
-})();
-</script>
-<!-- mcas-workbook-aside-gate-end -->
-<!-- mcas-lecture-notes-injector -->
-<script>
-(function(){
-  function init(){
-    var videoPanel = document.querySelector("#video-panel, .video-panel");
-    if (!videoPanel) return;
-    if (document.getElementById("mcas-lecture-notes-input")) return;
+  function setDone(inst) {
+    inst.stateEl.textContent = "Recorded. Counts toward your engagement report. You can rewatch any time.";
+    inst.stateEl.classList.add("is-done");
+  }
 
-    var cfg = window.SHEET_CONFIG || {};
-    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
-    var topicId = m ? m[1] : null;
-    var keyBase = topicId || (document.title || "page").toLowerCase().replace(/[^a-z0-9]+/g, "-");
-    var key = "bio304-lecture-notes-" + keyBase;
-
-    var section = document.createElement("section");
-    section.className = "mcas-lecture-notes";
-    section.setAttribute("aria-labelledby", "mcas-lecture-notes-h");
-    section.innerHTML =
-      '<p class="mcas-lecture-notes-eyebrow">While you watch</p>' +
-      '<h2 id="mcas-lecture-notes-h">Lecture video notes</h2>' +
-      '<p class="mcas-lecture-notes-instr">A scratchpad for what stands out as the video runs. Your notes save on this device and stay here when you come back.</p>' +
-      '<textarea id="mcas-lecture-notes-input" rows="8" aria-describedby="mcas-lecture-notes-status" placeholder="Type what is clicking for you..."></textarea>' +
-      '<p class="mcas-lecture-notes-status" id="mcas-lecture-notes-status" aria-live="polite"></p>';
-
-    if (videoPanel.parentNode) videoPanel.parentNode.insertBefore(section, videoPanel.nextSibling);
-
-    var ta = section.querySelector("#mcas-lecture-notes-input");
-    var status = section.querySelector("#mcas-lecture-notes-status");
-
-    try {
-      var saved = window.localStorage.getItem(key);
-      if (saved) ta.value = saved;
-      if (status) status.textContent = saved ? "Restored from your last session." : "";
-    } catch (e) {}
-
-    var t, debounceTimer;
-    function save(){
-      try { window.localStorage.setItem(key, ta.value); } catch (e) {}
-      if (status) {
-        status.textContent = "Saved on this device";
-        clearTimeout(t);
-        t = setTimeout(function(){ if (status) status.textContent = ""; }, 1400);
+  function sample(inst) {
+    if (!inst.player || !inst.duration) return;
+    var cur;
+    try { cur = Math.floor(inst.player.getCurrentTime()); } catch (e) { return; }
+    if (isNaN(cur) || cur < 0) return;
+    // Count this second. Fill only small, forward, continuous gaps (normal
+    // playback at our 1s sample rate). A jump (scrub) of more than 2s, or
+    // backward, adds only the single landed second, never the skipped span.
+    if (inst.lastSec != null && cur > inst.lastSec && (cur - inst.lastSec) <= 2) {
+      for (var s = inst.lastSec + 1; s <= cur; s++) {
+        if (!inst.watched[s]) { inst.watched[s] = 1; inst.watchedCount++; }
       }
-    }
-    ta.addEventListener("input", function(){
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(save, 350);
-    });
-    ta.addEventListener("blur", save);
-    window.addEventListener("pagehide", save);
-  }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
-})();
-</script>
-<!-- mcas-lecture-notes-injector-end -->
-<!-- mcas-step-tracker-injector -->
-<script>
-(function(){
-  function init(){
-    var cfg = window.SHEET_CONFIG || {};
-    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
-    var topicId = m ? m[1] : null;
-    if (!topicId) return;
-
-    var resourceBar = document.querySelector(".resource-bar");
-    var workbookAside = document.querySelector("aside.mcas-next-up a.mcas-next-up-cta");
-    var workbookHref = workbookAside ? workbookAside.getAttribute("href") : "#";
-    var preworkHref = cfg.prework || "#";
-
-    // Derive the week number from the workbook URL (workbook_weekNN.html).
-    // Workbook flags are scoped to the week, so printing once on Monday
-    // marks Step 1 complete for every spoke in that week.
-    var weekMatch = (workbookHref || "").match(/workbook_week(\d{2})/);
-    var weekKey   = weekMatch ? weekMatch[1] : null;
-    var weekNum   = weekKey ? parseInt(weekKey, 10) : null;
-    var WB_FLAG          = weekKey ? ("bio304-workbook-week-" + weekKey)              : ("bio304-workbook-" + topicId);
-    var WB_SKIP_FLAG     = weekKey ? ("bio304-workbook-skipped-week-" + weekKey)      : ("bio304-workbook-skipped-" + topicId);
-    var WB_REMINDER_FLAG = weekKey ? ("bio304-workbook-reminder-dismissed-week-" + weekKey) : ("bio304-workbook-reminder-dismissed-" + topicId);
-
-    var tracker = document.createElement("div");
-    tracker.className = "mcas-step-tracker";
-    tracker.setAttribute("data-topic-id", topicId);
-    tracker.innerHTML =
-      '<ol class="mcas-steps" aria-label="Pre-work steps for this topic">' +
-        '<li class="mcas-step" data-step="workbook">' +
-          '<a class="mcas-step-btn" data-step-action="workbook" href="' + workbookHref + '" target="_blank" rel="noopener">' +
-            '<span class="mcas-step-num">Step 1</span>' +
-            '<span class="mcas-step-label">Print the workbook</span>' +
-            '<span class="mcas-step-state"></span>' +
-          '</a>' +
-          '<button type="button" class="mcas-step-skip" data-step-action="workbook-skip" hidden>I will do it by hand &middot; skip this step</button>' +
-        '</li>' +
-        '<li class="mcas-step" data-step="video">' +
-          '<button type="button" class="mcas-step-btn" data-step-action="video">' +
-            '<span class="mcas-step-num">Step 2</span>' +
-            '<span class="mcas-step-label">Watch the video</span>' +
-            '<span class="mcas-step-state"></span>' +
-          '</button>' +
-        '</li>' +
-        '<li class="mcas-step" data-step="gate">' +
-          '<button type="button" class="mcas-step-btn" data-step-action="gate">' +
-            '<span class="mcas-step-num">Step 3</span>' +
-            '<span class="mcas-step-label">Retrieval check</span>' +
-            '<span class="mcas-step-state"></span>' +
-          '</button>' +
-        '</li>' +
-        '<li class="mcas-step" data-step="recall">' +
-          '<a class="mcas-step-btn" data-step-action="recall" href="' + preworkHref + '" target="_top">' +
-            '<span class="mcas-step-num">Step 4</span>' +
-            '<span class="mcas-step-label">Open spaced recall</span>' +
-            '<span class="mcas-step-state"></span>' +
-          '</a>' +
-        '</li>' +
-      '</ol>';
-
-    // Insert before the existing resource-bar (or at top of main content)
-    if (resourceBar && resourceBar.parentNode) {
-      resourceBar.parentNode.insertBefore(tracker, resourceBar);
-      resourceBar.style.display = "none";
     } else {
-      var anchor = document.querySelector("main .usage, main .subhead, main h1, main");
-      if (anchor && anchor.parentNode) {
-        anchor.parentNode.insertBefore(tracker, anchor.nextSibling);
-      }
+      if (!inst.watched[cur]) { inst.watched[cur] = 1; inst.watchedCount++; }
     }
+    inst.lastSec = cur;
 
-    function readFlag(k){ try { return window.localStorage.getItem(k) === "true"; } catch (e) { return false; } }
-    function writeFlag(k, v){ try { window.localStorage.setItem(k, v ? "true" : ""); } catch (e) {} }
-
-    function state(){
-      return {
-        workbook:        readFlag(WB_FLAG),
-        workbookSkipped: readFlag(WB_SKIP_FLAG),
-        video:           readFlag("bio304-video-" + topicId),
-        gate:            readFlag("bio304-gate-" + topicId)
-      };
+    var pct = Math.min(100, Math.round(inst.watchedCount / Math.max(1, Math.floor(inst.duration)) * 100));
+    paint(inst, pct);
+    if (pct > inst.best) { inst.best = pct; writePct(inst.topicId, pct); }
+    if (pct >= inst.threshold && localStorage.getItem("bio304-video-" + inst.topicId) !== "true") {
+      markWatched(inst.topicId);
+      setDone(inst);
+      try { window.dispatchEvent(new Event("bio304-video-recorded")); } catch (e) {}
     }
+  }
 
-    // Persistent reminder banner: appears when the student skips Step 1
-    // and stays visible until they actively dismiss it (or open the
-    // workbook). Reminds them the workbook still needs to be done and
-    // turned in.
-    var reminder = document.createElement("div");
-    reminder.className = "mcas-step-reminder";
-    reminder.setAttribute("role", "status");
-    reminder.hidden = true;
-    reminder.innerHTML =
-      '<span><strong>Reminder.</strong> The lab workbook still needs to be completed and turned in &mdash; print it or work it by hand.</span>' +
-      '<button type="button" class="mcas-step-reminder-dismiss" aria-label="Dismiss reminder">Dismiss</button>';
-    tracker.appendChild(reminder);
+  function startTimer(inst) {
+    if (inst.timer) return;
+    inst.lastSec = null; // resync after a play/seek
+    inst.timer = setInterval(function () { sample(inst); }, 1000);
+  }
+  function stopTimer(inst) {
+    if (inst.timer) { clearInterval(inst.timer); inst.timer = null; }
+  }
 
-    function updateReminder(s){
-      var visible = s.workbookSkipped && !readFlag(WB_REMINDER_FLAG);
-      reminder.hidden = !visible;
-    }
-    var dismissBtn = reminder.querySelector(".mcas-step-reminder-dismiss");
-    if (dismissBtn) {
-      dismissBtn.addEventListener("click", function(){
-        writeFlag(WB_REMINDER_FLAG, true);
-        reminder.hidden = true;
-      });
-    }
-
-    function render(){
-      var s = state();
-      var current = !s.workbook ? "workbook"
-                  : !s.video    ? "video"
-                  : !s.gate     ? "gate"
-                  :               "recall";
-      var weekLabel = weekNum ? ("Week " + weekNum) : "this week";
-      var stateLabels = {
-        workbook: {
-          active:    "Tap to open and print",
-          completed: s.workbookSkipped
-            ? ("Skipped — do on paper, turn it in")
-            : ("Already printed " + weekLabel + " workbook"),
-          pending:   "Up next"
+  function makePlayer(inst) {
+    inst.player = new YT.Player(inst.frameId, {  // attaches to the iframe already in the page
+      events: {
+        onReady: function () {
+          try { inst.duration = inst.player.getDuration() || 0; } catch (e) {}
         },
-        video:    { active: "Tap to start the video", completed: "Video finished", pending: "Locked until step 1" },
-        gate:     { active: "Tap to write the explanation", completed: "Retrieval check passed", pending: "Locked until step 2" },
-        recall:   { active: "Tap to drill the cards", completed: "Cards opened", pending: "Locked until step 3" }
-      };
-      tracker.querySelectorAll(".mcas-step").forEach(function(li){
-        var step = li.getAttribute("data-step");
-        var done = (step === "workbook" && s.workbook) ||
-                   (step === "video"    && s.video)    ||
-                   (step === "gate"     && s.gate);
-        var cls = done ? "is-completed" : (step === current ? "is-active" : "is-pending");
-        li.classList.remove("is-completed", "is-active", "is-pending");
-        li.classList.add(cls);
-        var stateEl = li.querySelector(".mcas-step-state");
-        if (stateEl) {
-          var labels = stateLabels[step] || {};
-          stateEl.textContent = labels[cls === "is-active" ? "active" : cls === "is-completed" ? "completed" : "pending"] || "";
+        onStateChange: function (e) {
+          // 1 PLAYING, 2 PAUSED, 0 ENDED, 3 BUFFERING, 5 CUED
+          if (!inst.duration) { try { inst.duration = inst.player.getDuration() || 0; } catch (er) {} }
+          if (e.data === 1) { startTimer(inst); }
+          else { stopTimer(inst); sample(inst); }
         }
-        // Show the skip link only while Step 1 is active
-        if (step === "workbook") {
-          var skipBtn = li.querySelector(".mcas-step-skip");
-          if (skipBtn) skipBtn.hidden = (cls !== "is-active");
-        }
-      });
-      updateReminder(s);
-    }
-
-    // --- Step 1: workbook click sets the WEEK flag, the anchor opens the bundle ---
-    var wbBtn = tracker.querySelector('[data-step-action="workbook"]');
-    if (wbBtn) {
-      wbBtn.addEventListener("click", function(){
-        writeFlag(WB_FLAG, true);
-        // Opening the workbook clears any prior "skipped" state and
-        // re-enables the reminder for future skips.
-        writeFlag(WB_SKIP_FLAG, false);
-        writeFlag(WB_REMINDER_FLAG, false);
-        setTimeout(render, 40);
-      });
-    }
-    var skipBtn = tracker.querySelector('[data-step-action="workbook-skip"]');
-    if (skipBtn) {
-      skipBtn.addEventListener("click", function(){
-        var ok = window.confirm("Skipping the download? The lab workbook still needs to be completed and turned in. Work it on paper or with your printed copy.");
-        if (!ok) return;
-        writeFlag(WB_FLAG, true);
-        writeFlag(WB_SKIP_FLAG, true);
-        writeFlag(WB_REMINDER_FLAG, false);
-        setTimeout(render, 40);
-      });
-    }
-
-    // --- Step 2: video click triggers the existing #video-toggle ---
-    var videoBtn = tracker.querySelector('[data-step-action="video"]');
-    if (videoBtn) {
-      videoBtn.addEventListener("click", function(){
-        var toggle = document.getElementById("video-toggle");
-        if (toggle) toggle.click();
-        var panel = document.getElementById("video-panel");
-        if (panel) setTimeout(function(){ panel.scrollIntoView({ behavior: "smooth", block: "center" }); }, 160);
-      });
-    }
-
-    // --- Step 3: gate click scrolls to the retrieval check ---
-    var gateBtn = tracker.querySelector('[data-step-action="gate"]');
-    if (gateBtn) {
-      gateBtn.addEventListener("click", function(){
-        var gate = document.getElementById("explain-gate");
-        if (gate) {
-          if (gate.hidden) gate.hidden = false;
-          gate.scrollIntoView({ behavior: "smooth", block: "center" });
-          var input = document.getElementById("gate-input");
-          if (input) setTimeout(function(){ input.focus(); }, 380);
-        }
-      });
-    }
-
-    // Watch the explain-gate's hidden attribute. The bio304-option-a IIFE
-    // reveals it via revealGate() when the YouTube video ENDS. That's our
-    // signal to set the bio304-video flag.
-    var gateSection = document.getElementById("explain-gate");
-    if (gateSection && typeof MutationObserver !== "undefined") {
-      var obs = new MutationObserver(function(){
-        if (!gateSection.hidden && !readFlag("bio304-video-" + topicId)) {
-          writeFlag("bio304-video-" + topicId, true);
-          render();
-        }
-      });
-      obs.observe(gateSection, { attributes: true, attributeFilter: ["hidden"] });
-    }
-
-    // Gate submit click → re-render after the existing handler stores its flags
-    var submitBtn = document.getElementById("gate-submit");
-    if (submitBtn) {
-      submitBtn.addEventListener("click", function(){ setTimeout(render, 80); });
-    }
-
-    // Cross-tab updates: re-render when any flag this spoke cares about
-    // changes in another tab (e.g. student opens the workbook from a
-    // sibling spoke and the week flag flips).
-    window.addEventListener("storage", function(e){
-      if (!e.key) return;
-      if (e.key === WB_FLAG || e.key === WB_SKIP_FLAG || e.key === WB_REMINDER_FLAG) {
-        render(); return;
       }
-      if (e.key.indexOf("bio304-") === 0 && e.key.indexOf(topicId) > -1) render();
     });
+  }
 
-    render();
+  /* ---- Boot ---- */
+  function boot() {
+    var mounts = document.querySelectorAll(".video-tracker");
+    if (!mounts.length) return;
+    injectCSS();
+    for (var i = 0; i < mounts.length; i++) build(mounts[i]);
+    if (!instances.length) return;
+
+    function initAll() { instances.forEach(makePlayer); }
+    if (window.YT && window.YT.Player) {
+      initAll();
+    } else {
+      var prev = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = function () {
+        if (typeof prev === "function") { try { prev(); } catch (e) {} }
+        initAll();
+      };
+      if (!document.getElementById("yt-iframe-api")) {
+        var tag = document.createElement("script");
+        tag.id = "yt-iframe-api";
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(tag);
+      }
+    }
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", boot);
   } else {
-    init();
+    boot();
   }
 })();
+
 </script>
-<!-- mcas-step-tracker-injector-end -->
-<!-- mcas-iframe-height-sender -->
-<script>
-/* MCAS iframe height-sender (rebrand-mcas.py) */
-(function(){
-  var FRAME_ID = "bio304-membrane-transport";
-  function sendHeight(){
-    var h = Math.max(document.documentElement.scrollHeight,
-                     document.body ? document.body.scrollHeight : 0);
-    parent.postMessage({type:"resize", id:FRAME_ID, height:h}, "*");
-  }
-  window.addEventListener("load", sendHeight);
-  window.addEventListener("resize", sendHeight);
-  if (window.ResizeObserver) new ResizeObserver(sendHeight).observe(document.body);
-})();
-</script>
-<!-- mcas-iframe-height-sender-end -->
-  <script src="slide-modal.js" defer></script>
-
-
-
-
-<script src="video-tracker.js" defer></script>
 
 <!-- mcas-unlock-override: cards open, teach-back + step-tracker removed, student notices (instructor) -->
 <script>
