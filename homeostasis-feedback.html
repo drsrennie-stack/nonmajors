@@ -2781,7 +2781,9 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 
 
 
-<!-- mcas-unlock-override: cards always open, teach-back removed, student notices (instructor) -->
+
+
+<!-- mcas-unlock-override: cards open, teach-back + step-tracker removed, student notices (instructor) -->
 <script>
 (function(){
   var TRACKED = false;
@@ -2790,6 +2792,8 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     document.querySelectorAll('.gate-locked').forEach(function(x){ x.classList.remove('gate-locked'); x.removeAttribute('aria-disabled'); });
     document.querySelectorAll('.gate-hint,#prework-gate-hint,.mcas-next-up-gate-hint').forEach(function(x){ x.hidden=true; });
     document.querySelectorAll('.mcas-next-up.is-gated').forEach(function(x){ x.classList.remove('is-gated'); });
+    // remove the outdated "print workbook first" step tracker + its reminder/skip popup
+    document.querySelectorAll('.mcas-step-tracker, .mcas-step-reminder').forEach(function(x){ x.remove(); });
     if(document.getElementById('mcas-notices')) return;
     var wrap=document.createElement('div'); wrap.id='mcas-notices'; wrap.style.cssText='margin:0 0 18px;';
     var sameDevice='<aside role="note" aria-label="Same device reminder" style="display:flex;gap:11px;align-items:flex-start;background:#FFFFFF;border:1px solid #0B1530;border-left:5px solid #C9A14A;border-radius:8px;padding:13px 16px;margin:0 0 12px;color:#0B1530;">'

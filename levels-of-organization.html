@@ -1402,6 +1402,10 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   .resource-btn.gate-locked { opacity: 0.55; cursor: not-allowed; pointer-events: auto; }
   .gate-hint { display: inline-block; margin-left: 10px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--terra-dark); vertical-align: middle; }
   .gate-hint[hidden] { display: none; }
+  /* Honor watch-confirmation (Loom cannot report playback progress) */
+  .mcas-watch-confirm { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; }
+  #mcas-watch-btn.is-done { opacity: 0.7; cursor: default; }
+  @media print { .mcas-watch-confirm { display: none !important; } }
 
 </style>
 
@@ -1481,7 +1485,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     </a>
   </div>
   <div class="video-panel" id="video-panel">
-    <iframe id="video-iframe" src="https://www.loom.com/embed/75b980fffad04749a3b4bd01642f7a38" title="Topic video" loading="lazy"
+    <iframe id="video-iframe" src="https://www.youtube-nocookie.com/embed/ZBAMA73bjaw?rel=0" title="Levels of Organization video" loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
   </div>
@@ -1575,15 +1579,15 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 
   <!-- bio304-explain-gate (Option A) -->
   <section id="explain-gate" hidden aria-labelledby="explain-gate-h">
-    <p class="gate-eyebrow">Step 3 . Retrieval check</p>
-    <h2 id="explain-gate-h">Now explain it back, in your own words.</h2>
-    <p class="gate-instr">In 60 words or more, pull together what the video just taught you. Include the key concepts. This is the point where the learning actually sticks. After you submit, your spaced-recall cards for this topic unlock.</p>
+    <p class="gate-eyebrow">Optional . Retrieval practice</p>
+    <h2 id="explain-gate-h">Explain it back, in your own words.</h2>
+    <p class="gate-instr">This step is optional, but it is where the learning actually sticks. In 60 words or more, pull together what the video just taught you and include the key concepts. Your cards are open whether or not you do this.</p>
     <textarea id="gate-input" aria-describedby="gate-meter" placeholder="What did this video teach you?"></textarea>
     <div id="gate-meter" aria-live="polite">
       <span>Words: <strong id="gate-word-count">0</strong> / 60</span>
       <span>Concepts found: <strong id="gate-keyword-count">0</strong> / <span id="gate-keyword-target">0</span></span>
     </div>
-    <button type="button" id="gate-submit" disabled>Unlock spaced recall</button>
+    <button type="button" id="gate-submit" disabled>Save my explanation</button>
     <p id="gate-status" role="status"></p>
   </section>
 </main>
@@ -1607,8 +1611,9 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   // 'prework' : URL into the spaced-repetition pre-work for this topic
   // ----------------------------------------------------------------
   window.SHEET_CONFIG = {
-    video:   'https://www.loom.com/embed/75b980fffad04749a3b4bd01642f7a38',
+    video:   'https://www.youtube-nocookie.com/embed/ZBAMA73bjaw?rel=0',
     prework: 'bio304-spaced-recall-prototype.html#topic=t-levels-of-organization',
+    track:   false,  // students have already watched this one; no watch gate or tracking
   };
 
   (function wireResources() {
@@ -1811,32 +1816,63 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     return;
   }
 
-  if (pre) {
-    pre.classList.add('gate-locked');
-    pre.setAttribute('aria-disabled', 'true');
-    var hint = document.createElement('span');
-    hint.className = 'gate-hint';
-    hint.id = 'prework-gate-hint';
-    hint.textContent = 'Watch the video and finish the retrieval check to unlock spaced recall';
-    if (pre.parentNode) pre.parentNode.insertBefore(hint, pre.nextSibling);
-    pre.href = PREWORK_TARGET;
-    pre.addEventListener('click', function (e) {
-      if (pre.classList.contains('gate-locked')) {
-        e.preventDefault();
-        if (gateSection && gateSection.hidden) {
-          alert('Watch the video first. Then complete the retrieval check below.');
-        } else if (gateSection) {
-          gateSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          if (input) input.focus();
-        }
-      } else {
-        try { window.localStorage.setItem('bio304-gate-' + TOPIC_ID, 'true'); } catch (er) {}
-        try { window.localStorage.setItem('bio304-video-' + TOPIC_ID, 'true'); } catch (er) {}
-      }
-    });
+  // ------------------------------------------------------------------
+  // NEW BEHAVIOUR (Loom-compatible): the cards are NEVER locked, so no
+  // student is ever blocked out, including on a second device or browser
+  // where the old unlock flag would have been missing. Watching is
+  // recorded by an explicit "I watched the full video" confirmation,
+  // which surfaces on the engagement report; the watch policy is enforced
+  // by grade, not by a wall. The 60-word explain-back is kept as OPTIONAL
+  // retrieval practice and never blocks anything.
+  // ------------------------------------------------------------------
+  var VIDEO_KEY = 'bio304-video-' + TOPIC_ID;
+  var GATE_KEY  = 'bio304-gate-'  + TOPIC_ID;
+
+  function readFlag(k){ try { return window.localStorage.getItem(k) === 'true'; } catch (e) { return false; } }
+  function recordWatched(){
+    try { window.localStorage.setItem(VIDEO_KEY, 'true'); } catch (e) {}
+    try { window.localStorage.setItem(GATE_KEY, 'true'); } catch (e) {} // kept for backward compatibility
   }
 
-  // Validate the input
+  // Prework button: always a plain, working link. Never locked.
+  if (pre) {
+    pre.classList.remove('gate-locked');
+    pre.removeAttribute('aria-disabled');
+    pre.href = PREWORK_TARGET;
+  }
+
+  // Reflect the watched state on the confirmation control.
+  function paintWatched(){
+    var btn = document.getElementById('mcas-watch-btn');
+    var state = document.getElementById('mcas-watch-state');
+    if (readFlag(VIDEO_KEY)) {
+      if (btn) { btn.textContent = 'Marked as watched'; btn.disabled = true; btn.classList.add('is-done'); }
+      if (state) state.textContent = 'Recorded for your engagement report. You can reopen the video any time.';
+    } else {
+      if (btn) { btn.textContent = 'I watched the full video'; btn.disabled = false; btn.classList.remove('is-done'); }
+      if (state) state.textContent = '';
+    }
+  }
+
+  // Build the honor watch-confirmation just under the video. It is honor
+  // based because a Loom embed cannot report how much was actually watched.
+  function buildWatchConfirm(){
+    if (document.getElementById('mcas-watch-confirm')) { paintWatched(); return; }
+    var panel = document.getElementById('video-panel') || document.querySelector('.video-panel');
+    var box = document.createElement('div');
+    box.id = 'mcas-watch-confirm';
+    box.className = 'mcas-watch-confirm';
+    box.innerHTML =
+      '<button type="button" id="mcas-watch-btn" class="resource-btn primary">I watched the full video</button>' +
+      '<span id="mcas-watch-state" class="gate-hint" role="status" aria-live="polite"></span>';
+    if (panel && panel.parentNode) { panel.parentNode.insertBefore(box, panel.nextSibling); }
+    else { document.body.appendChild(box); }
+    document.getElementById('mcas-watch-btn').addEventListener('click', function(){ recordWatched(); paintWatched(); });
+    paintWatched();
+  }
+
+  // Validate the optional explain-back. It encourages a full answer but
+  // gates nothing except its own Save button.
   function updateMeter() {
     if (!input) return;
     var text = input.value.trim();
@@ -1852,59 +1888,49 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   }
   if (input) input.addEventListener('input', updateMeter);
 
-  // Submit handler
+  // Optional explain-back submit: saves the explanation and counts as a
+  // watch (writing a real explanation is proof of engagement). Never blocks.
   if (submitBtn) {
     submitBtn.addEventListener('click', function () {
-      try { window.localStorage.setItem('bio304-gate-' + TOPIC_ID, 'true'); } catch (e) {}
-      try { window.localStorage.setItem('bio304-video-' + TOPIC_ID, 'true'); } catch (e) {}
-      if (pre) {
-        pre.classList.remove('gate-locked');
-        pre.removeAttribute('aria-disabled');
-      }
-      var hintEl = document.getElementById('prework-gate-hint');
-      if (hintEl) hintEl.hidden = true;
+      recordWatched();
+      paintWatched();
       if (statusEl) {
-        statusEl.textContent = 'Unlocked. Your spaced recall is ready.';
+        statusEl.textContent = 'Saved. Nice retrieval practice.';
         statusEl.classList.add('passed');
       }
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Unlocked';
-      // Auto-scroll back up to the prework button so they can act
-      if (pre) {
-        pre.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        pre.focus();
-      }
+      submitBtn.textContent = 'Saved';
     });
   }
 
-  // ---- YouTube IFrame API: reveal gate when video ends ----
+  // ---- Video host handling ----
   var cfg = window.SHEET_CONFIG || {};
   var rawVideo = (cfg.video || '').trim();
   var isPlaceholder = !rawVideo || rawVideo.indexOf('REPLACE_WITH_') !== -1 || rawVideo === 'about:blank';
 
+  // Reveal the optional practice section (never required).
   function revealGate() {
-    if (gateSection && gateSection.hidden) {
-      gateSection.hidden = false;
-      gateSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      if (input) setTimeout(function () { input.focus(); }, 600);
-    }
-  }
-
-  if (isPlaceholder) {
-    // No real video yet: reveal the gate immediately so the page is testable.
-    revealGate();
-    return;
-  }
-
-  // Loom videos do not expose the YouTube IFrame API, so there is no reliable
-  // "ended" event to listen for. Reveal the retrieval gate once the student
-  // opens the video panel. The 60-word explain-back still has to be earned.
-  if (rawVideo.indexOf('loom.com') !== -1) {
-    // Video is shown expanded by default. Make the retrieval gate available
-    // without forcing a scroll; the 60-word explain-back still has to be earned.
     if (gateSection && gateSection.hidden) gateSection.hidden = false;
-    return;
   }
+
+  // When SHEET_CONFIG.track === false, this topic has no watch gate or
+  // tracking at all (e.g. levels-of-organization, already watched many
+  // times). Just keep the cards open and show the optional practice.
+  var TRACK_WATCH = (cfg.track !== false);
+
+  if (TRACK_WATCH) buildWatchConfirm();
+  revealGate();
+
+  if (isPlaceholder) { return; }
+  if (!TRACK_WATCH) { return; }
+
+  // Loom cannot report playback progress, so completion is recorded by the
+  // honor button above. Nothing else to wire up.
+  if (rawVideo.indexOf('loom.com') !== -1) { return; }
+
+  // If a topic is ever moved to YouTube, the IFrame API gives a real "ended"
+  // event (state 0), which auto-records the watch with no honor step needed.
+  var ytRevealGate = function(){ recordWatched(); paintWatched(); revealGate(); };
 
   // Ensure enablejsapi on the iframe URL
   if (cfg.video.indexOf('enablejsapi=1') === -1) {
@@ -1924,7 +1950,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     player = new YT.Player(iframe, {
       events: {
         onStateChange: function (e) {
-          if (e.data === 0) revealGate();
+          if (e.data === 0) ytRevealGate();
         }
       }
     });
@@ -1960,10 +1986,10 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 </script>
 
 <!-- mcas-prework-next-up -->
-<aside class="mcas-next-up is-gated" aria-label="Next step in the daily flow">
+<aside class="mcas-next-up" aria-label="Next step in the daily flow">
   <p class="mcas-next-up-eyebrow">Print &middot; Week 1 workbook</p>
   <a class="mcas-next-up-cta" href="workbook_week01.html?print=1" target="_top">Open this week&rsquo;s workbook (Week 1) <span aria-hidden="true">&rarr;</span></a>
-  <span class="mcas-next-up-gate-hint" id="mcas-next-up-gate-hint" hidden>Unlocks after the retrieval check</span>
+  <span class="mcas-next-up-gate-hint" id="mcas-next-up-gate-hint" hidden></span>
 </aside>
 <!-- mcas-prework-next-up-end -->
 <!-- mcas-chrome-footer -->
@@ -1987,65 +2013,20 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 <!-- mcas-chrome-footer-end -->
 <!-- mcas-workbook-aside-gate -->
 <script>
-/* Gate the lab-workbook CTA on this spoke until the retrieval check is
-   passed. Re-derives the topic id from SHEET_CONFIG.prework so the same
-   block works on any spoke page that follows the bio304-option-a pattern.
-   On pages without a SHEET_CONFIG, this is a no-op (aside stays unlocked). */
+/* Workbook CTA is never locked. Cards and the workbook are always reachable
+   so no student is blocked out (including on a second device). Watching is
+   recorded by the honor confirmation on the page and reported for grading. */
 (function(){
   function init(){
-    var cfg = window.SHEET_CONFIG || {};
-    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
-    var topicId = m ? m[1] : null;
-    if (!topicId) return;
-
     var aside = document.querySelector("aside.mcas-next-up");
     var cta   = aside ? aside.querySelector("a.mcas-next-up-cta") : null;
     var hint  = document.getElementById("mcas-next-up-gate-hint");
-    if (!cta) return;
-
-    function gatePassed(){
-      try { return window.localStorage.getItem("bio304-gate-" + topicId) === "true"; }
-      catch (e) { return false; }
-    }
-    function lock(){
-      cta.classList.add("gate-locked");
-      cta.setAttribute("aria-disabled", "true");
-      if (hint) hint.hidden = false;
-      if (aside) aside.classList.add("is-gated");
-    }
-    function unlock(){
+    if (cta) {
       cta.classList.remove("gate-locked");
       cta.removeAttribute("aria-disabled");
-      if (hint) hint.hidden = true;
-      if (aside) aside.classList.remove("is-gated");
     }
-
-    if (gatePassed()) {
-      unlock();
-    } else {
-      lock();
-      cta.addEventListener("click", function(e){
-        if (!cta.classList.contains("gate-locked")) return;
-        e.preventDefault();
-        var gateSection = document.getElementById("explain-gate");
-        if (gateSection && gateSection.hidden) {
-          alert("Watch the video first, then complete the retrieval check below.");
-        } else if (gateSection) {
-          gateSection.scrollIntoView({ behavior: "smooth", block: "center" });
-          var input = document.getElementById("gate-input");
-          if (input) input.focus();
-        }
-      });
-      var submitBtn = document.getElementById("gate-submit");
-      if (submitBtn) {
-        submitBtn.addEventListener("click", function(){
-          setTimeout(function(){ if (gatePassed()) unlock(); }, 60);
-        });
-      }
-      window.addEventListener("storage", function(e){
-        if (e.key === "bio304-gate-" + topicId && e.newValue === "true") unlock();
-      });
-    }
+    if (aside) aside.classList.remove("is-gated");
+    if (hint) hint.hidden = true;
   }
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
@@ -2224,9 +2205,10 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 
     function render(){
       var s = state();
+      // Cards are never locked. The chain is just a suggested order; the
+      // optional explanation is not a prerequisite for the cards.
       var current = !s.workbook ? "workbook"
                   : !s.video    ? "video"
-                  : !s.gate     ? "gate"
                   :               "recall";
       var weekLabel = weekNum ? ("Week " + weekNum) : "this week";
       var stateLabels = {
@@ -2237,9 +2219,9 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
             : ("Already printed " + weekLabel + " workbook"),
           pending:   "Up next"
         },
-        video:    { active: "Tap to start the video", completed: "Video finished", pending: "Locked until step 1" },
-        gate:     { active: "Tap to write the explanation", completed: "Retrieval check passed", pending: "Locked until step 2" },
-        recall:   { active: "Tap to drill the cards", completed: "Cards opened", pending: "Locked until step 3" }
+        video:    { active: "Tap to start the video", completed: "Marked as watched", pending: "Up next" },
+        gate:     { active: "Optional retrieval practice", completed: "Explanation saved", pending: "Optional" },
+        recall:   { active: "Tap to drill the cards", completed: "Cards opened", pending: "Open any time" }
       };
       tracker.querySelectorAll(".mcas-step").forEach(function(li){
         var step = li.getAttribute("data-step");
@@ -2312,19 +2294,17 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       });
     }
 
-    // Watch the explain-gate's hidden attribute. The bio304-option-a IIFE
-    // reveals it via revealGate() when the YouTube video ENDS. That's our
-    // signal to set the bio304-video flag.
-    var gateSection = document.getElementById("explain-gate");
-    if (gateSection && typeof MutationObserver !== "undefined") {
-      var obs = new MutationObserver(function(){
-        if (!gateSection.hidden && !readFlag("bio304-video-" + topicId)) {
-          writeFlag("bio304-video-" + topicId, true);
-          render();
-        }
-      });
-      obs.observe(gateSection, { attributes: true, attributeFilter: ["hidden"] });
-    }
+    // The video-watched flag is now set ONLY by the explicit honor
+    // confirmation ("I watched the full video") or a real YouTube end event,
+    // never by the practice section simply being visible. Re-render the
+    // tracker whenever that flag changes so the visual stays in sync.
+    window.addEventListener("storage", function(e){
+      if (e && e.key === "bio304-video-" + topicId) render();
+    });
+    document.addEventListener("click", function(e){
+      var t = e.target;
+      if (t && (t.id === "mcas-watch-btn" || t.id === "gate-submit")) setTimeout(render, 80);
+    });
 
     // Gate submit click → re-render after the existing handler stores its flags
     var submitBtn = document.getElementById("gate-submit");
@@ -2371,5 +2351,44 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 </script>
 <!-- mcas-iframe-height-sender-end -->
   <script src="slide-modal.js" defer></script>
+
+
+
+
+
+<!-- mcas-unlock-override: cards open, teach-back + step-tracker removed, student notices (instructor) -->
+<script>
+(function(){
+  var TRACKED = false;
+  function apply(){
+    var g=document.getElementById('explain-gate'); if(g) g.remove();
+    document.querySelectorAll('.gate-locked').forEach(function(x){ x.classList.remove('gate-locked'); x.removeAttribute('aria-disabled'); });
+    document.querySelectorAll('.gate-hint,#prework-gate-hint,.mcas-next-up-gate-hint').forEach(function(x){ x.hidden=true; });
+    document.querySelectorAll('.mcas-next-up.is-gated').forEach(function(x){ x.classList.remove('is-gated'); });
+    // remove the outdated "print workbook first" step tracker + its reminder/skip popup
+    document.querySelectorAll('.mcas-step-tracker, .mcas-step-reminder').forEach(function(x){ x.remove(); });
+    if(document.getElementById('mcas-notices')) return;
+    var wrap=document.createElement('div'); wrap.id='mcas-notices'; wrap.style.cssText='margin:0 0 18px;';
+    var sameDevice='<aside role="note" aria-label="Same device reminder" style="display:flex;gap:11px;align-items:flex-start;background:#FFFFFF;border:1px solid #0B1530;border-left:5px solid #C9A14A;border-radius:8px;padding:13px 16px;margin:0 0 12px;color:#0B1530;">'
+      +'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B1530" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:1px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>'
+      +'<div><strong style="display:block;font-size:14px;font-weight:800;margin-bottom:3px;">Use the same browser and device all semester.</strong>'
+      +'<span style="font-size:13.5px;line-height:1.5;">Your work and your cards are saved in this browser only. If you watch videos or do your cards in a different browser, on your phone, or on another computer, your progress will not carry over, your cards may not activate, and it will throw off your daily review schedule. Pick one device and use it for the whole semester.</span></div></aside>';
+    wrap.insertAdjacentHTML('beforeend', sameDevice);
+    if(TRACKED){
+      var track='<aside role="note" aria-label="Video tracking notice" style="display:flex;gap:11px;align-items:flex-start;background:#8B3A2E;color:#FFFFFF;border-radius:8px;padding:13px 16px;margin:0;">'
+        +'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:1px;"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>'
+        +'<div><strong style="display:block;font-size:14px;font-weight:800;margin-bottom:3px;">Video watching is tracked and counts toward your grade.</strong>'
+        +'<span style="font-size:13.5px;line-height:1.5;color:#FFFFFF;">The cards are no longer locked, so trouble opening them is never a barrier. You are still responsible for watching each assigned video all the way through. Your watch percentage is recorded on your engagement report, and not finishing a video reduces your participation points.</span></div></aside>';
+      wrap.insertAdjacentHTML('beforeend', track);
+    }
+    var anchor=document.querySelector('.resource-bar')||document.querySelector('.vpack-section');
+    if(anchor&&anchor.parentNode){ anchor.parentNode.insertBefore(wrap, anchor); }
+    else { var host=document.querySelector('main.sheet, main#mcas-content, main')||document.body; host.insertBefore(wrap, host.firstChild); }
+  }
+  if(document.readyState==='complete') apply(); else window.addEventListener('load', apply);
+  setTimeout(apply, 320);
+})();
+</script>
+
 </body>
 </html>
