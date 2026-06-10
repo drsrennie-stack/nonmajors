@@ -1475,18 +1475,11 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   </p>
 
   <div class="resource-bar" role="region" aria-label="Topic resources">
-    <button type="button" class="resource-btn" id="video-toggle" aria-expanded="false" aria-controls="video-panel">
-      <span class="arrow" aria-hidden="true">&#9654;</span> Watch the video
-    </button>
     <a class="resource-btn primary" id="prework-link" href="#" target="_top" rel="noopener">
       Open spaced recall <span class="arrow" aria-hidden="true">&rarr;</span>
     </a>
   </div>
-  <div class="video-panel" id="video-panel" hidden>
-    <iframe id="video-iframe" src="about:blank" title="Topic video" loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
-  </div>
+    <div class="video-tracker" data-youtube="B2ww2P8itW4" data-topic="t-membrane-transport" data-threshold="98" data-title="Membrane Transport" style="margin:14px 0 0;"></div>
 
   <hr class="rule" />
 
@@ -2343,5 +2336,41 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 </script>
 <!-- mcas-iframe-height-sender-end -->
   <script src="slide-modal.js" defer></script>
+
+
+
+<!-- mcas-unlock-override: cards always open, teach-back removed, student notices (instructor) -->
+<script>
+(function(){
+  var TRACKED = true;
+  function apply(){
+    var g=document.getElementById('explain-gate'); if(g) g.remove();
+    document.querySelectorAll('.gate-locked').forEach(function(x){ x.classList.remove('gate-locked'); x.removeAttribute('aria-disabled'); });
+    document.querySelectorAll('.gate-hint,#prework-gate-hint,.mcas-next-up-gate-hint').forEach(function(x){ x.hidden=true; });
+    document.querySelectorAll('.mcas-next-up.is-gated').forEach(function(x){ x.classList.remove('is-gated'); });
+    if(document.getElementById('mcas-notices')) return;
+    var wrap=document.createElement('div'); wrap.id='mcas-notices'; wrap.style.cssText='margin:0 0 18px;';
+    var sameDevice='<aside role="note" aria-label="Same device reminder" style="display:flex;gap:11px;align-items:flex-start;background:#FFFFFF;border:1px solid #0B1530;border-left:5px solid #C9A14A;border-radius:8px;padding:13px 16px;margin:0 0 12px;color:#0B1530;">'
+      +'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B1530" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:1px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>'
+      +'<div><strong style="display:block;font-size:14px;font-weight:800;margin-bottom:3px;">Use the same browser and device all semester.</strong>'
+      +'<span style="font-size:13.5px;line-height:1.5;">Your work and your cards are saved in this browser only. If you watch videos or do your cards in a different browser, on your phone, or on another computer, your progress will not carry over, your cards may not activate, and it will throw off your daily review schedule. Pick one device and use it for the whole semester.</span></div></aside>';
+    wrap.insertAdjacentHTML('beforeend', sameDevice);
+    if(TRACKED){
+      var track='<aside role="note" aria-label="Video tracking notice" style="display:flex;gap:11px;align-items:flex-start;background:#8B3A2E;color:#FFFFFF;border-radius:8px;padding:13px 16px;margin:0;">'
+        +'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:1px;"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>'
+        +'<div><strong style="display:block;font-size:14px;font-weight:800;margin-bottom:3px;">Video watching is tracked and counts toward your grade.</strong>'
+        +'<span style="font-size:13.5px;line-height:1.5;color:#FFFFFF;">The cards are no longer locked, so trouble opening them is never a barrier. You are still responsible for watching each assigned video all the way through. Your watch percentage is recorded on your engagement report, and not finishing a video reduces your participation points.</span></div></aside>';
+      wrap.insertAdjacentHTML('beforeend', track);
+    }
+    var anchor=document.querySelector('.resource-bar')||document.querySelector('.vpack-section');
+    if(anchor&&anchor.parentNode){ anchor.parentNode.insertBefore(wrap, anchor); }
+    else { var host=document.querySelector('main.sheet, main#mcas-content, main')||document.body; host.insertBefore(wrap, host.firstChild); }
+  }
+  if(document.readyState==='complete') apply(); else window.addEventListener('load', apply);
+  setTimeout(apply, 320);
+})();
+</script>
+
+<script src="video-tracker.js" defer></script>
 </body>
 </html>
