@@ -109,6 +109,16 @@
   details.selfcheck li{margin:5px 0;}
   figure{margin:10px 0 14px;}
   figure figcaption{font-size:12px;color:var(--rust);margin-top:6px;font-weight:600;}
+  /* Sequence flow (boxes + arrows) */
+  .seqfig figcaption{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--rust);margin:0 0 8px;}
+  ol.sequence{list-style:none;display:flex;flex-wrap:wrap;align-items:stretch;gap:8px 4px;padding:0;margin:0;}
+  ol.sequence li{background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:8px 12px;font-size:12.5px;font-weight:700;color:var(--dark);display:flex;align-items:center;line-height:1.3;}
+  ol.sequence li::after{content:"\2192";margin-left:8px;color:var(--rust);font-weight:800;font-size:15px;}
+  ol.sequence li:last-child::after{content:none;}
+  ol.sequence li.start{background:var(--white);border-color:var(--rust);}
+  ol.sequence li.end{background:var(--rust);border-color:var(--rust);color:var(--white);}
+  ol.sequence li .num{display:inline-flex;justify-content:center;align-items:center;width:18px;height:18px;border-radius:50%;background:var(--rust);color:var(--white);font-size:10px;font-weight:800;margin-right:8px;flex-shrink:0;}
+  ol.sequence li.end .num{background:var(--white);color:var(--rust);}
   /* Classification tree (mind map) */
   ul.tree, ul.tree ul{list-style:none;}
   ul.tree{margin:6px 0 12px;padding:0;font-size:13.5px;}
@@ -288,6 +298,22 @@
       </tbody>
     </table>
 
+    <h3>Special surface structures</h3>
+    <p>Some epithelia have extra features on their free (apical) surface that fit a specific job.</p>
+    <table>
+      <caption>Apical specializations you should know</caption>
+      <thead><tr><th scope="col">Structure</th><th scope="col">What it is</th><th scope="col">Job</th><th scope="col">Where</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Microvilli</th><td>Tiny finger-like folds (a "brush border")</td><td>Increase surface area for absorption</td><td>Small intestine, kidney tubules</td></tr>
+        <tr><th scope="row">Cilia</th><td>Hair-like projections that beat in waves</td><td>Sweep substances (mucus) across the surface</td><td>Trachea and airways; uterine tubes</td></tr>
+        <tr><th scope="row">Goblet cells</th><td>Single mucus-making cells scattered in the epithelium</td><td>Secrete mucus to trap debris and stay moist</td><td>Lining of the gut and airways</td></tr>
+      </tbody>
+    </table>
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Picture the lining of your gut and airways as a carpet with special features. <strong>Microvilli</strong> are like deep shag that adds tons of surface to soak things up. <strong>Cilia</strong> are like tiny rowing oars that sweep junk along. <strong>Goblet cells</strong> are little squirt bottles of mucus mixed into the carpet, so the cilia have slime to push.</p>
+    </div>
+
     <div class="cols">
       <div>
         <h3>Cell junctions (how cells hold together)</h3>
@@ -457,6 +483,18 @@
       <li>Tissues with high regeneration (epithelium, bone) heal well; tissues with low regeneration (cardiac muscle, nervous tissue) tend to scar.</li>
     </ul>
 
+    <h3>Basic steps in wound repair</h3>
+    <p>When skin is cut, repair runs through four basic steps, in order:</p>
+    <figure class="seqfig" aria-labelledby="woundcap">
+      <figcaption id="woundcap">How a skin wound heals</figcaption>
+      <ol class="sequence">
+        <li class="start"><span class="num">1</span>Bleeding and clot (a scab forms)</li>
+        <li><span class="num">2</span>Inflammation (immune cells clean the wound)</li>
+        <li><span class="num">3</span>Rebuilding (new tissue and blood vessels; skin grows back)</li>
+        <li class="end"><span class="num">4</span>Maturation (scar forms and strengthens)</li>
+      </ol>
+    </figure>
+
     <h3>Tissue change and adaptation (the "-plasia" and "-trophy" words)</h3>
     <table>
       <caption>Light-yield but worth recognizing</caption>
@@ -535,6 +573,31 @@
       <li><strong>Papillary layer:</strong> thin, areolar tissue; dermal papillae form your <strong>fingerprints</strong>; holds touch receptors and capillaries.</li>
       <li><strong>Reticular layer:</strong> thick, dense irregular tissue; the bulk of the dermis; holds hair follicles, glands, vessels, and nerves.</li>
     </ul>
+
+    <h3>How the skin controls body temperature</h3>
+    <p>The skin is the body's main radiator, and it runs on a <strong>negative feedback loop</strong> (Module 1). The hypothalamus senses blood temperature and adjusts the skin's blood flow and sweating to hold the body near 37&deg;C.</p>
+    <table>
+      <caption>Two opposite responses, one goal</caption>
+      <thead><tr><th scope="col">When the body is TOO HOT</th><th scope="col">When the body is TOO COLD</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Vasodilation:</strong> dermal vessels widen, bringing warm blood to the surface so heat escapes</td>
+          <td><strong>Vasoconstriction:</strong> vessels narrow, keeping warm blood deep to hold heat in</td>
+        </tr>
+        <tr>
+          <td><strong>Sweating:</strong> eccrine glands release sweat; as it evaporates, it cools the skin</td>
+          <td><strong>Shivering:</strong> rapid muscle contractions burn energy and generate heat</td>
+        </tr>
+        <tr>
+          <td>Behavior: seek shade, remove layers</td>
+          <td><strong>Arrector pili:</strong> tiny muscles raise hairs (goosebumps) to trap warm air</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>When you are hot, your skin opens its blood vessels (so you look flushed) and sweats to dump heat, like rolling the car windows down. When you are cold, it closes those vessels to trap heat inside, puffs up tiny hairs (goosebumps), and makes you <strong>shiver</strong>, those fast muscle shakes burn energy to make heat. Same body, opposite moves, both aiming for "just right."</p>
+    </div>
 
     <div class="clinical">
       <h4>Why this matters clinically</h4>
