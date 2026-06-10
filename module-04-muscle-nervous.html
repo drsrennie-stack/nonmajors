@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Notes &middot; Module 4: Muscle and Nervous System Introduction</title>
+<meta name="description" content="Student reference notes for BIO 304 Module 4 (Week 4): skeletal muscle microanatomy, the neuromuscular junction, sliding filament and the cross-bridge cycle, motor units and muscle mechanics, neurons and the resting membrane potential, action potentials and synaptic transmission.">
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+/* BIO 304 Module 4 · MCAS dark-only palette · Plus Jakarta Sans · print button + book print · byline Dr. Sharilyn Rennie */
+  :root{--navy:#060A18;--rust:#8B3A2E;--rust-hover:#A0452F;--gold:#C9A14A;--cream:#F5F1E8;--dark:#060A18;--white:#FFFFFF;--line:rgba(6,10,24,0.18);--line-soft:rgba(6,10,24,0.10);--rest-shadow:0 1px 3px rgba(6,10,24,0.06);--hover-shadow:0 8px 16px rgba(6,10,24,0.10);--ease:transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:20px;}
+  body{margin:0;background:var(--white);color:var(--navy);font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 max(20px,4vw) 64px;}
+  .site-header{padding:24px 0 6px;}
+  .site-logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none;}
+  .site-logo svg{height:50px;width:auto;display:block;}
+  .logo-title{font-size:22px;font-weight:800;letter-spacing:-0.02em;color:var(--navy);line-height:1;}
+  .logo-title .logo-accent{color:var(--rust);}
+  .logo-sub{font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.72;margin-top:4px;display:block;}
+  .doc-eyebrow{font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.28em;text-transform:uppercase;margin:26px 0 14px;}
+  h1.doc-title{font-size:38px;font-weight:800;color:var(--navy);letter-spacing:-0.025em;line-height:1.08;margin:0 0 12px;}
+  h1.doc-title .accent{color:var(--rust);}
+  .doc-sub{font-size:15px;font-weight:700;color:var(--navy);opacity:.78;letter-spacing:.02em;margin:0 0 6px;}
+  .meta-line{font-size:14px;color:var(--navy);opacity:.84;line-height:1.6;margin:0;max-width:760px;}
+  h2{font-size:25px;font-weight:800;color:var(--navy);letter-spacing:-0.02em;line-height:1.14;margin:0 0 4px;}
+  h3{font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.16em;text-transform:uppercase;margin:20px 0 8px;}
+  p{margin:0 0 9px;}
+  .lede{font-size:16px;color:var(--navy);opacity:.9;margin:0 0 12px;max-width:760px;}
+  strong{font-weight:800;color:var(--navy);}
+  em{font-style:italic;}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:22px 24px;box-shadow:var(--rest-shadow);margin:0 0 18px;}
+  .topic{transition:var(--ease);scroll-margin-top:16px;}
+  .topic:hover{transform:translateY(-2px);box-shadow:var(--hover-shadow);border-color:rgba(6,10,24,0.26);}
+  .topic-tag{font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.62;margin:0 0 4px;}
+  .topic-head{display:flex;align-items:baseline;gap:14px;margin:0 0 4px;}
+  .topic-num{font-size:34px;font-weight:800;color:var(--rust);letter-spacing:-0.02em;line-height:1;flex-shrink:0;}
+  header.doc-head{padding:2px 0;margin:4px 0 24px;}
+  nav.toc{background:var(--white);border:1px solid var(--line);border-radius:10px;box-shadow:var(--rest-shadow);padding:20px 24px;margin:0 0 24px;}
+  nav.toc h2{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin:0 0 10px;}
+  nav.toc ol{margin:0;padding:0;list-style:none;counter-reset:toc;}
+  nav.toc li{counter-increment:toc;font-size:14.5px;padding:9px 0;border-bottom:1px solid var(--line-soft);display:flex;gap:14px;align-items:baseline;}
+  nav.toc li:last-of-type{border-bottom:none;}
+  nav.toc li::before{content:counter(toc,decimal-leading-zero);font-weight:800;color:var(--rust);font-variant-numeric:tabular-nums;font-size:13px;min-width:26px;flex-shrink:0;}
+  nav.toc a{color:var(--navy);text-decoration:none;font-weight:700;letter-spacing:-0.01em;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--rust);text-decoration:underline;text-underline-offset:4px;}
+  .toc-hint{margin-top:12px;font-size:13px;font-style:italic;color:var(--navy);opacity:.72;}
+  .toc-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 10px;}
+  .toc-top h2{margin:0;}
+  .printbtn{font-family:inherit;display:inline-flex;align-items:center;gap:8px;background:var(--rust);color:#FFFFFF;border:none;border-radius:999px;padding:9px 16px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;box-shadow:0 2px 6px rgba(6,10,24,0.16);transition:background .2s ease,box-shadow .2s ease,transform .2s ease;}
+  .printbtn:hover{background:var(--rust-hover);box-shadow:0 6px 14px rgba(6,10,24,0.22);transform:translateY(-1px);}
+  .printbtn:focus-visible{outline:3px solid var(--rust);outline-offset:3px;}
+  .printbtn svg{width:14px;height:14px;}
+  ul{margin:4px 0 11px;padding-left:20px;}
+  li{margin:4px 0;}
+  ul.tight li{margin:2px 0;}
+  ol{margin:4px 0 11px;padding-left:22px;}
+  ul.check{list-style:none;padding-left:2px;}
+  ul.check li{padding-left:24px;position:relative;}
+  ul.check li::before{content:"";position:absolute;left:2px;top:8px;width:9px;height:9px;border-radius:2px;background:var(--rust);}
+  table{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:13.5px;}
+  caption{font-size:10.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);text-align:left;font-weight:700;padding:0 0 7px;}
+  th,td{padding:8px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);}
+  thead th{background:var(--cream);color:var(--navy);font-weight:800;font-size:12.5px;letter-spacing:.01em;}
+  tbody th{background:rgba(245,241,232,0.5);color:var(--navy);font-weight:800;width:22%;}
+  tbody tr:last-child td,tbody tr:last-child th{border-bottom:1px solid var(--line);}
+  .cols{column-count:2;column-gap:30px;}
+  .cols > *{break-inside:avoid;}
+  @media(max-width:780px){.cols{column-count:1;}}
+  .highlight{border:1px solid var(--gold);background:var(--cream);border-radius:8px;padding:14px 17px;margin:14px 0;}
+  .highlight h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);margin:0 0 6px;}
+  .highlight p{margin:0 0 6px;font-size:14px;}
+  .highlight p:last-child{margin:0;}
+  .eli10{border:1px solid var(--line);border-radius:8px;padding:13px 16px;margin:13px 0;background:var(--white);}
+  .eli10 h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--rust);margin:0 0 6px;}
+  .eli10 h4::before{content:"\1F4A1  ";}
+  .eli10 p{margin:0 0 6px;font-size:14.5px;}
+  .eli10 p:last-child{margin:0;}
+  .keyterms{border:1px solid var(--line);border-radius:8px;padding:13px 16px;margin:12px 0;background:var(--white);}
+  .keyterms h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);margin:0 0 8px;}
+  .keyterms dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;font-size:13.5px;}
+  .keyterms dt{font-weight:800;color:var(--navy);}
+  .keyterms dd{margin:0;}
+  @media(max-width:560px){.keyterms dl{grid-template-columns:1fr;}.keyterms dd{margin:0 0 6px;}}
+  .clinical{background:var(--dark);border-radius:8px;padding:16px 19px;margin:14px 0;}
+  .clinical h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin:0 0 7px;}
+  .clinical p{margin:0 0 7px;font-size:14px;color:var(--cream);opacity:.94;line-height:1.6;}
+  .clinical p:last-child{margin:0;}
+  .clinical strong{color:var(--white);}
+  details.selfcheck{background:var(--cream);border:1px solid rgba(201,161,74,0.55);border-radius:8px;padding:0 16px;margin:14px 0 2px;}
+  details.selfcheck summary{cursor:pointer;padding:12px 0;font-weight:800;color:var(--navy);font-size:13.5px;list-style:none;letter-spacing:.01em;}
+  details.selfcheck summary::-webkit-details-marker{display:none;}
+  details.selfcheck summary::before{content:"\25B8  ";color:var(--rust);}
+  details.selfcheck[open] summary::before{content:"\25BE  ";}
+  details.selfcheck ol{margin:0 0 14px;padding-left:24px;font-size:13.5px;}
+  details.selfcheck li{margin:5px 0;}
+  figure{margin:10px 0 14px;}
+  figure figcaption{font-size:12px;color:var(--rust);margin-top:6px;font-weight:600;}
+  .seqfig figcaption{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--rust);margin:0 0 8px;}
+  ol.sequence{list-style:none;display:flex;flex-wrap:wrap;align-items:stretch;gap:8px 4px;padding:0;margin:0;}
+  ol.sequence li{background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:8px 12px;font-size:12.5px;font-weight:700;color:var(--dark);display:flex;align-items:center;line-height:1.3;}
+  ol.sequence li::after{content:"\2192";margin-left:8px;color:var(--rust);font-weight:800;font-size:15px;}
+  ol.sequence li:last-child::after{content:none;}
+  ol.sequence li.start{background:var(--white);border-color:var(--rust);}
+  ol.sequence li.end{background:var(--rust);border-color:var(--rust);color:var(--white);}
+  ol.sequence li .num{display:inline-flex;justify-content:center;align-items:center;width:18px;height:18px;border-radius:50%;background:var(--rust);color:var(--white);font-size:10px;font-weight:800;margin-right:8px;flex-shrink:0;}
+  ol.sequence li.end .num{background:var(--white);color:var(--rust);}
+  ul.tree, ul.tree ul{list-style:none;}
+  ul.tree{margin:6px 0 12px;padding:0;font-size:13.5px;}
+  ul.tree > li{padding:5px 0;}
+  ul.tree .root{font-weight:800;color:var(--rust);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;}
+  ul.tree .label{font-weight:800;color:var(--navy);}
+  ul.tree .detail{opacity:.85;}
+  ul.tree ul{margin:3px 0 4px 7px;padding-left:16px;border-left:2px solid var(--line);}
+  ul.tree ul li{position:relative;padding:3px 0;}
+  ul.tree ul li::before{content:"";position:absolute;left:-16px;top:12px;width:12px;height:2px;background:var(--line);}
+  a{color:var(--rust);}
+  a:focus-visible,summary:focus-visible{outline:3px solid var(--rust);outline-offset:3px;border-radius:4px;}
+  .skip{position:absolute;top:-100px;left:8px;background:var(--navy);color:var(--cream);padding:12px 20px;text-decoration:none;font-size:13px;font-weight:700;border-radius:4px;z-index:9999;letter-spacing:.04em;}
+  .skip:focus{top:8px;}
+  footer.doc-foot{margin-top:30px;background:var(--dark);border-radius:8px;padding:24px 26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer.doc-foot p{margin:0;font-size:12.5px;color:var(--cream);opacity:.86;line-height:1.6;}
+  footer.doc-foot .byline{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;opacity:1;}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;}.topic:hover{transform:none;}}
+  @media print{
+    @page{margin:16mm;}
+    body{font-size:10.5pt;}
+    .wrap{max-width:none;padding:0;}
+    .skip,.toc-hint,.printbtn{display:none!important;}
+    .site-header{padding:0 0 8px;}
+    nav.toc{break-after:page;border:none;box-shadow:none;padding:0;}
+    .card{box-shadow:none;border:none;padding:0;margin:0 0 8px;}
+    .topic{page-break-before:always;}
+    table,figure,.clinical,.highlight,.eli10,.keyterms,details.selfcheck,ol.sequence,ul.tree,li,img,svg,tr{break-inside:avoid;}
+    thead{display:table-header-group;}
+    tfoot{display:table-footer-group;}
+    h2,h3,h4{break-after:avoid;}
+    p{orphans:3;widows:3;}
+    details.selfcheck[open] ol,details.selfcheck ol{display:block!important;}
+    a{color:var(--navy);text-decoration:none;}
+    thead th,tbody th,.clinical,.highlight,.eli10,details.selfcheck,footer.doc-foot{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .clinical p{color:#F5F1E8;}
+    .topic:hover{transform:none;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to notes</a>
+<div class="wrap">
+
+  <header class="site-header">
+    <a class="site-logo" href="index.html" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#060A18"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#060A18"/></g>
+          <g transform="translate(100, 0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
+          <g transform="translate(140, 0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+        </g>
+      </svg>
+      <span class="logo-text"><span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span><span class="logo-sub">BIO 304 &middot; American River College</span></span>
+    </a>
+  </header>
+
+  <header class="doc-head">
+    <p class="doc-eyebrow">BIO 304 &middot; Week 4 &middot; Module 4</p>
+    <h1 class="doc-title">Muscle and the <span class="accent">Nervous System</span></h1>
+    <p class="doc-sub">Student Reference Notes &middot; Built to look things up</p>
+    <p class="meta-line">Seven topics: skeletal muscle microanatomy; the neuromuscular junction; sliding filament and the cross-bridge cycle; motor units and muscle mechanics; the neuron and resting membrane potential; action potentials and synaptic transmission.</p>
+  </header>
+
+  <nav class="toc" aria-label="Topics in this module">
+    <div class="toc-top">
+      <h2>On this page</h2>
+      <button type="button" class="printbtn" onclick="window.print()" aria-label="Print these notes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print notes
+      </button>
+    </div>
+    <ol>
+      <li><a href="#t1" target="_top">Skeletal Muscle Microanatomy</a></li>
+      <li><a href="#t2" target="_top">The Neuromuscular Junction</a></li>
+      <li><a href="#t3" target="_top">Sliding Filament and the Cross-Bridge Cycle</a></li>
+      <li><a href="#t4" target="_top">Motor Units and Muscle Mechanics</a></li>
+      <li><a href="#t5" target="_top">The Neuron and the Resting Membrane Potential</a></li>
+      <li><a href="#t6" target="_top">Action Potentials and Synaptic Transmission</a></li>
+    </ol>
+    <p class="toc-hint">Built to print. Click "Print notes" (or Ctrl/Cmd+P) for a clean, book-style handout; each topic starts on its own page.</p>
+  </nav>
+
+  <main id="main">
+
+  <!-- ===== TOPIC 1 ===== -->
+  <section class="card topic" id="t1" aria-labelledby="t1h">
+    <p class="topic-tag">Topic 1 of 6 &middot; Week 4</p>
+    <div class="topic-head"><span class="topic-num">01</span><h2 id="t1h">Skeletal Muscle Microanatomy</h2></div>
+    <p class="lede">A muscle is a bundle of bundles. Zoom in and you reach the tiny machine that actually shortens: the sarcomere.</p>
+
+    <p>Skeletal muscle has four jobs: <strong>movement, posture, joint stability, and heat</strong>. It is wrapped at three levels by connective tissue that all merges into the tendon.</p>
+
+    <ul class="tree" aria-label="Levels of muscle organization">
+      <li><span class="root">Whole muscle</span> <span class="detail">(wrapped by epimysium)</span>
+        <ul>
+          <li><span class="label">Fascicle</span> <span class="detail">&ndash; a bundle of fibers (wrapped by perimysium)</span>
+            <ul>
+              <li><span class="label">Muscle fiber</span> <span class="detail">&ndash; one muscle cell (wrapped by endomysium)</span>
+                <ul>
+                  <li><span class="label">Myofibril</span> <span class="detail">&ndash; the contractile rod inside the cell</span>
+                    <ul>
+                      <li><span class="label">Sarcomere</span> <span class="detail">&ndash; the contracting unit, made of actin and myosin</span></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="cols">
+      <div class="keyterms">
+        <h4>Inside a muscle fiber</h4>
+        <dl>
+          <dt>Sarcolemma</dt><dd>The muscle cell's membrane.</dd>
+          <dt>T-tubules</dt><dd>Tunnels that carry the signal deep inside.</dd>
+          <dt>Sarcoplasmic reticulum</dt><dd>Stores and releases calcium.</dd>
+          <dt>Myofilaments</dt><dd>Thin (actin) and thick (myosin) strands.</dd>
+        </dl>
+      </div>
+      <div>
+        <h3>Why muscle looks striped</h3>
+        <p>The <strong>sarcomere</strong> is the unit from one Z disc to the next. Inside, thin <strong>actin</strong> and thick <strong>myosin</strong> filaments overlap in an orderly pattern. That overlap is what gives skeletal and cardiac muscle their striped (striated) look under a microscope.</p>
+      </div>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>The connective wrappings merge into the <strong>tendon</strong> that anchors muscle to bone, which is why a torn tendon disables a whole muscle. And because the <strong>sarcoplasmic reticulum</strong> stores the calcium that triggers contraction, anything that disturbs muscle calcium handling (some genetic disorders, certain anesthesia reactions) can cause dangerous muscle rigidity.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>Put these in order from largest to smallest: sarcomere, fascicle, muscle fiber, myofibril, whole muscle.</li>
+        <li>What does the sarcoplasmic reticulum store?</li>
+        <li>Which two filaments overlap to make a sarcomere, and why is muscle striped?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 2 ===== -->
+  <section class="card topic" id="t2" aria-labelledby="t2h">
+    <p class="topic-tag">Topic 2 of 6 &middot; Week 4</p>
+    <div class="topic-head"><span class="topic-num">02</span><h2 id="t2h">The Neuromuscular Junction</h2></div>
+    <p class="lede">Muscle does nothing until a nerve tells it to. The meeting point of nerve and muscle is the neuromuscular junction.</p>
+
+    <p>A <strong>motor neuron</strong> reaches out to a muscle fiber but does not touch it. At the tip, the axon releases a chemical messenger, <strong>acetylcholine (ACh)</strong>, into a tiny gap (the synaptic cleft). ACh drifts across and binds receptors on the muscle's membrane (the motor end plate), which opens channels, lets sodium in, and starts an electrical signal that spreads across the muscle fiber and down the T-tubules.</p>
+
+    <figure class="seqfig" aria-labelledby="nmjcap">
+      <figcaption id="nmjcap">From nerve signal to muscle signal</figcaption>
+      <ol class="sequence">
+        <li class="start"><span class="num">1</span>Nerve impulse reaches the axon tip</li>
+        <li><span class="num">2</span>Acetylcholine is released</li>
+        <li><span class="num">3</span>ACh binds receptors on the muscle</li>
+        <li class="end"><span class="num">4</span>Muscle's own electrical signal begins</li>
+      </ol>
+    </figure>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>The nerve and muscle do not actually touch. The nerve "throws" a chemical (acetylcholine) across a tiny gap, like tossing a key. The key fits a lock on the muscle, the lock opens, and the muscle gets the message to fire.</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>This junction is a favorite target. In <strong>myasthenia gravis</strong>, the immune system destroys ACh receptors, so muscles tire quickly. <strong>Botulinum toxin (Botox)</strong> blocks ACh release, paralyzing the muscle. Many <strong>nerve gases and some pesticides</strong> stop ACh from being cleared, causing nonstop, dangerous muscle firing.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>What chemical does the motor neuron release at the muscle?</li>
+        <li>What happens when that chemical binds the muscle's receptors?</li>
+        <li>How does Botox cause muscle paralysis?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 3 ===== -->
+  <section class="card topic" id="t3" aria-labelledby="t3h">
+    <p class="topic-tag">Topic 3 of 6 &middot; Week 4</p>
+    <div class="topic-head"><span class="topic-num">03</span><h2 id="t3h">Sliding Filament and the Cross-Bridge Cycle</h2></div>
+    <p class="lede">Muscle shortens not because the filaments shrink, but because they slide past each other.</p>
+
+    <p>In the <strong>sliding filament theory</strong>, myosin (thick) filaments grab actin (thin) filaments and pull them inward, so the sarcomere gets shorter while the filaments themselves stay the same length. The trigger is <strong>calcium</strong>, and the fuel is <strong>ATP</strong>.</p>
+
+    <figure class="seqfig" aria-labelledby="cbcap">
+      <figcaption id="cbcap">Excitation-contraction, step by step</figcaption>
+      <ol class="sequence">
+        <li class="start"><span class="num">1</span>Signal travels down the T-tubules</li>
+        <li><span class="num">2</span>Calcium is released from the SR</li>
+        <li><span class="num">3</span>Calcium uncovers actin's binding sites</li>
+        <li><span class="num">4</span>Myosin heads grab actin (cross-bridge)</li>
+        <li><span class="num">5</span>Power stroke pulls actin inward</li>
+        <li class="end"><span class="num">6</span>ATP resets the head; repeat or relax</li>
+      </ol>
+    </figure>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Think of a tug-of-war. The myosin "hands" grab the actin "rope," pull, let go, grab higher up, and pull again, dragging the rope in. Calcium is the whistle that says "go," and ATP is the energy snack the hands need to keep grabbing. No ATP, the hands stay clamped (that is why bodies stiffen after death, rigor mortis).</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p><strong>Rigor mortis</strong> happens because dead muscle runs out of ATP, so myosin cannot release actin and the body stiffens. <strong>Muscle cramps</strong> involve calcium and energy handling gone wrong. And low blood <strong>calcium</strong> can cause muscle twitching and spasms, a direct link back to the calcium balance you studied with bone.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>In sliding filament theory, do the filaments shorten? What actually happens?</li>
+        <li>What ion starts contraction, and where is it stored?</li>
+        <li>Why does the body stiffen after death?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 4 ===== -->
+  <section class="card topic" id="t4" aria-labelledby="t4h">
+    <p class="topic-tag">Topic 4 of 6 &middot; Week 4</p>
+    <div class="topic-head"><span class="topic-num">04</span><h2 id="t4h">Motor Units and Muscle Mechanics</h2></div>
+    <p class="lede">How the body controls how hard and how smoothly a muscle pulls.</p>
+
+    <div class="cols">
+      <div class="keyterms">
+        <h4>Key terms</h4>
+        <dl>
+          <dt>Motor unit</dt><dd>One motor neuron plus all the fibers it controls.</dd>
+          <dt>Recruitment</dt><dd>Turning on more motor units for more force.</dd>
+          <dt>Twitch</dt><dd>One quick contraction from a single stimulus.</dd>
+          <dt>Tetanus</dt><dd>Rapid stimuli blur into one smooth, strong contraction.</dd>
+          <dt>Muscle tone</dt><dd>Constant slight tension that keeps muscles ready.</dd>
+        </dl>
+      </div>
+      <div>
+        <h3>Two kinds of contraction</h3>
+        <ul class="tight">
+          <li><strong>Isotonic:</strong> the muscle changes length and moves a load (lifting a cup).</li>
+          <li><strong>Isometric:</strong> the muscle tenses but does not change length (holding a plank).</li>
+        </ul>
+        <p>More force comes from <strong>recruiting more motor units</strong> and from firing them faster. Fine control (eye muscles) uses small motor units; powerful movements (thigh) use large ones.</p>
+      </div>
+    </div>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>A muscle is like a team of rowers (motor units). To pull harder, you wake up more rowers (recruitment) and have them row faster. One quick pull is a twitch; lots of fast pulls blur into one strong, smooth pull (tetanus).</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>Loss of muscle tone or weakness shows up when motor units fail, from nerve injury, disuse, or disease. Physical therapy works partly by improving <strong>recruitment</strong>. And the difference between <strong>isometric</strong> and <strong>isotonic</strong> work matters in rehab: isometric holds can strengthen a muscle without moving a healing joint.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>What is a motor unit?</li>
+        <li>Name two ways the body increases a muscle's force.</li>
+        <li>Which contraction changes muscle length: isotonic or isometric?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 5 ===== -->
+  <section class="card topic" id="t5" aria-labelledby="t5h">
+    <p class="topic-tag">Topic 5 of 6 &middot; Week 4</p>
+    <div class="topic-head"><span class="topic-num">05</span><h2 id="t5h">The Neuron and the Resting Membrane Potential</h2></div>
+    <p class="lede">Neurons are built to carry electrical messages. At rest, they sit like a charged battery, ready to fire.</p>
+
+    <table>
+      <caption>Parts of a neuron</caption>
+      <thead><tr><th scope="col">Part</th><th scope="col">Job</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Dendrites</th><td>Receive incoming signals</td></tr>
+        <tr><th scope="row">Cell body (soma)</th><td>Holds the nucleus; combines the signals</td></tr>
+        <tr><th scope="row">Axon</th><td>Carries the signal away to other cells</td></tr>
+        <tr><th scope="row">Myelin sheath</th><td>Fatty insulation that speeds the signal</td></tr>
+        <tr><th scope="row">Nodes (gaps in myelin)</th><td>Let the signal jump and travel faster</td></tr>
+      </tbody>
+    </table>
+    <p>Neurons are supported by <strong>neuroglia</strong> (glial cells), which insulate, feed, and protect them. The cells that make myelin are glia.</p>
+
+    <div class="highlight">
+      <h4>The resting membrane potential</h4>
+      <p>At rest the inside of a neuron is about <strong>&minus;70 mV</strong>, slightly negative compared to the outside. This is set up by uneven ions: <strong>sodium (Na&#8314;) is high outside</strong> and <strong>potassium (K&#8314;) is high inside</strong>, maintained by the <strong>sodium-potassium pump</strong> (active transport, costs ATP). This is the charged "battery" from the chemistry reference, ready to discharge into a signal.</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>Diseases that strip <strong>myelin</strong>, like multiple sclerosis, slow or block signals, causing weakness, numbness, and vision problems. And because the resting potential depends on <strong>potassium and sodium</strong>, abnormal blood electrolyte levels can make nerves and the heart misfire, which is why these labs are watched so closely.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>Name the three main parts of a neuron in signal order.</li>
+        <li>What does myelin do, and what happens when it is damaged?</li>
+        <li>Which ions are high inside vs. outside a resting neuron?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 6 ===== -->
+  <section class="card topic" id="t6" aria-labelledby="t6h">
+    <p class="topic-tag">Topic 6 of 6 &middot; Week 4</p>
+    <div class="topic-head"><span class="topic-num">06</span><h2 id="t6h">Action Potentials and Synaptic Transmission</h2></div>
+    <p class="lede">An action potential is the nerve signal itself: a quick electrical spike that travels down the axon.</p>
+
+    <figure class="seqfig" aria-labelledby="apcap">
+      <figcaption id="apcap">The action potential</figcaption>
+      <ol class="sequence">
+        <li class="start"><span class="num">1</span>A stimulus reaches threshold</li>
+        <li><span class="num">2</span>Depolarize: Na&#8314; rushes in (inside turns positive)</li>
+        <li><span class="num">3</span>Repolarize: K&#8314; flows out (inside turns negative again)</li>
+        <li class="end"><span class="num">4</span>Pump restores the resting battery</li>
+      </ol>
+    </figure>
+    <p>It is <strong>all-or-none</strong>: either the stimulus is strong enough to fire a full spike, or nothing happens. In myelinated axons the spike jumps node to node, which is why myelin makes signals fast.</p>
+
+    <h3>Crossing the synapse</h3>
+    <p>When the spike reaches the axon's end, it cannot jump to the next cell electrically. Instead, calcium enters and triggers <strong>exocytosis</strong> of <strong>neurotransmitter</strong> (the same vesicle release you met in Module 1). The neurotransmitter crosses the gap and binds receptors on the next cell, starting a new signal. Then it is quickly cleared so the synapse can reset.</p>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>An action potential is like a row of dominoes falling down the axon, fast and all-or-nothing. When it reaches the end, it cannot leap the gap, so it sends a chemical "text message" (neurotransmitter) across to the next cell, which then starts its own row of dominoes.</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>Most drugs that act on the brain work at the <strong>synapse</strong>: antidepressants, anesthetics, painkillers, and stimulants all change how neurotransmitters are released, received, or cleared. <strong>Local anesthetics</strong> block the sodium channels that make the action potential, so the nerve cannot fire and you feel no pain.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>Which ion rushes in during depolarization, and which flows out during repolarization?</li>
+        <li>What does "all-or-none" mean for an action potential?</li>
+        <li>How does a signal cross from one neuron to the next?</li>
+      </ol>
+    </details>
+  </section>
+
+  </main>
+
+  <footer class="doc-foot">
+    <p>BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Module 4 &middot; Student Reference Notes</p>
+    <p class="byline">Dr. Sharilyn Rennie</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var FRAME_ID = (function(){ try{ return window.frameElement && window.frameElement.id; }catch(e){ return ""; } })() || "bio304-module-04";
+  function sendHeight(){ var h = Math.max(document.documentElement.scrollHeight, document.body ? document.body.scrollHeight : 0); try{ parent.postMessage({ type:"resize", id:FRAME_ID, height:h }, "*"); }catch(e){} }
+  window.addEventListener("load", sendHeight); window.addEventListener("resize", sendHeight);
+  if (window.ResizeObserver){ new ResizeObserver(sendHeight).observe(document.body); }
+  document.addEventListener("toggle", function(e){ if(e.target && e.target.tagName==="DETAILS"){ sendHeight(); } }, true);
+})();
+</script>
+</body>
+</html>

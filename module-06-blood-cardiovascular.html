@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Notes &middot; Module 6: Blood and the Cardiovascular System</title>
+<meta name="description" content="Student reference notes for BIO 304 Module 6 (Week 6): blood composition and hematopoiesis, hemostasis and blood typing, heart anatomy, the cardiac cycle and conduction, blood vessels, and hemodynamics.">
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+/* BIO 304 Module 6 · MCAS dark-only palette · Plus Jakarta Sans · print button + book print · byline Dr. Sharilyn Rennie */
+  :root{--navy:#060A18;--rust:#8B3A2E;--rust-hover:#A0452F;--gold:#C9A14A;--cream:#F5F1E8;--dark:#060A18;--white:#FFFFFF;--line:rgba(6,10,24,0.18);--line-soft:rgba(6,10,24,0.10);--rest-shadow:0 1px 3px rgba(6,10,24,0.06);--hover-shadow:0 8px 16px rgba(6,10,24,0.10);--ease:transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:20px;}
+  body{margin:0;background:var(--white);color:var(--navy);font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 max(20px,4vw) 64px;}
+  .site-header{padding:24px 0 6px;}
+  .site-logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none;}
+  .site-logo svg{height:50px;width:auto;display:block;}
+  .logo-title{font-size:22px;font-weight:800;letter-spacing:-0.02em;color:var(--navy);line-height:1;}
+  .logo-title .logo-accent{color:var(--rust);}
+  .logo-sub{font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.72;margin-top:4px;display:block;}
+  .doc-eyebrow{font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.28em;text-transform:uppercase;margin:26px 0 14px;}
+  h1.doc-title{font-size:38px;font-weight:800;color:var(--navy);letter-spacing:-0.025em;line-height:1.08;margin:0 0 12px;}
+  h1.doc-title .accent{color:var(--rust);}
+  .doc-sub{font-size:15px;font-weight:700;color:var(--navy);opacity:.78;letter-spacing:.02em;margin:0 0 6px;}
+  .meta-line{font-size:14px;color:var(--navy);opacity:.84;line-height:1.6;margin:0;max-width:760px;}
+  h2{font-size:25px;font-weight:800;color:var(--navy);letter-spacing:-0.02em;line-height:1.14;margin:0 0 4px;}
+  h3{font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.16em;text-transform:uppercase;margin:20px 0 8px;}
+  p{margin:0 0 9px;}
+  .lede{font-size:16px;color:var(--navy);opacity:.9;margin:0 0 12px;max-width:760px;}
+  strong{font-weight:800;color:var(--navy);}
+  em{font-style:italic;}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:22px 24px;box-shadow:var(--rest-shadow);margin:0 0 18px;}
+  .topic{transition:var(--ease);scroll-margin-top:16px;}
+  .topic:hover{transform:translateY(-2px);box-shadow:var(--hover-shadow);border-color:rgba(6,10,24,0.26);}
+  .topic-tag{font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.62;margin:0 0 4px;}
+  .topic-head{display:flex;align-items:baseline;gap:14px;margin:0 0 4px;}
+  .topic-num{font-size:34px;font-weight:800;color:var(--rust);letter-spacing:-0.02em;line-height:1;flex-shrink:0;}
+  header.doc-head{padding:2px 0;margin:4px 0 24px;}
+  nav.toc{background:var(--white);border:1px solid var(--line);border-radius:10px;box-shadow:var(--rest-shadow);padding:20px 24px;margin:0 0 24px;}
+  nav.toc h2{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin:0 0 10px;}
+  nav.toc ol{margin:0;padding:0;list-style:none;counter-reset:toc;}
+  nav.toc li{counter-increment:toc;font-size:14.5px;padding:9px 0;border-bottom:1px solid var(--line-soft);display:flex;gap:14px;align-items:baseline;}
+  nav.toc li:last-of-type{border-bottom:none;}
+  nav.toc li::before{content:counter(toc,decimal-leading-zero);font-weight:800;color:var(--rust);font-variant-numeric:tabular-nums;font-size:13px;min-width:26px;flex-shrink:0;}
+  nav.toc a{color:var(--navy);text-decoration:none;font-weight:700;letter-spacing:-0.01em;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--rust);text-decoration:underline;text-underline-offset:4px;}
+  .toc-hint{margin-top:12px;font-size:13px;font-style:italic;color:var(--navy);opacity:.72;}
+  .toc-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 10px;}
+  .toc-top h2{margin:0;}
+  .printbtn{font-family:inherit;display:inline-flex;align-items:center;gap:8px;background:var(--rust);color:#FFFFFF;border:none;border-radius:999px;padding:9px 16px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;box-shadow:0 2px 6px rgba(6,10,24,0.16);transition:background .2s ease,box-shadow .2s ease,transform .2s ease;}
+  .printbtn:hover{background:var(--rust-hover);box-shadow:0 6px 14px rgba(6,10,24,0.22);transform:translateY(-1px);}
+  .printbtn:focus-visible{outline:3px solid var(--rust);outline-offset:3px;}
+  .printbtn svg{width:14px;height:14px;}
+  ul{margin:4px 0 11px;padding-left:20px;}
+  li{margin:4px 0;}
+  ul.tight li{margin:2px 0;}
+  ol{margin:4px 0 11px;padding-left:22px;}
+  ul.check{list-style:none;padding-left:2px;}
+  ul.check li{padding-left:24px;position:relative;}
+  ul.check li::before{content:"";position:absolute;left:2px;top:8px;width:9px;height:9px;border-radius:2px;background:var(--rust);}
+  table{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:13.5px;}
+  caption{font-size:10.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);text-align:left;font-weight:700;padding:0 0 7px;}
+  th,td{padding:8px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);}
+  thead th{background:var(--cream);color:var(--navy);font-weight:800;font-size:12.5px;letter-spacing:.01em;}
+  tbody th{background:rgba(245,241,232,0.5);color:var(--navy);font-weight:800;width:22%;}
+  tbody tr:last-child td,tbody tr:last-child th{border-bottom:1px solid var(--line);}
+  .cols{column-count:2;column-gap:30px;}
+  .cols > *{break-inside:avoid;}
+  @media(max-width:780px){.cols{column-count:1;}}
+  .highlight{border:1px solid var(--gold);background:var(--cream);border-radius:8px;padding:14px 17px;margin:14px 0;}
+  .highlight h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);margin:0 0 6px;}
+  .highlight p{margin:0 0 6px;font-size:14px;}
+  .highlight p:last-child{margin:0;}
+  .eli10{border:1px solid var(--line);border-radius:8px;padding:13px 16px;margin:13px 0;background:var(--white);}
+  .eli10 h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--rust);margin:0 0 6px;}
+  .eli10 h4::before{content:"\1F4A1  ";}
+  .eli10 p{margin:0 0 6px;font-size:14.5px;}
+  .eli10 p:last-child{margin:0;}
+  .keyterms{border:1px solid var(--line);border-radius:8px;padding:13px 16px;margin:12px 0;background:var(--white);}
+  .keyterms h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);margin:0 0 8px;}
+  .keyterms dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;font-size:13.5px;}
+  .keyterms dt{font-weight:800;color:var(--navy);}
+  .keyterms dd{margin:0;}
+  @media(max-width:560px){.keyterms dl{grid-template-columns:1fr;}.keyterms dd{margin:0 0 6px;}}
+  .clinical{background:var(--dark);border-radius:8px;padding:16px 19px;margin:14px 0;}
+  .clinical h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin:0 0 7px;}
+  .clinical p{margin:0 0 7px;font-size:14px;color:var(--cream);opacity:.94;line-height:1.6;}
+  .clinical p:last-child{margin:0;}
+  .clinical strong{color:var(--white);}
+  details.selfcheck{background:var(--cream);border:1px solid rgba(201,161,74,0.55);border-radius:8px;padding:0 16px;margin:14px 0 2px;}
+  details.selfcheck summary{cursor:pointer;padding:12px 0;font-weight:800;color:var(--navy);font-size:13.5px;list-style:none;letter-spacing:.01em;}
+  details.selfcheck summary::-webkit-details-marker{display:none;}
+  details.selfcheck summary::before{content:"\25B8  ";color:var(--rust);}
+  details.selfcheck[open] summary::before{content:"\25BE  ";}
+  details.selfcheck ol{margin:0 0 14px;padding-left:24px;font-size:13.5px;}
+  details.selfcheck li{margin:5px 0;}
+  figure{margin:10px 0 14px;}
+  figure figcaption{font-size:12px;color:var(--rust);margin-top:6px;font-weight:600;}
+  .seqfig figcaption{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--rust);margin:0 0 8px;}
+  ol.sequence{list-style:none;display:flex;flex-wrap:wrap;align-items:stretch;gap:8px 4px;padding:0;margin:0;}
+  ol.sequence li{background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:8px 12px;font-size:12.5px;font-weight:700;color:var(--dark);display:flex;align-items:center;line-height:1.3;}
+  ol.sequence li::after{content:"\2192";margin-left:8px;color:var(--rust);font-weight:800;font-size:15px;}
+  ol.sequence li:last-child::after{content:none;}
+  ol.sequence li.start{background:var(--white);border-color:var(--rust);}
+  ol.sequence li.end{background:var(--rust);border-color:var(--rust);color:var(--white);}
+  ol.sequence li .num{display:inline-flex;justify-content:center;align-items:center;width:18px;height:18px;border-radius:50%;background:var(--rust);color:var(--white);font-size:10px;font-weight:800;margin-right:8px;flex-shrink:0;}
+  ol.sequence li.end .num{background:var(--white);color:var(--rust);}
+  ul.tree, ul.tree ul{list-style:none;}
+  ul.tree{margin:6px 0 12px;padding:0;font-size:13.5px;}
+  ul.tree > li{padding:5px 0;}
+  ul.tree .root{font-weight:800;color:var(--rust);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;}
+  ul.tree .label{font-weight:800;color:var(--navy);}
+  ul.tree .detail{opacity:.85;}
+  ul.tree ul{margin:3px 0 4px 7px;padding-left:16px;border-left:2px solid var(--line);}
+  ul.tree ul li{position:relative;padding:3px 0;}
+  ul.tree ul li::before{content:"";position:absolute;left:-16px;top:12px;width:12px;height:2px;background:var(--line);}
+  a{color:var(--rust);}
+  a:focus-visible,summary:focus-visible{outline:3px solid var(--rust);outline-offset:3px;border-radius:4px;}
+  .skip{position:absolute;top:-100px;left:8px;background:var(--navy);color:var(--cream);padding:12px 20px;text-decoration:none;font-size:13px;font-weight:700;border-radius:4px;z-index:9999;letter-spacing:.04em;}
+  .skip:focus{top:8px;}
+  footer.doc-foot{margin-top:30px;background:var(--dark);border-radius:8px;padding:24px 26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer.doc-foot p{margin:0;font-size:12.5px;color:var(--cream);opacity:.86;line-height:1.6;}
+  footer.doc-foot .byline{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;opacity:1;}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;}.topic:hover{transform:none;}}
+  @media print{
+    @page{margin:16mm;}
+    body{font-size:10.5pt;}
+    .wrap{max-width:none;padding:0;}
+    .skip,.toc-hint,.printbtn{display:none!important;}
+    .site-header{padding:0 0 8px;}
+    nav.toc{break-after:page;border:none;box-shadow:none;padding:0;}
+    .card{box-shadow:none;border:none;padding:0;margin:0 0 8px;}
+    .topic{page-break-before:always;}
+    table,figure,.clinical,.highlight,.eli10,.keyterms,details.selfcheck,ol.sequence,ul.tree,li,img,svg,tr{break-inside:avoid;}
+    thead{display:table-header-group;}
+    tfoot{display:table-footer-group;}
+    h2,h3,h4{break-after:avoid;}
+    p{orphans:3;widows:3;}
+    details.selfcheck[open] ol,details.selfcheck ol{display:block!important;}
+    a{color:var(--navy);text-decoration:none;}
+    thead th,tbody th,.clinical,.highlight,.eli10,details.selfcheck,footer.doc-foot{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .clinical p{color:#F5F1E8;}
+    .topic:hover{transform:none;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to notes</a>
+<div class="wrap">
+
+  <header class="site-header">
+    <a class="site-logo" href="index.html" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#060A18"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#060A18"/></g>
+          <g transform="translate(100, 0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
+          <g transform="translate(140, 0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+        </g>
+      </svg>
+      <span class="logo-text"><span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span><span class="logo-sub">BIO 304 &middot; American River College</span></span>
+    </a>
+  </header>
+
+  <header class="doc-head">
+    <p class="doc-eyebrow">BIO 304 &middot; Week 6 &middot; Module 6</p>
+    <h1 class="doc-title">Blood and the <span class="accent">Cardiovascular System</span></h1>
+    <p class="doc-sub">Student Reference Notes &middot; Built to look things up</p>
+    <p class="meta-line">Six topics: blood composition and hematopoiesis; hemostasis and blood typing; heart anatomy; the cardiac cycle and conduction; blood vessels; and hemodynamics and blood pressure.</p>
+  </header>
+
+  <nav class="toc" aria-label="Topics in this module">
+    <div class="toc-top">
+      <h2>On this page</h2>
+      <button type="button" class="printbtn" onclick="window.print()" aria-label="Print these notes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print notes
+      </button>
+    </div>
+    <ol>
+      <li><a href="#t1" target="_top">Blood Composition and Hematopoiesis</a></li>
+      <li><a href="#t2" target="_top">Hemostasis and Blood Typing</a></li>
+      <li><a href="#t3" target="_top">Heart Anatomy</a></li>
+      <li><a href="#t4" target="_top">The Cardiac Cycle and Conduction</a></li>
+      <li><a href="#t5" target="_top">Blood Vessels</a></li>
+      <li><a href="#t6" target="_top">Hemodynamics and Blood Pressure</a></li>
+    </ol>
+    <p class="toc-hint">Built to print. Click "Print notes" (or Ctrl/Cmd+P) for a clean, book-style handout; each topic starts on its own page.</p>
+  </nav>
+
+  <main id="main">
+
+  <!-- ===== TOPIC 1 ===== -->
+  <section class="card topic" id="t1" aria-labelledby="t1h">
+    <p class="topic-tag">Topic 1 of 6 &middot; Week 6</p>
+    <div class="topic-head"><span class="topic-num">01</span><h2 id="t1h">Blood Composition and Hematopoiesis</h2></div>
+    <p class="lede">Blood is a liquid connective tissue: cells floating in a watery matrix called plasma.</p>
+
+    <p>Blood does three big jobs: <strong>transport</strong> (oxygen, nutrients, waste, hormones), <strong>regulation</strong> (temperature and pH), and <strong>protection</strong> (clotting and immunity). If you spin a blood sample, it separates into two parts.</p>
+
+    <table>
+      <caption>What blood is made of</caption>
+      <thead><tr><th scope="col">Part</th><th scope="col">Share</th><th scope="col">What it is and does</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Plasma</th><td>~55%</td><td>Watery fluid with proteins, nutrients, and wastes dissolved in it</td></tr>
+        <tr><th scope="row">Red blood cells</th><td>~45%</td><td>Carry oxygen using hemoglobin; no nucleus; biconcave disc</td></tr>
+        <tr><th scope="row">White blood cells</th><td>&lt;1%</td><td>Defend the body against infection</td></tr>
+        <tr><th scope="row">Platelets</th><td>&lt;1%</td><td>Cell fragments that start blood clots</td></tr>
+      </tbody>
+    </table>
+    <p>All of these blood cells are made in <strong>red bone marrow</strong>, a process called <strong>hematopoiesis</strong>, linking this system right back to the skeleton.</p>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Blood is like a juice with stuff floating in it. The <strong>plasma</strong> is the watery juice. The <strong>red cells</strong> are the delivery trucks carrying oxygen, the <strong>white cells</strong> are the soldiers, and the <strong>platelets</strong> are the patch kit for leaks. All of them are made in the squishy red marrow inside your bones.</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p><strong>Anemia</strong> is too few red cells or too little hemoglobin, so tissues get less oxygen (fatigue, pallor). <strong>Leukemia</strong> is a cancer of white blood cells. Because blood cells come from <strong>bone marrow</strong>, marrow disease shows up as blood-count problems, and a marrow transplant can rebuild the whole supply.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>Name the two main parts you get when blood is spun down.</li>
+        <li>What do red cells carry, and using what protein?</li>
+        <li>Where are blood cells made?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 2 ===== -->
+  <section class="card topic" id="t2" aria-labelledby="t2h">
+    <p class="topic-tag">Topic 2 of 6 &middot; Week 6</p>
+    <div class="topic-head"><span class="topic-num">02</span><h2 id="t2h">Hemostasis and Blood Typing</h2></div>
+    <p class="lede">Hemostasis is how the body stops bleeding. Blood typing is how we match blood safely.</p>
+
+    <h3>Stopping a bleed (hemostasis)</h3>
+    <figure class="seqfig" aria-labelledby="hemcap">
+      <figcaption id="hemcap">Three steps to seal a leak</figcaption>
+      <ol class="sequence">
+        <li class="start"><span class="num">1</span>Vascular spasm (the vessel squeezes shut)</li>
+        <li><span class="num">2</span>Platelet plug (platelets stick to the gap)</li>
+        <li class="end"><span class="num">3</span>Coagulation (a fibrin mesh hardens the clot)</li>
+      </ol>
+    </figure>
+
+    <h3>Blood types (ABO and Rh)</h3>
+    <p>Red cells carry markers called <strong>antigens</strong>. The <strong>ABO</strong> system (A, B, AB, O) and the <strong>Rh</strong> factor (positive or negative) decide your type. Your plasma carries <strong>antibodies</strong> against the antigens you do <em>not</em> have, so the wrong blood triggers a dangerous reaction.</p>
+    <ul class="check tight">
+      <li><strong>Type O negative</strong> is the universal donor (no ABO or Rh antigens to attack).</li>
+      <li><strong>Type AB positive</strong> is the universal recipient (no antibodies to attack donor blood).</li>
+    </ul>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>A <strong>transfusion reaction</strong> happens when mismatched blood is given: antibodies clump and destroy the donor red cells, which can be fatal. Rh matters in pregnancy too, an Rh-negative mother can make antibodies against an Rh-positive baby, which is why Rh is checked and treated. On the clotting side, too little clotting causes bleeding (hemophilia); too much causes dangerous clots (stroke, DVT).</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>List the three steps of hemostasis in order.</li>
+        <li>Which blood type is the universal donor?</li>
+        <li>Why does giving the wrong blood type cause a reaction?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 3 ===== -->
+  <section class="card topic" id="t3" aria-labelledby="t3h">
+    <p class="topic-tag">Topic 3 of 6 &middot; Week 6</p>
+    <div class="topic-head"><span class="topic-num">03</span><h2 id="t3h">Heart Anatomy</h2></div>
+    <p class="lede">The heart is really two pumps side by side: a right pump for the lungs and a left pump for the body.</p>
+
+    <div class="cols">
+      <div class="keyterms">
+        <h4>The four chambers</h4>
+        <dl>
+          <dt>Right atrium</dt><dd>Receives oxygen-poor blood from the body.</dd>
+          <dt>Right ventricle</dt><dd>Pumps it to the lungs.</dd>
+          <dt>Left atrium</dt><dd>Receives oxygen-rich blood from the lungs.</dd>
+          <dt>Left ventricle</dt><dd>Pumps it to the whole body (thickest wall).</dd>
+        </dl>
+      </div>
+      <div>
+        <h3>Valves keep blood moving one way</h3>
+        <ul class="tight">
+          <li><strong>AV valves</strong> (tricuspid on the right, mitral on the left) sit between each atrium and ventricle.</li>
+          <li><strong>Semilunar valves</strong> (pulmonary and aortic) guard the exits to the lungs and body.</li>
+          <li>Valves snapping shut make the "lub-dub" heart sounds.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Two circuits</h3>
+    <ul class="check tight">
+      <li><strong>Pulmonary circuit:</strong> right heart sends blood to the lungs to pick up oxygen.</li>
+      <li><strong>Systemic circuit:</strong> left heart sends oxygen-rich blood to the rest of the body.</li>
+    </ul>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Your heart is two pumps in one. The <strong>right</strong> side sends "used" blood to the lungs for a fresh load of oxygen. The <strong>left</strong> side sends that fresh blood out to your whole body. The <strong>valves</strong> are one-way doors so blood never flows backward, and you hear them close as your heartbeat.</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>The <strong>left ventricle</strong> works hardest, so it has the thickest wall and is most affected when blood pressure is high for years. <strong>Leaky or stiff valves</strong> make abnormal sounds (murmurs) and force the heart to work harder. A <strong>heart attack</strong> happens when the heart's own supply vessels (coronary arteries) get blocked.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>Which chamber pumps blood to the lungs, and which to the body?</li>
+        <li>What is the job of the heart valves?</li>
+        <li>Which circuit carries blood to the lungs?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 4 ===== -->
+  <section class="card topic" id="t4" aria-labelledby="t4h">
+    <p class="topic-tag">Topic 4 of 6 &middot; Week 6</p>
+    <div class="topic-head"><span class="topic-num">04</span><h2 id="t4h">The Cardiac Cycle and Conduction</h2></div>
+    <p class="lede">The heart beats on its own thanks to a built-in electrical system that fires in a set order.</p>
+
+    <p>One heartbeat is the <strong>cardiac cycle</strong>: <strong>systole</strong> (the chambers contract and push blood out) and <strong>diastole</strong> (they relax and fill). The signal to contract starts in the heart itself, no nerve required.</p>
+
+    <figure class="seqfig" aria-labelledby="condcap">
+      <figcaption id="condcap">The heart's electrical pathway</figcaption>
+      <ol class="sequence">
+        <li class="start"><span class="num">1</span>SA node (the pacemaker) fires</li>
+        <li><span class="num">2</span>Atria contract</li>
+        <li><span class="num">3</span>AV node passes it on (brief pause)</li>
+        <li><span class="num">4</span>Bundle branches carry it down</li>
+        <li class="end"><span class="num">5</span>Purkinje fibers fire the ventricles</li>
+      </ol>
+    </figure>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Your heart has its own spark plug, the <strong>SA node</strong>, that fires about 60 to 100 times a minute. The spark spreads in a set path so the top chambers squeeze first, then the bottom chambers, in perfect timing. That is why the heart keeps a steady beat without you telling it to.</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>An <strong>ECG</strong> records this electrical activity; abnormal patterns reveal <strong>arrhythmias</strong> (irregular beats). If the SA node fails or the path is blocked, an artificial <strong>pacemaker</strong> can take over. A heart attack can damage the conduction path and throw the rhythm off.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>What is the difference between systole and diastole?</li>
+        <li>Which structure is the heart's natural pacemaker?</li>
+        <li>Put these in order: AV node, SA node, Purkinje fibers.</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 5 ===== -->
+  <section class="card topic" id="t5" aria-labelledby="t5h">
+    <p class="topic-tag">Topic 5 of 6 &middot; Week 6</p>
+    <div class="topic-head"><span class="topic-num">05</span><h2 id="t5h">Blood Vessels</h2></div>
+    <p class="lede">Three kinds of vessels carry blood out, exchange it, and bring it back.</p>
+
+    <table>
+      <thead><tr><th scope="col">Vessel</th><th scope="col">Direction</th><th scope="col">Built for</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Arteries</th><td>Carry blood away from the heart</td><td>Thick, muscular walls to handle high pressure</td></tr>
+        <tr><th scope="row">Capillaries</th><td>Connect arteries to veins</td><td>Walls one cell thick, for exchange of gases and nutrients</td></tr>
+        <tr><th scope="row">Veins</th><td>Carry blood back to the heart</td><td>Thinner walls and valves to stop backflow at low pressure</td></tr>
+      </tbody>
+    </table>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p><strong>Arteries</strong> are the high-pressure pipes leaving the heart (thick, so they do not burst). <strong>Capillaries</strong> are the tiny, paper-thin pipes where oxygen and food actually pass into your cells. <strong>Veins</strong> are the return pipes; since the pressure is low, they have little one-way doors (valves) to keep blood from sliding backward.</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>All exchange happens in <strong>capillaries</strong>, so that is where oxygen and nutrients reach tissue. When <strong>vein valves</strong> fail, blood pools and you get varicose veins. Hardened, narrowed <strong>arteries</strong> (atherosclerosis) are behind heart attacks and strokes.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>Which vessels carry blood away from the heart?</li>
+        <li>Where does the exchange of gases and nutrients happen?</li>
+        <li>Why do veins need valves?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 6 ===== -->
+  <section class="card topic" id="t6" aria-labelledby="t6h">
+    <p class="topic-tag">Topic 6 of 6 &middot; Week 6</p>
+    <div class="topic-head"><span class="topic-num">06</span><h2 id="t6h">Hemodynamics and Blood Pressure</h2></div>
+    <p class="lede">Blood pressure is the force blood pushes on vessel walls. The body guards it closely.</p>
+
+    <p>Blood pressure is written as <strong>systolic over diastolic</strong> (about <strong>120/80 mmHg</strong>): the top number is the push when the heart contracts, the bottom is the resting pressure between beats. It depends on three things:</p>
+    <ul class="check tight">
+      <li><strong>Cardiac output:</strong> how much blood the heart pumps.</li>
+      <li><strong>Blood volume:</strong> how much blood is in the system.</li>
+      <li><strong>Resistance:</strong> how narrow or wide the vessels are.</li>
+    </ul>
+
+    <div class="highlight">
+      <h4>Tie-in: the baroreflex</h4>
+      <p>Blood pressure is held steady by a <strong>negative feedback loop</strong> (Module 1). <strong>Baroreceptors</strong> in big arteries sense pressure and report to the brainstem, which adjusts heart rate and vessel width to correct it. A patient who stands up and briefly feels dizzy is feeling this loop catch up.</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p><strong>Hypertension</strong> (chronically high blood pressure) quietly damages the heart, vessels, kidneys, and eyes, which is why it is called a silent killer. It is treated by lowering the same three factors: pumping (heart-rate drugs), volume (diuretics), and resistance (vessel-relaxing drugs). A tachycardic, low-pressure patient is showing the baroreflex fighting to keep pressure up.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>What do the top and bottom numbers of a blood pressure mean?</li>
+        <li>Name the three factors that set blood pressure.</li>
+        <li>What do baroreceptors do?</li>
+      </ol>
+    </details>
+  </section>
+
+  </main>
+
+  <footer class="doc-foot">
+    <p>BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Module 6 &middot; Student Reference Notes</p>
+    <p class="byline">Dr. Sharilyn Rennie</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var FRAME_ID = (function(){ try{ return window.frameElement && window.frameElement.id; }catch(e){ return ""; } })() || "bio304-module-06";
+  function sendHeight(){ var h = Math.max(document.documentElement.scrollHeight, document.body ? document.body.scrollHeight : 0); try{ parent.postMessage({ type:"resize", id:FRAME_ID, height:h }, "*"); }catch(e){} }
+  window.addEventListener("load", sendHeight); window.addEventListener("resize", sendHeight);
+  if (window.ResizeObserver){ new ResizeObserver(sendHeight).observe(document.body); }
+  document.addEventListener("toggle", function(e){ if(e.target && e.target.tagName==="DETAILS"){ sendHeight(); } }, true);
+})();
+</script>
+</body>
+</html>

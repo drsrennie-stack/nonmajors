@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Notes &middot; Module 8: Renal, Fluid Balance, and Reproductive Systems</title>
+<meta name="description" content="Student reference notes for BIO 304 Module 8 (Week 8): kidney anatomy and the nephron, urine formation, fluid electrolyte and acid-base balance, the male and female reproductive systems, and the basics of pregnancy.">
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+/* BIO 304 Module 8 · MCAS dark-only palette · Plus Jakarta Sans · print button + book print · byline Dr. Sharilyn Rennie */
+  :root{--navy:#060A18;--rust:#8B3A2E;--rust-hover:#A0452F;--gold:#C9A14A;--cream:#F5F1E8;--dark:#060A18;--white:#FFFFFF;--line:rgba(6,10,24,0.18);--line-soft:rgba(6,10,24,0.10);--rest-shadow:0 1px 3px rgba(6,10,24,0.06);--hover-shadow:0 8px 16px rgba(6,10,24,0.10);--ease:transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:20px;}
+  body{margin:0;background:var(--white);color:var(--navy);font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 max(20px,4vw) 64px;}
+  .site-header{padding:24px 0 6px;}
+  .site-logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none;}
+  .site-logo svg{height:50px;width:auto;display:block;}
+  .logo-title{font-size:22px;font-weight:800;letter-spacing:-0.02em;color:var(--navy);line-height:1;}
+  .logo-title .logo-accent{color:var(--rust);}
+  .logo-sub{font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.72;margin-top:4px;display:block;}
+  .doc-eyebrow{font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.28em;text-transform:uppercase;margin:26px 0 14px;}
+  h1.doc-title{font-size:38px;font-weight:800;color:var(--navy);letter-spacing:-0.025em;line-height:1.08;margin:0 0 12px;}
+  h1.doc-title .accent{color:var(--rust);}
+  .doc-sub{font-size:15px;font-weight:700;color:var(--navy);opacity:.78;letter-spacing:.02em;margin:0 0 6px;}
+  .meta-line{font-size:14px;color:var(--navy);opacity:.84;line-height:1.6;margin:0;max-width:760px;}
+  h2{font-size:25px;font-weight:800;color:var(--navy);letter-spacing:-0.02em;line-height:1.14;margin:0 0 4px;}
+  h3{font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.16em;text-transform:uppercase;margin:20px 0 8px;}
+  p{margin:0 0 9px;}
+  .lede{font-size:16px;color:var(--navy);opacity:.9;margin:0 0 12px;max-width:760px;}
+  strong{font-weight:800;color:var(--navy);}
+  em{font-style:italic;}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:22px 24px;box-shadow:var(--rest-shadow);margin:0 0 18px;}
+  .topic{transition:var(--ease);scroll-margin-top:16px;}
+  .topic:hover{transform:translateY(-2px);box-shadow:var(--hover-shadow);border-color:rgba(6,10,24,0.26);}
+  .topic-tag{font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.62;margin:0 0 4px;}
+  .topic-head{display:flex;align-items:baseline;gap:14px;margin:0 0 4px;}
+  .topic-num{font-size:34px;font-weight:800;color:var(--rust);letter-spacing:-0.02em;line-height:1;flex-shrink:0;}
+  header.doc-head{padding:2px 0;margin:4px 0 24px;}
+  nav.toc{background:var(--white);border:1px solid var(--line);border-radius:10px;box-shadow:var(--rest-shadow);padding:20px 24px;margin:0 0 24px;}
+  nav.toc h2{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin:0 0 10px;}
+  nav.toc ol{margin:0;padding:0;list-style:none;counter-reset:toc;}
+  nav.toc li{counter-increment:toc;font-size:14.5px;padding:9px 0;border-bottom:1px solid var(--line-soft);display:flex;gap:14px;align-items:baseline;}
+  nav.toc li:last-of-type{border-bottom:none;}
+  nav.toc li::before{content:counter(toc,decimal-leading-zero);font-weight:800;color:var(--rust);font-variant-numeric:tabular-nums;font-size:13px;min-width:26px;flex-shrink:0;}
+  nav.toc a{color:var(--navy);text-decoration:none;font-weight:700;letter-spacing:-0.01em;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--rust);text-decoration:underline;text-underline-offset:4px;}
+  .toc-hint{margin-top:12px;font-size:13px;font-style:italic;color:var(--navy);opacity:.72;}
+  .toc-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 10px;}
+  .toc-top h2{margin:0;}
+  .printbtn{font-family:inherit;display:inline-flex;align-items:center;gap:8px;background:var(--rust);color:#FFFFFF;border:none;border-radius:999px;padding:9px 16px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;box-shadow:0 2px 6px rgba(6,10,24,0.16);transition:background .2s ease,box-shadow .2s ease,transform .2s ease;}
+  .printbtn:hover{background:var(--rust-hover);box-shadow:0 6px 14px rgba(6,10,24,0.22);transform:translateY(-1px);}
+  .printbtn:focus-visible{outline:3px solid var(--rust);outline-offset:3px;}
+  .printbtn svg{width:14px;height:14px;}
+  ul{margin:4px 0 11px;padding-left:20px;}
+  li{margin:4px 0;}
+  ul.tight li{margin:2px 0;}
+  ol{margin:4px 0 11px;padding-left:22px;}
+  ul.check{list-style:none;padding-left:2px;}
+  ul.check li{padding-left:24px;position:relative;}
+  ul.check li::before{content:"";position:absolute;left:2px;top:8px;width:9px;height:9px;border-radius:2px;background:var(--rust);}
+  table{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:13.5px;}
+  caption{font-size:10.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);text-align:left;font-weight:700;padding:0 0 7px;}
+  th,td{padding:8px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);}
+  thead th{background:var(--cream);color:var(--navy);font-weight:800;font-size:12.5px;letter-spacing:.01em;}
+  tbody th{background:rgba(245,241,232,0.5);color:var(--navy);font-weight:800;width:22%;}
+  tbody tr:last-child td,tbody tr:last-child th{border-bottom:1px solid var(--line);}
+  .cols{column-count:2;column-gap:30px;}
+  .cols > *{break-inside:avoid;}
+  @media(max-width:780px){.cols{column-count:1;}}
+  .highlight{border:1px solid var(--gold);background:var(--cream);border-radius:8px;padding:14px 17px;margin:14px 0;}
+  .highlight h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);margin:0 0 6px;}
+  .highlight p{margin:0 0 6px;font-size:14px;}
+  .highlight p:last-child{margin:0;}
+  .eli10{border:1px solid var(--line);border-radius:8px;padding:13px 16px;margin:13px 0;background:var(--white);}
+  .eli10 h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--rust);margin:0 0 6px;}
+  .eli10 h4::before{content:"\1F4A1  ";}
+  .eli10 p{margin:0 0 6px;font-size:14.5px;}
+  .eli10 p:last-child{margin:0;}
+  .keyterms{border:1px solid var(--line);border-radius:8px;padding:13px 16px;margin:12px 0;background:var(--white);}
+  .keyterms h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);margin:0 0 8px;}
+  .keyterms dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;font-size:13.5px;}
+  .keyterms dt{font-weight:800;color:var(--navy);}
+  .keyterms dd{margin:0;}
+  @media(max-width:560px){.keyterms dl{grid-template-columns:1fr;}.keyterms dd{margin:0 0 6px;}}
+  .clinical{background:var(--dark);border-radius:8px;padding:16px 19px;margin:14px 0;}
+  .clinical h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin:0 0 7px;}
+  .clinical p{margin:0 0 7px;font-size:14px;color:var(--cream);opacity:.94;line-height:1.6;}
+  .clinical p:last-child{margin:0;}
+  .clinical strong{color:var(--white);}
+  details.selfcheck{background:var(--cream);border:1px solid rgba(201,161,74,0.55);border-radius:8px;padding:0 16px;margin:14px 0 2px;}
+  details.selfcheck summary{cursor:pointer;padding:12px 0;font-weight:800;color:var(--navy);font-size:13.5px;list-style:none;letter-spacing:.01em;}
+  details.selfcheck summary::-webkit-details-marker{display:none;}
+  details.selfcheck summary::before{content:"\25B8  ";color:var(--rust);}
+  details.selfcheck[open] summary::before{content:"\25BE  ";}
+  details.selfcheck ol{margin:0 0 14px;padding-left:24px;font-size:13.5px;}
+  details.selfcheck li{margin:5px 0;}
+  figure{margin:10px 0 14px;}
+  figure figcaption{font-size:12px;color:var(--rust);margin-top:6px;font-weight:600;}
+  .seqfig figcaption{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--rust);margin:0 0 8px;}
+  ol.sequence{list-style:none;display:flex;flex-wrap:wrap;align-items:stretch;gap:8px 4px;padding:0;margin:0;}
+  ol.sequence li{background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:8px 12px;font-size:12.5px;font-weight:700;color:var(--dark);display:flex;align-items:center;line-height:1.3;}
+  ol.sequence li::after{content:"\2192";margin-left:8px;color:var(--rust);font-weight:800;font-size:15px;}
+  ol.sequence li:last-child::after{content:none;}
+  ol.sequence li.start{background:var(--white);border-color:var(--rust);}
+  ol.sequence li.end{background:var(--rust);border-color:var(--rust);color:var(--white);}
+  ol.sequence li .num{display:inline-flex;justify-content:center;align-items:center;width:18px;height:18px;border-radius:50%;background:var(--rust);color:var(--white);font-size:10px;font-weight:800;margin-right:8px;flex-shrink:0;}
+  ol.sequence li.end .num{background:var(--white);color:var(--rust);}
+  ul.tree, ul.tree ul{list-style:none;}
+  ul.tree{margin:6px 0 12px;padding:0;font-size:13.5px;}
+  ul.tree > li{padding:5px 0;}
+  ul.tree .root{font-weight:800;color:var(--rust);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;}
+  ul.tree .label{font-weight:800;color:var(--navy);}
+  ul.tree .detail{opacity:.85;}
+  ul.tree ul{margin:3px 0 4px 7px;padding-left:16px;border-left:2px solid var(--line);}
+  ul.tree ul li{position:relative;padding:3px 0;}
+  ul.tree ul li::before{content:"";position:absolute;left:-16px;top:12px;width:12px;height:2px;background:var(--line);}
+  a{color:var(--rust);}
+  a:focus-visible,summary:focus-visible{outline:3px solid var(--rust);outline-offset:3px;border-radius:4px;}
+  .skip{position:absolute;top:-100px;left:8px;background:var(--navy);color:var(--cream);padding:12px 20px;text-decoration:none;font-size:13px;font-weight:700;border-radius:4px;z-index:9999;letter-spacing:.04em;}
+  .skip:focus{top:8px;}
+  footer.doc-foot{margin-top:30px;background:var(--dark);border-radius:8px;padding:24px 26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer.doc-foot p{margin:0;font-size:12.5px;color:var(--cream);opacity:.86;line-height:1.6;}
+  footer.doc-foot .byline{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;opacity:1;}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;}.topic:hover{transform:none;}}
+  @media print{
+    @page{margin:16mm;}
+    body{font-size:10.5pt;}
+    .wrap{max-width:none;padding:0;}
+    .skip,.toc-hint,.printbtn{display:none!important;}
+    .site-header{padding:0 0 8px;}
+    nav.toc{break-after:page;border:none;box-shadow:none;padding:0;}
+    .card{box-shadow:none;border:none;padding:0;margin:0 0 8px;}
+    .topic{page-break-before:always;}
+    table,figure,.clinical,.highlight,.eli10,.keyterms,details.selfcheck,ol.sequence,ul.tree,li,img,svg,tr{break-inside:avoid;}
+    thead{display:table-header-group;}
+    tfoot{display:table-footer-group;}
+    h2,h3,h4{break-after:avoid;}
+    p{orphans:3;widows:3;}
+    details.selfcheck[open] ol,details.selfcheck ol{display:block!important;}
+    a{color:var(--navy);text-decoration:none;}
+    thead th,tbody th,.clinical,.highlight,.eli10,details.selfcheck,footer.doc-foot{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .clinical p{color:#F5F1E8;}
+    .topic:hover{transform:none;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to notes</a>
+<div class="wrap">
+
+  <header class="site-header">
+    <a class="site-logo" href="index.html" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#060A18"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#060A18"/></g>
+          <g transform="translate(100, 0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
+          <g transform="translate(140, 0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+        </g>
+      </svg>
+      <span class="logo-text"><span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span><span class="logo-sub">BIO 304 &middot; American River College</span></span>
+    </a>
+  </header>
+
+  <header class="doc-head">
+    <p class="doc-eyebrow">BIO 304 &middot; Week 8 &middot; Module 8</p>
+    <h1 class="doc-title">Renal, Fluid Balance, and <span class="accent">Reproductive</span></h1>
+    <p class="doc-sub">Student Reference Notes &middot; Built to look things up</p>
+    <p class="meta-line">Six topics: kidney anatomy and the nephron; urine formation; fluid, electrolyte, and acid-base balance; the male reproductive system; the female reproductive system; and the basics of pregnancy.</p>
+  </header>
+
+  <nav class="toc" aria-label="Topics in this module">
+    <div class="toc-top">
+      <h2>On this page</h2>
+      <button type="button" class="printbtn" onclick="window.print()" aria-label="Print these notes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print notes
+      </button>
+    </div>
+    <ol>
+      <li><a href="#t1" target="_top">Kidney Anatomy and the Nephron</a></li>
+      <li><a href="#t2" target="_top">Urine Formation</a></li>
+      <li><a href="#t3" target="_top">Fluid, Electrolyte, and Acid-Base Balance</a></li>
+      <li><a href="#t4" target="_top">The Male Reproductive System</a></li>
+      <li><a href="#t5" target="_top">The Female Reproductive System</a></li>
+      <li><a href="#t6" target="_top">The Basics of Pregnancy</a></li>
+    </ol>
+    <p class="toc-hint">Built to print. Click "Print notes" (or Ctrl/Cmd+P) for a clean, book-style handout; each topic starts on its own page.</p>
+  </nav>
+
+  <main id="main">
+
+  <!-- ===== TOPIC 1 ===== -->
+  <section class="card topic" id="t1" aria-labelledby="t1h">
+    <p class="topic-tag">Topic 1 of 6 &middot; Week 8</p>
+    <div class="topic-head"><span class="topic-num">01</span><h2 id="t1h">Kidney Anatomy and the Nephron</h2></div>
+    <p class="lede">The kidneys are the body's filters. They clean the blood and fine-tune water, salts, and pH.</p>
+
+    <table>
+      <caption>What the kidneys do</caption>
+      <thead><tr><th scope="col">Job</th><th scope="col">Why it matters</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Filter blood</th><td>Remove wastes (like urea) and make urine</td></tr>
+        <tr><th scope="row">Balance water and electrolytes</th><td>Keep sodium, potassium, and fluid in range</td></tr>
+        <tr><th scope="row">Control pH</th><td>Adjust acid and bicarbonate to hold blood pH steady</td></tr>
+        <tr><th scope="row">Help blood pressure</th><td>Adjust fluid volume and release renin</td></tr>
+        <tr><th scope="row">Support red cells and bone</th><td>Release EPO (signals red-cell production) and activate vitamin D</td></tr>
+      </tbody>
+    </table>
+
+    <p>Urine drains from the kidney into the <strong>ureter</strong>, is stored in the <strong>bladder</strong>, and leaves through the <strong>urethra</strong>. The working unit inside each kidney is the <strong>nephron</strong> (about a million per kidney): a tiny filter (the <strong>glomerulus</strong>) attached to a long winding <strong>tubule</strong>.</p>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Your kidneys are like coffee filters for your blood. They let water and small wastes drip through, then carefully take back the good stuff your body still needs. Each kidney has about a million tiny filters (nephrons) doing this all day, every day.</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>When kidneys fail, wastes and fluid build up and electrolytes go haywire, so a machine (<strong>dialysis</strong>) has to filter the blood instead. Because the kidneys also make <strong>EPO</strong>, kidney failure often causes <strong>anemia</strong>, and because they activate vitamin D, it weakens bone too.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>Name three jobs of the kidneys.</li>
+        <li>Trace urine from kidney to outside the body.</li>
+        <li>What is the working unit of the kidney called?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 2 ===== -->
+  <section class="card topic" id="t2" aria-labelledby="t2h">
+    <p class="topic-tag">Topic 2 of 6 &middot; Week 8</p>
+    <div class="topic-head"><span class="topic-num">02</span><h2 id="t2h">Urine Formation</h2></div>
+    <p class="lede">The nephron makes urine in three steps: filter everything, take back what you need, and add a little extra waste.</p>
+
+    <figure class="seqfig" aria-labelledby="urinecap">
+      <figcaption id="urinecap">How the nephron makes urine</figcaption>
+      <ol class="sequence">
+        <li class="start"><span class="num">1</span>Filtration (blood pressure pushes fluid into the tubule)</li>
+        <li><span class="num">2</span>Reabsorption (water, glucose, and ions return to the blood)</li>
+        <li><span class="num">3</span>Secretion (extra wastes and acid are added to the tubule)</li>
+        <li class="end"><span class="num">4</span>Excretion (what is left leaves as urine)</li>
+      </ol>
+    </figure>
+
+    <table>
+      <caption>What stays vs. what goes</caption>
+      <thead><tr><th scope="col">Kept (reabsorbed)</th><th scope="col">Removed (in urine)</th></tr></thead>
+      <tbody>
+        <tr><td>Most water, glucose, amino acids, useful ions</td><td>Urea and other wastes, excess water, excess ions, drugs</td></tr>
+      </tbody>
+    </table>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Think of it like cleaning out a junk drawer by dumping everything on the table. First you dump it all out (filtration), then you put back the things you want to keep (reabsorption), and toss a bit of extra trash on the pile (secretion). Whatever is left on the table gets thrown away as urine.</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>Urine tests are a window into the body. <strong>Glucose in urine</strong> can signal diabetes (the filter is overwhelmed). <strong>Protein or blood in urine</strong> suggests the filter is damaged. And because the kidney secretes drugs, doctors adjust <strong>medication doses</strong> when kidneys are weak so drugs do not build up.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>List the three steps that make urine, plus excretion.</li>
+        <li>Name two things normally reabsorbed back into the blood.</li>
+        <li>Why might glucose in the urine be a warning sign?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 3 ===== -->
+  <section class="card topic" id="t3" aria-labelledby="t3h">
+    <p class="topic-tag">Topic 3 of 6 &middot; Week 8</p>
+    <div class="topic-head"><span class="topic-num">03</span><h2 id="t3h">Fluid, Electrolyte, and Acid-Base Balance</h2></div>
+    <p class="lede">The kidneys, lungs, and hormones work together to keep your water, salts, and pH in a narrow safe range.</p>
+
+    <div class="cols">
+      <div>
+        <h3>Water and electrolytes</h3>
+        <ul class="tight">
+          <li><strong>ADH</strong> tells the kidney to keep water (concentrating urine) when you are dry.</li>
+          <li><strong>Aldosterone</strong> tells it to keep sodium (and water follows).</li>
+          <li><strong>Thirst</strong> drives you to drink. These all defend blood volume and pressure.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Acid-base (pH 7.35 to 7.45)</h3>
+        <ul class="tight">
+          <li><strong>Lungs</strong> adjust fast by breathing off CO&#8322;.</li>
+          <li><strong>Kidneys</strong> adjust slowly with bicarbonate and H&#8314;.</li>
+          <li>Together they hold blood pH steady (the buffer idea from the chemistry reference).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <h4>Tie-in: this is homeostasis in action</h4>
+      <p>Every part of this topic is a <strong>negative feedback loop</strong> from Module 1. Too little water, ADH brings it back. Too much acid, lungs and kidneys remove it. The body is constantly nudging these values back toward their set points.</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p><strong>Dehydration</strong> drops blood volume and pressure; severe cases need IV fluids (the tonicity from Module 2 again). Abnormal <strong>potassium</strong> can stop the heart, which is why it is watched closely. And <strong>acidosis</strong> or <strong>alkalosis</strong> (often from lung or kidney problems) can become emergencies because enzymes only work in a narrow pH window.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>Which hormone makes the kidney keep water?</li>
+        <li>Name the two organs that control blood pH, and which is faster.</li>
+        <li>What is the normal range for blood pH?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 4 ===== -->
+  <section class="card topic" id="t4" aria-labelledby="t4h">
+    <p class="topic-tag">Topic 4 of 6 &middot; Week 8</p>
+    <div class="topic-head"><span class="topic-num">04</span><h2 id="t4h">The Male Reproductive System</h2></div>
+    <p class="lede">The male system makes sperm and the hormone testosterone, and delivers sperm.</p>
+
+    <table>
+      <caption>Main parts and jobs</caption>
+      <thead><tr><th scope="col">Part</th><th scope="col">Job</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Testes</th><td>Make sperm and testosterone</td></tr>
+        <tr><th scope="row">Epididymis</th><td>Stores sperm and lets them mature</td></tr>
+        <tr><th scope="row">Vas deferens</th><td>Carries sperm toward the urethra</td></tr>
+        <tr><th scope="row">Accessory glands</th><td>Seminal vesicles and prostate add fluid to make semen</td></tr>
+        <tr><th scope="row">Penis / urethra</th><td>Delivers semen out of the body</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Testosterone</strong> drives sperm production and male characteristics (muscle, deeper voice, body hair), and its release is controlled by feedback from the brain's pituitary gland (Module 5).</p>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>The <strong>prostate</strong> often enlarges with age and can squeeze the urethra, making urination difficult; it is also a common site of cancer. Because sperm and urine share the urethra, infections can affect both, and the testes' need for a cooler temperature is why they sit outside the body.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>What two things do the testes make?</li>
+        <li>Trace the path of sperm from the testis toward the urethra.</li>
+        <li>What does testosterone do?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 5 ===== -->
+  <section class="card topic" id="t5" aria-labelledby="t5h">
+    <p class="topic-tag">Topic 5 of 6 &middot; Week 8</p>
+    <div class="topic-head"><span class="topic-num">05</span><h2 id="t5h">The Female Reproductive System</h2></div>
+    <p class="lede">The female system makes eggs and hormones, and provides the place where a baby can develop.</p>
+
+    <table>
+      <caption>Main parts and jobs</caption>
+      <thead><tr><th scope="col">Part</th><th scope="col">Job</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Ovaries</th><td>Make eggs and the hormones estrogen and progesterone</td></tr>
+        <tr><th scope="row">Uterine (fallopian) tubes</th><td>Carry the egg; usually where fertilization happens</td></tr>
+        <tr><th scope="row">Uterus</th><td>Where a fertilized egg implants and a baby grows</td></tr>
+        <tr><th scope="row">Vagina</th><td>Birth canal and passage to the uterus</td></tr>
+      </tbody>
+    </table>
+
+    <p>The <strong>menstrual cycle</strong> (about 28 days) prepares the body for possible pregnancy. <strong>FSH and LH</strong> from the pituitary ripen an egg and trigger <strong>ovulation</strong> (release of the egg), while <strong>estrogen and progesterone</strong> build up the uterine lining. If no pregnancy occurs, the lining sheds as a period and the cycle restarts, a feedback system from Module 5.</p>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Each month the body gets ready in case a baby is coming: it ripens an egg and thickens a cozy lining in the uterus. If the egg is not fertilized, the body clears the lining out (a period) and starts fresh next month. Hormones are the timers that run the whole schedule.</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>Hormone shifts explain a lot of clinical care: <strong>menopause</strong> is when the cycle ends and estrogen falls (affecting bone, as you saw with osteoporosis). Cycle problems can signal hormone or thyroid issues. And the uterine tubes being the usual site of fertilization is why a blockage there causes a dangerous <strong>ectopic pregnancy</strong>.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>What two things do the ovaries make?</li>
+        <li>Where does fertilization usually happen, and where does the baby grow?</li>
+        <li>What is ovulation?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 6 ===== -->
+  <section class="card topic" id="t6" aria-labelledby="t6h">
+    <p class="topic-tag">Topic 6 of 6 &middot; Week 8</p>
+    <div class="topic-head"><span class="topic-num">06</span><h2 id="t6h">The Basics of Pregnancy</h2></div>
+    <p class="lede">Pregnancy begins when a sperm and egg join, and ends with birth, a rare example of positive feedback.</p>
+
+    <figure class="seqfig" aria-labelledby="pregcap">
+      <figcaption id="pregcap">From fertilization to a fetus</figcaption>
+      <ol class="sequence">
+        <li class="start"><span class="num">1</span>Fertilization (sperm + egg = zygote)</li>
+        <li><span class="num">2</span>The zygote divides as it travels</li>
+        <li><span class="num">3</span>Implantation in the uterus</li>
+        <li><span class="num">4</span>Placenta forms (exchange with mother)</li>
+        <li class="end"><span class="num">5</span>Embryo, then fetus, develops</li>
+      </ol>
+    </figure>
+
+    <p>The <strong>placenta</strong> is the exchange organ: the baby gets oxygen and nutrients and gives back waste, all without the two bloodstreams fully mixing. Development goes <strong>zygote &rarr; embryo</strong> (organs form) <strong>&rarr; fetus</strong> (grows and matures).</p>
+
+    <div class="highlight">
+      <h4>Tie-in: birth is positive feedback</h4>
+      <p>Labor is one of the body's few <strong>positive feedback</strong> loops (Module 1). The baby's head stretches the cervix, which triggers <strong>oxytocin</strong>, which causes stronger contractions, which stretch the cervix more, building until the baby is delivered and the loop shuts off.</p>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>The <strong>placenta</strong> passes many things to the baby, including alcohol, nicotine, and some medications, which is why these are avoided in pregnancy. Conditions like <strong>preeclampsia</strong> (dangerously high blood pressure) and <strong>gestational diabetes</strong> connect pregnancy back to the cardiovascular and endocrine systems you have studied all term.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>What is formed when a sperm and egg join?</li>
+        <li>What does the placenta do?</li>
+        <li>Why is birth an example of positive feedback?</li>
+      </ol>
+    </details>
+  </section>
+
+  </main>
+
+  <footer class="doc-foot">
+    <p>BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Module 8 &middot; Student Reference Notes</p>
+    <p class="byline">Dr. Sharilyn Rennie</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var FRAME_ID = (function(){ try{ return window.frameElement && window.frameElement.id; }catch(e){ return ""; } })() || "bio304-module-08";
+  function sendHeight(){ var h = Math.max(document.documentElement.scrollHeight, document.body ? document.body.scrollHeight : 0); try{ parent.postMessage({ type:"resize", id:FRAME_ID, height:h }, "*"); }catch(e){} }
+  window.addEventListener("load", sendHeight); window.addEventListener("resize", sendHeight);
+  if (window.ResizeObserver){ new ResizeObserver(sendHeight).observe(document.body); }
+  document.addEventListener("toggle", function(e){ if(e.target && e.target.tagName==="DETAILS"){ sendHeight(); } }, true);
+})();
+</script>
+</body>
+</html>
