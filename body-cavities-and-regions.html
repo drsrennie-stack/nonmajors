@@ -1482,8 +1482,8 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       Open spaced recall <span class="arrow" aria-hidden="true">&rarr;</span>
     </a>
   </div>
-  <div class="video-panel" id="video-panel" hidden>
-    <iframe id="video-iframe" src="about:blank" title="Topic video" loading="lazy"
+  <div class="video-panel" id="video-panel">
+    <iframe id="video-iframe" src="https://www.youtube.com/embed/ytvHaXYEqHc?rel=0" title="Body Cavities and Regions video" loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
   </div>
@@ -1774,7 +1774,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   // 'prework' : URL into the spaced-repetition pre-work for this topic
   // ----------------------------------------------------------------
   window.SHEET_CONFIG = {
-    video:   'https://www.youtube.com/embed/REPLACE_WITH_BODY_CAVITIES_VIDEO_ID',
+    video:   'https://www.youtube.com/embed/ytvHaXYEqHc?rel=0',
     prework: 'bio304-spaced-recall-prototype.html',
   };
 
@@ -2489,5 +2489,11 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 })();
 </script>
 
+
+<style id="mcas-foot-fix">
+.sheet .foot{flex-wrap:wrap;gap:6px 24px;width:100%;align-items:baseline;}
+.sheet .foot span{white-space:nowrap;}
+@media (max-width:560px){.sheet .foot{flex-direction:column;align-items:flex-start;gap:3px;}.sheet .foot span{white-space:normal;}}
+</style>
 </body>
 </html>
