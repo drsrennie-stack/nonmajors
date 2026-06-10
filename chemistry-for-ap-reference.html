@@ -74,6 +74,12 @@
   nav.toc a{color:var(--navy);text-decoration:none;font-weight:700;letter-spacing:-0.01em;}
   nav.toc a:hover,nav.toc a:focus-visible{color:var(--rust);text-decoration:underline;text-underline-offset:4px;}
   .toc-hint{margin-top:12px;font-size:13px;font-style:italic;color:var(--navy);opacity:.72;}
+  .toc-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 10px;}
+  .toc-top h2{margin:0;}
+  .printbtn{font-family:inherit;display:inline-flex;align-items:center;gap:8px;background:var(--rust);color:#FFFFFF;border:none;border-radius:999px;padding:9px 16px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;box-shadow:0 2px 6px rgba(6,10,24,0.16);transition:background .2s ease,box-shadow .2s ease,transform .2s ease;}
+  .printbtn:hover{background:var(--rust-hover);box-shadow:0 6px 14px rgba(6,10,24,0.22);transform:translateY(-1px);}
+  .printbtn:focus-visible{outline:3px solid var(--rust);outline-offset:3px;}
+  .printbtn svg{width:14px;height:14px;}
 
   ul{margin:4px 0 11px;padding-left:20px;}
   li{margin:4px 0;}
@@ -143,14 +149,19 @@
     .topic:hover{transform:none;}
   }
   @media print{
-    @page{margin:14mm;}
+    @page{margin:16mm;}
     body{font-size:10.5pt;}
     .wrap{max-width:none;padding:0;}
-    .skip,.toc-hint{display:none;}
+    .skip,.toc-hint,.printbtn{display:none!important;}
     .site-header{padding:0 0 8px;}
-    .card{box-shadow:none;border:1px solid #bbb;break-inside:avoid;}
+    nav.toc{break-after:page;border:none;box-shadow:none;padding:0;}
+    .card{box-shadow:none;border:none;padding:0;margin:0 0 8px;}
     .topic{page-break-before:always;}
-    .topic:first-of-type{page-break-before:avoid;}
+    table,figure,.context,.highlight,.eli10,.keyterms,ol.sequence,li,img,svg,tr{break-inside:avoid;}
+    thead{display:table-header-group;}
+    tfoot{display:table-footer-group;}
+    h2,h3,h4{break-after:avoid;}
+    p{orphans:3;widows:3;}
     a{color:var(--navy);text-decoration:none;}
     thead th,tbody th,.context,.highlight,.eli10,footer.doc-foot{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
     .context p{color:#F5F1E8;}
@@ -195,7 +206,13 @@
   </header>
 
   <nav class="toc" aria-label="Sections on this page">
-    <h2>On this page</h2>
+    <div class="toc-top">
+      <h2>On this page</h2>
+      <button type="button" class="printbtn" onclick="window.print()" aria-label="Print this reference">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print reference
+      </button>
+    </div>
     <ol>
       <li><a href="#t1" target="_top">Atoms, Ions, and Electrolytes</a></li>
       <li><a href="#t2" target="_top">Chemical Bonds</a></li>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Notes &middot; Module 2: Tissues and the Integumentary System</title>
+<meta name="description" content="Student reference notes for BIO 304 Module 2 (Week 2): epithelial tissue, connective tissue, muscle and nervous tissue, tissue membranes, tissue repair, skin layers, and accessory structures.">
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+/*
+  ============================================================
+  BIO 304 STUDENT NOTES  ·  Module 2: Tissues & Integument
+  MCAS palette (dark only): Dark #060A18  Rust #8B3A2E  Gold #C9A14A  Cream #F5F1E8  White
+  Font: Plus Jakarta Sans Variable. No bookend borders. Print button + book-style print.
+  Byline: Dr. Sharilyn Rennie.
+  ============================================================
+*/
+  :root{
+    --navy:#060A18;--rust:#8B3A2E;--rust-hover:#A0452F;--gold:#C9A14A;--cream:#F5F1E8;--dark:#060A18;--white:#FFFFFF;
+    --line:rgba(6,10,24,0.18);--line-soft:rgba(6,10,24,0.10);
+    --rest-shadow:0 1px 3px rgba(6,10,24,0.06);--hover-shadow:0 8px 16px rgba(6,10,24,0.10);
+    --ease:transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:20px;}
+  body{margin:0;background:var(--white);color:var(--navy);font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 max(20px,4vw) 64px;}
+  .site-header{padding:24px 0 6px;}
+  .site-logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none;}
+  .site-logo svg{height:50px;width:auto;display:block;}
+  .logo-title{font-size:22px;font-weight:800;letter-spacing:-0.02em;color:var(--navy);line-height:1;}
+  .logo-title .logo-accent{color:var(--rust);}
+  .logo-sub{font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.72;margin-top:4px;display:block;}
+  .doc-eyebrow{font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.28em;text-transform:uppercase;margin:26px 0 14px;}
+  h1.doc-title{font-size:38px;font-weight:800;color:var(--navy);letter-spacing:-0.025em;line-height:1.08;margin:0 0 12px;}
+  h1.doc-title .accent{color:var(--rust);}
+  .doc-sub{font-size:15px;font-weight:700;color:var(--navy);opacity:.78;letter-spacing:.02em;margin:0 0 6px;}
+  .meta-line{font-size:14px;color:var(--navy);opacity:.84;line-height:1.6;margin:0;max-width:760px;}
+  h2{font-size:25px;font-weight:800;color:var(--navy);letter-spacing:-0.02em;line-height:1.14;margin:0 0 4px;}
+  h3{font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.16em;text-transform:uppercase;margin:20px 0 8px;}
+  p{margin:0 0 9px;}
+  .lede{font-size:16px;color:var(--navy);opacity:.9;margin:0 0 12px;max-width:760px;}
+  strong{font-weight:800;color:var(--navy);}
+  em{font-style:italic;}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:22px 24px;box-shadow:var(--rest-shadow);margin:0 0 18px;}
+  .topic{transition:var(--ease);scroll-margin-top:16px;}
+  .topic:hover{transform:translateY(-2px);box-shadow:var(--hover-shadow);border-color:rgba(6,10,24,0.26);}
+  .topic-tag{font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.62;margin:0 0 4px;}
+  .topic-head{display:flex;align-items:baseline;gap:14px;margin:0 0 4px;}
+  .topic-num{font-size:34px;font-weight:800;color:var(--rust);letter-spacing:-0.02em;line-height:1;flex-shrink:0;}
+  header.doc-head{padding:2px 0;margin:4px 0 24px;}
+  nav.toc{background:var(--white);border:1px solid var(--line);border-radius:10px;box-shadow:var(--rest-shadow);padding:20px 24px;margin:0 0 24px;}
+  nav.toc h2{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin:0 0 10px;}
+  nav.toc ol{margin:0;padding:0;list-style:none;counter-reset:toc;}
+  nav.toc li{counter-increment:toc;font-size:14.5px;padding:9px 0;border-bottom:1px solid var(--line-soft);display:flex;gap:14px;align-items:baseline;}
+  nav.toc li:last-of-type{border-bottom:none;}
+  nav.toc li::before{content:counter(toc,decimal-leading-zero);font-weight:800;color:var(--rust);font-variant-numeric:tabular-nums;font-size:13px;min-width:26px;flex-shrink:0;}
+  nav.toc a{color:var(--navy);text-decoration:none;font-weight:700;letter-spacing:-0.01em;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--rust);text-decoration:underline;text-underline-offset:4px;}
+  .toc-hint{margin-top:12px;font-size:13px;font-style:italic;color:var(--navy);opacity:.72;}
+  .toc-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 10px;}
+  .toc-top h2{margin:0;}
+  .printbtn{font-family:inherit;display:inline-flex;align-items:center;gap:8px;background:var(--rust);color:#FFFFFF;border:none;border-radius:999px;padding:9px 16px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;box-shadow:0 2px 6px rgba(6,10,24,0.16);transition:background .2s ease,box-shadow .2s ease,transform .2s ease;}
+  .printbtn:hover{background:var(--rust-hover);box-shadow:0 6px 14px rgba(6,10,24,0.22);transform:translateY(-1px);}
+  .printbtn:focus-visible{outline:3px solid var(--rust);outline-offset:3px;}
+  .printbtn svg{width:14px;height:14px;}
+  ul{margin:4px 0 11px;padding-left:20px;}
+  li{margin:4px 0;}
+  ul.tight li{margin:2px 0;}
+  ol{margin:4px 0 11px;padding-left:22px;}
+  ul.check{list-style:none;padding-left:2px;}
+  ul.check li{padding-left:24px;position:relative;}
+  ul.check li::before{content:"";position:absolute;left:2px;top:8px;width:9px;height:9px;border-radius:2px;background:var(--rust);}
+  table{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:13.5px;}
+  caption{font-size:10.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);text-align:left;font-weight:700;padding:0 0 7px;}
+  th,td{padding:8px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);}
+  thead th{background:var(--cream);color:var(--navy);font-weight:800;font-size:12.5px;letter-spacing:.01em;}
+  tbody th{background:rgba(245,241,232,0.5);color:var(--navy);font-weight:800;width:22%;}
+  tbody tr:last-child td,tbody tr:last-child th{border-bottom:1px solid var(--line);}
+  .cols{column-count:2;column-gap:30px;}
+  .cols > *{break-inside:avoid;}
+  @media(max-width:780px){.cols{column-count:1;}}
+  .highlight{border:1px solid var(--gold);background:var(--cream);border-radius:8px;padding:14px 17px;margin:14px 0;}
+  .highlight h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);margin:0 0 6px;}
+  .highlight p{margin:0 0 6px;font-size:14px;}
+  .highlight p:last-child{margin:0;}
+  .eli10{border:1px solid var(--line);border-radius:8px;padding:13px 16px;margin:13px 0;background:var(--white);}
+  .eli10 h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--rust);margin:0 0 6px;}
+  .eli10 h4::before{content:"\1F4A1  ";}
+  .eli10 p{margin:0 0 6px;font-size:14.5px;}
+  .eli10 p:last-child{margin:0;}
+  .keyterms{border:1px solid var(--line);border-radius:8px;padding:13px 16px;margin:12px 0;background:var(--white);}
+  .keyterms h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);margin:0 0 8px;}
+  .keyterms dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;font-size:13.5px;}
+  .keyterms dt{font-weight:800;color:var(--navy);}
+  .keyterms dd{margin:0;}
+  @media(max-width:560px){.keyterms dl{grid-template-columns:1fr;}.keyterms dd{margin:0 0 6px;}}
+  .clinical{background:var(--dark);border-radius:8px;padding:16px 19px;margin:14px 0;}
+  .clinical h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin:0 0 7px;}
+  .clinical p{margin:0 0 7px;font-size:14px;color:var(--cream);opacity:.94;line-height:1.6;}
+  .clinical p:last-child{margin:0;}
+  .clinical strong{color:var(--white);}
+  details.selfcheck{background:var(--cream);border:1px solid rgba(201,161,74,0.55);border-radius:8px;padding:0 16px;margin:14px 0 2px;}
+  details.selfcheck summary{cursor:pointer;padding:12px 0;font-weight:800;color:var(--navy);font-size:13.5px;list-style:none;letter-spacing:.01em;}
+  details.selfcheck summary::-webkit-details-marker{display:none;}
+  details.selfcheck summary::before{content:"\25B8  ";color:var(--rust);}
+  details.selfcheck[open] summary::before{content:"\25BE  ";}
+  details.selfcheck ol{margin:0 0 14px;padding-left:24px;font-size:13.5px;}
+  details.selfcheck li{margin:5px 0;}
+  figure{margin:10px 0 14px;}
+  figure figcaption{font-size:12px;color:var(--rust);margin-top:6px;font-weight:600;}
+  /* Classification tree (mind map) */
+  ul.tree, ul.tree ul{list-style:none;}
+  ul.tree{margin:6px 0 12px;padding:0;font-size:13.5px;}
+  ul.tree > li{padding:5px 0;}
+  ul.tree .root{font-weight:800;color:var(--rust);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;}
+  ul.tree .label{font-weight:800;color:var(--navy);}
+  ul.tree .detail{opacity:.85;}
+  ul.tree ul{margin:3px 0 4px 7px;padding-left:16px;border-left:2px solid var(--line);}
+  ul.tree ul li{position:relative;padding:3px 0;}
+  ul.tree ul li::before{content:"";position:absolute;left:-16px;top:12px;width:12px;height:2px;background:var(--line);}
+  /* Naming key (algorithm) */
+  .namekey{display:flex;flex-direction:column;gap:10px;margin:12px 0;}
+  .namekey .step{background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:11px 14px;}
+  .namekey .q{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--rust);margin:0 0 8px;}
+  .namekey .opts{display:flex;flex-wrap:wrap;gap:8px;}
+  .namekey .opt{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:7px 11px;font-size:12.5px;font-weight:800;color:var(--navy);line-height:1.25;}
+  .namekey .opt small{display:block;font-weight:500;opacity:.8;font-size:11px;margin-top:2px;}
+  .namekey .result{font-size:13px;margin:2px 0 0;}
+  a{color:var(--rust);}
+  a:focus-visible,summary:focus-visible{outline:3px solid var(--rust);outline-offset:3px;border-radius:4px;}
+  .skip{position:absolute;top:-100px;left:8px;background:var(--navy);color:var(--cream);padding:12px 20px;text-decoration:none;font-size:13px;font-weight:700;border-radius:4px;z-index:9999;letter-spacing:.04em;}
+  .skip:focus{top:8px;}
+  footer.doc-foot{margin-top:30px;background:var(--dark);border-radius:8px;padding:24px 26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer.doc-foot p{margin:0;font-size:12.5px;color:var(--cream);opacity:.86;line-height:1.6;}
+  footer.doc-foot .byline{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;opacity:1;}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;}.topic:hover{transform:none;}}
+  @media print{
+    @page{margin:16mm;}
+    body{font-size:10.5pt;}
+    .wrap{max-width:none;padding:0;}
+    .skip,.toc-hint,.printbtn{display:none!important;}
+    .site-header{padding:0 0 8px;}
+    nav.toc{break-after:page;border:none;box-shadow:none;padding:0;}
+    .card{box-shadow:none;border:none;padding:0;margin:0 0 8px;}
+    .topic{page-break-before:always;}
+    table,figure,.clinical,.highlight,.eli10,.keyterms,details.selfcheck,ul.tree,.namekey,li,img,svg,tr{break-inside:avoid;}
+    thead{display:table-header-group;}
+    tfoot{display:table-footer-group;}
+    h2,h3,h4{break-after:avoid;}
+    p{orphans:3;widows:3;}
+    details.selfcheck[open] ol,details.selfcheck ol{display:block!important;}
+    a{color:var(--navy);text-decoration:none;}
+    thead th,tbody th,.clinical,.highlight,.eli10,details.selfcheck,footer.doc-foot{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .clinical p{color:#F5F1E8;}
+    .topic:hover{transform:none;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to notes</a>
+<div class="wrap">
+
+  <header class="site-header">
+    <a class="site-logo" href="index.html" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#060A18"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#060A18"/></g>
+          <g transform="translate(100, 0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
+          <g transform="translate(140, 0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+        </g>
+      </svg>
+      <span class="logo-text"><span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span><span class="logo-sub">BIO 304 &middot; American River College</span></span>
+    </a>
+  </header>
+
+  <header class="doc-head">
+    <p class="doc-eyebrow">BIO 304 &middot; Week 2 &middot; Module 2</p>
+    <h1 class="doc-title">Tissues and the <span class="accent">Integumentary System</span></h1>
+    <p class="doc-sub">Student Reference Notes &middot; Built to look things up</p>
+    <p class="meta-line">Six topics: the four tissue types and epithelium; connective tissue; muscle and nervous tissue; tissue membranes and repair; the skin and its layers; skin color and accessory structures.</p>
+  </header>
+
+  <nav class="toc" aria-label="Topics in this module">
+    <div class="toc-top">
+      <h2>On this page</h2>
+      <button type="button" class="printbtn" onclick="window.print()" aria-label="Print these notes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print notes
+      </button>
+    </div>
+    <ol>
+      <li><a href="#t1" target="_top">The Four Tissue Types and Epithelial Tissue</a></li>
+      <li><a href="#t2" target="_top">Connective Tissue</a></li>
+      <li><a href="#t3" target="_top">Muscle and Nervous Tissue</a></li>
+      <li><a href="#t4" target="_top">Tissue Membranes and Tissue Repair</a></li>
+      <li><a href="#t5" target="_top">The Integument: Skin Layers</a></li>
+      <li><a href="#t6" target="_top">Skin Color and Accessory Structures</a></li>
+    </ol>
+    <p class="toc-hint">Built to print. Click "Print notes" (or Ctrl/Cmd+P) for a clean, book-style handout; each topic starts on its own page.</p>
+  </nav>
+
+  <main id="main">
+
+  <!-- ===== TOPIC 1 ===== -->
+  <section class="card topic" id="t1" aria-labelledby="t1h">
+    <p class="topic-tag">Topic 1 of 6 &middot; Week 2</p>
+    <div class="topic-head"><span class="topic-num">01</span><h2 id="t1h">The Four Tissue Types and Epithelial Tissue</h2></div>
+    <p class="lede">A tissue is a group of similar cells working together for a shared job. The whole body is built from just four tissue types.</p>
+
+    <table>
+      <caption>The four primary tissue types</caption>
+      <thead><tr><th scope="col">Tissue</th><th scope="col">Main job</th><th scope="col">Quick example</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Epithelial</th><td>Covers, lines, and secretes</td><td>Skin surface, gut lining, glands</td></tr>
+        <tr><th scope="row">Connective</th><td>Supports, binds, protects, transports</td><td>Bone, fat, blood, tendon</td></tr>
+        <tr><th scope="row">Muscle</th><td>Produces movement</td><td>Skeletal, cardiac, smooth muscle</td></tr>
+        <tr><th scope="row">Nervous</th><td>Senses, signals, and controls</td><td>Brain, spinal cord, nerves</td></tr>
+      </tbody>
+    </table>
+
+    <h3>The tissue family tree (classification map)</h3>
+    <ul class="tree" aria-label="Classification of body tissues">
+      <li><span class="root">Body tissues</span>
+        <ul>
+          <li><span class="label">Epithelial</span> <span class="detail">&ndash; covering/lining epithelia + glands</span></li>
+          <li><span class="label">Connective</span>
+            <ul>
+              <li><span class="label">Proper:</span> <span class="detail">loose (areolar, adipose, reticular); dense (regular, irregular, elastic)</span></li>
+              <li><span class="label">Cartilage:</span> <span class="detail">hyaline, elastic, fibrocartilage</span></li>
+              <li><span class="label">Bone</span> <span class="detail">(osseous)</span></li>
+              <li><span class="label">Blood</span> <span class="detail">(fluid connective tissue)</span></li>
+            </ul>
+          </li>
+          <li><span class="label">Muscle:</span> <span class="detail">skeletal, cardiac, smooth</span></li>
+          <li><span class="label">Nervous:</span> <span class="detail">neurons + neuroglia</span></li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>Epithelial tissue: what makes it special</h3>
+    <ul class="tight">
+      <li><strong>Cellularity:</strong> almost all cells, very little material between them.</li>
+      <li><strong>Polarity:</strong> a free <strong>apical</strong> surface and an attached <strong>basal</strong> surface.</li>
+      <li><strong>Basement membrane:</strong> anchors the basal surface to the connective tissue below.</li>
+      <li><strong>Avascular but innervated:</strong> no blood vessels of its own (it gets nutrients by diffusion), but it has nerve supply.</li>
+      <li><strong>Regenerates well:</strong> high turnover, heals quickly.</li>
+    </ul>
+    <p><strong>Functions:</strong> protection, absorption, filtration, secretion, and sensation.</p>
+
+    <h3>Naming epithelium (a two-question key)</h3>
+    <div class="namekey" aria-label="How to name an epithelium">
+      <div class="step">
+        <p class="q">Step 1 &middot; How many cell layers?</p>
+        <div class="opts">
+          <span class="opt">Simple<small>one layer &middot; absorption, secretion, filtration</small></span>
+          <span class="opt">Stratified<small>many layers &middot; protection</small></span>
+          <span class="opt">Pseudostratified<small>looks layered, all touch the base</small></span>
+        </div>
+      </div>
+      <div class="step">
+        <p class="q">Step 2 &middot; What shape are the apical cells?</p>
+        <div class="opts">
+          <span class="opt">Squamous<small>flat, scale-like</small></span>
+          <span class="opt">Cuboidal<small>cube-shaped</small></span>
+          <span class="opt">Columnar<small>tall column</small></span>
+          <span class="opt">Transitional<small>shape changes as it stretches</small></span>
+        </div>
+      </div>
+      <p class="result"><strong>Combine the answers:</strong> layers + shape = the name. Example: one flat layer = <em>simple squamous</em>; many flat layers = <em>stratified squamous</em>.</p>
+    </div>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Epithelium names are just two words: <strong>how many layers</strong> plus <strong>what shape</strong>. "Simple" means one layer (good for letting stuff through), "stratified" means stacked layers (good for armor). Then you tack on the cell shape: flat (squamous), cube (cuboidal), or tall (columnar). Two questions, and you've named it.</p>
+    </div>
+
+    <table>
+      <caption>The epithelia you need to know</caption>
+      <thead><tr><th scope="col">Type</th><th scope="col">Where</th><th scope="col">Job</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Simple squamous</th><td>Air sacs (alveoli), capillaries, vessel lining</td><td>Fast diffusion and filtration</td></tr>
+        <tr><th scope="row">Simple cuboidal</th><td>Kidney tubules, gland ducts</td><td>Secretion and absorption</td></tr>
+        <tr><th scope="row">Simple columnar</th><td>Stomach and intestine lining (often with microvilli and goblet cells)</td><td>Absorption and secretion</td></tr>
+        <tr><th scope="row">Pseudostratified columnar</th><td>Trachea and upper airways (ciliated)</td><td>Secretes and sweeps mucus</td></tr>
+        <tr><th scope="row">Stratified squamous</th><td>Skin (keratinized); mouth, esophagus, vagina (non-keratinized)</td><td>Protection from abrasion</td></tr>
+        <tr><th scope="row">Transitional</th><td>Bladder, ureters</td><td>Stretches as the organ fills</td></tr>
+      </tbody>
+    </table>
+
+    <div class="cols">
+      <div>
+        <h3>Cell junctions (how cells hold together)</h3>
+        <table>
+          <thead><tr><th scope="col">Junction</th><th scope="col">Job</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Tight junction</th><td>Seals cells so nothing leaks between them</td></tr>
+            <tr><th scope="row">Desmosome</th><td>Spot-welds cells together to resist pulling</td></tr>
+            <tr><th scope="row">Gap junction</th><td>Tiny tunnels that let cells share signals</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3>Glands (epithelium that secretes)</h3>
+        <ul class="tight">
+          <li><strong>Endocrine:</strong> ductless; release hormones into the blood.</li>
+          <li><strong>Exocrine:</strong> use ducts; release onto a surface (sweat, saliva, oil).</li>
+          <li><strong>Modes:</strong> merocrine (exocytosis, most), apocrine (tip pinches off), holocrine (whole cell bursts, e.g., oil glands).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>Epithelium is the body's barrier, so it is where a lot goes wrong. Most cancers are <strong>carcinomas</strong> (epithelial). <strong>Tight junctions</strong> in the gut and bladder keep contents from leaking into tissue. The <strong>cilia</strong> of the airway sweep out mucus and debris, and smoking paralyzes them, which is why smokers cough to clear what the cilia no longer can.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>List the four tissue types and one job for each.</li>
+        <li>Name the epithelium that is one flat layer, and say where you would find it.</li>
+        <li>Which junction seals cells against leaks, and which lets them communicate?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 2 ===== -->
+  <section class="card topic" id="t2" aria-labelledby="t2h">
+    <p class="topic-tag">Topic 2 of 6 &middot; Week 2</p>
+    <div class="topic-head"><span class="topic-num">02</span><h2 id="t2h">Connective Tissue</h2></div>
+    <p class="lede">The most abundant and varied tissue. Its trademark is lots of extracellular matrix, the cells sit far apart in the material they make.</p>
+
+    <p>Every connective tissue is <strong>cells + extracellular matrix</strong>. The matrix is <strong>ground substance</strong> (a gel of water and proteins) plus <strong>fibers</strong>. Change the cells, fibers, and ground substance and you get everything from soft fat to rigid bone to liquid blood. Most connective tissue is well supplied with blood (cartilage is the exception).</p>
+
+    <div class="cols">
+      <div>
+        <h3>The three fiber types</h3>
+        <table>
+          <thead><tr><th scope="col">Fiber</th><th scope="col">Property</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Collagen</th><td>Strong, rope-like; resists pulling</td></tr>
+            <tr><th scope="row">Elastic</th><td>Stretches and recoils</td></tr>
+            <tr><th scope="row">Reticular</th><td>Fine mesh; forms supportive scaffolds</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="keyterms">
+        <h4>"-blast" vs "-cyte"</h4>
+        <dl>
+          <dt>-blast</dt><dd>The young cell that builds the matrix (e.g., fibroblast, osteoblast).</dd>
+          <dt>-cyte</dt><dd>The mature cell that maintains it (e.g., fibrocyte, osteocyte).</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Most tissues are crowds of cells. Connective tissue is the opposite: a few cells floating in a lot of "stuff" they made, like chocolate chips spread out in a big cookie. Change the dough (the matrix) and you get fat, bone, cartilage, or even blood. Same idea, different filling.</p>
+    </div>
+
+    <table>
+      <caption>Connective tissues you need to know</caption>
+      <thead><tr><th scope="col">Tissue</th><th scope="col">Where</th><th scope="col">Job</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Areolar (loose)</th><td>Under epithelia, around vessels</td><td>Cushions, holds fluid, packages organs</td></tr>
+        <tr><th scope="row">Adipose (loose)</th><td>Under skin, around organs</td><td>Stores energy, insulates, cushions</td></tr>
+        <tr><th scope="row">Reticular (loose)</th><td>Lymph nodes, spleen, bone marrow</td><td>Forms the internal scaffold (stroma)</td></tr>
+        <tr><th scope="row">Dense regular</th><td>Tendons and ligaments</td><td>Strong pull in one direction</td></tr>
+        <tr><th scope="row">Dense irregular</th><td>Dermis of skin, organ capsules</td><td>Strength in many directions</td></tr>
+        <tr><th scope="row">Hyaline cartilage</th><td>Ends of bones, nose, trachea, ribs</td><td>Smooth, firm support and low-friction surfaces</td></tr>
+        <tr><th scope="row">Elastic cartilage</th><td>External ear, epiglottis</td><td>Maintains shape but bends</td></tr>
+        <tr><th scope="row">Fibrocartilage</th><td>Intervertebral discs, knee menisci</td><td>Absorbs heavy compression (shock absorber)</td></tr>
+        <tr><th scope="row">Bone (osseous)</th><td>Skeleton</td><td>Support, levers for movement, mineral storage</td></tr>
+        <tr><th scope="row">Blood</th><td>Blood vessels</td><td>Transport; matrix is liquid plasma</td></tr>
+      </tbody>
+    </table>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>Connective tissue problems are everywhere. <strong>Vitamin C</strong> is needed to build collagen, so a deficiency (scurvy) causes bleeding gums and poor wound healing. <strong>Fibrocartilage</strong> discs between vertebrae can herniate and press on nerves. <strong>Adipose</strong> is not just padding; it is an active tissue that releases hormones and stores energy. And <strong>areolar tissue</strong> is where excess fluid collects, that is the swelling you feel as edema.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>What two things make up every connective tissue?</li>
+        <li>Name the connective tissue in a tendon, and the one in an intervertebral disc.</li>
+        <li>What is the difference between an osteoblast and an osteocyte?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 3 ===== -->
+  <section class="card topic" id="t3" aria-labelledby="t3h">
+    <p class="topic-tag">Topic 3 of 6 &middot; Week 2</p>
+    <div class="topic-head"><span class="topic-num">03</span><h2 id="t3h">Muscle and Nervous Tissue</h2></div>
+    <p class="lede">Two "excitable" tissues. Muscle shortens to create movement; nervous tissue carries fast electrical messages.</p>
+
+    <h3>The three muscle types</h3>
+    <table>
+      <thead><tr><th scope="col">Feature</th><th scope="col">Skeletal</th><th scope="col">Cardiac</th><th scope="col">Smooth</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Striped (striated)?</th><td>Yes</td><td>Yes</td><td>No</td></tr>
+        <tr><th scope="row">Control</th><td>Voluntary</td><td>Involuntary</td><td>Involuntary</td></tr>
+        <tr><th scope="row">Cell shape / nuclei</th><td>Long cylinders, many nuclei</td><td>Branched, 1 to 2 nuclei</td><td>Spindle, 1 nucleus</td></tr>
+        <tr><th scope="row">Special feature</th><td>Attaches to bone</td><td>Intercalated discs join cells</td><td>Sheets in organ walls</td></tr>
+        <tr><th scope="row">Where / job</th><td>Moves the skeleton; posture, heat</td><td>The heart; pumps blood</td><td>Walls of vessels, gut, bladder; moves contents</td></tr>
+      </tbody>
+    </table>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Three muscle types: <strong>skeletal</strong> is the muscle you control on purpose (lifting your arm), <strong>cardiac</strong> is your heart beating on its own, and <strong>smooth</strong> is the quiet muscle in your tubes and organs that squeezes food and blood along without you ever thinking about it.</p>
+    </div>
+
+    <h3>Nervous tissue</h3>
+    <p>Nervous tissue has two cell families. <strong>Neurons</strong> are the messengers: they receive signals on branchy <strong>dendrites</strong>, process them in the <strong>cell body</strong>, and fire them down a long <strong>axon</strong>. <strong>Neuroglia</strong> (glial cells) are the support crew: they protect, nourish, and insulate neurons, including making the <strong>myelin</strong> that speeds signals up. Its two defining properties are <strong>excitability</strong> (it responds to stimuli) and <strong>conductivity</strong> (it passes the signal along).</p>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>Cardiac muscle's <strong>intercalated discs</strong> let the heart contract as one coordinated unit, the emergent property you met in Module 1. Skeletal muscle cells are multinucleate because they fuse during development. And many nervous-system diseases are <strong>glial</strong>, not neuronal: in multiple sclerosis the myelin made by glia is attacked, so signals slow or fail.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>Which muscle types are striated, and which is voluntary?</li>
+        <li>What structure lets cardiac muscle act as one unit?</li>
+        <li>Name the three parts of a neuron in the order a signal travels.</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 4 ===== -->
+  <section class="card topic" id="t4" aria-labelledby="t4h">
+    <p class="topic-tag">Topic 4 of 6 &middot; Week 2</p>
+    <div class="topic-head"><span class="topic-num">04</span><h2 id="t4h">Tissue Membranes and Tissue Repair</h2></div>
+    <p class="lede">Tissues combine into thin sheets (membranes) that line and cover, and they have built-in ways to heal when damaged.</p>
+
+    <h3>The four tissue membranes</h3>
+    <table>
+      <thead><tr><th scope="col">Membrane</th><th scope="col">Lines / covers</th><th scope="col">Secretes</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Cutaneous (skin)</th><td>The body surface (dry membrane)</td><td>Nothing; it is a dry barrier</td></tr>
+        <tr><th scope="row">Mucous</th><td>Cavities open to the outside (digestive, respiratory, urinary, reproductive)</td><td>Mucus</td></tr>
+        <tr><th scope="row">Serous</th><td>Closed ventral cavities (pleura, pericardium, peritoneum)</td><td>Serous fluid (slippery)</td></tr>
+        <tr><th scope="row">Synovial</th><td>Joint cavities (made of connective tissue only)</td><td>Synovial fluid (lubricates joints)</td></tr>
+      </tbody>
+    </table>
+    <p>You met <strong>serous membranes</strong> (parietal vs. visceral) with the body cavities in Module 1. The new one here is <strong>synovial</strong>, which is unusual because it has no epithelium at all.</p>
+
+    <h3>How tissue repairs itself</h3>
+    <ul class="check tight">
+      <li><strong>Regeneration:</strong> the damaged tissue is replaced by the same tissue type (best outcome, full function restored).</li>
+      <li><strong>Fibrosis:</strong> the gap is filled with scar tissue (collagen), which seals the wound but does not restore the original function.</li>
+      <li>Tissues with high regeneration (epithelium, bone) heal well; tissues with low regeneration (cardiac muscle, nervous tissue) tend to scar.</li>
+    </ul>
+
+    <h3>Tissue change and adaptation (the "-plasia" and "-trophy" words)</h3>
+    <table>
+      <caption>Light-yield but worth recognizing</caption>
+      <thead><tr><th scope="col">Term</th><th scope="col">Means</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Hypertrophy</th><td>Cells get bigger (e.g., muscle with exercise)</td></tr>
+        <tr><th scope="row">Atrophy</th><td>Cells shrink from disuse or aging</td></tr>
+        <tr><th scope="row">Hyperplasia</th><td>More cells are made</td></tr>
+        <tr><th scope="row">Metaplasia</th><td>One mature tissue type changes into another</td></tr>
+        <tr><th scope="row">Dysplasia</th><td>Abnormal cells; can be a step toward cancer</td></tr>
+      </tbody>
+    </table>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>Inflamed membranes are common and painful: <strong>pleurisy, pericarditis, peritonitis</strong> (serous), and <strong>arthritis</strong> when synovial joints are involved. Because cardiac muscle <strong>scars instead of regenerating</strong>, a heart attack leaves permanent damage. And <strong>metaplasia</strong> in a smoker's airway (and the dysplasia that can follow) is part of how chronic irritation leads to cancer.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>Match each membrane to what it secretes: mucous, serous, synovial.</li>
+        <li>What is the difference between regeneration and fibrosis?</li>
+        <li>Define hypertrophy and atrophy.</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 5 ===== -->
+  <section class="card topic" id="t5" aria-labelledby="t5h">
+    <p class="topic-tag">Topic 5 of 6 &middot; Week 2</p>
+    <div class="topic-head"><span class="topic-num">05</span><h2 id="t5h">The Integument: Skin Layers</h2></div>
+    <p class="lede">The skin is the body's largest organ and its first line of defense. It is built from two true layers over a fatty anchor.</p>
+
+    <div class="cols">
+      <div>
+        <h3>What the skin does</h3>
+        <ul class="tight">
+          <li><strong>Protection:</strong> barrier against injury, microbes, and water loss.</li>
+          <li><strong>Temperature control:</strong> sweat and blood-flow changes.</li>
+          <li><strong>Sensation:</strong> touch, pressure, pain, temperature receptors.</li>
+          <li><strong>Vitamin D:</strong> made in the skin with sunlight.</li>
+          <li><strong>Excretion:</strong> small amounts of waste in sweat.</li>
+        </ul>
+      </div>
+      <div class="keyterms">
+        <h4>The three layers</h4>
+        <dl>
+          <dt>Epidermis</dt><dd>Top layer; epithelium, no blood vessels.</dd>
+          <dt>Dermis</dt><dd>Middle layer; connective tissue, the "live" working layer.</dd>
+          <dt>Hypodermis</dt><dd>Fatty layer below; anchors and insulates (not technically part of the skin).</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3>The epidermis, from deep to surface</h3>
+    <table>
+      <caption>Stratified squamous keratinized epithelium</caption>
+      <thead><tr><th scope="col">Stratum (layer)</th><th scope="col">What happens there</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Basale (deepest)</th><td>Cells divide constantly; melanocytes and Merkel cells sit here</td></tr>
+        <tr><th scope="row">Spinosum</th><td>Cells linked by desmosomes; immune (Langerhans) cells patrol</td></tr>
+        <tr><th scope="row">Granulosum</th><td>Cells fill with keratin and start to die</td></tr>
+        <tr><th scope="row">Lucidum</th><td>Only in thick skin (palms, soles)</td></tr>
+        <tr><th scope="row">Corneum (surface)</th><td>Dead, flat, keratin-filled cells; the tough waterproof barrier</td></tr>
+      </tbody>
+    </table>
+
+    <div class="eli10">
+      <h4>Explain it simply (like you're 10)</h4>
+      <p>Your skin cells are born at the bottom and slowly ride up to the top, filling with a tough protein (keratin) and dying along the way. By the time they reach the surface, they are flat dead "tiles" that protect you, and then they flake off. Mnemonic for the layers, surface to deep: <strong>"Come, Let's Get Sun Burnt"</strong> (Corneum, Lucidum, Granulosum, Spinosum, Basale).</p>
+    </div>
+
+    <h3>The dermis (the working layer)</h3>
+    <ul class="tight">
+      <li><strong>Papillary layer:</strong> thin, areolar tissue; dermal papillae form your <strong>fingerprints</strong>; holds touch receptors and capillaries.</li>
+      <li><strong>Reticular layer:</strong> thick, dense irregular tissue; the bulk of the dermis; holds hair follicles, glands, vessels, and nerves.</li>
+    </ul>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>The <strong>corneum</strong> and its barrier are why intact skin keeps you from drying out and getting infected, lose it and you lose water and protection. That is why <strong>burns</strong> are classified by depth: a first-degree burn is epidermis only; second-degree reaches the dermis (blisters); third-degree destroys the full thickness, and the danger is massive <strong>fluid loss and infection</strong>. The dermis is where the action is: it bleeds, it hurts, and it holds the structures that let skin heal.</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>Name the three layers of skin from top to bottom.</li>
+        <li>List the epidermal strata from deep to surface.</li>
+        <li>Which dermal layer creates your fingerprints?</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ===== TOPIC 6 ===== -->
+  <section class="card topic" id="t6" aria-labelledby="t6h">
+    <p class="topic-tag">Topic 6 of 6 &middot; Week 2</p>
+    <div class="topic-head"><span class="topic-num">06</span><h2 id="t6h">Skin Color and Accessory Structures</h2></div>
+    <p class="lede">What gives skin its color, and the hair, nails, and glands that grow from it.</p>
+
+    <h3>What determines skin color</h3>
+    <table>
+      <thead><tr><th scope="col">Pigment / source</th><th scope="col">Color</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Melanin</th><td>Brown to black</td><td>Made by melanocytes; shields cell DNA from UV damage</td></tr>
+        <tr><th scope="row">Carotene</th><td>Yellow-orange</td><td>From the diet; builds up in the corneum</td></tr>
+        <tr><th scope="row">Hemoglobin</th><td>Pink-red</td><td>Oxygen in blood showing through fair skin</td></tr>
+      </tbody>
+    </table>
+
+    <h3>The accessory structures</h3>
+    <table>
+      <thead><tr><th scope="col">Structure</th><th scope="col">Built from</th><th scope="col">Job</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Hair</th><td>Dead keratinized cells in a follicle</td><td>Protection, warmth, sensation; arrector pili muscle makes "goosebumps"</td></tr>
+        <tr><th scope="row">Nails</th><td>Hard keratin</td><td>Protect fingertips; aid grip</td></tr>
+        <tr><th scope="row">Sebaceous (oil) glands</th><td>Holocrine glands on hair follicles</td><td>Make sebum to soften skin and slow bacteria</td></tr>
+        <tr><th scope="row">Eccrine (merocrine) sweat glands</th><td>All over the body</td><td>Watery sweat for cooling (thermoregulation)</td></tr>
+        <tr><th scope="row">Apocrine sweat glands</th><td>Armpits and groin (active at puberty)</td><td>Thicker sweat; body odor when bacteria break it down</td></tr>
+      </tbody>
+    </table>
+
+    <div class="clinical">
+      <h4>Why this matters clinically</h4>
+      <p>Skin color is a fast clinical readout. <strong>Cyanosis</strong> (blue) signals low oxygen; <strong>pallor</strong> (pale) can mean low blood flow or anemia; <strong>jaundice</strong> (yellow) points to the liver; <strong>erythema</strong> (red) means inflammation or fever. Watch for changes at the <strong>nail beds and lips</strong>, where they show first. And clogged <strong>sebaceous glands</strong> plus bacteria are the basis of acne, while a new or changing mole follows the melanoma <strong>ABCDE</strong> warning signs (Asymmetry, Border, Color, Diameter, Evolving).</p>
+    </div>
+
+    <details class="selfcheck" open>
+      <summary>Quick self-check (no peeking first)</summary>
+      <ol>
+        <li>Name the three contributors to skin color.</li>
+        <li>What is the job of sebum, and which gland makes it?</li>
+        <li>What does cyanosis tell you, and where would you look for it first?</li>
+      </ol>
+    </details>
+  </section>
+
+  </main>
+
+  <footer class="doc-foot">
+    <p>BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Module 2 &middot; Student Reference Notes</p>
+    <p class="byline">Dr. Sharilyn Rennie</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var FRAME_ID = (function(){ try{ return window.frameElement && window.frameElement.id; }catch(e){ return ""; } })() || "bio304-module-02";
+  function sendHeight(){
+    var h = Math.max(document.documentElement.scrollHeight, document.body ? document.body.scrollHeight : 0);
+    try{ parent.postMessage({ type:"resize", id:FRAME_ID, height:h }, "*"); }catch(e){}
+  }
+  window.addEventListener("load", sendHeight);
+  window.addEventListener("resize", sendHeight);
+  if (window.ResizeObserver){ new ResizeObserver(sendHeight).observe(document.body); }
+  document.addEventListener("toggle", function(e){ if(e.target && e.target.tagName==="DETAILS"){ sendHeight(); } }, true);
+})();
+</script>
+</body>
+</html>

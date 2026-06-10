@@ -1,7 +1,7 @@
 # Accessibility Compliance Notes
 
 **Project:** BIO 304 Student Reference Notes
-**Files covered:** module-01-foundations.html, chemistry-for-ap-reference.html
+**Files covered:** module-01-foundations.html, module-02-tissues-integument.html, chemistry-for-ap-reference.html, index.html (course home, Notes pills + reference link)
 **Date:** 2026-06-09
 **Reviewer:** Dr. Sharilyn Rennie
 
@@ -92,6 +92,12 @@ All additions use the same MCAS dark-only palette, real table markup with `scope
 
 **chemistry-for-ap-reference.html (new):** standalone, ungraded look-it-up chemistry companion. Eight sections (atoms/ions/electrolytes, bonds, water/solvent, solutions and concentration, gradients, pH and buffers, biomolecules and ATP, reactions and enzymes), each ending in a "Where you'll meet this in A&P" dark callout. Includes one sequence diagram (gradient to signal). Same template, palette, fonts, print rules, skip link, focus model, and height-sender as the module file. Verified: 0 em dashes, 0 navy #0B1530, 0 bookend borders, byline correct, all internal links `target="_top"`, contrast identical to the audited module values (dark on white 19.73:1; rust on white 7.66:1; gold and cream on dark 8.16:1 and 17.5:1). Reference values (electrolyte ranges, blood pH 7.35 to 7.45, plasma osmolarity ~285 to 295 mOsm/L, fasting glucose 70 to 99 mg/dL, resting membrane potential ~-70 mV) are standard clinical figures.
 
-## 12. Reviewer
+## 12. Addendum (2026-06-09): Week 2 module and print buttons
+
+**module-02-tissues-integument.html (new):** Week 2 / Module 2, six topics (four tissue types and epithelium; connective tissue; muscle and nervous tissue; tissue membranes and repair; skin layers; skin color and accessory structures). Covers the high-yield core plus medium/light-yield topics (glands and secretion modes, cell junctions, tissue membranes, tissue repair, the -plasia/-trophy adaptation terms). Includes a classification mind-map (tissue family tree) and a two-step epithelium naming key (algorithm), plain-language boxes, clinical callouts, and open self-checks. Same MCAS dark-only palette, fonts, accessibility model, and height-sender. The tissue tree uses a thin left connector line, this is a functional hierarchy indicator for the mind-map, not a decorative bookend bar. Verified: 0 em dashes, 0 navy #0B1530, correct byline, internal links target="_top".
+
+**Print buttons + book-style print (all three note files):** a visible "Print" button (rust pill, real `<button>` calling `window.print()`, accessible name, hidden in print output) added to module 1, module 2, and the chemistry reference. Print CSS rewritten so output reads like a book: each topic starts a fresh page; tables, figures, callouts, list items, and self-checks use `break-inside:avoid` so they are not split awkwardly; table headers repeat across pages (`thead{display:table-header-group}`); headings stay with following content (`break-after:avoid`); orphan/widow control on paragraphs; card boxes drop their borders in print so long topics flow as continuous text instead of clipping. Students reach the chemistry reference from the course-home Reference shelf; week notes are reached via the per-week Notes pill (Weeks 1 and 2 wired).
+
+## 13. Reviewer
 
 Dr. Sharilyn Rennie
