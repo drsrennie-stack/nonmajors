@@ -2040,8 +2040,14 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     if (!youtubeId || !topicId) return null;
 
     var frameId = "vt-frame-" + topicId.replace(/[^a-z0-9]+/gi, "-");
+    // Tracking needs the JS API (enablejsapi + a real origin). YouTube rejects
+    // that from a local file preview (Error 153), so only turn it on when the
+    // page is actually served over http(s). Locally we show a plain embed that
+    // always plays (no tracking, which is fine for a preview).
+    var live = (location.protocol === "http:" || location.protocol === "https:");
+    var apiQS = live ? ("&enablejsapi=1&origin=" + encodeURIComponent(location.origin)) : "";
     mount.innerHTML =
-      '<div class="vt-frame"><iframe id="' + frameId + '" src="https://www.youtube.com/embed/' + youtubeId + '?enablejsapi=1&rel=0&playsinline=1" title="' + title + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>' +
+      '<div class="vt-frame"><iframe id="' + frameId + '" src="https://www.youtube.com/embed/' + youtubeId + '?rel=0&playsinline=1' + apiQS + '" title="' + title + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>' +
       '<div class="vt-readout">' +
         '<div class="vt-bar" role="progressbar" aria-label="Percent of video watched" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="vt-fill"></div></div>' +
         '<span class="vt-pct">0%</span>' +
@@ -2049,6 +2055,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       '</div>';
 
     var inst = {
+      live: live,
       frameId: frameId, topicId: topicId, threshold: threshold,
       player: null, duration: 0, watched: {}, watchedCount: 0,
       lastSec: null, timer: null,
@@ -2141,7 +2148,12 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     for (var i = 0; i < mounts.length; i++) build(mounts[i]);
     if (!instances.length) return;
 
-    function initAll() { instances.forEach(makePlayer); }
+    // Only attach the JS-API player where the page is actually live (http/s).
+    // On a local file preview the plain embed already plays; tracking is skipped.
+    var liveInstances = instances.filter(function (x) { return x.live; });
+    if (!liveInstances.length) return;
+
+    function initAll() { liveInstances.forEach(makePlayer); }
     if (window.YT && window.YT.Player) {
       initAll();
     } else {
@@ -2202,5 +2214,32 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 })();
 </script>
 
+
+<style id="mcas-foot-fix">
+.sheet .foot{flex-wrap:wrap;gap:6px 24px;width:100%;align-items:baseline;}
+.sheet .foot span{white-space:nowrap;}
+@media (max-width:560px){.sheet .foot{flex-direction:column;align-items:flex-start;gap:3px;}.sheet .foot span{white-space:normal;}}
+</style>
+
+<!-- mcas-cards-cta -->
+<script>
+(function(){
+  var TARGET="bio304-spaced-recall-prototype.html#topic=t-cell-structure";
+  function build(){
+    if(document.getElementById("mcas-cards-cta")) return;
+    var pre=document.getElementById("prework-link");
+    if(pre && (!pre.getAttribute("href")||pre.getAttribute("href")==="#")) pre.setAttribute("href",TARGET);
+    var a=document.createElement("a");
+    a.id="mcas-cards-cta"; a.href=TARGET; a.target="_top"; a.rel="noopener";
+    a.textContent="Open your spaced-recall cards \u2192";
+    a.style.cssText="display:inline-flex;align-items:center;gap:8px;margin:16px 0 0;padding:13px 22px;border-radius:999px;background:#0B1530;color:#fff;font-weight:800;font-size:14px;letter-spacing:0.03em;text-decoration:none;";
+    var anchor=document.getElementById("mcas-watched-credit-box")||document.querySelector(".video-tracker")||document.querySelector(".vpack-section")||document.querySelector(".resource-bar");
+    if(anchor&&anchor.parentNode){ anchor.parentNode.insertBefore(a, anchor.nextSibling); }
+    else { (document.querySelector("main")||document.body).appendChild(a); }
+  }
+  if(document.readyState==="complete") build(); else window.addEventListener("load",build);
+  setTimeout(build,400);
+})();
+</script>
 </body>
 </html>

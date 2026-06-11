@@ -2844,5 +2844,26 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   setTimeout(build,360);
 })();
 </script>
+
+<!-- mcas-cards-cta -->
+<script>
+(function(){
+  var TARGET="bio304-spaced-recall-prototype.html#topic=t-homeostasis";
+  function build(){
+    if(document.getElementById("mcas-cards-cta")) return;
+    var pre=document.getElementById("prework-link");
+    if(pre && (!pre.getAttribute("href")||pre.getAttribute("href")==="#")) pre.setAttribute("href",TARGET);
+    var a=document.createElement("a");
+    a.id="mcas-cards-cta"; a.href=TARGET; a.target="_top"; a.rel="noopener";
+    a.textContent="Open your spaced-recall cards \u2192";
+    a.style.cssText="display:inline-flex;align-items:center;gap:8px;margin:16px 0 0;padding:13px 22px;border-radius:999px;background:#0B1530;color:#fff;font-weight:800;font-size:14px;letter-spacing:0.03em;text-decoration:none;";
+    var anchor=document.getElementById("mcas-watched-credit-box")||document.querySelector(".video-tracker")||document.querySelector(".vpack-section")||document.querySelector(".resource-bar");
+    if(anchor&&anchor.parentNode){ anchor.parentNode.insertBefore(a, anchor.nextSibling); }
+    else { (document.querySelector("main")||document.body).appendChild(a); }
+  }
+  if(document.readyState==="complete") build(); else window.addEventListener("load",build);
+  setTimeout(build,400);
+})();
+</script>
 </body>
 </html>
