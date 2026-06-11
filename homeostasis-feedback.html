@@ -2817,5 +2817,35 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 })();
 </script>
 
+
+<style id="mcas-foot-fix">
+.sheet .foot{flex-wrap:wrap;gap:6px 24px;width:100%;align-items:baseline;}
+.sheet .foot span{white-space:nowrap;}
+@media (max-width:560px){.sheet .foot{flex-direction:column;align-items:flex-start;gap:3px;}.sheet .foot span{white-space:normal;}}
+</style>
+
+<!-- mcas-watched-credit -->
+<script>
+(function(){
+  var TOPIC="t-homeostasis";
+  function done(){ try{return localStorage.getItem("bio304-video-"+TOPIC)==="true";}catch(e){return false;} }
+  function give(){ try{localStorage.setItem("bio304-video-"+TOPIC,"true");localStorage.setItem("bio304-videopct-"+TOPIC,"100");localStorage.setItem("bio304-gate-"+TOPIC,"true");}catch(e){} }
+  function build(){
+    if(document.getElementById("mcas-watched-credit-box")) return;
+    var box=document.createElement("div"); box.id="mcas-watched-credit-box";
+    box.style.cssText="margin:14px 0 0;display:flex;gap:12px;align-items:center;flex-wrap:wrap;";
+    box.innerHTML='<button type="button" id="mcas-watched-btn" style="appearance:none;font-family:inherit;font-weight:800;font-size:13px;letter-spacing:0.04em;text-transform:uppercase;padding:11px 18px;border-radius:999px;border:1.5px solid #0B1530;background:#0B1530;color:#fff;cursor:pointer;">Yes, I watched this video</button><span id="mcas-watched-state" role="status" aria-live="polite" style="font-size:13px;font-weight:700;color:#8B3A2E;"></span>';
+    var anchor=document.querySelector(".video-tracker")||document.querySelector(".vpack-section")||document.querySelector(".resource-bar");
+    if(anchor&&anchor.parentNode){ anchor.parentNode.insertBefore(box, anchor.nextSibling); }
+    else { (document.querySelector("main")||document.body).appendChild(box); }
+    var b=document.getElementById("mcas-watched-btn"), st=document.getElementById("mcas-watched-state");
+    function paint(){ if(done()){ b.textContent="Credit recorded \u2713"; b.disabled=true; b.style.opacity="0.7"; b.style.cursor="default"; st.textContent="Counted as watched on your engagement report. Thanks for your patience."; } }
+    b.addEventListener("click",function(){ give(); paint(); });
+    paint();
+  }
+  if(document.readyState==="complete") build(); else window.addEventListener("load",build);
+  setTimeout(build,360);
+})();
+</script>
 </body>
 </html>

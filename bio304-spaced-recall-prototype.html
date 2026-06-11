@@ -1908,6 +1908,12 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
      the session log (which needs courseStart for real dates). */
   function weekGradeData(week){
     var wt = topicsForWeek(week);                 // this week's prework topics (≤4)
+    // Honor the cross-page watch flag (set by the video tracker, or by the
+    // "I watched this" button on the lecture page) so a recorded watch always
+    // shows in the engagement report. Only ever sets true, never erases work.
+    wt.forEach(function(t){
+      try { if (window.localStorage.getItem("bio304-video-" + t.id) === "true") { var s = getTopicState(t.id); if (!s.videoWatched) { s.videoWatched = true; } } } catch (e) {}
+    });
     var videosTotal = wt.length;
     var videosWatched = wt.filter(function(t){ var ts=STATE.topics[t.id]; return ts && ts.videoWatched; }).length;
 
