@@ -2249,6 +2249,23 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   /* ---------- NAVIGATION ---------- */
 
   let CURRENT_TOPIC = null;
+  // Daily session bounds, so a drill has a clear finish line instead of serving
+  // cards forever. SESSION_GOAL is today's allotment for the topic; DRILL_PRACTICE
+  // (set when entering from the optional Cumulative view) lifts the cap.
+  let SESSION_DONE = 0, SESSION_GOAL = 0, DRILL_PRACTICE = false;
+  function todoCountForTopic(topicId){
+    var topic = topicById(topicId); if (!topic) return 0;
+    var ts = STATE.topics[topicId];
+    var lvl = ts ? computeAdaptiveLevel(topicId) : 1;
+    var n = 0;
+    topic.cards.forEach(function(c){
+      var st = (ts && ts.cards) ? ts.cards[c.id] : null;
+      var reps = st ? (st.reps || 0) : 0;
+      var due = reps > 0 && st.nextDue <= nowSim();
+      if (due || (reps === 0 && c.dok <= lvl)) n++;
+    });
+    return n;
+  }
   let CURRENT_CARD = null;
   let CURRENT_CARD_CORRECT = null;  // set by MC click, consumed by rateCard
   let CURRENT_CARD_OPTIONS = null;   // shuffled option order for the current render
@@ -2582,9 +2599,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       b.addEventListener("click", () => {
         const id = b.dataset.openTopic;
         CURRENT_TOPIC = id;
-        // Re-check the real video flag every time. If the lecture video for this
-        // topic hasn't been watched, route the student to watch it first; only a
-        // genuine watch opens the cards.
+        DRILL_PRACTICE = false;          // daily session (capped to today's allotment)
         nav("learn", id);  // unlock: open the cards directly (no video gate)
       });
     });
@@ -2843,6 +2858,8 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
 
   function renderLearn(topicId){
     CURRENT_TOPIC = topicId;
+    SESSION_DONE = 0;
+    SESSION_GOAL = DRILL_PRACTICE ? 0 : todoCountForTopic(topicId);  // 0 = no cap (optional practice)
     const topic = topicById(topicId);
     if (!topic) { nav("dashboard"); return; }
     const ts = getTopicState(topicId);
@@ -2912,7 +2929,6 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   }
 
   function loadNextCard(){
-    const card = pickCardForTopic(CURRENT_TOPIC);
     CURRENT_CARD_CORRECT = null;
     CURRENT_CARD_OPTIONS = null;
 
@@ -2929,21 +2945,36 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     if (rateInstructions) rateInstructions.hidden = true;
     if (ans) ans.hidden = true;
 
-    if (!card) {
-      $("#card-question").textContent = "All cards in this topic are scheduled out. Come back tomorrow or rotate to another topic.";
+    // Daily finish line: once today's allotment for this topic is done, stop
+    // (unless they're in optional practice, which has no cap).
+    if (!DRILL_PRACTICE && SESSION_GOAL > 0 && SESSION_DONE >= SESSION_GOAL) {
+      CURRENT_CARD = null;
+      $("#card-question").textContent = "🎉 You’ve finished today’s cards for this topic. Nice work — come back tomorrow, or pick another topic from Daily Review.";
       $("#card-dok-badge").textContent = "DONE";
       $("#card-dok-badge").className = "dok-badge dok-1";
-      $("#card-progress").textContent = "";
+      $("#card-progress").textContent = SESSION_DONE + " of " + SESSION_GOAL + " done today";
+      return;
+    }
+
+    const card = pickCardForTopic(CURRENT_TOPIC);
+    if (!card) {
+      CURRENT_CARD = null;
+      $("#card-question").textContent = (SESSION_GOAL > 0 && !DRILL_PRACTICE)
+        ? "🎉 You’ve finished today’s cards for this topic. Come back tomorrow, or pick another topic."
+        : "All caught up here — these cards are scheduled out. Come back tomorrow, or try another topic.";
+      $("#card-dok-badge").textContent = "DONE";
+      $("#card-dok-badge").className = "dok-badge dok-1";
+      $("#card-progress").textContent = (SESSION_GOAL > 0 && !DRILL_PRACTICE) ? (SESSION_DONE + " of " + SESSION_GOAL + " done today") : "";
       return;
     }
 
     CURRENT_CARD = card;
-    const topic = topicById(CURRENT_TOPIC);
-    const idx = topic.cards.findIndex(c => c.id === card.id) + 1;
     $("#card-question").textContent = card.q;
     $("#card-dok-badge").textContent = "DOK " + card.dok;
     $("#card-dok-badge").className = "dok-badge dok-" + card.dok;
-    $("#card-progress").textContent = "Card " + idx + " of " + topic.cards.length;
+    $("#card-progress").textContent = DRILL_PRACTICE
+      ? ("Card " + (SESSION_DONE + 1))
+      : ("Card " + (SESSION_DONE + 1) + " of " + SESSION_GOAL);
 
     renderMcOptions(card);
   }
@@ -3065,6 +3096,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       logSessionActivity({ topicCompleted: CURRENT_TOPIC });
     }
     renderMastery(CURRENT_TOPIC);
+    SESSION_DONE++;            // count this answered card toward today's allotment
     loadNextCard();
   }
 
@@ -3079,116 +3111,95 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   function renderReview(){
     const body = $("#review-body");
     body.innerHTML = "";
-    let items = [];
-    allTopics().forEach(t => {
-      const ts = STATE.topics[t.id];
-      const unlocked = !!ts; // available once the student has opened the topic (activates into review)
-      if ((REVIEW_MODE === "all" || REVIEW_MODE === "mixed") && !unlocked) return; // skip locked topics
-      t.cards.forEach(c => {
-        const st = getCardState(t.id, c.id, c.dok);
-        if (REVIEW_MODE === "due") {
-          if (st.reps > 0 && st.nextDue <= nowSim()) items.push({ topic: t, card: c, st: st });
-        } else {
-          // "all unlocked" and "mixed": include every card from an unlocked topic.
-          items.push({ topic: t, card: c, st: st });
-        }
+    if (REVIEW_MODE === "all") REVIEW_MODE = "due";   // "All unlocked cards" retired
+
+    function startedTopic(t){ return !!STATE.topics[t.id]; }
+    // Non-mutating read: never CREATE a card state just to look at it (that would
+    // wrongly inflate the "cards completed" count on the engagement report).
+    function cardStateRead(tid, cid){ var ts = STATE.topics[tid]; return (ts && ts.cards && ts.cards[cid]) ? ts.cards[cid] : null; }
+
+    // This week's assigned topics, straight from the course schedule, so Daily
+    // Review always surfaces what's due this week — even cards the student hasn't
+    // started yet. Without this, skipping a topic would leave the review empty and
+    // the work would silently go missing.
+    var weekIds = {};
+    try { topicsForWeek(currentCourseWeek()).forEach(function(t){ weekIds[t.id] = true; }); } catch(e){}
+
+    // Group by TOPIC (category). Students pick a topic and drill it; they never
+    // see individual cards listed out, and the algorithm chooses the card order.
+    var groups = [], totalCards = 0, mix = {1:0,2:0,3:0};
+    allTopics().forEach(function(t){
+      var assigned = !!weekIds[t.id];
+      var startedT = startedTopic(t);
+      if (REVIEW_MODE === "mixed") { if (!startedT) return; }   // cumulative: only started topics
+      else { if (!startedT && !assigned) return; }              // due: started topics OR this week's assigned
+      var lvl = startedT ? computeAdaptiveLevel(t.id) : 1;       // unstarted -> only the first (DOK 1) new cards are "to do" yet
+      var inScope = 0, dueCount = 0;
+      t.cards.forEach(function(c){
+        var st = cardStateRead(t.id, c.id);
+        var reps = st ? (st.reps || 0) : 0;
+        var isDue = reps > 0 && st.nextDue <= nowSim();
+        if (isDue) dueCount++;
+        var include = (REVIEW_MODE === "due")
+          ? ( isDue || (assigned && reps === 0 && c.dok <= lvl) )  // due now, OR this week's next new cards to do
+          : true;                                                  // cumulative: every card from a started topic
+        if (include) { inScope++; if (mix[c.dok] !== undefined) mix[c.dok]++; }
       });
+      if (inScope > 0) { groups.push({ topic: t, count: inScope, due: dueCount, assigned: assigned }); totalCards += inScope; }
     });
 
-    // Update the mode toggle UI and the helper paragraph.
-    [["btn-review-due","due"],["btn-review-all","all"],["btn-review-mixed","mixed"]].forEach(function(pair){
+    // Mode toggle UI (only Due + Cumulative now).
+    [["btn-review-due","due"],["btn-review-mixed","mixed"]].forEach(function(pair){
       var b = $("#"+pair[0]); if (!b) return;
       var on = REVIEW_MODE === pair[1];
       b.classList.toggle("btn-primary", on); b.classList.toggle("btn-ghost", !on);
       b.setAttribute("aria-pressed", on ? "true" : "false");
     });
-    const note = $("#review-mode-note");
-    if (note) {
-      note.textContent = REVIEW_MODE === "due"
-        ? "Due cards, with this week's material first and a small share of earlier units mixed in so they stay fresh."
-        : REVIEW_MODE === "mixed"
-        ? "A shuffled mix drawn from every topic you've unlocked, all weeks, in random order — the closest practice to a cumulative exam. Best in the days before a test."
-        : "Drill every card from topics you've unlocked, regardless of due date. Useful before a quiz. Topics you haven't unlocked yet are not shown.";
-    }
+    var note = $("#review-mode-note");
+    if (note) note.textContent = REVIEW_MODE === "due"
+      ? "Everything you need to do today, by topic — this week's new cards plus anything the algorithm has brought back for review. Click a topic and go; it picks the cards for you."
+      : "Optional. A cumulative review of every topic you've started, for extra practice before a test. Click any topic to drill more of its cards.";
 
-    if (!items.length) {
+    if (!groups.length) {
       body.innerHTML = REVIEW_MODE === "due"
-        ? '<div class="card"><p class="empty">No cards are due right now. Come back tomorrow, or start a new topic from today’s pre-work.</p></div>'
-        : '<div class="card"><p class="empty">No unlocked topics yet. Start today’s pre-work first, then come back here.</p></div>';
+        ? '<div class="card"><p class="empty">🎉 Nothing to do right now — you’re caught up. New cards appear here as this week’s topics come up.</p></div>'
+        : '<div class="card"><p class="empty">No topics started yet. Do today’s cards first, then come back for extra practice.</p></div>';
       return;
     }
 
-    // Order:
-    //  - mixed  = random across all topics (cumulative practice)
-    //  - due    = current week first, with ~10% earlier-unit cards mixed in so
-    //             prior material stays fresh without crowding out this week's work
-    //  - all    = struggle-first, then earliest due
-    if (REVIEW_MODE === "mixed") {
-      items = shuffleArray(items);
-    } else if (REVIEW_MODE === "due") {
-      const curWk = currentCourseWeek();
-      const wkOf = function(t){ return t.dayInCourse ? Math.ceil(t.dayInCourse/4) : 0; };
-      const byDue = function(a,b){ return a.st.ease - b.st.ease || a.st.nextDue - b.st.nextDue; };
-      const cur  = items.filter(function(x){ return wkOf(x.topic) >= curWk; }).sort(byDue);
-      const prev = items.filter(function(x){ return wkOf(x.topic) <  curWk; }).sort(byDue);
-      const blended = [];
-      let ci = 0, pi = 0;
-      // 9 current : 1 previous → ≈90/10 while both last; falls back to whatever remains
-      while (ci < cur.length || pi < prev.length) {
-        for (let k = 0; k < 9 && ci < cur.length; k++) blended.push(cur[ci++]);
-        if (pi < prev.length) blended.push(prev[pi++]);
-        if (ci >= cur.length && pi >= prev.length) break;
-      }
-      items = blended;
-    } else {
-      items.sort((a,b) => a.st.ease - b.st.ease || a.st.nextDue - b.st.nextDue);
-    }
-    const wrap = document.createElement("div");
+    if (REVIEW_MODE === "due") groups.sort(function(a,b){ return b.due - a.due; });
+    else groups.sort(function(a,b){ return (a.topic.dayInCourse||0) - (b.topic.dayInCourse||0); });
+
+    var wrap = document.createElement("div");
     wrap.className = "card";
-    const total = items.length;
-    const heading = REVIEW_MODE === "due"
-      ? total + " card" + (total === 1 ? "" : "s") + " due across topics"
-      : REVIEW_MODE === "mixed"
-      ? total + " card" + (total === 1 ? "" : "s") + " in your cumulative mix (all weeks)"
-      : total + " card" + (total === 1 ? "" : "s") + " in your unlocked deck";
-    wrap.innerHTML = "<h3>" + heading + "</h3>";
-    // Level mix: show how the queue breaks down across DOK levels.
-    var mix = {1:0,2:0,3:0};
-    items.forEach(function(it){ if (mix[it.card.dok] !== undefined) mix[it.card.dok]++; });
-    if (total > 0) {
-      var mixP = document.createElement("p");
-      mixP.style.cssText = "font-family:'DM Sans',sans-serif;font-size:12.5px;color:var(--gray-soft);margin:-4px 0 10px;";
-      mixP.innerHTML = "Level mix: <strong>" + mix[1] + "</strong> DOK 1 &middot; <strong>" + mix[2] + "</strong> DOK 2 &middot; <strong>" + mix[3] + "</strong> DOK 3 &nbsp;·&nbsp; about " + Math.max(1, Math.round(total * 0.5)) + "&ndash;" + Math.round(total * 0.75) + " min";
-      wrap.appendChild(mixP);
-    }
-    const list = document.createElement("div");
-    items.slice(0, 30).forEach(item => {
-      const row = document.createElement("div");
-      row.style.cssText = "display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-line);";
-      row.innerHTML = `
-        <div style="flex:1; min-width:0;">
-          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;color:var(--navy);">${escapeHtml(item.topic.title)}</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:var(--gray-soft);">DOK ${item.card.dok} &middot; last rated "${item.st.lastRating || "new"}"</div>
-        </div>
-        <button class="btn btn-gold" data-review-open="${item.topic.id}">Review</button>
-      `;
+    var heading = REVIEW_MODE === "due"
+      ? totalCards + " card" + (totalCards===1?"":"s") + " to do today"
+      : totalCards + " card" + (totalCards===1?"":"s") + " in your cumulative review";
+    var est = Math.max(1, Math.round(totalCards*0.5)) + "–" + Math.max(2, Math.round(totalCards*0.75));
+    wrap.innerHTML = '<h3 style="font-size:23px;margin-bottom:2px;">' + heading + '</h3>' +
+      '<p style="font-family:\'DM Sans\',sans-serif;font-size:13px;color:var(--gray-soft);margin:0 0 16px;">' +
+      mix[1] + ' DOK 1 &middot; ' + mix[2] + ' DOK 2 &middot; ' + mix[3] + ' DOK 3 &nbsp;·&nbsp; about ' + est + ' min. Pick a topic to begin.</p>';
+
+    var list = document.createElement("div");
+    groups.forEach(function(g){
+      var label = (REVIEW_MODE === "due") ? (g.count + " to do") : (g.count + " card" + (g.count===1?"":"s"));
+      var row = document.createElement("button");
+      row.type = "button";
+      row.setAttribute("data-review-open", g.topic.id);
+      row.style.cssText = "display:flex;justify-content:space-between;align-items:center;gap:14px;width:100%;text-align:left;padding:16px 18px;margin:0 0 10px;border:1.5px solid var(--gray-line);border-radius:12px;background:#fff;cursor:pointer;font-family:inherit;transition:border-color 150ms,box-shadow 150ms;";
+      row.onmouseover = function(){ row.style.borderColor = "var(--gold)"; row.style.boxShadow = "0 4px 12px rgba(11,21,48,0.08)"; };
+      row.onmouseout  = function(){ row.style.borderColor = "var(--gray-line)"; row.style.boxShadow = "none"; };
+      row.innerHTML =
+        '<span><span style="display:block;font-family:\'Plus Jakarta Sans\',sans-serif;font-weight:700;font-size:16.5px;color:var(--navy);">' + escapeHtml(g.topic.title) + '</span>' +
+        '<span style="font-family:\'DM Sans\',sans-serif;font-size:12.5px;color:var(--gray-soft);">' + label + '</span></span>' +
+        '<span class="btn btn-gold" style="pointer-events:none;white-space:nowrap;">Start →</span>';
       list.appendChild(row);
     });
-    if (items.length > 30) {
-      const more = document.createElement("p");
-      more.className = "usage";
-      more.style.marginTop = "10px";
-      more.textContent = "Showing top 30 of " + items.length + ". Open a topic to drill all of its cards.";
-      list.appendChild(more);
-    }
     wrap.appendChild(list);
     body.appendChild(wrap);
 
-    $$('[data-review-open]').forEach(b => {
-      b.addEventListener("click", () => {
-        const tid = b.dataset.reviewOpen;
-        nav("learn", tid);  // unlock: open the cards directly
-      });
+    $$('[data-review-open]').forEach(function(b){
+      b.addEventListener("click", function(){ DRILL_PRACTICE = (REVIEW_MODE === "mixed"); nav("learn", b.getAttribute("data-review-open")); });
     });
   }
 
@@ -3582,7 +3593,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       if (mView  && mView[1])  deepLinkView  = mView[1];
     } catch (e) {}
     if (deepLinkTopic && topicById(deepLinkTopic)) {
-      CURRENT_TOPIC = deepLinkTopic;
+      CURRENT_TOPIC = deepLinkTopic; DRILL_PRACTICE = false;
       const ts = getTopicState(deepLinkTopic);
       nav("learn", deepLinkTopic);  // unlock: deep-link opens the cards directly
       try { history.replaceState(null, "", window.location.pathname + window.location.search); } catch (e) {}
@@ -4173,5 +4184,6 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
 })();
 </script>
 <!-- mcas-iframe-height-sender-end -->
+<style id="mcas-hide-buttons">#link-open-notes,#link-open-workbook,#btn-review-all{display:none !important;}</style>
 </body>
 </html>
