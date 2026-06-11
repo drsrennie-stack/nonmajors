@@ -2694,14 +2694,11 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       contBtn.classList.add("done");
       return;
     }
-    if (!vId(card.getAttribute("data-video"))) {   // no YouTube end signal: do not block
-      contBtn.disabled = false;
-      contBtn.textContent = "I have finished this video. Continue ▸";
-      return;
-    }
-    contBtn.disabled = true;
-    contBtn.textContent = "Finish the video to continue";
-    loadYTApi(createPlayer);
+    // No hoops: the continue button is always available. Watch the video,
+    // then click it. We no longer wait on YouTube's flaky "ended" signal,
+    // which forced students to reload between every video.
+    contBtn.disabled = false;
+    contBtn.textContent = "I have finished this video. Continue ▸";
   }
 
   function openCard(card) {

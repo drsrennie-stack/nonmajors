@@ -3248,6 +3248,30 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       (g.hasDates ? '' : '<p class="grade-note no-print">Daily (Mon\u2013Sun) tracking turns on once <code>courseStart</code> is set in course-content.js. Until then, the grade reflects this week\u2019s video + new-card completion.</p>');
     body.appendChild(gradeCard);
 
+    // Per-topic VIDEO WATCH PERCENTAGE — this factors into the grade.
+    // Reads the scrub-proof percentage the lecture-page tracker records
+    // (bio304-videopct-<id>), and the watched flag (bio304-video-<id>),
+    // which the "I watched this" button also sets. 98%+ counts as watched.
+    (function(){
+      var vrows = topicsForWeek(wk).map(function(t){
+        var pct = 0, watched = false;
+        try { pct = parseInt(window.localStorage.getItem("bio304-videopct-" + t.id) || "0", 10) || 0; } catch(e){}
+        try { watched = window.localStorage.getItem("bio304-video-" + t.id) === "true"; } catch(e){}
+        if (watched && pct < 98) pct = 98;            // credited as watched (button or threshold)
+        var ok = watched || pct >= 98;
+        return '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(11,21,48,0.12);">' +
+          '<span style="font-weight:600;color:#0B1530;">' + escapeHtml(t.title) + '</span>' +
+          '<span style="font-variant-numeric:tabular-nums;font-weight:800;color:' + (ok ? '#0B1530' : '#8B3A2E') + ';">' +
+            pct + '%' + (ok ? ' ✓' : '') + '</span></div>';
+      }).join("");
+      var videoCard = document.createElement("div");
+      videoCard.className = "card";
+      videoCard.innerHTML = '<h3>Week ' + wk + ' video watch by topic</h3>' +
+        '<p class="usage">Percentage of each assigned video actually watched (scrub-proof). <strong>98% or higher</strong> counts as watched for your grade.</p>' +
+        (vrows || '<p class="empty">No topics scheduled for this week.</p>');
+      body.appendChild(videoCard);
+    })();
+
     // print header mirrors (name comes from locked state)
     REPORT_NAME = STATE.studentName || "";
     var rphN = $("#rph-name"), rphW = $("#rph-week");
