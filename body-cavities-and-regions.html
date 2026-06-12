@@ -1416,6 +1416,24 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 </style>
 </head>
 <body class="mcas-page">
+<script>
+/* mcas-flag-heal: undoes the old "opening the cards marked the video watched" bug.
+   Removes any watched-flag that never actually reached the 98% threshold, so an
+   unwatched video correctly reads 0% and uncredited. Real watches (>=98%) and
+   honest "Yes I watched" clicks (100%) are kept. Card progress is never touched. */
+(function(){
+  try{
+    var rm=[];
+    for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i); if(k&&k.indexOf("bio304-video-")===0) rm.push(k);}
+    rm.forEach(function(k){
+      var id=k.slice("bio304-video-".length);
+      var pct=parseInt(localStorage.getItem("bio304-videopct-"+id)||"0",10)||0;
+      if(localStorage.getItem(k)==="true" && pct<98){ localStorage.removeItem(k); try{localStorage.removeItem("bio304-gate-"+id);}catch(e){} }
+    });
+  }catch(e){}
+})();
+</script>
+
 <!-- mcas-chrome-header -->
 <a href="#mcas-content" class="mcas-skip">Skip to main content</a>
 <div class="mcas-chrome">
@@ -1990,8 +2008,9 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           if (input) input.focus();
         }
       } else {
-        try { window.localStorage.setItem('bio304-gate-' + TOPIC_ID, 'true'); } catch (er) {}
-        try { window.localStorage.setItem('bio304-video-' + TOPIC_ID, 'true'); } catch (er) {}
+        // Cards are always open now, and watching is tracked separately. Opening
+        // the cards must NOT mark the video as watched (that was the old gated
+        // behaviour). Navigation still happens via the link's href.
       }
     });
   }
