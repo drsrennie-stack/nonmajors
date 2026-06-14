@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integumentary System video &middot; BIO 304</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital@0;1&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1E3D4C; --navy-deep: #142a36; --navy-tint: #EDF1F3;
+    --gold: #B8924A; --terra: #C2734D; --terra-dark: #A0522D;
+    --white: #FFFFFF; --offwhite: #FAFAF9; --gray-line: #e4e2dd;
+    --shadow-rest: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 16px rgba(0,0,0,0.10);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--offwhite); color: var(--navy);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    line-height: 1.5; padding: 28px 18px 60px;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  .skip { position: absolute; left: -999px; top: 0; background: var(--navy); color: #fff; padding: 8px 14px; border-radius: 6px; z-index: 10; }
+  .skip:focus { left: 8px; top: 8px; }
+  .eyebrow { font-family: 'DM Sans', system-ui, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terra-dark); margin: 0 0 8px; }
+  h1 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800; font-size: 30px; color: var(--navy); margin: 0 0 4px; }
+  .sub { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 600; font-size: 18px; color: var(--terra-dark); margin: 0 0 6px; }
+  .usage { font-family: 'Lora', Georgia, serif; font-style: italic; font-size: 15px; color: var(--navy); margin: 0 0 20px; max-width: 64ch; }
+  .backlink { display: inline-block; font-size: 14px; font-weight: 600; color: var(--navy); text-decoration: none; margin-bottom: 18px; }
+  .backlink:hover { color: var(--terra-dark); }
+  .player { position: relative; padding-bottom: 64.98%; height: 0; background: var(--navy); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-rest); }
+  .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  h2 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 600; font-size: 17px; color: var(--terra-dark); margin: 30px 0 4px; }
+  .section-note { font-family: 'Lora', Georgia, serif; font-style: italic; font-size: 14px; color: var(--navy); margin: 0 0 14px; }
+  .chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .chapter {
+    display: flex; align-items: center; gap: 14px; width: 100%;
+    background: var(--white); border: 1px solid var(--gray-line); border-radius: 8px;
+    padding: 12px 14px; text-align: left; cursor: pointer; color: var(--navy);
+    font-family: inherit; font-size: 15px;
+    box-shadow: var(--shadow-rest);
+    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  }
+  .chapter:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .chapter:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .chapter[aria-current="true"] { border-color: var(--navy); background: var(--navy-tint); }
+  .ts { font-variant-numeric: tabular-nums; font-weight: 800; color: var(--gold); min-width: 4.2em; }
+  .chapter[aria-current="true"] .ts { color: var(--navy); }
+  .ch-label { font-weight: 600; flex: 1; }
+  .ch-notes { font-size: 12.5px; font-weight: 700; color: var(--terra-dark); text-decoration: none; white-space: nowrap; }
+  .ch-notes:hover { text-decoration: underline; }
+  .notes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .note-card {
+    display: block; background: var(--white); border: 1px solid var(--gray-line); border-radius: 8px;
+    padding: 16px 18px; text-decoration: none; color: var(--navy); box-shadow: var(--shadow-rest);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+  .note-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .note-card:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .note-card .nc-eyebrow { font-family: 'DM Sans', system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terra-dark); display: block; margin-bottom: 4px; }
+  .note-card .nc-title { font-weight: 700; font-size: 15px; }
+  .note-card .nc-arrow { color: var(--gold); }
+  footer { margin-top: 40px; border-top: 1px solid var(--gray-line); padding-top: 16px; font-size: 13px; color: var(--navy); }
+  footer .byline { font-weight: 700; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+  @media (prefers-reduced-motion: reduce) { .chapter, .note-card { transition: none; } }
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to main content</a>
+<div class="wrap">
+  <a class="backlink" href="week02_prework.html" target="_top">&larr; Week 2 pre-work hub</a>
+  <main id="main">
+    <p class="eyebrow">BIO 304 &middot; Human Anatomy &amp; Physiology</p>
+    <h1>Integumentary System</h1>
+    <p class="sub">Integumentary &middot; Module 4</p>
+    <p class="usage">Watch the lecture, or jump to a chapter below. Each chapter links to its notes page so you can read along.</p>
+
+    <div class="player">
+      <iframe id="player" src="https://www.loom.com/embed/afbd0687e4db47b19457d9fdefd7444f" title="Integumentary System lecture video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+    </div>
+
+    <h2 id="chapters-h">Chapters</h2>
+    <p class="section-note">Select a time to jump there. The video starts playing at that point.</p>
+    <ul class="chapters" aria-labelledby="chapters-h">
+      <li><button type="button" class="chapter" data-seconds="0"><span class="ts">00:00</span><span class="ch-label">Skin overview and layers</span><a class="ch-notes" href="skin-layers.html" target="_top" onclick="event.stopPropagation()">Notes &nearr;</a></button></li>
+      <li><button type="button" class="chapter" data-seconds="105"><span class="ts">01:45</span><span class="ch-label">Skin functions and protection</span><a class="ch-notes" href="skin-functions.html" target="_top" onclick="event.stopPropagation()">Notes &nearr;</a></button></li>
+      <li><button type="button" class="chapter" data-seconds="253"><span class="ts">04:13</span><span class="ch-label">Temperature, sensing, and fluids</span><a class="ch-notes" href="skin-functions.html" target="_top" onclick="event.stopPropagation()">Notes &nearr;</a></button></li>
+      <li><button type="button" class="chapter" data-seconds="485"><span class="ts">08:05</span><span class="ch-label">Epidermis layers and the layers mnemonic</span><a class="ch-notes" href="skin-layers.html" target="_top" onclick="event.stopPropagation()">Notes &nearr;</a></button></li>
+      <li><button type="button" class="chapter" data-seconds="753"><span class="ts">12:33</span><span class="ch-label">Skin cells and pigment types</span><a class="ch-notes" href="skin-layers.html" target="_top" onclick="event.stopPropagation()">Notes &nearr;</a></button></li>
+      <li><button type="button" class="chapter" data-seconds="1024"><span class="ts">17:04</span><span class="ch-label">Skin color clues in health</span><a class="ch-notes" href="skin-functions.html" target="_top" onclick="event.stopPropagation()">Notes &nearr;</a></button></li>
+      <li><button type="button" class="chapter" data-seconds="1292"><span class="ts">21:32</span><span class="ch-label">Hypodermis, hair, and nails</span><a class="ch-notes" href="skin-layers.html" target="_top" onclick="event.stopPropagation()">Notes &nearr;</a></button></li>
+      <li><button type="button" class="chapter" data-seconds="1590"><span class="ts">26:30</span><span class="ch-label">Skin glands and sweat types</span><a class="ch-notes" href="skin-functions.html" target="_top" onclick="event.stopPropagation()">Notes &nearr;</a></button></li>
+      <li><button type="button" class="chapter" data-seconds="1818"><span class="ts">30:18</span><span class="ch-label">Appendages and healing line guidance</span><a class="ch-notes" href="skin-functions.html" target="_top" onclick="event.stopPropagation()">Notes &nearr;</a></button></li>
+    </ul>
+    <p class="sr-only" id="seek-status" role="status" aria-live="polite"></p>
+
+    <h2 id="notes-h">Notes pages</h2>
+    <p class="section-note">Open the reference notes for each topic in this video.</p>
+    <div class="notes-grid" aria-labelledby="notes-h">
+      <a class="note-card" href="skin-layers.html" target="_top"><span class="nc-eyebrow">Notes</span><span class="nc-title">Skin Structure and Layers <span class="nc-arrow" aria-hidden="true">&rarr;</span></span></a>
+      <a class="note-card" href="skin-functions.html" target="_top"><span class="nc-eyebrow">Notes</span><span class="nc-title">Skin Functions and Accessory Structures <span class="nc-arrow" aria-hidden="true">&rarr;</span></span></a>
+    </div>
+  </main>
+  <footer>
+    <div>BIO 304 Human Anatomy &amp; Physiology &middot; American River College</div>
+    <div class="byline">Dr. Sharilyn Rennie</div>
+  </footer>
+</div>
+<script>
+(function(){
+  var BASE = "https://www.loom.com/embed/afbd0687e4db47b19457d9fdefd7444f";
+  var iframe = document.getElementById("player");
+  var status = document.getElementById("seek-status");
+  var buttons = Array.prototype.slice.call(document.querySelectorAll(".chapter"));
+  buttons.forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var s = btn.getAttribute("data-seconds");
+      iframe.src = BASE + "?t=" + s + "s&autoplay=true";
+      buttons.forEach(function(b){ b.setAttribute("aria-current", "false"); });
+      btn.setAttribute("aria-current", "true");
+      if (status) status.textContent = "Playing from " + btn.querySelector(".ts").textContent;
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  if (window.self === window.top) return;
+  function send(){
+    try {
+      var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+      window.parent.postMessage({ id: "bio304-video-player", type: "resize", height: h }, "*");
+    } catch (e) {}
+  }
+  window.addEventListener("load", send);
+  window.addEventListener("resize", send);
+  if ("ResizeObserver" in window) new ResizeObserver(send).observe(document.body);
+})();
+</script>
+</body>
+</html>

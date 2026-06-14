@@ -1466,7 +1466,6 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 <main class="sheet" id="main">
   <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology</p>
   <h1 class="title">Epithelial Tissue Classification</h1>
-<div class="draw-btn-row"><button type="button" class="draw-btn" data-slide="slides-epithelial-tissue-classification.html">Draw the epithelial classification grid</button></div>
   <p class="subhead">Tissues · Module 3</p>
   <p class="usage">A reference for the Epithelial Tissue video. Epithelium covers, lines, and secretes. Every epithelium gets named twice: by shape of cell, and by how many layers thick.</p>
   <p class="mode-hint" role="note" style="font-family:'Lora',Georgia,serif;font-size:13px;color:var(--navy);background:transparent;border-left:2px solid var(--gold);padding:6px 0 6px 12px;margin:-6px 0 18px 0;max-width:62ch;">
@@ -1475,17 +1474,12 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   </p>
 
   <div class="resource-bar" role="region" aria-label="Topic resources">
-    <button type="button" class="resource-btn" id="video-toggle" aria-expanded="false" aria-controls="video-panel">
+    <a class="resource-btn" id="video-toggle" href="video-tissues-histology.html" target="_top" rel="noopener">
       <span class="arrow" aria-hidden="true">&#9654;</span> Watch the video
-    </button>
+    </a>
     <a class="resource-btn primary" id="prework-link" href="#" target="_top" rel="noopener">
       Open spaced recall <span class="arrow" aria-hidden="true">&rarr;</span>
     </a>
-  </div>
-  <div class="video-panel" id="video-panel" hidden>
-    <iframe id="video-iframe" src="about:blank" title="Topic video" loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
   </div>
 
   <hr class="rule" />
@@ -1602,7 +1596,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   // 'prework' : URL into the spaced-repetition pre-work for this topic
   // ----------------------------------------------------------------
   window.SHEET_CONFIG = {
-    video:   'https://www.youtube.com/embed/REPLACE_WITH_EPITHELIAL_TISSUE_VIDEO_ID',
+    video:   '',
     prework: 'bio304-spaced-recall-prototype.html#topic=t-epithelial-tissue',
   };
 
@@ -2039,65 +2033,6 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 })();
 </script>
 <!-- mcas-workbook-aside-gate-end -->
-<!-- mcas-lecture-notes-injector -->
-<script>
-(function(){
-  function init(){
-    var videoPanel = document.querySelector("#video-panel, .video-panel");
-    if (!videoPanel) return;
-    if (document.getElementById("mcas-lecture-notes-input")) return;
-
-    var cfg = window.SHEET_CONFIG || {};
-    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
-    var topicId = m ? m[1] : null;
-    var keyBase = topicId || (document.title || "page").toLowerCase().replace(/[^a-z0-9]+/g, "-");
-    var key = "bio304-lecture-notes-" + keyBase;
-
-    var section = document.createElement("section");
-    section.className = "mcas-lecture-notes";
-    section.setAttribute("aria-labelledby", "mcas-lecture-notes-h");
-    section.innerHTML =
-      '<p class="mcas-lecture-notes-eyebrow">While you watch</p>' +
-      '<h2 id="mcas-lecture-notes-h">Lecture video notes</h2>' +
-      '<p class="mcas-lecture-notes-instr">A scratchpad for what stands out as the video runs. Your notes save on this device and stay here when you come back.</p>' +
-      '<textarea id="mcas-lecture-notes-input" rows="8" aria-describedby="mcas-lecture-notes-status" placeholder="Type what is clicking for you..."></textarea>' +
-      '<p class="mcas-lecture-notes-status" id="mcas-lecture-notes-status" aria-live="polite"></p>';
-
-    if (videoPanel.parentNode) videoPanel.parentNode.insertBefore(section, videoPanel.nextSibling);
-
-    var ta = section.querySelector("#mcas-lecture-notes-input");
-    var status = section.querySelector("#mcas-lecture-notes-status");
-
-    try {
-      var saved = window.localStorage.getItem(key);
-      if (saved) ta.value = saved;
-      if (status) status.textContent = saved ? "Restored from your last session." : "";
-    } catch (e) {}
-
-    var t, debounceTimer;
-    function save(){
-      try { window.localStorage.setItem(key, ta.value); } catch (e) {}
-      if (status) {
-        status.textContent = "Saved on this device";
-        clearTimeout(t);
-        t = setTimeout(function(){ if (status) status.textContent = ""; }, 1400);
-      }
-    }
-    ta.addEventListener("input", function(){
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(save, 350);
-    });
-    ta.addEventListener("blur", save);
-    window.addEventListener("pagehide", save);
-  }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
-})();
-</script>
-<!-- mcas-lecture-notes-injector-end -->
 <!-- mcas-step-tracker-injector -->
 <script>
 (function(){
@@ -2356,7 +2291,6 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 <!-- mcas-iframe-height-sender-end -->
   <script src="slide-modal.js" defer></script>
 
-<style id="mcas-hide-placeholder-video">#video-toggle,#video-panel{display:none !important;}</style>
 <style id="mcas-foot-fix">.sheet .foot{flex-wrap:wrap;gap:6px 24px;width:100%;align-items:baseline;}.sheet .foot span{white-space:nowrap;}@media (max-width:560px){.sheet .foot{flex-direction:column;align-items:flex-start;gap:3px;}.sheet .foot span{white-space:normal;}}</style>
 <script>
 /* mcas-flag-heal: undoes the old "opening the cards marked the video watched" bug. */

@@ -1314,7 +1314,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   <p class="eyebrow">BIO 304 &middot; Human Anatomy &amp; Physiology &middot; American River College</p>
   <h1 class="page-title">Daily Pre-Work and Spaced Recall</h1>
   <p class="subhead" id="subhead-context">Today&rsquo;s prep, your daily review, and your engagement record</p>
-  <p class="usage">Watch each video. Explain it in your own words to unlock notes and your question set. Rate how you felt on each card. Come back tomorrow and your cards will be ready for review.</p>
+  <p class="usage">Watch each topic’s video, then open its cards to study. Rate how you felt on each card. Your progress is saved on this device and carries from day to day, so when you come back your due cards will be ready for review.</p>
   <nav class="top-nav" aria-label="Primary">
     <button type="button" data-nav="dashboard" aria-current="page">Today&rsquo;s pre-work</button>
     <button type="button" data-nav="review">Daily review</button>
@@ -1919,7 +1919,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   // Build everything the report's grade card needs for a given week.
   /* The week is Mon..Sun. New prework topics land on Mon, Tue, Thu, Fri (the four
      "opportunities for all the cards"); Wednesday is the recall/daily-review day.
-     Mon–Fri are the 5 required days; Sat/Sun are optional makeup. A prework day is
+     Any 5 of the 7 days (Mon-Sun) count toward the grade. A prework day is
      complete when that day's NEW cards are done (video is the gate to them); the
      recall day is complete when the daily review is done. Partial days earn their
      fraction. Card totals/seen come from topic state; the recall + weekend days read
@@ -1957,7 +1957,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
           // Credit only counts cards from topics whose video was actually watched.
           // Cards on a topic with no watched video earn 0 — you can't get card credit
           // for material you reached without passing the video gate.
-          var seen = topics.reduce(function(a,t){ var ts=STATE.topics[t.id]; return a + ((ts && ts.videoWatched)?Object.keys(ts.cards||{}).length:0); }, 0);
+          var seen = topics.reduce(function(a,t){ var ts=STATE.topics[t.id]; return a + (ts?Object.keys(ts.cards||{}).length:0); }, 0);
           d.frac  = tot ? seen/tot : 0;
           d.video = topics.every(function(t){ var ts=STATE.topics[t.id]; return ts && ts.videoWatched; });
           d.label = topics.length + " new";
@@ -1973,28 +1973,34 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     }
 
     // Required graded days actually available this week (prework days with topics + Wed recall when dated).
-    var requiredDays = days.filter(function(d){ return d.required && d.frac !== null; });
-    var req = requiredDays.length || GRADE.required;     // adapt if a week has fewer
-    var eff = requiredDays.reduce(function(a,d){ return a + Math.min(1, Math.max(0,d.frac)); }, 0);
-    // weekend makeup: optional days completed can offset, up to the required cap
-    var makeup = days.filter(function(d){ return d.kind==="optional" && d.frac; }).reduce(function(a,d){ return a + Math.min(1,d.frac); }, 0);
-    var effWithMakeup = Math.min(req, eff + makeup);
+    // Any 5 of the 7 days (Mon-Sun) count toward the grade. Each eligible day
+    // contributes its completion fraction; the student's best 5 days are summed
+    // and capped at 5, so any two days can be skipped.
+    var REQ_DAYS = 5;
+    var dayFracs = days
+      .filter(function(d){ return d.frac !== null; })
+      .map(function(d){ return Math.min(1, Math.max(0, d.frac)); })
+      .sort(function(a, b){ return b - a; });
+    var req = REQ_DAYS;
+    var eff = dayFracs.slice(0, REQ_DAYS).reduce(function(a, x){ return a + x; }, 0);
+    var effWithMakeup = Math.min(req, eff);
+    var eligibleDays = dayFracs.length;
 
     function score(e){ return gradeScoreReq(e, req); }
     var cardsTotal = wt.reduce(function(a,t){ return a + (t.cards?t.cards.length:0); }, 0);
-    var cardsSeen  = wt.reduce(function(a,t){ var ts=STATE.topics[t.id]; return a + ((ts && ts.videoWatched)?Object.keys(ts.cards||{}).length:0); }, 0);
+    var cardsSeen  = wt.reduce(function(a,t){ var ts=STATE.topics[t.id]; return a + (ts?Object.keys(ts.cards||{}).length:0); }, 0);
     // Integrity flag: a topic with card progress but NO watched video means the cards
     // were reached without passing the gate ("broke in"). Those cards earn no credit.
     var brokeIn = wt.filter(function(t){ var ts=STATE.topics[t.id]; return ts && !ts.videoWatched && Object.keys(ts.cards||{}).length>0; }).length;
     // DOK-3 goal: how many of this week's topics has the student worked up to DOK 3?
     var dok3 = wt.filter(function(t){ return reachedDok3(t.id); }).length;
 
-    // remaining capacity (required days not yet full) for the "max reachable" marker
-    var capacity = requiredDays.reduce(function(a,d){ return a + (1 - Math.min(1,Math.max(0,d.frac))); }, 0);
+    // max reachable this week = the 5 best of the 7 eligible days, all full
+    var maxReachable = Math.min(req, eligibleDays);
 
     return {
       week: week, days: days, hasDates: hasDates, req: req,
-      eff: effWithMakeup, score: score(effWithMakeup), maxScore: score(Math.min(req, eff + makeup + capacity)),
+      eff: effWithMakeup, score: score(effWithMakeup), maxScore: score(maxReachable),
       videosWatched: videosWatched, videosTotal: videosTotal,
       cardsSeen: cardsSeen, cardsTotal: cardsTotal, cardsPct: cardsTotal ? Math.round(cardsSeen/cardsTotal*100) : 0,
       dok3: dok3, dok3Total: wt.length, brokeIn: brokeIn,
@@ -2665,7 +2671,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     if (topic.lecturePageUrl) {
       card.innerHTML =
         '<h3>Watch the lecture first</h3>' +
-        '<p class="usage">This topic\'s cards unlock after you finish the lecture video and complete the short retrieval check on the lecture page. The lecture page sets a flag that this app reads automatically; once it\'s set, you land here at the cards directly.</p>' +
+        '<p class="usage">Watch this topic\u2019s lecture video, then open its cards here to study. Your progress is saved on this device and carries from day to day.</p>' +
         '<div class="toolbar" style="margin-top:14px;">' +
           '<a class="btn btn-primary" id="btn-go-lecture" href="' + topic.lecturePageUrl + '" target="_top">Open the lecture page &rarr;</a>' +
           '<button type="button" class="btn btn-ghost" id="btn-back-dashboard" data-nav="dashboard">Back to today\'s list</button>' +
@@ -3249,57 +3255,34 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         if (d.frac === null && d.kind==="prework") return '<div class="grade-day none" style="opacity:.45"><span class="gd-n">'+d.name+'</span><span class="gd-m">·</span><span class="gd-p">—</span></div>';
         const f = Math.min(1, Math.max(0, d.frac||0));
         const st = f>=1 ? "full" : (f>0 ? "partial" : "none");
-        const mark = f>=1 ? "✓" : (f>0 ? "◑" : (d.required ? "✗" : "·"));
-        const vid = (d.kind==="prework" && d.video) ? '<span class="gd-vid" title="video watched">▶</span>' : '';
-        const opt = d.required ? '' : '<span class="gd-opt">opt</span>';
+        const mark = f>=1 ? "✓" : (f>0 ? "◑" : "·");
+        const vid = '';
+        const opt = '';
         return '<div class="grade-day '+st+'"><span class="gd-n">'+d.name+'</span><span class="gd-m">'+mark+'</span><span class="gd-p">'+d.label+'</span>'+vid+opt+'</div>';
       }).join("") + '</div>';
     }
 
     const ppd = (GRADE.mode === "penalty");
     const policyText = ppd
-      ? "Watch the video and finish the <strong>new cards</strong> on each of the four prework days (Mon, Tue, Thu, Fri), plus the <strong>daily review</strong> on Wednesday \u2014 five required days. Cards only earn credit once that topic's video is watched. Each required day not fully done costs <strong>"+GRADE.penalty+"%</strong>; a partly-done day costs a proportional slice. Sat/Sun are optional makeup. Lowest possible weekly grade: <strong>"+gradeScoreReq(0, g.req)+"%</strong>."
-      : "Each of the five required days (four prework + Wednesday review) is worth <strong>"+Math.round(100/g.req)+"%</strong>; a half-done day earns half. Cards only earn credit once that topic's video is watched. Sat/Sun are optional makeup.";
+      ? "Your grade comes from <strong>any five days out of seven</strong> (Mon\u2013Sun). Each day you miss below five costs <strong>"+GRADE.penalty+"%</strong>; a partly-done day costs a proportional slice. Finish each day\u2019s cards to bank that day."
+      : "Your weekly grade comes from <strong>any five days out of seven</strong> (Mon\u2013Sun). Each of your best five days is worth <strong>"+Math.round(100/g.req)+"%</strong>, earned in proportion to the percentage of that day\u2019s cards you complete \u2014 so a half-done day earns half. Practice on five different days, and finish each day\u2019s cards, to reach <strong>100%</strong>. You can skip any two days you like.";
 
     const gradeCard = document.createElement("div");
     gradeCard.className = "card grade-card";
     gradeCard.innerHTML =
       '<h3>Week '+wk+' engagement grade</h3>' +
       '<div class="grade-headline"><span class="grade-num'+(g.score<80?' low':'')+'">'+g.score+'%</span>'+
-        '<span class="grade-sub">videos watched: <strong>'+g.videosWatched+'/'+g.videosTotal+'</strong> &nbsp;·&nbsp; new cards completed: <strong>'+g.cardsPct+'%</strong> ('+g.cardsSeen+'/'+g.cardsTotal+')</span></div>' +
+        '<span class="grade-sub">new cards completed: <strong>'+g.cardsPct+'%</strong> ('+g.cardsSeen+'/'+g.cardsTotal+')</span></div>' +
       '<p class="grade-goal">🎯 <strong>Goal: reach DOK 3</strong> on every topic &mdash; you\u2019re at DOK 3 on <strong>'+g.dok3+'/'+g.dok3Total+'</strong> of this week\u2019s topics. (DOK 3 is the deepest "analyze &amp; apply" level; see Mastery by topic below.)</p>' +
       '<div class="grade-bar"><div class="grade-bar-fill'+(g.score<80?' low':'')+'" style="width:'+g.score+'%"></div>' +
         (g.hasDates && g.maxScore>g.score ? '<div class="grade-bar-max" style="left:'+g.maxScore+'%" data-l="max '+g.maxScore+'%"></div>' : '') + '</div>' +
       dayGrid +
       '<div class="grade-ticker '+tickerCls+'">'+tickerMsg+'</div>' +
-      (g.brokeIn ? '<p class="grade-policy" style="background:#f7ece4;border-color:#e3c3ad;">⚠️ <strong>'+g.brokeIn+' topic'+(g.brokeIn===1?'':'s')+'</strong> this week show card activity with no video watched. Cards reached without watching the video earn <strong>no credit</strong> — watch the video to count them.</p>' : '') +
       '<p class="grade-policy">🔒 '+policyText+'</p>' +
-      (g.hasDates ? '' : '<p class="grade-note no-print">Daily (Mon\u2013Sun) tracking turns on once <code>courseStart</code> is set in course-content.js. Until then, the grade reflects this week\u2019s video + new-card completion.</p>');
+      '<p class="grade-policy">📈 <strong>Why your number moves.</strong> This is a weekly score (Mon\u2013Sun) and it starts fresh every Monday, so a new week opens at a lower number than last week\u2019s finish. A day counts once you finish that day\u2019s cards, and each day is worth its share, so the number climbs as the week goes on. Days you finish stay banked for the rest of the week \u2014 the daily review never erases credit you already earned. Spaced recall also brings cards back due over time, so clearing everything today does not empty tomorrow. A few minutes every day is what keeps you at 100%.</p>' +
+      (g.hasDates ? '' : '<p class="grade-note no-print">Daily (Mon\u2013Sun) tracking turns on once <code>courseStart</code> is set in course-content.js. Until then, the grade reflects this week\u2019s new-card completion.</p>');
     body.appendChild(gradeCard);
 
-    // Per-topic VIDEO WATCH PERCENTAGE — this factors into the grade.
-    // Reads the scrub-proof percentage the lecture-page tracker records
-    // (bio304-videopct-<id>), and the watched flag (bio304-video-<id>),
-    // which the "I watched this" button also sets. 98%+ counts as watched.
-    (function(){
-      var vrows = topicsForWeek(wk).map(function(t){
-        var pct = 0, watched = false;
-        try { pct = parseInt(window.localStorage.getItem("bio304-videopct-" + t.id) || "0", 10) || 0; } catch(e){}
-        try { watched = window.localStorage.getItem("bio304-video-" + t.id) === "true"; } catch(e){}
-        if (watched && pct < 98) pct = 98;            // credited as watched (button or threshold)
-        var ok = watched || pct >= 98;
-        return '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(11,21,48,0.12);">' +
-          '<span style="font-weight:600;color:#0B1530;">' + escapeHtml(t.title) + '</span>' +
-          '<span style="font-variant-numeric:tabular-nums;font-weight:800;color:' + (ok ? '#0B1530' : '#8B3A2E') + ';">' +
-            pct + '%' + (ok ? ' ✓' : '') + '</span></div>';
-      }).join("");
-      var videoCard = document.createElement("div");
-      videoCard.className = "card";
-      videoCard.innerHTML = '<h3>Week ' + wk + ' video watch by topic</h3>' +
-        '<p class="usage">Percentage of each assigned video actually watched (scrub-proof). <strong>98% or higher</strong> counts as watched for your grade.</p>' +
-        (vrows || '<p class="empty">No topics scheduled for this week.</p>');
-      body.appendChild(videoCard);
-    })();
 
     // print header mirrors (name comes from locked state)
     REPORT_NAME = STATE.studentName || "";
@@ -4127,65 +4110,6 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
 </footer>
 </div>
 <!-- mcas-chrome-footer-end -->
-<!-- mcas-lecture-notes-injector -->
-<script>
-(function(){
-  function init(){
-    var videoPanel = document.querySelector("#video-panel, .video-panel");
-    if (!videoPanel) return;
-    if (document.getElementById("mcas-lecture-notes-input")) return;
-
-    var cfg = window.SHEET_CONFIG || {};
-    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
-    var topicId = m ? m[1] : null;
-    var keyBase = topicId || (document.title || "page").toLowerCase().replace(/[^a-z0-9]+/g, "-");
-    var key = "bio304-lecture-notes-" + keyBase;
-
-    var section = document.createElement("section");
-    section.className = "mcas-lecture-notes";
-    section.setAttribute("aria-labelledby", "mcas-lecture-notes-h");
-    section.innerHTML =
-      '<p class="mcas-lecture-notes-eyebrow">While you watch</p>' +
-      '<h2 id="mcas-lecture-notes-h">Lecture video notes</h2>' +
-      '<p class="mcas-lecture-notes-instr">A scratchpad for what stands out as the video runs. Your notes save on this device and stay here when you come back.</p>' +
-      '<textarea id="mcas-lecture-notes-input" rows="8" aria-describedby="mcas-lecture-notes-status" placeholder="Type what is clicking for you..."></textarea>' +
-      '<p class="mcas-lecture-notes-status" id="mcas-lecture-notes-status" aria-live="polite"></p>';
-
-    if (videoPanel.parentNode) videoPanel.parentNode.insertBefore(section, videoPanel.nextSibling);
-
-    var ta = section.querySelector("#mcas-lecture-notes-input");
-    var status = section.querySelector("#mcas-lecture-notes-status");
-
-    try {
-      var saved = window.localStorage.getItem(key);
-      if (saved) ta.value = saved;
-      if (status) status.textContent = saved ? "Restored from your last session." : "";
-    } catch (e) {}
-
-    var t, debounceTimer;
-    function save(){
-      try { window.localStorage.setItem(key, ta.value); } catch (e) {}
-      if (status) {
-        status.textContent = "Saved on this device";
-        clearTimeout(t);
-        t = setTimeout(function(){ if (status) status.textContent = ""; }, 1400);
-      }
-    }
-    ta.addEventListener("input", function(){
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(save, 350);
-    });
-    ta.addEventListener("blur", save);
-    window.addEventListener("pagehide", save);
-  }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
-})();
-</script>
-<!-- mcas-lecture-notes-injector-end -->
 <!-- mcas-iframe-height-sender -->
 <script>
 /* MCAS iframe height-sender (rebrand-mcas.py) */

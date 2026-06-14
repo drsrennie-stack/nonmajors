@@ -1466,7 +1466,6 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 <main class="sheet" id="main">
   <p class="eyebrow">BIO 304 · Human Anatomy &amp; Physiology</p>
   <h1 class="title">Cardiac Conduction System</h1>
-<div class="draw-btn-row"><button type="button" class="draw-btn" data-slide="slides-cardiac-conduction.html">Draw cardiac conduction</button></div>
   <p class="subhead">Cardiovascular System · Module 11</p>
   <p class="usage">A reference for the Cardiac Conduction video. The heart generates its own rhythm. A network of specialized myocardial cells fires impulses from atria to ventricles in a precise sequence that an ECG can read from outside.</p>
   <p class="mode-hint" role="note" style="font-family:'Lora',Georgia,serif;font-size:13px;color:var(--navy);background:transparent;border-left:2px solid var(--gold);padding:6px 0 6px 12px;margin:-6px 0 18px 0;max-width:62ch;">
@@ -2054,65 +2053,6 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 })();
 </script>
 <!-- mcas-workbook-aside-gate-end -->
-<!-- mcas-lecture-notes-injector -->
-<script>
-(function(){
-  function init(){
-    var videoPanel = document.querySelector("#video-panel, .video-panel");
-    if (!videoPanel) return;
-    if (document.getElementById("mcas-lecture-notes-input")) return;
-
-    var cfg = window.SHEET_CONFIG || {};
-    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
-    var topicId = m ? m[1] : null;
-    var keyBase = topicId || (document.title || "page").toLowerCase().replace(/[^a-z0-9]+/g, "-");
-    var key = "bio304-lecture-notes-" + keyBase;
-
-    var section = document.createElement("section");
-    section.className = "mcas-lecture-notes";
-    section.setAttribute("aria-labelledby", "mcas-lecture-notes-h");
-    section.innerHTML =
-      '<p class="mcas-lecture-notes-eyebrow">While you watch</p>' +
-      '<h2 id="mcas-lecture-notes-h">Lecture video notes</h2>' +
-      '<p class="mcas-lecture-notes-instr">A scratchpad for what stands out as the video runs. Your notes save on this device and stay here when you come back.</p>' +
-      '<textarea id="mcas-lecture-notes-input" rows="8" aria-describedby="mcas-lecture-notes-status" placeholder="Type what is clicking for you..."></textarea>' +
-      '<p class="mcas-lecture-notes-status" id="mcas-lecture-notes-status" aria-live="polite"></p>';
-
-    if (videoPanel.parentNode) videoPanel.parentNode.insertBefore(section, videoPanel.nextSibling);
-
-    var ta = section.querySelector("#mcas-lecture-notes-input");
-    var status = section.querySelector("#mcas-lecture-notes-status");
-
-    try {
-      var saved = window.localStorage.getItem(key);
-      if (saved) ta.value = saved;
-      if (status) status.textContent = saved ? "Restored from your last session." : "";
-    } catch (e) {}
-
-    var t, debounceTimer;
-    function save(){
-      try { window.localStorage.setItem(key, ta.value); } catch (e) {}
-      if (status) {
-        status.textContent = "Saved on this device";
-        clearTimeout(t);
-        t = setTimeout(function(){ if (status) status.textContent = ""; }, 1400);
-      }
-    }
-    ta.addEventListener("input", function(){
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(save, 350);
-    });
-    ta.addEventListener("blur", save);
-    window.addEventListener("pagehide", save);
-  }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
-})();
-</script>
-<!-- mcas-lecture-notes-injector-end -->
 <!-- mcas-step-tracker-injector -->
 <script>
 (function(){
