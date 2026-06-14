@@ -1369,42 +1369,6 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     <h2 id="topic-heading">Topic</h2>
     <p class="usage" id="topic-summary"></p>
 
-    <div class="card" id="video-card">
-      <h3 id="video-card-heading">Step 1. Watch the lecture video</h3>
-      <p class="usage" id="video-status">Watch this topic's lecture video on its lecture page, then return here to keep going.</p>
-      <div class="toolbar">
-        <a class="btn btn-primary" id="btn-open-lecture-page" href="#" target="_top" hidden>Open lecture page &rarr;</a>
-        <button type="button" class="btn btn-primary" id="btn-simulate-watch" hidden>Simulate watching (10s)</button>
-        <button type="button" class="btn btn-gold" id="btn-mark-watched">I&rsquo;ve watched it</button>
-      </div>
-      <div class="video-frame" id="video-frame-legacy" aria-label="Legacy in-app video player" hidden>
-        <div class="placeholder-label" id="video-placeholder-label">Placeholder video. The real video must play start-to-finish before the next step appears.</div>
-        <div class="video-progress" id="video-progress"></div>
-      </div>
-    </div>
-
-    <p class="usage" id="gate-locked-note" style="margin-top:16px;">Step 2 unlocks once Step 1 is complete.</p>
-
-    <div class="gate" id="gate-card" aria-labelledby="gate-heading" hidden>
-      <h3 id="gate-heading">Step 2. Explain in your own words</h3>
-      <label for="gate-input">In your own words, what did this video teach you? Aim for at least 60 words and include the key ideas.</label>
-      <textarea id="gate-input" aria-describedby="gate-help" placeholder="Type your explanation here..."></textarea>
-      <p id="gate-help" class="usage">Your explanation stays on this device. It will print with your engagement report so your professor can see your understanding.</p>
-      <p class="usage" id="gate-preview-hint" hidden style="margin-top:6px;">
-        <strong style="color:var(--terra-dark);font-style:normal;">Preview mode hint:</strong>
-        the system is looking for these key concepts in your explanation:
-        <span id="gate-preview-keywords" style="font-family:'DM Sans',system-ui,sans-serif;font-style:normal;color:var(--navy);"></span>
-      </p>
-      <div class="gate-meter" aria-live="polite">
-        <span>Words: <strong id="gate-word-count">0</strong> / 60</span>
-        <span>Concepts found: <strong id="gate-keyword-count">0</strong> / <span id="gate-keyword-target">0</span></span>
-        <button type="button" id="btn-toggle-preview-hint" class="btn btn-ghost" style="padding:4px 10px;font-size:12px;margin-left:auto;">Show concepts (preview)</button>
-      </div>
-      <div class="toolbar">
-        <button type="button" class="btn btn-primary" id="btn-submit-gate">Unlock notes and questions</button>
-      </div>
-      <p class="gate-feedback" id="gate-feedback" role="status"></p>
-    </div>
   </section>
 
   <!-- LEARNING VIEW (cards; notes link out to the existing notes hub) -->
@@ -3479,21 +3443,6 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       b.addEventListener("click", () => nav(b.dataset.nav));
     });
 
-    // Topic / gate handlers
-    $("#btn-simulate-watch").addEventListener("click", simulateWatch);
-    $("#btn-mark-watched").addEventListener("click", markWatched);
-    $("#gate-input").addEventListener("input", (e) => {
-      const topic = topicById(CURRENT_TOPIC);
-      if (topic) updateGateMeter(topic, e.target.value);
-    });
-    $("#btn-submit-gate").addEventListener("click", submitGate);
-    $("#btn-toggle-preview-hint").addEventListener("click", () => {
-      const hint = $("#gate-preview-hint");
-      const btn = $("#btn-toggle-preview-hint");
-      const showing = !hint.hidden;
-      hint.hidden = showing;
-      btn.textContent = showing ? "Show concepts (preview)" : "Hide concepts";
-    });
 
     // Card handlers
     // (legacy btn-reveal removed; MC replaces it)
