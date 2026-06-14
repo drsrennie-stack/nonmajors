@@ -380,6 +380,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 .preview-banner a:hover { color: #FFFFFF; }
 
+/* Instructor toggle: fixed corner switch, instructor-only, never printed */
+.instr-toggle { position: fixed; right: 14px; bottom: 14px; z-index: 9999; display: flex; align-items: center; gap: 10px; background: #0B1530; color: #F5F1E8; padding: 9px 13px; border-radius: 999px; box-shadow: 0 6px 18px rgba(0,0,0,0.28); font-size: 12px; font-weight: 700; }
+.instr-toggle .it-label { letter-spacing: 0.04em; }
+.instr-toggle .it-switch { position: relative; width: 42px; height: 24px; border-radius: 999px; border: 0; background: rgba(245,241,232,0.35); cursor: pointer; padding: 0; flex: 0 0 auto; transition: background .2s ease; }
+.instr-toggle .it-switch.is-on { background: #C9A14A; }
+.instr-toggle .it-knob { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: left .2s ease; }
+.instr-toggle .it-switch.is-on .it-knob { left: 21px; }
+.instr-toggle .it-switch:focus-visible { outline: 2px solid #C9A14A; outline-offset: 2px; }
+.instr-toggle .it-state { min-width: 2.2em; color: #C9A14A; }
+.instr-toggle .it-hide { background: transparent; border: 0; color: rgba(245,241,232,0.72); font: inherit; font-size: 11px; font-weight: 600; text-decoration: underline; cursor: pointer; padding: 0; }
+.instr-toggle .it-hide:hover { color: #fff; }
+@media print { .instr-toggle, .preview-banner { display: none !important; } }
+
 /* ===== GRADING (light) ===== */
 .grading-section { background: #FFFFFF; padding-top: 64px; padding-bottom: 64px; }
 .grading-section .section-eyebrow { color: #8B3A2E; }
@@ -1020,31 +1033,75 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
     // ?preview=1 turns it on (saved to localStorage so the URL only
     // needs the flag once). ?preview=0 turns it off. When on, the
     // date gate is bypassed and a banner is shown at the top.
-    function isPreviewMode() {
+    // Two flags in localStorage:
+    //   bio304_instructor = '1'  -> this device is the instructor's; shows the toggle.
+    //   bio304_preview    = '1'  -> preview is currently ON (all weeks unlocked).
+    // Students never set the instructor flag, so they never see the control.
+    var PREVIEW_KEY = 'bio304_preview';
+    var INSTR_KEY = 'bio304_instructor';
+    function lsGet(k){ try { return localStorage.getItem(k); } catch (e) { return null; } }
+    function lsSet(k,v){ try { localStorage.setItem(k,v); } catch (e) {} }
+    function lsDel(k){ try { localStorage.removeItem(k); } catch (e) {} }
+
+    function isInstructor(){ return lsGet(INSTR_KEY) === '1'; }
+    function isPreviewMode(){ return lsGet(PREVIEW_KEY) === '1'; }
+
+    function readUrlFlags(){
       try {
-        var params = new URLSearchParams(window.location.search);
-        if (params.has('preview')) {
-          var v = params.get('preview');
-          if (v === '0' || v === 'off' || v === 'false') {
-            try { localStorage.removeItem('bio304_preview'); } catch (e) {}
-            return false;
-          }
-          try { localStorage.setItem('bio304_preview', '1'); } catch (e) {}
-          return true;
+        var p = new URLSearchParams(window.location.search);
+        if (p.has('instructor')) {
+          var iv = p.get('instructor');
+          if (iv === '0' || iv === 'off' || iv === 'false') { lsDel(INSTR_KEY); lsDel(PREVIEW_KEY); }
+          else { lsSet(INSTR_KEY, '1'); }
         }
-        return localStorage.getItem('bio304_preview') === '1';
-      } catch (e) { return false; }
+        if (p.has('preview')) {
+          var v = p.get('preview');
+          if (v === '0' || v === 'off' || v === 'false') { lsDel(PREVIEW_KEY); }
+          else { lsSet(PREVIEW_KEY, '1'); lsSet(INSTR_KEY, '1'); }
+        }
+      } catch (e) {}
     }
 
-    function showPreviewBanner() {
-      if (document.querySelector('.preview-banner')) return;
-      var banner = document.createElement('div');
-      banner.className = 'preview-banner';
-      banner.setAttribute('role', 'status');
-      banner.innerHTML =
-        '<strong>Instructor preview</strong> &middot; all weeks unlocked for you only &middot; ' +
-        '<a href="?preview=0">turn off</a>';
-      document.body.insertBefore(banner, document.body.firstChild);
+    function setPreview(on){
+      if (on) { lsSet(PREVIEW_KEY,'1'); lsSet(INSTR_KEY,'1'); }
+      else { lsDel(PREVIEW_KEY); }
+      renderInstructorUI();
+      refresh();
+    }
+
+    function exitInstructor(){
+      lsDel(PREVIEW_KEY); lsDel(INSTR_KEY);
+      renderInstructorUI();
+      refresh();
+    }
+
+    function renderInstructorUI(){
+      var oldB = document.querySelector('.preview-banner'); if (oldB) oldB.remove();
+      var oldT = document.querySelector('.instr-toggle'); if (oldT) oldT.remove();
+      if (!isInstructor()) return;
+
+      var on = isPreviewMode();
+
+      if (on) {
+        var banner = document.createElement('div');
+        banner.className = 'preview-banner';
+        banner.setAttribute('role', 'status');
+        banner.innerHTML = '<strong>Instructor preview</strong> &middot; all weeks unlocked for you only';
+        document.body.insertBefore(banner, document.body.firstChild);
+      }
+
+      var box = document.createElement('div');
+      box.className = 'instr-toggle';
+      box.innerHTML =
+        '<span class="it-label">Instructor preview</span>' +
+        '<button type="button" class="it-switch' + (on ? ' is-on' : '') + '" role="switch" aria-checked="' + (on ? 'true' : 'false') + '" aria-label="Toggle instructor preview, unlocks all weeks"><span class="it-knob"></span></button>' +
+        '<span class="it-state">' + (on ? 'ON' : 'OFF') + '</span>' +
+        '<button type="button" class="it-hide" title="Hide this control and view this device as a student">view as student</button>';
+      box.querySelector('.it-switch').addEventListener('click', function(){ setPreview(!isPreviewMode()); });
+      box.querySelector('.it-hide').addEventListener('click', function(){
+        if (window.confirm('Hide the instructor toggle and view this device as a student?\n\nYou can bring it back any time by opening this page with ?instructor=1 at the end of the address.')) exitInstructor();
+      });
+      document.body.appendChild(box);
     }
 
     function formatUnlock(d) {
@@ -1151,7 +1208,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       if (pill) { e.preventDefault(); e.stopPropagation(); }
     }, true);
 
-    if (isPreviewMode()) showPreviewBanner();
+    readUrlFlags();
+    renderInstructorUI();
     refresh();
     setInterval(refresh, 60 * 1000); // re-check every minute
   })();
