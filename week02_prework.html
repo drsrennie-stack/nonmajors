@@ -48,7 +48,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 
 /* ===== SECTION PADDING ===== */
 .site-header, .hero-card, .how-section, .deadlines-section, .days-section,
-.note-section, .cta-section, .footer-section {
+.note-section, .cta-section, .footer-section, .videos-section {
   padding-left: max(40px, 5vw);
   padding-right: max(40px, 5vw);
 }
@@ -166,6 +166,18 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 
 /* ===== FOUR PRE-WORK DAYS (cream) ===== */
 .days-section { background: #F5F1E8; padding-top: 64px; padding-bottom: 64px; }
+.videos-section { background: #FFFFFF; padding-top: 64px; padding-bottom: 64px; }
+.videos-section .section-eyebrow { color: #8B3A2E; }
+.videos-section .section-headline { color: #0B1530; }
+.videos-section .section-headline .accent { color: #8B3A2E; }
+.videos-section .section-intro { color: #0B1530; opacity: 0.84; }
+.video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; max-width: 980px; }
+@media (max-width: 760px) { .video-grid { grid-template-columns: 1fr; } }
+.video-card h3 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700; font-size: 17px; color: #0B1530; margin: 0 0 4px; }
+.video-card .vc-desc { font-size: 14px; color: #0B1530; opacity: 0.82; margin: 0 0 10px; line-height: 1.5; }
+.loom-wrap { position: relative; padding-bottom: 64.98%; height: 0; border-radius: 8px; overflow: hidden; background: #0B1530; box-shadow: 0 1px 3px rgba(11,21,48,0.12); }
+.loom-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-card .vc-chapters { margin: 12px 0 0; }
 .days-section .section-eyebrow { color: #8B3A2E; }
 .days-section .section-headline { color: #0B1530; }
 .days-section .section-headline .accent { color: #8B3A2E; }
@@ -443,6 +455,27 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       <p class="deadline-label">Quiz closes</p>
       <p class="deadline-when">Sun, Jun 21</p>
       <p class="deadline-what">11:59 PM, one attempt</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== THIS WEEK'S VIDEOS ===== -->
+<div class="videos-section" id="videos">
+  <div class="section-eyebrow">This week&rsquo;s videos</div>
+  <h2 class="section-headline">Watch before <span class="accent">your cards</span>.</h2>
+  <p class="section-intro">Two lectures cover all five topics. Watch them here, or open a player to jump to a specific chapter.</p>
+  <div class="video-grid">
+    <div class="video-card">
+      <h3>Tissues and histology</h3>
+      <p class="vc-desc">Days 5 to 7: epithelial, connective, and muscle and nervous tissue.</p>
+      <div class="loom-wrap"><iframe src="https://www.loom.com/embed/6e5f5775557344f38367ea31f8c32b34" title="Tissues and histology lecture" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <p class="vc-chapters"><a class="topic-pill" href="video-tissues-histology.html" target="_top">Open with chapters <span class="arrow">&rarr;</span></a></p>
+    </div>
+    <div class="video-card">
+      <h3>Integumentary system</h3>
+      <p class="vc-desc">Days 7 to 8: skin layers, functions, and accessory structures.</p>
+      <div class="loom-wrap"><iframe src="https://www.loom.com/embed/afbd0687e4db47b19457d9fdefd7444f" title="Integumentary system lecture" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <p class="vc-chapters"><a class="topic-pill" href="video-integumentary.html" target="_top">Open with chapters <span class="arrow">&rarr;</span></a></p>
     </div>
   </div>
 </div>
