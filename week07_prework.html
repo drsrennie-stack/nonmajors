@@ -48,7 +48,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 
 /* ===== SECTION PADDING ===== */
 .site-header, .hero-card, .how-section, .deadlines-section, .days-section,
-.note-section, .cta-section, .footer-section {
+.note-section, .cta-section, .footer-section, .videos-section {
   padding-left: max(40px, 5vw);
   padding-right: max(40px, 5vw);
 }
@@ -325,6 +325,20 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   }
   html { scroll-behavior: auto; }
 }
+
+/* ===== This week's videos (instructor fills the Loom IDs below) ===== */
+.videos-section { background: #FFFFFF; padding-top: 64px; padding-bottom: 64px; }
+.videos-section .section-eyebrow { color: #8B3A2E; }
+.videos-section .section-headline { color: #0B1530; }
+.videos-section .section-headline .accent { color: #8B3A2E; }
+.videos-section .section-intro { color: #0B1530; opacity: 0.84; }
+.video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; max-width: 980px; }
+@media (max-width: 760px) { .video-grid { grid-template-columns: 1fr; } }
+.video-card h3 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700; font-size: 17px; color: #0B1530; margin: 0 0 4px; }
+.video-card .vc-desc { font-size: 14px; color: #0B1530; opacity: 0.82; margin: 0 0 10px; line-height: 1.5; }
+.loom-wrap { position: relative; padding-bottom: 64.98%; height: 0; border-radius: 8px; overflow: hidden; background: #0B1530; box-shadow: 0 1px 3px rgba(11,21,48,0.12); }
+.loom-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.vc-empty { font-size: 15px; color: #0B1530; opacity: 0.8; font-style: italic; }
 </style>
 
 <style id="wb-weeknav-css">
@@ -453,6 +467,47 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 </div>
 
 <!-- ===== YOUR FOUR PRE-WORK DAYS (cream) ===== -->
+<!-- ===== THIS WEEK'S VIDEOS ===== -->
+<div class="videos-section" id="videos">
+  <div class="section-eyebrow">This week&rsquo;s videos</div>
+  <h2 class="section-headline">Watch before <span class="accent">your cards</span>.</h2>
+  <p class="section-intro">Lecture videos for this week. They appear here as they are posted.</p>
+  <div class="video-grid" id="video-grid"></div>
+</div>
+<script>
+/* ===========================================================
+   INSTRUCTOR: to post a video, find its Loom embed ID
+   (the part after /embed/ in https://www.loom.com/embed/XXXX)
+   and paste it between the quotes for the matching topic below.
+   Empty entries are hidden from students automatically.
+   You can also merge rows (one video for several topics) or
+   change the titles. Save and re-upload the file.
+   =========================================================== */
+(function(){
+  var WEEK_VIDEOS = [
+      { title: "Lymphatic System and Innate Immunity", loom: "" },
+      { title: "Adaptive Immunity", loom: "" },
+      { title: "Respiratory Anatomy and Mechanics", loom: "" },
+      { title: "Gas Exchange and Transport", loom: "" },
+      { title: "GI Tract Anatomy and Motility", loom: "" },
+      { title: "Digestion and Absorption", loom: "" }
+  ];
+  var grid = document.getElementById('video-grid');
+  if (!grid) return;
+  var live = WEEK_VIDEOS.filter(function(v){ return v.loom && v.loom.trim(); });
+  if (!live.length) {
+    grid.innerHTML = '<p class="vc-empty">Videos for this week will be posted here. Check back soon.</p>';
+    return;
+  }
+  grid.innerHTML = live.map(function(v){
+    return '<div class="video-card"><h3>' + v.title + '</h3>' +
+      (v.desc ? '<p class="vc-desc">' + v.desc + '</p>' : '') +
+      '<div class="loom-wrap"><iframe src="https://www.loom.com/embed/' + v.loom.trim() +
+      '" title="' + v.title + ' lecture" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></div>';
+  }).join('');
+})();
+</script>
+
 <div class="days-section" id="days">
   <div class="section-eyebrow">Your four pre-work days</div>
   <h2 class="section-headline">Open one topic <span class="accent">per day</span>.</h2>
