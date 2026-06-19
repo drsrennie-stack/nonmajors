@@ -1,194 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- MCAS_REBRAND_APPLIED v6 -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reading Map . BIOL 304</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIO 304 Human Anatomy &amp; Physiology &middot; Reading Map</title>
+<meta name="description" content="Reading map for BIO 304 Human Anatomy and Physiology. One card per week, matched to the schedule on the course home. Read the right chapters at the right time. Free OpenStax textbook.">
 <style>
-:root{
-  --navy:#0B1530;
-  --navy-deep:#060A18;
-  --rust:#8B3A2E;
-  --rust-dark:#A0452F;
-  --gold:#C9A14A;
-  --gold-deep:#B08B3A;
-  --cream:#F5F1E8;
-  --white:#FFFFFF;
-  --line:rgba(11,21,48,.16);
-  --soft:rgba(11,21,48,.70);
-  --shadow-rest:0 1px 3px rgba(11,21,48,.08);
-  --shadow-hover:0 8px 16px rgba(11,21,48,.10);
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+
+/*
+  ============================================================
+  BIO 304 HUMAN ANATOMY & PHYSIOLOGY  ·  READING MAP
+  American River College  ·  Online  ·  Summer 2026
+  Brand template: index.html (course home).
+  MCAS palette: Navy #0B1530, Rust #8B3A2E, Gold #C9A14A,
+  Cream #F5F1E8, Dark #060A18.
+  Spoke page: each week card links back to index.html#week-N.
+  ============================================================
+*/
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-size: 16px; line-height: 1.65; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: #FFFFFF;
+  color: #0B1530;
 }
-*{box-sizing:border-box}
-html,body{margin:0;background:var(--white);color:var(--navy);
-  font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;line-height:1.55}
-@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
 
-/* ---------- skip link + focus ---------- */
-.skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:12px 18px;z-index:9999;text-decoration:none;font-weight:700;border-radius:0 0 6px 0}
-.skip-link:focus{left:0}
-a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--rust);outline-offset:3px;border-radius:4px}
+/* ===== KEYBOARD FOCUS ===== */
+a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #8B3A2E;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.read-section a:focus-visible, .footer-section a:focus-visible { outline-color: #C9A14A; }
+.skip-link {
+  position: absolute; top: -100px; left: 8px;
+  background: #0B1530; color: #F5F1E8;
+  padding: 12px 20px; text-decoration: none;
+  font-size: 13px; font-weight: 700;
+  border-radius: 4px; z-index: 9999; letter-spacing: 0.04em;
+}
+.skip-link:focus { top: 8px; }
 
-/* ---------- MCAS chrome (shared site header/footer) ---------- */
-.mcas-chrome,.mcas-chrome *{box-sizing:border-box}
-.mcas-header{background:var(--white);padding:24px max(40px,5vw)}
-.mcas-header-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.mcas-brand{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:var(--navy)}
-.mcas-brand svg{height:44px;width:auto;display:block}
-.mcas-brand-title{font-size:18px;font-weight:800;line-height:1;letter-spacing:-.015em}
-.mcas-brand-title .accent{color:var(--rust)}
-.mcas-brand-sub{font-size:9.5px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.72;display:block;margin-top:3px}
-.mcas-back{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--rust);text-decoration:none;padding:8px 14px;border:1px solid var(--rust);border-radius:4px}
-.mcas-back:hover,.mcas-back:focus-visible{background:var(--rust);color:var(--white)}
-.mcas-footer{background:var(--navy-deep);color:var(--cream);padding:40px max(40px,5vw) 28px;margin-top:56px}
-.mcas-footer-links{display:flex;gap:22px;flex-wrap:wrap}
-.mcas-footer a{color:#fff;text-decoration:none;opacity:.92;font-size:12.5px;font-weight:500;letter-spacing:.02em}
-.mcas-footer a:hover,.mcas-footer a:focus-visible{color:var(--gold);opacity:1;text-decoration:underline}
-.mcas-footer-row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-top:32px;margin-top:24px}
-.mcas-footer-copyright{font-size:11px;opacity:.72;letter-spacing:.03em}
-.mcas-footer-byline{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase}
+/* ===== SECTION PADDING ===== */
+.site-header, .hero-card, .legend-section, .read-section, .skim-section, .footer-section {
+  padding-left: max(40px, 5vw);
+  padding-right: max(40px, 5vw);
+}
 
-/* ---------- page header ---------- */
-.page-header{background:var(--white);padding:28px max(20px,5vw) 8px;max-width:860px;margin:0 auto}
-.eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);margin:0 0 6px}
-h1{font-weight:800;font-size:clamp(26px,3.2vw,38px);color:var(--navy);margin:0 0 6px;letter-spacing:-.015em}
-.subhead{font-size:clamp(15px,1.6vw,18px);color:var(--soft);margin:0;max-width:64ch;line-height:1.5}
+/* ===== SITE HEADER ===== */
+.site-header { background: #FFFFFF; padding-top: 28px; padding-bottom: 28px; }
+.site-logo { display: inline-flex; align-items: center; gap: 16px; text-decoration: none; }
+.site-logo svg { height: 58px; width: auto; display: block; }
+.logo-text { display: flex; flex-direction: column; gap: 3px; }
+.logo-title { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: #0B1530; line-height: 1; }
+.logo-title .logo-accent { color: #8B3A2E; }
+.logo-sub { font-size: 10.5px; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: #0B1530; opacity: 0.72; }
 
-main{max-width:860px;margin:0 auto;padding:8px max(20px,5vw) 24px}
+/* ===== HERO ===== */
+.hero-card { background: #FFFFFF; padding-top: 56px; padding-bottom: 48px; }
+.hero-content { max-width: 760px; }
+.hero-eyebrow { font-size: 11px; font-weight: 700; color: #8B3A2E; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 22px; }
+.hero-headline { font-size: 46px; font-weight: 800; color: #0B1530; letter-spacing: -0.025em; line-height: 1.06; margin: 0 0 20px; }
+.hero-headline .accent { color: #8B3A2E; }
+.hero-subhead { font-size: 16px; font-weight: 400; color: #0B1530; line-height: 1.6; opacity: 0.84; margin-bottom: 32px; max-width: 620px; }
+.hero-ctas { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.cta-primary {
+  background: #8B3A2E; color: #FFFFFF;
+  padding: 14px 26px; border-radius: 4px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; display: inline-block; transition: background 0.2s ease;
+}
+.cta-primary:hover { background: #A0452F; }
+.cta-secondary {
+  color: #0B1530; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px;
+  display: inline-block; padding-bottom: 2px;
+}
+.cta-secondary:hover { color: #8B3A2E; text-decoration-color: #8B3A2E; }
 
-/* ---------- toolbar ---------- */
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 10px}
-.btn{font-weight:700;font-size:13px;padding:9px 16px;border-radius:6px;border:1px solid var(--line);text-decoration:none;display:inline-block;color:var(--navy);background:var(--white)}
-.btn:hover{border-color:var(--navy);background:var(--cream)}
+/* ===== SHARED SECTION HEADINGS ===== */
+.section-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 18px; }
+.section-headline { font-size: 31px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.12; margin: 0 0 22px; max-width: 720px; }
+.section-intro { font-size: 15px; font-weight: 400; line-height: 1.6; max-width: 680px; margin: 0 0 28px; }
 
-/* ---------- adoption note ---------- */
-.adoption{background:var(--white);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:8px;padding:18px 22px;margin:14px 0 8px;box-shadow:var(--shadow-rest)}
-.adoption h2{font-size:15px;font-weight:800;margin:0 0 8px;color:var(--navy)}
-.adoption p{font-family:'Lora',Georgia,serif;font-size:14px;color:var(--navy);margin:0 0 8px;line-height:1.55}
-.adoption p:last-child{margin-bottom:0}
-.adoption .citation{font-size:12px;color:var(--soft)}
-.adoption a{color:var(--rust)}
+/* ===== LEGEND + ADOPTION (light) ===== */
+.legend-section { background: #FFFFFF; padding-top: 8px; padding-bottom: 40px; }
+.legend-eyebrow { font-size: 11px; font-weight: 700; color: #8B3A2E; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 16px; }
+.legend-row { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; margin: 0 0 24px; font-size: 14.5px; color: #0B1530; }
+.legend-row .item { display: inline-flex; align-items: center; gap: 9px; }
+.adoption-box {
+  background: #FFFFFF; border: 1px solid rgba(11, 21, 48, 0.14);
+  border-left: 4px solid #C9A14A; border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  padding: 22px 26px; max-width: 820px;
+}
+.adoption-box h2 { font-size: 14px; font-weight: 800; letter-spacing: 0.02em; color: #0B1530; margin: 0 0 8px; }
+.adoption-box p { font-size: 14px; color: #0B1530; opacity: 0.9; line-height: 1.6; margin: 0 0 8px; }
+.adoption-box p:last-child { margin-bottom: 0; }
+.adoption-box .cite { font-size: 12px; opacity: 0.72; }
+.adoption-box a { color: #8B3A2E; text-decoration: underline; text-underline-offset: 3px; }
+.adoption-box a:hover { color: #A0452F; }
 
-/* ---------- tier legend ---------- */
-.legend{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:20px 0 6px;font-family:'Lora',Georgia,serif;font-size:13.5px;color:var(--navy)}
-.legend .item{display:inline-flex;align-items:center;gap:8px}
-.tier-tag{display:inline-flex;align-items:center;justify-content:center;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 11px;border-radius:999px;white-space:nowrap}
-.tier-tag.read{background:var(--navy);color:var(--white);border:1px solid var(--navy)}
-.tier-tag.focus{background:var(--gold);color:var(--navy-deep);border:1px solid var(--gold-deep)}
-.tier-tag.ref{background:var(--white);color:var(--soft);border:1px solid var(--line)}
+/* ===== TIER BADGES (shared) ===== */
+.tier-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 999px; white-space: nowrap; flex: 0 0 auto;
+}
+.tier-badge.read { background: #0B1530; color: #FFFFFF; }
+.tier-badge.focus { background: #C9A14A; color: #0B1530; }
+.tier-badge.ref { background: #FFFFFF; color: rgba(11, 21, 48, 0.66); border: 1px solid rgba(11, 21, 48, 0.30); }
 
-/* ---------- jump-to-week nav ---------- */
-.weeknav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:saturate(1.1) blur(4px);
-  border-bottom:1px solid var(--line);padding:10px max(20px,5vw);margin:8px 0 0}
-.weeknav-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.weeknav .lbl{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-right:2px}
-.weeknav a{min-width:34px;min-height:34px;display:inline-flex;align-items:center;justify-content:center;
-  font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:13px;color:var(--navy);
-  text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:0 6px}
-.weeknav a:hover,.weeknav a:focus-visible{border-color:var(--rust);color:var(--rust)}
+/* ===== JUMP-TO-WEEK NAV (sticky) ===== */
+.weeknav {
+  position: sticky; top: 0; z-index: 30;
+  background: rgba(245, 241, 232, 0.96);
+  backdrop-filter: saturate(1.1) blur(4px);
+  padding: 10px max(40px, 5vw);
+  border-bottom: 1px solid rgba(11, 21, 48, 0.14);
+}
+.weeknav-inner { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.weeknav .lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8B3A2E; margin-right: 4px; }
+.weeknav a {
+  min-width: 36px; min-height: 36px; display: inline-flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; color: #0B1530; text-decoration: none;
+  background: #FFFFFF; border: 1px solid rgba(11, 21, 48, 0.18); border-radius: 6px; padding: 0 8px;
+}
+.weeknav a:hover, .weeknav a:focus-visible { border-color: #8B3A2E; color: #8B3A2E; }
 
-/* ---------- week cards (long vertical) ---------- */
-.weeks{display:flex;flex-direction:column;gap:18px;margin:18px 0 0}
-.week{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:22px 24px 18px;box-shadow:var(--shadow-rest);scroll-margin-top:64px}
-.week-top{display:flex;align-items:flex-start;gap:16px;margin:0 0 4px}
-.week-num{flex:0 0 auto;width:46px;height:46px;border-radius:10px;background:var(--navy);color:var(--white);
-  font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;letter-spacing:-.02em}
-.week-head{flex:1 1 auto;min-width:0}
-.week-meta{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);margin:2px 0 2px}
-.week-title{font-size:20px;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.01em;line-height:1.2}
-.week-scope{font-family:'Lora',Georgia,serif;font-size:14px;color:var(--soft);margin:8px 0 0;line-height:1.5}
+/* ===== READING CARDS (cream band, long vertical) ===== */
+.read-section { background: #F5F1E8; padding-top: 56px; padding-bottom: 64px; }
+.read-section .section-eyebrow { color: #8B3A2E; }
+.read-section .section-headline { color: #0B1530; }
+.read-section .section-headline .accent { color: #8B3A2E; }
+.read-section .section-intro { color: #0B1530; opacity: 0.84; }
+.rmap-list { display: flex; flex-direction: column; gap: 18px; max-width: 820px; }
+.rmap-card {
+  background: #FFFFFF; border: 1px solid rgba(11, 21, 48, 0.18); border-radius: 10px;
+  padding: 26px 28px 22px; box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  scroll-margin-top: 72px;
+}
+.rmap-top { display: flex; align-items: flex-start; gap: 18px; }
+.rmap-num { flex: 0 0 auto; font-size: 34px; font-weight: 800; color: #8B3A2E; letter-spacing: -0.02em; line-height: 1; min-width: 46px; }
+.rmap-meta { font-size: 10px; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: #0B1530; opacity: 0.62; margin: 2px 0 6px; }
+.rmap-title { font-size: 21px; font-weight: 800; color: #0B1530; letter-spacing: -0.015em; line-height: 1.25; margin: 0; }
+.rmap-scope { font-size: 14px; line-height: 1.55; color: #0B1530; opacity: 0.84; margin: 14px 0 0; }
+.rmap-load { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 4px; }
+.rmap-load span { font-size: 11px; font-weight: 700; letter-spacing: 0.02em; color: #0B1530; background: #F5F1E8; border-radius: 999px; padding: 4px 11px; }
+.rmap-load span.heavy { background: #8B3A2E; color: #FFFFFF; }
+.rmap-readings { list-style: none; padding: 0; margin: 14px 0 0; }
+.rmap-readings li { display: flex; gap: 14px; padding: 12px 0; border-top: 1px solid rgba(11, 21, 48, 0.12); }
+.rmap-readings li:first-child { border-top: none; }
+.rmap-readings .rmap-rbody { min-width: 0; }
+.rmap-ch { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #8B3A2E; margin-bottom: 1px; }
+a.rmap-ch { text-decoration: none; }
+a.rmap-ch:hover, a.rmap-ch:focus-visible { color: #A0452F; text-decoration: underline; text-underline-offset: 3px; }
+.rmap-ch .ext { font-size: 0.9em; opacity: 0.85; margin-left: 3px; }
+.rmap-rt { font-size: 15px; font-weight: 700; color: #0B1530; line-height: 1.3; }
+.rmap-note { font-size: 13px; color: #0B1530; opacity: 0.8; line-height: 1.55; margin: 4px 0 0; }
 
-.load{font-family:'DM Sans',system-ui,sans-serif;font-size:11.5px;font-weight:600;color:var(--soft);margin:12px 0 2px;display:flex;gap:10px;flex-wrap:wrap}
-.load .pill{background:var(--cream);color:var(--navy);border-radius:999px;padding:3px 10px;font-weight:700}
-.load .pill.heavy{background:var(--rust);color:var(--white)}
+/* Collapsible lab block (styled like the index FAQ cards) */
+.rmap-lab {
+  margin: 16px 0 0; border: 1px solid rgba(11, 21, 48, 0.14); border-radius: 8px;
+  background: #FFFFFF; transition: box-shadow 200ms ease, border-color 200ms ease;
+}
+.rmap-lab[open] { border-color: rgba(11, 21, 48, 0.22); box-shadow: 0 6px 14px rgba(11, 21, 48, 0.08); }
+.rmap-lab summary {
+  list-style: none; cursor: pointer; padding: 13px 16px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #0B1530;
+}
+.rmap-lab summary::-webkit-details-marker { display: none; }
+.rmap-lab summary .tog { font-size: 22px; font-weight: 400; color: #8B3A2E; line-height: 1; transition: transform 0.2s ease; }
+.rmap-lab[open] summary .tog { transform: rotate(45deg); }
+.rmap-lab .lab-body { padding: 0 16px 16px; font-size: 13.5px; line-height: 1.6; color: #0B1530; opacity: 0.9; }
+.rmap-back {
+  display: inline-block; margin: 16px 0 0;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase;
+  color: #8B3A2E; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px;
+}
+.rmap-back:hover, .rmap-back:focus-visible { color: #A0452F; }
 
-.readings{list-style:none;padding:0;margin:12px 0 0}
-.readings li{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
-.readings li:first-child{border-top:none}
-.r-tag{flex:0 0 auto;margin-top:2px}
-.r-body{flex:1 1 auto;min-width:0}
-.r-ch{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--rust);display:block;margin:0 0 1px}
-.r-title{font-weight:700;font-size:15px;color:var(--navy);margin:0}
-.r-note{font-family:'Lora',Georgia,serif;font-size:13px;color:var(--soft);margin:3px 0 0;line-height:1.5}
+/* ===== SKIM / SKIP (light) ===== */
+.skim-section { background: #FFFFFF; padding-top: 64px; padding-bottom: 64px; }
+.skim-section .section-eyebrow { color: #8B3A2E; }
+.skim-section .section-headline { color: #0B1530; }
+.skim-section .section-headline .accent { color: #8B3A2E; }
+.skim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; max-width: 980px; }
+.skim-card { background: #FFFFFF; border: 1px solid rgba(11, 21, 48, 0.14); border-radius: 8px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06); }
+.skim-card h3 { font-size: 14px; font-weight: 800; color: #0B1530; letter-spacing: -0.01em; margin: 0 0 6px; }
+.skim-card p { font-size: 13.5px; color: #0B1530; opacity: 0.82; line-height: 1.55; margin: 0; }
 
-/* ---------- collapsible lab + footer links ---------- */
-details.lab{margin:14px 0 0;border:1px solid var(--line);border-radius:8px;background:var(--white)}
-details.lab summary{cursor:pointer;list-style:none;padding:11px 14px;font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--navy);display:flex;align-items:center;gap:8px}
-details.lab summary::-webkit-details-marker{display:none}
-details.lab summary::before{content:"+";font-size:16px;line-height:1;color:var(--rust);font-weight:800}
-details.lab[open] summary::before{content:"\2212"}
-details.lab summary:hover{color:var(--rust)}
-details.lab .lab-body{padding:0 14px 14px;font-family:'Lora',Georgia,serif;font-size:13.5px;color:var(--navy);line-height:1.55}
-.week-foot{margin:14px 0 0;display:flex;justify-content:flex-end}
-.hub-link{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.04em;color:var(--rust);text-decoration:none}
-.hub-link:hover,.hub-link:focus-visible{text-decoration:underline}
+/* ===== FOOTER ===== */
+.footer-section { background: #060A18; padding-top: 56px; padding-bottom: 32px; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 48px; margin-bottom: 22px; }
+.footer-logo { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; margin-bottom: 16px; }
+.footer-logo svg { height: 50px; width: auto; }
+.footer-logo .logo-title { color: #F5F1E8; font-size: 22px; }
+.footer-logo .logo-accent { color: #C9A14A; }
+.footer-logo .logo-sub { color: #F5F1E8; opacity: 0.72; }
+.footer-tagline { font-size: 13px; color: #F5F1E8; opacity: 0.82; line-height: 1.6; max-width: 320px; margin: 0; }
+.footer-col-header { font-size: 10px; font-weight: 700; color: #C9A14A; letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 16px; }
+.footer-link { font-size: 13px; font-weight: 500; color: #F5F1E8; opacity: 0.88; display: block; margin-bottom: 10px; text-decoration: none; }
+.footer-link:hover { opacity: 1; text-decoration: underline; }
+.footer-link.help { color: #C9A14A; opacity: 1; font-weight: 700; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.footer-copyright { font-size: 11px; color: #F5F1E8; opacity: 0.72; letter-spacing: 0.03em; }
+.footer-byline { font-size: 11px; font-weight: 700; color: #C9A14A; letter-spacing: 0.16em; text-transform: uppercase; }
 
-/* ---------- skim/skip section ---------- */
-.section-head{display:flex;align-items:baseline;gap:10px;margin:36px 0 6px}
-.section-num{background:var(--navy);color:var(--white);padding:4px 10px;border-radius:4px;font-weight:700;font-size:13px}
-.section-head h2{font-size:21px;font-weight:800;color:var(--navy);margin:0}
-.section-intro{font-family:'Lora',Georgia,serif;font-size:14px;color:var(--soft);margin:6px 0 14px;max-width:64ch}
-.skim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
-.skim-card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:14px 16px;box-shadow:var(--shadow-rest)}
-.skim-card h3{font-size:13.5px;font-weight:800;color:var(--navy);margin:0 0 5px}
-.skim-card p{font-family:'Lora',Georgia,serif;font-size:13px;color:var(--soft);margin:0;line-height:1.5}
-
-footer.byline{text-align:center;color:var(--soft);padding:24px;font-family:'Lora',Georgia,serif;font-style:italic;font-size:13px}
-
-@media (max-width:640px){
-  .week-top{gap:12px}
-  .week-num{width:40px;height:40px;font-size:18px}
-  .readings li{flex-direction:column;gap:4px}
-  .r-tag{margin-top:0}
+/* ===== RESPONSIVE ===== */
+@media (max-width: 860px) {
+  .hero-headline { font-size: 34px; }
+  .section-headline { font-size: 26px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 560px) {
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .hero-headline { font-size: 29px; }
+  .rmap-readings li { flex-direction: column; gap: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  html { scroll-behavior: auto; }
 }
 </style>
 </head>
-<body class="mcas-page">
+<body>
 <a href="#main" class="skip-link">Skip to main content</a>
 
-<!-- ===== shared site header ===== -->
-<div class="mcas-chrome">
-<header class="mcas-header">
-  <div class="mcas-header-row">
-    <a class="mcas-brand" href="index.html" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
-      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
-        <g transform="translate(0, 18)">
-          <g transform="translate(60, 0) rotate(8 0 130)">
-            <circle cx="0" cy="20" r="10" fill="#0B1530"/>
-            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
-          </g>
-          <g transform="translate(100, 0)">
-            <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
-            <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
-          </g>
-          <g transform="translate(140, 0) rotate(-8 0 130)">
-            <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
-            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
-          </g>
+<!-- ===== SITE HEADER ===== -->
+<header class="site-header">
+  <a href="index.html" class="site-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+    <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+      <g transform="translate(0, 18)">
+        <g transform="translate(60, 0) rotate(8 0 130)">
+          <circle cx="0" cy="20" r="10" fill="#0B1530"/>
+          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
         </g>
-      </svg>
-      <span>
-        <span class="mcas-brand-title">Human <span class="accent">A&amp;P</span></span>
-        <span class="mcas-brand-sub">BIO 304 &middot; American River College</span>
-      </span>
-    </a>
-    <a class="mcas-back" href="index.html" target="_top">&larr; Course home</a>
-  </div>
+        <g transform="translate(100, 0)">
+          <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+          <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+        </g>
+        <g transform="translate(140, 0) rotate(-8 0 130)">
+          <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+        </g>
+      </g>
+    </svg>
+    <span class="logo-text">
+      <span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span>
+      <span class="logo-sub">BIO 304 &middot; American River College</span>
+    </span>
+  </a>
 </header>
+
+<main id="main">
+
+<!-- ===== HERO ===== -->
+<div class="hero-card">
+  <div class="hero-content">
+    <div class="hero-eyebrow">BIO 304 &middot; Reading map &middot; Summer 2026</div>
+    <h1 class="hero-headline">Read the right thing, <span class="accent">at the right time</span>.</h1>
+    <p class="hero-subhead">One card per week, matched to the schedule on your course home. Read the bold chapters, focus on the named sections, and treat the rest as lookup. The textbook is free, peer-reviewed, and open-licensed, so there is no access code and nothing to buy.</p>
+    <div class="hero-ctas">
+      <a href="index.html#weeks" class="cta-primary" target="_top">Back to the eight weeks</a>
+      <a href="https://openstax.org/details/books/anatomy-and-physiology-2e" class="cta-secondary" target="_blank" rel="noopener">Open the textbook</a>
+    </div>
+  </div>
 </div>
 
-<!-- ===== page header ===== -->
-<header class="page-header">
-  <p class="eyebrow">BIO 304 &middot; Resource &middot; American River College</p>
-  <h1>Reading Map</h1>
-  <p class="subhead">One card per week, matched to the schedule on your course home. Read the bold chapters, focus on the named sections, and treat the rest as lookup. The textbook is free and open-licensed.</p>
-</header>
+<!-- ===== LEGEND + ADOPTION (light) ===== -->
+<div class="legend-section" aria-label="How to read this map">
+  <div class="legend-eyebrow">Three tiers</div>
+  <div class="legend-row">
+    <span class="item"><span class="tier-badge read">Read</span> Full chapter, essential.</span>
+    <span class="item"><span class="tier-badge focus">Focus</span> Named sections only.</span>
+    <span class="item"><span class="tier-badge ref">Reference</span> Lookup source, not required.</span>
+  </div>
+  <div class="adoption-box">
+    <h2>The textbook</h2>
+    <p><strong>Anatomy and Physiology 2e</strong> by Betts and colleagues, published by OpenStax (Rice University). Free online or as a PDF at <a href="https://openstax.org/details/books/anatomy-and-physiology-2e" target="_blank" rel="noopener">openstax.org</a>. Released under Creative Commons Attribution (CC BY 4.0). No access code, no subscription, no new-edition churn.</p>
+    <p class="cite">Betts, J. G., Young, K. A., Wise, J. A., Johnson, E., Poe, B., Kruse, D. H., Korol, O., Johnson, J. E., Womble, M., &amp; DeSaix, P. (2022). <em>Anatomy and Physiology 2e.</em> OpenStax.</p>
+  </div>
+</div>
 
-<!-- ===== jump-to-week nav ===== -->
+<!-- ===== JUMP-TO-WEEK NAV ===== -->
 <nav class="weeknav" aria-label="Jump to a week">
   <div class="weeknav-inner">
     <span class="lbl">Jump to week</span>
@@ -203,251 +305,268 @@ footer.byline{text-align:center;color:var(--soft);padding:24px;font-family:'Lora
   </div>
 </nav>
 
-<main id="main" tabindex="-1">
+<!-- ===== READING CARDS (cream band) ===== -->
+<div class="read-section">
+  <div class="section-eyebrow">Week by week</div>
+  <h2 class="section-headline">The whole reading list, <span class="accent">one week at a time</span>.</h2>
+  <p class="section-intro">These weeks line up exactly with the eight week cards on your course home. Each card opens the matching week on the hub.</p>
 
-  <div class="toolbar">
-    <a class="btn" href="index.html" target="_top">&larr; Weekly hub</a>
-    <a class="btn" href="biol304_syllabus.html" target="_top">Syllabus</a>
-  </div>
-
-  <!-- textbook adoption -->
-  <section class="adoption" aria-label="Textbook adoption">
-    <h2>The textbook</h2>
-    <p><strong>Anatomy and Physiology 2e</strong> by Betts and colleagues, published by OpenStax (Rice University). Free digital access at <a target="_blank" rel="noopener" href="https://openstax.org/details/books/anatomy-and-physiology-2e">openstax.org/details/books/anatomy-and-physiology-2e</a>. Released under Creative Commons Attribution (CC BY 4.0). No access code, no subscription. Download the PDF, read online, or buy print at cost.</p>
-    <p class="citation">Betts, J. G., Young, K. A., Wise, J. A., Johnson, E., Poe, B., Kruse, D. H., Korol, O., Johnson, J. E., Womble, M., &amp; DeSaix, P. (2022). <em>Anatomy and Physiology 2e.</em> OpenStax.</p>
-  </section>
-
-  <!-- tier legend -->
-  <div class="legend" aria-label="Reading tier legend">
-    <span class="item"><span class="tier-tag read">Read</span> Full chapter, essential.</span>
-    <span class="item"><span class="tier-tag focus">Focus</span> Named sections only.</span>
-    <span class="item"><span class="tier-tag ref">Reference</span> Lookup source, not required.</span>
-  </div>
-
-  <!-- ===== WEEK CARDS ===== -->
-  <div class="weeks">
+  <div class="rmap-list">
 
     <!-- WEEK 1 -->
-    <article class="week" id="week-1">
-      <div class="week-top">
-        <div class="week-num" aria-hidden="true">01</div>
-        <div class="week-head">
-          <p class="week-meta">Week 1 &middot; Jun 8 to Jun 14</p>
-          <h2 class="week-title">Foundations, Cell, Membrane Transport</h2>
-          <p class="week-scope">Levels of organization, anatomical terminology, body regions, homeostasis and feedback, cell structure and organelles, membrane transport.</p>
+    <article class="rmap-card" id="week-1">
+      <div class="rmap-top">
+        <span class="rmap-num">01</span>
+        <div>
+          <p class="rmap-meta">Week 1 &middot; Jun 8 to Jun 14</p>
+          <h3 class="rmap-title">Foundations, Cell, Membrane Transport</h3>
         </div>
       </div>
-      <p class="load"><span class="pill">1 chapter to read</span><span class="pill">2 focused</span></p>
-      <ul class="readings">
-        <li><span class="tier-tag read r-tag">Read</span><div class="r-body"><span class="r-ch">Ch 1</span><p class="r-title">An Introduction to the Human Body</p></div></li>
-        <li><span class="tier-tag focus r-tag">Focus</span><div class="r-body"><span class="r-ch">Ch 2</span><p class="r-title">The Chemical Level of Organization</p><p class="r-note">Read 2.4 Inorganic Compounds and 2.5 Organic Compounds (biomolecules). Skim the atomic-structure sections.</p></div></li>
-        <li><span class="tier-tag focus r-tag">Focus</span><div class="r-body"><span class="r-ch">Ch 3</span><p class="r-title">The Cellular Level of Organization</p><p class="r-note">Read 3.1 Cell Membrane and 3.2 Cytoplasm and Organelles. Transport in 3.1 anchors the tonicity lab.</p></div></li>
+      <p class="rmap-scope">Levels of organization, anatomical terminology, body regions, homeostasis and feedback, cell structure and organelles, membrane transport.</p>
+      <p class="rmap-load"><span>1 chapter to read</span><span>2 focused</span></p>
+      <ul class="rmap-readings">
+        <li><span class="tier-badge read">Read</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/1-introduction" target="_blank" rel="noopener">Ch 1<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">An Introduction to the Human Body</span></div></li>
+        <li><span class="tier-badge focus">Focus</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/2-introduction" target="_blank" rel="noopener">Ch 2<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Chemical Level of Organization</span><p class="rmap-note">Read 2.4 Inorganic Compounds and 2.5 Organic Compounds (biomolecules). Skim the atomic-structure sections.</p></div></li>
+        <li><span class="tier-badge focus">Focus</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/3-introduction" target="_blank" rel="noopener">Ch 3<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Cellular Level of Organization</span><p class="rmap-note">Read 3.1 Cell Membrane and 3.2 Cytoplasm and Organelles. Transport in 3.1 anchors the tonicity lab.</p></div></li>
       </ul>
-      <details class="lab"><summary>This week's lab</summary><div class="lab-body">Anatomy labels body planes, cavities, directional terms, the cell, and tissue basics. Physiology runs tonicity reasoning (isotonic, hypotonic, hypertonic) and burn fluid resuscitation with the Parkland formula and Rule of Nines. Introduces the measure, calculate, interpret pattern.</div></details>
-      <div class="week-foot"><a class="hub-link" href="index.html#week-1" target="_top">Open Week 1 on the hub &rarr;</a></div>
+      <details class="rmap-lab"><summary><span class="tog">+</span> This week's lab</summary><div class="lab-body">Anatomy labels body planes, cavities, directional terms, the cell, and tissue basics. Physiology runs tonicity reasoning (isotonic, hypotonic, hypertonic) and burn fluid resuscitation with the Parkland formula and Rule of Nines. Introduces the measure, calculate, interpret pattern.</div></details>
+      <a class="rmap-back" href="index.html#week-1" target="_top">Open Week 1 on the hub &rarr;</a>
     </article>
 
     <!-- WEEK 2 -->
-    <article class="week" id="week-2">
-      <div class="week-top">
-        <div class="week-num" aria-hidden="true">02</div>
-        <div class="week-head">
-          <p class="week-meta">Week 2 &middot; Jun 15 to Jun 21</p>
-          <h2 class="week-title">Tissues &amp; Integument</h2>
-          <p class="week-scope">Epithelial tissue classification, connective tissues, muscle and nervous tissue overview, skin structure and layers, skin functions and accessory structures.</p>
+    <article class="rmap-card" id="week-2">
+      <div class="rmap-top">
+        <span class="rmap-num">02</span>
+        <div>
+          <p class="rmap-meta">Week 2 &middot; Jun 15 to Jun 21</p>
+          <h3 class="rmap-title">Tissues &amp; Integument</h3>
         </div>
       </div>
-      <p class="load"><span class="pill">2 chapters to read</span></p>
-      <ul class="readings">
-        <li><span class="tier-tag read r-tag">Read</span><div class="r-body"><span class="r-ch">Ch 4</span><p class="r-title">The Tissue Level of Organization</p><p class="r-note">The four tissue types. This is the anchor for tissue identification in lab.</p></div></li>
-        <li><span class="tier-tag read r-tag">Read</span><div class="r-body"><span class="r-ch">Ch 5</span><p class="r-title">The Integumentary System</p><p class="r-note">Skin layers, functions, and accessory structures.</p></div></li>
+      <p class="rmap-scope">Epithelial tissue classification, connective tissues, muscle and nervous tissue overview, skin structure and layers, skin functions and accessory structures.</p>
+      <p class="rmap-load"><span>2 chapters to read</span></p>
+      <ul class="rmap-readings">
+        <li><span class="tier-badge read">Read</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/4-introduction" target="_blank" rel="noopener">Ch 4<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Tissue Level of Organization</span><p class="rmap-note">The four tissue types. This is the anchor for tissue identification in lab.</p></div></li>
+        <li><span class="tier-badge read">Read</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/5-introduction" target="_blank" rel="noopener">Ch 5<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Integumentary System</span><p class="rmap-note">Skin layers, functions, and accessory structures.</p></div></li>
       </ul>
-      <details class="lab"><summary>This week's lab</summary><div class="lab-body">Anatomy labels the four tissue types and skin layers (epidermis strata, dermis, hypodermis) with accessory structures. Physiology connects tissue and skin structure to barrier function and wound healing.</div></details>
-      <div class="week-foot"><a class="hub-link" href="index.html#week-2" target="_top">Open Week 2 on the hub &rarr;</a></div>
+      <details class="rmap-lab"><summary><span class="tog">+</span> This week's lab</summary><div class="lab-body">Anatomy labels the four tissue types and skin layers (epidermis strata, dermis, hypodermis) with accessory structures. Physiology connects tissue and skin structure to barrier function and wound healing.</div></details>
+      <a class="rmap-back" href="index.html#week-2" target="_top">Open Week 2 on the hub &rarr;</a>
     </article>
 
     <!-- WEEK 3 -->
-    <article class="week" id="week-3">
-      <div class="week-top">
-        <div class="week-num" aria-hidden="true">03</div>
-        <div class="week-head">
-          <p class="week-meta">Week 3 &middot; Jun 22 to Jun 28</p>
-          <h2 class="week-title">Skeletal System</h2>
-          <p class="week-scope">Bone tissue and bone growth, the axial skeleton, the appendicular skeleton, joints and body movements.</p>
+    <article class="rmap-card" id="week-3">
+      <div class="rmap-top">
+        <span class="rmap-num">03</span>
+        <div>
+          <p class="rmap-meta">Week 3 &middot; Jun 22 to Jun 28</p>
+          <h3 class="rmap-title">Skeletal System</h3>
         </div>
       </div>
-      <p class="load"><span class="pill">1 chapter to read</span><span class="pill">1 focused</span><span class="pill">2 reference</span></p>
-      <ul class="readings">
-        <li><span class="tier-tag read r-tag">Read</span><div class="r-body"><span class="r-ch">Ch 6</span><p class="r-title">Bone Tissue and the Skeletal System</p><p class="r-note">Centre on 6.3 Bone Structure, 6.4 Bone Formation and Development, 6.5 Fractures and Bone Repair. Density and remodeling anchor the DEXA lab.</p></div></li>
-        <li><span class="tier-tag focus r-tag">Focus</span><div class="r-body"><span class="r-ch">Ch 9</span><p class="r-title">Joints</p><p class="r-note">Read 9.1 Classification of Joints. Types only, not every specific articulation.</p></div></li>
-        <li><span class="tier-tag ref r-tag">Reference</span><div class="r-body"><span class="r-ch">Ch 7 &amp; 8</span><p class="r-title">Axial Skeleton, Appendicular Skeleton</p><p class="r-note">Lookup source for bone gross anatomy in the workbook (skull, spine, thoracic cage, limbs). No read-through required.</p></div></li>
+      <p class="rmap-scope">Bone tissue and bone growth, the axial skeleton, the appendicular skeleton, joints and body movements.</p>
+      <p class="rmap-load"><span>1 chapter to read</span><span>1 focused</span><span>2 reference</span></p>
+      <ul class="rmap-readings">
+        <li><span class="tier-badge read">Read</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/6-introduction" target="_blank" rel="noopener">Ch 6<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">Bone Tissue and the Skeletal System</span><p class="rmap-note">Centre on 6.3 Bone Structure, 6.4 Bone Formation and Development, 6.5 Fractures and Bone Repair. Density and remodeling anchor the DEXA lab.</p></div></li>
+        <li><span class="tier-badge focus">Focus</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/9-introduction" target="_blank" rel="noopener">Ch 9<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">Joints</span><p class="rmap-note">Read 9.1 Classification of Joints. Types only, not every specific articulation.</p></div></li>
+        <li><span class="tier-badge ref">Reference</span><div class="rmap-rbody"><span class="rmap-ch"><a class="rmap-ch" style="display:inline" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/7-introduction" target="_blank" rel="noopener">Ch 7</a> &amp; <a class="rmap-ch" style="display:inline" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/8-introduction" target="_blank" rel="noopener">Ch 8</a><span class="ext" aria-hidden="true">&#8599;</span></span><span class="rmap-rt">Axial Skeleton, Appendicular Skeleton</span><p class="rmap-note">Lookup source for bone gross anatomy in the workbook (skull, spine, thoracic cage, limbs). No read-through required.</p></div></li>
       </ul>
-      <details class="lab"><summary>This week's lab</summary><div class="lab-body">Anatomy labels the skeleton (skull three views, spine, thoracic cage, all limbs), long-bone structure, osteon, and joint types. Physiology interprets DEXA scans, calculates T-scores, and applies NOF treatment thresholds and FRAX risk assessment for fall and fracture risk.</div></details>
-      <div class="week-foot"><a class="hub-link" href="index.html#week-3" target="_top">Open Week 3 on the hub &rarr;</a></div>
+      <details class="rmap-lab"><summary><span class="tog">+</span> This week's lab</summary><div class="lab-body">Anatomy labels the skeleton (skull three views, spine, thoracic cage, all limbs), long-bone structure, osteon, and joint types. Physiology interprets DEXA scans, calculates T-scores, and applies NOF treatment thresholds and FRAX risk assessment for fall and fracture risk.</div></details>
+      <a class="rmap-back" href="index.html#week-3" target="_top">Open Week 3 on the hub &rarr;</a>
     </article>
 
     <!-- WEEK 4 -->
-    <article class="week" id="week-4">
-      <div class="week-top">
-        <div class="week-num" aria-hidden="true">04</div>
-        <div class="week-head">
-          <p class="week-meta">Week 4 &middot; Jun 29 to Jul 5</p>
-          <h2 class="week-title">Muscle &amp; Nervous System Intro</h2>
-          <p class="week-scope">Skeletal muscle microanatomy, motor units and muscle mechanics, sliding filament and the cross-bridge cycle, neurons and resting membrane potential, action potentials and synaptic transmission.</p>
+    <article class="rmap-card" id="week-4">
+      <div class="rmap-top">
+        <span class="rmap-num">04</span>
+        <div>
+          <p class="rmap-meta">Week 4 &middot; Jun 29 to Jul 5</p>
+          <h3 class="rmap-title">Muscle &amp; Nervous System Intro</h3>
         </div>
       </div>
-      <p class="load"><span class="pill">2 chapters to read</span><span class="pill">1 reference</span></p>
-      <ul class="readings">
-        <li><span class="tier-tag read r-tag">Read</span><div class="r-body"><span class="r-ch">Ch 10</span><p class="r-title">Muscle Tissue</p><p class="r-note">Through 10.3 (sliding filament and the cross-bridge cycle). Deeper fiber-type detail is extra.</p></div></li>
-        <li><span class="tier-tag read r-tag">Read</span><div class="r-body"><span class="r-ch">Ch 12</span><p class="r-title">The Nervous System and Nervous Tissue</p><p class="r-note">Neurons, glia, resting membrane potential, action potentials, and the synapse.</p></div></li>
-        <li><span class="tier-tag ref r-tag">Reference</span><div class="r-body"><span class="r-ch">Ch 11</span><p class="r-title">The Muscular System</p><p class="r-note">Lookup source for major muscle groups in the workbook. No read-through required.</p></div></li>
+      <p class="rmap-scope">Skeletal muscle microanatomy, motor units and muscle mechanics, sliding filament and the cross-bridge cycle, neurons and resting membrane potential, action potentials and synaptic transmission.</p>
+      <p class="rmap-load"><span>2 chapters to read</span><span>1 reference</span></p>
+      <ul class="rmap-readings">
+        <li><span class="tier-badge read">Read</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/10-introduction" target="_blank" rel="noopener">Ch 10<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">Muscle Tissue</span><p class="rmap-note">Through 10.3 (sliding filament and the cross-bridge cycle). Deeper fiber-type detail is extra.</p></div></li>
+        <li><span class="tier-badge read">Read</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/12-introduction" target="_blank" rel="noopener">Ch 12<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Nervous System and Nervous Tissue</span><p class="rmap-note">Neurons, glia, resting membrane potential, action potentials, and the synapse.</p></div></li>
+        <li><span class="tier-badge ref">Reference</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/11-introduction" target="_blank" rel="noopener">Ch 11<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Muscular System</span><p class="rmap-note">Lookup source for major muscle groups in the workbook. No read-through required.</p></div></li>
       </ul>
-      <details class="lab"><summary>This week's lab</summary><div class="lab-body">Anatomy labels the sarcomere, neuromuscular junction, neuron, synapse, and glia. Physiology works through the sliding-filament sequence and the events of an action potential from threshold to repolarization.</div></details>
-      <div class="week-foot"><a class="hub-link" href="index.html#week-4" target="_top">Open Week 4 on the hub &rarr;</a></div>
+      <details class="rmap-lab"><summary><span class="tog">+</span> This week's lab</summary><div class="lab-body">Anatomy labels the sarcomere, neuromuscular junction, neuron, synapse, and glia. Physiology works through the sliding-filament sequence and the events of an action potential from threshold to repolarization.</div></details>
+      <a class="rmap-back" href="index.html#week-4" target="_top">Open Week 4 on the hub &rarr;</a>
     </article>
 
     <!-- WEEK 5 -->
-    <article class="week" id="week-5">
-      <div class="week-top">
-        <div class="week-num" aria-hidden="true">05</div>
-        <div class="week-head">
-          <p class="week-meta">Week 5 &middot; Jul 6 to Jul 12</p>
-          <h2 class="week-title">Nervous System, Senses, Endocrine</h2>
-          <p class="week-scope">CNS organization, PNS and autonomic, vision, hearing and equilibrium, hormone mechanisms, major endocrine glands.</p>
+    <article class="rmap-card" id="week-5">
+      <div class="rmap-top">
+        <span class="rmap-num">05</span>
+        <div>
+          <p class="rmap-meta">Week 5 &middot; Jul 6 to Jul 12</p>
+          <h3 class="rmap-title">Nervous System, Senses, Endocrine</h3>
         </div>
       </div>
-      <p class="load"><span class="pill">2 chapters to read</span><span class="pill">2 focused</span></p>
-      <ul class="readings">
-        <li><span class="tier-tag read r-tag">Read</span><div class="r-body"><span class="r-ch">Ch 13</span><p class="r-title">Anatomy of the Nervous System</p><p class="r-note">CNS organization: brain regions and spinal cord.</p></div></li>
-        <li><span class="tier-tag read r-tag">Read</span><div class="r-body"><span class="r-ch">Ch 17</span><p class="r-title">The Endocrine System</p><p class="r-note">17.9 on the endocrine pancreas anchors the OGTT and HbA1c content.</p></div></li>
-        <li><span class="tier-tag focus r-tag">Focus</span><div class="r-body"><span class="r-ch">Ch 14</span><p class="r-title">The Somatic Nervous System</p><p class="r-note">Read 14.1 Sensory Perception and 14.2 Central Processing. Special senses (vision, hearing, equilibrium) live here.</p></div></li>
-        <li><span class="tier-tag focus r-tag">Focus</span><div class="r-body"><span class="r-ch">Ch 15</span><p class="r-title">The Autonomic Nervous System</p><p class="r-note">Read 15.1 to 15.3. The autonomic-somatic split anchors the Valsalva maneuver. Section 15.4 is optional enrichment.</p></div></li>
+      <p class="rmap-scope">CNS organization, PNS and autonomic, vision, hearing and equilibrium, hormone mechanisms, major endocrine glands.</p>
+      <p class="rmap-load"><span>2 chapters to read</span><span>2 focused</span></p>
+      <ul class="rmap-readings">
+        <li><span class="tier-badge read">Read</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/13-introduction" target="_blank" rel="noopener">Ch 13<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">Anatomy of the Nervous System</span><p class="rmap-note">CNS organization: brain regions and spinal cord.</p></div></li>
+        <li><span class="tier-badge read">Read</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/17-introduction" target="_blank" rel="noopener">Ch 17<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Endocrine System</span><p class="rmap-note">17.9 on the endocrine pancreas anchors the OGTT and HbA1c content.</p></div></li>
+        <li><span class="tier-badge focus">Focus</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/14-introduction" target="_blank" rel="noopener">Ch 14<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Somatic Nervous System</span><p class="rmap-note">Read 14.1 Sensory Perception and 14.2 Central Processing. Special senses (vision, hearing, equilibrium) live here.</p></div></li>
+        <li><span class="tier-badge focus">Focus</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/15-introduction" target="_blank" rel="noopener">Ch 15<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Autonomic Nervous System</span><p class="rmap-note">Read 15.1 to 15.3. The autonomic-somatic split anchors the Valsalva maneuver. Section 15.4 is optional enrichment.</p></div></li>
       </ul>
-      <details class="lab"><summary>This week's lab</summary><div class="lab-body">Anatomy labels the brain (lateral and sagittal), spinal cord, cranial nerves, the eye and ear, sensory pathways, and the endocrine torso. Physiology runs the oral glucose tolerance test (OGTT), HbA1c estimated average glucose calculation, and Valsalva autonomic reflex reasoning.</div></details>
-      <div class="week-foot"><a class="hub-link" href="index.html#week-5" target="_top">Open Week 5 on the hub &rarr;</a></div>
+      <details class="rmap-lab"><summary><span class="tog">+</span> This week's lab</summary><div class="lab-body">Anatomy labels the brain (lateral and sagittal), spinal cord, cranial nerves, the eye and ear, sensory pathways, and the endocrine torso. Physiology runs the oral glucose tolerance test (OGTT), HbA1c estimated average glucose calculation, and Valsalva autonomic reflex reasoning.</div></details>
+      <a class="rmap-back" href="index.html#week-5" target="_top">Open Week 5 on the hub &rarr;</a>
     </article>
 
     <!-- WEEK 6 -->
-    <article class="week" id="week-6">
-      <div class="week-top">
-        <div class="week-num" aria-hidden="true">06</div>
-        <div class="week-head">
-          <p class="week-meta">Week 6 &middot; Jul 13 to Jul 19</p>
-          <h2 class="week-title">Blood &amp; Cardiovascular</h2>
-          <p class="week-scope">Blood composition and hemopoiesis, hemostasis and blood typing, heart anatomy and the cardiac cycle, cardiac conduction, blood vessels and hemodynamics.</p>
+    <article class="rmap-card" id="week-6">
+      <div class="rmap-top">
+        <span class="rmap-num">06</span>
+        <div>
+          <p class="rmap-meta">Week 6 &middot; Jul 13 to Jul 19</p>
+          <h3 class="rmap-title">Blood &amp; Cardiovascular</h3>
         </div>
       </div>
-      <p class="load"><span class="pill">2 chapters to read</span><span class="pill">1 focused</span><span class="pill heavy">Heavy week, plan ahead</span></p>
-      <ul class="readings">
-        <li><span class="tier-tag read r-tag">Read</span><div class="r-body"><span class="r-ch">Ch 18</span><p class="r-title">The Cardiovascular System: Blood</p><p class="r-note">Composition, hemopoiesis, hemostasis, and blood typing.</p></div></li>
-        <li><span class="tier-tag read r-tag">Read</span><div class="r-body"><span class="r-ch">Ch 19</span><p class="r-title">The Cardiovascular System: The Heart</p><p class="r-note">19.2 on cardiac electrical activity underpins the ECG lab.</p></div></li>
-        <li><span class="tier-tag focus r-tag">Focus</span><div class="r-body"><span class="r-ch">Ch 20</span><p class="r-title">Blood Vessels and Circulation</p><p class="r-note">Read 20.1 Structure and Function, 20.2 Flow and Resistance, 20.4 Homeostatic Regulation, 20.5 Circulatory Pathways. RAAS in 20.4 anchors blood pressure. Fetal circulation (20.6) is optional.</p></div></li>
+      <p class="rmap-scope">Blood composition and hemopoiesis, hemostasis and blood typing, heart anatomy and the cardiac cycle, cardiac conduction, blood vessels and hemodynamics.</p>
+      <p class="rmap-load"><span>2 chapters to read</span><span>1 focused</span><span class="heavy">Heavy week, plan ahead</span></p>
+      <ul class="rmap-readings">
+        <li><span class="tier-badge read">Read</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/18-introduction" target="_blank" rel="noopener">Ch 18<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Cardiovascular System: Blood</span><p class="rmap-note">Composition, hemopoiesis, hemostasis, and blood typing.</p></div></li>
+        <li><span class="tier-badge read">Read</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/19-introduction" target="_blank" rel="noopener">Ch 19<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Cardiovascular System: The Heart</span><p class="rmap-note">19.2 on cardiac electrical activity underpins the ECG lab.</p></div></li>
+        <li><span class="tier-badge focus">Focus</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/20-introduction" target="_blank" rel="noopener">Ch 20<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">Blood Vessels and Circulation</span><p class="rmap-note">Read 20.1 Structure and Function, 20.2 Flow and Resistance, 20.4 Homeostatic Regulation, 20.5 Circulatory Pathways. RAAS in 20.4 anchors blood pressure. Fetal circulation (20.6) is optional.</p></div></li>
       </ul>
-      <details class="lab"><summary>This week's lab</summary><div class="lab-body">Anatomy labels the heart (external and internal), conduction system, cardiac histology, major arteries and veins, and a blood smear. Physiology runs the five-step ECG reading method (rate, rhythm, axis, intervals, morphology), identifies common rhythms, calculates ASCVD 10-year risk by tier, and reasons through RAAS blood pressure scenarios.</div></details>
-      <div class="week-foot"><a class="hub-link" href="index.html#week-6" target="_top">Open Week 6 on the hub &rarr;</a></div>
+      <details class="rmap-lab"><summary><span class="tog">+</span> This week's lab</summary><div class="lab-body">Anatomy labels the heart (external and internal), conduction system, cardiac histology, major arteries and veins, and a blood smear. Physiology runs the five-step ECG reading method (rate, rhythm, axis, intervals, morphology), identifies common rhythms, calculates ASCVD 10-year risk by tier, and reasons through RAAS blood pressure scenarios.</div></details>
+      <a class="rmap-back" href="index.html#week-6" target="_top">Open Week 6 on the hub &rarr;</a>
     </article>
 
     <!-- WEEK 7 -->
-    <article class="week" id="week-7">
-      <div class="week-top">
-        <div class="week-num" aria-hidden="true">07</div>
-        <div class="week-head">
-          <p class="week-meta">Week 7 &middot; Jul 20 to Jul 26</p>
-          <h2 class="week-title">Immune, Respiratory, Digestive</h2>
-          <p class="week-scope">Lymphatic system and innate immunity, adaptive immunity, respiratory anatomy and mechanics, gas exchange and transport, GI anatomy and motility, digestion and absorption.</p>
+    <article class="rmap-card" id="week-7">
+      <div class="rmap-top">
+        <span class="rmap-num">07</span>
+        <div>
+          <p class="rmap-meta">Week 7 &middot; Jul 20 to Jul 26</p>
+          <h3 class="rmap-title">Immune, Respiratory, Digestive</h3>
         </div>
       </div>
-      <p class="load"><span class="pill">2 chapters to read</span><span class="pill">2 focused</span><span class="pill heavy">Three systems, plan ahead</span></p>
-      <ul class="readings">
-        <li><span class="tier-tag read r-tag">Read</span><div class="r-body"><span class="r-ch">Ch 22</span><p class="r-title">The Respiratory System</p><p class="r-note">Anatomy, mechanics, and gas exchange and transport.</p></div></li>
-        <li><span class="tier-tag read r-tag">Read</span><div class="r-body"><span class="r-ch">Ch 23</span><p class="r-title">The Digestive System</p><p class="r-note">23.6 on accessory organs covers the liver as metabolic hub, which anchors the LFT and lipid panel lab.</p></div></li>
-        <li><span class="tier-tag focus r-tag">Focus</span><div class="r-body"><span class="r-ch">Ch 21</span><p class="r-title">The Lymphatic and Immune System</p><p class="r-note">Read 21.1 Anatomy, 21.2 Barrier and Innate Defenses, 21.3 Adaptive Response. Skim cancer and transplant immunology (21.7).</p></div></li>
-        <li><span class="tier-tag focus r-tag">Focus</span><div class="r-body"><span class="r-ch">Ch 24</span><p class="r-title">Metabolism and Nutrition</p><p class="r-note">Read 24.4 Nutrition and Diet. Skim 24.1 for concepts. Deep carbohydrate and lipid metabolism is optional.</p></div></li>
+      <p class="rmap-scope">Lymphatic system and innate immunity, adaptive immunity, respiratory anatomy and mechanics, gas exchange and transport, GI anatomy and motility, digestion and absorption.</p>
+      <p class="rmap-load"><span>2 chapters to read</span><span>2 focused</span><span class="heavy">Three systems, plan ahead</span></p>
+      <ul class="rmap-readings">
+        <li><span class="tier-badge read">Read</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/22-introduction" target="_blank" rel="noopener">Ch 22<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Respiratory System</span><p class="rmap-note">Anatomy, mechanics, and gas exchange and transport.</p></div></li>
+        <li><span class="tier-badge read">Read</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/23-introduction" target="_blank" rel="noopener">Ch 23<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Digestive System</span><p class="rmap-note">23.6 on accessory organs covers the liver as metabolic hub, which anchors the LFT and lipid panel lab.</p></div></li>
+        <li><span class="tier-badge focus">Focus</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/21-introduction" target="_blank" rel="noopener">Ch 21<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Lymphatic and Immune System</span><p class="rmap-note">Read 21.1 Anatomy, 21.2 Barrier and Innate Defenses, 21.3 Adaptive Response. Skim cancer and transplant immunology (21.7).</p></div></li>
+        <li><span class="tier-badge focus">Focus</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/24-introduction" target="_blank" rel="noopener">Ch 24<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">Metabolism and Nutrition</span><p class="rmap-note">Read 24.4 Nutrition and Diet. Skim 24.1 for concepts. Deep carbohydrate and lipid metabolism is optional.</p></div></li>
       </ul>
-      <details class="lab"><summary>This week's lab</summary><div class="lab-body">Anatomy labels the airways and alveoli, lung volumes, the GI canal and wall, stomach, villi, colon, and the liver and biliary tree. Physiology runs spirometry (FEV1/FVC for obstructive vs restrictive patterns), interprets liver function tests, and calculates LDL with the Friedewald equation.</div></details>
-      <div class="week-foot"><a class="hub-link" href="index.html#week-7" target="_top">Open Week 7 on the hub &rarr;</a></div>
+      <details class="rmap-lab"><summary><span class="tog">+</span> This week's lab</summary><div class="lab-body">Anatomy labels the airways and alveoli, lung volumes, the GI canal and wall, stomach, villi, colon, and the liver and biliary tree. Physiology runs spirometry (FEV1/FVC for obstructive vs restrictive patterns), interprets liver function tests, and calculates LDL with the Friedewald equation.</div></details>
+      <a class="rmap-back" href="index.html#week-7" target="_top">Open Week 7 on the hub &rarr;</a>
     </article>
 
     <!-- WEEK 8 -->
-    <article class="week" id="week-8">
-      <div class="week-top">
-        <div class="week-num" aria-hidden="true">08</div>
-        <div class="week-head">
-          <p class="week-meta">Week 8 &middot; Jul 27 to Aug 2</p>
-          <h2 class="week-title">Renal, Fluid Balance, Reproductive</h2>
-          <p class="week-scope">Kidney anatomy and glomerular filtration, tubular function, fluid, electrolyte and acid-base balance, male and female reproductive systems, basics of pregnancy A&amp;P.</p>
+    <article class="rmap-card" id="week-8">
+      <div class="rmap-top">
+        <span class="rmap-num">08</span>
+        <div>
+          <p class="rmap-meta">Week 8 &middot; Jul 27 to Aug 2</p>
+          <h3 class="rmap-title">Renal, Fluid Balance, Reproductive</h3>
         </div>
       </div>
-      <p class="load"><span class="pill">2 chapters to read</span><span class="pill">2 focused</span></p>
-      <ul class="readings">
-        <li><span class="tier-tag read r-tag">Read</span><div class="r-body"><span class="r-ch">Ch 25</span><p class="r-title">The Urinary System</p><p class="r-note">Kidney anatomy, glomerular filtration, and tubular function.</p></div></li>
-        <li><span class="tier-tag read r-tag">Read</span><div class="r-body"><span class="r-ch">Ch 27</span><p class="r-title">The Reproductive System</p><p class="r-note">Male and female reproductive anatomy.</p></div></li>
-        <li><span class="tier-tag focus r-tag">Focus</span><div class="r-body"><span class="r-ch">Ch 26</span><p class="r-title">Fluid, Electrolyte, and Acid-Base Balance</p><p class="r-note">Read 26.1 Body Fluids and Fluid Compartments and 26.4 Acid-Base Balance. Acid-base anchors the ABG lab. Deep buffer chemistry is optional.</p></div></li>
-        <li><span class="tier-tag focus r-tag">Focus</span><div class="r-body"><span class="r-ch">Ch 28</span><p class="r-title">Development and Inheritance</p><p class="r-note">Read 28.1 Fertilization, 28.4 Pregnancy, Labor and Birth, 28.5 Adjustments at Birth, 28.6 Lactation. Embryonic staging (28.2, 28.3) and inheritance (28.7) are optional.</p></div></li>
+      <p class="rmap-scope">Kidney anatomy and glomerular filtration, tubular function, fluid, electrolyte and acid-base balance, male and female reproductive systems, basics of pregnancy A&amp;P.</p>
+      <p class="rmap-load"><span>2 chapters to read</span><span>2 focused</span></p>
+      <ul class="rmap-readings">
+        <li><span class="tier-badge read">Read</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/25-introduction" target="_blank" rel="noopener">Ch 25<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Urinary System</span><p class="rmap-note">Kidney anatomy, glomerular filtration, and tubular function.</p></div></li>
+        <li><span class="tier-badge read">Read</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/27-introduction" target="_blank" rel="noopener">Ch 27<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">The Reproductive System</span><p class="rmap-note">Male and female reproductive anatomy.</p></div></li>
+        <li><span class="tier-badge focus">Focus</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/26-introduction" target="_blank" rel="noopener">Ch 26<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">Fluid, Electrolyte, and Acid-Base Balance</span><p class="rmap-note">Read 26.1 Body Fluids and Fluid Compartments and 26.4 Acid-Base Balance. Acid-base anchors the ABG lab. Deep buffer chemistry is optional.</p></div></li>
+        <li><span class="tier-badge focus">Focus</span><div class="rmap-rbody"><a class="rmap-ch" href="https://openstax.org/books/anatomy-and-physiology-2e/pages/28-introduction" target="_blank" rel="noopener">Ch 28<span class="ext" aria-hidden="true">&#8599;</span></a><span class="rmap-rt">Development and Inheritance</span><p class="rmap-note">Read 28.1 Fertilization, 28.4 Pregnancy, Labor and Birth, 28.5 Adjustments at Birth, 28.6 Lactation. Embryonic staging (28.2, 28.3) and inheritance (28.7) are optional.</p></div></li>
       </ul>
-      <details class="lab"><summary>This week's lab</summary><div class="lab-body">Anatomy labels the kidney and nephron, urinary tract, the male and female reproductive tracts, the uterine cycle, and placenta. Physiology decodes urinalysis dipsticks, runs the four-step arterial blood gas (acid-base) interpretation, and closes with lifespan integration across the eight systems studied.</div></details>
-      <div class="week-foot"><a class="hub-link" href="index.html#week-8" target="_top">Open Week 8 on the hub &rarr;</a></div>
+      <details class="rmap-lab"><summary><span class="tog">+</span> This week's lab</summary><div class="lab-body">Anatomy labels the kidney and nephron, urinary tract, the male and female reproductive tracts, the uterine cycle, and placenta. Physiology decodes urinalysis dipsticks, runs the four-step arterial blood gas (acid-base) interpretation, and closes with lifespan integration across the eight systems studied.</div></details>
+      <a class="rmap-back" href="index.html#week-8" target="_top">Open Week 8 on the hub &rarr;</a>
     </article>
 
   </div>
+</div>
 
-  <!-- ===== WHAT WE SKIM OR SKIP ===== -->
-  <section aria-labelledby="skim-head">
-    <div class="section-head">
-      <span class="section-num">02</span>
-      <h2 id="skim-head">What We Skim or Skip</h2>
-    </div>
-    <p class="section-intro">OpenStax A&amp;P 2e is written for a two-semester course. Eight summer weeks cannot cover it at the same depth. Here is what gets treated lightly or set aside, with the reasoning.</p>
-    <div class="skim-grid">
-      <div class="skim-card"><h3>Ch 2: atomic structure detail</h3><p>Sections 2.1 to 2.3 on elements, bonds, and reactions are useful background but not required. The biomolecule sections (2.4, 2.5) carry the essential content.</p></div>
-      <div class="skim-card"><h3>Ch 3: mitosis and the cell cycle</h3><p>The membrane and organelles carry the weight here. Cell division is not tested at depth.</p></div>
-      <div class="skim-card"><h3>Ch 7, 8, 11: gross anatomy atlases</h3><p>These are lookup references. You name bones and muscles during the workbook, but read-through is not expected.</p></div>
-      <div class="skim-card"><h3>Ch 9: specific articulations</h3><p>Joint classification matters. The detailed anatomy of every specific joint does not.</p></div>
-      <div class="skim-card"><h3>Ch 16: the neurological exam</h3><p>Useful clinical context, but the bedside exam is folded into lab rather than assigned as reading.</p></div>
-      <div class="skim-card"><h3>Ch 24: deep metabolic pathways</h3><p>Carbohydrate, protein, and lipid metabolism at the biochemistry level is optional. Conceptual understanding is enough.</p></div>
-      <div class="skim-card"><h3>Ch 26: buffer chemistry detail</h3><p>Acid-base balance at a conceptual level, yes. The quantitative buffer equations are not a target.</p></div>
-      <div class="skim-card"><h3>Ch 28: embryonic staging, inheritance</h3><p>Sections 28.2, 28.3, and 28.7 are interesting but fall outside the lab-anchored content for Week 8.</p></div>
-      <div class="skim-card"><h3>Career Connections sidebars</h3><p>Strong supplements for allied health students throughout the book. Optional but recommended if you are figuring out your direction.</p></div>
-    </div>
-  </section>
+<!-- ===== WHAT WE SKIM OR SKIP (light) ===== -->
+<div class="skim-section">
+  <div class="section-eyebrow">Depth, on purpose</div>
+  <h2 class="section-headline">What we skim <span class="accent">or skip</span>.</h2>
+  <p class="section-intro">OpenStax A&amp;P 2e is written for a two-semester course. Eight summer weeks cannot cover it at the same depth. Here is what gets treated lightly or set aside, with the reasoning.</p>
+  <div class="skim-grid">
+    <div class="skim-card"><h3>Ch 2: atomic structure detail</h3><p>Sections 2.1 to 2.3 on elements, bonds, and reactions are useful background but not required. The biomolecule sections (2.4, 2.5) carry the essential content.</p></div>
+    <div class="skim-card"><h3>Ch 3: mitosis and the cell cycle</h3><p>The membrane and organelles carry the weight here. Cell division is not tested at depth.</p></div>
+    <div class="skim-card"><h3>Ch 7, 8, 11: gross anatomy atlases</h3><p>These are lookup references. You name bones and muscles during the workbook, but read-through is not expected.</p></div>
+    <div class="skim-card"><h3>Ch 9: specific articulations</h3><p>Joint classification matters. The detailed anatomy of every specific joint does not.</p></div>
+    <div class="skim-card"><h3>Ch 16: the neurological exam</h3><p>Useful clinical context, but the bedside exam is folded into lab rather than assigned as reading.</p></div>
+    <div class="skim-card"><h3>Ch 24: deep metabolic pathways</h3><p>Carbohydrate, protein, and lipid metabolism at the biochemistry level is optional. Conceptual understanding is enough.</p></div>
+    <div class="skim-card"><h3>Ch 26: buffer chemistry detail</h3><p>Acid-base balance at a conceptual level, yes. The quantitative buffer equations are not a target.</p></div>
+    <div class="skim-card"><h3>Ch 28: embryonic staging, inheritance</h3><p>Sections 28.2, 28.3, and 28.7 are interesting but fall outside the lab-anchored content for Week 8.</p></div>
+    <div class="skim-card"><h3>Career Connections sidebars</h3><p>Strong supplements for allied health students throughout the book. Optional but recommended if you are figuring out your direction.</p></div>
+  </div>
+</div>
 
 </main>
 
-<footer class="byline"><p>Dr. Sharilyn Rennie &middot; BIO 304 &middot; American River College</p></footer>
-
-<!-- ===== shared site footer ===== -->
-<div class="mcas-chrome">
-<footer class="mcas-footer">
-  <div class="mcas-footer-links">
-    <a href="index.html" target="_top">Course home</a>
-    <a href="biol304_syllabus.html" target="_top">Syllabus</a>
-    <a href="course-orientation.html" target="_top">Orientation</a>
-    <a href="concept_videos.html" target="_top">Concept videos</a>
-    <a href="bio304-spaced-recall-prototype.html" target="_top">Spaced recall</a>
-    <a href="biol304_accessibility.html" target="_top">Accessibility</a>
+<!-- ===== FOOTER ===== -->
+<footer class="footer-section">
+  <div class="footer-top">
+    <div>
+      <a href="index.html" class="footer-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+        <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+          <g transform="translate(0, 18)">
+            <g transform="translate(60, 0) rotate(8 0 130)">
+              <circle cx="0" cy="20" r="10" fill="#F5F1E8"/>
+              <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#F5F1E8"/>
+            </g>
+            <g transform="translate(100, 0)">
+              <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+              <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+            </g>
+            <g transform="translate(140, 0) rotate(-8 0 130)">
+              <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+              <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+            </g>
+          </g>
+        </svg>
+        <span class="logo-text">
+          <span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span>
+          <span class="logo-sub">BIO 304 &middot; American River College</span>
+        </span>
+      </a>
+      <p class="footer-tagline">Eight weeks, online, designed to make a 4-credit A&amp;P possible. Same rhythm every week, real deadlines, real support.</p>
+    </div>
+    <div>
+      <div class="footer-col-header">Start here</div>
+      <a class="footer-link" href="index.html" target="_top">Course home</a>
+      <a class="footer-link" href="biol304_syllabus.html" target="_top">Syllabus</a>
+      <a class="footer-link" href="index.html#weeks" target="_top">Eight weeks</a>
+      <a class="footer-link" href="index.html#grading" target="_top">How you are graded</a>
+    </div>
+    <div>
+      <div class="footer-col-header">Study tools</div>
+      <a class="footer-link" href="index.html#weeks" target="_top">Weekly pre-work</a>
+      <a class="footer-link" href="discussions.html" target="_top">Discussions</a>
+      <a class="footer-link" href="biol304_textbook.html" target="_top">OpenStax textbook</a>
+      <a class="footer-link" href="biol304_reading_map.html" target="_top">Reading map</a>
+    </div>
+    <div>
+      <div class="footer-col-header">Policies</div>
+      <a class="footer-link" href="biol304_accessibility.html" target="_top">Accessibility</a>
+      <a class="footer-link" href="biol304_rsi_statement.html" target="_top">RSI statement</a>
+      <a class="footer-link" href="ai_policy.html" target="_top">AI policy (explainer)</a>
+      <a class="footer-link" href="ai_honor_contract.html" target="_top">AI honor contract</a>
+    </div>
   </div>
-  <div class="mcas-footer-row">
-    <div class="mcas-footer-copyright">BIO 304 Human Anatomy &amp; Physiology &middot; American River College</div>
-    <div class="mcas-footer-byline">Dr. Sharilyn Rennie</div>
+  <div class="footer-bottom">
+    <div class="footer-copyright">BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Summer 2026</div>
+    <div class="footer-byline">Dr. Sharilyn Rennie</div>
   </div>
 </footer>
-</div>
 
-<!-- iframe height-sender -->
 <script>
-(function(){
-  var FRAME_ID = "bio304-biol304-reading-map";
-  function sendHeight(){
-    var h = Math.max(document.documentElement.scrollHeight,
-                     document.body ? document.body.scrollHeight : 0);
-    try{ parent.postMessage({type:"resize", id:FRAME_ID, height:h}, "*"); }catch(e){}
-    try{ parent.postMessage({type:"iframe-height", id:"bio304-page", height:h}, "*"); }catch(e){}
-  }
-  window.addEventListener("load", sendHeight);
-  window.addEventListener("resize", sendHeight);
-  document.addEventListener("toggle", sendHeight, true);
-  if (window.ResizeObserver) new ResizeObserver(sendHeight).observe(document.body);
-})();
+  /* iframe height-sender - keeps the embed sized to its content */
+  (function () {
+    var FRAME_ID = 'bio304-reading-map';
+    function sendHeight() {
+      var h = Math.max(document.documentElement.scrollHeight, document.body ? document.body.scrollHeight : 0);
+      parent.postMessage({ type: 'resize', id: FRAME_ID, height: h }, '*');
+    }
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    document.addEventListener('toggle', sendHeight, true);
+    if (window.ResizeObserver) new ResizeObserver(sendHeight).observe(document.body);
+  })();
 </script>
 </body>
 </html>
