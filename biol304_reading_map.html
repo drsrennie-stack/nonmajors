@@ -93,6 +93,18 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .legend-eyebrow { font-size: 11px; font-weight: 700; color: #8B3A2E; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 16px; }
 .legend-row { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; margin: 0 0 24px; font-size: 14.5px; color: #0B1530; }
 .legend-row .item { display: inline-flex; align-items: center; gap: 9px; }
+.key-box {
+  background: #FFFFFF; border: 1px solid rgba(11, 21, 48, 0.14);
+  border-left: 4px solid #C9A14A; border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  padding: 8px 24px; max-width: 820px; margin: 0 0 24px;
+}
+.key-list { list-style: none; margin: 0; padding: 0; }
+.key-item { display: flex; gap: 16px; align-items: flex-start; padding: 14px 0; border-top: 1px solid rgba(11, 21, 48, 0.10); }
+.key-item:first-child { border-top: none; }
+.key-item .tier-badge { margin-top: 2px; min-width: 88px; }
+.key-title { font-size: 14.5px; font-weight: 800; color: #0B1530; margin: 0 0 2px; }
+.key-desc { font-size: 13.5px; color: #0B1530; opacity: 0.82; line-height: 1.55; margin: 0; }
 .adoption-box {
   background: #FFFFFF; border: 1px solid rgba(11, 21, 48, 0.14);
   border-left: 4px solid #C9A14A; border-radius: 8px;
@@ -277,11 +289,22 @@ a.rmap-ch:hover, a.rmap-ch:focus-visible { color: #A0452F; text-decoration: unde
 
 <!-- ===== LEGEND + ADOPTION (light) ===== -->
 <div class="legend-section" aria-label="How to read this map">
-  <div class="legend-eyebrow">Three tiers</div>
-  <div class="legend-row">
-    <span class="item"><span class="tier-badge read">Read</span> Full chapter, essential.</span>
-    <span class="item"><span class="tier-badge focus">Focus</span> Named sections only.</span>
-    <span class="item"><span class="tier-badge ref">Reference</span> Lookup source, not required.</span>
+  <div class="legend-eyebrow">Key: how to use the tiers</div>
+  <div class="key-box">
+    <ul class="key-list">
+      <li class="key-item">
+        <span class="tier-badge read">Read</span>
+        <div><p class="key-title">Read the whole chapter.</p><p class="key-desc">Essential. You are responsible for all of it, start to finish.</p></div>
+      </li>
+      <li class="key-item">
+        <span class="tier-badge focus">Focus</span>
+        <div><p class="key-title">Read only the sections listed.</p><p class="key-desc">Just the numbered sections named in the note (for example, 2.4 and 2.5). The rest of that chapter is not required.</p></div>
+      </li>
+      <li class="key-item">
+        <span class="tier-badge ref">Reference</span>
+        <div><p class="key-title">Look it up when you need it.</p><p class="key-desc">A lookup source for the lab workbook, like an atlas. No read-through expected.</p></div>
+      </li>
+    </ul>
   </div>
   <div class="adoption-box">
     <h2>The textbook</h2>
