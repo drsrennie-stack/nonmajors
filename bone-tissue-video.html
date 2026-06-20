@@ -55,7 +55,7 @@ h1 .accent{color:#8B3A2E}
 <main class="layout pad">
   <div class="frame" id="video">
     <iframe id="player"
-      src="https://www.loom.com/embed/d9edbbcea2ca4ac88778adbaedf1d37d?hide_owner=true&hideEmbedTopBar=true"
+      src="https://www.loom.com/embed/d9edbbcea2ca4ac88778adbaedf1d37d"
       title="Bone Tissue concept video"
       allow="autoplay; fullscreen; picture-in-picture"
       allowfullscreen></iframe>
@@ -89,7 +89,7 @@ h1 .accent{color:#8B3A2E}
    =========================================================== */
 (function(){
   var LOOM_ID = "d9edbbcea2ca4ac88778adbaedf1d37d";
-  var EXTRA = "hide_owner=true&hideEmbedTopBar=true";
+  var EXTRA = "";
   var BASE = "https://www.loom.com/embed/" + LOOM_ID;
   var player = document.getElementById("player");
   var empty = document.getElementById("frame-empty");
@@ -102,7 +102,7 @@ h1 .accent{color:#8B3A2E}
   buttons.forEach(function(b){
     b.addEventListener("click", function(){
       var s = b.getAttribute("data-s");
-      player.src = BASE + "?" + EXTRA + "&t=" + s + "&autoplay=1";
+      player.src = BASE + "?t=" + s + "&autoplay=1";
       buttons.forEach(function(x){ x.removeAttribute("aria-current"); });
       b.setAttribute("aria-current","true");
       document.getElementById("video").scrollIntoView({behavior:"smooth",block:"nearest"});

@@ -77,17 +77,17 @@ h1 .accent{color:#8B3A2E}
    Chapter times are seconds, set with data-s on each button. */
 (function(){
   var LOOM_ID = "";
-  var EXTRA = "hide_owner=true&hideEmbedTopBar=true";
+  var EXTRA = "";
   var BASE = "https://www.loom.com/embed/" + LOOM_ID;
   var player = document.getElementById("player");
   var empty = document.getElementById("frame-empty");
   var buttons = Array.prototype.slice.call(document.querySelectorAll(".ch"));
   if(!LOOM_ID){ player.hidden = true; empty.hidden = false; return; }
-  player.src = BASE + "?" + EXTRA;
+  player.src = BASE;
   buttons.forEach(function(b){
     b.addEventListener("click", function(){
       var s = b.getAttribute("data-s");
-      player.src = BASE + "?" + EXTRA + "&t=" + s + "&autoplay=1";
+      player.src = BASE + "?t=" + s + "&autoplay=1";
       buttons.forEach(function(x){ x.removeAttribute("aria-current"); });
       b.setAttribute("aria-current","true");
       document.getElementById("video").scrollIntoView({behavior:"smooth",block:"nearest"});
