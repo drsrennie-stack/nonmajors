@@ -55,6 +55,7 @@ h1 .accent{color:#8B3A2E}
 <main class="layout pad">
   <div class="frame" id="video">
     <iframe id="player"
+      src="https://www.loom.com/embed/d9edbbcea2ca4ac88778adbaedf1d37d?hide_owner=true&hideEmbedTopBar=true"
       title="Bone Tissue concept video"
       allow="autoplay; fullscreen; picture-in-picture"
       allowfullscreen></iframe>
@@ -98,7 +99,6 @@ h1 .accent{color:#8B3A2E}
     empty.hidden = false;
     return;
   }
-  player.src = BASE + "?" + EXTRA;
   buttons.forEach(function(b){
     b.addEventListener("click", function(){
       var s = b.getAttribute("data-s");

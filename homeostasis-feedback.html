@@ -1406,34 +1406,8 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   .gate-hint[hidden] { display: none; }
 
 </style>
-
-<style id="slide-modal-trigger-styles">
-.draw-btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 20px; padding: 12px 16px; background: rgba(11,21,48,0.04); border-left: 3px solid #8B3A2E; border-radius: 4px; }
-.draw-btn-row::before { content: "Drawing tools"; display: block; width: 100%; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8B3A2E; margin-bottom: 4px; }
-.draw-btn { display: inline-flex; align-items: center; gap: 6px; background: #0B1530; color: #FFFFFF; border: none; padding: 8px 14px; border-radius: 4px; font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; }
-.draw-btn:hover { background: #142A36; }
-.draw-btn::before { content: "\270E"; font-size: 13px; }
-</style>
 </head>
 <body class="mcas-page">
-<script>
-/* mcas-flag-heal: undoes the old "opening the cards marked the video watched" bug.
-   Removes any watched-flag that never actually reached the 98% threshold, so an
-   unwatched video correctly reads 0% and uncredited. Real watches (>=98%) and
-   honest "Yes I watched" clicks (100%) are kept. Card progress is never touched. */
-(function(){
-  try{
-    var rm=[];
-    for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i); if(k&&k.indexOf("bio304-video-")===0) rm.push(k);}
-    rm.forEach(function(k){
-      var id=k.slice("bio304-video-".length);
-      var pct=parseInt(localStorage.getItem("bio304-videopct-"+id)||"0",10)||0;
-      if(localStorage.getItem(k)==="true" && pct<98){ localStorage.removeItem(k); try{localStorage.removeItem("bio304-gate-"+id);}catch(e){} }
-    });
-  }catch(e){}
-})();
-</script>
-
 <!-- mcas-chrome-header -->
 <a href="#mcas-content" class="mcas-skip">Skip to main content</a>
 <div class="mcas-chrome">
@@ -1492,123 +1466,18 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   </p>
 
   <div class="resource-bar" role="region" aria-label="Topic resources">
+    <button type="button" class="resource-btn" id="video-toggle" aria-expanded="false" aria-controls="video-panel">
+      <span class="arrow" aria-hidden="true">&#9654;</span> Watch the video
+    </button>
     <a class="resource-btn primary" id="prework-link" href="#" target="_top" rel="noopener">
       Open spaced recall <span class="arrow" aria-hidden="true">&rarr;</span>
     </a>
   </div>
-
-  <!-- ============================================================
-       LECTURE VIDEO PACKETS  (small cards -> full-screen player)
-       VIDEO -> data-video: YouTube (youtu.be/ID or watch?v=ID) or Loom share link.
-       NOTES -> data-pdf: Google Drive share link (.../file/d/ID/view), shared
-                "Anyone with the link can view." Direct .pdf URLs also work.
-       Cards unlock in sequence. The teach-back below stays locked until all
-       five are watched.
-       ============================================================ -->
-  <section class="vpack-section" aria-labelledby="vpack-h">
-    <h2 id="vpack-h" class="vpack-h">Lecture videos</h2>
-    <p class="vpack-sub">Five short videos, each with a notes sheet. Open a card to watch it full screen with the notes beside the video. Print or download the notes so you can write while you watch. All five are open, watch them in any order.</p>
-
-    <div class="vpack-progress" aria-hidden="true">
-      <span id="vpack-progress-text">0 of 5 watched</span>
-      <span class="vpack-bar"><span id="vpack-progress-fill"></span></span>
-    </div>
-    <p id="vpack-live" class="vsr-only" role="status" aria-live="polite"></p>
-
-    <ol class="vpack-grid" id="vpack-grid">
-
-      <li class="vcard" data-id="general"
-          data-video="https://youtu.be/ONrXuf-ayXs"
-          data-pdf="https://drive.google.com/file/d/1SIJqkjTftoqpDOD87T0ujOVG_gi_S_70/view?usp=sharing"
-          data-title="General Homeostasis"
-          data-desc="What homeostasis is, the set point, and why a stable internal state is something the body actively maintains.">
-        <button type="button" class="vcard-btn">
-          <span class="vcard-thumb">
-            <span class="vcard-badge"><span class="vnum">1</span></span>
-            <span class="vcard-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            <span class="vcard-lock" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
-          </span>
-          <span class="vcard-body">
-            <span class="vcard-title">General Homeostasis</span>
-            <span class="vcard-status">Start here</span>
-          </span>
-        </button>
-      </li>
-
-      <li class="vcard" data-id="equilibrium"
-          data-video="https://youtu.be/hXCHCodDwSw"
-          data-pdf="https://drive.google.com/file/d/13hAlKzEuEb9-jE3wc1cD1vRWX49GHx_S/view?usp=sharing"
-          data-title="Homeostasis Is Not Equilibrium"
-          data-desc="A steady state is not the same as equilibrium. Why staying balanced takes constant energy and active adjustment.">
-        <button type="button" class="vcard-btn">
-          <span class="vcard-thumb">
-            <span class="vcard-badge"><span class="vnum">2</span></span>
-            <span class="vcard-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            <span class="vcard-lock" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
-          </span>
-          <span class="vcard-body">
-            <span class="vcard-title">Homeostasis Is Not Equilibrium</span>
-            <span class="vcard-status">Locked</span>
-          </span>
-        </button>
-      </li>
-
-      <li class="vcard" data-id="negloop"
-          data-video="https://youtu.be/Z_eIHsdQILY"
-          data-pdf="https://drive.google.com/file/d/14mP8L77BIlRJRa0WRyAWhudYwqeZt6g0/view?usp=sharing"
-          data-title="The Negative Feedback Loop"
-          data-desc="The four-part loop that senses a change and reverses it back toward the set point.">
-        <button type="button" class="vcard-btn">
-          <span class="vcard-thumb">
-            <span class="vcard-badge"><span class="vnum">3</span></span>
-            <span class="vcard-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            <span class="vcard-lock" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
-          </span>
-          <span class="vcard-body">
-            <span class="vcard-title">The Negative Feedback Loop</span>
-            <span class="vcard-status">Locked</span>
-          </span>
-        </button>
-      </li>
-
-      <li class="vcard" data-id="negexample"
-          data-video="https://youtu.be/Uyo0z0XIllo"
-          data-pdf="https://drive.google.com/file/d/1aNf_DnZCxMyiPbUt02owqiOqx_9qbGfm/view?usp=sharing"
-          data-title="Negative Feedback: A Worked Example"
-          data-desc="One negative feedback loop traced step by step, from stimulus to response.">
-        <button type="button" class="vcard-btn">
-          <span class="vcard-thumb">
-            <span class="vcard-badge"><span class="vnum">4</span></span>
-            <span class="vcard-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            <span class="vcard-lock" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
-          </span>
-          <span class="vcard-body">
-            <span class="vcard-title">Negative Feedback: A Worked Example</span>
-            <span class="vcard-status">Locked</span>
-          </span>
-        </button>
-      </li>
-
-      <li class="vcard" data-id="positive"
-          data-video="https://youtu.be/vyGXjbd4qPk"
-          data-pdf="https://drive.google.com/file/d/1_yS6Kr6csv3LSGvjBcEnBMzKuwk4WtLJ/view?usp=sharing"
-          data-title="Positive Feedback"
-          data-desc="Less common. A change is amplified until a clear endpoint stops the cascade. Childbirth, clotting, the action potential.">
-        <button type="button" class="vcard-btn">
-          <span class="vcard-thumb">
-            <span class="vcard-badge"><span class="vnum">5</span></span>
-            <span class="vcard-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            <span class="vcard-lock" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
-          </span>
-          <span class="vcard-body">
-            <span class="vcard-title">Positive Feedback</span>
-            <span class="vcard-status">Locked</span>
-          </span>
-        </button>
-      </li>
-
-    </ol>
-  </section>
+  <div class="video-panel" id="video-panel" hidden>
+    <iframe id="video-iframe" src="about:blank" title="Topic video" loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+  </div>
 
   <hr class="rule" />
 
@@ -1699,7 +1568,19 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     <span>BIO 304 &middot; Module 1 &middot; Homeostasis &amp; Feedback Loops</span>
   </div>
 
-  <!-- teach-back (retrieval check) removed per instructor -->
+  <!-- bio304-explain-gate (Option A) -->
+  <section id="explain-gate" hidden aria-labelledby="explain-gate-h">
+    <p class="gate-eyebrow">Step 3 . Retrieval check</p>
+    <h2 id="explain-gate-h">Now explain it back, in your own words.</h2>
+    <p class="gate-instr">In 60 words or more, pull together what the video just taught you. Include the key concepts. This is the point where the learning actually sticks. After you submit, your spaced-recall cards for this topic unlock.</p>
+    <textarea id="gate-input" aria-describedby="gate-meter" placeholder="What did this video teach you?"></textarea>
+    <div id="gate-meter" aria-live="polite">
+      <span>Words: <strong id="gate-word-count">0</strong> / 60</span>
+      <span>Concepts found: <strong id="gate-keyword-count">0</strong> / <span id="gate-keyword-target">0</span></span>
+    </div>
+    <button type="button" id="gate-submit" disabled>Unlock spaced recall</button>
+    <p id="gate-status" role="status"></p>
+  </section>
 </main>
 
 <!-- Lightbox dialog -->
@@ -1931,22 +1812,21 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     var hint = document.createElement('span');
     hint.className = 'gate-hint';
     hint.id = 'prework-gate-hint';
-    hint.textContent = 'Watch all five videos and finish the teach-back to unlock spaced recall';
+    hint.textContent = 'Watch the video and finish the retrieval check to unlock spaced recall';
     if (pre.parentNode) pre.parentNode.insertBefore(hint, pre.nextSibling);
     pre.href = PREWORK_TARGET;
     pre.addEventListener('click', function (e) {
       if (pre.classList.contains('gate-locked')) {
         e.preventDefault();
         if (gateSection && gateSection.hidden) {
-          alert('Watch all five videos first. Then complete the teach-back below.');
+          alert('Watch the video first. Then complete the retrieval check below.');
         } else if (gateSection) {
           gateSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
           if (input) input.focus();
         }
       } else {
-        // Cards are always open now, and watching is tracked separately. Opening
-        // the cards must NOT mark the video as watched (that was the old gated
-        // behaviour). Navigation still happens via the link's href.
+        try { window.localStorage.setItem('bio304-gate-' + TOPIC_ID, 'true'); } catch (er) {}
+        try { window.localStorage.setItem('bio304-video-' + TOPIC_ID, 'true'); } catch (er) {}
       }
     });
   }
@@ -2005,13 +1885,9 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     }
   }
 
-  // Expose the teach-back reveal so the video-packet section can call it once
-  // every packet has been watched. Until then the gate stays hidden.
-  window.__revealTeachBack = revealGate;
   if (isPlaceholder) {
-    // Videos live in the packet cards above; this page does not use the single
-    // YouTube IFrame gate. The teach-back is revealed by the packet logic when
-    // all five videos are finished.
+    // No real video yet: reveal the gate immediately so the page is testable.
+    revealGate();
     return;
   }
 
@@ -2164,6 +2040,65 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 })();
 </script>
 <!-- mcas-workbook-aside-gate-end -->
+<!-- mcas-lecture-notes-injector -->
+<script>
+(function(){
+  function init(){
+    var videoPanel = document.querySelector("#video-panel, .video-panel");
+    if (!videoPanel) return;
+    if (document.getElementById("mcas-lecture-notes-input")) return;
+
+    var cfg = window.SHEET_CONFIG || {};
+    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
+    var topicId = m ? m[1] : null;
+    var keyBase = topicId || (document.title || "page").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    var key = "bio304-lecture-notes-" + keyBase;
+
+    var section = document.createElement("section");
+    section.className = "mcas-lecture-notes";
+    section.setAttribute("aria-labelledby", "mcas-lecture-notes-h");
+    section.innerHTML =
+      '<p class="mcas-lecture-notes-eyebrow">While you watch</p>' +
+      '<h2 id="mcas-lecture-notes-h">Lecture video notes</h2>' +
+      '<p class="mcas-lecture-notes-instr">A scratchpad for what stands out as the video runs. Your notes save on this device and stay here when you come back.</p>' +
+      '<textarea id="mcas-lecture-notes-input" rows="8" aria-describedby="mcas-lecture-notes-status" placeholder="Type what is clicking for you..."></textarea>' +
+      '<p class="mcas-lecture-notes-status" id="mcas-lecture-notes-status" aria-live="polite"></p>';
+
+    if (videoPanel.parentNode) videoPanel.parentNode.insertBefore(section, videoPanel.nextSibling);
+
+    var ta = section.querySelector("#mcas-lecture-notes-input");
+    var status = section.querySelector("#mcas-lecture-notes-status");
+
+    try {
+      var saved = window.localStorage.getItem(key);
+      if (saved) ta.value = saved;
+      if (status) status.textContent = saved ? "Restored from your last session." : "";
+    } catch (e) {}
+
+    var t, debounceTimer;
+    function save(){
+      try { window.localStorage.setItem(key, ta.value); } catch (e) {}
+      if (status) {
+        status.textContent = "Saved on this device";
+        clearTimeout(t);
+        t = setTimeout(function(){ if (status) status.textContent = ""; }, 1400);
+      }
+    }
+    ta.addEventListener("input", function(){
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(save, 350);
+    });
+    ta.addEventListener("blur", save);
+    window.addEventListener("pagehide", save);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+<!-- mcas-lecture-notes-injector-end -->
 <!-- mcas-step-tracker-injector -->
 <script>
 (function(){
@@ -2420,408 +2355,34 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 })();
 </script>
 <!-- mcas-iframe-height-sender-end -->
-  <script src="slide-modal.js" defer></script>
-<!-- ===== Lecture video packets: styles ===== -->
-<style>
-.vsr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
-.vpack-section{margin:6px 0 4px;}
-.vpack-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;font-size:15px;letter-spacing:0.06em;text-transform:uppercase;color:var(--navy);margin:0 0 6px;padding-bottom:6px;border-bottom:2px solid var(--navy);}
-.vpack-sub{font-size:13.5px;color:var(--navy);opacity:0.82;margin:0 0 12px;max-width:70ch;}
-.vpack-progress{display:flex;align-items:center;gap:10px;font-family:'DM Sans',system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--navy);opacity:0.75;margin:0 0 14px;}
-.vpack-bar{flex:1;height:6px;max-width:280px;background:rgba(11,21,48,0.10);border-radius:999px;overflow:hidden;}
-.vpack-bar span{display:block;height:100%;width:0%;background:var(--gold);transition:width 300ms ease;}
-.vpack-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
-.vcard{background:var(--white);border:1px solid var(--rule);border-radius:12px;box-shadow:var(--shadow-rest);overflow:hidden;transition:transform 200ms ease,box-shadow 200ms ease,border-color 200ms ease;}
-.vcard.is-unlocked:hover,.vcard.is-completed:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:var(--gold);}
-.vcard-btn{appearance:none;width:100%;height:100%;text-align:left;cursor:pointer;background:var(--white);border:0;padding:0;display:flex;flex-direction:column;font-family:inherit;color:var(--navy);}
-.vcard-btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
-.vcard-thumb{position:relative;width:100%;aspect-ratio:16/9;background:var(--navy-deep) center/cover no-repeat;display:flex;align-items:center;justify-content:center;}
-.vcard-thumb::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,10,24,0.12) 0%,rgba(6,10,24,0.04) 38%,rgba(6,10,24,0.50) 100%);}
-.vcard-badge{position:absolute;top:10px;left:10px;z-index:2;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:14px;color:#fff;background:rgba(6,10,24,0.55);border:1.5px solid rgba(255,255,255,0.72);}
-.vcard-play{position:relative;z-index:2;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.92);color:var(--navy);box-shadow:0 4px 14px rgba(0,0,0,0.35);transition:transform 200ms ease,background 200ms ease;}
-.vcard-play svg{width:24px;height:24px;margin-left:3px;}
-.vcard-btn:hover .vcard-play{transform:scale(1.08);background:#fff;}
-.vcard-lock{position:absolute;inset:0;margin:auto;z-index:2;display:none;width:50px;height:50px;border-radius:50%;align-items:center;justify-content:center;background:rgba(6,10,24,0.62);color:#fff;border:1.5px solid rgba(255,255,255,0.4);}
-.vcard-lock svg{width:22px;height:22px;}
-.vcard-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;}
-.vcard-title{font-weight:800;font-size:14.5px;line-height:1.25;letter-spacing:-0.01em;color:var(--navy);}
-.vcard-status{font-family:'DM Sans',system-ui,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra-dark);}
-.vcard.is-locked .vcard-btn{cursor:not-allowed;}
-.vcard.is-locked .vcard-thumb{filter:grayscale(1) brightness(0.72);}
-.vcard.is-locked .vcard-play{display:none;}
-.vcard.is-locked .vcard-lock{display:flex;}
-.vcard.is-locked .vcard-title{opacity:0.6;}
-.vcard.is-completed .vcard-badge{background:var(--gold);border-color:#fff;color:var(--navy);}
-.vcard.is-completed .vcard-badge .vnum{display:none;}
-.vcard.is-completed .vcard-badge::after{content:"\2713";font-size:15px;}
-.vcard.is-completed .vcard-status{color:var(--navy);}
-.vmodal[hidden]{display:none;}
-.vmodal{position:fixed;inset:0;z-index:1200;display:flex;align-items:center;justify-content:center;padding:clamp(6px,2vw,22px);}
-.vmodal-backdrop{position:absolute;inset:0;background:rgba(6,10,24,0.92);}
-.vmodal-card{position:relative;display:flex;flex-direction:column;width:96vw;height:94vh;background:var(--white);border-radius:14px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,0.55);}
-.vmodal-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 18px;border-bottom:1px solid var(--rule);}
-.vmodal-eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 2px;}
-.vmodal-title{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:19px;color:var(--navy);margin:0;letter-spacing:-0.01em;}
-.vmodal-close{appearance:none;flex-shrink:0;width:40px;height:40px;border-radius:50%;border:1px solid var(--rule);background:var(--white);color:var(--navy);font-size:24px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;}
-.vmodal-close:hover{background:var(--navy);color:#fff;}
-.vmodal-close:focus-visible{outline:3px solid var(--gold);outline-offset:2px;}
-.vmodal-body{flex:1;min-height:0;overflow:auto;padding:18px;}
-.vmodal-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;min-height:100%;}
-@media (max-width:860px){.vmodal-grid{grid-template-columns:1fr;}}
-.vpane-label{font-family:'DM Sans',system-ui,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 8px;}
-.vframe{position:relative;width:100%;aspect-ratio:16/9;background:var(--navy-deep);border-radius:8px;overflow:hidden;box-shadow:var(--shadow-rest);}
-.vframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
-.vframe-pdf{position:relative;width:100%;min-height:60vh;height:100%;background:#525659;border-radius:8px;overflow:hidden;box-shadow:var(--shadow-rest);}
-@media (max-width:860px){.vframe-pdf{min-height:70vh;}}
-.vframe-pdf iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
-.vactions{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px;}
-.vbtn{appearance:none;display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;cursor:pointer;font-family:'DM Sans',system-ui,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border:1px solid var(--navy);background:var(--white);color:var(--navy)!important;text-decoration:none;box-shadow:var(--shadow-rest);transition:background 200ms ease,color 200ms ease,transform 200ms ease,box-shadow 200ms ease;}
-.vbtn:hover{transform:translateY(-1px);box-shadow:var(--shadow-hover);}
-.vbtn:focus-visible{outline:3px solid var(--gold);outline-offset:2px;}
-.vbtn.primary{background:var(--navy);color:#fff!important;}
-.vbtn.primary:hover{background:var(--navy-deep);}
-.vbtn[disabled]{opacity:0.5;cursor:not-allowed;box-shadow:none;}
-.vbtn svg{width:14px;height:14px;}
-.vmodal-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:14px 18px;border-top:1px solid var(--rule);}
-.vfoot-note{font-size:12.5px;color:var(--navy);opacity:0.75;margin:0;max-width:52ch;}
-.vcontinue{appearance:none;cursor:pointer;white-space:nowrap;padding:11px 20px;border-radius:999px;font-family:'DM Sans',system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;border:1px solid var(--terra-dark);background:var(--terra-dark);color:#fff;box-shadow:var(--shadow-rest);transition:background 200ms ease,transform 200ms ease,box-shadow 200ms ease;}
-.vcontinue:hover{background:#A0452F;transform:translateY(-1px);box-shadow:var(--shadow-hover);}
-.vcontinue:focus-visible{outline:3px solid var(--gold);outline-offset:2px;}
-.vcontinue.done{background:var(--navy);border-color:var(--navy);}
-.vcontinue[disabled]{opacity:0.5;cursor:not-allowed;box-shadow:none;}
-.vcontinue[disabled]:hover{transform:none;box-shadow:none;background:var(--terra-dark);}
-@media (prefers-reduced-motion:reduce){.vcard-btn,.vbtn,.vcontinue,.vpack-bar span{transition:none!important;}}
-@media print{.vpack-section,.vmodal{display:none!important;}}
-</style>
-
-<!-- ===== Lecture video packets: full-screen player ===== -->
-<div class="vmodal" id="vmodal" hidden role="dialog" aria-modal="true" aria-labelledby="vmodal-title">
-  <div class="vmodal-backdrop" id="vmodal-backdrop"></div>
-  <div class="vmodal-card">
-    <div class="vmodal-head">
-      <div>
-        <p class="vmodal-eyebrow">Homeostasis &amp; Feedback Loops</p>
-        <h2 class="vmodal-title" id="vmodal-title">Video</h2>
-      </div>
-      <button type="button" class="vmodal-close" id="vmodal-close" aria-label="Close video">&times;</button>
-    </div>
-    <div class="vmodal-body" id="vmodal-body"></div>
-    <div class="vmodal-foot">
-      <p class="vfoot-note">Print or download the notes, watch the video, then mark it finished to track your progress.</p>
-      <button type="button" class="vcontinue" id="vmodal-continue"></button>
-    </div>
-  </div>
-</div>
-
-<script>
-(function () {
-  "use strict";
-  var PREFIX = "bio304-homeostasis-vpacket-";
-  var cards = Array.prototype.slice.call(document.querySelectorAll("#vpack-grid .vcard"));
-  if (!cards.length) return;
-  var modal = document.getElementById("vmodal");
-  var bodyEl = document.getElementById("vmodal-body");
-  var titleEl = document.getElementById("vmodal-title");
-  var contBtn = document.getElementById("vmodal-continue");
-  var closeBtn = document.getElementById("vmodal-close");
-  var backdrop = document.getElementById("vmodal-backdrop");
-  var live = document.getElementById("vpack-live");
-  var active = null, lastFocus = null, ytPlayer = null, ytPoll = null, ytLoading = false, ytCallbacks = [];
-
-  var ICON_DL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>';
-  var ICON_PRINT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>';
-
-  function vEmbed(u) {
-    if (!u) return "";
-    u = u.trim(); var m;
-    if ((m = u.match(/youtu\.be\/([\w-]+)/)))            return "https://www.youtube.com/embed/" + m[1] + "?rel=0&enablejsapi=1";
-    if ((m = u.match(/youtube\.com\/.*[?&]v=([\w-]+)/)))  return "https://www.youtube.com/embed/" + m[1] + "?rel=0&enablejsapi=1";
-    if (u.indexOf("loom.com/share/") !== -1)             return u.replace("/share/", "/embed/");
-    return u;
-  }
-  function vId(u) {
-    if (!u) return ""; var m;
-    if ((m = u.match(/youtu\.be\/([\w-]+)/))) return m[1];
-    if ((m = u.match(/youtube\.com\/.*[?&]v=([\w-]+)/))) return m[1];
-    if ((m = u.match(/youtube\.com\/embed\/([\w-]+)/))) return m[1];
-    return "";
-  }
-  function dId(u) { if (!u) return ""; var m = u.match(/\/file\/d\/([\w-]+)/) || u.match(/[?&]id=([\w-]+)/); return m ? m[1] : ""; }
-  function dPrev(u) { var i = dId(u); return i ? "https://drive.google.com/file/d/" + i + "/preview" : u; }
-  function dDl(u)   { var i = dId(u); return i ? "https://drive.google.com/uc?export=download&id=" + i : u; }
-  function dOpen(u) { var i = dId(u); return i ? "https://drive.google.com/file/d/" + i + "/view" : u; }
-  function isDone(id) { try { return window.localStorage.getItem(PREFIX + id) === "done"; } catch (e) { return false; } }
-  function setDone(id) { try { window.localStorage.setItem(PREFIX + id, "done"); } catch (e) {} }
-  function say(m) { if (live) live.textContent = m; }
-  function status(card, t) { var s = card.querySelector(".vcard-status"); if (s) s.textContent = t; }
-  function unlock(card) { card.classList.remove("is-locked"); card.classList.add("is-unlocked"); card.querySelector(".vcard-btn").removeAttribute("aria-disabled"); if (!card.classList.contains("is-completed")) status(card, "Ready"); }
-  function lock(card) { card.classList.add("is-locked"); card.querySelector(".vcard-btn").setAttribute("aria-disabled", "true"); status(card, "Locked"); }
-  function allDone() { return cards.every(function (c) { return isDone(c.getAttribute("data-id")); }); }
-
-  function progress() {
-    var d = cards.filter(function (c) { return isDone(c.getAttribute("data-id")); }).length;
-    var t = cards.length;
-    var tx = document.getElementById("vpack-progress-text");
-    var fl = document.getElementById("vpack-progress-fill");
-    if (tx) tx.textContent = d + " of " + t + " watched";
-    if (fl) fl.style.width = Math.round((d / t) * 100) + "%";
-  }
-
-  function buildBody(card) {
-    var video = vEmbed(card.getAttribute("data-video"));
-    var rawPdf = (card.getAttribute("data-pdf") || "").trim();
-    var title = card.getAttribute("data-title") || "Video";
-    var vIn = video
-      ? '<div class="vframe"><iframe id="vmodal-video-iframe" src="' + video + '" title="' + title + ' video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
-      : '<div class="vframe"></div>';
-    var acts, pIn;
-    if (rawPdf) {
-      acts = '<a class="vbtn primary" href="' + dDl(rawPdf) + '" target="_blank" rel="noopener">' + ICON_DL + 'Download</a>' +
-             '<a class="vbtn" href="' + dOpen(rawPdf) + '" target="_blank" rel="noopener">' + ICON_PRINT + 'Open to print</a>';
-      pIn = '<div class="vframe-pdf"><iframe src="' + dPrev(rawPdf) + '" title="' + title + ' notes" loading="lazy"></iframe></div>';
-    } else {
-      acts = '<button type="button" class="vbtn" disabled>' + ICON_DL + 'Download</button>';
-      pIn = '<div class="vframe-pdf"></div>';
-    }
-    bodyEl.innerHTML =
-      '<div class="vmodal-grid">' +
-        '<div class="vpane"><p class="vpane-label">Watch</p>' + vIn + '</div>' +
-        '<div class="vpane"><p class="vpane-label">Notes &middot; write while you watch</p>' +
-          '<div class="vactions">' + acts + '</div>' + pIn +
-        '</div>' +
-      '</div>';
-  }
-
-  function enableContinue() {
-    if (!active) return;
-    if (isDone(active.getAttribute("data-id"))) return;
-    if (contBtn.disabled) {
-      contBtn.disabled = false;
-      contBtn.textContent = "I have finished this video. Continue ▸";
-      say("Video finished. You can continue now.");
-    }
-  }
-  function destroyPlayer() {
-    if (ytPoll) { clearInterval(ytPoll); ytPoll = null; }
-    if (ytPlayer && ytPlayer.destroy) { try { ytPlayer.destroy(); } catch (e) {} }
-    ytPlayer = null;
-  }
-  function loadYTApi(cb) {
-    if (window.YT && window.YT.Player) { cb(); return; }
-    ytCallbacks.push(cb);
-    if (!ytLoading) {
-      ytLoading = true;
-      var prev = window.onYouTubeIframeAPIReady;
-      window.onYouTubeIframeAPIReady = function () {
-        if (typeof prev === "function") { try { prev(); } catch (e) {} }
-        var q = ytCallbacks; ytCallbacks = [];
-        q.forEach(function (f) { try { f(); } catch (e) {} });
-      };
-      var t = document.createElement("script");
-      t.src = "https://www.youtube.com/iframe_api";
-      document.head.appendChild(t);
-    }
-  }
-  function createPlayer() {
-    if (modal.hidden || !active) return;
-    if (!document.getElementById("vmodal-video-iframe")) return;
-    try {
-      ytPlayer = new YT.Player("vmodal-video-iframe", {
-        events: {
-          onStateChange: function (e) {
-            if (e.data === 1) {                 // playing: watch for the end
-              if (ytPoll) clearInterval(ytPoll);
-              ytPoll = setInterval(function () {
-                try {
-                  var d = ytPlayer.getDuration(), c = ytPlayer.getCurrentTime();
-                  if (d > 0 && c / d >= 0.95) { enableContinue(); clearInterval(ytPoll); ytPoll = null; }
-                } catch (er) {}
-              }, 1000);
-            }
-            if (e.data === 0) enableContinue();  // ended
-          }
-        }
-      });
-    } catch (e) {}
-  }
-  function setupContinueGate(card) {
-    destroyPlayer();
-    contBtn.classList.remove("done");
-    if (isDone(card.getAttribute("data-id"))) {
-      contBtn.disabled = false;
-      contBtn.textContent = "Finished ✓  Close";
-      contBtn.classList.add("done");
-      return;
-    }
-    // No hoops: the continue button is always available. Watch the video,
-    // then click it. We no longer wait on YouTube's flaky "ended" signal,
-    // which forced students to reload between every video.
-    contBtn.disabled = false;
-    contBtn.textContent = "I have finished this video. Continue ▸";
-  }
-
-  function openCard(card) {
-    if (card.classList.contains("is-locked")) return;
-    active = card; lastFocus = document.activeElement;
-    titleEl.textContent = card.getAttribute("data-title") || "Video";
-    buildBody(card); setupContinueGate(card);
-    modal.hidden = false; document.body.style.overflow = "hidden";
-    setTimeout(function () { closeBtn.focus(); }, 0);
-  }
-  function closeModal() {
-    destroyPlayer();
-    modal.hidden = true; bodyEl.innerHTML = ""; document.body.style.overflow = "";
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-    active = null;
-  }
-
-  function finish() {
-    if (!active) return;
-    var card = active;
-    setDone(card.getAttribute("data-id"));
-    card.classList.add("is-completed"); card.classList.remove("is-locked");
-    status(card, "Completed");
-    var idx = cards.indexOf(card);
-    var next = cards[idx + 1];
-    if (next) unlock(next);
-    progress();
-    closeModal();
-    if (next && !isDone(next.getAttribute("data-id"))) {
-      say("Next unlocked: " + next.getAttribute("data-title"));
-      var nb = next.querySelector(".vcard-btn");
-      if (nb) nb.focus();
-      next.scrollIntoView({ behavior: "smooth", block: "center" });
-    } else if (allDone()) {
-      if (typeof window.__revealTeachBack === "function") window.__revealTeachBack();
-      say("All five videos finished. The teach-back is now open below.");
-    }
-  }
-
-  // init
-  cards.forEach(function (card, i) {
-    var thumbId = vId(card.getAttribute("data-video"));
-    if (thumbId) {
-      var th = card.querySelector(".vcard-thumb");
-      if (th) th.style.backgroundImage = "url(https://img.youtube.com/vi/" + thumbId + "/hqdefault.jpg)";
-    }
-    var done = isDone(card.getAttribute("data-id"));
-    // No sequential lock: every video is open from the start. Difficulty
-    // accessing a video is never a barrier. (Homeostasis is the untracked
-    // catch-up day; watching is not graded here.)
-    if (done) { card.classList.add("is-completed"); unlock(card); status(card, "Completed"); }
-    else { unlock(card); status(card, i === 0 ? "Start here" : "Ready"); }
-    card.querySelector(".vcard-btn").addEventListener("click", function () {
-      openCard(card);
-    });
-  });
-  progress();
-  // Teach-back is optional practice and always available (no longer gated
-  // behind finishing all five videos).
-  var gs = document.getElementById("explain-gate"); if (gs) gs.hidden = false;
-
-  contBtn.addEventListener("click", finish);
-  closeBtn.addEventListener("click", closeModal);
-  backdrop.addEventListener("click", closeModal);
-  document.addEventListener("keydown", function (e) { if (!modal.hidden && e.key === "Escape") closeModal(); });
-  modal.addEventListener("keydown", function (e) {
-    if (e.key !== "Tab") return;
-    var f = modal.querySelectorAll('a[href], button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])');
-    if (!f.length) return;
-    var first = f[0], last = f[f.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-  });
-})();
-</script>
-
-
-
-
-
-
-<!-- mcas-unlock-override: cards open, teach-back + step-tracker removed, student notices (instructor) -->
+<!-- gating + video tracking removed 2026-06-20 (Dr. Sharilyn Rennie) -->
 <script>
 (function(){
-  var TRACKED = false;
-  function apply(){
-    var g=document.getElementById('explain-gate'); if(g) g.remove();
-    document.querySelectorAll('.gate-locked').forEach(function(x){ x.classList.remove('gate-locked'); x.removeAttribute('aria-disabled'); });
-    document.querySelectorAll('.gate-hint,#prework-gate-hint,.mcas-next-up-gate-hint').forEach(function(x){ x.hidden=true; });
-    document.querySelectorAll('.mcas-next-up.is-gated').forEach(function(x){ x.classList.remove('is-gated'); });
-    // remove the outdated "print workbook first" step tracker + its reminder/skip popup
-    document.querySelectorAll('.mcas-step-tracker, .mcas-step-reminder').forEach(function(x){ x.remove(); });
-    if(document.getElementById('mcas-notices')) return;
-    var wrap=document.createElement('div'); wrap.id='mcas-notices'; wrap.style.cssText='margin:0 0 18px;';
-    var sameDevice='<aside role="note" aria-label="Same device reminder" style="display:flex;gap:11px;align-items:flex-start;background:#FFFFFF;border:1px solid #0B1530;border-left:5px solid #C9A14A;border-radius:8px;padding:13px 16px;margin:0 0 12px;color:#0B1530;">'
-      +'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B1530" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:1px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>'
-      +'<div><strong style="display:block;font-size:14px;font-weight:800;margin-bottom:3px;">Use the same browser and device all semester.</strong>'
-      +'<span style="font-size:13.5px;line-height:1.5;">Your work and your cards are saved in this browser only. If you watch videos or do your cards in a different browser, on your phone, or on another computer, your progress will not carry over, your cards may not activate, and it will throw off your daily review schedule. Pick one device and use it for the whole semester.</span></div></aside>';
-    wrap.insertAdjacentHTML('beforeend', sameDevice);
-    if(TRACKED){
-      var track='<aside role="note" aria-label="Video tracking notice" style="display:flex;gap:11px;align-items:flex-start;background:#8B3A2E;color:#FFFFFF;border-radius:8px;padding:13px 16px;margin:0;">'
-        +'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:1px;"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>'
-        +'<div><strong style="display:block;font-size:14px;font-weight:800;margin-bottom:3px;">Video watching is tracked and counts toward your grade.</strong>'
-        +'<span style="font-size:13.5px;line-height:1.5;color:#FFFFFF;">The cards are no longer locked, so trouble opening them is never a barrier. You are still responsible for watching each assigned video all the way through. Your watch percentage is recorded on your engagement report, and not finishing a video reduces your participation points.</span></div></aside>';
-      wrap.insertAdjacentHTML('beforeend', track);
+  var VIDEO_PAGE = "homeostasis-feedback-video.html";
+  function cleanup(){
+    var trackers = document.querySelectorAll(".mcas-step-tracker");
+    for (var i = 0; i < trackers.length; i++){ if (trackers[i].parentNode) trackers[i].parentNode.removeChild(trackers[i]); }
+    var gate = document.getElementById("explain-gate");
+    if (gate && gate.parentNode) gate.parentNode.removeChild(gate);
+    var hints = document.querySelectorAll(".gate-hint, #prework-gate-hint, .mcas-next-up-gate-hint");
+    for (var j = 0; j < hints.length; j++){ if (hints[j].parentNode) hints[j].parentNode.removeChild(hints[j]); }
+    var locked = document.querySelectorAll(".gate-locked");
+    for (var k = 0; k < locked.length; k++){ locked[k].classList.remove("gate-locked"); locked[k].removeAttribute("aria-disabled"); }
+    var gated = document.querySelectorAll(".is-gated");
+    for (var n = 0; n < gated.length; n++){ gated[n].classList.remove("is-gated"); }
+    var vt = document.getElementById("video-toggle");
+    if (vt && vt.parentNode){
+      var a = document.createElement("a");
+      a.className = "resource-btn";
+      a.setAttribute("href", VIDEO_PAGE);
+      a.setAttribute("target", "_top");
+      a.innerHTML = '<span class="arrow" aria-hidden="true">&#9654;</span> Watch the concept video';
+      vt.parentNode.replaceChild(a, vt);
     }
-    var anchor=document.querySelector('.resource-bar')||document.querySelector('.vpack-section');
-    if(anchor&&anchor.parentNode){ anchor.parentNode.insertBefore(wrap, anchor); }
-    else { var host=document.querySelector('main.sheet, main#mcas-content, main')||document.body; host.insertBefore(wrap, host.firstChild); }
   }
-  if(document.readyState==='complete') apply(); else window.addEventListener('load', apply);
-  setTimeout(apply, 320);
-})();
-</script>
-
-
-<style id="mcas-foot-fix">
-.sheet .foot{flex-wrap:wrap;gap:6px 24px;width:100%;align-items:baseline;}
-.sheet .foot span{white-space:nowrap;}
-@media (max-width:560px){.sheet .foot{flex-direction:column;align-items:flex-start;gap:3px;}.sheet .foot span{white-space:normal;}}
-</style>
-
-<!-- mcas-watched-credit -->
-<script>
-(function(){
-  var TOPIC="t-homeostasis";
-  function done(){ try{return localStorage.getItem("bio304-video-"+TOPIC)==="true";}catch(e){return false;} }
-  function give(){ try{localStorage.setItem("bio304-video-"+TOPIC,"true");localStorage.setItem("bio304-videopct-"+TOPIC,"100");localStorage.setItem("bio304-gate-"+TOPIC,"true");}catch(e){} }
-  function build(){
-    if(document.getElementById("mcas-watched-credit-box")) return;
-    var box=document.createElement("div"); box.id="mcas-watched-credit-box";
-    box.style.cssText="margin:14px 0 0;display:flex;gap:12px;align-items:center;flex-wrap:wrap;";
-    box.innerHTML='<button type="button" id="mcas-watched-btn" style="appearance:none;font-family:inherit;font-weight:800;font-size:13px;letter-spacing:0.04em;text-transform:uppercase;padding:11px 18px;border-radius:999px;border:1.5px solid #0B1530;background:#0B1530;color:#fff;cursor:pointer;">Yes, I watched this video</button><span id="mcas-watched-state" role="status" aria-live="polite" style="font-size:13px;font-weight:700;color:#8B3A2E;"></span>';
-    var anchor=document.querySelector(".video-tracker")||document.querySelector(".vpack-section")||document.querySelector(".resource-bar");
-    if(anchor&&anchor.parentNode){ anchor.parentNode.insertBefore(box, anchor.nextSibling); }
-    else { (document.querySelector("main")||document.body).appendChild(box); }
-    var b=document.getElementById("mcas-watched-btn"), st=document.getElementById("mcas-watched-state");
-    function paint(){ if(done()){ b.textContent="Credit recorded \u2713"; b.disabled=true; b.style.opacity="0.7"; b.style.cursor="default"; st.textContent="Counted as watched on your engagement report. Thanks for your patience."; } }
-    b.addEventListener("click",function(){ give(); paint(); });
-    paint();
-  }
-  if(document.readyState==="complete") build(); else window.addEventListener("load",build);
-  setTimeout(build,360);
-})();
-</script>
-
-<!-- mcas-cards-cta -->
-<script>
-(function(){
-  var TARGET="bio304-spaced-recall-prototype.html#topic=t-homeostasis";
-  function build(){
-    if(document.getElementById("mcas-cards-cta")) return;
-    var pre=document.getElementById("prework-link");
-    if(pre && (!pre.getAttribute("href")||pre.getAttribute("href")==="#")) pre.setAttribute("href",TARGET);
-    var a=document.createElement("a");
-    a.id="mcas-cards-cta"; a.href=TARGET; a.target="_top"; a.rel="noopener";
-    a.textContent="Open your spaced-recall cards \u2192";
-    a.style.cssText="display:inline-flex;align-items:center;gap:8px;margin:16px 0 0;padding:13px 22px;border-radius:999px;background:#0B1530;color:#fff;font-weight:800;font-size:14px;letter-spacing:0.03em;text-decoration:none;";
-    var anchor=document.getElementById("mcas-watched-credit-box")||document.querySelector(".video-tracker")||document.querySelector(".vpack-section")||document.querySelector(".resource-bar");
-    if(anchor&&anchor.parentNode){ anchor.parentNode.insertBefore(a, anchor.nextSibling); }
-    else { (document.querySelector("main")||document.body).appendChild(a); }
-  }
-  if(document.readyState==="complete") build(); else window.addEventListener("load",build);
-  setTimeout(build,400);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", cleanup);
+  else cleanup();
+  window.addEventListener("load", cleanup);
 })();
 </script>
 </body>

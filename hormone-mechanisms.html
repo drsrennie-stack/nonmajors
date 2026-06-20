@@ -1406,14 +1406,6 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   .gate-hint[hidden] { display: none; }
 
 </style>
-
-<style id="slide-modal-trigger-styles">
-.draw-btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 20px; padding: 12px 16px; background: rgba(11,21,48,0.04); border-left: 3px solid #8B3A2E; border-radius: 4px; }
-.draw-btn-row::before { content: "Drawing tools"; display: block; width: 100%; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #8B3A2E; margin-bottom: 4px; }
-.draw-btn { display: inline-flex; align-items: center; gap: 6px; background: #0B1530; color: #FFFFFF; border: none; padding: 8px 14px; border-radius: 4px; font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; }
-.draw-btn:hover { background: #142A36; }
-.draw-btn::before { content: "\270E"; font-size: 13px; }
-</style>
 </head>
 <body class="mcas-page">
 <!-- mcas-chrome-header -->
@@ -1499,6 +1491,21 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   </div>
 
   <!-- Image slots: drop the labeled photos in later -->
+  <div class="plate" aria-label="Labeled body region images">
+    <figure>
+      <img src="https://raw.githubusercontent.com/drsrennie-stack/nonmajors/main/anterior-bodyUE.jpg.jpeg" alt="Anterior view of the body and face labeled with upper-body regions: cranial, frontal, orbital, nasal, buccal, oris, mental, cervical, acromial, deltoid, axillary, brachial, antecubital, antebrachial, carpal, digital, mammary, sternal, abdominal, umbilical." loading="lazy" />
+      <figcaption>Anterior &middot; upper body &amp; face</figcaption>
+    </figure>
+    <figure>
+      <img src="https://raw.githubusercontent.com/drsrennie-stack/nonmajors/main/anterior-bodyLE.jpeg" alt="Anterior view of the body labeled with lower-body regions: pelvic, inguinal, pubic, coxal, pollex, femoral, patellar, fibular, crural, tarsal, plantar, digital toes, and hallux." loading="lazy" />
+      <figcaption>Anterior &middot; lower body</figcaption>
+    </figure>
+    <figure>
+      <img src="https://raw.githubusercontent.com/drsrennie-stack/nonmajors/main/posterior-lateral.003.jpeg" alt="Posterior view labeled occipital, cervical, scapular, vertebral, lumbar, sacral, glu#0B1530, femoral, popli#0B1530, sural, tarsal, calcaneal; lateral head view labeled otic, buccal, occipital, cervical." loading="lazy" />
+      <figcaption>Posterior &amp; lateral head</figcaption>
+    </figure>
+  </div>
+  <p style="text-align:center;margin:6px 0 0 0;font-family:'Lora',Georgia,serif;font-style:italic;font-size:12.5px;color:var(--navy);">Click any image to enlarge.</p>
 
   <hr class="rule" />
 
@@ -1837,7 +1844,8 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
           if (input) input.focus();
         }
       } else {
-        // Cards are always open now; opening them must NOT mark the video watched.
+        try { window.localStorage.setItem('bio304-gate-' + TOPIC_ID, 'true'); } catch (er) {}
+        try { window.localStorage.setItem('bio304-video-' + TOPIC_ID, 'true'); } catch (er) {}
       }
     });
   }
@@ -2051,6 +2059,65 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 })();
 </script>
 <!-- mcas-workbook-aside-gate-end -->
+<!-- mcas-lecture-notes-injector -->
+<script>
+(function(){
+  function init(){
+    var videoPanel = document.querySelector("#video-panel, .video-panel");
+    if (!videoPanel) return;
+    if (document.getElementById("mcas-lecture-notes-input")) return;
+
+    var cfg = window.SHEET_CONFIG || {};
+    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
+    var topicId = m ? m[1] : null;
+    var keyBase = topicId || (document.title || "page").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    var key = "bio304-lecture-notes-" + keyBase;
+
+    var section = document.createElement("section");
+    section.className = "mcas-lecture-notes";
+    section.setAttribute("aria-labelledby", "mcas-lecture-notes-h");
+    section.innerHTML =
+      '<p class="mcas-lecture-notes-eyebrow">While you watch</p>' +
+      '<h2 id="mcas-lecture-notes-h">Lecture video notes</h2>' +
+      '<p class="mcas-lecture-notes-instr">A scratchpad for what stands out as the video runs. Your notes save on this device and stay here when you come back.</p>' +
+      '<textarea id="mcas-lecture-notes-input" rows="8" aria-describedby="mcas-lecture-notes-status" placeholder="Type what is clicking for you..."></textarea>' +
+      '<p class="mcas-lecture-notes-status" id="mcas-lecture-notes-status" aria-live="polite"></p>';
+
+    if (videoPanel.parentNode) videoPanel.parentNode.insertBefore(section, videoPanel.nextSibling);
+
+    var ta = section.querySelector("#mcas-lecture-notes-input");
+    var status = section.querySelector("#mcas-lecture-notes-status");
+
+    try {
+      var saved = window.localStorage.getItem(key);
+      if (saved) ta.value = saved;
+      if (status) status.textContent = saved ? "Restored from your last session." : "";
+    } catch (e) {}
+
+    var t, debounceTimer;
+    function save(){
+      try { window.localStorage.setItem(key, ta.value); } catch (e) {}
+      if (status) {
+        status.textContent = "Saved on this device";
+        clearTimeout(t);
+        t = setTimeout(function(){ if (status) status.textContent = ""; }, 1400);
+      }
+    }
+    ta.addEventListener("input", function(){
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(save, 350);
+    });
+    ta.addEventListener("blur", save);
+    window.addEventListener("pagehide", save);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+<!-- mcas-lecture-notes-injector-end -->
 <!-- mcas-step-tracker-injector -->
 <script>
 (function(){
@@ -2307,66 +2374,35 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 })();
 </script>
 <!-- mcas-iframe-height-sender-end -->
-  <script src="slide-modal.js" defer></script>
-
-<style id="mcas-hide-placeholder-video">#video-toggle,#video-panel{display:none !important;}</style>
-<style id="mcas-foot-fix">.sheet .foot{flex-wrap:wrap;gap:6px 24px;width:100%;align-items:baseline;}.sheet .foot span{white-space:nowrap;}@media (max-width:560px){.sheet .foot{flex-direction:column;align-items:flex-start;gap:3px;}.sheet .foot span{white-space:normal;}}</style>
-<script>
-/* mcas-flag-heal: undoes the old "opening the cards marked the video watched" bug. */
-(function(){ try{ var rm=[]; for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i); if(k&&k.indexOf("bio304-video-")===0) rm.push(k);} rm.forEach(function(k){ var id=k.slice("bio304-video-".length); var pct=parseInt(localStorage.getItem("bio304-videopct-"+id)||"0",10)||0; if(localStorage.getItem(k)==="true" && pct<98){ localStorage.removeItem(k); try{localStorage.removeItem("bio304-gate-"+id);}catch(e){} } }); }catch(e){} })();
-</script>
-
-<!-- mcas-unlock-override: cards open, teach-back + step-tracker removed, student notices (instructor) -->
+<!-- gating + video tracking removed 2026-06-20 (Dr. Sharilyn Rennie) -->
 <script>
 (function(){
-  var TRACKED=false;
-  function apply(){
-    var g=document.getElementById('explain-gate'); if(g) g.remove();
-    document.querySelectorAll('.gate-locked').forEach(function(x){ x.classList.remove('gate-locked'); x.removeAttribute('aria-disabled'); });
-    document.querySelectorAll('.gate-hint,#prework-gate-hint,.mcas-next-up-gate-hint').forEach(function(x){ x.hidden=true; });
-    document.querySelectorAll('.mcas-next-up.is-gated').forEach(function(x){ x.classList.remove('is-gated'); });
-    document.querySelectorAll('.mcas-step-tracker, .mcas-step-reminder').forEach(function(x){ x.remove(); });
-    if(document.getElementById('mcas-notices')) return;
-    var wrap=document.createElement('div'); wrap.id='mcas-notices'; wrap.style.cssText='margin:0 0 18px;';
-    var sd='<aside role="note" aria-label="Same device reminder" style="display:flex;gap:11px;align-items:flex-start;background:#FFFFFF;border:1px solid #0B1530;border-left:5px solid #C9A14A;border-radius:8px;padding:13px 16px;margin:0 0 12px;color:#0B1530;">'
-      +'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B1530" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:1px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>'
-      +'<div><strong style="display:block;font-size:14px;font-weight:800;margin-bottom:3px;">Use the same browser and device all semester.</strong>'
-      +'<span style="font-size:13.5px;line-height:1.5;">Your work and your cards are saved in this browser only. If you watch videos or do your cards in a different browser, on your phone, or on another computer, your progress will not carry over, your cards may not activate, and it will throw off your daily review schedule. Pick one device and use it for the whole semester.</span></div></aside>';
-    wrap.insertAdjacentHTML('beforeend', sd);
-    if(TRACKED){
-      var tr='<aside role="note" aria-label="Video tracking notice" style="display:flex;gap:11px;align-items:flex-start;background:#8B3A2E;color:#FFFFFF;border-radius:8px;padding:13px 16px;margin:0;">'
-        +'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:1px;"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>'
-        +'<div><strong style="display:block;font-size:14px;font-weight:800;margin-bottom:3px;">Video watching is tracked and counts toward your grade.</strong>'
-        +'<span style="font-size:13.5px;line-height:1.5;color:#FFFFFF;">The cards are no longer locked, so trouble opening them is never a barrier. You are still responsible for watching each assigned video all the way through. Your watch percentage is recorded on your engagement report, and not finishing a video reduces your participation points.</span></div></aside>';
-      wrap.insertAdjacentHTML('beforeend', tr);
+  var VIDEO_PAGE = "hormone-mechanisms-video.html";
+  function cleanup(){
+    var trackers = document.querySelectorAll(".mcas-step-tracker");
+    for (var i = 0; i < trackers.length; i++){ if (trackers[i].parentNode) trackers[i].parentNode.removeChild(trackers[i]); }
+    var gate = document.getElementById("explain-gate");
+    if (gate && gate.parentNode) gate.parentNode.removeChild(gate);
+    var hints = document.querySelectorAll(".gate-hint, #prework-gate-hint, .mcas-next-up-gate-hint");
+    for (var j = 0; j < hints.length; j++){ if (hints[j].parentNode) hints[j].parentNode.removeChild(hints[j]); }
+    var locked = document.querySelectorAll(".gate-locked");
+    for (var k = 0; k < locked.length; k++){ locked[k].classList.remove("gate-locked"); locked[k].removeAttribute("aria-disabled"); }
+    var gated = document.querySelectorAll(".is-gated");
+    for (var n = 0; n < gated.length; n++){ gated[n].classList.remove("is-gated"); }
+    var vt = document.getElementById("video-toggle");
+    if (vt && vt.parentNode){
+      var a = document.createElement("a");
+      a.className = "resource-btn";
+      a.setAttribute("href", VIDEO_PAGE);
+      a.setAttribute("target", "_top");
+      a.innerHTML = '<span class="arrow" aria-hidden="true">&#9654;</span> Watch the concept video';
+      vt.parentNode.replaceChild(a, vt);
     }
-    var anchor=document.querySelector('.resource-bar')||document.querySelector('.vpack-section');
-    if(anchor&&anchor.parentNode){ anchor.parentNode.insertBefore(wrap, anchor); }
-    else { var host=document.querySelector('main.sheet, main#mcas-content, main')||document.body; host.insertBefore(wrap, host.firstChild); }
   }
-  if(document.readyState==='complete') apply(); else window.addEventListener('load', apply);
-  setTimeout(apply, 320);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", cleanup);
+  else cleanup();
+  window.addEventListener("load", cleanup);
 })();
 </script>
-
-<!-- mcas-cards-cta -->
-<script>
-(function(){
-  var TARGET="bio304-spaced-recall-prototype.html#topic=t-hormone-mechanisms";
-  function build(){
-    if(document.getElementById("mcas-cards-cta")) return;
-    var pre=document.getElementById("prework-link");
-    if(pre && (!pre.getAttribute("href")||pre.getAttribute("href")==="#")) pre.setAttribute("href",TARGET);
-    var a=document.createElement("a"); a.id="mcas-cards-cta"; a.href=TARGET; a.target="_top"; a.rel="noopener";
-    a.textContent="Open your spaced-recall cards \u2192";
-    a.style.cssText="display:inline-flex;align-items:center;gap:8px;margin:16px 0 0;padding:13px 22px;border-radius:999px;background:#0B1530;color:#fff;font-weight:800;font-size:14px;letter-spacing:0.03em;text-decoration:none;";
-    var anchor=document.querySelector(".video-tracker")||document.querySelector(".vpack-section")||document.querySelector(".resource-bar");
-    if(anchor&&anchor.parentNode){ anchor.parentNode.insertBefore(a, anchor.nextSibling); } else { (document.querySelector("main")||document.body).appendChild(a); }
-  }
-  if(document.readyState==="complete") build(); else window.addEventListener("load",build);
-  setTimeout(build,400);
-})();
-</script>
-
 </body>
 </html>
