@@ -48,7 +48,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 
 /* ===== SECTION PADDING ===== */
 .site-header, .hero-card, .how-section, .deadlines-section, .days-section,
-.note-section, .cta-section, .footer-section, .videos-section {
+.note-section, .cta-section, .footer-section {
   padding-left: max(40px, 5vw);
   padding-right: max(40px, 5vw);
 }
@@ -227,17 +227,25 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .topic-pill:hover, .topic-pill:focus-visible { background: #142A36; }
 .topic-pill .arrow { font-weight: 400; font-size: 13px; }
 .topic-pills { display: inline-flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-.topic-pill.submit {
-  background: #8B3A2E;
+.topic-pill.video {
+  background: #C9A14A; color: #0B1530;
 }
-.topic-pill.submit:hover, .topic-pill.submit:focus-visible { background: #A0452F; }
+.topic-pill.video:hover, .topic-pill.video:focus-visible { background: #B08B3A; color: #0B1530; }
+.topic-pill.recall {
+  background: #8B3A2E; color: #FFFFFF;
+}
+.topic-pill.recall:hover, .topic-pill.recall:focus-visible { background: #A0452F; color: #FFFFFF; }
+.topic-pill.submit {
+  background: #FFFFFF; color: #0B1530; border: 1px solid #0B1530;
+}
+.topic-pill.submit:hover, .topic-pill.submit:focus-visible { background: #0B1530; color: #FFFFFF; }
 @media (max-width: 560px) {
   .topic-pills { width: 100%; }
 }
 
 /* Wednesday catch-up + Weekend quiz callouts
    Gold differentiation comes from the day-num text only.
-   No bookend border, no frame, no left bar - the card uses the
+   No bookend border, no frame, no left bar — the card uses the
    same navy 18% border as the pre-work day cards. */
 .wed-card .day-num, .wkd-card .day-num { color: #C9A14A; }
 .wed-body {
@@ -325,34 +333,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   }
   html { scroll-behavior: auto; }
 }
-
-/* ===== This week's videos (instructor fills the Loom IDs below) ===== */
-.videos-section { background: #FFFFFF; padding-top: 64px; padding-bottom: 64px; }
-.videos-section .section-eyebrow { color: #8B3A2E; }
-.videos-section .section-headline { color: #0B1530; }
-.videos-section .section-headline .accent { color: #8B3A2E; }
-.videos-section .section-intro { color: #0B1530; opacity: 0.84; }
-.video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; max-width: 980px; }
-@media (max-width: 760px) { .video-grid { grid-template-columns: 1fr; } }
-.video-card h3 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700; font-size: 17px; color: #0B1530; margin: 0 0 4px; }
-.video-card .vc-desc { font-size: 14px; color: #0B1530; opacity: 0.82; margin: 0 0 10px; line-height: 1.5; }
-.loom-wrap { position: relative; padding-bottom: 64.98%; height: 0; border-radius: 8px; overflow: hidden; background: #0B1530; box-shadow: 0 1px 3px rgba(11,21,48,0.12); }
-.loom-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.vc-empty { font-size: 15px; color: #0B1530; opacity: 0.8; font-style: italic; }
 </style>
-
-<style id="wb-weeknav-css">
-.wb-weeknav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;
-  font-family:'Plus Jakarta Sans',system-ui,sans-serif;}
-.wb-weeknav-label{font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8B3A2E;margin-right:2px;}
-.wb-weeknav-pill{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:8px 16px;
-  font-weight:700;font-size:14px;line-height:1;text-decoration:none;background:#8B3A2E;color:#fff !important;border:1px solid #8B3A2E;}
-.wb-weeknav-pill:hover{background:#75301F;border-color:#75301F;color:#fff !important;}
-.wb-weeknav-pill:focus-visible{outline:3px solid #D4A24C;outline-offset:2px;}
-.wb-weeknav-pill.is-current{background:#5E2418;border-color:#5E2418;cursor:default;}
-@media print{.wb-weeknav{display:none !important;}}
-</style>
-
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -384,13 +365,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 </header>
 
 <main id="main">
-<nav class="wb-weeknav" aria-label="Week 8 navigation"><span class="wb-weeknav-label">Week 8</span><a class="wb-weeknav-pill" href="workbook_week08.html" target="_top">Workbook</a><a class="wb-weeknav-pill is-current" aria-current="page" href="week08_prework.html" target="_top">Pre-work</a><a class="wb-weeknav-pill" href="week08_discussion.html" target="_top">Discussion</a></nav>
 
 <!-- ===== HERO ===== -->
 <div class="hero-card">
   <div class="hero-content">
     <div class="hero-eyebrow">BIO 304 &middot; Week 8 of 8 &middot; Jul 27 to Aug 2 &middot; Nightly Pre-Work</div>
-    <h1 class="hero-headline">How the kidneys filter, how bodies <span class="accent">make new people.</span></h1><p class="hero-subhead">Four pre-work days. Six topics. How the kidneys make urine, how the body holds fluid and pH in range, and the reproductive systems that make new people. Schedule extra runway, this week has more moving parts. Each topic page walks you through the reading, the fill-in-the-blank notes, the video, and then opens your nightly spaced-recall cards. Open one topic on Mon, Tue, Thu, Fri. Wednesday is catch-up and discussion.</p>
+    <h1 class="hero-headline">How the kidneys filter, how bodies <span class="accent">make new people.</span></h1>
+    <p class="hero-subhead">Four pre-work days. Six topics. How the kidneys make urine, how the body holds fluid and pH in range, and the reproductive systems that make new people. Schedule extra runway, this week has more moving parts. Each topic page walks you through the reading, the fill-in-the-blank notes, the video, and then opens your nightly spaced-recall cards. Open one topic on Mon, Tue, Thu, Fri. Wednesday is catch-up and discussion.</p>
     <div class="hero-ctas">
       <a href="index.html#week-8" class="cta-primary" target="_top">Back to Week 8 card</a>
       <a href="#days" class="cta-secondary">Jump to today's topic</a>
@@ -466,47 +447,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 </div>
 
 <!-- ===== YOUR FOUR PRE-WORK DAYS (cream) ===== -->
-<!-- ===== THIS WEEK'S VIDEOS ===== -->
-<div class="videos-section" id="videos">
-  <div class="section-eyebrow">This week&rsquo;s videos</div>
-  <h2 class="section-headline">Watch before <span class="accent">your cards</span>.</h2>
-  <p class="section-intro">Lecture videos for this week. They appear here as they are posted.</p>
-  <div class="video-grid" id="video-grid"></div>
-</div>
-<script>
-/* ===========================================================
-   INSTRUCTOR: to post a video, find its Loom embed ID
-   (the part after /embed/ in https://www.loom.com/embed/XXXX)
-   and paste it between the quotes for the matching topic below.
-   Empty entries are hidden from students automatically.
-   You can also merge rows (one video for several topics) or
-   change the titles. Save and re-upload the file.
-   =========================================================== */
-(function(){
-  var WEEK_VIDEOS = [
-      { title: "Kidney Anatomy and Glomerular Filtration", loom: "" },
-      { title: "Tubular Function and Urine Concentration", loom: "" },
-      { title: "Fluid, Electrolyte, and Acid-Base Balance", loom: "" },
-      { title: "Male Reproductive System", loom: "" },
-      { title: "Female Reproductive System", loom: "" },
-      { title: "Pregnancy A&P Basics", loom: "" }
-  ];
-  var grid = document.getElementById('video-grid');
-  if (!grid) return;
-  var live = WEEK_VIDEOS.filter(function(v){ return v.loom && v.loom.trim(); });
-  if (!live.length) {
-    grid.innerHTML = '<p class="vc-empty">Videos for this week will be posted here. Check back soon.</p>';
-    return;
-  }
-  grid.innerHTML = live.map(function(v){
-    return '<div class="video-card"><h3>' + v.title + '</h3>' +
-      (v.desc ? '<p class="vc-desc">' + v.desc + '</p>' : '') +
-      '<div class="loom-wrap"><iframe src="https://www.loom.com/embed/' + v.loom.trim() +
-      '" title="' + v.title + ' lecture" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></div>';
-  }).join('');
-})();
-</script>
-
 <div class="days-section" id="days">
   <div class="section-eyebrow">Your four pre-work days</div>
   <h2 class="section-headline">Open one topic <span class="accent">per day</span>.</h2>
@@ -524,7 +464,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Kidney Anatomy and Glomerular Filtration</p>
           <p class="topic-blurb">Nephron parts and the pressures that start urine formation.</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="kidney-anatomy-gfr.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075379" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
+        <span class="topic-pills"><a class="topic-pill" href="kidney-anatomy-gfr.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="kidney-anatomy-gfr-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-kidney-filtration" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075379" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -538,7 +478,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Tubular Function and Urine Concentration</p>
           <p class="topic-blurb">Reabsorption, secretion, and the countercurrent that lets you save water.</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="tubular-function.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075383" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
+        <span class="topic-pills"><a class="topic-pill" href="tubular-function.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="tubular-function-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-tubular-function" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075383" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -560,14 +500,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Fluid, Electrolyte, and Acid-Base Balance</p>
           <p class="topic-blurb">How the body holds pH and ion concentrations in range.</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="fluid-electrolyte-acid-base.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075385" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
+        <span class="topic-pills"><a class="topic-pill" href="fluid-electrolyte-acid-base.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="fluid-electrolyte-acid-base-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-fluid-acid-base" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075385" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
       <div class="topic-row">
         <div>
           <p class="topic-name">Male Reproductive System</p>
           <p class="topic-blurb">Testes, ducts, glands, and the spermatogenesis pathway.</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="male-reproductive.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075387" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
+        <span class="topic-pills"><a class="topic-pill" href="male-reproductive.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="male-reproductive-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-male-reproductive" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075387" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -581,14 +521,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Female Reproductive System</p>
           <p class="topic-blurb">Ovaries, uterine tubes, uterus, and the ovarian and uterine cycles.</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="female-reproductive.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075389" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
+        <span class="topic-pills"><a class="topic-pill" href="female-reproductive.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="female-reproductive-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-female-reproductive" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075389" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
       <div class="topic-row">
         <div>
           <p class="topic-name">Pregnancy A&P Basics</p>
           <p class="topic-blurb">Fertilization, implantation, and the maternal changes that follow.</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="pregnancy-basics.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075391" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
+        <span class="topic-pills"><a class="topic-pill" href="pregnancy-basics.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="pregnancy-basics-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-pregnancy-development" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075391" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 

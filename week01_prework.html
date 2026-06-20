@@ -227,17 +227,25 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .topic-pill:hover, .topic-pill:focus-visible { background: #142A36; }
 .topic-pill .arrow { font-weight: 400; font-size: 13px; }
 .topic-pills { display: inline-flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-.topic-pill.submit {
-  background: #8B3A2E;
+.topic-pill.video {
+  background: #C9A14A; color: #0B1530;
 }
-.topic-pill.submit:hover, .topic-pill.submit:focus-visible { background: #A0452F; }
+.topic-pill.video:hover, .topic-pill.video:focus-visible { background: #B08B3A; color: #0B1530; }
+.topic-pill.recall {
+  background: #8B3A2E; color: #FFFFFF;
+}
+.topic-pill.recall:hover, .topic-pill.recall:focus-visible { background: #A0452F; color: #FFFFFF; }
+.topic-pill.submit {
+  background: #FFFFFF; color: #0B1530; border: 1px solid #0B1530;
+}
+.topic-pill.submit:hover, .topic-pill.submit:focus-visible { background: #0B1530; color: #FFFFFF; }
 @media (max-width: 560px) {
   .topic-pills { width: 100%; }
 }
 
 /* Wednesday catch-up + Weekend quiz callouts
    Gold differentiation comes from the day-num text only.
-   No bookend border, no frame, no left bar - the card uses the
+   No bookend border, no frame, no left bar — the card uses the
    same navy 18% border as the pre-work day cards. */
 .wed-card .day-num, .wkd-card .day-num { color: #C9A14A; }
 .wed-body {
@@ -326,19 +334,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   html { scroll-behavior: auto; }
 }
 </style>
-
-<style id="wb-weeknav-css">
-.wb-weeknav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;
-  font-family:'Plus Jakarta Sans',system-ui,sans-serif;}
-.wb-weeknav-label{font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8B3A2E;margin-right:2px;}
-.wb-weeknav-pill{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:8px 16px;
-  font-weight:700;font-size:14px;line-height:1;text-decoration:none;background:#8B3A2E;color:#fff !important;border:1px solid #8B3A2E;}
-.wb-weeknav-pill:hover{background:#75301F;border-color:#75301F;color:#fff !important;}
-.wb-weeknav-pill:focus-visible{outline:3px solid #D4A24C;outline-offset:2px;}
-.wb-weeknav-pill.is-current{background:#5E2418;border-color:#5E2418;cursor:default;}
-@media print{.wb-weeknav{display:none !important;}}
-</style>
-
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -370,13 +365,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 </header>
 
 <main id="main">
-<nav class="wb-weeknav" aria-label="Week 1 navigation"><span class="wb-weeknav-label">Week 1</span><a class="wb-weeknav-pill" href="workbook_week01.html" target="_top">Workbook</a><a class="wb-weeknav-pill is-current" aria-current="page" href="week01_prework.html" target="_top">Pre-work</a><a class="wb-weeknav-pill" href="week01_discussion.html" target="_top">Discussion</a></nav>
 
 <!-- ===== HERO ===== -->
 <div class="hero-card">
   <div class="hero-content">
     <div class="hero-eyebrow">BIO 304 &middot; Week 1 of 8 &middot; Jun 8 to Jun 14 &middot; Nightly Pre-Work</div>
-    <h1 class="hero-headline">Foundations, cell, <span class="accent">membrane transport.</span></h1><p class="hero-subhead">Four pre-work days. Six topics. Each topic page walks you through the reading, the fill-in-the-blank notes, the video, and then opens your nightly spaced-recall cards. Open one topic on Mon, Tue, Thu, Fri. Wednesday is catch-up and discussion.</p>
+    <h1 class="hero-headline">Foundations, cell, <span class="accent">membrane transport.</span></h1>
+    <p class="hero-subhead">Four pre-work days. Six topics. Each topic page walks you through the reading, the fill-in-the-blank notes, the video, and then opens your nightly spaced-recall cards. Open one topic on Mon, Tue, Thu, Fri. Wednesday is catch-up and discussion.</p>
     <div class="hero-ctas">
       <a href="index.html#week-1" class="cta-primary" target="_top">Back to Week 1 card</a>
       <a href="#days" class="cta-secondary">Jump to today's topic</a>
@@ -469,14 +464,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Levels of Organization</p>
           <p class="topic-blurb">From atom to organism. The vocabulary the rest of the course uses.</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="levels-of-organization.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9068681" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
+        <span class="topic-pills"><a class="topic-pill" href="levels-of-organization.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="levels-of-organization-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-levels-of-organization" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9068681" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
       <div class="topic-row">
         <div>
-          <p class="topic-name">Anatomical Terminology, Body Regions and Cavities</p>
-          <p class="topic-blurb">Directional terms, body cavities and serous membranes, regional names, and the clinical map of the abdomen.</p>
+          <p class="topic-name">Anatomical Terminology and Body Regions</p>
+          <p class="topic-blurb">Directional terms, body planes, regional names you will use every week.</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="body-cavities-and-regions.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9068681" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
+        <span class="topic-pills"><a class="topic-pill" href="anatomical-position.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="anatomical-position-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-anatomical-terminology" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9068681" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -490,7 +485,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Homeostasis and Feedback Loops</p>
           <p class="topic-blurb">Set points, receptors, control centers, effectors. The principle that holds the rest of the course together.</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="homeostasis-feedback.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9122793" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
+        <span class="topic-pills"><a class="topic-pill" href="homeostasis-feedback.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="homeostasis-feedback-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-homeostasis" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9122793" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -512,7 +507,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Cell Structure and Organelles</p>
           <p class="topic-blurb">The working parts of the cell and what each one does.</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="cell-structure.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9070293" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
+        <span class="topic-pills"><a class="topic-pill" href="cell-structure.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="cell-structure-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-cell-structure" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9070293" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -526,7 +521,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Membrane Transport</p>
           <p class="topic-blurb">How material crosses the cell membrane. Diffusion, osmosis, active transport, the rules that follow.</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="membrane-transport.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9070295" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
+        <span class="topic-pills"><a class="topic-pill" href="membrane-transport.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="membrane-transport-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-membrane-transport" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9070295" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
