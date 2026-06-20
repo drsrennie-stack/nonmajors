@@ -227,14 +227,18 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .topic-pill:hover, .topic-pill:focus-visible { background: #142A36; }
 .topic-pill .arrow { font-weight: 400; font-size: 13px; }
 .topic-pills { display: inline-flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-.topic-pill.submit {
-  background: #8B3A2E;
-}
-.topic-pill.submit:hover, .topic-pill.submit:focus-visible { background: #A0452F; }
 .topic-pill.video {
   background: #C9A14A; color: #0B1530;
 }
 .topic-pill.video:hover, .topic-pill.video:focus-visible { background: #B08B3A; color: #0B1530; }
+.topic-pill.recall {
+  background: #8B3A2E; color: #FFFFFF;
+}
+.topic-pill.recall:hover, .topic-pill.recall:focus-visible { background: #A0452F; color: #FFFFFF; }
+.topic-pill.submit {
+  background: #FFFFFF; color: #0B1530; border: 1px solid #0B1530;
+}
+.topic-pill.submit:hover, .topic-pill.submit:focus-visible { background: #0B1530; color: #FFFFFF; }
 @media (max-width: 560px) {
   .topic-pills { width: 100%; }
 }
@@ -460,7 +464,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Bone Tissue and Bone Growth</p>
           <p class="topic-blurb">Compact and spongy bone, osteocytes, and how bone forms and remodels.</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="bone-tissue.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="bone-tissue-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074783" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
+        <span class="topic-pills"><a class="topic-pill" href="bone-tissue.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="bone-tissue-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-bone-tissue" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074783" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -474,7 +478,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Axial Skeleton</p>
           <p class="topic-blurb">Skull, vertebral column, thorax. The 80 bones along the body's central axis.</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="axial-skeleton.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="axial-skeleton-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074785" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
+        <span class="topic-pills"><a class="topic-pill" href="axial-skeleton.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="axial-skeleton-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-axial-skeleton" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074785" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -496,7 +500,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Appendicular Skeleton</p>
           <p class="topic-blurb">Pectoral and pelvic girdles plus the limbs. 126 bones, all named.</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="appendicular-skeleton.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="appendicular-skeleton-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074795" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
+        <span class="topic-pills"><a class="topic-pill" href="appendicular-skeleton.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="appendicular-skeleton-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-appendicular-skeleton" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074795" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
@@ -510,7 +514,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
           <p class="topic-name">Joints and Body Movements</p>
           <p class="topic-blurb">Fibrous, cartilaginous, synovial joints, and the movements each one allows.</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="joints-and-movements.html" target="_top">Open topic <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="joints-and-movements-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074799" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
+        <span class="topic-pills"><a class="topic-pill" href="joints-and-movements.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="joints-and-movements-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-joints-movements" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074799" target="_top" rel="noopener">Submit lab <span class="arrow">&rarr;</span></a></span>
       </div>
     </article>
 
