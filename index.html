@@ -223,6 +223,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   scroll-margin-top: 24px;
 }
 .week-card.is-current { border-color: #C9A14A; }
+.week-card.is-locked { opacity: 0.6; }
+.week-card.is-locked .week-pill { pointer-events: none; background: rgba(11,21,48,.10) !important; color: rgba(11,21,48,.5) !important; border-color: transparent !important; }
+.week-card .lockbadge { position: absolute; top: -11px; right: 16px; background: #0B1530; color: #F5F1E8; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 10px; border-radius: 3px; box-shadow: 0 2px 6px rgba(11,21,48,.18); }
+.instr-bar { display: flex; justify-content: flex-end; margin: 0 0 12px; }
+.instr-btn { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #8B3A2E; background: #FFFFFF; border: 1px solid rgba(11,21,48,.18); border-radius: 6px; padding: 8px 14px; cursor: pointer; }
+.instr-btn:hover, .instr-btn:focus-visible { background: #F5F1E8; }
+.instr-btn.on { background: #0B1530; color: #FFFFFF; border-color: #0B1530; }
+@media print { .instr-bar { display: none; } }
 .week-card .flag {
   position: absolute; top: -11px; right: 16px;
   background: #C9A14A; color: #0B1530;
@@ -610,6 +618,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   <div class="section-eyebrow">Your eight weeks</div>
   <h2 class="section-headline">The whole course, <span class="accent">week by week</span>.</h2>
   <p class="section-intro">Each card carries the week's topics and quick jumps to the pre-work hub, the discussion thread, and the lab workbooks. Click into the syllabus for the day-by-day flow grid.</p>
+  <div class="instr-bar"><button type="button" class="instr-btn" id="instr-toggle" aria-pressed="false">Instructor</button></div>
   <ul class="week-grid">
 
     <li class="week-card" id="week-1" data-week="1">
@@ -889,6 +898,66 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
         card.appendChild(flag);
       }
     }
+  })();
+</script>
+<script>
+  /* Date lock on week cards. Future weeks stay locked for students until their
+     start date. Instructor passphrase unlocks everything on this device.
+     NOTE: client-side only (GitHub Pages has no server), so this is a deterrent,
+     not hard security. INSTRUCTOR: change PASSPHRASE to rotate the key. */
+  (function () {
+    var PASSPHRASE = "Stella";
+    var FLAG = "bio304-instructor-unlock";
+    /* Each week opens the Sunday night before at 8 PM, local time
+       (e.g., Skeletal System / Week 3 opens Sun Jun 21, 8 PM). */
+    var opens = ['2026-06-07T20:00:00','2026-06-14T20:00:00','2026-06-21T20:00:00','2026-06-28T20:00:00',
+                 '2026-07-05T20:00:00','2026-07-12T20:00:00','2026-07-19T20:00:00','2026-07-26T20:00:00'];
+    var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function unlocked(){ try { return localStorage.getItem(FLAG) === '1'; } catch (e) { return false; } }
+    function fmt(d){ var h=d.getHours(), ap=h>=12?'PM':'AM', h12=((h+11)%12)+1; var mm=d.getMinutes()?(':'+('0'+d.getMinutes()).slice(-2)):''; return MON[d.getMonth()]+' '+d.getDate()+', '+h12+mm+' '+ap; }
+    var btn = document.getElementById('instr-toggle');
+    function apply(){
+      var on = unlocked();
+      var now = new Date();
+      var cards = document.querySelectorAll('.week-card[data-week]');
+      Array.prototype.forEach.call(cards, function(card){
+        var wk = parseInt(card.getAttribute('data-week'), 10);
+        var s = opens[wk - 1]; if (!s) return;
+        var start = new Date(s);
+        var locked = (!on) && (now < start);
+        card.classList.toggle('is-locked', locked);
+        var old = card.querySelector('.lockbadge'); if (old) old.parentNode.removeChild(old);
+        Array.prototype.forEach.call(card.querySelectorAll('.week-pill'), function(p){
+          if (locked){
+            if (!p.dataset.href) p.dataset.href = p.getAttribute('href');
+            p.setAttribute('href', '#'); p.setAttribute('aria-disabled','true'); p.setAttribute('tabindex','-1');
+          } else if (p.dataset.href){
+            p.setAttribute('href', p.dataset.href); p.removeAttribute('aria-disabled'); p.removeAttribute('tabindex');
+          }
+        });
+        if (locked){
+          var b = document.createElement('span');
+          b.className = 'lockbadge';
+          b.textContent = 'Opens ' + fmt(start);
+          card.appendChild(b);
+        }
+      });
+      if (btn){
+        btn.classList.toggle('on', on);
+        btn.textContent = on ? 'Instructor: unlocked' : 'Instructor';
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      }
+    }
+    if (btn){
+      btn.addEventListener('click', function(){
+        if (unlocked()){ try { localStorage.removeItem(FLAG); } catch (e) {} apply(); return; }
+        var p = window.prompt('Instructor passphrase to unlock all weeks:');
+        if (p === null) return;
+        if (p === PASSPHRASE){ try { localStorage.setItem(FLAG, '1'); } catch (e) {} apply(); }
+        else { window.alert('Incorrect passphrase.'); }
+      });
+    }
+    apply();
   })();
 </script>
 </body>
