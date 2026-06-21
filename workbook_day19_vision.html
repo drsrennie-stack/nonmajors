@@ -3,18 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vision &middot; Study Guide &amp; Lab &middot; BIO 304</title>
-<meta name="description" content="Week 5 study guide and anatomy/physiology lab for Vision, BIO 304.">
+<title>Vision &middot; Interactive Workbook &middot; BIO 304</title>
+<meta name="description" content="Interactive Week 05 workbook for Vision, BIO 304.">
 <style>
 @import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
 :root{--navy:#0B1530;--navy-deep:#060A18;--rust:#8B3A2E;--rust-hover:#A0452F;--gold:#C9A14A;--cream:#F5F1E8;--line:rgba(11,21,48,.18);--soft:rgba(11,21,48,.72)}
 *{box-sizing:border-box}
 body{margin:0;background:#FFFFFF;color:var(--navy);font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,-apple-system,sans-serif;line-height:1.6}
 a{color:var(--rust)}
-.skip{position:absolute;left:-999px}
-.skip:focus{left:12px;top:12px;background:var(--navy);color:#fff;padding:10px 14px;border-radius:6px;z-index:60}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:var(--navy);color:#fff;padding:10px 14px;border-radius:6px;z-index:60}
 .pad{padding-left:max(40px,5vw);padding-right:max(40px,5vw)}
-:focus-visible{outline:3px solid var(--rust);outline-offset:3px;border-radius:4px}
+:focus-visible{outline:3px solid var(--rust);outline-offset:2px;border-radius:4px}
 .site-header{background:#FFFFFF;padding:18px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-bottom:.5px solid rgba(11,21,48,.10)}
 .brand{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:var(--navy)}
 .brand svg{height:42px;width:auto;display:block}
@@ -23,68 +22,79 @@ a{color:var(--rust)}
 .brand-sub{font-size:9.5px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.72;display:block;margin-top:3px}
 .back{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--rust);text-decoration:none;padding:8px 14px;border:1px solid var(--rust);border-radius:4px}
 .back:hover,.back:focus-visible{background:var(--rust);color:#fff}
-.intro{padding-top:34px}
+main{max-width:920px;margin:0 auto}
+.intro{padding-top:30px}
 .eyebrow{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--rust);margin:0 0 12px}
 h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.025em;line-height:1.08;margin:0 0 10px}
 h1 .accent{color:var(--rust)}
 .lead{font-size:16px;opacity:.84;max-width:680px;margin:0}
-main{max-width:920px;margin:0 auto}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 8px}
+/* identity + integrity bar */
+.idbar{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;margin:22px 0 6px;padding:18px 20px;background:var(--cream);border-radius:10px}
+.idbar .field{display:flex;flex-direction:column;gap:4px;flex:1 1 220px}
+.idbar label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rust)}
+.idbar input{padding:10px 12px;border:1px solid var(--line);border-radius:6px;font:inherit;font-size:15px;color:var(--navy);background:#fff}
+.integrity{display:flex;flex-direction:column;gap:2px;align-items:flex-start;flex:0 0 auto}
+.integrity .lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rust)}
+.integrity .count{font-size:24px;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums}
+.integrity .count.flag{color:var(--rust)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 8px}
 .btn{font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:12px 20px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block}
-.btn-primary{background:var(--navy);color:#fff;border-color:var(--navy)}
-.btn-primary:hover{background:var(--navy-deep)}
-.btn-ghost{background:#fff;color:var(--navy);border-color:var(--line)}
-.btn-ghost:hover{background:var(--cream)}
-.band{margin:30px 0 10px;padding:14px 20px;border-radius:8px;background:#fff;border:1px solid var(--line)}
-.band.study{border-left:6px solid var(--gold)}
-.band.anatomy{border-left:6px solid var(--rust)}
-.band.physiology{border-left:6px solid var(--navy)}
+.btn-primary{background:var(--navy);color:#fff;border-color:var(--navy)}.btn-primary:hover{background:var(--navy-deep)}
+.btn-ghost{background:#fff;color:var(--navy);border-color:var(--line)}.btn-ghost:hover{background:var(--cream)}
+.savednote{font-size:12px;color:var(--soft);margin:4px 0 0;min-height:1.1em}
+.band{margin:28px 0 10px;padding:14px 20px;border-radius:8px;background:#fff;border:1px solid var(--line)}
+.band.study{border-left:6px solid var(--gold)}.band.anatomy{border-left:6px solid var(--rust)}.band.physiology{border-left:6px solid var(--navy)}
 .band .tag{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin:0 0 4px;color:var(--rust)}
-.band.study .tag{color:var(--gold)}
-.band.physiology .tag{color:var(--navy)}
+.band.study .tag{color:var(--gold)}.band.physiology .tag{color:var(--navy)}
 .band h2{font-size:22px;font-weight:800;letter-spacing:-.01em;margin:0}
 .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px 24px;box-shadow:0 1px 3px rgba(11,21,48,.06);margin:14px 0}
-.card h3{font-size:16px;font-weight:800;color:var(--navy);margin:0 0 8px;letter-spacing:-.01em}
+.card h3{font-size:16px;font-weight:800;margin:0 0 8px}
 .card p{margin:0 0 10px}
-.sg-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 28px}
-@media(max-width:680px){.sg-grid{grid-template-columns:1fr}}
-.sg-grid h4{grid-column:1/-1;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--rust);margin:14px 0 4px;border-bottom:1px solid var(--line);padding-bottom:4px}
-.sg{display:flex;gap:10px;align-items:baseline;padding:5px 0;border-bottom:1px dotted var(--line)}
-.sg .t{font-weight:800;font-size:14px;min-width:0}
-.sg .d{font-size:13.5px;opacity:.8;line-height:1.45}
-.fitb-intro{margin:0 0 12px}
 .wordbank{background:var(--cream);border-radius:6px;padding:14px 18px;margin:0 0 16px}
-.wordbank h3{margin:0 0 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--rust)}
-.wordbank .words{display:flex;flex-wrap:wrap;gap:8px 18px;font-weight:700;font-size:14px;color:var(--navy);margin:0}
+.wordbank h4{margin:0 0 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--rust)}
+.wordbank .words{display:flex;flex-wrap:wrap;gap:8px 18px;font-weight:700;font-size:14px;margin:0}
 ol.cloze{margin:0;padding-left:22px}
-ol.cloze li{margin:0 0 14px;line-height:2.2}
-.blank{display:inline-block;min-width:130px;border-bottom:1.5px solid var(--navy);margin:0 4px}
-ol.vocab{margin:0;padding-left:22px}
-ol.vocab li{margin:0 0 16px}
-.vterm{display:block;font-weight:800;color:var(--navy);margin:0 0 6px;font-size:15.5px}
-.vocab .line{min-height:42px}
-.draw-dir{background:var(--cream);border-radius:6px;padding:14px 18px;margin:0 0 10px}
-.draw-dir h3{margin-top:0}
-.draw-dir ol{margin:6px 0 0;padding-left:20px}
-.draw-dir li{margin:6px 0}
-.draw-box{border:2px dashed var(--navy);border-radius:8px;display:flex;align-items:flex-end;justify-content:center;padding:16px;background:#fff}
-.draw-box .cap{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+ol.cloze li{margin:0 0 14px;line-height:2}
+input.ans{font:inherit;font-size:15px;color:var(--navy);border:0;border-bottom:1.5px solid var(--navy);background:var(--cream);padding:3px 8px;min-width:150px;border-radius:3px 3px 0 0}
+input.ans:focus{outline:none;border-bottom-color:var(--rust);background:#fff;box-shadow:0 2px 0 var(--rust)}
+ol.vocab{margin:0;padding-left:22px}ol.vocab li{margin:0 0 16px}
+.vterm{display:block;font-weight:800;margin:0 0 6px;font-size:15.5px}
+textarea.ans{width:100%;min-height:60px;font:inherit;font-size:15px;color:var(--navy);line-height:1.5;border:1px solid var(--line);border-radius:6px;padding:10px 12px;background:#fff;resize:vertical}
+textarea.ans:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(11,21,48,.08)}
+.draw-dir{background:var(--cream);border-radius:6px;padding:14px 18px;margin:0 0 12px}
+.draw-dir h4{margin:0 0 6px;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--rust)}
+.draw-dir ol{margin:0;padding-left:20px}.draw-dir li{margin:6px 0}
+.canvas-wrap{border:2px dashed var(--navy);border-radius:8px;background:#fff;position:relative}
+canvas.pad{display:block;width:100%;height:380px;border-radius:8px;touch-action:none;cursor:crosshair}
+.canvas-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 4px}
+.canvas-tools .swatch{width:24px;height:24px;border-radius:50%;border:2px solid var(--line);cursor:pointer}
+.canvas-tools .swatch[aria-pressed="true"]{border-color:var(--navy);box-shadow:0 0 0 2px var(--navy)}
+.mini{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;border-radius:6px;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--navy)}
+.mini:hover{background:var(--cream)}
+.uploader{margin:10px 0 0;font-size:14px}
+.uploader img{max-width:100%;margin-top:10px;border:1px solid var(--line);border-radius:6px;display:none}
 ol.labels{font-size:15px;line-height:1.9;padding-left:24px;columns:2;column-gap:28px}
 ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avoid}
 .q{border-left:3px solid var(--rust);padding:6px 14px;margin:14px 0}
-.q strong{display:block;color:var(--navy);margin-bottom:6px}
-.line{border-bottom:1px solid var(--line);min-height:30px}
-.line + .line{margin-top:22px}
+.q strong{display:block;margin-bottom:6px}
 .submit{margin:24px 0 8px;padding:24px 26px;background:var(--navy-deep);border-radius:10px;color:var(--cream);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px}
 .submit .se{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 4px}
-.submit .sh{font-size:17px;font-weight:800;margin:0;line-height:1.3}
+.submit .sh{font-size:17px;font-weight:800;margin:0}
 .submit .ss{font-size:13.5px;opacity:.84;margin:6px 0 0}
-.submit a{background:var(--rust);color:#fff;padding:14px 24px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;flex-shrink:0}
+.submit a{background:var(--rust);color:#fff;padding:14px 24px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none}
 .submit a:hover{background:var(--rust-hover)}
 .site-footer{background:var(--navy-deep);color:var(--cream);padding:34px 0 24px;margin-top:40px}
-.footer-copy{font-size:11.5px;opacity:.72}
-.footer-by{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-top:6px}
-@media print{.no-print{display:none!important}.site-header,.site-footer{background:#fff;color:#000}.card,.band{box-shadow:none;border-color:#999;page-break-inside:avoid}.draw-box{border-color:#333}.submit{background:#fff;color:#000;border:1px solid #999}.submit a{display:none}}
+.footer-copy{font-size:11.5px;opacity:.72}.footer-by{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-top:6px}
+.print-stamp{display:none}
+@media print{
+  .no-print{display:none!important}
+  .site-header,.site-footer{background:#fff;color:#000}
+  .card,.band{box-shadow:none;border-color:#999;page-break-inside:avoid}
+  .canvas-wrap{border-color:#333}
+  input.ans,textarea.ans{background:#fff;border-color:#999}
+  .submit{background:#fff;color:#000;border:1px solid #999}
+  .print-stamp{display:block;margin:10px 0 0;padding:10px 14px;border:1.5px solid #333;border-radius:6px;font-size:13px;font-weight:700}
+}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -92,85 +102,150 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
 <a class="skip" href="#main">Skip to main content</a>
 <header class="site-header pad">
   <a class="brand" href="index.html" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home"><svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false"><g transform="translate(0,18)"><g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/></g><g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g><g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g></g></svg><span><span class="brand-title">Human <span class="accent">A&amp;P</span></span><span class="brand-sub">BIO 304 &middot; American River College</span></span></a>
-  <a class="back" href="week05_prework.html" target="_top">&larr; Week 5 pre-work</a>
+  <a class="back" href="week05_prework.html" target="_top">&larr; Week 05 pre-work</a>
 </header>
 <section class="intro pad">
-  <p class="eyebrow">BIO 304 &middot; Week 5 &middot; Study Guide &amp; Lab</p>
+  <p class="eyebrow">BIO 304 &middot; Week 05 &middot; Interactive Workbook</p>
   <h1>Vision</h1>
-  <p class="lead">A study guide and lab in one. Recall the key terms, then complete the Anatomy Lab (draw and label by hand) and the Physiology Lab (reason it through). Hand-drawn, hand-labeled work is the integrity mechanism for this course.</p>
+  <p class="lead">Type your answers, draw in the boxes or upload a photo of your hand drawing, then use Save as PDF to submit. Your work saves on this device as you go.</p>
 </section>
 <main id="main" class="pad" tabindex="-1">
-  <div class="toolbar no-print">
-    <button type="button" class="btn btn-primary" onclick="window.print()">Print this workbook</button>
-    <a class="btn btn-ghost" href="vision.html" target="_top">Open the full notes &rarr;</a>
+  <div class="idbar no-print">
+    <div class="field"><label for="stu-name">Your name</label><input id="stu-name" data-key="name" type="text" autocomplete="off" placeholder="First and last name"></div>
+    <div class="field"><label for="stu-id">Student ID</label><input id="stu-id" data-key="sid" type="text" autocomplete="off" placeholder="Optional"></div>
+    <div class="integrity" aria-live="polite"><span class="lbl">Paste attempts</span><span class="count" id="paste-count">0</span></div>
   </div>
-  <div class="band study"><p class="tag">Part 1 of 3 &middot; Recall</p><h2>Fill in the blanks</h2></div>
+  <p class="savednote no-print" id="saved-note">Your work autosaves on this device.</p>
+  <div class="toolbar no-print">
+    <button type="button" class="btn btn-primary" id="save-pdf">Save as PDF</button>
+    <a class="btn btn-ghost" href="vision.html" target="_top">Open the full notes &rarr;</a>
+    <button type="button" class="btn btn-ghost" id="reset-btn">Clear all my answers</button>
+  </div>
+  <div class="band study"><p class="tag">Part 1 of 4 &middot; Recall</p><h2>Fill in the blanks</h2></div>
   <article class="card">
-    <p class="fitb-intro">Write the term for each definition from memory first, using the word bank. Then check yourself against the <a href="vision.html" target="_top">notes page</a> or the video.</p>
-    <div class="wordbank"><h3>Word bank</h3><p class="words"><span>Vitreous humor</span><span>Fovea centralis</span><span>Near vision</span><span>Distance vision</span><span>Signal path</span><span>Rods</span><span>Aqueous humor</span><span>Iris &amp; pupil</span><span>Lens</span><span>Cones</span><span>Optic disc</span><span>Cornea</span><span>Retina</span><span>Presbyopia</span></p></div>
+    <p>Type the term that completes each statement, using the word bank. Pull it from memory first.</p>
+    <div class="wordbank"><h4>Word bank</h4><p class="words"><span>Vitreous humor</span><span>Fovea centralis</span><span>Near vision</span><span>Distance vision</span><span>Signal path</span><span>Rods</span><span>Aqueous humor</span><span>Iris &amp; pupil</span><span>Lens</span><span>Cones</span><span>Optic disc</span><span>Cornea</span><span>Retina</span><span>Presbyopia</span></p></div>
     <ol class="cloze">
-      <li><strong>Transparent dome</strong> on the front. Provides about two-thirds of the eye's refractive power. Avascular. <span class="blank"></span></li>
-      <li>Iris muscle controls <strong>pupil diameter</strong>: more light in or less. Sphincter pupillae (parasympathetic) constricts, dilator pupillae (sympathetic) dilates. <span class="blank"></span></li>
-      <li><strong>Adjustable focus</strong> via ciliary muscle. Shape changes for accommodation. <span class="blank"></span></li>
-      <li>Watery fluid in anterior chamber. Produced by ciliary body, drained at the canal of Schlemm. Pressure regulator. <span class="blank"></span></li>
-      <li>Gelatinous fluid in posterior chamber. Maintains eye shape. <span class="blank"></span></li>
-      <li>Posterior neural layer. Contains photoreceptors, bipolar cells, ganglion cells. <span class="blank"></span></li>
-      <li>Cones only. Highest visual acuity. What you focus on lands here. <span class="blank"></span></li>
-      <li>Where axons exit the eye as the optic nerve. No photoreceptors, hence the blind spot. <span class="blank"></span></li>
-      <li>Ciliary muscle <strong>relaxed</strong>. Suspensory ligaments taut. Lens flattens. Light from far objects converges on the retina. <span class="blank"></span></li>
-      <li>Ciliary muscle <strong>contracts</strong>. Suspensory ligaments slacken. Lens rounds up (more refractive power). Light from close objects converges on the retina. <span class="blank"></span></li>
-      <li>Lens stiffens with age and cannot round up. Reading glasses needed. <span class="blank"></span></li>
-      <li>~120 million per eye. Outside the fovea. Rhodopsin. <strong>Sensitive to low light</strong>, no color, low acuity. <span class="blank"></span></li>
-      <li>~6 million per eye. Concentrated at fovea. Three types: S (blue), M (green), L (red). <strong>Color and high acuity</strong>, needs bright light. <span class="blank"></span></li>
-      <li>Photoreceptor &rarr; bipolar cell &rarr; ganglion cell &rarr; optic nerve &rarr; thalamus (LGN) &rarr; primary visual cortex (occipital lobe). <span class="blank"></span></li>
-      </ol>
+      <li><strong>Transparent dome</strong> on the front. Provides about two-thirds of the eye's refractive power. Avascular. <input class="ans" data-key="c1" aria-label="answer 1"></li>
+      <li>Iris muscle controls <strong>pupil diameter</strong>: more light in or less. Sphincter pupillae (parasympathetic) constricts, dilator pupillae (sympathetic) dilates. <input class="ans" data-key="c2" aria-label="answer 2"></li>
+      <li><strong>Adjustable focus</strong> via ciliary muscle. Shape changes for accommodation. <input class="ans" data-key="c3" aria-label="answer 3"></li>
+      <li>Watery fluid in anterior chamber. Produced by ciliary body, drained at the canal of Schlemm. Pressure regulator. <input class="ans" data-key="c4" aria-label="answer 4"></li>
+      <li>Gelatinous fluid in posterior chamber. Maintains eye shape. <input class="ans" data-key="c5" aria-label="answer 5"></li>
+      <li>Posterior neural layer. Contains photoreceptors, bipolar cells, ganglion cells. <input class="ans" data-key="c6" aria-label="answer 6"></li>
+      <li>Cones only. Highest visual acuity. What you focus on lands here. <input class="ans" data-key="c7" aria-label="answer 7"></li>
+      <li>Where axons exit the eye as the optic nerve. No photoreceptors, hence the blind spot. <input class="ans" data-key="c8" aria-label="answer 8"></li>
+      <li>Ciliary muscle <strong>relaxed</strong>. Suspensory ligaments taut. Lens flattens. Light from far objects converges on the retina. <input class="ans" data-key="c9" aria-label="answer 9"></li>
+      <li>Ciliary muscle <strong>contracts</strong>. Suspensory ligaments slacken. Lens rounds up (more refractive power). Light from close objects converges on the retina. <input class="ans" data-key="c10" aria-label="answer 10"></li>
+      <li>Lens stiffens with age and cannot round up. Reading glasses needed. <input class="ans" data-key="c11" aria-label="answer 11"></li>
+      <li>~120 million per eye. Outside the fovea. Rhodopsin. <strong>Sensitive to low light</strong>, no color, low acuity. <input class="ans" data-key="c12" aria-label="answer 12"></li>
+      <li>~6 million per eye. Concentrated at fovea. Three types: S (blue), M (green), L (red). <strong>Color and high acuity</strong>, needs bright light. <input class="ans" data-key="c13" aria-label="answer 13"></li>
+      <li>Photoreceptor &rarr; bipolar cell &rarr; ganglion cell &rarr; optic nerve &rarr; thalamus (LGN) &rarr; primary visual cortex (occipital lobe). <input class="ans" data-key="c14" aria-label="answer 14"></li>
+    </ol>
   </article>
   <article class="card">
     <h3>Define it: high-yield vocabulary</h3>
-    <p>Write a clear definition in your own words for each term. No word bank this time, pull it from memory, then check the notes.</p>
-    <ol class="vocab"><li><span class="vterm">Cornea</span><div class="line"></div></li><li><span class="vterm">Iris</span><div class="line"></div></li><li><span class="vterm">Pupil</span><div class="line"></div></li><li><span class="vterm">Lens</span><div class="line"></div></li><li><span class="vterm">Aqueous humor</span><div class="line"></div></li><li><span class="vterm">Vitreous humor</span><div class="line"></div></li><li><span class="vterm">Retina</span><div class="line"></div></li><li><span class="vterm">Fovea centralis</span><div class="line"></div></li><li><span class="vterm">Optic disc</span><div class="line"></div></li><li><span class="vterm">Accommodation</span><div class="line"></div></li><li><span class="vterm">Presbyopia</span><div class="line"></div></li><li><span class="vterm">Rods</span><div class="line"></div></li><li><span class="vterm">Cones</span><div class="line"></div></li></ol>
+    <p>Write a clear definition in your own words for each term.</p>
+    <ol class="vocab"><li><span class="vterm">Cornea</span><textarea class="ans" data-key="v0" rows="2" aria-label="Definition of Cornea"></textarea></li><li><span class="vterm">Iris</span><textarea class="ans" data-key="v1" rows="2" aria-label="Definition of Iris"></textarea></li><li><span class="vterm">Pupil</span><textarea class="ans" data-key="v2" rows="2" aria-label="Definition of Pupil"></textarea></li><li><span class="vterm">Lens</span><textarea class="ans" data-key="v3" rows="2" aria-label="Definition of Lens"></textarea></li><li><span class="vterm">Aqueous humor</span><textarea class="ans" data-key="v4" rows="2" aria-label="Definition of Aqueous humor"></textarea></li><li><span class="vterm">Vitreous humor</span><textarea class="ans" data-key="v5" rows="2" aria-label="Definition of Vitreous humor"></textarea></li><li><span class="vterm">Retina</span><textarea class="ans" data-key="v6" rows="2" aria-label="Definition of Retina"></textarea></li><li><span class="vterm">Fovea centralis</span><textarea class="ans" data-key="v7" rows="2" aria-label="Definition of Fovea centralis"></textarea></li><li><span class="vterm">Optic disc</span><textarea class="ans" data-key="v8" rows="2" aria-label="Definition of Optic disc"></textarea></li><li><span class="vterm">Accommodation</span><textarea class="ans" data-key="v9" rows="2" aria-label="Definition of Accommodation"></textarea></li><li><span class="vterm">Presbyopia</span><textarea class="ans" data-key="v10" rows="2" aria-label="Definition of Presbyopia"></textarea></li><li><span class="vterm">Rods</span><textarea class="ans" data-key="v11" rows="2" aria-label="Definition of Rods"></textarea></li><li><span class="vterm">Cones</span><textarea class="ans" data-key="v12" rows="2" aria-label="Definition of Cones"></textarea></li></ol>
   </article>
-  <div class="band anatomy"><p class="tag">Part 2 of 3 &middot; Anatomy lab</p><h2>Draw and label</h2></div>
+  <div class="band anatomy"><p class="tag">Part 2 of 4 &middot; Anatomy lab</p><h2>Draw and label</h2></div>
   <article class="card">
     <h3>Box A. Eye in sagittal section</h3>
-    <div class="draw-dir"><h3>Directions</h3><ol><li>Draw an eye in cross-section as viewed from the side. The front of the eye is on the LEFT, the back is on the RIGHT.</li><li>Draw the cornea (transparent dome at the front).</li><li>Draw the iris (colored ring) and the pupil (opening in the center). Label both.</li><li>Draw the lens behind the iris. Show the ciliary body and suspensory ligaments holding the lens.</li><li>Label the anterior chamber (between cornea and iris, contains aqueous humor) and the posterior chamber.</li><li>Fill the rest of the eye (the large back portion) with vitreous humor. Label.</li><li>Line the back of the eye with the retina. Label.</li><li>Mark the fovea centralis (small pit in the central retina, point of sharpest vision).</li><li>Show the optic nerve leaving the back of the eye. Label the optic disc (blind spot) where the nerve exits.</li><li>Wrap the eye with sclera (white outer layer) and choroid (vascular middle layer).</li></ol></div>
-    <div class="draw-box" role="img" aria-label="Blank drawing space" style="min-height:460px"><span class="cap">Draw here, by hand</span></div>
+    <div class="draw-dir"><h4>Directions</h4><ol><li>Draw an eye in cross-section as viewed from the side. The front of the eye is on the LEFT, the back is on the RIGHT.</li><li>Draw the cornea (transparent dome at the front).</li><li>Draw the iris (colored ring) and the pupil (opening in the center). Label both.</li><li>Draw the lens behind the iris. Show the ciliary body and suspensory ligaments holding the lens.</li><li>Label the anterior chamber (between cornea and iris, contains aqueous humor) and the posterior chamber.</li><li>Fill the rest of the eye (the large back portion) with vitreous humor. Label.</li><li>Line the back of the eye with the retina. Label.</li><li>Mark the fovea centralis (small pit in the central retina, point of sharpest vision).</li><li>Show the optic nerve leaving the back of the eye. Label the optic disc (blind spot) where the nerve exits.</li><li>Wrap the eye with sclera (white outer layer) and choroid (vascular middle layer).</li></ol></div>
+    <div class="canvas-wrap"><canvas class="pad" id="cvA" style="height:380px" aria-label="Drawing canvas for Box A. Eye in sagittal section"></canvas></div>
+    <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvA" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvA" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvA" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvA">Clear</button></div>
+    <div class="uploader no-print"><label>Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upA"></label><img id="upA-img" alt="Your uploaded drawing for Box A. Eye in sagittal section"></div>
   </article>
   <article class="card">
     <h3>Box B. Retinal layers (light path)</h3>
-    <div class="draw-dir"><h3>Directions</h3><ol><li>Draw a horizontal section of retina. The light arrives from the BOTTOM (yes, paradoxically) and the photoreceptors face the TOP (away from the light).</li><li>Layer 1 (bottom): retinal ganglion cells. Their axons form the optic nerve. Label.</li><li>Layer 2: bipolar cells.</li><li>Layer 3 (top): photoreceptors. Draw both rods (long, dim light, peripheral vision) and cones (shorter, bright light, color vision, concentrated at the fovea).</li><li>Above the photoreceptors, draw the retinal pigment epithelium (RPE, a dark layer that absorbs stray light).</li><li>Add arrows showing the path of light entering at the bottom and the path of the neural signal going DOWN from photoreceptors to bipolars to ganglion cells.</li></ol></div>
-    <div class="draw-box" role="img" aria-label="Blank drawing space" style="min-height:340px"><span class="cap">Draw here, by hand</span></div>
+    <div class="draw-dir"><h4>Directions</h4><ol><li>Draw a horizontal section of retina. The light arrives from the BOTTOM (yes, paradoxically) and the photoreceptors face the TOP (away from the light).</li><li>Layer 1 (bottom): retinal ganglion cells. Their axons form the optic nerve. Label.</li><li>Layer 2: bipolar cells.</li><li>Layer 3 (top): photoreceptors. Draw both rods (long, dim light, peripheral vision) and cones (shorter, bright light, color vision, concentrated at the fovea).</li><li>Above the photoreceptors, draw the retinal pigment epithelium (RPE, a dark layer that absorbs stray light).</li><li>Add arrows showing the path of light entering at the bottom and the path of the neural signal going DOWN from photoreceptors to bipolars to ganglion cells.</li></ol></div>
+    <div class="canvas-wrap"><canvas class="pad" id="cvB" style="height:320px" aria-label="Drawing canvas for Box B. Retinal layers (light path)"></canvas></div>
+    <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvB" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvB" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvB" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvB">Clear</button></div>
+    <div class="uploader no-print"><label>Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upB"></label><img id="upB-img" alt="Your uploaded drawing for Box B. Retinal layers (light path)"></div>
   </article>
-  <article class="card"><h3>Structures to label</h3><p>After each drawing, label every structure below directly on your sketch.</p><ol class="labels"><li>Cornea</li><li>Iris</li><li>Pupil</li><li>Lens</li><li>Ciliary body</li><li>Suspensory ligaments</li><li>Aqueous humor</li><li>Vitreous humor</li><li>Retina</li><li>Fovea centralis</li><li>Optic disc</li><li>Optic nerve</li><li>Sclera</li><li>Choroid</li><li>Photoreceptor</li><li>Rod</li><li>Cone</li><li>Bipolar cell</li><li>Retinal ganglion cell</li><li>Retinal pigment epithelium</li></ol></article>
-  <div class="band physiology"><p class="tag">Part 3 of 3 &middot; Physiology lab</p><h2>Reason it through</h2></div>
+  <article class="card"><h3>Structures to label</h3><p>Label each on your drawing.</p><ol class="labels"><li>Cornea</li><li>Iris</li><li>Pupil</li><li>Lens</li><li>Ciliary body</li><li>Suspensory ligaments</li><li>Aqueous humor</li><li>Vitreous humor</li><li>Retina</li><li>Fovea centralis</li><li>Optic disc</li><li>Optic nerve</li><li>Sclera</li><li>Choroid</li><li>Photoreceptor</li><li>Rod</li><li>Cone</li><li>Bipolar cell</li><li>Retinal ganglion cell</li><li>Retinal pigment epithelium</li></ol></article>
+  <div class="band physiology"><p class="tag">Part 3 of 4 &middot; Physiology lab</p><h2>Reason it through</h2></div>
   <article class="card">
     <h3>A. Trace: from photon to action potential</h3>
-    <div class="q"><strong>Explain the main structure-function relationship for this topic.</strong><div class="line"></div></div>
+    <div class="q"><strong>Explain the main structure-function relationship for this topic.</strong><textarea class="ans" data-key="pa0" rows="3"></textarea></div>
   </article>
   <article class="card">
     <h3>B. Synthesis</h3>
-    <p>Answer each in two to four sentences, using this week's vocabulary and your drawings as evidence.</p>
-    <div class="q"><strong>1. A patient with myopia (nearsightedness) has trouble seeing distant objects. Explain the optical defect (eyeball shape or lens shape) and how a corrective lens fixes it.</strong><div class="line"></div><div class="line"></div></div>
-    <div class="q"><strong>2. A patient is diagnosed with macular degeneration (loss of cone-rich foveal retina). Predict which type of vision is lost FIRST (peripheral, central, color, night) and which is preserved longest, with a one-sentence reason.</strong><div class="line"></div><div class="line"></div></div>
-    <div class="q"><strong>3. Why is the optic disc called the blind spot? Predict what happens when an image falls on the optic disc, and explain why we don&#x27;t normally notice this gap in our visual field.</strong><div class="line"></div><div class="line"></div></div>
+    <div class="q"><strong>1. A patient with myopia (nearsightedness) has trouble seeing distant objects. Explain the optical defect (eyeball shape or lens shape) and how a corrective lens fixes it.</strong><textarea class="ans" data-key="pb0" rows="3"></textarea></div>
+    <div class="q"><strong>2. A patient is diagnosed with macular degeneration (loss of cone-rich foveal retina). Predict which type of vision is lost FIRST (peripheral, central, color, night) and which is preserved longest, with a one-sentence reason.</strong><textarea class="ans" data-key="pb1" rows="3"></textarea></div>
+    <div class="q"><strong>3. Why is the optic disc called the blind spot? Predict what happens when an image falls on the optic disc, and explain why we don&#x27;t normally notice this gap in our visual field.</strong><textarea class="ans" data-key="pb2" rows="3"></textarea></div>
   </article>
+  <div class="print-stamp" id="print-stamp"></div>
   <div class="submit no-print" aria-label="Submit on Canvas">
     <div style="flex:1 1 280px;min-width:240px">
       <p class="se">Submit</p>
-      <p class="sh">Upload your completed workbook to Canvas.</p>
-      <p class="ss">Hand-drawn, hand-labeled pages only. Photo or scan, PDF preferred. Typed or AI-generated diagrams are not accepted.</p>
+      <p class="sh">Save as PDF, then upload to Canvas.</p>
+      <p class="ss">The exported PDF stamps your name and paste-attempt count. Drawn-here or hand-drawn diagrams only; typed or AI-generated diagrams are not accepted.</p>
     </div>
     <a href="https://lrccd.instructure.com/courses/317432/assignments/9074949" target="_top" rel="noopener">Submit on Canvas &rarr;</a>
   </div>
 </main>
 <footer class="site-footer pad">
-  <p class="footer-copy">BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Summer 2026 &middot; Week 5 Lab Workbook</p>
+  <p class="footer-copy">BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Summer 2026 &middot; Week 05 Interactive Workbook</p>
   <p class="footer-by">Dr. Sharilyn Rennie</p>
 </footer>
 <script>
-(function(){function send(){try{parent.postMessage({type:'resize',id:'bio304-workbook_day19_vision',height:document.documentElement.scrollHeight},'*');}catch(e){}}
-window.addEventListener('load',send);window.addEventListener('resize',send);
-if(window.ResizeObserver){new ResizeObserver(send).observe(document.body);}})();
+(function(){
+  var TOPIC = "bio304-wb-vision";
+  function k(key){return TOPIC+"-"+key;}
+  function save(key,val){try{localStorage.setItem(k(key),val);}catch(e){}}
+  function load(key){try{return localStorage.getItem(k(key));}catch(e){return null;}}
+  var note=document.getElementById("saved-note");var noteTimer;
+  function flagSaved(){ if(!note)return; note.textContent="Saved on this device "+new Date().toLocaleTimeString(); clearTimeout(noteTimer); noteTimer=setTimeout(function(){note.textContent="Your work autosaves on this device.";},1500); }
+  Array.prototype.forEach.call(document.querySelectorAll("[data-key]"),function(el){
+    var key=el.getAttribute("data-key"); var s=load(key); if(s!==null) el.value=s;
+    el.addEventListener("input",function(){ save(key,el.value); flagSaved(); });
+  });
+  var pc=Number(load("pastecount")||0); var pcEl=document.getElementById("paste-count");
+  function renderPC(){ if(!pcEl)return; pcEl.textContent=String(pc); pcEl.classList.toggle("flag",pc>0); }
+  renderPC();
+  function blockable(t){ return t && (t.matches("input,textarea") || t.isContentEditable); }
+  document.addEventListener("paste",function(e){ if(blockable(e.target)){ e.preventDefault(); pc++; save("pastecount",pc); renderPC(); if(note){note.textContent="Pasting is disabled in this workbook. Type your own answer.";} } },true);
+  document.addEventListener("drop",function(e){ if(blockable(e.target)){ e.preventDefault(); pc++; save("pastecount",pc); renderPC(); } },true);
+  function setupCanvas(id){
+    var c=document.getElementById(id); if(!c)return; var ctx=c.getContext("2d");
+    var ratio=window.devicePixelRatio||1; var w=c.clientWidth,h=c.clientHeight;
+    c.width=w*ratio; c.height=h*ratio; ctx.scale(ratio,ratio);
+    ctx.lineCap="round"; ctx.lineJoin="round"; ctx.lineWidth=2.2;
+    var saved=load("draw-"+id); if(saved){ var img=new Image(); img.onload=function(){ctx.drawImage(img,0,0,w,h);}; img.src=saved; }
+    c._color="#0B1530"; var drawing=false,lastX=0,lastY=0;
+    function pos(e){ var r=c.getBoundingClientRect(); var p=e.touches?e.touches[0]:e; return {x:p.clientX-r.left,y:p.clientY-r.top}; }
+    c.addEventListener("pointerdown",function(e){drawing=true;var p=pos(e);lastX=p.x;lastY=p.y;e.preventDefault();});
+    c.addEventListener("pointermove",function(e){if(!drawing)return;var p=pos(e);ctx.strokeStyle=c._color;ctx.beginPath();ctx.moveTo(lastX,lastY);ctx.lineTo(p.x,p.y);ctx.stroke();lastX=p.x;lastY=p.y;e.preventDefault();});
+    window.addEventListener("pointerup",function(){if(!drawing)return;drawing=false;try{save("draw-"+id,c.toDataURL());}catch(e){}flagSaved();});
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("canvas.pad"),function(c){setupCanvas(c.id);});
+  Array.prototype.forEach.call(document.querySelectorAll(".swatch"),function(s){
+    s.addEventListener("click",function(){ var cid=s.getAttribute("data-canvas"); var col=s.getAttribute("data-color"); var c=document.getElementById(cid); if(c)c._color=col;
+      Array.prototype.forEach.call(document.querySelectorAll('.swatch[data-canvas="'+cid+'"]'),function(o){o.setAttribute("aria-pressed","false");}); s.setAttribute("aria-pressed","true"); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-clear]"),function(b){
+    b.addEventListener("click",function(){ var cid=b.getAttribute("data-clear"); var c=document.getElementById(cid); if(c){c.getContext("2d").clearRect(0,0,c.width,c.height);save("draw-"+cid,"");} });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-upload]"),function(inp){
+    var id=inp.getAttribute("data-upload"); var saved=load("up-"+id); var img=document.getElementById(id+"-img");
+    if(saved&&img){img.src=saved;img.style.display="block";}
+    inp.addEventListener("change",function(){ var f=inp.files&&inp.files[0]; if(!f)return; var r=new FileReader(); r.onload=function(){ if(img){img.src=r.result;img.style.display="block";} save("up-"+id,r.result); flagSaved(); }; r.readAsDataURL(f); });
+  });
+  document.getElementById("save-pdf").addEventListener("click",function(){
+    var nm=(load("name")||"(no name entered)"); var sid=(load("sid")||"");
+    var stamp=document.getElementById("print-stamp");
+    stamp.textContent=document.title.split(" ·")[0]+" workbook — "+nm+(sid?(" ("+sid+")"):"")+" — Paste attempts: "+pc+" — Exported "+new Date().toLocaleString();
+    window.print();
+  });
+  document.getElementById("reset-btn").addEventListener("click",function(){
+    if(!window.confirm("Clear all your saved answers and drawings on this device?"))return;
+    var rm=[]; for(var i=0;i<localStorage.length;i++){var key=localStorage.key(i);if(key&&key.indexOf(TOPIC)===0)rm.push(key);} rm.forEach(function(key){localStorage.removeItem(key);});
+    window.location.reload();
+  });
+  function send(){try{parent.postMessage({type:'resize',id:'bio304-workbook_day19_vision',height:document.documentElement.scrollHeight},'*');}catch(e){}}
+  window.addEventListener('load',send); window.addEventListener('resize',send);
+  if(window.ResizeObserver){new ResizeObserver(send).observe(document.body);}
+})();
 </script>
 </body>
 </html>
