@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Axial Skeleton · Human Anatomy &amp; Physiology · Dr. Sharilyn Rennie</title>
+<style>
+*{box-sizing:border-box} html,body{margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,Arial,sans-serif;background:#FAFAF9;color:#060A18;font-size:16px;line-height:1.5}
+button{font-family:inherit} a{color:#8B3A2E}
+:focus-visible{outline:3px solid #8B3A2E;outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:16px;position:fixed;background:#060A18;color:#fff;padding:10px 14px;border-radius:4px;z-index:80}
+.site-header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:16px max(16px,3vw);background:#fff;border-bottom:1px solid rgba(11,21,48,.14)}
+.site-header .id{flex:1;min-width:240px;display:flex;align-items:center;gap:14px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#8B3A2E;display:block;margin-bottom:2px}
+.site-header h1{font-size:18px;font-weight:800;margin:0;color:#0B1530}
+.site-header h1 .ac{color:#8B3A2E}
+.btn{font-weight:700;font-size:13px;letter-spacing:.04em;border:1px solid #060A18;background:#060A18;color:#fff;padding:10px 16px;border-radius:6px;cursor:pointer}
+.btn:hover{background:#16213d}
+.deck{max-width:1180px;margin:0 auto;padding:24px max(16px,3vw) 40px}
+.slide{background:#fff;border:1px solid rgba(11,21,48,.14);border-radius:12px;box-shadow:0 1px 3px rgba(11,21,48,.06);margin-bottom:22px;overflow:hidden}
+.slide-header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:15px 20px;background:#FAFAF9;border-bottom:1px solid rgba(11,21,48,.14)}
+.slide-num{font-size:28px;font-weight:800;color:#8B3A2E;min-width:46px}
+.slide-eyebrow{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#060A18;opacity:.6;margin:0 0 3px}
+.slide-title{font-size:clamp(18px,2.2vw,24px);font-weight:800;margin:0}
+.slide-meta{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8B3A2E}
+.slide-body{padding:22px}
+.lead-in{font-size:17px;font-weight:600;margin:0 0 14px}
+.slide-content h3{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8B3A2E;margin:0 0 14px}
+.slide-content ul{margin:0;padding:0;list-style:none}
+.slide-content li{font-size:15.5px;line-height:1.5;padding:5px 0 5px 18px;position:relative}
+.slide-content li::before{content:"";position:absolute;left:2px;top:12px;width:7px;height:7px;background:#8B3A2E;border-radius:50%}
+.slide-content li strong{font-weight:800}
+.split{display:grid;grid-template-columns:minmax(260px,1fr) minmax(280px,1.05fr);gap:22px;align-items:center}
+.takeaway{margin-top:16px;padding:14px 16px;background:#FAFAF9;border-left:3px solid #8B3A2E;border-radius:6px;font-size:15px}
+.takeaway strong{color:#8B3A2E}
+.figcol{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0}
+.slidefig{width:100%;height:auto;max-width:620px;border-radius:8px;background:#fff;cursor:zoom-in}
+.figcap{font-size:12.5px;color:#060A18;opacity:.78;text-align:center;margin:8px 0 0}
+.figcap strong{color:#8B3A2E;opacity:1}
+.divider .slide-header{display:none}
+.divider .slide-body{padding:0}
+.divhero{background:#060A18;color:#fff;padding:9vh 6vw;min-height:46vh;display:flex;flex-direction:column;justify-content:center}
+.divhero .dn{font-size:13px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:#DCB45C;margin:0 0 10px}
+.divhero h2{font-size:clamp(26px,4vw,46px);font-weight:800;margin:0 0 10px;line-height:1.06}
+.divhero p{font-size:clamp(15px,1.6vw,20px);opacity:.9;margin:0;max-width:64ch}
+.foot{margin:8px max(16px,3vw) 30px;font-size:12px;color:#060A18;opacity:.6;border-top:1px solid rgba(11,21,48,.14);padding-top:12px;max-width:1180px}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+body.present{overflow:hidden;background:#060A18}
+body.present .site-header,body.present .foot{display:none}
+body.present .deck{max-width:none;margin:0;padding:0}
+body.present .slide{display:none}
+body.present .slide.is-current{display:flex;flex-direction:column;position:fixed;inset:0;margin:0;border:0;border-radius:0;box-shadow:none;overflow:auto;background:#fff}
+body.present .slide.is-current .slide-body{flex:1;max-width:1280px;width:100%;margin:0 auto;padding:2.5vh 5vw;display:flex;flex-direction:column;justify-content:center}
+body.present .slide-content li{font-size:clamp(16px,1.7vw,25px);padding:7px 0 7px 26px}
+body.present .slide-content li::before{top:15px;width:9px;height:9px}
+body.present .slide-content h3{font-size:clamp(15px,1.5vw,20px)!important}
+body.present .lead-in{font-size:clamp(18px,2vw,28px)}
+body.present .slidefig{max-width:100%;max-height:70vh;width:auto;height:auto}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(6,10,24,.93);display:flex;align-items:center;justify-content:center;padding:3vh 3vw;cursor:zoom-out}
+.lightbox[hidden]{display:none}
+.lightbox .lb-img{max-width:96vw;max-height:94vh;width:auto;height:auto;border-radius:6px;background:#fff;cursor:default}
+.lightbox .lb-close{position:fixed;top:16px;right:20px;background:#8B3A2E;color:#fff;border:0;border-radius:8px;font-size:24px;line-height:1;width:46px;height:46px;cursor:pointer}
+.present-bar{position:fixed;z-index:70;left:50%;bottom:18px;transform:translateX(-50%);display:none;align-items:center;gap:10px;background:rgba(11,21,48,.92);color:#fff;padding:8px 12px;border-radius:999px}
+body.present .present-bar{display:flex}
+.present-bar button{font-weight:700;font-size:16px;border:0;border-radius:999px;background:#8B3A2E;color:#fff;width:42px;height:42px;cursor:pointer}
+.present-bar button:disabled{background:#3a4357}.present-bar .count{font-size:13px;font-weight:700;min-width:62px;text-align:center}
+.present-bar .exit{width:auto;padding:0 14px;background:transparent;border:1px solid rgba(255,255,255,.4)}
+@media print{.site-header,.present-bar,.foot,#presentBtn{display:none}.slide{break-inside:avoid;page-break-after:always;box-shadow:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.imgph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:200px;border:2px dashed #B8924A;border-radius:10px;background:#FAFAF9;color:#8B3A2E;text-align:center;padding:18px;width:100%}.imgph .ph-t{font-weight:800;font-size:14px}.imgph .ph-s{font-weight:600;font-size:12px;color:#5a6573}@media print{.imgph{min-height:120px}}
+.diagram{width:100%;max-width:480px;height:auto;background:#fff;border-radius:8px;display:block;margin:0 auto}
+</style></head><body>
+<a href="#deck" class="skip">Skip to slides</a>
+<header class="site-header"><div class="id"><svg viewBox="40 10 125 148" role="img" aria-label="Human Anatomy and Physiology logo" focusable="false" style="height:46px;width:auto"><g transform="translate(0,18)"><g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#0B1530"/></g><g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M0,22 C-11,22 -17,26 -17,34 C-17,52 -14,70 -12,86 C-11,108 -13,122 -15,132 L15,132 C13,122 11,108 12,86 C14,70 17,52 17,34 C17,26 11,22 0,22 Z" fill="#8B3A2E"/></g><g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#C9A14A"/></g></g></svg><div><span class="eyebrow">Focus: Human Anatomy &amp; Physiology</span><h1>Human <span class="ac">A&amp;P</span> · Axial Skeleton</h1></div></div><div class="hero-actions"><button class="btn" id="backBtn" type="button" hidden>← Back</button> <button class="btn" id="presentBtn" type="button">Present</button> <button class="btn" id="printBtn" type="button">Print / Save PDF</button></div></header>
+<main class="deck" id="deck">
+
+<section class="slide divider" aria-label="Title"><div class="slide-body"><div class="divhero"><div style="margin:0 0 14px"><svg viewBox="40 10 125 148" role="img" aria-label="Human Anatomy and Physiology logo" focusable="false" style="height:64px;width:auto;display:block"><g transform="translate(0,18)"><g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#FFFFFF"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#FFFFFF"/></g><g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#C2734D"/><path d="M0,22 C-11,22 -17,26 -17,34 C-17,52 -14,70 -12,86 C-11,108 -13,122 -15,132 L15,132 C13,122 11,108 12,86 C14,70 17,52 17,34 C17,26 11,22 0,22 Z" fill="#C2734D"/></g><g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#C9A14A"/></g></g></svg></div><p class="dn">Focus: Human Anatomy &amp; Physiology</p><h2>The Axial Skeleton</h2><p>The axial skeleton is the central support column of the body: the skull, the spine, and the rib cage. These 80 bones hold you upright, protect the brain, spinal cord, heart, and lungs, and give your muscles something to pull against. We will look at what each part is, and then at what it does for the living body. Dr. Sharilyn Rennie</p><p style="font-size:15px;opacity:.85;margin-top:18px">Need a PDF? Use Print / Save PDF above, or download the accessible PDF from Canvas.</p></div></div></section>
+
+<section class="slide divider" aria-label="Part 1 divider"><div class="slide-body"><div class="divhero"><p class="dn">Part 1</p><h2>Meet the Axial Skeleton</h2><p>The body's bones split into two teams. The axial skeleton is the core; the appendicular skeleton is the limbs.</p></div></div></section>
+
+<section class="slide " aria-label="Two parts of the skeleton">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 1 · Big picture</p><h2 class="slide-title">Axial vs. appendicular</h2></div><div class="slide-meta">Skeletal</div></header>
+<div class="slide-body"><div class="split"><div class="slide-content"><p class="lead-in">The 206 bones of the adult skeleton are divided into two groups.</p><ul><li><strong>Axial skeleton (80 bones)</strong>: the bones along the body's center line, the skull, vertebral column (spine), and thoracic cage (ribs and sternum).</li><li><strong>Appendicular skeleton (126 bones)</strong>: the arms, legs, and the girdles that attach them, covered in a separate lecture.</li><li>Think of the axial skeleton as the <strong>trunk of a tree</strong> and the appendicular skeleton as the <strong>branches</strong>.</li></ul></div><div class="figcol"><img class="slidefig" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/701%20Axial%20Skeleton-01.jpg?width=820" alt="Diagram of the human skeleton with the axial bones (skull, vertebral column, rib cage, and sternum) highlighted to stand out from the limb bones."><p class="figcap"><strong>Figure 1.</strong> The axial bones (highlighted) form the central axis; the limbs make up the appendicular skeleton. <span style="opacity:.75">Credit: OpenStax / CNX Anatomy &amp; Physiology, CC BY. Loads online.</span></p></div></div></div></section>
+
+<section class="slide " aria-label="Jobs of the axial skeleton">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 1 · Why it matters</p><h2 class="slide-title">What the axial skeleton does</h2></div><div class="slide-meta">Function</div></header>
+<div class="slide-body"><div class="slide-content"><ul><li><strong>Support</strong>: it holds the head and trunk upright and carries the body's weight down to the hips.</li><li><strong>Protection</strong>: it surrounds the most delicate organs, the brain, spinal cord, heart, and lungs.</li><li><strong>Anchor</strong>: many muscles for the head, neck, breathing, and posture attach here.</li><li><strong>Blood and minerals</strong>: bones such as the sternum and vertebrae make blood cells and store calcium.</li></ul></div></div></section>
+
+<section class="slide divider" aria-label="Part 2 divider"><div class="slide-body"><div class="divhero"><p class="dn">Part 2</p><h2>The Skull</h2><p>Twenty-two bones form a helmet for the brain and a frame for the face.</p></div></div></section>
+
+<section class="slide " aria-label="Cranial and facial bones">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 2 · The skull</p><h2 class="slide-title">Two sets of skull bones</h2></div><div class="slide-meta">Skeletal</div></header>
+<div class="slide-body"><div class="split"><div class="slide-content"><ul><li><strong>Cranial bones (8)</strong>: the rounded braincase. Main ones are the <strong>frontal</strong> (forehead), two <strong>parietals</strong> (top and sides), two <strong>temporals</strong> (by the ears), and the <strong>occipital</strong> (back and base).</li><li><strong>Facial bones (14)</strong>: the framework of the face, including the <strong>maxillae</strong> (upper jaw), <strong>mandible</strong> (lower jaw, the only movable skull bone), <strong>zygomatics</strong> (cheekbones), and <strong>nasal</strong> bones.</li></ul></div><div class="figcol"><img class="slidefig" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/705%20Lateral%20View%20of%20Skull-01.jpg?width=820" alt="Side (lateral) view of the human skull with the major cranial bones (frontal, parietal, temporal, occipital, sphenoid) and facial bones (maxilla, mandible, zygomatic, nasal) labeled."><p class="figcap"><strong>Figure 2.</strong> Cranial bones (braincase) and facial bones (face). <span style="opacity:.75">Credit: OpenStax / CNX Anatomy &amp; Physiology, CC BY. Loads online.</span></p></div></div></div></section>
+
+<section class="slide " aria-label="Sutures, sinuses, and fontanelles">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 2 · Skull details</p><h2 class="slide-title">Joints, air spaces, and the baby skull</h2></div><div class="slide-meta">Function</div></header>
+<div class="slide-body"><div class="slide-content"><ul><li><strong>Sutures</strong>: the squiggly seams where cranial bones lock together. In adults they barely move, which keeps the braincase rigid.</li><li><strong>Sinuses</strong>: hollow, air-filled spaces in some skull bones. They lighten the skull and add resonance to the voice; when they get congested, you feel "sinus" pressure.</li><li><strong>Fontanelles</strong>: the soft spots in a newborn's skull. These gaps let the skull flex during birth and leave room for the brain to grow, then close in the first couple of years.</li></ul></div></div></section>
+
+<section class="slide divider" aria-label="Part 3 divider"><div class="slide-body"><div class="divhero"><p class="dn">Part 3</p><h2>The Vertebral Column</h2><p>Twenty-six bones stack into a strong, flexible, S-shaped support for the body.</p></div></div></section>
+
+<section class="slide " aria-label="Regions of the spine">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 3 · The spine</p><h2 class="slide-title">Five regions, top to bottom</h2></div><div class="slide-meta">Skeletal</div></header>
+<div class="slide-body"><div class="split"><div class="slide-content"><ul><li><strong>Cervical (7)</strong>: the neck. The top two let you nod and shake your head.</li><li><strong>Thoracic (12)</strong>: the upper back. Each one connects to a pair of ribs.</li><li><strong>Lumbar (5)</strong>: the lower back. These are the largest and carry the most weight.</li><li><strong>Sacrum</strong>: five fused bones that join the spine to the hips.</li><li><strong>Coccyx</strong>: the tailbone, a few small fused bones at the very bottom.</li></ul><p class="takeaway"><strong>Memory cue:</strong> breakfast at 7, lunch at 12, dinner at 5, the cervical, thoracic, and lumbar counts.</p></div><div class="figcol"><img class="slidefig" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/715%20Vertebral%20Column.jpg?width=820" alt="Side view of the vertebral column showing the cervical, thoracic, and lumbar regions plus the sacrum and coccyx, and the spine's natural curves."><p class="figcap"><strong>Figure 3.</strong> The spine's five regions and its natural curves. <span style="opacity:.75">Credit: OpenStax / CNX Anatomy &amp; Physiology, CC BY. Loads online.</span></p></div></div></div></section>
+
+<section class="slide " aria-label="Curves and discs">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 3 · How it works</p><h2 class="slide-title">Curves and cushions</h2></div><div class="slide-meta">Function</div></header>
+<div class="slide-body"><div class="slide-content"><ul><li><strong>Natural curves</strong>: the spine is not straight. Its gentle S-shape acts like a spring, absorbing shock and keeping you balanced when you stand and walk.</li><li><strong>Intervertebral discs</strong>: soft, rubbery pads of cartilage between the vertebrae. They cushion impacts and let the spine bend and twist.</li><li><strong>Protection</strong>: a tunnel running through the stacked vertebrae surrounds and shields the <strong>spinal cord</strong>.</li></ul></div></div></section>
+
+<section class="slide divider" aria-label="Part 4 divider"><div class="slide-body"><div class="divhero"><p class="dn">Part 4</p><h2>The Thoracic Cage</h2><p>The ribs and sternum form a protective, movable basket around the heart and lungs.</p></div></div></section>
+
+<section class="slide " aria-label="Ribs and sternum">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 4 · The rib cage</p><h2 class="slide-title">Sternum and ribs</h2></div><div class="slide-meta">Skeletal</div></header>
+<div class="slide-body"><div class="slide-content"><ul><li><strong>Sternum</strong>: the flat breastbone down the front of the chest.</li><li><strong>Ribs (12 pairs)</strong>: curved bones that wrap from the spine around to the front.</li><li><strong>True ribs (1–7)</strong> attach directly to the sternum by cartilage.</li><li><strong>False ribs (8–10)</strong> attach indirectly, sharing cartilage above them.</li><li><strong>Floating ribs (11–12)</strong> do not reach the front at all.</li></ul></div></div></section>
+
+<section class="slide divider" aria-label="Part 5 divider"><div class="slide-body"><div class="divhero"><p class="dn">Part 5</p><h2>Physiology: Why It Matters</h2><p>The axial skeleton is not just scaffolding. It protects, it helps you breathe, and it keeps your blood and bones healthy.</p></div></div></section>
+
+<section class="slide " aria-label="Protection of the central nervous system">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 5 · Protection</p><h2 class="slide-title">A shield for the control center</h2></div><div class="slide-meta">Physiology</div></header>
+<div class="slide-body"><div class="slide-content"><ul><li>The <strong>skull</strong> surrounds the brain like a helmet, absorbing bumps that would otherwise injure delicate nerve tissue.</li><li>The <strong>vertebral column</strong> forms a bony tunnel around the <strong>spinal cord</strong>, the cable that carries messages between the brain and the rest of the body.</li><li>Together they protect the <strong>central nervous system</strong>, which cannot repair itself the way skin or muscle can.</li></ul></div></div></section>
+
+<section class="slide " aria-label="Breathing mechanics">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 5 · Breathing</p><h2 class="slide-title">The rib cage helps you breathe</h2></div><div class="slide-meta">Physiology</div></header>
+<div class="slide-body"><div class="split"><div class="slide-content"><ul><li>The rib cage is not a fixed box; the ribs swing up and out, then back down, with every breath.</li><li>When the ribs lift, the chest gets bigger, pressure inside drops, and air rushes into the lungs.</li><li>When the ribs drop, the chest shrinks and air flows out.</li><li>So the axial skeleton is part of the <strong>respiratory system</strong>, not just protection.</li></ul></div><div class="figcol"><svg class="diagram" viewBox="0 0 440 250" role="img" aria-labelledby="brT brD" xmlns="http://www.w3.org/2000/svg"><title id="brT">How the rib cage drives a breath</title><desc id="brD">Inhale: ribs lift up and out, the chest cavity enlarges, air pressure drops, then air flows in. Exhale reverses every step: ribs drop, the cavity shrinks, pressure rises, and air flows out.</desc><style>.bx{fill:#fff;stroke:#0B1530;stroke-width:1.4}.tx{fill:#0B1530;font:600 12px -apple-system,system-ui,Arial,sans-serif}.hd{font:700 13px -apple-system,system-ui,Arial,sans-serif}</style><defs><marker id="ahBr" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#8B3A2E"/></marker></defs><rect x="12" y="4" width="200" height="28" rx="6" fill="#C9A14A"/><text class="hd" x="112" y="23" text-anchor="middle" fill="#0B1530">INHALE</text><rect x="228" y="4" width="200" height="28" rx="6" fill="#8B3A2E"/><text class="hd" x="328" y="23" text-anchor="middle" fill="#fff">EXHALE</text><rect class="bx" x="12" y="42" width="200" height="38" rx="7"/><text class="tx" x="112" y="65" text-anchor="middle">Ribs lift up and out</text><rect class="bx" x="12" y="96" width="200" height="38" rx="7"/><text class="tx" x="112" y="119" text-anchor="middle">Chest cavity enlarges</text><rect class="bx" x="12" y="150" width="200" height="38" rx="7"/><text class="tx" x="112" y="173" text-anchor="middle">Air pressure drops</text><rect class="bx" x="12" y="204" width="200" height="38" rx="7" stroke="#C9A14A" stroke-width="2.4"/><text class="tx" x="112" y="227" text-anchor="middle">Air flows IN</text><line x1="112" y1="80" x2="112" y2="95" stroke="#8B3A2E" stroke-width="2" marker-end="url(#ahBr)"/><line x1="112" y1="134" x2="112" y2="149" stroke="#8B3A2E" stroke-width="2" marker-end="url(#ahBr)"/><line x1="112" y1="188" x2="112" y2="203" stroke="#8B3A2E" stroke-width="2" marker-end="url(#ahBr)"/><rect class="bx" x="228" y="42" width="200" height="38" rx="7"/><text class="tx" x="328" y="65" text-anchor="middle">Ribs drop down and in</text><rect class="bx" x="228" y="96" width="200" height="38" rx="7"/><text class="tx" x="328" y="119" text-anchor="middle">Chest cavity shrinks</text><rect class="bx" x="228" y="150" width="200" height="38" rx="7"/><text class="tx" x="328" y="173" text-anchor="middle">Pressure rises</text><rect class="bx" x="228" y="204" width="200" height="38" rx="7" stroke="#8B3A2E" stroke-width="2.4"/><text class="tx" x="328" y="227" text-anchor="middle">Air flows OUT</text><line x1="328" y1="80" x2="328" y2="95" stroke="#8B3A2E" stroke-width="2" marker-end="url(#ahBr)"/><line x1="328" y1="134" x2="328" y2="149" stroke="#8B3A2E" stroke-width="2" marker-end="url(#ahBr)"/><line x1="328" y1="188" x2="328" y2="203" stroke="#8B3A2E" stroke-width="2" marker-end="url(#ahBr)"/></svg><p class="figcap"><strong>Figure 4.</strong> Each breath is a sequence: rib movement changes the size of the chest. <span style="opacity:.75">Diagram: Dr. Sharilyn Rennie.</span></p></div></div></div></section>
+
+<section class="slide " aria-label="Blood cell formation and minerals">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 5 · Inside the bone</p><h2 class="slide-title">Making blood, storing minerals</h2></div><div class="slide-meta">Physiology</div></header>
+<div class="slide-body"><div class="slide-content"><ul><li><strong>Blood cell factory</strong>: red marrow inside flat axial bones such as the sternum, ribs, and vertebrae produces red blood cells, white blood cells, and platelets throughout life.</li><li><strong>Mineral bank</strong>: bone stores most of the body's calcium and releases it into the blood when needed for muscles and nerves to work.</li><li>This is why a bone marrow sample is often taken from the <strong>sternum or hip</strong>.</li></ul></div></div></section>
+
+<section class="slide " aria-label="Common clinical connections">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 5 · In the clinic</p><h2 class="slide-title">When things go wrong</h2></div><div class="slide-meta">Clinical</div></header>
+<div class="slide-body"><div class="slide-content"><ul><li><strong>Scoliosis</strong>: a sideways curve of the spine that can affect posture and, if severe, breathing.</li><li><strong>Herniated disc</strong>: a cushioning disc bulges and presses on a nearby nerve, causing back or leg pain.</li><li><strong>Osteoporosis</strong>: weakened, porous bone. In the spine it can lead to compression fractures and a stooped posture in older adults.</li></ul></div></div></section>
+
+<section class="slide " aria-label="Key takeaways">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Wrap-up</p><h2 class="slide-title">Key takeaways</h2></div><div class="slide-meta">Summary</div></header>
+<div class="slide-body"><div class="slide-content"><ul><li>The <strong>axial skeleton (80 bones)</strong> is the body's central axis: skull, vertebral column, and thoracic cage.</li><li>The <strong>skull</strong> protects the brain and frames the face; the mandible is its only movable bone.</li><li>The <strong>spine</strong> has five regions and natural curves, with discs that cushion and a tunnel that shields the spinal cord.</li><li>The <strong>thoracic cage</strong> guards the heart and lungs and moves with every breath.</li><li>Physiology: the axial skeleton <strong>protects the central nervous system</strong>, <strong>powers breathing</strong>, <strong>makes blood cells</strong>, and <strong>stores calcium</strong>.</li></ul></div></div></section>
+
+</main>
+<p class="foot">Dr. Sharilyn Rennie · Human Anatomy &amp; Physiology (non-majors) · The Axial Skeleton. Note: the photo figures load from an online image library, so you need an internet connection to see them; the diagrams work offline. Need a PDF? Use Print / Save PDF above, or download the accessible PDF from Canvas.</p>
+<div class="present-bar"><button type="button" class="prev" aria-label="Previous slide">&#8249;</button><span class="count" id="presentCount">1 / 1</span><button type="button" class="next" aria-label="Next slide">&#8250;</button><button type="button" class="exit">Exit</button></div>
+<script>
+(function(){document.querySelectorAll('.deck .slide').forEach(function(s,i){var n=s.querySelector('.slide-num');if(n)n.textContent=(i<10?'0':'')+i;});})();
+(function(){var pr=document.getElementById('printBtn');if(pr)pr.addEventListener('click',function(){window.print();});})();
+(function(){var slides=[].slice.call(document.querySelectorAll('.deck .slide'));if(!slides.length)return;var idx=0,on=false;var bar=document.querySelector('.present-bar'),countEl=document.getElementById('presentCount');var prev=bar.querySelector('.prev'),next=bar.querySelector('.next'),exitB=bar.querySelector('.exit');
+function show(i){idx=Math.max(0,Math.min(slides.length-1,i));slides.forEach(function(s,k){s.classList.toggle('is-current',k===idx);});countEl.textContent=(idx+1)+' / '+slides.length;prev.disabled=idx===0;next.disabled=idx===slides.length-1;}
+function enter(i){on=true;document.body.classList.add('present');show(i||0);if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen().catch(function(){});}
+function exit(){on=false;document.body.classList.remove('present');slides.forEach(function(s){s.classList.remove('is-current');});if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen().catch(function(){});}
+var pb=document.getElementById('presentBtn');if(pb)pb.addEventListener('click',function(){enter(0);});
+prev.addEventListener('click',function(){show(idx-1);});next.addEventListener('click',function(){show(idx+1);});exitB.addEventListener('click',exit);
+document.addEventListener('keydown',function(e){if(!on)return;if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();show(idx+1);}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(idx-1);}else if(e.key==='Escape'){exit();}});
+document.addEventListener('fullscreenchange',function(){if(!document.fullscreenElement&&on)exit();});
+})();
+</script>
+<div class="lightbox" id="lightbox" hidden><img class="lb-img" src="" alt=""><button type="button" class="lb-close" aria-label="Close enlarged image">&times;</button></div>
+<script>
+(function(){var lb=document.getElementById('lightbox');if(!lb)return;var img=lb.querySelector('.lb-img');var cb=lb.querySelector('.lb-close');
+document.querySelectorAll('.slidefig').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();img.src=el.currentSrc||el.src;img.alt=el.alt||'';lb.hidden=false;});});
+function close(){lb.hidden=true;img.removeAttribute('src');}
+lb.addEventListener('click',function(e){if(e.target!==img)close();});
+cb.addEventListener('click',function(e){e.stopPropagation();close();});
+document.addEventListener('keydown',function(e){if(!lb.hidden&&e.key==='Escape')close();});})();
+</script>
+<script>(function(){var b=document.getElementById("backBtn");if(!b)return;if(document.referrer||window.history.length>1){b.hidden=false;}b.addEventListener("click",function(){if(history.length>1)history.back();else if(document.referrer)location.href=document.referrer;});})();</script>
+<script>
+/* iframe height-sender: posts this page's height to a parent frame (Kajabi/embed-ready) */
+(function(){function send(){try{var h=document.documentElement.scrollHeight;parent.postMessage({type:"setHeight",id:"axial-skeleton-nonmajors",height:h},"*");}catch(e){}}
+window.addEventListener("load",send);window.addEventListener("resize",send);
+if(window.ResizeObserver){new ResizeObserver(send).observe(document.body);}})();
+</script>
+</body></html>

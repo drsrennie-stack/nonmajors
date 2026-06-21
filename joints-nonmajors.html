@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joints &amp; Movement · Human Anatomy &amp; Physiology · Dr. Sharilyn Rennie</title>
+<style>
+*{box-sizing:border-box} html,body{margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,Arial,sans-serif;background:#FAFAF9;color:#060A18;font-size:16px;line-height:1.5}
+button{font-family:inherit} a{color:#8B3A2E}
+:focus-visible{outline:3px solid #8B3A2E;outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:16px;position:fixed;background:#060A18;color:#fff;padding:10px 14px;border-radius:4px;z-index:80}
+.site-header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:16px max(16px,3vw);background:#fff;border-bottom:1px solid rgba(11,21,48,.14)}
+.site-header .id{flex:1;min-width:240px;display:flex;align-items:center;gap:14px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#8B3A2E;display:block;margin-bottom:2px}
+.site-header h1{font-size:18px;font-weight:800;margin:0;color:#0B1530}
+.site-header h1 .ac{color:#8B3A2E}
+.btn{font-weight:700;font-size:13px;letter-spacing:.04em;border:1px solid #060A18;background:#060A18;color:#fff;padding:10px 16px;border-radius:6px;cursor:pointer}
+.btn:hover{background:#16213d}
+.deck{max-width:1180px;margin:0 auto;padding:24px max(16px,3vw) 40px}
+.slide{background:#fff;border:1px solid rgba(11,21,48,.14);border-radius:12px;box-shadow:0 1px 3px rgba(11,21,48,.06);margin-bottom:22px;overflow:hidden}
+.slide-header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:15px 20px;background:#FAFAF9;border-bottom:1px solid rgba(11,21,48,.14)}
+.slide-num{font-size:28px;font-weight:800;color:#8B3A2E;min-width:46px}
+.slide-eyebrow{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#060A18;opacity:.6;margin:0 0 3px}
+.slide-title{font-size:clamp(18px,2.2vw,24px);font-weight:800;margin:0}
+.slide-meta{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8B3A2E}
+.slide-body{padding:22px}
+.lead-in{font-size:17px;font-weight:600;margin:0 0 14px}
+.slide-content h3{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8B3A2E;margin:0 0 14px}
+.slide-content ul{margin:0;padding:0;list-style:none}
+.slide-content li{font-size:15.5px;line-height:1.5;padding:5px 0 5px 18px;position:relative}
+.slide-content li::before{content:"";position:absolute;left:2px;top:12px;width:7px;height:7px;background:#8B3A2E;border-radius:50%}
+.slide-content li strong{font-weight:800}
+.split{display:grid;grid-template-columns:minmax(260px,1fr) minmax(280px,1.05fr);gap:22px;align-items:center}
+.takeaway{margin-top:16px;padding:14px 16px;background:#FAFAF9;border-left:3px solid #8B3A2E;border-radius:6px;font-size:15px}
+.takeaway strong{color:#8B3A2E}
+.figcol{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0}
+.slidefig{width:100%;height:auto;max-width:620px;border-radius:8px;background:#fff;cursor:zoom-in}
+.figcap{font-size:12.5px;color:#060A18;opacity:.78;text-align:center;margin:8px 0 0}
+.figcap strong{color:#8B3A2E;opacity:1}
+.divider .slide-header{display:none}
+.divider .slide-body{padding:0}
+.divhero{background:#060A18;color:#fff;padding:9vh 6vw;min-height:46vh;display:flex;flex-direction:column;justify-content:center}
+.divhero .dn{font-size:13px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:#DCB45C;margin:0 0 10px}
+.divhero h2{font-size:clamp(26px,4vw,46px);font-weight:800;margin:0 0 10px;line-height:1.06}
+.divhero p{font-size:clamp(15px,1.6vw,20px);opacity:.9;margin:0;max-width:64ch}
+.foot{margin:8px max(16px,3vw) 30px;font-size:12px;color:#060A18;opacity:.6;border-top:1px solid rgba(11,21,48,.14);padding-top:12px;max-width:1180px}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+body.present{overflow:hidden;background:#060A18}
+body.present .site-header,body.present .foot{display:none}
+body.present .deck{max-width:none;margin:0;padding:0}
+body.present .slide{display:none}
+body.present .slide.is-current{display:flex;flex-direction:column;position:fixed;inset:0;margin:0;border:0;border-radius:0;box-shadow:none;overflow:auto;background:#fff}
+body.present .slide.is-current .slide-body{flex:1;max-width:1280px;width:100%;margin:0 auto;padding:2.5vh 5vw;display:flex;flex-direction:column;justify-content:center}
+body.present .slide-content li{font-size:clamp(16px,1.7vw,25px);padding:7px 0 7px 26px}
+body.present .slide-content li::before{top:15px;width:9px;height:9px}
+body.present .slide-content h3{font-size:clamp(15px,1.5vw,20px)!important}
+body.present .lead-in{font-size:clamp(18px,2vw,28px)}
+body.present .slidefig{max-width:100%;max-height:70vh;width:auto;height:auto}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(6,10,24,.93);display:flex;align-items:center;justify-content:center;padding:3vh 3vw;cursor:zoom-out}
+.lightbox[hidden]{display:none}
+.lightbox .lb-img{max-width:96vw;max-height:94vh;width:auto;height:auto;border-radius:6px;background:#fff;cursor:default}
+.lightbox .lb-close{position:fixed;top:16px;right:20px;background:#8B3A2E;color:#fff;border:0;border-radius:8px;font-size:24px;line-height:1;width:46px;height:46px;cursor:pointer}
+.present-bar{position:fixed;z-index:70;left:50%;bottom:18px;transform:translateX(-50%);display:none;align-items:center;gap:10px;background:rgba(11,21,48,.92);color:#fff;padding:8px 12px;border-radius:999px}
+body.present .present-bar{display:flex}
+.present-bar button{font-weight:700;font-size:16px;border:0;border-radius:999px;background:#8B3A2E;color:#fff;width:42px;height:42px;cursor:pointer}
+.present-bar button:disabled{background:#3a4357}.present-bar .count{font-size:13px;font-weight:700;min-width:62px;text-align:center}
+.present-bar .exit{width:auto;padding:0 14px;background:transparent;border:1px solid rgba(255,255,255,.4)}
+@media print{.site-header,.present-bar,.foot,#presentBtn{display:none}.slide{break-inside:avoid;page-break-after:always;box-shadow:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.imgph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:200px;border:2px dashed #B8924A;border-radius:10px;background:#FAFAF9;color:#8B3A2E;text-align:center;padding:18px;width:100%}.imgph .ph-t{font-weight:800;font-size:14px}.imgph .ph-s{font-weight:600;font-size:12px;color:#5a6573}@media print{.imgph{min-height:120px}}
+.diagram{width:100%;max-width:480px;height:auto;background:#fff;border-radius:8px;display:block;margin:0 auto}
+</style></head><body>
+<a href="#deck" class="skip">Skip to slides</a>
+<header class="site-header"><div class="id"><svg viewBox="40 10 125 148" role="img" aria-label="Human Anatomy and Physiology logo" focusable="false" style="height:46px;width:auto"><g transform="translate(0,18)"><g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#0B1530"/></g><g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M0,22 C-11,22 -17,26 -17,34 C-17,52 -14,70 -12,86 C-11,108 -13,122 -15,132 L15,132 C13,122 11,108 12,86 C14,70 17,52 17,34 C17,26 11,22 0,22 Z" fill="#8B3A2E"/></g><g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#C9A14A"/></g></g></svg><div><span class="eyebrow">Focus: Human Anatomy &amp; Physiology</span><h1>Human <span class="ac">A&amp;P</span> · Joints</h1></div></div><div class="hero-actions"><button class="btn" id="backBtn" type="button" hidden>← Back</button> <button class="btn" id="presentBtn" type="button">Present</button> <button class="btn" id="printBtn" type="button">Print / Save PDF</button></div></header>
+<main class="deck" id="deck">
+
+<section class="slide divider" aria-label="Title"><div class="slide-body"><div class="divhero"><div style="margin:0 0 14px"><svg viewBox="40 10 125 148" role="img" aria-label="Human Anatomy and Physiology logo" focusable="false" style="height:64px;width:auto;display:block"><g transform="translate(0,18)"><g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#FFFFFF"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#FFFFFF"/></g><g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#C2734D"/><path d="M0,22 C-11,22 -17,26 -17,34 C-17,52 -14,70 -12,86 C-11,108 -13,122 -15,132 L15,132 C13,122 11,108 12,86 C14,70 17,52 17,34 C17,26 11,22 0,22 Z" fill="#C2734D"/></g><g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#C9A14A"/></g></g></svg></div><p class="dn">Focus: Human Anatomy &amp; Physiology</p><h2>Joints &amp; Movement</h2><p>A joint is wherever two bones meet. Some joints lock bones together for protection, some give a little for cushioning, and some let you move freely. This lecture sorts joints by how much they move, takes a close look at the freely movable synovial joints, and ends with what joints do for the living body and what happens when they wear out. Dr. Sharilyn Rennie</p><p style="font-size:15px;opacity:.85;margin-top:18px">Need a PDF? Use Print / Save PDF above, or download the accessible PDF from Canvas.</p></div></div></section>
+
+<section class="slide divider" aria-label="Part 1 divider"><div class="slide-body"><div class="divhero"><p class="dn">Part 1</p><h2>What Is a Joint?</h2><p>Joints are where the skeleton bends. We sort them by how they are built and by how much they move.</p></div></div></section>
+
+<section class="slide " aria-label="Defining joints">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 1 · Big picture</p><h2 class="slide-title">Where bones meet</h2></div><div class="slide-meta">Joints</div></header>
+<div class="slide-body"><div class="slide-content"><p class="lead-in">A joint (or articulation) is any place where two bones come together.</p><ul><li>Joints make the skeleton more than a stiff statue; they let it <strong>bend, twist, and move</strong>.</li><li>There is always a trade-off: the more a joint moves, the <strong>less stable</strong> it tends to be.</li><li>We can group joints two ways: by <strong>what connects the bones</strong> and by <strong>how much they move</strong>.</li></ul></div></div></section>
+
+<section class="slide " aria-label="Two ways to classify joints">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 1 · Classifying</p><h2 class="slide-title">By structure and by function</h2></div><div class="slide-meta">Joints</div></header>
+<div class="slide-body"><div class="split"><div class="slide-content"><ul><li><strong>By structure</strong> (the material in between): fibrous, cartilaginous, or synovial.</li><li><strong>By function</strong> (how much they move): immovable, slightly movable, or freely movable.</li><li>The two systems line up: most <strong>fibrous</strong> joints are immovable, most <strong>cartilaginous</strong> joints are slightly movable, and all <strong>synovial</strong> joints are freely movable.</li></ul></div><div class="figcol"><svg class="diagram" viewBox="0 0 470 252" role="img" aria-labelledby="clT clD" xmlns="http://www.w3.org/2000/svg"><title id="clT">Two ways to classify joints</title><desc id="clD">Joints are grouped by structure (fibrous, cartilaginous, synovial) and by function (immovable, slightly movable, freely movable). Fibrous joints are usually immovable, cartilaginous joints slightly movable, and synovial joints freely movable.</desc><style>.tw{fill:#fff;font:700 13px -apple-system,system-ui,Arial,sans-serif}.tn{fill:#0B1530;font:700 12px -apple-system,system-ui,Arial,sans-serif}.bl{fill:#0B1530;font:600 12.5px -apple-system,system-ui,Arial,sans-serif}.eq{fill:#8B3A2E;font:700 14px -apple-system,system-ui,Arial,sans-serif}</style><line x1="215" y1="40" x2="120" y2="70" stroke="#8B3A2E" stroke-width="1.8"/><line x1="255" y1="40" x2="350" y2="70" stroke="#8B3A2E" stroke-width="1.8"/><line x1="120" y1="100" x2="120" y2="118" stroke="#8B3A2E" stroke-width="1.8"/><line x1="350" y1="100" x2="350" y2="118" stroke="#8B3A2E" stroke-width="1.8"/><rect x="185" y="6" width="100" height="34" rx="8" fill="#0B1530"/><text class="tw" x="235" y="28" text-anchor="middle">JOINT</text><rect x="30" y="70" width="180" height="30" rx="7" fill="#C9A14A"/><text class="tn" x="120" y="89" text-anchor="middle">By structure</text><rect x="260" y="70" width="180" height="30" rx="7" fill="#8B3A2E"/><text class="tw" x="350" y="89" text-anchor="middle">By function</text><rect x="30" y="118" width="180" height="36" rx="7" fill="#fff" stroke="#0B1530" stroke-width="1.4"/><text class="bl" x="120" y="140" text-anchor="middle">Fibrous</text><rect x="30" y="162" width="180" height="36" rx="7" fill="#fff" stroke="#0B1530" stroke-width="1.4"/><text class="bl" x="120" y="184" text-anchor="middle">Cartilaginous</text><rect x="30" y="206" width="180" height="36" rx="7" fill="#fff" stroke="#0B1530" stroke-width="1.4"/><text class="bl" x="120" y="228" text-anchor="middle">Synovial</text><rect x="260" y="118" width="180" height="36" rx="7" fill="#fff" stroke="#0B1530" stroke-width="1.4"/><text class="bl" x="350" y="140" text-anchor="middle">Immovable</text><rect x="260" y="162" width="180" height="36" rx="7" fill="#fff" stroke="#0B1530" stroke-width="1.4"/><text class="bl" x="350" y="184" text-anchor="middle">Slightly movable</text><rect x="260" y="206" width="180" height="36" rx="7" fill="#fff" stroke="#0B1530" stroke-width="1.4"/><text class="bl" x="350" y="228" text-anchor="middle">Freely movable</text><text class="eq" x="235" y="141" text-anchor="middle">≈</text><text class="eq" x="235" y="185" text-anchor="middle">≈</text><text class="eq" x="235" y="229" text-anchor="middle">≈</text></svg><p class="figcap"><strong>Figure 1.</strong> Joints sorted two ways: by what holds the bones together and by how much they move. <span style="opacity:.75">Diagram: Dr. Sharilyn Rennie.</span></p></div></div></div></section>
+
+<section class="slide divider" aria-label="Part 2 divider"><div class="slide-body"><div class="divhero"><p class="dn">Part 2</p><h2>The Holding Joints</h2><p>Fibrous and cartilaginous joints trade movement for strength and cushioning.</p></div></div></section>
+
+<section class="slide " aria-label="Fibrous joints">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 2 · Fibrous</p><h2 class="slide-title">Fibrous joints: locked tight</h2></div><div class="slide-meta">Joints</div></header>
+<div class="slide-body"><div class="slide-content"><ul><li>Bones are held by tough connective tissue, with little or no space between them, so there is almost no movement.</li><li><strong>Sutures</strong> of the skull are the classic example: they lock the cranial bones into a protective case.</li><li>The slot that holds a <strong>tooth</strong> in the jaw is also a fibrous joint.</li><li>Job: <strong>maximum stability and protection</strong>.</li></ul></div></div></section>
+
+<section class="slide " aria-label="Cartilaginous joints">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 2 · Cartilaginous</p><h2 class="slide-title">Cartilaginous joints: a little give</h2></div><div class="slide-meta">Joints</div></header>
+<div class="slide-body"><div class="slide-content"><ul><li>Bones are joined by cartilage, which allows a small amount of movement.</li><li>The <strong>discs between vertebrae</strong> let the spine bend and absorb shock.</li><li>The <strong>pubic symphysis</strong> at the front of the pelvis softens during childbirth to let the pelvis widen.</li><li>Job: <strong>cushioning plus limited movement</strong>.</li></ul></div></div></section>
+
+<section class="slide divider" aria-label="Part 3 divider"><div class="slide-body"><div class="divhero"><p class="dn">Part 3</p><h2>Synovial Joints</h2><p>The freely movable joints, the ones you usually picture, share a clever shared design.</p></div></div></section>
+
+<section class="slide " aria-label="Structure of a synovial joint">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 3 · Structure</p><h2 class="slide-title">Inside a synovial joint</h2></div><div class="slide-meta">Joints</div></header>
+<div class="slide-body"><div class="split"><div class="slide-content"><ul><li><strong>Articular cartilage</strong>: a smooth, slippery cap on each bone end that reduces friction.</li><li><strong>Joint capsule</strong>: a sleeve that encloses the joint and holds everything together.</li><li><strong>Synovial fluid</strong>: a slick fluid inside the capsule that lubricates and feeds the cartilage.</li><li><strong>Ligaments</strong>: tough bands that connect bone to bone and keep the joint stable.</li></ul></div><div class="figcol"><img class="slidefig" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/907%20Synovial%20Joints.jpg?width=820" alt="Cross-section of a synovial joint showing the two bone ends capped with articular cartilage, the joint capsule enclosing the space, synovial fluid inside, and supporting ligaments."><p class="figcap"><strong>Figure 2.</strong> The shared parts of every synovial joint. <span style="opacity:.75">Credit: OpenStax / CNX Anatomy &amp; Physiology, CC BY. Loads online.</span></p></div></div></div></section>
+
+<section class="slide " aria-label="Six types of synovial joints">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 3 · Six shapes</p><h2 class="slide-title">Six kinds of synovial joints</h2></div><div class="slide-meta">Joints</div></header>
+<div class="slide-body"><div class="split"><div class="slide-content"><ul><li><strong>Hinge</strong>: bends one way, like a door. Example: elbow, knee.</li><li><strong>Ball-and-socket</strong>: moves in all directions. Example: shoulder, hip.</li><li><strong>Pivot</strong>: rotates. Example: the neck joint that lets you shake your head "no."</li><li><strong>Gliding (plane)</strong>: flat surfaces slide. Example: wrist and ankle bones.</li><li><strong>Saddle</strong>: lets the thumb move widely. Example: base of the thumb.</li><li><strong>Condyloid</strong>: oval surface, moves two ways. Example: knuckles.</li></ul></div><div class="figcol"><img class="slidefig" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/909%20Types%20of%20Synovial%20Joints.jpg?width=820" alt="The six types of synovial joints with a body example of each: pivot, hinge, condyloid (ellipsoid), saddle, plane (gliding), and ball-and-socket."><p class="figcap"><strong>Figure 3.</strong> Joint shape decides what movement is possible. <span style="opacity:.75">Credit: OpenStax / CNX Anatomy &amp; Physiology, CC BY. Loads online.</span></p></div></div></div></section>
+
+<section class="slide divider" aria-label="Part 4 divider"><div class="slide-body"><div class="divhero"><p class="dn">Part 4</p><h2>Movements at Joints</h2><p>Synovial joints make a vocabulary of movements your muscles can produce.</p></div></div></section>
+
+<section class="slide " aria-label="Basic joint movements">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 4 · Movement words</p><h2 class="slide-title">The everyday movements</h2></div><div class="slide-meta">Function</div></header>
+<div class="slide-body"><div class="slide-content"><ul><li><strong>Flexion and extension</strong>: decreasing or increasing the angle at a joint, like bending and straightening the elbow.</li><li><strong>Abduction and adduction</strong>: moving a limb away from, or back toward, the body's midline.</li><li><strong>Rotation</strong>: turning a bone around its own axis, like turning your head.</li><li><strong>Circumduction</strong>: moving a limb in a cone shape, like drawing a big circle with your arm.</li></ul></div></div></section>
+
+<section class="slide divider" aria-label="Part 5 divider"><div class="slide-body"><div class="divhero"><p class="dn">Part 5</p><h2>Physiology: Why It Matters</h2><p>Joints have to balance movement against stability, and keep their own cartilage alive without a blood supply.</p></div></div></section>
+
+<section class="slide " aria-label="Synovial fluid function">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 5 · Lubrication</p><h2 class="slide-title">Oil and nutrition in one fluid</h2></div><div class="slide-meta">Physiology</div></header>
+<div class="slide-body"><div class="split"><div class="slide-content"><ul><li><strong>Synovial fluid</strong> works like oil in a hinge, cutting friction so cartilage surfaces glide instead of grind.</li><li>Cartilage has <strong>no blood supply</strong>, so it depends on this fluid to deliver nutrients and carry away waste.</li><li>Movement <strong>squeezes the fluid in and out</strong> of the cartilage, which is one reason gentle activity keeps joints healthy.</li></ul></div><div class="figcol"><svg class="diagram" viewBox="0 0 380 262" role="img" aria-labelledby="sfT sfD" xmlns="http://www.w3.org/2000/svg"><title id="sfT">The synovial fluid cycle</title><desc id="sfD">As the joint moves, cartilage is squeezed, pushing out old fluid and waste; when the joint rests, fresh fluid soaks back in and brings nutrients. The loop repeats with movement.</desc><style>.tx{fill:#0B1530;font:600 12.5px -apple-system,system-ui,Arial,sans-serif}.bx{fill:#fff;stroke:#0B1530;stroke-width:1.4}</style><defs><marker id="ahSf" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#8B3A2E"/></marker></defs><rect class="bx" x="14" y="34" width="160" height="64" rx="9" stroke="#C9A14A" stroke-width="2.2"/><text class="tx" x="94" y="70" text-anchor="middle">Joint moves</text><rect class="bx" x="206" y="34" width="160" height="64" rx="9"/><text class="tx" x="286" y="70" text-anchor="middle">Cartilage is squeezed</text><rect class="bx" x="206" y="168" width="160" height="64" rx="9"/><text class="tx" x="286" y="194" text-anchor="middle">Old fluid and waste</text><text class="tx" x="286" y="212" text-anchor="middle">pushed out</text><rect class="bx" x="14" y="168" width="160" height="64" rx="9"/><text class="tx" x="94" y="194" text-anchor="middle">Fresh fluid soaks in</text><text class="tx" x="94" y="212" text-anchor="middle">(brings nutrients)</text><line x1="174" y1="66" x2="204" y2="66" stroke="#8B3A2E" stroke-width="2" marker-end="url(#ahSf)"/><line x1="286" y1="100" x2="286" y2="166" stroke="#8B3A2E" stroke-width="2" marker-end="url(#ahSf)"/><line x1="206" y1="200" x2="176" y2="200" stroke="#8B3A2E" stroke-width="2" marker-end="url(#ahSf)"/><line x1="94" y1="166" x2="94" y2="100" stroke="#8B3A2E" stroke-width="2" marker-end="url(#ahSf)"/></svg><p class="figcap"><strong>Figure 4.</strong> Movement keeps cartilage fed: a repeating squeeze-and-soak cycle. <span style="opacity:.75">Diagram: Dr. Sharilyn Rennie.</span></p></div></div></div></section>
+
+<section class="slide " aria-label="Stability versus mobility">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 5 · Trade-off</p><h2 class="slide-title">Stability vs. mobility</h2></div><div class="slide-meta">Physiology</div></header>
+<div class="slide-body"><div class="split"><div class="slide-content"><ul><li>The shoulder is a ball-and-socket joint with a shallow socket, so it moves freely but <strong>dislocates easily</strong>.</li><li>The hip is also ball-and-socket but has a <strong>deep socket</strong>, so it is far more stable and harder to dislocate.</li><li>Ligaments, muscle tone, and joint shape together set each joint's <strong>range of motion</strong>.</li></ul></div><div class="figcol"><svg class="diagram" viewBox="0 0 460 158" role="img" aria-labelledby="stT stD" xmlns="http://www.w3.org/2000/svg"><title id="stT">Stability versus mobility at the socket</title><desc id="stD">A shallow socket like the shoulder allows a wide range of motion but dislocates more easily. A deep socket like the hip is very stable but moves less.</desc><style>.h{font:700 12.5px -apple-system,system-ui,Arial,sans-serif}.l{fill:#0B1530;font:600 12px -apple-system,system-ui,Arial,sans-serif}</style><rect x="10" y="8" width="210" height="142" rx="10" fill="#fff" stroke="#0B1530" stroke-width="1.2"/><rect x="10" y="8" width="210" height="30" rx="10" fill="#C9A14A"/><text class="h" x="115" y="28" text-anchor="middle" fill="#0B1530">SHALLOW (SHOULDER)</text><circle cx="30" cy="66" r="3" fill="#8B3A2E"/><text class="l" x="42" y="70">Wide range of motion</text><circle cx="30" cy="100" r="3" fill="#8B3A2E"/><text class="l" x="42" y="104">Dislocates more easily</text><rect x="240" y="8" width="210" height="142" rx="10" fill="#fff" stroke="#0B1530" stroke-width="1.2"/><rect x="240" y="8" width="210" height="30" rx="10" fill="#0B1530"/><text class="h" x="345" y="28" text-anchor="middle" fill="#fff">DEEP (HIP)</text><circle cx="260" cy="66" r="3" fill="#8B3A2E"/><text class="l" x="272" y="70">Very stable</text><circle cx="260" cy="100" r="3" fill="#8B3A2E"/><text class="l" x="272" y="104">Hard to dislocate</text></svg><p class="figcap"><strong>Figure 5.</strong> Socket depth trades mobility for stability. <span style="opacity:.75">Diagram: Dr. Sharilyn Rennie.</span></p></div></div></div></section>
+
+<section class="slide " aria-label="Common clinical connections">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Part 5 · In the clinic</p><h2 class="slide-title">When joints wear or fail</h2></div><div class="slide-meta">Clinical</div></header>
+<div class="slide-body"><div class="slide-content"><ul><li><strong>Osteoarthritis</strong>: articular cartilage wears down over time, so bones rub and the joint becomes stiff and painful.</li><li><strong>Rheumatoid arthritis</strong>: the immune system attacks the joint lining, causing swelling and damage.</li><li><strong>Sprain</strong>: an overstretched or torn ligament, common at the ankle.</li><li><strong>Dislocation</strong>: bones forced out of their normal position at a joint, most often the shoulder.</li></ul></div></div></section>
+
+<section class="slide " aria-label="Key takeaways">
+<header class="slide-header"><div class="slide-num"></div><div><p class="slide-eyebrow">Wrap-up</p><h2 class="slide-title">Key takeaways</h2></div><div class="slide-meta">Summary</div></header>
+<div class="slide-body"><div class="slide-content"><ul><li>A <strong>joint</strong> is where two bones meet; more movement usually means less stability.</li><li>By structure, joints are <strong>fibrous</strong> (immovable), <strong>cartilaginous</strong> (slightly movable), or <strong>synovial</strong> (freely movable).</li><li><strong>Synovial joints</strong> share articular cartilage, a capsule, synovial fluid, and ligaments, and come in six shapes.</li><li>Joints produce named <strong>movements</strong>: flexion/extension, abduction/adduction, rotation, and circumduction.</li><li>Physiology: <strong>synovial fluid lubricates and feeds cartilage</strong>, joint design balances <strong>stability against mobility</strong>, and wear or injury leads to <strong>arthritis, sprains, and dislocations</strong>.</li></ul></div></div></section>
+
+</main>
+<p class="foot">Dr. Sharilyn Rennie · Human Anatomy &amp; Physiology (non-majors) · Joints &amp; Movement. Note: the photo figures load from an online image library, so you need an internet connection to see them; the diagrams work offline. Need a PDF? Use Print / Save PDF above, or download the accessible PDF from Canvas.</p>
+<div class="present-bar"><button type="button" class="prev" aria-label="Previous slide">&#8249;</button><span class="count" id="presentCount">1 / 1</span><button type="button" class="next" aria-label="Next slide">&#8250;</button><button type="button" class="exit">Exit</button></div>
+<script>
+(function(){document.querySelectorAll('.deck .slide').forEach(function(s,i){var n=s.querySelector('.slide-num');if(n)n.textContent=(i<10?'0':'')+i;});})();
+(function(){var pr=document.getElementById('printBtn');if(pr)pr.addEventListener('click',function(){window.print();});})();
+(function(){var slides=[].slice.call(document.querySelectorAll('.deck .slide'));if(!slides.length)return;var idx=0,on=false;var bar=document.querySelector('.present-bar'),countEl=document.getElementById('presentCount');var prev=bar.querySelector('.prev'),next=bar.querySelector('.next'),exitB=bar.querySelector('.exit');
+function show(i){idx=Math.max(0,Math.min(slides.length-1,i));slides.forEach(function(s,k){s.classList.toggle('is-current',k===idx);});countEl.textContent=(idx+1)+' / '+slides.length;prev.disabled=idx===0;next.disabled=idx===slides.length-1;}
+function enter(i){on=true;document.body.classList.add('present');show(i||0);if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen().catch(function(){});}
+function exit(){on=false;document.body.classList.remove('present');slides.forEach(function(s){s.classList.remove('is-current');});if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen().catch(function(){});}
+var pb=document.getElementById('presentBtn');if(pb)pb.addEventListener('click',function(){enter(0);});
+prev.addEventListener('click',function(){show(idx-1);});next.addEventListener('click',function(){show(idx+1);});exitB.addEventListener('click',exit);
+document.addEventListener('keydown',function(e){if(!on)return;if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();show(idx+1);}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(idx-1);}else if(e.key==='Escape'){exit();}});
+document.addEventListener('fullscreenchange',function(){if(!document.fullscreenElement&&on)exit();});
+})();
+</script>
+<div class="lightbox" id="lightbox" hidden><img class="lb-img" src="" alt=""><button type="button" class="lb-close" aria-label="Close enlarged image">&times;</button></div>
+<script>
+(function(){var lb=document.getElementById('lightbox');if(!lb)return;var img=lb.querySelector('.lb-img');var cb=lb.querySelector('.lb-close');
+document.querySelectorAll('.slidefig').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();img.src=el.currentSrc||el.src;img.alt=el.alt||'';lb.hidden=false;});});
+function close(){lb.hidden=true;img.removeAttribute('src');}
+lb.addEventListener('click',function(e){if(e.target!==img)close();});
+cb.addEventListener('click',function(e){e.stopPropagation();close();});
+document.addEventListener('keydown',function(e){if(!lb.hidden&&e.key==='Escape')close();});})();
+</script>
+<script>(function(){var b=document.getElementById("backBtn");if(!b)return;if(document.referrer||window.history.length>1){b.hidden=false;}b.addEventListener("click",function(){if(history.length>1)history.back();else if(document.referrer)location.href=document.referrer;});})();</script>
+<script>
+/* iframe height-sender: posts this page's height to a parent frame (Kajabi/embed-ready) */
+(function(){function send(){try{var h=document.documentElement.scrollHeight;parent.postMessage({type:"setHeight",id:"joints-nonmajors",height:h},"*");}catch(e){}}
+window.addEventListener("load",send);window.addEventListener("resize",send);
+if(window.ResizeObserver){new ResizeObserver(send).observe(document.body);}})();
+</script>
+</body></html>
