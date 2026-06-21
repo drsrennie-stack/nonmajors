@@ -1,1236 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- MCAS_REBRAND_APPLIED v6 -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BIO 304 . Vision . Lab Workbook</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vision &middot; Study Guide &amp; Lab &middot; BIO 304</title>
+<meta name="description" content="Week 5 study guide and anatomy/physiology lab for Vision, BIO 304.">
 <style>
 @import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
-:root{
-  --navy:#1E3D4C; --navy-deep:#142A36; --navy-tint:#EDF1F3;
-  --gold:#B8924A; --gold-deep:#9A7838;
-  --terra:#C2734D; --terra-dark:#A0522D;
-  --white:#FFFFFF; --off-white:#FAFAF9;
-  --gray-line:#CFD6DA; --gray-soft:#5C6970;
-}
+:root{--navy:#0B1530;--navy-deep:#060A18;--rust:#8B3A2E;--rust-hover:#A0452F;--gold:#C9A14A;--cream:#F5F1E8;--line:rgba(11,21,48,.18);--soft:rgba(11,21,48,.72)}
 *{box-sizing:border-box}
-body{margin:0;font-family:'Lora',Georgia,serif;color:var(--navy);background:var(--off-white);line-height:1.55}
-.skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:10px 16px;z-index:100;text-decoration:none;font-weight:600;border-radius:0 0 6px 0}
-.skip-link:focus{left:0}
-:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-header{background:var(--white);border-bottom:1px solid var(--gray-line);padding:24px 32px}
-.eyebrow{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 4px}
-h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:clamp(22px,3vw,32px);color:var(--navy);margin:0 0 4px;letter-spacing:-.01em}
-.subhead{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--terra-dark);margin:0 0 8px}
-.usage{font-style:italic;color:var(--gray-soft);font-size:14px;margin:6px 0 0}
-main{max-width:880px;margin:0 auto;padding:24px}
-.card{background:var(--white);border:1px solid var(--gray-line);border-radius:10px;padding:22px 24px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:18px}
-.section-band{margin:24px 0 8px;padding:14px 18px;border-radius:8px;background:var(--white);border:1px solid var(--gray-line)}
-.section-band.anatomy{border-left:6px solid var(--terra-dark)}
-.section-band.physiology{border-left:6px solid var(--gold)}
-.section-band p.tag{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 4px;color:var(--terra-dark)}
-.section-band.physiology p.tag{color:var(--gold-deep)}
-.section-band h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;color:var(--navy);font-size:22px;margin:0;letter-spacing:-.01em}
-h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--terra-dark);font-size:18px;margin:0 0 10px}
-h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:15px;margin:14px 0 6px}
-.draw-box{background:var(--white);border:2px dashed var(--navy);border-radius:8px;padding:18px;margin:10px 0 8px;display:flex;flex-direction:column;justify-content:flex-end}
-.draw-box .draw-caption{font-family:'DM Sans',system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-soft);text-align:center;margin-top:auto}
-.draw-instructions{background:var(--navy-tint);border-radius:6px;padding:14px 18px;margin:0 0 10px}
-.draw-instructions h3{margin-top:0}
-.draw-instructions ol{margin:6px 0 0;padding-left:22px}
-.draw-instructions li{margin:6px 0}
-ol.structure-list{font-family:'Lora',Georgia,serif;font-size:15px;line-height:1.9;padding-left:24px;columns:2;column-gap:28px}
-ol.structure-list li{padding:4px 0;border-bottom:1px dotted var(--gray-line);break-inside:avoid}
-ol.structure-list li:last-child{border-bottom:none}
-.activity-prompt{margin:0 0 10px}
-.write-lines{margin:8px 0 0;padding:0;list-style:none}
-.write-lines li{border-bottom:1px solid var(--gray-line);min-height:34px;padding:4px 0 0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;color:var(--gray-soft)}
-.write-lines li:last-child{margin-bottom:0}
-.write-lines li::before{content:attr(data-num) ".";font-weight:700;color:var(--navy);margin-right:8px}
-.scrambled-list{background:var(--navy-tint);border-radius:6px;padding:12px 18px 12px 36px;margin:6px 0 14px}
-.scrambled-list li{margin:6px 0}
-.synthesis-q{border-left:3px solid var(--terra-dark);padding:6px 14px;margin:14px 0}
-.synthesis-q strong{display:block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--navy);margin-bottom:6px}
-.answer-space{border-bottom:1px solid var(--gray-line);min-height:30px;margin-top:6px}
-.answer-space + .answer-space{margin-top:24px}
-table.physio-table{width:100%;border-collapse:collapse;margin:8px 0 12px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px}
-table.physio-table th,table.physio-table td{border:1px solid var(--gray-line);padding:10px 8px;vertical-align:top;text-align:left}
-table.physio-table th{background:var(--navy-tint);color:var(--navy);font-weight:700}
-table.physio-table td{height:48px}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
-.btn{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:600;font-size:14px;padding:10px 18px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block}
-.btn-primary{background:var(--navy);color:var(--white);border-color:var(--navy)}
+body{margin:0;background:#FFFFFF;color:var(--navy);font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,-apple-system,sans-serif;line-height:1.6}
+a{color:var(--rust)}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:12px;top:12px;background:var(--navy);color:#fff;padding:10px 14px;border-radius:6px;z-index:60}
+.pad{padding-left:max(40px,5vw);padding-right:max(40px,5vw)}
+:focus-visible{outline:3px solid var(--rust);outline-offset:3px;border-radius:4px}
+.site-header{background:#FFFFFF;padding:18px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-bottom:.5px solid rgba(11,21,48,.10)}
+.brand{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:var(--navy)}
+.brand svg{height:42px;width:auto;display:block}
+.brand-title{font-size:18px;font-weight:800;letter-spacing:-.015em;line-height:1}
+.brand-title .accent{color:var(--rust)}
+.brand-sub{font-size:9.5px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.72;display:block;margin-top:3px}
+.back{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--rust);text-decoration:none;padding:8px 14px;border:1px solid var(--rust);border-radius:4px}
+.back:hover,.back:focus-visible{background:var(--rust);color:#fff}
+.intro{padding-top:34px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--rust);margin:0 0 12px}
+h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.025em;line-height:1.08;margin:0 0 10px}
+h1 .accent{color:var(--rust)}
+.lead{font-size:16px;opacity:.84;max-width:680px;margin:0}
+main{max-width:920px;margin:0 auto}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 8px}
+.btn{font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:12px 20px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block}
+.btn-primary{background:var(--navy);color:#fff;border-color:var(--navy)}
 .btn-primary:hover{background:var(--navy-deep)}
-.btn-ghost{background:transparent;color:var(--navy);border-color:var(--gray-line)}
-.btn-ghost:hover{background:var(--navy-tint);border-color:var(--navy)}
-footer{text-align:center;color:var(--gray-soft);padding:20px;font-style:italic;font-size:13px}
-@media print{
-  body{background:white;color:black}
-  .no-print{display:none!important}
-  .card{box-shadow:none;border-color:#888;page-break-inside:avoid}
-  header{border-bottom:2px solid #333}
-  .draw-box{border-color:#333;background:#fff}
-  h1,h2,h3{color:black}
-  .scrambled-list{background:#f5f5f5;border:1px solid #999}
-  .draw-instructions{background:#f5f5f5;border:1px solid #999}
-  ol.structure-list{columns:2}
-}
-
-/* ============================================================
-   MCAS REBRAND OVERRIDES — appended by rebrand-mcas.py
-   These rules win the cascade so the underlying page styling
-   does not need to change. JS logic (video gating, spaced recall)
-   is untouched.
-   ============================================================ */
-:root {
-  /* New MCAS tokens for any rule that wants them */
-  --mcas-navy:  #0B1530;
-  --mcas-rust:  #8B3A2E;
-  --mcas-gold:  #C9A14A;
-  --mcas-cream: #F5F1E8;
-  --mcas-dark:  #060A18;
-  /* Remap legacy PRIMARY palette tokens (syllabus, schedule, etc.)
-     so every rule that references them switches to MCAS values
-     automatically. No rule-by-rule rewriting needed. */
-  --navy: #0B1530;
-  --navy-deep: #060A18;
-  --navy-tint: #F5F1E8;
-  --gold: #C9A14A;
-  --gold-deep: #B08B3A;
-  --terra: #8B3A2E;
-  --terra-dark: #8B3A2E;
-  /* Sage is banned. Remap any sage tokens to MCAS gold so legacy
-     sage rules render as gold accents on dark sections. */
-  --sage-dark: #C9A14A;
-  --sage-deeper: #B08B3A;
-  --white: #FFFFFF;
-  --off-white: #FFFFFF;
-  --gray-line: rgba(11, 21, 48, 0.18);
-  --gray-soft: rgba(11, 21, 48, 0.72);
-}
-html, body.mcas-page {
-  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
-  background: #FFFFFF !important;
-  color: var(--mcas-navy) !important;
-}
-/* Force Plus Jakarta Sans across EVERY element except code/monospace.
-   This kills Lora, DM Sans, Cormorant Garamond, Georgia, and any other
-   stray font-family declarations on child elements that were winning
-   the specificity fight against the body rule. */
-body.mcas-page,
-body.mcas-page *:not(code):not(pre):not(kbd):not(samp):not(tt) {
-  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
-}
-body.mcas-page h1, body.mcas-page h2, body.mcas-page h3,
-body.mcas-page h4, body.mcas-page h5, body.mcas-page h6 {
-  color: var(--mcas-navy) !important;
-  letter-spacing: -0.015em;
-}
-body.mcas-page a { color: var(--mcas-rust); }
-body.mcas-page a:hover { color: #A0452F; }
-body.mcas-page a:focus-visible {
-  outline: 3px solid var(--mcas-rust);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* ----- NO BOOKENDS RULE -----
-   Strip section-edge bookend borders from header.page-head, section.band,
-   nav.toc, .banner, .page-head, the syllabus's section blocks, etc.
-   Cards (.card, [class*="-card"], details, table, button) keep their
-   functional outlines. Sections rely on background contrast and hover
-   lifts for differentiation. */
-body.mcas-page header.page-head,
-body.mcas-page .banner,
-body.mcas-page .page-head,
-body.mcas-page section.band,
-body.mcas-page nav.toc,
-body.mcas-page .footer-section,
-body.mcas-page .footer-top {
-  border-top: none !important;
-  border-bottom: none !important;
-}
-/* Hover lift utility — ONLY on elements that are actually clickable
-   (an anchor) or interactive (FAQ summary). Read-only info elements
-   like .glance-item never lift. */
-body.mcas-page a[class*="-card"],
-body.mcas-page a[class*="-tile"],
-body.mcas-page a.resource-tile,
-body.mcas-page details.faq-item {
-  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
-}
-body.mcas-page a[class*="-card"]:hover,
-body.mcas-page a[class*="-tile"]:hover,
-body.mcas-page a.resource-tile:hover,
-body.mcas-page details.faq-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(11, 21, 48, 0.10);
-}
-
-/* Responsive: stack each day-tile pill button on its own line below 900px.
-   This covers phones AND tablets, so each Pre-work / SR / Lab workbook /
-   Daily Review / Discussion button sits on its own row, full-width,
-   with a comfortable 44px tap target. Above 900px the original inline
-   layout shows. */
-@media (max-width: 900px) {
-  body.mcas-page .day-tile a.day-pill,
-  body.mcas-page a.day-pill {
-    display: flex !important;
-    width: 100% !important;
-    justify-content: center !important;
-    align-items: center !important;
-    margin: 8px 0 !important;
-    padding: 12px 18px !important;
-    min-height: 44px !important;
-    box-sizing: border-box !important;
-  }
-  body.mcas-page .day-tile {
-    padding: 14px !important;
-  }
-}
-
-/* Course-at-a-Glance (syllabus Section 2 / schedule overview) — one info
-   panel, not eight clickable-looking cards. Forces white background,
-   thin shadow, and strips the individual card styling from inner items. */
-body.mcas-page .glance {
-  background: #FFFFFF !important;
-  border: none !important;
-  border-radius: 10px !important;
-  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.08) !important;
-  padding: 30px 34px !important;
-  display: grid !important;
-  gap: 24px 36px !important;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
-}
-body.mcas-page .glance-item {
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  transform: none !important;
-  cursor: default !important;
-}
-body.mcas-page .glance-item:hover {
-  transform: none !important;
-  box-shadow: none !important;
-}
-
-/* MCAS chrome (site header + footer) — scoped so it never collides
-   with existing IDs/classes on the page */
-.mcas-chrome,
-.mcas-chrome * { box-sizing: border-box; }
-.mcas-header {
-  /* No bookend border per MCAS rule — separation via background contrast */
-  background: #FFFFFF;
-  padding: 24px max(40px, 5vw);
-  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
-}
-.mcas-header-row {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 16px; flex-wrap: wrap;
-}
-.mcas-brand { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; color: var(--mcas-navy); }
-.mcas-brand svg { height: 44px; width: auto; display: block; }
-.mcas-brand-title { font-size: 18px; font-weight: 800; line-height: 1; letter-spacing: -0.015em; }
-.mcas-brand-title .accent { color: var(--mcas-rust); }
-.mcas-brand-sub {
-  font-size: 9.5px; font-weight: 700; letter-spacing: 0.20em;
-  text-transform: uppercase; color: var(--mcas-navy); opacity: 0.72;
-  display: block; margin-top: 3px;
-}
-.mcas-back {
-  font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--mcas-rust);
-  text-decoration: none; padding: 8px 14px; border: 1px solid var(--mcas-rust);
-  border-radius: 4px;
-}
-.mcas-back:hover, .mcas-back:focus-visible {
-  background: var(--mcas-rust); color: #FFFFFF;
-}
-/* Thin back-link strip — used when the page already has its own brand */
-.mcas-backlink-strip {
-  background: #FFFFFF;
-  padding: 14px max(40px, 5vw);
-  display: flex; justify-content: flex-start; align-items: center;
-}
-.mcas-footer {
-  /* No bookend border — dark background is the separator */
-  background: var(--mcas-dark);
-  color: var(--mcas-cream);
-  padding: 40px max(40px, 5vw) 28px;
-  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
-  margin-top: 56px;
-}
-/* No italics anywhere in the footer area (page chrome or MCAS chrome).
-   The underlying page styles set Lora italic on .foot and footer text;
-   the MCAS chrome should read as clean upright. */
-body.mcas-page footer,
-body.mcas-page footer *,
-body.mcas-page .mcas-footer,
-body.mcas-page .mcas-footer *,
-body.mcas-page .foot,
-body.mcas-page .foot * {
-  font-style: normal !important;
-}
-
-/* Hide the legacy workbook aside on spoke pages — Step 1 of the step
-   tracker covers it. Keep the markup in DOM so the tracker JS can still
-   read the workbook URL from it. */
-body.mcas-page aside.mcas-next-up {
-  display: none !important;
-}
-
-/* Footer link color — bumped to body-scoped selector so it wins
-   specificity against body.mcas-page a (which was forcing rust on dark
-   navy and failing WCAG contrast). White on the near-black footer
-   passes AAA; gold on hover gives brand pop. */
-body.mcas-page .mcas-footer a,
-.mcas-footer a {
-  color: #FFFFFF !important;
-  text-decoration: none;
-  opacity: 0.92;
-}
-body.mcas-page .mcas-footer a:hover,
-body.mcas-page .mcas-footer a:focus-visible,
-.mcas-footer a:hover,
-.mcas-footer a:focus-visible {
-  color: var(--mcas-gold) !important;
-  opacity: 1;
-  text-decoration: underline;
-}
-body.mcas-page .mcas-footer a:focus-visible,
-.mcas-footer a:focus-visible {
-  outline: 3px solid var(--mcas-gold);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-.mcas-footer-row {
-  /* No bookend border — extra padding-top supplies the separation */
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 16px; flex-wrap: wrap; padding-top: 32px; margin-top: 24px;
-}
-.mcas-footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
-.mcas-footer-link { font-size: 12.5px; font-weight: 500; letter-spacing: 0.02em; }
-.mcas-footer-copyright {
-  font-size: 11px; opacity: 0.72; letter-spacing: 0.03em;
-}
-.mcas-footer-byline {
-  font-size: 11px; font-weight: 700; color: var(--mcas-gold);
-  letter-spacing: 0.16em; text-transform: uppercase;
-}
-.mcas-skip {
-  position: absolute; top: -100px; left: 8px;
-  background: var(--mcas-navy); color: var(--mcas-cream);
-  padding: 12px 20px; text-decoration: none;
-  font-size: 13px; font-weight: 700;
-  border-radius: 4px; z-index: 9999; letter-spacing: 0.04em;
-}
-.mcas-skip:focus { top: 8px; }
-@media (prefers-reduced-motion: reduce) {
-  .mcas-chrome *, .mcas-chrome { transition: none !important; animation: none !important; }
-}
-
-/* ----- Primary CTA button (.btn-gold) — accessibility fix -----
-   The underlying page styled .btn-gold as navy bg + white text, but the
-   body.mcas-page anchor color rule (rust on a) won the cascade and gave
-   us rust text on dark navy — fails WCAG contrast. Override: dark terra
-   cotta background (brand rust) with white text. Hover deepens to
-   rust-dark per the MCAS spec.
-*/
-body.mcas-page a.btn-gold,
-body.mcas-page .btn-gold {
-  background: var(--mcas-rust) !important;
-  color: #FFFFFF !important;
-  border: 2px solid var(--mcas-rust) !important;
-}
-body.mcas-page a.btn-gold:hover,
-body.mcas-page a.btn-gold:focus-visible,
-body.mcas-page .btn-gold:hover,
-body.mcas-page .btn-gold:focus-visible {
-  background: #A0452F !important;
-  color: #FFFFFF !important;
-  border-color: #A0452F !important;
-}
-
-/* ----- Pre-work ↔ Workbook wiring asides -----
-   .mcas-next-up        appears on a pre-work topic spoke, points forward
-                        to the Day-N lab workbook.
-   .mcas-prework-link   appears on a Day-N workbook, points back to its
-                        pre-work topic spoke.
-   Same visual: white card, thin shadow, gold accent line on the left,
-   no hover-lift (these are read-then-click affordances, not browsing tiles).
-*/
-body.mcas-page .mcas-next-up,
-body.mcas-page .mcas-prework-link {
-  background: #FFFFFF;
-  border: none;
-  border-left: 4px solid var(--mcas-gold);
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.08);
-  padding: 20px 24px;
-  margin: 28px 0;
-  display: block;
-}
-body.mcas-page .mcas-next-up-eyebrow,
-body.mcas-page .mcas-prework-link-eyebrow {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--mcas-rust);
-  margin: 0 0 6px 0;
-}
-body.mcas-page a.mcas-next-up-cta,
-body.mcas-page a.mcas-prework-link-cta {
-  display: inline-block;
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--mcas-navy);
-  text-decoration: none;
-  line-height: 1.35;
-}
-body.mcas-page a.mcas-next-up-cta:hover,
-body.mcas-page a.mcas-prework-link-cta:hover,
-body.mcas-page a.mcas-next-up-cta:focus-visible,
-body.mcas-page a.mcas-prework-link-cta:focus-visible {
-  color: var(--mcas-rust);
-  text-decoration: underline;
-}
-body.mcas-page a.mcas-next-up-cta:focus-visible,
-body.mcas-page a.mcas-prework-link-cta:focus-visible {
-  outline: 3px solid var(--mcas-rust);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* ----- Step tracker (on spoke pages, at the top) -----
-   Four-step pre-work flow visualized as horizontal cards:
-     1. Print workbook   2. Watch video   3. Retrieval check   4. Open spaced recall
-   The "current" step renders in dark navy with white text; completed
-   steps render in white with a checkmark; future steps are muted but
-   still clickable. State is read from three localStorage flags
-   (bio304-workbook-{id}, bio304-video-{id}, bio304-gate-{id}) plus the
-   spoke→spaced-recall URL for step 4. */
-body.mcas-page .mcas-step-tracker {
-  margin: 14px 0 28px;
-}
-body.mcas-page .mcas-steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-body.mcas-page .mcas-step {
-  display: flex;
-  min-height: 100%;
-}
-body.mcas-page a.mcas-step-btn,
-body.mcas-page button.mcas-step-btn {
-  appearance: none;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  width: 100%;
-  padding: 16px 16px 14px;
-  border-radius: 10px;
-  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 14px;
-  cursor: pointer;
-  text-decoration: none;
-  border: 1.5px solid;
-  transition: background 200ms ease, color 200ms ease, border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
-  position: relative;
-}
-body.mcas-page .mcas-step.is-pending a.mcas-step-btn,
-body.mcas-page .mcas-step.is-pending button.mcas-step-btn {
-  background: #FFFFFF;
-  color: rgba(11, 21, 48, 0.55);
-  border-color: rgba(11, 21, 48, 0.16);
-}
-body.mcas-page .mcas-step.is-pending a.mcas-step-btn:hover,
-body.mcas-page .mcas-step.is-pending button.mcas-step-btn:hover,
-body.mcas-page .mcas-step.is-pending a.mcas-step-btn:focus-visible,
-body.mcas-page .mcas-step.is-pending button.mcas-step-btn:focus-visible {
-  color: var(--mcas-navy);
-  border-color: rgba(11, 21, 48, 0.45);
-  transform: translateY(-1px);
-  outline: none;
-}
-body.mcas-page .mcas-step.is-active a.mcas-step-btn,
-body.mcas-page .mcas-step.is-active button.mcas-step-btn {
-  background: var(--mcas-navy);
-  color: #FFFFFF;
-  border-color: var(--mcas-navy);
-  box-shadow: 0 6px 18px rgba(11, 21, 48, 0.18);
-}
-body.mcas-page .mcas-step.is-active a.mcas-step-btn:hover,
-body.mcas-page .mcas-step.is-active button.mcas-step-btn:hover,
-body.mcas-page .mcas-step.is-active a.mcas-step-btn:focus-visible,
-body.mcas-page .mcas-step.is-active button.mcas-step-btn:focus-visible {
-  background: var(--mcas-dark);
-  border-color: var(--mcas-dark);
-  transform: translateY(-1px);
-  outline: 3px solid var(--mcas-gold);
-  outline-offset: 2px;
-}
-body.mcas-page .mcas-step.is-completed a.mcas-step-btn,
-body.mcas-page .mcas-step.is-completed button.mcas-step-btn {
-  background: #FFFFFF;
-  color: var(--mcas-navy);
-  border-color: rgba(11, 21, 48, 0.16);
-}
-body.mcas-page .mcas-step.is-completed a.mcas-step-btn:hover,
-body.mcas-page .mcas-step.is-completed button.mcas-step-btn:hover {
-  border-color: rgba(11, 21, 48, 0.45);
-}
-body.mcas-page .mcas-step.is-completed .mcas-step-btn::after {
-  content: "¹3";
-  position: absolute;
-  top: 12px;
-  right: 14px;
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--mcas-rust);
-}
-body.mcas-page .mcas-step-num {
-  font-family: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  opacity: 0.78;
-  margin-bottom: 6px;
-}
-body.mcas-page .mcas-step.is-active .mcas-step-num {
-  color: var(--mcas-gold);
-  opacity: 1;
-}
-body.mcas-page .mcas-step-label {
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.3;
-}
-body.mcas-page .mcas-step-state {
-  margin-top: 8px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.85;
-  min-height: 1.2em;
-}
-body.mcas-page .mcas-step.is-active .mcas-step-state {
-  color: var(--mcas-gold);
-}
-
-/* Step 1 skip affordance: small link under the main button for students
-   who already have the workbook printed or are doing it on paper. */
-body.mcas-page .mcas-step-skip {
-  appearance: none;
-  background: transparent;
-  border: none;
-  margin: 6px 0 0 4px;
-  padding: 4px 0;
-  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--mcas-rust);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  cursor: pointer;
-  letter-spacing: 0.01em;
-  display: inline-block;
-}
-body.mcas-page .mcas-step-skip:hover,
-body.mcas-page .mcas-step-skip:focus-visible {
-  color: #A0452F;
-  outline: none;
-}
-body.mcas-page .mcas-step-skip[hidden] { display: none; }
-
-/* Persistent reminder banner shown after the student skips Step 1. */
-body.mcas-page .mcas-step-reminder {
-  margin: 12px 0 0;
-  padding: 12px 16px;
-  background: #FFFFFF;
-  border-left: 4px solid var(--mcas-rust);
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
-  font-size: 13.5px;
-  color: var(--mcas-navy);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-}
-body.mcas-page .mcas-step-reminder[hidden] { display: none; }
-body.mcas-page .mcas-step-reminder strong {
-  font-weight: 800;
-  color: var(--mcas-rust);
-  letter-spacing: 0.02em;
-}
-body.mcas-page .mcas-step-reminder-dismiss {
-  appearance: none;
-  background: transparent;
-  border: none;
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--mcas-navy);
-  opacity: 0.6;
-  cursor: pointer;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 4px 8px;
-}
-body.mcas-page .mcas-step-reminder-dismiss:hover,
-body.mcas-page .mcas-step-reminder-dismiss:focus-visible {
-  opacity: 1;
-  outline: none;
-}
-
-@media (max-width: 720px) {
-  body.mcas-page .mcas-steps {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  body.mcas-page .mcas-step-btn { transition: none !important; }
-}
-
-/* ----- Lecture video notes section (on spoke pages, under the video) -----
-   Freeform textarea that autosaves to localStorage keyed by topic ID.
-   Visible in Notes and Study modes; hidden in Quiz mode. Prints cleanly
-   so handwritten or typed notes can be carried out of class.
-*/
-body.mcas-page .mcas-lecture-notes {
-  background: #FFFFFF;
-  border: none;
-  border-left: 4px solid var(--mcas-gold);
-  border-radius: 6px;
-  padding: 22px 24px 18px;
-  margin: 16px 0 24px;
-  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
-}
-body.mcas-page .mcas-lecture-notes-eyebrow {
-  font-family: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--mcas-rust);
-  margin: 0 0 4px;
-}
-body.mcas-page .mcas-lecture-notes h2 {
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--mcas-navy);
-  margin: 0 0 6px;
-  letter-spacing: -0.01em;
-}
-body.mcas-page .mcas-lecture-notes-instr {
-  font-style: italic;
-  font-size: 13.5px;
-  color: var(--mcas-navy);
-  opacity: 0.78;
-  margin: 0 0 10px;
-}
-body.mcas-page #mcas-lecture-notes-input {
-  width: 100%;
-  min-height: 160px;
-  padding: 14px 16px;
-  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 15px;
-  color: var(--mcas-navy);
-  line-height: 1.55;
-  border: 1px solid rgba(11, 21, 48, 0.18);
-  border-radius: 6px;
-  background: #FFFFFF;
-  resize: vertical;
-  box-sizing: border-box;
-}
-body.mcas-page #mcas-lecture-notes-input:focus-visible {
-  outline: 3px solid var(--mcas-rust);
-  outline-offset: 1px;
-  border-color: var(--mcas-navy);
-}
-body.mcas-page .mcas-lecture-notes-status {
-  font-size: 12px;
-  color: var(--mcas-navy);
-  opacity: 0.6;
-  margin: 6px 0 0;
-  min-height: 1.2em;
-}
-/* Hide in quiz mode (consistent with other interactive elements). */
-body.mcas-page.quiz .mcas-lecture-notes { display: none; }
-@media print {
-  body.mcas-page .mcas-lecture-notes {
-    box-shadow: none;
-    border: 1px solid rgba(0,0,0,0.15);
-    page-break-inside: avoid;
-  }
-  body.mcas-page #mcas-lecture-notes-input {
-    border: 1px solid rgba(0,0,0,0.3);
-    background: #FFFFFF;
-    color: #000;
-  }
-}
-
-/* Gated state — workbook aside is locked until the spoke page's retrieval
-   check is passed. The gating JS adds .gate-locked to the CTA when the
-   localStorage flag bio304-gate-{TOPIC_ID} is not yet set. */
-body.mcas-page .mcas-next-up.is-gated {
-  border-left-color: rgba(11, 21, 48, 0.25);
-}
-body.mcas-page a.mcas-next-up-cta.gate-locked {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: auto;
-  color: var(--mcas-navy);
-}
-body.mcas-page a.mcas-next-up-cta.gate-locked:hover,
-body.mcas-page a.mcas-next-up-cta.gate-locked:focus-visible {
-  color: var(--mcas-navy);
-  text-decoration: none;
-}
-body.mcas-page .mcas-next-up-gate-hint {
-  display: block;
-  margin-top: 8px;
-  font-family: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--mcas-rust);
-}
-body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
+.btn-ghost{background:#fff;color:var(--navy);border-color:var(--line)}
+.btn-ghost:hover{background:var(--cream)}
+.band{margin:30px 0 10px;padding:14px 20px;border-radius:8px;background:#fff;border:1px solid var(--line)}
+.band.study{border-left:6px solid var(--gold)}
+.band.anatomy{border-left:6px solid var(--rust)}
+.band.physiology{border-left:6px solid var(--navy)}
+.band .tag{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin:0 0 4px;color:var(--rust)}
+.band.study .tag{color:var(--gold)}
+.band.physiology .tag{color:var(--navy)}
+.band h2{font-size:22px;font-weight:800;letter-spacing:-.01em;margin:0}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px 24px;box-shadow:0 1px 3px rgba(11,21,48,.06);margin:14px 0}
+.card h3{font-size:16px;font-weight:800;color:var(--navy);margin:0 0 8px;letter-spacing:-.01em}
+.card p{margin:0 0 10px}
+.sg-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 28px}
+@media(max-width:680px){.sg-grid{grid-template-columns:1fr}}
+.sg-grid h4{grid-column:1/-1;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--rust);margin:14px 0 4px;border-bottom:1px solid var(--line);padding-bottom:4px}
+.sg{display:flex;gap:10px;align-items:baseline;padding:5px 0;border-bottom:1px dotted var(--line)}
+.sg .t{font-weight:800;font-size:14px;min-width:0}
+.sg .d{font-size:13.5px;opacity:.8;line-height:1.45}
+.fitb-intro{margin:0 0 12px}
+.wordbank{background:var(--cream);border-radius:6px;padding:14px 18px;margin:0 0 16px}
+.wordbank h3{margin:0 0 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--rust)}
+.wordbank .words{display:flex;flex-wrap:wrap;gap:8px 18px;font-weight:700;font-size:14px;color:var(--navy);margin:0}
+ol.cloze{margin:0;padding-left:22px}
+ol.cloze li{margin:0 0 14px;line-height:2.2}
+.blank{display:inline-block;min-width:130px;border-bottom:1.5px solid var(--navy);margin:0 4px}
+ol.vocab{margin:0;padding-left:22px}
+ol.vocab li{margin:0 0 16px}
+.vterm{display:block;font-weight:800;color:var(--navy);margin:0 0 6px;font-size:15.5px}
+.vocab .line{min-height:42px}
+.draw-dir{background:var(--cream);border-radius:6px;padding:14px 18px;margin:0 0 10px}
+.draw-dir h3{margin-top:0}
+.draw-dir ol{margin:6px 0 0;padding-left:20px}
+.draw-dir li{margin:6px 0}
+.draw-box{border:2px dashed var(--navy);border-radius:8px;display:flex;align-items:flex-end;justify-content:center;padding:16px;background:#fff}
+.draw-box .cap{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+ol.labels{font-size:15px;line-height:1.9;padding-left:24px;columns:2;column-gap:28px}
+ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avoid}
+.q{border-left:3px solid var(--rust);padding:6px 14px;margin:14px 0}
+.q strong{display:block;color:var(--navy);margin-bottom:6px}
+.line{border-bottom:1px solid var(--line);min-height:30px}
+.line + .line{margin-top:22px}
+.submit{margin:24px 0 8px;padding:24px 26px;background:var(--navy-deep);border-radius:10px;color:var(--cream);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px}
+.submit .se{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 4px}
+.submit .sh{font-size:17px;font-weight:800;margin:0;line-height:1.3}
+.submit .ss{font-size:13.5px;opacity:.84;margin:6px 0 0}
+.submit a{background:var(--rust);color:#fff;padding:14px 24px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;flex-shrink:0}
+.submit a:hover{background:var(--rust-hover)}
+.site-footer{background:var(--navy-deep);color:var(--cream);padding:34px 0 24px;margin-top:40px}
+.footer-copy{font-size:11.5px;opacity:.72}
+.footer-by{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-top:6px}
+@media print{.no-print{display:none!important}.site-header,.site-footer{background:#fff;color:#000}.card,.band{box-shadow:none;border-color:#999;page-break-inside:avoid}.draw-box{border-color:#333}.submit{background:#fff;color:#000;border:1px solid #999}.submit a{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
-<body class="mcas-page">
-<!-- mcas-chrome-header -->
-<a href="#mcas-content" class="mcas-skip">Skip to main content</a>
-<div class="mcas-chrome">
-<header class="mcas-header">
-  <div class="mcas-header-row">
-    <a class="mcas-brand" href="index.html" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
-      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
-<g transform="translate(0, 18)">
-<g transform="translate(60, 0) rotate(8 0 130)">
-<circle cx="0" cy="20" r="10" fill="#0B1530"/>
-<path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
-</g>
-<g transform="translate(100, 0)">
-<circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
-<path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
-</g>
-<g transform="translate(140, 0) rotate(-8 0 130)">
-<circle cx="0" cy="20" r="10" fill="#C9A14A"/>
-<path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
-</g>
-</g>
-</svg>
-      <span>
-        <span class="mcas-brand-title">Human <span class="accent">A&amp;P</span></span>
-        <span class="mcas-brand-sub">BIO 304 &middot; American River College</span>
-      </span>
-    </a>
-    <a class="mcas-back" href="week05_prework.html" target="_top">&larr; Week 5 pre-work hub</a>
-  </div>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header pad">
+  <a class="brand" href="index.html" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home"><svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false"><g transform="translate(0,18)"><g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/></g><g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g><g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g></g></svg><span><span class="brand-title">Human <span class="accent">A&amp;P</span></span><span class="brand-sub">BIO 304 &middot; American River College</span></span></a>
+  <a class="back" href="week05_prework.html" target="_top">&larr; Week 5 pre-work</a>
 </header>
-</div>
-<main id="mcas-content" class="mcas-content">
-<!-- mcas-chrome-header-end -->
-
-<!-- mcas-workbook-prework-link -->
-<aside class="mcas-prework-link" aria-label="Pre-work for this lab">
-  <p class="mcas-prework-link-eyebrow">Pre-work for Day 19</p>
-  <a class="mcas-prework-link-cta" href="vision.html" target="_top">Vision <span aria-hidden="true">&rarr;</span></a>
-</aside>
-<!-- mcas-workbook-prework-link-end -->
-
-<a href="#main" class="skip-link">Skip to main content</a>
-<header>
-  <p class="eyebrow">BIO 304 . WEEK 5 . THURSDAY . LAB WORKBOOK</p>
+<section class="intro pad">
+  <p class="eyebrow">BIO 304 &middot; Week 5 &middot; Study Guide &amp; Lab</p>
   <h1>Vision</h1>
-  <p class="subhead">The eye, the retina, and how light becomes a neural signal.</p>
-  <p class="usage">Print this page. You will draw your own diagrams from the directions below, then hand-label the structures listed. Drawing by hand is the integrity mechanism for this course.</p>
-</header>
-<main id="main" tabindex="-1">
+  <p class="lead">A study guide and lab in one. Recall the key terms, then complete the Anatomy Lab (draw and label by hand) and the Physiology Lab (reason it through). Hand-drawn, hand-labeled work is the integrity mechanism for this course.</p>
+</section>
+<main id="main" class="pad" tabindex="-1">
   <div class="toolbar no-print">
     <button type="button" class="btn btn-primary" onclick="window.print()">Print this workbook</button>
-    <a class="btn btn-ghost" href="biol304_syllabus.html" target="_top">&larr; Back to syllabus hub</a>
+    <a class="btn btn-ghost" href="vision.html" target="_top">Open the full notes &rarr;</a>
   </div>
-
-  <div class="section-band anatomy">
-    <p class="tag">Part 1 of 2</p>
-    <h2>Anatomy Lab</h2>
-  </div>
-
+  <div class="band study"><p class="tag">Part 1 of 3 &middot; Recall</p><h2>Fill in the blanks</h2></div>
   <article class="card">
-    <h2>1A. What you will draw</h2>
-    <p>Vision starts with light bending through the cornea and lens, and ends with action potentials traveling up the optic nerve. Today you&#x27;ll draw the eye in sagittal section and the retinal layers in close-up.</p>
+    <p class="fitb-intro">Write the term for each definition from memory first, using the word bank. Then check yourself against the <a href="vision.html" target="_top">notes page</a> or the video.</p>
+    <div class="wordbank"><h3>Word bank</h3><p class="words"><span>Vitreous humor</span><span>Fovea centralis</span><span>Near vision</span><span>Distance vision</span><span>Signal path</span><span>Rods</span><span>Aqueous humor</span><span>Iris &amp; pupil</span><span>Lens</span><span>Cones</span><span>Optic disc</span><span>Cornea</span><span>Retina</span><span>Presbyopia</span></p></div>
+    <ol class="cloze">
+      <li><strong>Transparent dome</strong> on the front. Provides about two-thirds of the eye's refractive power. Avascular. <span class="blank"></span></li>
+      <li>Iris muscle controls <strong>pupil diameter</strong>: more light in or less. Sphincter pupillae (parasympathetic) constricts, dilator pupillae (sympathetic) dilates. <span class="blank"></span></li>
+      <li><strong>Adjustable focus</strong> via ciliary muscle. Shape changes for accommodation. <span class="blank"></span></li>
+      <li>Watery fluid in anterior chamber. Produced by ciliary body, drained at the canal of Schlemm. Pressure regulator. <span class="blank"></span></li>
+      <li>Gelatinous fluid in posterior chamber. Maintains eye shape. <span class="blank"></span></li>
+      <li>Posterior neural layer. Contains photoreceptors, bipolar cells, ganglion cells. <span class="blank"></span></li>
+      <li>Cones only. Highest visual acuity. What you focus on lands here. <span class="blank"></span></li>
+      <li>Where axons exit the eye as the optic nerve. No photoreceptors, hence the blind spot. <span class="blank"></span></li>
+      <li>Ciliary muscle <strong>relaxed</strong>. Suspensory ligaments taut. Lens flattens. Light from far objects converges on the retina. <span class="blank"></span></li>
+      <li>Ciliary muscle <strong>contracts</strong>. Suspensory ligaments slacken. Lens rounds up (more refractive power). Light from close objects converges on the retina. <span class="blank"></span></li>
+      <li>Lens stiffens with age and cannot round up. Reading glasses needed. <span class="blank"></span></li>
+      <li>~120 million per eye. Outside the fovea. Rhodopsin. <strong>Sensitive to low light</strong>, no color, low acuity. <span class="blank"></span></li>
+      <li>~6 million per eye. Concentrated at fovea. Three types: S (blue), M (green), L (red). <strong>Color and high acuity</strong>, needs bright light. <span class="blank"></span></li>
+      <li>Photoreceptor &rarr; bipolar cell &rarr; ganglion cell &rarr; optic nerve &rarr; thalamus (LGN) &rarr; primary visual cortex (occipital lobe). <span class="blank"></span></li>
+      </ol>
   </article>
-
-<article class="card">
-  <h2>Box A. Eye in sagittal section</h2>
-  <div class="draw-instructions" role="region" aria-label="Drawing directions for Box A. Eye in sagittal section">
-    <h3>Directions</h3>
-    <ol>
-    <li>Draw an eye in cross-section as viewed from the side. The front of the eye is on the LEFT, the back is on the RIGHT.</li>
-    <li>Draw the cornea (transparent dome at the front).</li>
-    <li>Draw the iris (colored ring) and the pupil (opening in the center). Label both.</li>
-    <li>Draw the lens behind the iris. Show the ciliary body and suspensory ligaments holding the lens.</li>
-    <li>Label the anterior chamber (between cornea and iris, contains aqueous humor) and the posterior chamber.</li>
-    <li>Fill the rest of the eye (the large back portion) with vitreous humor. Label.</li>
-    <li>Line the back of the eye with the retina. Label.</li>
-    <li>Mark the fovea centralis (small pit in the central retina, point of sharpest vision).</li>
-    <li>Show the optic nerve leaving the back of the eye. Label the optic disc (blind spot) where the nerve exits.</li>
-    <li>Wrap the eye with sclera (white outer layer) and choroid (vascular middle layer).</li>
-    </ol>
-  </div>
-  <div class="draw-box" id="draw-panel-a" role="img" aria-label="Blank drawing space for Box A. Eye in sagittal section" style="min-height:460px;">
-    <p class="draw-caption">Draw here. Sketch by hand.</p>
-  </div>
-</article>
-<article class="card">
-  <h2>Box B. Retinal layers (light path)</h2>
-  <div class="draw-instructions" role="region" aria-label="Drawing directions for Box B. Retinal layers (light path)">
-    <h3>Directions</h3>
-    <ol>
-    <li>Draw a horizontal section of retina. The light arrives from the BOTTOM (yes, paradoxically) and the photoreceptors face the TOP (away from the light).</li>
-    <li>Layer 1 (bottom): retinal ganglion cells. Their axons form the optic nerve. Label.</li>
-    <li>Layer 2: bipolar cells.</li>
-    <li>Layer 3 (top): photoreceptors. Draw both rods (long, dim light, peripheral vision) and cones (shorter, bright light, color vision, concentrated at the fovea).</li>
-    <li>Above the photoreceptors, draw the retinal pigment epithelium (RPE, a dark layer that absorbs stray light).</li>
-    <li>Add arrows showing the path of light entering at the bottom and the path of the neural signal going DOWN from photoreceptors to bipolars to ganglion cells.</li>
-    </ol>
-  </div>
-  <div class="draw-box" id="draw-panel-b" role="img" aria-label="Blank drawing space for Box B. Retinal layers (light path)" style="min-height:380px;">
-    <p class="draw-caption">Draw here. Sketch by hand.</p>
-  </div>
-</article>
-
-<article class="card">
-  <h2>1C. Structures to label (20)</h2>
-  <p class="usage">After you finish each drawing, label every structure below directly on your sketch.</p>
-  <ol class="structure-list">
-  <li>Cornea</li>
-  <li>Iris</li>
-  <li>Pupil</li>
-  <li>Lens</li>
-  <li>Ciliary body</li>
-  <li>Suspensory ligaments</li>
-  <li>Aqueous humor</li>
-  <li>Vitreous humor</li>
-  <li>Retina</li>
-  <li>Fovea centralis</li>
-  <li>Optic disc</li>
-  <li>Optic nerve</li>
-  <li>Sclera</li>
-  <li>Choroid</li>
-  <li>Photoreceptor</li>
-  <li>Rod</li>
-  <li>Cone</li>
-  <li>Bipolar cell</li>
-  <li>Retinal ganglion cell</li>
-  <li>Retinal pigment epithelium</li>
-  </ol>
-</article>
-
-  <div class="section-band physiology">
-    <p class="tag">Part 2 of 2</p>
-    <h2>Physiology Lab</h2>
-  </div>
-
-<article class="card"><h2>2A. Trace: from photon to action potential</h2>
-<p class="activity-prompt">List the 7 steps that occur from a photon entering the eye to an action potential traveling up the optic nerve. Be precise about which structures the light passes through and where signal transduction happens.</p>
-<ol class="write-lines">
-  <li data-num="1"></li>
-  <li data-num="2"></li>
-  <li data-num="3"></li>
-  <li data-num="4"></li>
-  <li data-num="5"></li>
-  <li data-num="6"></li>
-  <li data-num="7"></li>
-</ol></article>
-
-<article class="card">
-    <h2>2B. Synthesis questions</h2>
-    <p class="usage">Answer each in 2 to 4 sentences. Use the language from this week's lecture and your drawings as evidence.</p>
-<div class="synthesis-q"><strong>1. A patient with myopia (nearsightedness) has trouble seeing distant objects. Explain the optical defect (eyeball shape or lens shape) and how a corrective lens fixes it.</strong><div class="answer-space"></div><div class="answer-space"></div><div class="answer-space"></div></div>
-<div class="synthesis-q"><strong>2. A patient is diagnosed with macular degeneration (loss of cone-rich foveal retina). Predict which type of vision is lost FIRST (peripheral, central, color, night) and which is preserved longest, with a one-sentence reason.</strong><div class="answer-space"></div><div class="answer-space"></div><div class="answer-space"></div></div>
-<div class="synthesis-q"><strong>3. Why is the optic disc called the blind spot? Predict what happens when an image falls on the optic disc, and explain why we don&#x27;t normally notice this gap in our visual field.</strong><div class="answer-space"></div><div class="answer-space"></div><div class="answer-space"></div></div>
-  </article>
-
   <article class="card">
-    <h2>3. What to submit</h2>
-    <p>Complete <strong>both</strong> the Anatomy Lab (your own drawings, hand-labeled, plus the structures list) and the Physiology Lab (activity and synthesis questions). Photograph or scan every page and upload to Canvas before the deadline listed on the schedule. Hand-drawn, hand-labeled work is the integrity mechanism for this course. Typed or AI-generated diagrams are not accepted.</p>
+    <h3>Define it: high-yield vocabulary</h3>
+    <p>Write a clear definition in your own words for each term. No word bank this time, pull it from memory, then check the notes.</p>
+    <ol class="vocab"><li><span class="vterm">Cornea</span><div class="line"></div></li><li><span class="vterm">Iris &amp; pupil</span><div class="line"></div></li><li><span class="vterm">Lens</span><div class="line"></div></li><li><span class="vterm">Vitreous humor</span><div class="line"></div></li><li><span class="vterm">Retina</span><div class="line"></div></li><li><span class="vterm">Optic disc</span><div class="line"></div></li><li><span class="vterm">Distance vision</span><div class="line"></div></li><li><span class="vterm">Near vision</span><div class="line"></div></li><li><span class="vterm">Rods</span><div class="line"></div></li><li><span class="vterm">Cones</span><div class="line"></div></li></ol>
   </article>
-<aside aria-label="Submit on Canvas" style="margin:24px 0 8px;padding:24px 26px;background:#060A18;border-radius:10px;color:#F5F1E8;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif;">
-  <div style="flex:1 1 280px;min-width:240px;">
-    <p style="margin:0 0 4px;font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C9A14A;">Step 5 . Submit</p>
-    <p style="margin:0;font-size:17px;font-weight:800;color:#F5F1E8;line-height:1.3;">Upload your scanned workbook to Canvas.</p>
-    <p style="margin:6px 0 0;font-size:13.5px;color:#F5F1E8;opacity:.84;line-height:1.5;">Hand-drawn, hand-labeled pages only. Photo or scan, PDF preferred.</p>
+  <div class="band anatomy"><p class="tag">Part 2 of 3 &middot; Anatomy lab</p><h2>Draw and label</h2></div>
+  <article class="card">
+    <h3>Box A. Eye in sagittal section</h3>
+    <div class="draw-dir"><h3>Directions</h3><ol><li>Draw an eye in cross-section as viewed from the side. The front of the eye is on the LEFT, the back is on the RIGHT.</li><li>Draw the cornea (transparent dome at the front).</li><li>Draw the iris (colored ring) and the pupil (opening in the center). Label both.</li><li>Draw the lens behind the iris. Show the ciliary body and suspensory ligaments holding the lens.</li><li>Label the anterior chamber (between cornea and iris, contains aqueous humor) and the posterior chamber.</li><li>Fill the rest of the eye (the large back portion) with vitreous humor. Label.</li><li>Line the back of the eye with the retina. Label.</li><li>Mark the fovea centralis (small pit in the central retina, point of sharpest vision).</li><li>Show the optic nerve leaving the back of the eye. Label the optic disc (blind spot) where the nerve exits.</li><li>Wrap the eye with sclera (white outer layer) and choroid (vascular middle layer).</li></ol></div>
+    <div class="draw-box" role="img" aria-label="Blank drawing space" style="min-height:460px"><span class="cap">Draw here, by hand</span></div>
+  </article>
+  <article class="card">
+    <h3>Box B. Retinal layers (light path)</h3>
+    <div class="draw-dir"><h3>Directions</h3><ol><li>Draw a horizontal section of retina. The light arrives from the BOTTOM (yes, paradoxically) and the photoreceptors face the TOP (away from the light).</li><li>Layer 1 (bottom): retinal ganglion cells. Their axons form the optic nerve. Label.</li><li>Layer 2: bipolar cells.</li><li>Layer 3 (top): photoreceptors. Draw both rods (long, dim light, peripheral vision) and cones (shorter, bright light, color vision, concentrated at the fovea).</li><li>Above the photoreceptors, draw the retinal pigment epithelium (RPE, a dark layer that absorbs stray light).</li><li>Add arrows showing the path of light entering at the bottom and the path of the neural signal going DOWN from photoreceptors to bipolars to ganglion cells.</li></ol></div>
+    <div class="draw-box" role="img" aria-label="Blank drawing space" style="min-height:340px"><span class="cap">Draw here, by hand</span></div>
+  </article>
+  <article class="card"><h3>Structures to label</h3><p>After each drawing, label every structure below directly on your sketch.</p><ol class="labels"><li>Cornea</li><li>Iris</li><li>Pupil</li><li>Lens</li><li>Ciliary body</li><li>Suspensory ligaments</li><li>Aqueous humor</li><li>Vitreous humor</li><li>Retina</li><li>Fovea centralis</li><li>Optic disc</li><li>Optic nerve</li><li>Sclera</li><li>Choroid</li><li>Photoreceptor</li><li>Rod</li><li>Cone</li><li>Bipolar cell</li><li>Retinal ganglion cell</li><li>Retinal pigment epithelium</li></ol></article>
+  <div class="band physiology"><p class="tag">Part 3 of 3 &middot; Physiology lab</p><h2>Reason it through</h2></div>
+  <article class="card">
+    <h3>A. Trace: from photon to action potential</h3>
+    <div class="q"><strong>Explain the main structure-function relationship for this topic.</strong><div class="line"></div></div>
+  </article>
+  <article class="card">
+    <h3>B. Synthesis</h3>
+    <p>Answer each in two to four sentences, using this week's vocabulary and your drawings as evidence.</p>
+    <div class="q"><strong>1. A patient with myopia (nearsightedness) has trouble seeing distant objects. Explain the optical defect (eyeball shape or lens shape) and how a corrective lens fixes it.</strong><div class="line"></div><div class="line"></div></div>
+    <div class="q"><strong>2. A patient is diagnosed with macular degeneration (loss of cone-rich foveal retina). Predict which type of vision is lost FIRST (peripheral, central, color, night) and which is preserved longest, with a one-sentence reason.</strong><div class="line"></div><div class="line"></div></div>
+    <div class="q"><strong>3. Why is the optic disc called the blind spot? Predict what happens when an image falls on the optic disc, and explain why we don&#x27;t normally notice this gap in our visual field.</strong><div class="line"></div><div class="line"></div></div>
+  </article>
+  <div class="submit no-print" aria-label="Submit on Canvas">
+    <div style="flex:1 1 280px;min-width:240px">
+      <p class="se">Submit</p>
+      <p class="sh">Upload your completed workbook to Canvas.</p>
+      <p class="ss">Hand-drawn, hand-labeled pages only. Photo or scan, PDF preferred. Typed or AI-generated diagrams are not accepted.</p>
+    </div>
+    <a href="https://lrccd.instructure.com/courses/317432/assignments/9074949" target="_top" rel="noopener">Submit on Canvas &rarr;</a>
   </div>
-  <a href="https://lrccd.instructure.com/courses/317432/assignments/9074949" target="_top" rel="noopener" style="background:#8B3A2E;color:#FFFFFF;padding:14px 26px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;display:inline-block;flex-shrink:0;">Submit on Canvas &rarr;</a>
-</aside>
 </main>
-<footer><p>Dr. Sharilyn Rennie . BIO 304 Lab Workbook . Day 19 of 32</p></footer>
-<script>
-(function(){
-  if(window.self===window.top)return;
-  function sendHeight(){
-    const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight);
-    try{window.parent.postMessage({type:'iframe-height',id:'bio304-workbook',height:h},'*');}catch(e){}
-  }
-  window.addEventListener('load',sendHeight);
-  window.addEventListener('resize',sendHeight);
-  if(window.ResizeObserver){new ResizeObserver(sendHeight).observe(document.body);}else{setInterval(sendHeight,800);}
-})();
-</script>
-<!-- mcas-chrome-footer -->
-</main>
-<div class="mcas-chrome">
-<footer class="mcas-footer">
-  <div class="mcas-footer-links">
-    <a class="mcas-footer-link" href="index.html" target="_top">Course home</a>
-    <a class="mcas-footer-link" href="biol304_syllabus.html" target="_top">Syllabus</a>
-    <a class="mcas-footer-link" href="course-orientation.html" target="_top">Orientation</a>
-    <a class="mcas-footer-link" href="concept_videos.html" target="_top">Concept videos</a>
-    <a class="mcas-footer-link" href="bio304-spaced-recall-prototype.html" target="_top">Spaced recall</a>
-    <a class="mcas-footer-link" href="biol304_accessibility.html" target="_top">Accessibility</a>
-  </div>
-  <div class="mcas-footer-row">
-    <div class="mcas-footer-copyright">BIO 304 Human Anatomy &amp; Physiology &middot; American River College</div>
-    <div class="mcas-footer-byline">Dr. Sharilyn Rennie</div>
-  </div>
+<footer class="site-footer pad">
+  <p class="footer-copy">BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Summer 2026 &middot; Week 5 Lab Workbook</p>
+  <p class="footer-by">Dr. Sharilyn Rennie</p>
 </footer>
-</div>
-<!-- mcas-chrome-footer-end -->
-<!-- mcas-lecture-notes-injector -->
 <script>
-(function(){
-  function init(){
-    var videoPanel = document.querySelector("#video-panel, .video-panel");
-    if (!videoPanel) return;
-    if (document.getElementById("mcas-lecture-notes-input")) return;
-
-    var cfg = window.SHEET_CONFIG || {};
-    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
-    var topicId = m ? m[1] : null;
-    var keyBase = topicId || (document.title || "page").toLowerCase().replace(/[^a-z0-9]+/g, "-");
-    var key = "bio304-lecture-notes-" + keyBase;
-
-    var section = document.createElement("section");
-    section.className = "mcas-lecture-notes";
-    section.setAttribute("aria-labelledby", "mcas-lecture-notes-h");
-    section.innerHTML =
-      '<p class="mcas-lecture-notes-eyebrow">While you watch</p>' +
-      '<h2 id="mcas-lecture-notes-h">Lecture video notes</h2>' +
-      '<p class="mcas-lecture-notes-instr">A scratchpad for what stands out as the video runs. Your notes save on this device and stay here when you come back.</p>' +
-      '<textarea id="mcas-lecture-notes-input" rows="8" aria-describedby="mcas-lecture-notes-status" placeholder="Type what is clicking for you..."></textarea>' +
-      '<p class="mcas-lecture-notes-status" id="mcas-lecture-notes-status" aria-live="polite"></p>';
-
-    if (videoPanel.parentNode) videoPanel.parentNode.insertBefore(section, videoPanel.nextSibling);
-
-    var ta = section.querySelector("#mcas-lecture-notes-input");
-    var status = section.querySelector("#mcas-lecture-notes-status");
-
-    try {
-      var saved = window.localStorage.getItem(key);
-      if (saved) ta.value = saved;
-      if (status) status.textContent = saved ? "Restored from your last session." : "";
-    } catch (e) {}
-
-    var t, debounceTimer;
-    function save(){
-      try { window.localStorage.setItem(key, ta.value); } catch (e) {}
-      if (status) {
-        status.textContent = "Saved on this device";
-        clearTimeout(t);
-        t = setTimeout(function(){ if (status) status.textContent = ""; }, 1400);
-      }
-    }
-    ta.addEventListener("input", function(){
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(save, 350);
-    });
-    ta.addEventListener("blur", save);
-    window.addEventListener("pagehide", save);
-  }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
-})();
+(function(){function send(){try{parent.postMessage({type:'resize',id:'bio304-workbook_day19_vision',height:document.documentElement.scrollHeight},'*');}catch(e){}}
+window.addEventListener('load',send);window.addEventListener('resize',send);
+if(window.ResizeObserver){new ResizeObserver(send).observe(document.body);}})();
 </script>
-<!-- mcas-lecture-notes-injector-end -->
-<!-- mcas-step-tracker-injector -->
-<script>
-(function(){
-  function init(){
-    var cfg = window.SHEET_CONFIG || {};
-    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
-    var topicId = m ? m[1] : null;
-    if (!topicId) return;
-
-    var resourceBar = document.querySelector(".resource-bar");
-    var workbookAside = document.querySelector("aside.mcas-next-up a.mcas-next-up-cta");
-    var workbookHref = workbookAside ? workbookAside.getAttribute("href") : "#";
-    var preworkHref = cfg.prework || "#";
-
-    // Derive the week number from the workbook URL (workbook_weekNN.html).
-    // Workbook flags are scoped to the week, so printing once on Monday
-    // marks Step 1 complete for every spoke in that week.
-    var weekMatch = (workbookHref || "").match(/workbook_week(\d{2})/);
-    var weekKey   = weekMatch ? weekMatch[1] : null;
-    var weekNum   = weekKey ? parseInt(weekKey, 10) : null;
-    var WB_FLAG          = weekKey ? ("bio304-workbook-week-" + weekKey)              : ("bio304-workbook-" + topicId);
-    var WB_SKIP_FLAG     = weekKey ? ("bio304-workbook-skipped-week-" + weekKey)      : ("bio304-workbook-skipped-" + topicId);
-    var WB_REMINDER_FLAG = weekKey ? ("bio304-workbook-reminder-dismissed-week-" + weekKey) : ("bio304-workbook-reminder-dismissed-" + topicId);
-
-    var tracker = document.createElement("div");
-    tracker.className = "mcas-step-tracker";
-    tracker.setAttribute("data-topic-id", topicId);
-    tracker.innerHTML =
-      '<ol class="mcas-steps" aria-label="Pre-work steps for this topic">' +
-        '<li class="mcas-step" data-step="workbook">' +
-          '<a class="mcas-step-btn" data-step-action="workbook" href="' + workbookHref + '" target="_blank" rel="noopener">' +
-            '<span class="mcas-step-num">Step 1</span>' +
-            '<span class="mcas-step-label">Print the workbook</span>' +
-            '<span class="mcas-step-state"></span>' +
-          '</a>' +
-          '<button type="button" class="mcas-step-skip" data-step-action="workbook-skip" hidden>I will do it by hand &middot; skip this step</button>' +
-        '</li>' +
-        '<li class="mcas-step" data-step="video">' +
-          '<button type="button" class="mcas-step-btn" data-step-action="video">' +
-            '<span class="mcas-step-num">Step 2</span>' +
-            '<span class="mcas-step-label">Watch the video</span>' +
-            '<span class="mcas-step-state"></span>' +
-          '</button>' +
-        '</li>' +
-        '<li class="mcas-step" data-step="gate">' +
-          '<button type="button" class="mcas-step-btn" data-step-action="gate">' +
-            '<span class="mcas-step-num">Step 3</span>' +
-            '<span class="mcas-step-label">Retrieval check</span>' +
-            '<span class="mcas-step-state"></span>' +
-          '</button>' +
-        '</li>' +
-        '<li class="mcas-step" data-step="recall">' +
-          '<a class="mcas-step-btn" data-step-action="recall" href="' + preworkHref + '" target="_top">' +
-            '<span class="mcas-step-num">Step 4</span>' +
-            '<span class="mcas-step-label">Open spaced recall</span>' +
-            '<span class="mcas-step-state"></span>' +
-          '</a>' +
-        '</li>' +
-      '</ol>';
-
-    // Insert before the existing resource-bar (or at top of main content)
-    if (resourceBar && resourceBar.parentNode) {
-      resourceBar.parentNode.insertBefore(tracker, resourceBar);
-      resourceBar.style.display = "none";
-    } else {
-      var anchor = document.querySelector("main .usage, main .subhead, main h1, main");
-      if (anchor && anchor.parentNode) {
-        anchor.parentNode.insertBefore(tracker, anchor.nextSibling);
-      }
-    }
-
-    function readFlag(k){ try { return window.localStorage.getItem(k) === "true"; } catch (e) { return false; } }
-    function writeFlag(k, v){ try { window.localStorage.setItem(k, v ? "true" : ""); } catch (e) {} }
-
-    function state(){
-      return {
-        workbook:        readFlag(WB_FLAG),
-        workbookSkipped: readFlag(WB_SKIP_FLAG),
-        video:           readFlag("bio304-video-" + topicId),
-        gate:            readFlag("bio304-gate-" + topicId)
-      };
-    }
-
-    // Persistent reminder banner: appears when the student skips Step 1
-    // and stays visible until they actively dismiss it (or open the
-    // workbook). Reminds them the workbook still needs to be done and
-    // turned in.
-    var reminder = document.createElement("div");
-    reminder.className = "mcas-step-reminder";
-    reminder.setAttribute("role", "status");
-    reminder.hidden = true;
-    reminder.innerHTML =
-      '<span><strong>Reminder.</strong> The lab workbook still needs to be completed and turned in &mdash; print it or work it by hand.</span>' +
-      '<button type="button" class="mcas-step-reminder-dismiss" aria-label="Dismiss reminder">Dismiss</button>';
-    tracker.appendChild(reminder);
-
-    function updateReminder(s){
-      var visible = s.workbookSkipped && !readFlag(WB_REMINDER_FLAG);
-      reminder.hidden = !visible;
-    }
-    var dismissBtn = reminder.querySelector(".mcas-step-reminder-dismiss");
-    if (dismissBtn) {
-      dismissBtn.addEventListener("click", function(){
-        writeFlag(WB_REMINDER_FLAG, true);
-        reminder.hidden = true;
-      });
-    }
-
-    function render(){
-      var s = state();
-      var current = !s.workbook ? "workbook"
-                  : !s.video    ? "video"
-                  : !s.gate     ? "gate"
-                  :               "recall";
-      var weekLabel = weekNum ? ("Week " + weekNum) : "this week";
-      var stateLabels = {
-        workbook: {
-          active:    "Tap to open and print",
-          completed: s.workbookSkipped
-            ? ("Skipped — do on paper, turn it in")
-            : ("Already printed " + weekLabel + " workbook"),
-          pending:   "Up next"
-        },
-        video:    { active: "Tap to start the video", completed: "Video finished", pending: "Locked until step 1" },
-        gate:     { active: "Tap to write the explanation", completed: "Retrieval check passed", pending: "Locked until step 2" },
-        recall:   { active: "Tap to drill the cards", completed: "Cards opened", pending: "Locked until step 3" }
-      };
-      tracker.querySelectorAll(".mcas-step").forEach(function(li){
-        var step = li.getAttribute("data-step");
-        var done = (step === "workbook" && s.workbook) ||
-                   (step === "video"    && s.video)    ||
-                   (step === "gate"     && s.gate);
-        var cls = done ? "is-completed" : (step === current ? "is-active" : "is-pending");
-        li.classList.remove("is-completed", "is-active", "is-pending");
-        li.classList.add(cls);
-        var stateEl = li.querySelector(".mcas-step-state");
-        if (stateEl) {
-          var labels = stateLabels[step] || {};
-          stateEl.textContent = labels[cls === "is-active" ? "active" : cls === "is-completed" ? "completed" : "pending"] || "";
-        }
-        // Show the skip link only while Step 1 is active
-        if (step === "workbook") {
-          var skipBtn = li.querySelector(".mcas-step-skip");
-          if (skipBtn) skipBtn.hidden = (cls !== "is-active");
-        }
-      });
-      updateReminder(s);
-    }
-
-    // --- Step 1: workbook click sets the WEEK flag, the anchor opens the bundle ---
-    var wbBtn = tracker.querySelector('[data-step-action="workbook"]');
-    if (wbBtn) {
-      wbBtn.addEventListener("click", function(){
-        writeFlag(WB_FLAG, true);
-        // Opening the workbook clears any prior "skipped" state and
-        // re-enables the reminder for future skips.
-        writeFlag(WB_SKIP_FLAG, false);
-        writeFlag(WB_REMINDER_FLAG, false);
-        setTimeout(render, 40);
-      });
-    }
-    var skipBtn = tracker.querySelector('[data-step-action="workbook-skip"]');
-    if (skipBtn) {
-      skipBtn.addEventListener("click", function(){
-        var ok = window.confirm("Skipping the download? The lab workbook still needs to be completed and turned in. Work it on paper or with your printed copy.");
-        if (!ok) return;
-        writeFlag(WB_FLAG, true);
-        writeFlag(WB_SKIP_FLAG, true);
-        writeFlag(WB_REMINDER_FLAG, false);
-        setTimeout(render, 40);
-      });
-    }
-
-    // --- Step 2: video click triggers the existing #video-toggle ---
-    var videoBtn = tracker.querySelector('[data-step-action="video"]');
-    if (videoBtn) {
-      videoBtn.addEventListener("click", function(){
-        var toggle = document.getElementById("video-toggle");
-        if (toggle) toggle.click();
-        var panel = document.getElementById("video-panel");
-        if (panel) setTimeout(function(){ panel.scrollIntoView({ behavior: "smooth", block: "center" }); }, 160);
-      });
-    }
-
-    // --- Step 3: gate click scrolls to the retrieval check ---
-    var gateBtn = tracker.querySelector('[data-step-action="gate"]');
-    if (gateBtn) {
-      gateBtn.addEventListener("click", function(){
-        var gate = document.getElementById("explain-gate");
-        if (gate) {
-          if (gate.hidden) gate.hidden = false;
-          gate.scrollIntoView({ behavior: "smooth", block: "center" });
-          var input = document.getElementById("gate-input");
-          if (input) setTimeout(function(){ input.focus(); }, 380);
-        }
-      });
-    }
-
-    // Watch the explain-gate's hidden attribute. The bio304-option-a IIFE
-    // reveals it via revealGate() when the YouTube video ENDS. That's our
-    // signal to set the bio304-video flag.
-    var gateSection = document.getElementById("explain-gate");
-    if (gateSection && typeof MutationObserver !== "undefined") {
-      var obs = new MutationObserver(function(){
-        if (!gateSection.hidden && !readFlag("bio304-video-" + topicId)) {
-          writeFlag("bio304-video-" + topicId, true);
-          render();
-        }
-      });
-      obs.observe(gateSection, { attributes: true, attributeFilter: ["hidden"] });
-    }
-
-    // Gate submit click → re-render after the existing handler stores its flags
-    var submitBtn = document.getElementById("gate-submit");
-    if (submitBtn) {
-      submitBtn.addEventListener("click", function(){ setTimeout(render, 80); });
-    }
-
-    // Cross-tab updates: re-render when any flag this spoke cares about
-    // changes in another tab (e.g. student opens the workbook from a
-    // sibling spoke and the week flag flips).
-    window.addEventListener("storage", function(e){
-      if (!e.key) return;
-      if (e.key === WB_FLAG || e.key === WB_SKIP_FLAG || e.key === WB_REMINDER_FLAG) {
-        render(); return;
-      }
-      if (e.key.indexOf("bio304-") === 0 && e.key.indexOf(topicId) > -1) render();
-    });
-
-    render();
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
-})();
-</script>
-<!-- mcas-step-tracker-injector-end -->
-<!-- mcas-iframe-height-sender -->
-<script>
-/* MCAS iframe height-sender (rebrand-mcas.py) */
-(function(){
-  var FRAME_ID = "bio304-workbook-day19-vision";
-  function sendHeight(){
-    var h = Math.max(document.documentElement.scrollHeight,
-                     document.body ? document.body.scrollHeight : 0);
-    parent.postMessage({type:"resize", id:FRAME_ID, height:h}, "*");
-  }
-  window.addEventListener("load", sendHeight);
-  window.addEventListener("resize", sendHeight);
-  if (window.ResizeObserver) new ResizeObserver(sendHeight).observe(document.body);
-})();
-</script>
-<!-- mcas-iframe-height-sender-end -->
 </body>
 </html>
