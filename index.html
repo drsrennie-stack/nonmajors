@@ -223,14 +223,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   scroll-margin-top: 24px;
 }
 .week-card.is-current { border-color: #C9A14A; }
-.week-card.is-locked { opacity: 0.6; }
-.week-card.is-locked .week-pill { pointer-events: none; background: rgba(11,21,48,.10) !important; color: rgba(11,21,48,.5) !important; border-color: transparent !important; }
-.week-card .lockbadge { position: absolute; top: -11px; right: 16px; background: #0B1530; color: #F5F1E8; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 10px; border-radius: 3px; box-shadow: 0 2px 6px rgba(11,21,48,.18); }
-.instr-bar { display: flex; justify-content: flex-end; margin: 0 0 12px; }
-.instr-btn { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #8B3A2E; background: #FFFFFF; border: 1px solid rgba(11,21,48,.18); border-radius: 6px; padding: 8px 14px; cursor: pointer; }
-.instr-btn:hover, .instr-btn:focus-visible { background: #F5F1E8; }
-.instr-btn.on { background: #0B1530; color: #FFFFFF; border-color: #0B1530; }
-@media print { .instr-bar { display: none; } }
 .week-card .flag {
   position: absolute; top: -11px; right: 16px;
   background: #C9A14A; color: #0B1530;
@@ -513,6 +505,27 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   }
   html { scroll-behavior: auto; }
 }
+
+/* ===== WEEKLY RELEASE LOCK (added) =====
+   A week's links unlock Sunday 8:00 PM Pacific (night before its Monday start)
+   and stay open the rest of the term. Locked weeks show their open date. */
+.week-card.is-locked { background: #FBFAF7; border-style: dashed; border-color: rgba(11, 21, 48, 0.30); }
+.week-card.is-locked .week-num { color: #9aa3ad; }
+.week-card.is-locked .week-title { color: #5a6573; }
+.week-card.is-locked .week-topics { opacity: 0.72; }
+.week-lock-badge {
+  position: absolute; top: -11px; right: 16px;
+  background: #0B1530; color: #F5F1E8;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 5px 10px; border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(11, 21, 48, 0.18);
+}
+.week-lock-note {
+  display: flex; align-items: center; gap: 8px; margin-top: auto;
+  font-size: 12.5px; font-weight: 700; color: #5a6573; line-height: 1.4;
+}
+.week-lock-note svg { flex: none; }
 </style>
 </head>
 <body>
@@ -618,7 +631,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   <div class="section-eyebrow">Your eight weeks</div>
   <h2 class="section-headline">The whole course, <span class="accent">week by week</span>.</h2>
   <p class="section-intro">Each card carries the week's topics and quick jumps to the pre-work hub, the discussion thread, and the lab workbooks. Click into the syllabus for the day-by-day flow grid.</p>
-  <div class="instr-bar"><button type="button" class="instr-btn" id="instr-toggle" aria-pressed="false">Instructor</button></div>
   <ul class="week-grid">
 
     <li class="week-card" id="week-1" data-week="1">
@@ -901,63 +913,45 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   })();
 </script>
 <script>
-  /* Date lock on week cards. Future weeks stay locked for students until their
-     start date. Instructor passphrase unlocks everything on this device.
-     NOTE: client-side only (GitHub Pages has no server), so this is a deterrent,
-     not hard security. INSTRUCTOR: change PASSPHRASE to rotate the key. */
+  /* Weekly release gating — each week's links unlock Sunday 8:00 PM Pacific
+     (the night before its Monday start) and stay open the rest of the term.
+     8:00 PM PDT the Sunday before = Monday 03:00 UTC, so the open instant for
+     each week is its Monday start date at 03:00 UTC. Past/current weeks keep
+     their links; not-yet-open weeks show their open date instead. */
   (function () {
-    var PASSPHRASE = "Stella";
-    var FLAG = "bio304-instructor-unlock";
-    /* Each week opens the Sunday night before at 8 PM, local time
-       (e.g., Skeletal System / Week 3 opens Sun Jun 21, 8 PM). */
-    var opens = ['2026-06-07T20:00:00','2026-06-14T20:00:00','2026-06-21T20:00:00','2026-06-28T20:00:00',
-                 '2026-07-05T20:00:00','2026-07-12T20:00:00','2026-07-19T20:00:00','2026-07-26T20:00:00'];
-    var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    function unlocked(){ try { return localStorage.getItem(FLAG) === '1'; } catch (e) { return false; } }
-    function fmt(d){ var h=d.getHours(), ap=h>=12?'PM':'AM', h12=((h+11)%12)+1; var mm=d.getMinutes()?(':'+('0'+d.getMinutes()).slice(-2)):''; return MON[d.getMonth()]+' '+d.getDate()+', '+h12+mm+' '+ap; }
-    var btn = document.getElementById('instr-toggle');
-    function apply(){
-      var on = unlocked();
-      var now = new Date();
-      var cards = document.querySelectorAll('.week-card[data-week]');
-      Array.prototype.forEach.call(cards, function(card){
-        var wk = parseInt(card.getAttribute('data-week'), 10);
-        var s = opens[wk - 1]; if (!s) return;
-        var start = new Date(s);
-        var locked = (!on) && (now < start);
-        card.classList.toggle('is-locked', locked);
-        var old = card.querySelector('.lockbadge'); if (old) old.parentNode.removeChild(old);
-        Array.prototype.forEach.call(card.querySelectorAll('.week-pill'), function(p){
-          if (locked){
-            if (!p.dataset.href) p.dataset.href = p.getAttribute('href');
-            p.setAttribute('href', '#'); p.setAttribute('aria-disabled','true'); p.setAttribute('tabindex','-1');
-          } else if (p.dataset.href){
-            p.setAttribute('href', p.dataset.href); p.removeAttribute('aria-disabled'); p.removeAttribute('tabindex');
-          }
-        });
-        if (locked){
-          var b = document.createElement('span');
-          b.className = 'lockbadge';
-          b.textContent = 'Opens ' + fmt(start);
-          card.appendChild(b);
-        }
-      });
-      if (btn){
-        btn.classList.toggle('on', on);
-        btn.textContent = on ? 'Instructor: unlocked' : 'Instructor';
-        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var starts = ['2026-06-08','2026-06-15','2026-06-22','2026-06-29',
+                  '2026-07-06','2026-07-13','2026-07-20','2026-07-27'];
+    var now = Date.now();
+    var fmt = new Intl.DateTimeFormat('en-US', {
+      weekday: 'long', month: 'long', day: 'numeric',
+      hour: 'numeric', minute: '2-digit', timeZone: 'America/Los_Angeles'
+    });
+    var lockIcon = '<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">' +
+      '<path d="M7 10V7a5 5 0 0 1 10 0v3" fill="none" stroke="#5a6573" stroke-width="2"/>' +
+      '<rect x="4" y="10" width="16" height="10" rx="2" fill="#5a6573"/></svg>';
+    starts.forEach(function (monday, i) {
+      var openAt = Date.parse(monday + 'T03:00:00Z');
+      if (now >= openAt) return; // already open — leave links active
+      var card = document.querySelector('.week-card[data-week="' + (i + 1) + '"]');
+      if (!card) return;
+      card.classList.add('is-locked');
+      var when = fmt.format(new Date(openAt));
+      var titleEl = card.querySelector('.week-title');
+      var title = titleEl ? titleEl.textContent : ('Week ' + (i + 1));
+      var badge = document.createElement('span');
+      badge.className = 'week-lock-badge';
+      badge.textContent = 'Opens later';
+      card.appendChild(badge);
+      var actions = card.querySelector('.week-actions');
+      if (actions) {
+        var note = document.createElement('p');
+        note.className = 'week-lock-note';
+        note.setAttribute('role', 'note');
+        note.innerHTML = lockIcon + '<span>Opens ' + when + ' Pacific</span>';
+        actions.parentNode.replaceChild(note, actions);
       }
-    }
-    if (btn){
-      btn.addEventListener('click', function(){
-        if (unlocked()){ try { localStorage.removeItem(FLAG); } catch (e) {} apply(); return; }
-        var p = window.prompt('Instructor passphrase to unlock all weeks:');
-        if (p === null) return;
-        if (p === PASSPHRASE){ try { localStorage.setItem(FLAG, '1'); } catch (e) {} apply(); }
-        else { window.alert('Incorrect passphrase.'); }
-      });
-    }
-    apply();
+      card.setAttribute('aria-label', title + ', opens ' + when + ' Pacific');
+    });
   })();
 </script>
 </body>
