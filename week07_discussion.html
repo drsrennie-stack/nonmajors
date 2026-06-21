@@ -33,7 +33,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 .skip-link:focus { top: 8px; }
 
-.site-header, .hero-card, .deadlines-section, .prompt-section, .calc-section,
+.site-header, .hero-card, .deadlines-section, .prompt-section,
 .replies-section, .extras-section, .cta-section, .footer-section {
   padding-left: max(40px, 5vw);
   padding-right: max(40px, 5vw);
@@ -167,113 +167,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   font-size: 15px;
 }
 
-/* Calculators section (cream) */
-.calc-section { background: #F5F1E8; padding-top: 56px; padding-bottom: 56px; }
-.calc-section .section-eyebrow { color: #8B3A2E; }
-.calc-section .section-headline { color: #0B1530; }
-.calc-section .section-headline .accent { color: #8B3A2E; }
-.calc-section .section-intro { color: #0B1530; opacity: 0.84; }
-.calc-privacy {
-  font-size: 13.5px; font-style: italic;
-  color: #0B1530; opacity: 0.72;
-  margin: 0 0 28px; max-width: 720px; line-height: 1.6;
-}
-.calc-grid {
-  display: grid; gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  max-width: 980px;
-}
-.calc-card {
-  background: #FFFFFF;
-  border: 1px solid rgba(11, 21, 48, 0.18);
-  border-radius: 8px;
-  padding: 22px 24px;
-  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
-}
-.calc-card.calc-wide { grid-column: 1 / -1; }
-.calc-card-title {
-  font-size: 16px; font-weight: 800; color: #0B1530;
-  letter-spacing: -0.01em; line-height: 1.3; margin: 0 0 4px;
-}
-.calc-card-sub {
-  font-size: 12.5px; color: #0B1530; opacity: 0.72;
-  margin: 0 0 16px; line-height: 1.5;
-}
-.calc-checkbox-list {
-  display: grid; gap: 8px;
-  margin: 0 0 14px;
-}
-.calc-checkbox-list label {
-  display: flex; gap: 9px; align-items: flex-start;
-  font-size: 13.5px; color: #0B1530; line-height: 1.5;
-  cursor: pointer;
-  padding: 8px 10px; border-radius: 4px;
-  background: #FAFAF9;
-}
-.calc-checkbox-list label:hover { background: #F5F1E8; }
-.calc-checkbox-list input[type="checkbox"],
-.calc-checkbox-list input[type="radio"] {
-  width: 16px; height: 16px;
-  accent-color: #8B3A2E; cursor: pointer;
-  margin-top: 1px; flex-shrink: 0;
-}
-.calc-act-block { margin: 0 0 14px; padding: 10px 12px; background: #FAFAF9; border-radius: 6px; }
-.calc-act-q {
-  font-size: 13.5px; font-weight: 700; color: #0B1530;
-  margin: 0 0 8px; line-height: 1.4;
-}
-.calc-act-options {
-  display: flex; gap: 6px; flex-wrap: wrap;
-}
-.calc-act-options label {
-  flex: 1; min-width: 48px; cursor: pointer;
-  text-align: center;
-  font-size: 12.5px;
-  padding: 6px 4px; border-radius: 4px;
-  background: #FFFFFF; border: 1px solid rgba(11, 21, 48, 0.18);
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-}
-.calc-act-options label:hover { background: #F5F1E8; }
-.calc-act-options input[type="radio"] {
-  position: absolute; opacity: 0; pointer-events: none;
-}
-.calc-act-options label:has(input:checked) {
-  background: #8B3A2E; color: #FFFFFF; border-color: #8B3A2E;
-}
-.calc-actions {
-  display: flex; gap: 10px; flex-wrap: wrap;
-  margin: 0 0 14px;
-}
-.calc-btn-reset {
-  appearance: none; cursor: pointer; background: transparent;
-  border: 1px solid rgba(11, 21, 48, 0.25);
-  color: #0B1530;
-  font-family: inherit; font-size: 10.5px; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  padding: 8px 14px; border-radius: 4px;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-.calc-btn-reset:hover, .calc-btn-reset:focus-visible {
-  background: #0B1530; color: #FFFFFF; border-color: #0B1530;
-}
-.calc-result {
-  background: #F5F1E8;
-  border-radius: 6px;
-  padding: 14px 16px;
-  font-size: 14px; line-height: 1.6;
-  color: #0B1530;
-}
-.calc-result-headline {
-  font-size: 18px; font-weight: 800;
-  color: #8B3A2E; margin: 0 0 4px;
-  letter-spacing: -0.01em;
-}
-.calc-result-detail {
-  font-size: 13.5px; color: #0B1530;
-  margin: 4px 0 0; line-height: 1.55;
-}
-.calc-result-detail strong { color: #8B3A2E; font-weight: 800; }
-
 /* Replies section (cream) */
 .replies-section { background: #F5F1E8; padding-top: 56px; padding-bottom: 56px; }
 .replies-section .section-eyebrow { color: #8B3A2E; }
@@ -374,19 +267,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   html { scroll-behavior: auto; }
 }
 </style>
-
-<style id="wb-weeknav-css">
-.wb-weeknav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;
-  font-family:'Plus Jakarta Sans',system-ui,sans-serif;}
-.wb-weeknav-label{font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8B3A2E;margin-right:2px;}
-.wb-weeknav-pill{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:8px 16px;
-  font-weight:700;font-size:14px;line-height:1;text-decoration:none;background:#8B3A2E;color:#fff !important;border:1px solid #8B3A2E;}
-.wb-weeknav-pill:hover{background:#75301F;border-color:#75301F;color:#fff !important;}
-.wb-weeknav-pill:focus-visible{outline:3px solid #D4A24C;outline-offset:2px;}
-.wb-weeknav-pill.is-current{background:#5E2418;border-color:#5E2418;cursor:default;}
-@media print{.wb-weeknav{display:none !important;}}
-</style>
-
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -417,11 +297,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 </header>
 
 <main id="main">
-<nav class="wb-weeknav" aria-label="Week 7 navigation"><span class="wb-weeknav-label">Week 7</span><a class="wb-weeknav-pill" href="workbook_week07.html" target="_top">Workbook</a><a class="wb-weeknav-pill" href="week07_prework.html" target="_top">Pre-work</a><a class="wb-weeknav-pill is-current" aria-current="page" href="week07_discussion.html" target="_top">Discussion</a></nav>
 
 <div class="hero-card">
   <div class="hero-content">
-    <div class="hero-eyebrow">BIO 304 &middot; Week 7 of 8 &middot; Discussion</div>
+    <div class="hero-eyebrow">BIO 304 . WEEK 7 OF 8 . DISCUSSION</div>
     <h1 class="hero-headline">A barrier breached</h1>
     <p class="hero-subhead">Tell the story of a time an immune, respiratory, or digestive barrier failed.</p>
     <p class="hero-usage">Initial post due Friday. Replies due Sunday. Substantive replies build on or respectfully challenge a classmate's thinking.</p>
@@ -459,115 +338,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   <h2 class="section-headline">What to <span class="accent">write about</span>.</h2>
   <article class="prompt-card">
 <p>This week we covered the lymphatic and immune systems, the respiratory system, and the digestive system. Each is a barrier between your body and the outside world.</p>
-<p>Pick <strong>one situation where one of these barriers was breached</strong>: illness, infection, allergy, food poisoning, asthma attack, choking incident, anything where the line between "outside" and "inside" got crossed.</p>
-<p>In your initial post (250–350 words):</p>
+<p>Pick <strong>one situation where one of these barriers was breached</strong> — illness, infection, allergy, food poisoning, asthma attack, choking incident, anything where the line between "outside" and "inside" got crossed.</p>
+<p>In your initial post (200-300 words):</p>
 <ol>
   <li><strong>Describe the situation briefly.</strong></li>
   <li><strong>Identify the barrier that failed</strong> (anatomically and at the tissue level).</li>
   <li><strong>Trace the body's response</strong>: what innate defenses fired first? Did the adaptive immune system get involved? How?</li>
   <li><strong>What healed it</strong>, and how would you predict the body would respond to the same insult next time?</li>
-  <li><strong>Now make it personal.</strong> Run the respiratory tools below (the sleep-apnea and asthma-control screens). Say what they told you about <strong>your own airway and breathing health</strong> &mdash; no need to share specifics &mdash; then pick <strong>one change that would lower the risk</strong> and explain its <strong>mechanism of action</strong>: physiologically, <em>how</em> does it help (think reduced airway collapse, less airway inflammation, or keeping the airway open)?</li>
 </ol>
   </article>
 </div>
-
-<!-- ===== RESPIRATORY SCREENING CALCULATORS ===== -->
-<section class="calc-section" id="calcs" aria-labelledby="calcs-h">
-  <p class="section-eyebrow">Step 5 of your post &middot; try the clinical tools</p>
-  <h2 class="section-headline" id="calcs-h">Respiratory screening <span class="accent">tools</span>.</h2>
-  <p class="section-intro">Two screening questionnaires used in clinic for sleep apnea risk and asthma control. Try them with your own answers, or work through a scenario from a classmate or a clinical case you've seen.</p>
-  <p class="calc-privacy">If you've been screened or treated for either, you can plug in your own answers for a more authentic exercise. Not required. Nothing is saved on this device. Nothing is shared. Refresh the page to clear everything.</p>
-
-  <div class="calc-grid">
-
-    <!-- STOP-BANG -->
-    <div class="calc-card">
-      <h3 class="calc-card-title">STOP-BANG sleep apnea screen</h3>
-      <p class="calc-card-sub">Eight yes/no items. Used as a pre-anesthesia and primary care screening tool for obstructive sleep apnea.</p>
-      <div class="calc-checkbox-list">
-        <label><input type="checkbox" id="sb-s"> <span><strong>Snore.</strong> Do you snore loudly (heard through a closed door)?</span></label>
-        <label><input type="checkbox" id="sb-t"> <span><strong>Tired.</strong> Do you often feel tired, fatigued, or sleepy during the day?</span></label>
-        <label><input type="checkbox" id="sb-o"> <span><strong>Observed.</strong> Has anyone observed you stop breathing during sleep?</span></label>
-        <label><input type="checkbox" id="sb-p"> <span><strong>Pressure.</strong> Do you have or are you being treated for high blood pressure?</span></label>
-        <label><input type="checkbox" id="sb-b"> <span><strong>BMI.</strong> Is your BMI over 35 kg/m&sup2;?</span></label>
-        <label><input type="checkbox" id="sb-a"> <span><strong>Age.</strong> Are you over 50 years old?</span></label>
-        <label><input type="checkbox" id="sb-n"> <span><strong>Neck.</strong> Is your neck circumference over 16 in (40 cm) for women / 17 in (43 cm) for men?</span></label>
-        <label><input type="checkbox" id="sb-g"> <span><strong>Gender.</strong> Are you male?</span></label>
-      </div>
-      <div class="calc-actions">
-        <button type="button" id="sb-reset" class="calc-btn-reset">Reset</button>
-      </div>
-      <div class="calc-result" id="sb-result" aria-live="polite"></div>
-    </div>
-
-    <!-- ASTHMA CONTROL TEST -->
-    <div class="calc-card">
-      <h3 class="calc-card-title">Asthma Control Test (ACT)</h3>
-      <p class="calc-card-sub">Five questions, 4 weeks recall. Used in primary care and pulmonology to track asthma management.</p>
-
-      <div class="calc-act-block">
-        <p class="calc-act-q">In the past 4 weeks, how much of the time did asthma keep you from work, school, or home activities?</p>
-        <div class="calc-act-options">
-          <label><input type="radio" name="act-q1" value="1"> 1<br><span style="font-size:10px;">All</span></label>
-          <label><input type="radio" name="act-q1" value="2"> 2<br><span style="font-size:10px;">Most</span></label>
-          <label><input type="radio" name="act-q1" value="3"> 3<br><span style="font-size:10px;">Some</span></label>
-          <label><input type="radio" name="act-q1" value="4"> 4<br><span style="font-size:10px;">A little</span></label>
-          <label><input type="radio" name="act-q1" value="5"> 5<br><span style="font-size:10px;">None</span></label>
-        </div>
-      </div>
-
-      <div class="calc-act-block">
-        <p class="calc-act-q">How often have you had shortness of breath?</p>
-        <div class="calc-act-options">
-          <label><input type="radio" name="act-q2" value="1"> 1<br><span style="font-size:10px;">&gt;1/day</span></label>
-          <label><input type="radio" name="act-q2" value="2"> 2<br><span style="font-size:10px;">Once/day</span></label>
-          <label><input type="radio" name="act-q2" value="3"> 3<br><span style="font-size:10px;">3-6/wk</span></label>
-          <label><input type="radio" name="act-q2" value="4"> 4<br><span style="font-size:10px;">1-2/wk</span></label>
-          <label><input type="radio" name="act-q2" value="5"> 5<br><span style="font-size:10px;">Not at all</span></label>
-        </div>
-      </div>
-
-      <div class="calc-act-block">
-        <p class="calc-act-q">How often did asthma symptoms wake you up at night or earlier than usual?</p>
-        <div class="calc-act-options">
-          <label><input type="radio" name="act-q3" value="1"> 1<br><span style="font-size:10px;">4+/wk</span></label>
-          <label><input type="radio" name="act-q3" value="2"> 2<br><span style="font-size:10px;">2-3/wk</span></label>
-          <label><input type="radio" name="act-q3" value="3"> 3<br><span style="font-size:10px;">Once/wk</span></label>
-          <label><input type="radio" name="act-q3" value="4"> 4<br><span style="font-size:10px;">1-2x</span></label>
-          <label><input type="radio" name="act-q3" value="5"> 5<br><span style="font-size:10px;">Not at all</span></label>
-        </div>
-      </div>
-
-      <div class="calc-act-block">
-        <p class="calc-act-q">How often did you use a rescue inhaler (e.g., albuterol)?</p>
-        <div class="calc-act-options">
-          <label><input type="radio" name="act-q4" value="1"> 1<br><span style="font-size:10px;">3+/day</span></label>
-          <label><input type="radio" name="act-q4" value="2"> 2<br><span style="font-size:10px;">1-2/day</span></label>
-          <label><input type="radio" name="act-q4" value="3"> 3<br><span style="font-size:10px;">2-3/wk</span></label>
-          <label><input type="radio" name="act-q4" value="4"> 4<br><span style="font-size:10px;">&lt;1/wk</span></label>
-          <label><input type="radio" name="act-q4" value="5"> 5<br><span style="font-size:10px;">Not at all</span></label>
-        </div>
-      </div>
-
-      <div class="calc-act-block">
-        <p class="calc-act-q">How would you rate your asthma control during the past 4 weeks?</p>
-        <div class="calc-act-options">
-          <label><input type="radio" name="act-q5" value="1"> 1<br><span style="font-size:10px;">Not at all</span></label>
-          <label><input type="radio" name="act-q5" value="2"> 2<br><span style="font-size:10px;">Poorly</span></label>
-          <label><input type="radio" name="act-q5" value="3"> 3<br><span style="font-size:10px;">Somewhat</span></label>
-          <label><input type="radio" name="act-q5" value="4"> 4<br><span style="font-size:10px;">Well</span></label>
-          <label><input type="radio" name="act-q5" value="5"> 5<br><span style="font-size:10px;">Completely</span></label>
-        </div>
-      </div>
-
-      <div class="calc-actions">
-        <button type="button" id="act-reset" class="calc-btn-reset">Reset</button>
-      </div>
-      <div class="calc-result" id="act-result" aria-live="polite"></div>
-    </div>
-
-  </div>
-</section>
 
 <div class="replies-section">
   <div class="section-eyebrow">Replies</div>
@@ -597,96 +377,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
     <span class="footer-byline">Dr. Sharilyn Rennie</span>
   </div>
 </footer>
-
-<script>
-/* ============================================================
-   RESPIRATORY SCREENING CALCULATORS
-   1) STOP-BANG sleep apnea (8 yes/no)
-   2) Asthma Control Test (5 questions, 1-5)
-   No localStorage. Results update on every input event.
-   ============================================================ */
-(function () {
-
-  // ----- STOP-BANG -----
-  function renderStopBang() {
-    var ids = ['sb-s','sb-t','sb-o','sb-p','sb-b','sb-a','sb-n','sb-g'];
-    var letters = ['Snore','Tired','Observed apnea','Pressure','BMI','Age','Neck','Gender'];
-    var score = 0;
-    var flagged = [];
-    ids.forEach(function(id, i) {
-      var el = document.getElementById(id);
-      if (el && el.checked) { score++; flagged.push(letters[i]); }
-    });
-    var out = document.getElementById('sb-result');
-    var risk, advice;
-    if (score >= 5) { risk = 'High risk'; advice = 'High likelihood of moderate to severe obstructive sleep apnea. Sleep study evaluation recommended.'; }
-    else if (score >= 3) { risk = 'Intermediate risk'; advice = 'Further evaluation appropriate. Discuss with a clinician, especially if symptoms affect daily life.'; }
-    else { risk = 'Low risk'; advice = 'Low likelihood of moderate to severe OSA. Continue routine screening.'; }
-    out.innerHTML =
-      '<p class="calc-result-headline">' + score + ' of 8 &middot; ' + risk + '</p>' +
-      '<p class="calc-result-detail"><strong>' + advice + '</strong></p>' +
-      (flagged.length ? '<p class="calc-result-detail"><strong>Flagged:</strong> ' + flagged.join(', ') + '</p>' : '');
-  }
-
-  // ----- ACT -----
-  function renderAct() {
-    var qs = ['act-q1','act-q2','act-q3','act-q4','act-q5'];
-    var total = 0; var answered = 0;
-    qs.forEach(function(name) {
-      var radios = document.querySelectorAll('input[name="' + name + '"]');
-      radios.forEach(function(r){ if (r.checked) { total += parseInt(r.value, 10); answered++; } });
-    });
-    var out = document.getElementById('act-result');
-    if (answered < 5) {
-      out.innerHTML = '<p class="calc-result-headline">&mdash;</p><p class="calc-result-detail">Answer all 5 questions for a score. (' + answered + ' / 5 answered.)</p>';
-      return;
-    }
-    var category, advice;
-    if (total >= 25) { category = 'Well controlled'; advice = 'Asthma is under control. Continue current management.'; }
-    else if (total >= 20) { category = 'Controlled'; advice = 'Asthma is generally controlled, with room for improvement. Review action plan.'; }
-    else { category = 'Poorly controlled'; advice = 'Asthma is not under control. See a clinician about a step-up in therapy.'; }
-    out.innerHTML =
-      '<p class="calc-result-headline">' + total + ' of 25 &middot; ' + category + '</p>' +
-      '<p class="calc-result-detail"><strong>' + advice + '</strong></p>' +
-      '<p class="calc-result-detail" style="opacity:0.7;margin-top:8px;">Designed for ages 12 and older. Childhood ACT (4-11 yrs) uses a different version.</p>';
-  }
-
-  // ----- WIRING -----
-  function init() {
-    ['sb-s','sb-t','sb-o','sb-p','sb-b','sb-a','sb-n','sb-g'].forEach(function(id){
-      var el = document.getElementById(id);
-      if (el) el.addEventListener('change', renderStopBang);
-    });
-    ['act-q1','act-q2','act-q3','act-q4','act-q5'].forEach(function(name){
-      document.querySelectorAll('input[name="' + name + '"]').forEach(function(r){
-        r.addEventListener('change', renderAct);
-      });
-    });
-
-    var sbReset = document.getElementById('sb-reset');
-    if (sbReset) sbReset.addEventListener('click', function() {
-      ['sb-s','sb-t','sb-o','sb-p','sb-b','sb-a','sb-n','sb-g'].forEach(function(id){
-        var el = document.getElementById(id); if (el) el.checked = false;
-      });
-      renderStopBang();
-    });
-    var actReset = document.getElementById('act-reset');
-    if (actReset) actReset.addEventListener('click', function() {
-      document.querySelectorAll('#calcs input[type="radio"][name^="act-"]').forEach(function(r){ r.checked = false; });
-      renderAct();
-    });
-
-    renderStopBang();
-    renderAct();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
 
 <script>
 (function(){

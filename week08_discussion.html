@@ -33,7 +33,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 .skip-link:focus { top: 8px; }
 
-.site-header, .hero-card, .deadlines-section, .prompt-section, .calc-section,
+.site-header, .hero-card, .deadlines-section, .prompt-section,
 .replies-section, .extras-section, .cta-section, .footer-section {
   padding-left: max(40px, 5vw);
   padding-right: max(40px, 5vw);
@@ -167,94 +167,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   font-size: 15px;
 }
 
-/* Calculators section (cream) */
-.calc-section { background: #F5F1E8; padding-top: 56px; padding-bottom: 56px; }
-.calc-section .section-eyebrow { color: #8B3A2E; }
-.calc-section .section-headline { color: #0B1530; }
-.calc-section .section-headline .accent { color: #8B3A2E; }
-.calc-section .section-intro { color: #0B1530; opacity: 0.84; }
-.calc-privacy {
-  font-size: 13.5px; font-style: italic;
-  color: #0B1530; opacity: 0.72;
-  margin: 0 0 28px; max-width: 720px; line-height: 1.6;
-}
-.calc-grid {
-  display: grid; gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  max-width: 980px;
-}
-.calc-card {
-  background: #FFFFFF;
-  border: 1px solid rgba(11, 21, 48, 0.18);
-  border-radius: 8px;
-  padding: 22px 24px;
-  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
-}
-.calc-card.calc-wide { grid-column: 1 / -1; }
-.calc-card-title {
-  font-size: 16px; font-weight: 800; color: #0B1530;
-  letter-spacing: -0.01em; line-height: 1.3; margin: 0 0 4px;
-}
-.calc-card-sub {
-  font-size: 12.5px; color: #0B1530; opacity: 0.72;
-  margin: 0 0 16px; line-height: 1.5;
-}
-.calc-grid-inputs {
-  display: grid; gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-  margin: 0 0 14px;
-}
-.calc-field { display: flex; flex-direction: column; gap: 5px; }
-.calc-label {
-  font-size: 10.5px; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: #8B3A2E;
-}
-.calc-input, .calc-select {
-  font-family: inherit; font-size: 14.5px;
-  padding: 8px 10px; border-radius: 4px;
-  border: 1px solid rgba(11, 21, 48, 0.25);
-  background: #FFFFFF; color: #0B1530;
-  width: 100%;
-}
-.calc-input:focus-visible, .calc-select:focus-visible {
-  outline: 2px solid #8B3A2E; outline-offset: 1px;
-  border-color: #8B3A2E;
-}
-.calc-actions {
-  display: flex; gap: 10px; flex-wrap: wrap;
-  margin: 0 0 14px;
-}
-.calc-btn-reset {
-  appearance: none; cursor: pointer; background: transparent;
-  border: 1px solid rgba(11, 21, 48, 0.25);
-  color: #0B1530;
-  font-family: inherit; font-size: 10.5px; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  padding: 8px 14px; border-radius: 4px;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-.calc-btn-reset:hover, .calc-btn-reset:focus-visible {
-  background: #0B1530; color: #FFFFFF; border-color: #0B1530;
-}
-.calc-result {
-  background: #F5F1E8;
-  border-radius: 6px;
-  padding: 14px 16px;
-  font-size: 14px; line-height: 1.6;
-  color: #0B1530;
-}
-.calc-result-headline {
-  font-size: 18px; font-weight: 800;
-  color: #8B3A2E; margin: 0 0 4px;
-  letter-spacing: -0.01em;
-}
-.calc-result-detail {
-  font-size: 13.5px; color: #0B1530;
-  margin: 4px 0 0; line-height: 1.55;
-}
-.calc-result-detail strong { color: #8B3A2E; font-weight: 800; }
-
 /* Replies section (cream) */
 .replies-section { background: #F5F1E8; padding-top: 56px; padding-bottom: 56px; }
 .replies-section .section-eyebrow { color: #8B3A2E; }
@@ -355,19 +267,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   html { scroll-behavior: auto; }
 }
 </style>
-
-<style id="wb-weeknav-css">
-.wb-weeknav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;
-  font-family:'Plus Jakarta Sans',system-ui,sans-serif;}
-.wb-weeknav-label{font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8B3A2E;margin-right:2px;}
-.wb-weeknav-pill{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:8px 16px;
-  font-weight:700;font-size:14px;line-height:1;text-decoration:none;background:#8B3A2E;color:#fff !important;border:1px solid #8B3A2E;}
-.wb-weeknav-pill:hover{background:#75301F;border-color:#75301F;color:#fff !important;}
-.wb-weeknav-pill:focus-visible{outline:3px solid #D4A24C;outline-offset:2px;}
-.wb-weeknav-pill.is-current{background:#5E2418;border-color:#5E2418;cursor:default;}
-@media print{.wb-weeknav{display:none !important;}}
-</style>
-
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -398,11 +297,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 </header>
 
 <main id="main">
-<nav class="wb-weeknav" aria-label="Week 8 navigation"><span class="wb-weeknav-label">Week 8</span><a class="wb-weeknav-pill" href="workbook_week08.html" target="_top">Workbook</a><a class="wb-weeknav-pill" href="week08_prework.html" target="_top">Pre-work</a><a class="wb-weeknav-pill is-current" aria-current="page" href="week08_discussion.html" target="_top">Discussion</a></nav>
 
 <div class="hero-card">
   <div class="hero-content">
-    <div class="hero-eyebrow">BIO 304 &middot; Week 8 of 8 &middot; Discussion</div>
+    <div class="hero-eyebrow">BIO 304 . WEEK 8 OF 8 . DISCUSSION</div>
     <h1 class="hero-headline">Looking back across eight weeks</h1>
     <p class="hero-subhead">Final week. Synthesize across systems, reflect on what changed, and look forward.</p>
     <p class="hero-usage">Initial post due Friday. Replies due Sunday. Substantive replies build on or respectfully challenge a classmate's thinking.</p>
@@ -441,98 +339,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   <article class="prompt-card">
 <p>Last week of the course. This is a synthesis discussion.</p>
 <p>Pick <strong>one body system you came in already familiar with</strong> and <strong>one body system you came in knowing little about</strong>.</p>
-<p>In your initial post (350–450 words):</p>
+<p>In your initial post (300-400 words):</p>
 <ol>
   <li><strong>For the familiar system</strong>: what's one concept you now understand differently than you did on day one? Be specific.</li>
   <li><strong>For the unfamiliar system</strong>: what's one moment from this term where the lightbulb went on?</li>
   <li><strong>Across the whole course</strong>: pick one connection between two systems that you didn't expect when you started. (Examples: the connection between kidney filtration and blood pressure; between the nervous system and the muscle action potential; between digestion and immunity.)</li>
   <li><strong>Forward look</strong>: what's one question about the human body you'd want to chase next?</li>
-  <li><strong>Now make it personal.</strong> Run the renal and fluid-balance tools below. Say what they told you about <strong>your own kidney and hydration health</strong> &mdash; no need to share exact numbers &mdash; then pick <strong>one change that would protect kidney function</strong> and explain its <strong>mechanism of action</strong>: physiologically, <em>how</em> does it help (think supporting filtration and GFR, protecting the nephrons, or controlling blood pressure and glucose)?</li>
 </ol>
   </article>
 </div>
-
-<!-- ===== RENAL / REPRODUCTIVE CALCULATORS ===== -->
-<section class="calc-section" id="calcs" aria-labelledby="calcs-h">
-  <p class="section-eyebrow">Step 5 of your post &middot; try the clinical tools</p>
-  <h2 class="section-headline" id="calcs-h">Renal, fluid, and reproductive <span class="accent">calculators</span>.</h2>
-  <p class="section-intro">Three quick tools tied to this week's material. Work them with the defaults, or plug in your own numbers if you have them.</p>
-  <p class="calc-privacy">If you've had recent labs or are tracking a pregnancy, you can plug in your own numbers for a more authentic exercise. Not required. Nothing is saved on this device. Nothing is shared. Refresh the page to clear everything.</p>
-
-  <div class="calc-grid">
-
-    <!-- eGFR (Cockcroft-Gault) -->
-    <div class="calc-card">
-      <h3 class="calc-card-title">Creatinine clearance (Cockcroft-Gault)</h3>
-      <p class="calc-card-sub">CrCl = ((140 &minus; age) &times; weight) / (72 &times; sCr), &times; 0.85 for female. Used to estimate kidney function for drug dosing.</p>
-      <div class="calc-grid-inputs">
-        <div class="calc-field">
-          <label class="calc-label" for="cg-age">Age (years)</label>
-          <input class="calc-input" type="number" id="cg-age" value="55" min="18" max="100" inputmode="numeric">
-        </div>
-        <div class="calc-field">
-          <label class="calc-label" for="cg-wt">Weight (kg)</label>
-          <input class="calc-input" type="number" id="cg-wt" value="70" min="30" max="200" inputmode="numeric">
-        </div>
-        <div class="calc-field">
-          <label class="calc-label" for="cg-scr">Creatinine (mg/dL)</label>
-          <input class="calc-input" type="number" id="cg-scr" value="1.0" min="0.3" max="15" step="0.1" inputmode="decimal">
-        </div>
-        <div class="calc-field">
-          <label class="calc-label" for="cg-sex">Sex</label>
-          <select class="calc-select" id="cg-sex">
-            <option value="m" selected>Male</option>
-            <option value="f">Female</option>
-          </select>
-        </div>
-      </div>
-      <div class="calc-actions">
-        <button type="button" id="cg-reset" class="calc-btn-reset">Reset</button>
-      </div>
-      <div class="calc-result" id="cg-result" aria-live="polite"></div>
-    </div>
-
-    <!-- Daily Water Needs -->
-    <div class="calc-card">
-      <h3 class="calc-card-title">Daily water needs (baseline)</h3>
-      <p class="calc-card-sub">Rough baseline: ~30 to 35 mL per kg of body weight per day. Increase for heat, exertion, illness, lactation.</p>
-      <div class="calc-grid-inputs">
-        <div class="calc-field">
-          <label class="calc-label" for="wn-wt">Weight</label>
-          <input class="calc-input" type="number" id="wn-wt" value="70" min="20" max="200" inputmode="numeric">
-        </div>
-        <div class="calc-field">
-          <label class="calc-label" for="wn-unit">Unit</label>
-          <select class="calc-select" id="wn-unit">
-            <option value="kg" selected>kg</option>
-            <option value="lb">lb</option>
-          </select>
-        </div>
-      </div>
-      <div class="calc-actions">
-        <button type="button" id="wn-reset" class="calc-btn-reset">Reset</button>
-      </div>
-      <div class="calc-result" id="wn-result" aria-live="polite"></div>
-    </div>
-
-    <!-- Pregnancy Due Date (Naegele's Rule) -->
-    <div class="calc-card">
-      <h3 class="calc-card-title">Pregnancy due date (Naegele's Rule)</h3>
-      <p class="calc-card-sub">EDD = first day of last menstrual period + 280 days. Assumes a 28-day cycle with ovulation on day 14.</p>
-      <div class="calc-grid-inputs">
-        <div class="calc-field" style="grid-column: 1 / -1;">
-          <label class="calc-label" for="ng-lmp">First day of last menstrual period</label>
-          <input class="calc-input" type="date" id="ng-lmp">
-        </div>
-      </div>
-      <div class="calc-actions">
-        <button type="button" id="ng-reset" class="calc-btn-reset">Reset</button>
-      </div>
-      <div class="calc-result" id="ng-result" aria-live="polite"></div>
-    </div>
-
-  </div>
-</section>
 
 <div class="replies-section">
   <div class="section-eyebrow">Replies</div>
@@ -562,150 +377,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
     <span class="footer-byline">Dr. Sharilyn Rennie</span>
   </div>
 </footer>
-
-<script>
-/* ============================================================
-   RENAL / REPRODUCTIVE CALCULATORS
-   1) Cockcroft-Gault CrCl (eGFR estimate)
-   2) Daily water needs (30-35 mL/kg)
-   3) Naegele's Rule pregnancy due date (LMP + 280d)
-   No localStorage. Results update on every input event.
-   ============================================================ */
-(function () {
-
-  // ----- Cockcroft-Gault -----
-  function renderCG() {
-    var age = parseFloat(document.getElementById('cg-age').value);
-    var wt = parseFloat(document.getElementById('cg-wt').value);
-    var scr = parseFloat(document.getElementById('cg-scr').value);
-    var sex = document.getElementById('cg-sex').value;
-    var out = document.getElementById('cg-result');
-    if (!age || !wt || !scr || scr <= 0) {
-      out.innerHTML = '<p class="calc-result-headline">&mdash;</p><p class="calc-result-detail">Fill in age, weight, and serum creatinine.</p>';
-      return;
-    }
-    var crcl = ((140 - age) * wt) / (72 * scr);
-    if (sex === 'f') crcl *= 0.85;
-    var stage, advice;
-    if (crcl >= 90) { stage = 'Normal (G1)'; advice = 'GFR in the normal range.'; }
-    else if (crcl >= 60) { stage = 'Mildly decreased (G2)'; advice = 'Mild reduction. Typically clinically silent.'; }
-    else if (crcl >= 45) { stage = 'Mild to moderate (G3a)'; advice = 'Adjust nephrotoxic drugs. Monitor closely.'; }
-    else if (crcl >= 30) { stage = 'Moderate to severe (G3b)'; advice = 'Renal consultation may be appropriate.'; }
-    else if (crcl >= 15) { stage = 'Severe (G4)'; advice = 'Prepare for renal replacement therapy.'; }
-    else { stage = 'Kidney failure (G5)'; advice = 'Dialysis or transplant required.'; }
-    out.innerHTML =
-      '<p class="calc-result-headline">' + crcl.toFixed(1) + ' mL/min</p>' +
-      '<p class="calc-result-detail"><strong>' + stage + '.</strong> ' + advice + '</p>' +
-      '<p class="calc-result-detail" style="opacity:0.7;margin-top:8px;">Cockcroft-Gault uses total body weight, which over-estimates GFR in obese patients. Other equations (MDRD, CKD-EPI) are common in lab reports.</p>';
-  }
-
-  // ----- Water Needs -----
-  function renderWN() {
-    var wt = parseFloat(document.getElementById('wn-wt').value);
-    var unit = document.getElementById('wn-unit').value;
-    var out = document.getElementById('wn-result');
-    if (!wt) {
-      out.innerHTML = '<p class="calc-result-headline">&mdash;</p><p class="calc-result-detail">Enter your weight.</p>';
-      return;
-    }
-    var kg = unit === 'lb' ? wt / 2.2046 : wt;
-    var mlLow = Math.round(kg * 30);
-    var mlHigh = Math.round(kg * 35);
-    var ozLow = Math.round(mlLow / 29.5735);
-    var ozHigh = Math.round(mlHigh / 29.5735);
-    var cupsLow = (mlLow / 240).toFixed(1);
-    var cupsHigh = (mlHigh / 240).toFixed(1);
-    out.innerHTML =
-      '<p class="calc-result-headline">' + mlLow + '&ndash;' + mlHigh + ' mL/day</p>' +
-      '<p class="calc-result-detail">About ' + ozLow + '&ndash;' + ozHigh + ' fl oz, or roughly ' + cupsLow + '&ndash;' + cupsHigh + ' cups (240 mL each).</p>' +
-      '<p class="calc-result-detail" style="opacity:0.7;margin-top:8px;">Add more for hot weather, exertion, illness, breastfeeding. Subtract some if you eat a lot of water-rich foods. Listen to thirst.</p>';
-  }
-
-  // ----- Naegele's Rule -----
-  function renderNG() {
-    var lmpStr = document.getElementById('ng-lmp').value;
-    var out = document.getElementById('ng-result');
-    if (!lmpStr) {
-      out.innerHTML = '<p class="calc-result-headline">&mdash;</p><p class="calc-result-detail">Enter the first day of the last menstrual period.</p>';
-      return;
-    }
-    var lmp = new Date(lmpStr + 'T12:00:00');
-    if (isNaN(lmp.getTime())) {
-      out.innerHTML = '<p class="calc-result-headline">&mdash;</p><p class="calc-result-detail">Invalid date.</p>';
-      return;
-    }
-    var edd = new Date(lmp.getTime() + 280 * 24 * 60 * 60 * 1000);
-    var now = new Date();
-    var daysPreg = Math.floor((now - lmp) / (24 * 60 * 60 * 1000));
-    var weeks = Math.floor(daysPreg / 7);
-    var dayInWeek = daysPreg % 7;
-    var fmt = function(d) {
-      return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
-    };
-    var stage = '';
-    if (daysPreg < 0) stage = 'LMP is in the future. Adjust the date.';
-    else if (weeks < 13) stage = 'First trimester (weeks 1-12).';
-    else if (weeks < 28) stage = 'Second trimester (weeks 13-27).';
-    else if (weeks < 42) stage = 'Third trimester (weeks 28-40+).';
-    else stage = 'Post-term. Clinical evaluation needed.';
-    out.innerHTML =
-      '<p class="calc-result-headline">EDD: ' + fmt(edd) + '</p>' +
-      (daysPreg >= 0
-        ? '<p class="calc-result-detail"><strong>Gestational age today:</strong> ' + weeks + ' weeks ' + dayInWeek + ' days</p>' +
-          '<p class="calc-result-detail">' + stage + '</p>'
-        : '<p class="calc-result-detail">' + stage + '</p>') +
-      '<p class="calc-result-detail" style="opacity:0.7;margin-top:8px;">Naegele assumes a 28-day cycle with day-14 ovulation. Ultrasound dating is more accurate, especially in early pregnancy.</p>';
-  }
-
-  // ----- WIRING -----
-  function bind(ids, fn) {
-    ids.forEach(function(id){
-      var el = document.getElementById(id);
-      if (el) { el.addEventListener('input', fn); el.addEventListener('change', fn); }
-    });
-  }
-  var DEFAULTS = {
-    'cg-age': '55', 'cg-wt': '70', 'cg-scr': '1.0', 'cg-sex': 'm',
-    'wn-wt': '70', 'wn-unit': 'kg',
-    'ng-lmp': ''
-  };
-  function resetFields(ids) {
-    ids.forEach(function(id){
-      var el = document.getElementById(id);
-      if (el) el.value = (DEFAULTS[id] != null) ? DEFAULTS[id] : '';
-    });
-  }
-
-  function init() {
-    bind(['cg-age','cg-wt','cg-scr','cg-sex'], renderCG);
-    bind(['wn-wt','wn-unit'], renderWN);
-    bind(['ng-lmp'], renderNG);
-
-    var cgReset = document.getElementById('cg-reset');
-    if (cgReset) cgReset.addEventListener('click', function(){
-      resetFields(['cg-age','cg-wt','cg-scr','cg-sex']); renderCG();
-    });
-    var wnReset = document.getElementById('wn-reset');
-    if (wnReset) wnReset.addEventListener('click', function(){
-      resetFields(['wn-wt','wn-unit']); renderWN();
-    });
-    var ngReset = document.getElementById('ng-reset');
-    if (ngReset) ngReset.addEventListener('click', function(){
-      resetFields(['ng-lmp']); renderNG();
-    });
-
-    renderCG();
-    renderWN();
-    renderNG();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
 
 <script>
 (function(){

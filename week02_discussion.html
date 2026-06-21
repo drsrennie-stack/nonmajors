@@ -33,7 +33,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 .skip-link:focus { top: 8px; }
 
-.site-header, .hero-card, .deadlines-section, .prompt-section, .calc-section,
+.site-header, .hero-card, .deadlines-section, .prompt-section,
 .replies-section, .extras-section, .cta-section, .footer-section {
   padding-left: max(40px, 5vw);
   padding-right: max(40px, 5vw);
@@ -167,122 +167,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   font-size: 15px;
 }
 
-/* Calculators section (cream) */
-.calc-section { background: #F5F1E8; padding-top: 56px; padding-bottom: 56px; }
-.calc-section .section-eyebrow { color: #8B3A2E; }
-.calc-section .section-headline { color: #0B1530; }
-.calc-section .section-headline .accent { color: #8B3A2E; }
-.calc-section .section-intro { color: #0B1530; opacity: 0.84; }
-.calc-privacy {
-  font-size: 13.5px; font-style: italic;
-  color: #0B1530; opacity: 0.72;
-  margin: 0 0 28px; max-width: 720px; line-height: 1.6;
-}
-.calc-grid {
-  display: grid; gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  max-width: 980px;
-}
-.calc-card {
-  background: #FFFFFF;
-  border: 1px solid rgba(11, 21, 48, 0.18);
-  border-radius: 8px;
-  padding: 22px 24px;
-  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
-}
-.calc-card.calc-wide { grid-column: 1 / -1; }
-.calc-card-title {
-  font-size: 16px; font-weight: 800; color: #0B1530;
-  letter-spacing: -0.01em; line-height: 1.3; margin: 0 0 4px;
-}
-.calc-card-sub {
-  font-size: 12.5px; color: #0B1530; opacity: 0.72;
-  margin: 0 0 16px; line-height: 1.5;
-}
-.calc-grid-inputs {
-  display: grid; gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-  margin: 0 0 14px;
-}
-.calc-field { display: flex; flex-direction: column; gap: 5px; }
-.calc-label {
-  font-size: 10.5px; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: #8B3A2E;
-}
-.calc-input, .calc-select {
-  font-family: inherit; font-size: 14.5px;
-  padding: 8px 10px; border-radius: 4px;
-  border: 1px solid rgba(11, 21, 48, 0.25);
-  background: #FFFFFF; color: #0B1530;
-  width: 100%;
-}
-.calc-input:focus-visible, .calc-select:focus-visible {
-  outline: 2px solid #8B3A2E; outline-offset: 1px;
-  border-color: #8B3A2E;
-}
-.calc-checkbox-list {
-  display: grid; gap: 8px;
-  grid-template-columns: 1fr;
-  margin: 0 0 14px;
-}
-.calc-checkbox-list label {
-  display: flex; gap: 9px; align-items: flex-start;
-  font-size: 13.5px; color: #0B1530; line-height: 1.5;
-  cursor: pointer;
-  padding: 8px 10px; border-radius: 4px;
-  background: #FAFAF9;
-}
-.calc-checkbox-list label:hover {
-  background: #F5F1E8;
-}
-.calc-checkbox-list input[type="checkbox"],
-.calc-checkbox-list input[type="radio"] {
-  width: 16px; height: 16px;
-  accent-color: #8B3A2E;
-  cursor: pointer;
-  margin-top: 1px;
-  flex-shrink: 0;
-}
-.calc-pct {
-  font-weight: 700; color: #8B3A2E;
-  font-variant-numeric: tabular-nums;
-  margin-left: 6px;
-}
-.calc-actions {
-  display: flex; gap: 10px; flex-wrap: wrap;
-  margin: 0 0 14px;
-}
-.calc-btn-reset {
-  appearance: none; cursor: pointer; background: transparent;
-  border: 1px solid rgba(11, 21, 48, 0.25);
-  color: #0B1530;
-  font-family: inherit; font-size: 10.5px; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  padding: 8px 14px; border-radius: 4px;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-.calc-btn-reset:hover, .calc-btn-reset:focus-visible {
-  background: #0B1530; color: #FFFFFF; border-color: #0B1530;
-}
-.calc-result {
-  background: #F5F1E8;
-  border-radius: 6px;
-  padding: 14px 16px;
-  font-size: 14px; line-height: 1.6;
-  color: #0B1530;
-}
-.calc-result-headline {
-  font-size: 18px; font-weight: 800;
-  color: #8B3A2E; margin: 0 0 4px;
-  letter-spacing: -0.01em;
-}
-.calc-result-detail {
-  font-size: 13.5px; color: #0B1530;
-  margin: 4px 0 0; line-height: 1.55;
-}
-.calc-result-detail strong { color: #8B3A2E; font-weight: 800; }
-
 /* Replies section (cream) */
 .replies-section { background: #F5F1E8; padding-top: 56px; padding-bottom: 56px; }
 .replies-section .section-eyebrow { color: #8B3A2E; }
@@ -383,19 +267,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   html { scroll-behavior: auto; }
 }
 </style>
-
-<style id="wb-weeknav-css">
-.wb-weeknav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;
-  font-family:'Plus Jakarta Sans',system-ui,sans-serif;}
-.wb-weeknav-label{font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8B3A2E;margin-right:2px;}
-.wb-weeknav-pill{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:8px 16px;
-  font-weight:700;font-size:14px;line-height:1;text-decoration:none;background:#8B3A2E;color:#fff !important;border:1px solid #8B3A2E;}
-.wb-weeknav-pill:hover{background:#75301F;border-color:#75301F;color:#fff !important;}
-.wb-weeknav-pill:focus-visible{outline:3px solid #D4A24C;outline-offset:2px;}
-.wb-weeknav-pill.is-current{background:#5E2418;border-color:#5E2418;cursor:default;}
-@media print{.wb-weeknav{display:none !important;}}
-</style>
-
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -426,11 +297,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 </header>
 
 <main id="main">
-<nav class="wb-weeknav" aria-label="Week 2 navigation"><span class="wb-weeknav-label">Week 2</span><a class="wb-weeknav-pill" href="workbook_week02.html" target="_top">Workbook</a><a class="wb-weeknav-pill" href="week02_prework.html" target="_top">Pre-work</a><a class="wb-weeknav-pill is-current" aria-current="page" href="week02_discussion.html" target="_top">Discussion</a></nav>
 
 <div class="hero-card">
   <div class="hero-content">
-    <div class="hero-eyebrow">BIO 304 &middot; Week 2 of 8 &middot; Discussion</div>
+    <div class="hero-eyebrow">BIO 304 . WEEK 2 OF 8 . DISCUSSION</div>
     <h1 class="hero-headline">Tissue, location, function</h1>
     <p class="hero-subhead">Predict what's at a real body location, then explain why those tissues are exactly the right tools.</p>
     <p class="hero-usage">Initial post due Friday. Replies due Sunday. Substantive replies build on or respectfully challenge a classmate's thinking.</p>
@@ -468,47 +338,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   <h2 class="section-headline">What to <span class="accent">write about</span>.</h2>
   <article class="prompt-card">
 <p>This week we covered four tissue types (epithelial, connective, muscle, nervous) and how skin layers them together into a complete organ.</p>
-<p>Pick <strong>one specific location in the human body</strong>, a small region (e.g., the lining of the trachea, the inside of a knee joint, the bottom of your foot, the surface of an alveolus).</p>
-<p>In your initial post (250&ndash;350 words):</p>
+<p>Pick <strong>one specific location in the human body</strong> — a small region (e.g., the lining of the trachea, the inside of a knee joint, the bottom of your foot, the surface of an alveolus).</p>
+<p>In your initial post (200-300 words):</p>
 <ol>
   <li><strong>Name the location.</strong></li>
   <li><strong>Identify every tissue type you would find there</strong> in cross-section. Be specific (e.g., "pseudostratified ciliated columnar with goblet cells").</li>
   <li><strong>Explain why each tissue is exactly the right tool</strong> for that job. Why isn't the trachea lined with stratified squamous? Why isn't the bottom of your foot lined with simple columnar?</li>
-  <li><strong>Now make it personal.</strong> Run the skin cancer risk self-check below. Say what it told you about <strong>your own skin-cancer risk</strong> &mdash; no need to share which factors you checked &mdash; then pick <strong>one or two changes that would lower your risk</strong> and explain the <strong>mechanism of action</strong>: physiologically, <em>how</em> does each one protect you (think blocking UV before it damages the DNA in your skin cells)?</li>
 </ol>
   </article>
 </div>
-
-<!-- ===== SKIN CANCER RISK SELF-CHECK ===== -->
-<section class="calc-section" id="calcs" aria-labelledby="calcs-h">
-  <p class="section-eyebrow">Step 4 of your post &middot; try the clinical tool</p>
-  <h2 class="section-headline" id="calcs-h">Skin cancer <span class="accent">risk self-check</span>.</h2>
-  <p class="section-intro">Skin is the organ we built this week &mdash; and it is the most common site of cancer in the body. This is the kind of quick risk screen a clinician uses to decide how closely to watch someone's skin. Check everything that applies to you (or to a person in a scenario you have seen), read your risk band, and bring it into your post for step 4.</p>
-  <p class="calc-privacy">Educational self-screen, not a diagnosis. Nothing is saved on this device. Nothing is shared. Refresh the page to clear everything.</p>
-
-  <div class="calc-grid">
-    <div class="calc-card calc-wide">
-      <h3 class="calc-card-title">Skin cancer risk self-check</h3>
-      <p class="calc-card-sub">Check each factor that applies. Your risk band updates live. No single factor is a diagnosis &mdash; together they tell you how vigilant to be.</p>
-      <div class="calc-checkbox-list" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
-        <label><input type="checkbox" data-pts="2"> <span><strong>Fair skin that burns easily</strong>, rarely tans (Fitzpatrick I&ndash;II).</span></label>
-        <label><input type="checkbox" data-pts="1"> <span><strong>Red or blond hair</strong>, or light (blue, green, grey) eyes.</span></label>
-        <label><input type="checkbox" data-pts="1"> <span><strong>Many freckles</strong>, or more than 50 moles.</span></label>
-        <label><input type="checkbox" data-pts="2"> <span><strong>Atypical, changing, or unusual-looking moles.</strong></span></label>
-        <label><input type="checkbox" data-pts="2"> <span><strong>History of blistering sunburns</strong>, especially in childhood.</span></label>
-        <label><input type="checkbox" data-pts="2"> <span><strong>Indoor tanning bed use</strong>, ever.</span></label>
-        <label><input type="checkbox" data-pts="1"> <span><strong>Years of heavy sun exposure</strong> (outdoor work, sunny climate).</span></label>
-        <label><input type="checkbox" data-pts="2"> <span><strong>Family history of melanoma</strong> (parent, sibling, or child).</span></label>
-        <label><input type="checkbox" data-pts="3"> <span><strong>Personal history of any skin cancer.</strong></span></label>
-        <label><input type="checkbox" data-pts="1"> <span><strong>Weakened immune system</strong> (e.g., transplant, immune-suppressing medication).</span></label>
-      </div>
-      <div class="calc-actions">
-        <button type="button" id="risk-reset" class="calc-btn-reset">Reset</button>
-      </div>
-      <div class="calc-result" id="risk-result" aria-live="polite"></div>
-    </div>
-  </div>
-</section>
 
 <div class="replies-section">
   <div class="section-eyebrow">Replies</div>
@@ -538,49 +376,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
     <span class="footer-byline">Dr. Sharilyn Rennie</span>
   </div>
 </footer>
-
-<script>
-/* ============================================================
-   SKIN CANCER RISK SELF-CHECK  (educational, non-diagnostic)
-   Weighted checklist of established risk factors. Live total.
-   No localStorage. Updates on every change event.
-   ============================================================ */
-(function () {
-  function render() {
-    var boxes = document.querySelectorAll('#calcs input[type="checkbox"][data-pts]');
-    var total = 0, n = 0;
-    boxes.forEach(function (b) { if (b.checked) { total += parseFloat(b.getAttribute('data-pts')) || 0; n++; } });
-    var out = document.getElementById('risk-result');
-    if (!out) return;
-    if (n === 0) {
-      out.innerHTML = '<p class="calc-result-headline">No factors checked</p><p class="calc-result-detail">Everyone benefits from sun protection and a monthly self-exam. Check the factors that apply to see your risk band.</p>';
-      return;
-    }
-    var band, advice;
-    if (total <= 2)      { band = 'Lower risk'; advice = 'Keep up routine sun protection and a monthly skin self-exam. Mention any new or changing spot to your provider.'; }
-    else if (total <= 5) { band = 'Moderate risk'; advice = 'Be proactive: daily SPF, skip tanning beds, monthly self-exams, and consider a baseline skin check with a clinician.'; }
-    else                 { band = 'Higher risk'; advice = 'Worth a conversation with a dermatologist about regular full-skin exams, strict sun protection, and prompt evaluation of any changing lesion.'; }
-    out.innerHTML =
-      '<p class="calc-result-headline">' + band + ' &middot; ' + n + ' factor' + (n === 1 ? '' : 's') + '</p>' +
-      '<p class="calc-result-detail">' + advice + '</p>' +
-      '<p class="calc-result-detail" style="opacity:0.8;margin-top:8px;"><strong>Watch any spot for ABCDE:</strong> <strong>A</strong>symmetry, <strong>B</strong>order irregularity, <strong>C</strong>olor variation, <strong>D</strong>iameter over 6 mm, <strong>E</strong>volving. Any one of these &mdash; get it checked, whatever your risk band.</p>' +
-      '<p class="calc-result-detail" style="opacity:0.6;margin-top:8px;">Educational screen only. Real risk factors are not simply additive the way this tally is &mdash; the point is awareness, not a diagnosis.</p>';
-  }
-  function init() {
-    document.querySelectorAll('#calcs input[type="checkbox"][data-pts]').forEach(function (b) {
-      b.addEventListener('change', render);
-    });
-    var r = document.getElementById('risk-reset');
-    if (r) r.addEventListener('click', function () {
-      document.querySelectorAll('#calcs input[type="checkbox"][data-pts]').forEach(function (b) { b.checked = false; });
-      render();
-    });
-    render();
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
-})();
-</script>
 
 <script>
 (function(){

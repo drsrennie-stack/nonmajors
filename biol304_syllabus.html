@@ -392,13 +392,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   transition: background 0.2s ease;
 }
 .cta-button:hover { background: #A0452F; }
-.cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-.cta-button-ghost {
-  background: transparent; color: #F5F1E8;
-  box-shadow: inset 0 0 0 1.5px rgba(245, 241, 232, 0.45);
-}
-.cta-button-ghost:hover { background: rgba(245, 241, 232, 0.10); }
-.cta-section a:focus-visible { outline-color: #C9A14A; }
 
 .footer-section { background: #060A18; padding-top: 56px; padding-bottom: 32px; }
 .footer-top {
@@ -428,51 +421,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .footer-byline {
   font-size: 11px; font-weight: 700; color: #C9A14A;
   letter-spacing: 0.16em; text-transform: uppercase;
-}
-
-/* REFERENCE SHELF (attached near the bottom, before CTA) */
-.refshelf-section { background: #FFFFFF; padding-top: 56px; padding-bottom: 56px; }
-.refshelf-section .section-eyebrow { color: #8B3A2E; }
-.refshelf-section .section-headline { color: #0B1530; }
-.refshelf-section .section-headline .accent { color: #8B3A2E; }
-.refshelf-list {
-  list-style: none; margin: 0; padding: 0;
-  max-width: 760px;
-  counter-reset: ref-counter;
-}
-.refshelf-list li {
-  counter-increment: ref-counter;
-  display: flex; align-items: baseline; gap: 18px;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(11, 21, 48, 0.10);
-}
-.refshelf-list li:last-child { border-bottom: none; }
-.refshelf-list li::before {
-  content: counter(ref-counter, decimal-leading-zero);
-  font-weight: 800; color: #8B3A2E;
-  font-variant-numeric: tabular-nums;
-  font-size: 13px; letter-spacing: 0.02em;
-  min-width: 28px; flex-shrink: 0;
-}
-.refshelf-list .ref-name {
-  font-size: 15px; font-weight: 800; color: #0B1530;
-  letter-spacing: -0.01em;
-  text-decoration: underline;
-  text-underline-offset: 5px; text-decoration-thickness: 1px;
-  flex-shrink: 0;
-}
-.refshelf-list .ref-name:hover,
-.refshelf-list .ref-name:focus-visible { color: #8B3A2E; text-decoration-color: #8B3A2E; }
-.refshelf-list .ref-desc {
-  font-size: 14px; color: #0B1530; opacity: 0.78;
-  line-height: 1.5;
-}
-.refshelf-list .ext-arrow {
-  display: inline-block;
-  font-size: 0.85em;
-  margin-left: 4px;
-  color: #8B3A2E;
-  opacity: 0.8;
 }
 
 /* RESPONSIVE */
@@ -562,7 +510,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   <p class="section-eyebrow">Section 1</p>
   <h2 class="section-headline" id="welcome-h">Welcome</h2>
   <div class="doc-body">
-<p>Welcome to BIO 304. In eight weeks you will learn how a human body works, top to bottom. The pace is real and the design is built to make it possible. Each Monday, Tuesday, Thursday, and Friday you'll do a topic: OpenStax reading, fill-in-the-blank notes, a short video, then spaced-recall flashcards. Then you print and hand-label that day's lab workbook. Wednesdays are for catching up and joining the discussion. The weekend is for the quiz.</p>
+<p>Welcome to BIO 304. In eight weeks you will learn how a human body works, top to bottom. The pace is real and the design is built to make it possible. You will watch a short pre-work video each Monday, Tuesday, Thursday, and Friday, then practice the same concepts in a spaced-recall app and a hand-labeled lab workbook. Wednesdays are for catching up and joining the discussion. The weekend is for the quiz.</p>
     <p>This course is for students heading toward nursing, EMT, paramedic, dental hygiene, respiratory therapy, surgical tech, mortuary science, and other allied health pathways. Every topic is paired with a clinical reason you will care about it later.</p>
     <p>You will get out what you put in. The system here is built to scaffold the effort, not replace it.</p>
     <p style="margin-top:18px"><strong style="color:#0B1530">Dr. Sharilyn Rennie</strong><br><span style="color:#0B1530;opacity:0.62;font-size:14px;">Instructor of record, BIO 304</span></p>
@@ -608,11 +556,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   <div class="doc-body">
 <ul>
     <li><strong>Textbook (free).</strong> OpenStax <em>Anatomy and Physiology 2e</em>. You can read it online or download a PDF. No purchase, no access code. The reading map on Canvas points you to the exact sections that support each topic.</li>
-    <li><strong>A computer or laptop with a current browser.</strong> Chrome, Edge, Firefox, or Safari, all recent versions. Phones and tablets are not sufficient for proctored quizzes. The pre-work hub and the lab workbooks run in the browser.</li>
-    <li><strong>A printer (or library/campus printing).</strong> Each day's lab workbook is meant to be printed and labeled by hand. Hand drawing is part of how this course is graded. If you cannot print, the workbooks are designed to be hand-copied to blank paper as an alternative.</li>
-    <li><strong>A camera or scanning app.</strong> To capture hand-labeled workbooks as PDFs for upload. Any phone camera plus a free scanning app (Adobe Scan, Microsoft Lens, Apple Notes, Google Drive) works.</li>
-    <li><strong>Pen, pencil, and a ruler.</strong> Yes, a ruler. Anatomy drawings come out cleaner with one. Colored pens or pencils help with labeling.</li>
-    <li><strong>Honorlock setup for proctored quizzes.</strong> See section 12 for the full setup. Tech setup details are in the <a href="biol304_tech_setup.html" target="_top">tech setup guide</a>.</li>
+    <li><strong>A computer or tablet with a current browser.</strong> Chrome, Edge, Firefox, or Safari, all recent versions. The pre-work hub and the lab workbooks run in the browser.</li>
+    <li><strong>A printer or a way to print at the campus library.</strong> Each day's lab workbook is meant to be printed and labeled by hand. Hand drawing is part of how this course is graded.</li>
+    <li><strong>Pen, pencil, and a ruler.</strong> Yes, a ruler. Anatomy drawings come out cleaner with one.</li>
+    <li><strong>A webcam and a quiet space for Honorlock.</strong> Quizzes are proctored. The setup is in section 12.</li>
   </ul>
   </div>
 </section>
@@ -621,21 +568,20 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   <p class="section-eyebrow">Section 5</p>
   <h2 class="section-headline" id="rhythm-h">How the Course Works</h2>
   <div class="doc-body">
-<p>Every week has the same shape. Four pre-work days, each one a topic with reading, fill-in-the-blank notes, a video, then spaced-recall flashcards, plus the lab workbook for that day. One Wednesday catch-up and discussion day. A quiz that opens Friday and closes Sunday.</p>
+<p>Every week has the same shape. Four pre-work days on lecture topics, one Wednesday lab-and-discussion day, and a quiz that opens Friday and closes Sunday. Spaced recall practice runs in the background every day.</p>
     <div class="rhythm-strip">
-      <div class="rhythm-row"><span class="rhythm-day">Monday</span><span class="rhythm-body">Pre-work on one topic: reading, fill-in-the-blank notes, video, then flashcards. Print and label Monday's lab workbook. <strong>Workbook due Tuesday 11:59 PM.</strong></span></div>
-      <div class="rhythm-row"><span class="rhythm-day">Tuesday</span><span class="rhythm-body">Pre-work on the next topic: reading, fill-in-the-blank notes, video, then flashcards. Print and label Tuesday's lab workbook. <strong>Workbook due Wednesday 11:59 PM.</strong></span></div>
-      <div class="rhythm-row"><span class="rhythm-day">Wednesday</span><span class="rhythm-body">No new pre-work. Catch up and join the week's discussion thread.</span></div>
-      <div class="rhythm-row"><span class="rhythm-day">Thursday</span><span class="rhythm-body">Pre-work: reading, fill-in-the-blank notes, video, then flashcards. Thursday's lab workbook. <strong>Workbook due Friday 11:59 PM.</strong></span></div>
-      <div class="rhythm-row"><span class="rhythm-day">Friday</span><span class="rhythm-body">Pre-work and Friday's lab workbook. <strong>Workbook due Saturday 11:59 PM. Initial discussion post due. Quiz opens.</strong></span></div>
-      <div class="rhythm-row"><span class="rhythm-day">Saturday</span><span class="rhythm-body">Flashcard review. Work on the quiz and your discussion replies.</span></div>
-      <div class="rhythm-row"><span class="rhythm-day">Sunday</span><span class="rhythm-body"><strong>Discussion replies due. Quiz closes at 11:59 PM.</strong></span></div>
+      <div class="rhythm-row"><span class="rhythm-day">Monday</span><span class="rhythm-body">Pre-work video and spaced recall on one topic. Print and label that day's lab workbook.</span></div>
+      <div class="rhythm-row"><span class="rhythm-day">Tuesday</span><span class="rhythm-body">Pre-work video and spaced recall on the next topic. Print and label that day's lab workbook.</span></div>
+      <div class="rhythm-row"><span class="rhythm-day">Wednesday</span><span class="rhythm-body">No new pre-work. Catch up on labs and join the week's discussion thread.</span></div>
+      <div class="rhythm-row"><span class="rhythm-day">Thursday</span><span class="rhythm-body">Pre-work video and spaced recall. Lab workbook.</span></div>
+      <div class="rhythm-row"><span class="rhythm-day">Friday</span><span class="rhythm-body">Pre-work video and lab workbook. <strong>Initial discussion post due. Quiz opens.</strong></span></div>
+      <div class="rhythm-row"><span class="rhythm-day">Saturday</span><span class="rhythm-body">Spaced recall review. Work on the quiz and your discussion replies.</span></div>
+      <div class="rhythm-row"><span class="rhythm-day">Sunday</span><span class="rhythm-body"><strong>Discussion replies and lab workbooks due. Quiz closes at 11:59 PM.</strong></span></div>
     </div>
-    <p style="margin-top:14px;font-size:14px;opacity:0.78;font-style:italic;">Each lab workbook is due the night after it's assigned, not all on Sunday. Check each pre-work page for the exact day.</p>
     <h3>The Carnegie expectation: roughly 22 to 24 hours per week, total</h3>
     <p>This is a 4-credit course delivered in 8 weeks, which doubles the weekly pace of a regular 16-week semester. Federal Carnegie Unit standards expect approximately 22 to 24 hours of total student engagement per week for that format. That total is split into two buckets:</p>
     <ul>
-      <li><strong>Scheduled lecture and lab equivalent: about 8 to 10 hours per week.</strong> This is your pre-work viewing and reading (4 days a week), the Wednesday catch-up and discussion block, and time inside the lab workbooks. Because the course is asynchronous, you choose when to do this work, but it counts as your scheduled instruction time.</li>
+      <li><strong>Scheduled lecture and lab equivalent: about 8 to 10 hours per week.</strong> This is your pre-work video viewing (4 days a week), the Wednesday lab block, and time inside the lab workbooks. Because the course is asynchronous, you choose when to do this work, but it counts as your scheduled instruction time.</li>
       <li><strong>Outside-of-class study: about 12 to 15 hours per week.</strong> This is the work on top of scheduled instruction: spaced recall practice in the pre-work hub, OpenStax reading, the synthesis questions on the workbooks, discussion writing and replies, and quiz preparation.</li>
     </ul>
     <p>Some weeks will run lighter, some heavier (the cardiovascular and renal weeks have more moving parts). Block both buckets on your calendar before week 1 starts. Treat them like work shifts.</p>
@@ -650,8 +596,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
     <table class="grading-table" aria-label="Grading components">
       <thead><tr><th>Component</th><th>What it measures</th><th class="pct">Weight</th></tr></thead>
       <tbody>
-        <tr><td><strong>Pre-work engagement</strong></td><td>Daily reading, notes, video viewing, and spaced recall practice. Logged automatically in the pre-work hub. Export your engagement report each week.</td><td class="pct">40%</td></tr>
-        <tr><td><strong>Lab workbooks</strong></td><td>Hand-labeled anatomy diagrams and short-answer synthesis. One workbook per pre-work day, submitted as a scanned PDF, each due the night after it's assigned.</td><td class="pct">30%</td></tr>
+        <tr><td><strong>Pre-work engagement</strong></td><td>Daily video viewing plus spaced recall practice. Logged automatically in the pre-work hub. Export your engagement report each week.</td><td class="pct">40%</td></tr>
+        <tr><td><strong>Lab workbooks</strong></td><td>Hand-labeled anatomy diagrams and short-answer synthesis. One workbook per pre-work day, submitted as a scanned PDF.</td><td class="pct">30%</td></tr>
         <tr><td><strong>Weekly discussions</strong></td><td>One initial post (Friday) plus two substantive replies (Sunday). Evidence-based, your own words.</td><td class="pct">10%</td></tr>
         <tr><td><strong>Weekly quizzes</strong></td><td>20 questions, 20 minutes, Honorlock proctored, one attempt. Opens Friday, closes Sunday at 11:59 PM.</td><td class="pct">20%</td></tr>
       </tbody>
@@ -666,25 +612,23 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   <p class="section-eyebrow">Section 7</p>
   <h2 class="section-headline" id="deadlines-h">Hard Deadlines</h2>
   <div class="doc-body">
-<p>Three categories of weekly deadlines. Mark them on your calendar before week 1.</p>
+<p>Three hard deadlines every week. Mark them on your calendar before week 1.</p>
     <div class="deadlines-grid">
-      <div class="deadline-card">
-        <p class="deadline-when">Day after assigned, 11:59 PM</p>
-        <p class="deadline-what">Lab workbook (Mon&rarr;Tue, Tue&rarr;Wed, Thu&rarr;Fri, Fri&rarr;Sat)</p>
-      </div>
       <div class="deadline-card">
         <p class="deadline-when">Friday 11:59 PM</p>
         <p class="deadline-what">Initial discussion post</p>
       </div>
       <div class="deadline-card">
         <p class="deadline-when">Sunday 11:59 PM</p>
-        <p class="deadline-what">Discussion replies + weekly quiz closes</p>
+        <p class="deadline-what">Weekly quiz closes</p>
+      </div>
+      <div class="deadline-card">
+        <p class="deadline-when">Sunday 11:59 PM</p>
+        <p class="deadline-what">All lab workbooks + discussion replies</p>
       </div>
     </div>
-    <p style="margin-top:18px;font-size:14px;opacity:0.85;font-style:italic;">Each lab workbook is due the night after it's assigned, not all on Sunday. Check each pre-work page for the exact day.</p>
     <h3>Late policy</h3>
-    <p>Late work earns zero points. No exceptions. The course requires something nearly every day, including your spaced recall data upload. Wait until Sunday and you will lose a significant number of points.</p>
-    <p>If you have DSPS accommodations, you are required to present your DSPS letter to me in week 1 so I can set up the adjustments (testing-time extensions, alternate formats, anything else your letter calls for) before your first deadline arrives. If life is hitting hard, email me <strong>before</strong> a deadline. Solutions exist before the deadline. They do not exist after.</p>
+    <p>Late work earns zero points. No exceptions. If you have DSPS accommodations, you are required to present your DSPS letter to me in week 1 so I can set up the adjustments (testing-time extensions, alternate formats, anything else your letter calls for) before your first deadline arrives. If life is hitting hard, email me <strong>before</strong> a deadline. Solutions exist before the deadline. They do not exist after.</p>
     <p>In an 8-week course, falling one week behind is roughly equivalent to falling two weeks behind in a regular semester. The late policy exists to protect your pace, not to punish you.</p>
   </div>
 </section>
@@ -749,43 +693,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 <h3>Browser and internet</h3>
   <p>Chrome, Edge, Firefox, or Safari, all current versions. Stable internet for quiz day. If your internet is unreliable, plan to take the quiz from the campus library or another known-good location.</p>
   <h3>Submissions</h3>
-  <p>Lab workbooks are submitted as a single scanned PDF per day, due the night after assigned. Filename convention: <code>LastName_DayNN_Topic.pdf</code>. Discussion posts go in the Canvas discussion thread. The weekly quiz is launched from inside the Canvas Quizzes tab through Honorlock.</p>
+  <p>Lab workbooks are submitted as a single scanned PDF per day. Filename convention: <code>LastName_DayNN_Topic.pdf</code>. Discussion posts go in the Canvas discussion thread. The weekly quiz is launched from inside the Canvas Quizzes tab through Honorlock.</p>
   <h3>Honorlock</h3>
-  <p>Quizzes are proctored by Honorlock. The first time you launch Honorlock, allow extra time for the browser extension installation. After that, launch is fast. Full setup details, including what hardware you need, are in the <a href="biol304_tech_setup.html" target="_top">tech setup guide</a>.</p>
-  <p style="margin-top:14px;font-size:14px"><a href="biol304_tech_setup.html" target="_top">Full tech setup guide &rarr;</a> &nbsp;&middot;&nbsp; <a href="submission-directions.html" target="_top">Submission directions &rarr;</a></p>
+  <p>Quizzes are proctored by Honorlock. You will need a webcam, microphone, and a quiet space. The first time you launch Honorlock, allow extra time for the browser extension installation. After that, launch is fast.</p>
+  <p style="margin-top:14px;font-size:14px"><a href="biol304_tech_setup.html" target="_top">Full tech setup guide &rarr;</a> &nbsp;.&nbsp; <a href="submission-directions.html" target="_top">Submission directions &rarr;</a></p>
   </div>
-</section>
-
-<!-- ===== REFERENCE SHELF ===== -->
-<section class="refshelf-section" id="refshelf" aria-labelledby="refshelf-h">
-  <p class="section-eyebrow">Reference shelf</p>
-  <h2 class="section-headline" id="refshelf-h">Open these <span class="accent">alongside the work</span>.</h2>
-  <p class="section-intro" style="color:#0B1530;opacity:0.84;">Free atlases and the textbook, each in its own tab. Use them next to your pre-work page when an image, a slide, or a definition will help the term click.</p>
-  <ol class="refshelf-list">
-    <li>
-      <a class="ref-name" href="https://openstax.org/details/books/anatomy-and-physiology-2e" target="_blank" rel="noopener">OpenStax A&amp;P 2e<span class="ext-arrow" aria-hidden="true">&#8599;</span></a>
-      <span class="ref-desc">free peer-reviewed textbook, online or PDF, anchors every topic in this course</span>
-    </li>
-    <li>
-      <a class="ref-name" href="https://sites.google.com/a/umich.edu/bluelink/resources/bluelink" target="_blank" rel="noopener">BlueLink, University of Michigan<span class="ext-arrow" aria-hidden="true">&#8599;</span></a>
-      <span class="ref-desc">cadaver atlas, dissection videos, clinical correlates</span>
-    </li>
-    <li>
-      <a class="ref-name" href="https://histology.oit.duke.edu/" target="_blank" rel="noopener">Duke Histology<span class="ext-arrow" aria-hidden="true">&#8599;</span></a>
-      <span class="ref-desc">slide images for every tissue type, use during the tissues week</span>
-    </li>
-  </ol>
 </section>
 
 <!-- ===== CLOSING CTA (dark) ===== -->
 <div class="cta-section">
-  <p class="cta-eyebrow">One last step</p>
-  <h2 class="cta-headline">Confirm you read this. <span class="accent">Take the syllabus quiz.</span></h2>
-  <p class="cta-subhead">A short Canvas quiz confirms you have read the syllabus and understand how the course runs. Take it now, then head to the course home and open Week 1.</p>
-  <div class="cta-actions">
-    <a href="https://lrccd.instructure.com/courses/317432/quizzes/2888521?module_item_id=28323660" class="cta-button" target="_blank" rel="noopener">Take the syllabus quiz</a>
-    <a href="index.html" class="cta-button cta-button-ghost" target="_top">Open the course home</a>
-  </div>
+  <p class="cta-eyebrow">Ready to begin</p>
+  <h2 class="cta-headline">Back to the <span class="accent">course home</span> for week 1.</h2>
+  <p class="cta-subhead">The course home has every week card, the discussions, and the pre-work hub. You read the syllabus. Now go open Week 1.</p>
+  <a href="index.html" class="cta-button" target="_top">Open the course home</a>
 </div>
 
 </main>

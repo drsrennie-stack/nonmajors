@@ -848,16 +848,6 @@ body.mcas-page a:focus-visible {
   border-radius: 4px;
 }
 
-/* Button-styled anchors must keep their button text color, not the global link
-   color. The global "body.mcas-page a { color: rust }" rule was overriding
-   .btn-primary's white, leaving unreadable rust-on-navy text. These higher-
-   specificity rules restore the correct, high-contrast button colors. */
-body.mcas-page a.btn-primary, body.mcas-page a.btn-primary:hover, body.mcas-page a.btn-primary:focus-visible,
-body.mcas-page a.btn-gold, body.mcas-page a.btn-gold:hover, body.mcas-page a.btn-gold:focus-visible,
-a.btn-primary, a.btn-gold { color: var(--white); }
-body.mcas-page a.btn-ghost, body.mcas-page a.btn-ghost:hover, body.mcas-page a.btn-ghost:focus-visible,
-a.btn-ghost { color: var(--navy); }
-
 /* ----- NO BOOKENDS RULE -----
    Strip section-edge bookend borders from header.page-head, section.band,
    nav.toc, .banner, .page-head, the syllabus's section blocks, etc.
@@ -986,6 +976,25 @@ body.mcas-page .glance-item:hover {
   font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
   margin-top: 56px;
 }
+/* No italics anywhere in the footer area (page chrome or MCAS chrome).
+   The underlying page styles set Lora italic on .foot and footer text;
+   the MCAS chrome should read as clean upright. */
+body.mcas-page footer,
+body.mcas-page footer *,
+body.mcas-page .mcas-footer,
+body.mcas-page .mcas-footer *,
+body.mcas-page .foot,
+body.mcas-page .foot * {
+  font-style: normal !important;
+}
+
+/* Hide the legacy workbook aside on spoke pages — Step 1 of the step
+   tracker covers it. Keep the markup in DOM so the tracker JS can still
+   read the workbook URL from it. */
+body.mcas-page aside.mcas-next-up {
+  display: none !important;
+}
+
 /* Footer link color — bumped to body-scoped selector so it wins
    specificity against body.mcas-page a (which was forcing rust on dark
    navy and failing WCAG contrast). White on the near-black footer
@@ -1109,6 +1118,205 @@ body.mcas-page a.mcas-prework-link-cta:focus-visible {
   border-radius: 4px;
 }
 
+/* ----- Step tracker (on spoke pages, at the top) -----
+   Four-step pre-work flow visualized as horizontal cards:
+     1. Print workbook   2. Watch video   3. Retrieval check   4. Open spaced recall
+   The "current" step renders in dark navy with white text; completed
+   steps render in white with a checkmark; future steps are muted but
+   still clickable. State is read from three localStorage flags
+   (bio304-workbook-{id}, bio304-video-{id}, bio304-gate-{id}) plus the
+   spoke→spaced-recall URL for step 4. */
+body.mcas-page .mcas-step-tracker {
+  margin: 14px 0 28px;
+}
+body.mcas-page .mcas-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+body.mcas-page .mcas-step {
+  display: flex;
+  min-height: 100%;
+}
+body.mcas-page a.mcas-step-btn,
+body.mcas-page button.mcas-step-btn {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+  padding: 16px 16px 14px;
+  border-radius: 10px;
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1.5px solid;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  position: relative;
+}
+body.mcas-page .mcas-step.is-pending a.mcas-step-btn,
+body.mcas-page .mcas-step.is-pending button.mcas-step-btn {
+  background: #FFFFFF;
+  color: rgba(11, 21, 48, 0.55);
+  border-color: rgba(11, 21, 48, 0.16);
+}
+body.mcas-page .mcas-step.is-pending a.mcas-step-btn:hover,
+body.mcas-page .mcas-step.is-pending button.mcas-step-btn:hover,
+body.mcas-page .mcas-step.is-pending a.mcas-step-btn:focus-visible,
+body.mcas-page .mcas-step.is-pending button.mcas-step-btn:focus-visible {
+  color: var(--mcas-navy);
+  border-color: rgba(11, 21, 48, 0.45);
+  transform: translateY(-1px);
+  outline: none;
+}
+body.mcas-page .mcas-step.is-active a.mcas-step-btn,
+body.mcas-page .mcas-step.is-active button.mcas-step-btn {
+  background: var(--mcas-navy);
+  color: #FFFFFF;
+  border-color: var(--mcas-navy);
+  box-shadow: 0 6px 18px rgba(11, 21, 48, 0.18);
+}
+body.mcas-page .mcas-step.is-active a.mcas-step-btn:hover,
+body.mcas-page .mcas-step.is-active button.mcas-step-btn:hover,
+body.mcas-page .mcas-step.is-active a.mcas-step-btn:focus-visible,
+body.mcas-page .mcas-step.is-active button.mcas-step-btn:focus-visible {
+  background: var(--mcas-dark);
+  border-color: var(--mcas-dark);
+  transform: translateY(-1px);
+  outline: 3px solid var(--mcas-gold);
+  outline-offset: 2px;
+}
+body.mcas-page .mcas-step.is-completed a.mcas-step-btn,
+body.mcas-page .mcas-step.is-completed button.mcas-step-btn {
+  background: #FFFFFF;
+  color: var(--mcas-navy);
+  border-color: rgba(11, 21, 48, 0.16);
+}
+body.mcas-page .mcas-step.is-completed a.mcas-step-btn:hover,
+body.mcas-page .mcas-step.is-completed button.mcas-step-btn:hover {
+  border-color: rgba(11, 21, 48, 0.45);
+}
+body.mcas-page .mcas-step.is-completed .mcas-step-btn::after {
+  content: "¹3";
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--mcas-rust);
+}
+body.mcas-page .mcas-step-num {
+  font-family: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.78;
+  margin-bottom: 6px;
+}
+body.mcas-page .mcas-step.is-active .mcas-step-num {
+  color: var(--mcas-gold);
+  opacity: 1;
+}
+body.mcas-page .mcas-step-label {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+body.mcas-page .mcas-step-state {
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  min-height: 1.2em;
+}
+body.mcas-page .mcas-step.is-active .mcas-step-state {
+  color: var(--mcas-gold);
+}
+
+/* Step 1 skip affordance: small link under the main button for students
+   who already have the workbook printed or are doing it on paper. */
+body.mcas-page .mcas-step-skip {
+  appearance: none;
+  background: transparent;
+  border: none;
+  margin: 6px 0 0 4px;
+  padding: 4px 0;
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mcas-rust);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  display: inline-block;
+}
+body.mcas-page .mcas-step-skip:hover,
+body.mcas-page .mcas-step-skip:focus-visible {
+  color: #A0452F;
+  outline: none;
+}
+body.mcas-page .mcas-step-skip[hidden] { display: none; }
+
+/* Persistent reminder banner shown after the student skips Step 1. */
+body.mcas-page .mcas-step-reminder {
+  margin: 12px 0 0;
+  padding: 12px 16px;
+  background: #FFFFFF;
+  border-left: 4px solid var(--mcas-rust);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06);
+  font-size: 13.5px;
+  color: var(--mcas-navy);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+body.mcas-page .mcas-step-reminder[hidden] { display: none; }
+body.mcas-page .mcas-step-reminder strong {
+  font-weight: 800;
+  color: var(--mcas-rust);
+  letter-spacing: 0.02em;
+}
+body.mcas-page .mcas-step-reminder-dismiss {
+  appearance: none;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--mcas-navy);
+  opacity: 0.6;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+}
+body.mcas-page .mcas-step-reminder-dismiss:hover,
+body.mcas-page .mcas-step-reminder-dismiss:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+
+@media (max-width: 720px) {
+  body.mcas-page .mcas-steps {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.mcas-page .mcas-step-btn { transition: none !important; }
+}
+
 /* ----- Lecture video notes section (on spoke pages, under the video) -----
    Freeform textarea that autosaves to localStorage keyed by topic ID.
    Visible in Notes and Study modes; hidden in Quiz mode. Prints cleanly
@@ -1216,64 +1424,8 @@ body.mcas-page .mcas-next-up-gate-hint {
 }
 body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 </style>
-<style>
-  /* ---- Weekly engagement grade card (on the report) ---- */
-  .grade-card h3 { margin-bottom: 10px; }
-  .grade-headline { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
-  .grade-card .grade-num { font-size:46px; font-weight:800; line-height:1; color:var(--navy); letter-spacing:-.02em; }
-  .grade-card .grade-num.low { color:var(--terra); }
-  .grade-card .grade-sub { font-size:13px; color:var(--gray-soft); font-weight:600; }
-  .grade-card .grade-sub strong { color:var(--navy); }
-  .grade-bar { position:relative; height:24px; background:var(--navy-tint); border:1px solid var(--gray-line); border-radius:8px; overflow:hidden; margin:14px 0 6px; }
-  .grade-bar-fill { position:absolute; left:0; top:0; bottom:0; background:linear-gradient(90deg,#D9B065,var(--gold-deep)); border-radius:7px 0 0 7px; }
-  .grade-bar-fill.low { background:linear-gradient(90deg,#A0452F,var(--terra)); }
-  .grade-bar-max { position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--navy); opacity:.6; }
-  .grade-bar-max::after { content:attr(data-l); position:absolute; top:-16px; left:50%; transform:translateX(-50%); font-size:9px; font-weight:700; color:var(--navy); white-space:nowrap; }
-  .grade-days { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin:12px 0; }
-  .grade-day { position:relative; border:1px solid var(--gray-line); border-radius:9px; padding:7px 4px 6px; text-align:center; background:var(--white); }
-  .grade-day .gd-n { display:block; font-size:10px; font-weight:700; color:var(--gray-soft); text-transform:uppercase; }
-  .grade-day .gd-m { display:block; font-size:16px; font-weight:700; line-height:1.2; }
-  .grade-day .gd-p { display:block; font-size:10px; font-weight:700; color:var(--gray-soft); }
-  .grade-day .gd-vid { position:absolute; top:4px; right:5px; font-size:8px; color:var(--gold-deep); }
-  .grade-day .gd-opt { position:absolute; top:4px; left:5px; font-size:7.5px; font-weight:700; color:var(--gray-soft); text-transform:uppercase; }
-  .grade-day.full { background:#e6f0e7; border-color:#a9d2ba; } .grade-day.full .gd-m { color:#2e7d52; }
-  .grade-day.partial { background:#fbf4e4; border-color:var(--gold); } .grade-day.partial .gd-m { color:var(--gold-deep); }
-  .grade-ticker { background:var(--navy-tint); border:1px solid var(--gray-line); border-left:4px solid var(--navy); border-radius:8px; padding:10px 13px; font-size:13.5px; margin-top:6px; }
-  .grade-ticker.ok { background:#e6f0e7; border-left-color:#2e7d52; }
-  .grade-ticker.warn { background:#f4e7e2; border-left-color:var(--terra); }
-  .grade-policy { font-size:12.5px; color:#4a4538; background:#fbf8f1; border:1px solid var(--gray-line); border-radius:8px; padding:10px 13px; margin-top:10px; }
-  .grade-goal { font-size:13px; color:var(--navy); background:#f3eee2; border:1px solid #e6dcc2; border-radius:8px; padding:9px 13px; margin:10px 0 0; }
-  .grade-note { font-size:11.5px; color:var(--gray-soft); margin-top:8px; }
-  /* print-only report header */
-  .report-print-head { display:none; }
-  .report-print-head .rph-title { font-size:20px; font-weight:800; color:var(--navy); }
-  .report-print-head .rph-meta { font-size:12.5px; color:#333; margin-top:2px; }
-  @media print {
-    .report-print-head { display:flex; align-items:center; gap:14px; padding-bottom:12px; margin-bottom:14px; border-bottom:2px solid var(--navy); }
-    .grade-card { break-inside:avoid; page-break-inside:avoid; }
-    .grade-bar-fill, .grade-day.full, .grade-day.partial { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-  }
-</style>
 </head>
 <body class="mcas-page">
-<script>
-/* mcas-flag-heal: undoes the old "opening the cards marked the video watched" bug.
-   Removes any watched-flag that never actually reached the 98% threshold, so an
-   unwatched video correctly reads 0% and uncredited. Real watches (>=98%) and
-   honest "Yes I watched" clicks (100%) are kept. Card progress is never touched. */
-(function(){
-  try{
-    var rm=[];
-    for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i); if(k&&k.indexOf("bio304-video-")===0) rm.push(k);}
-    rm.forEach(function(k){
-      var id=k.slice("bio304-video-".length);
-      var pct=parseInt(localStorage.getItem("bio304-videopct-"+id)||"0",10)||0;
-      if(localStorage.getItem(k)==="true" && pct<98){ localStorage.removeItem(k); try{localStorage.removeItem("bio304-gate-"+id);}catch(e){} }
-    });
-  }catch(e){}
-})();
-</script>
-
 <!-- mcas-chrome-header -->
 <a href="#mcas-content" class="mcas-skip">Skip to main content</a>
 <div class="mcas-chrome">
@@ -1312,32 +1464,23 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 
 <header class="page-header">
   <p class="eyebrow">BIO 304 &middot; Human Anatomy &amp; Physiology &middot; American River College</p>
-  <h1 class="page-title">Daily Pre-Work and Spaced Recall</h1>
-  <p class="subhead" id="subhead-context">Today&rsquo;s prep, your daily review, and your engagement record</p>
-  <p class="usage">Watch each topic’s video, then open its cards to study. Rate how you felt on each card. Your progress is saved on this device and carries from day to day, so when you come back your due cards will be ready for review.</p>
+  <h1 class="page-title">Nightly Pre-Work and Spaced Recall</h1>
+  <p class="subhead" id="subhead-context">Tonight&rsquo;s prep, your daily review, and your engagement record</p>
+  <p class="usage">Watch each video. Explain it in your own words to unlock notes and your question set. Rate how you felt on each card. Come back tomorrow and your cards will be ready for review.</p>
   <nav class="top-nav" aria-label="Primary">
-    <button type="button" data-nav="dashboard" aria-current="page">Today&rsquo;s pre-work</button>
+    <button type="button" data-nav="dashboard" aria-current="page">Tonight&rsquo;s pre-work</button>
     <button type="button" data-nav="review">Daily review</button>
     <button type="button" data-nav="report">Engagement report</button>
     <button type="button" data-nav="settings">Settings</button>
   </nav>
 </header>
-
-<!-- mcas-tour-pill -->
-<div class="mcas-tour-pill-row">
-  <button type="button" class="mcas-tour-pill" id="mcas-tour-pill" data-tour-pill>
-    <span id="mcas-tour-pill-label">First time here? Take the guided walkthrough &rarr;</span>
-  </button>
-</div>
-<!-- mcas-tour-pill-end -->
-
 <div role="status" aria-live="polite" class="sr-only" id="live-region"></div>
 
 <main id="main-content" tabindex="-1">
 
   <!-- DASHBOARD -->
   <section class="view active" id="view-dashboard" aria-labelledby="dash-heading">
-    <h2 id="dash-heading">Today&rsquo;s pre-work</h2>
+    <h2 id="dash-heading">Tonight&rsquo;s pre-work</h2>
     <div class="stats-row">
       <div class="stat">
         <p class="stat-label">Streak</p>
@@ -1350,7 +1493,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
         <p class="stat-sub">from prior sessions</p>
       </div>
       <div class="stat">
-        <p class="stat-label">Topics today</p>
+        <p class="stat-label">Topics tonight</p>
         <p class="stat-value" id="stat-topics-tonight">0</p>
         <p class="stat-sub" id="stat-topics-tonight-sub">today&rsquo;s pre-work</p>
       </div>
@@ -1365,16 +1508,52 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 
   <!-- TOPIC LOCKED (video + gate) -->
   <section class="view" id="view-topic" aria-labelledby="topic-heading">
-    <button type="button" class="btn btn-ghost" data-nav="dashboard" style="margin-bottom:14px;">&larr; Back to today&rsquo;s list</button>
+    <button type="button" class="btn btn-ghost" data-nav="dashboard" style="margin-bottom:14px;">&larr; Back to tonight&rsquo;s list</button>
     <h2 id="topic-heading">Topic</h2>
     <p class="usage" id="topic-summary"></p>
 
+    <div class="card" id="video-card">
+      <h3 id="video-card-heading">Step 1. Watch the lecture video</h3>
+      <p class="usage" id="video-status">Watch this topic's lecture video on its lecture page, then return here to keep going.</p>
+      <div class="toolbar">
+        <a class="btn btn-primary" id="btn-open-lecture-page" href="#" target="_top" hidden>Open lecture page &rarr;</a>
+        <button type="button" class="btn btn-primary" id="btn-simulate-watch" hidden>Simulate watching (10s)</button>
+        <button type="button" class="btn btn-gold" id="btn-mark-watched">I&rsquo;ve watched it</button>
+      </div>
+      <div class="video-frame" id="video-frame-legacy" aria-label="Legacy in-app video player" hidden>
+        <div class="placeholder-label" id="video-placeholder-label">Placeholder video. The real video must play start-to-finish before the next step appears.</div>
+        <div class="video-progress" id="video-progress"></div>
+      </div>
+    </div>
+
+    <p class="usage" id="gate-locked-note" style="margin-top:16px;">Step 2 unlocks once Step 1 is complete.</p>
+
+    <div class="gate" id="gate-card" aria-labelledby="gate-heading" hidden>
+      <h3 id="gate-heading">Step 2. Explain in your own words</h3>
+      <label for="gate-input">In your own words, what did this video teach you? Aim for at least 60 words and include the key ideas.</label>
+      <textarea id="gate-input" aria-describedby="gate-help" placeholder="Type your explanation here..."></textarea>
+      <p id="gate-help" class="usage">Your explanation stays on this device. It will print with your engagement report so your professor can see your understanding.</p>
+      <p class="usage" id="gate-preview-hint" hidden style="margin-top:6px;">
+        <strong style="color:var(--terra-dark);font-style:normal;">Preview mode hint:</strong>
+        the system is looking for these key concepts in your explanation:
+        <span id="gate-preview-keywords" style="font-family:'DM Sans',system-ui,sans-serif;font-style:normal;color:var(--navy);"></span>
+      </p>
+      <div class="gate-meter" aria-live="polite">
+        <span>Words: <strong id="gate-word-count">0</strong> / 60</span>
+        <span>Concepts found: <strong id="gate-keyword-count">0</strong> / <span id="gate-keyword-target">0</span></span>
+        <button type="button" id="btn-toggle-preview-hint" class="btn btn-ghost" style="padding:4px 10px;font-size:12px;margin-left:auto;">Show concepts (preview)</button>
+      </div>
+      <div class="toolbar">
+        <button type="button" class="btn btn-primary" id="btn-submit-gate">Unlock notes and questions</button>
+      </div>
+      <p class="gate-feedback" id="gate-feedback" role="status"></p>
+    </div>
   </section>
 
   <!-- LEARNING VIEW (cards; notes link out to the existing notes hub) -->
   <section class="view" id="view-learn" aria-labelledby="learn-heading">
     <div class="toolbar" style="margin-bottom:14px;">
-      <button type="button" class="btn btn-ghost" data-nav="dashboard">&larr; Back to today&rsquo;s list</button>
+      <button type="button" class="btn btn-ghost" data-nav="dashboard">&larr; Back to tonight&rsquo;s list</button>
       <a id="link-open-notes" class="btn btn-gold" target="_blank" rel="noopener noreferrer" href="#" hidden>Open notes &#x2197;</a>
       <a id="link-open-reading" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="#" hidden>OpenStax reference &#x2197;</a>
       <!-- mcas-workbook-btn -->
@@ -1429,48 +1608,14 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
       <span style="font-family:'DM Sans',system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-dark);">Show</span>
       <button type="button" class="btn btn-primary" id="btn-review-due" aria-pressed="true">Due today only</button>
       <button type="button" class="btn btn-ghost" id="btn-review-all" aria-pressed="false">All unlocked cards</button>
-      <button type="button" class="btn btn-ghost" id="btn-review-mixed" aria-pressed="false">Cumulative mix</button>
     </div>
     <div id="review-body"></div>
   </section>
 
   <!-- ENGAGEMENT REPORT -->
   <section class="view print-view" id="view-report" aria-labelledby="report-heading">
-    <!-- print-only identifying header (logo + name/week/date) -->
-    <div class="report-print-head" id="report-print-head" aria-hidden="true">
-      <span class="rph-logo">
-        <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false" style="height:46px;width:auto;">
-          <g transform="translate(0,18)">
-            <g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/></g>
-            <g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
-            <g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
-          </g>
-        </svg>
-      </span>
-      <div class="rph-text">
-        <div class="rph-title">Weekly Engagement Report</div>
-        <div class="rph-meta">Name: <strong id="rph-name">__________________</strong> &nbsp;·&nbsp; Week: <strong id="rph-week">1</strong> &nbsp;·&nbsp; Date: <strong id="rph-date"></strong></div>
-      </div>
-    </div>
-
     <h2 id="report-heading">Engagement report</h2>
-    <p class="usage">A printable record of your daily prework and your engagement grade. Print it or save it as a PDF, then upload that file.</p>
-    <div class="toolbar no-print" style="flex-wrap:wrap;gap:10px;align-items:flex-end;">
-      <div id="name-set-wrap" style="display:none;">
-        <label for="report-name" style="display:block;font-size:11px;font-weight:700;color:var(--gray-soft);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Your name (locks to your report)</label>
-        <span style="display:inline-flex;gap:8px;align-items:center;">
-          <input type="text" id="report-name" placeholder="First Last" style="font-family:inherit;font-size:14px;border:1px solid var(--gray-line);border-radius:8px;padding:8px 10px;min-width:190px;">
-          <button type="button" class="btn btn-gold" id="btn-save-name">Save &amp; lock</button>
-        </span>
-      </div>
-      <div id="name-locked-wrap" style="display:none;">
-        <label style="display:block;font-size:11px;font-weight:700;color:var(--gray-soft);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Name on this report</label>
-        <span style="font-weight:700;color:var(--navy);font-size:15px;">🔒 <span id="name-locked-val"></span></span>
-      </div>
-      <div><label for="report-week" style="display:block;font-size:11px;font-weight:700;color:var(--gray-soft);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Week</label>
-        <select id="report-week" style="font-family:inherit;font-size:14px;border:1px solid var(--gray-line);border-radius:8px;padding:8px 10px;"></select></div>
-    </div>
-    <p class="usage no-print" id="name-help" style="font-size:12px;margin-top:-4px;"></p>
+    <p class="usage">A printable record of your nightly work. Hand this in or save it as a PDF.</p>
     <div class="toolbar no-print">
       <button type="button" class="btn btn-primary" id="btn-print">Print or save as PDF</button>
       <button type="button" class="btn btn-ghost" id="btn-export">Export progress code</button>
@@ -1492,7 +1637,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
     </div>
     <div class="card">
       <h3>About this prototype</h3>
-      <p class="usage">BIO 304 daily pre-work tool. Forces video watch, requires a written explanation gate, then unlocks notes and an adaptive spaced-recall card set across DOK 1 to 3. Reviews carry across days using a lightweight SM2-style scheduler.</p>
+      <p class="usage">BIO 304 nightly pre-work tool. Forces video watch, requires a written explanation gate, then unlocks notes and an adaptive spaced-recall card set across DOK 1 to 3. Reviews carry across days using a lightweight SM2-style scheduler.</p>
     </div>
   </section>
 
@@ -1516,7 +1661,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
 window.MCAS_LECTURE_BY_TOPIC = {
     "t-action-potentials": "action-potentials-synapses.html",
     "t-adaptive-immunity": "adaptive-immunity.html",
-    "t-anatomical-terminology": "body-cavities-and-regions.html",
+    "t-anatomical-terminology": "anatomical-position.html",
     "t-appendicular-skeleton": "appendicular-skeleton.html",
     "t-axial-skeleton": "axial-skeleton.html",
     "t-blood-composition": "blood-composition.html",
@@ -1731,17 +1876,10 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   const STORAGE_KEY = "bio304_spaced_recall_v1";
   const DAY_MS = 24 * 60 * 60 * 1000;
 
-  // The course runs on Pacific time, so a "course day" is the same calendar day
-  // for everyone regardless of the device's timezone. All day keys go through this.
-  function pacificDateStr(ms){
-    try { return new Date(ms).toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' }); }
-    catch(e){ return new Date(ms).toISOString().slice(0,10); }
-  }
-
   function todayKey(offsetDays){
     // Single source of truth for "now" with the simulated-day offset applied once.
     const ms = Date.now() + (((offsetDays || 0) + (STATE.daysSimulated || 0)) * DAY_MS);
-    return pacificDateStr(ms);
+    return new Date(ms).toISOString().slice(0,10);
   }
 
   // Fisher-Yates shuffle. Returns a new array so callers don't have to clone.
@@ -1765,7 +1903,6 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       daysSimulated: 0,
       topics: {},
       sessions: [],
-      studentName: "",
       lastOpenedDate: ""
     };
   }
@@ -1792,16 +1929,6 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
 
   let STATE = loadState();
 
-  // Instructor preview. When ON, topics with no lecture page wired up can be
-  // opened to review their cards. OFF by default, so students have no back door
-  // into locked material. Enable with ?preview=1 or localStorage bio304-preview="1".
-  var PREVIEW_MODE = false;
-  try {
-    var _pu = new URL(window.location.href);
-    PREVIEW_MODE = _pu.searchParams.get("preview") === "1"
-                || window.localStorage.getItem("bio304-preview") === "1";
-  } catch (e) {}
-
   function getTopicState(topicId){
     if (!STATE.topics[topicId]) {
       STATE.topics[topicId] = {
@@ -1812,170 +1939,10 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         unlockedAt: "",
         cards: {},
         dok: { 1: { correct: 0, total: 0 }, 2: { correct: 0, total: 0 }, 3: { correct: 0, total: 0 } },
-        adaptiveLevel: 1,
-        maxLevel: 1   // highest DOK level reached; ratchets up, never demotes
+        adaptiveLevel: 1
       };
     }
     return STATE.topics[topicId];
-  }
-
-  // Authoritative gate: a topic's cards are unlocked only by ACTUALLY watching its
-  // lecture video, which the lecture page records in the cross-page flag
-  // bio304-video-<id>. We re-read that flag at open time instead of trusting a
-  // cached videoWatched bool, so a stale value or an imported progress code can't
-  // slip past the gate. If the flag isn't set, a student is sent back to watch the
-  // video. Instructor PREVIEW_MODE may additionally rely on the in-app test-watch.
-  function videoWatchedFor(topicId){
-    var flag = false;
-    try { flag = window.localStorage.getItem("bio304-video-" + topicId) === "true"; } catch (e) {}
-    var ts = getTopicState(topicId);
-    if (flag && !ts.videoWatched) { ts.videoWatched = true; saveTopicState(topicId, ts); }
-    if (!flag && ts.videoWatched && !PREVIEW_MODE) {
-      // videoWatched is set but the real flag is missing (e.g. imported code) —
-      // re-lock for students so the only way in is genuinely watching the video.
-      ts.videoWatched = false; saveTopicState(topicId, ts);
-    }
-    return flag || (PREVIEW_MODE && ts.videoWatched);
-  }
-
-  // Persist a single topic's state. This was referenced but never defined,
-  // so every call threw a ReferenceError and aborted the unlock handler
-  // before it could navigate or save — which is why completed topics
-  // "didn't take" and re-locked on reload. Writing through to saveState()
-  // persists the whole STATE (ts is a live reference into STATE.topics).
-  function saveTopicState(topicId, ts){
-    if (topicId && ts) STATE.topics[topicId] = ts;
-    saveState();
-  }
-
-  /* ===== WEEKLY ENGAGEMENT GRADE (fixed policy — students cannot change) =====
-     The grade lives on the engagement report so the printed/uploaded report IS
-     the grade record. It reads real data: videos watched (topic state) and cards
-     completed (session log + topic state). */
-  var GRADE = { required: 5, total: 7, mode: "perday", penalty: 5, cardsPerDay: 8 };
-  var REPORT_WEEK = null;   // selected week on the report (null = current)
-  var REPORT_NAME = "";     // student name typed for the printout
-
-  function gradeScore(effDays){
-    var req = GRADE.required;
-    if (GRADE.mode === "perday") return Math.max(0, Math.min(100, Math.round(effDays * (100/req))));
-    var missing = Math.max(0, req - effDays);
-    return Math.max(0, Math.min(100, Math.round(100 - GRADE.penalty*missing)));
-  }
-  function weekDateISO(week, dayIdx){
-    if (!CONTENT.courseStart) return null;
-    var startMs = Date.parse(CONTENT.courseStart);
-    if (isNaN(startMs)) return null;
-    return pacificDateStr(startMs + ((week-1)*7 + dayIdx)*DAY_MS);
-  }
-  function topicsForWeek(week){
-    return allTopics().filter(function(t){ return t.dayInCourse && Math.ceil(t.dayInCourse/4) === week; });
-  }
-  function currentCourseWeek(){
-    var d = (typeof currentDayInCourse === "function") ? currentDayInCourse() : 0;
-    return d > 0 ? Math.ceil(d/4) : 1;
-  }
-  function totalWeeks(){
-    var mx = 1;
-    allTopics().forEach(function(t){ if (t.dayInCourse) mx = Math.max(mx, Math.ceil(t.dayInCourse/4)); });
-    return mx;
-  }
-  // Build everything the report's grade card needs for a given week.
-  /* The week is Mon..Sun. New prework topics land on Mon, Tue, Thu, Fri (the four
-     "opportunities for all the cards"); Wednesday is the recall/daily-review day.
-     Any 5 of the 7 days (Mon-Sun) count toward the grade. A prework day is
-     complete when that day's NEW cards are done (video is the gate to them); the
-     recall day is complete when the daily review is done. Partial days earn their
-     fraction. Card totals/seen come from topic state; the recall + weekend days read
-     the session log (which needs courseStart for real dates). */
-  function weekGradeData(week){
-    var wt = topicsForWeek(week);                 // this week's prework topics (≤4)
-    // Honor the cross-page watch flag (set by the video tracker, or by the
-    // "I watched this" button on the lecture page) so a recorded watch always
-    // shows in the engagement report. Only ever sets true, never erases work.
-    wt.forEach(function(t){
-      try { if (window.localStorage.getItem("bio304-video-" + t.id) === "true") { var s = getTopicState(t.id); if (!s.videoWatched) { s.videoWatched = true; } } } catch (e) {}
-    });
-    var videosTotal = wt.length;
-    var videosWatched = wt.filter(function(t){ var ts=STATE.topics[t.id]; return ts && ts.videoWatched; }).length;
-
-    // map prework topics to weekday offsets: dayInCourse idx 0,1,2,3 -> Mon,Tue,Thu,Fri (offsets 0,1,3,4)
-    var IDX2OFF = {0:0, 1:1, 2:3, 3:4};
-    var byOff = {};
-    wt.forEach(function(t){ var off = IDX2OFF[(t.dayInCourse-1)%4]; (byOff[off]=byOff[off]||[]).push(t); });
-
-    var hasDates = !!CONTENT.courseStart;
-    var NAMES = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-    var days = [];
-    for (var off=0; off<7; off++){
-      var iso = hasDates ? weekDateISO(week, off) : null;
-      var sess = iso ? STATE.sessions.find(function(x){ return x.date === iso; }) : null;
-      var d = { off: off, name: NAMES[off], iso: iso, kind: "", required: (off<=4), frac: null, video: false, label: "" };
-      if (off===0||off===1||off===3||off===4){
-        // prework day — new cards of that day's topics
-        var topics = byOff[off] || [];
-        d.kind = "prework";
-        if (!topics.length){ d.required = false; d.label = "—"; d.frac = null; }
-        else {
-          var tot  = topics.reduce(function(a,t){ return a + (t.cards?t.cards.length:0); }, 0);
-          // Credit only counts cards from topics whose video was actually watched.
-          // Cards on a topic with no watched video earn 0 — you can't get card credit
-          // for material you reached without passing the video gate.
-          var seen = topics.reduce(function(a,t){ var ts=STATE.topics[t.id]; return a + (ts?Object.keys(ts.cards||{}).length:0); }, 0);
-          d.frac  = tot ? seen/tot : 0;
-          d.video = topics.every(function(t){ var ts=STATE.topics[t.id]; return ts && ts.videoWatched; });
-          d.label = topics.length + " new";
-        }
-      } else if (off===2){
-        d.kind = "recall"; d.label = "review";
-        d.frac = hasDates ? (sess && sess.cardsReviewed>0 ? 1 : 0) : null;  // daily review done?
-      } else {
-        d.kind = "optional"; d.required = false; d.label = "review";
-        d.frac = hasDates ? (sess && sess.cardsReviewed>0 ? 1 : 0) : 0;
-      }
-      days.push(d);
-    }
-
-    // Required graded days actually available this week (prework days with topics + Wed recall when dated).
-    // Any 5 of the 7 days (Mon-Sun) count toward the grade. Each eligible day
-    // contributes its completion fraction; the student's best 5 days are summed
-    // and capped at 5, so any two days can be skipped.
-    var REQ_DAYS = 5;
-    var dayFracs = days
-      .filter(function(d){ return d.frac !== null; })
-      .map(function(d){ return Math.min(1, Math.max(0, d.frac)); })
-      .sort(function(a, b){ return b - a; });
-    var req = REQ_DAYS;
-    var eff = dayFracs.slice(0, REQ_DAYS).reduce(function(a, x){ return a + x; }, 0);
-    var effWithMakeup = Math.min(req, eff);
-    var eligibleDays = dayFracs.length;
-
-    function score(e){ return gradeScoreReq(e, req); }
-    var cardsTotal = wt.reduce(function(a,t){ return a + (t.cards?t.cards.length:0); }, 0);
-    var cardsSeen  = wt.reduce(function(a,t){ var ts=STATE.topics[t.id]; return a + (ts?Object.keys(ts.cards||{}).length:0); }, 0);
-    // Integrity flag: a topic with card progress but NO watched video means the cards
-    // were reached without passing the gate ("broke in"). Those cards earn no credit.
-    var brokeIn = wt.filter(function(t){ var ts=STATE.topics[t.id]; return ts && !ts.videoWatched && Object.keys(ts.cards||{}).length>0; }).length;
-    // DOK-3 goal: how many of this week's topics has the student worked up to DOK 3?
-    var dok3 = wt.filter(function(t){ return reachedDok3(t.id); }).length;
-
-    // max reachable this week = the 5 best of the 7 eligible days, all full
-    var maxReachable = Math.min(req, eligibleDays);
-
-    return {
-      week: week, days: days, hasDates: hasDates, req: req,
-      eff: effWithMakeup, score: score(effWithMakeup), maxScore: score(maxReachable),
-      videosWatched: videosWatched, videosTotal: videosTotal,
-      cardsSeen: cardsSeen, cardsTotal: cardsTotal, cardsPct: cardsTotal ? Math.round(cardsSeen/cardsTotal*100) : 0,
-      dok3: dok3, dok3Total: wt.length, brokeIn: brokeIn,
-      needDays: Math.max(0, Math.ceil(req - effWithMakeup - 1e-9))
-    };
-  }
-  // grade against a (possibly week-specific) required-day count
-  function gradeScoreReq(effDays, req){
-    if (GRADE.mode === "perday") return Math.max(0, Math.min(100, Math.round(effDays * (100/req))));
-    var missing = Math.max(0, req - effDays);
-    return Math.max(0, Math.min(100, Math.round(100 - GRADE.penalty*missing)));
   }
 
   function getCardState(topicId, cardId, dok){
@@ -1989,7 +1956,6 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         interval: 0,
         nextDue: nowSim(),
         lastRating: "",
-        lastCorrect: null,   // most recent answer correct? drives coverage-based mastery
         history: []
       };
     }
@@ -1997,12 +1963,6 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   }
 
   /* ---------- SCHEDULER (SM2-lite) ---------- */
-
-  // Cap how far out a card can be scheduled. Uncapped SM2 pushes well-known cards
-  // to 40+ day intervals, so a topic mastered in week 2 could vanish until after
-  // the cumulative final. Capping at ~2 weeks keeps mastered material cycling back
-  // a few times across the term, which is the point of cumulative spaced recall.
-  var MAX_INTERVAL_DAYS = 14;
 
   function scheduleCard(cardState, rating, wasCorrect){
     // Correctness is now captured directly from the multiple-choice click.
@@ -2044,17 +2004,6 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       cardState.ease = cardState.ease + 0.15;
       cardState.interval = Math.round(cardState.interval * 1.2);
     }
-    // Jitter so a batch answered on the same day doesn't all come due on the same
-    // future day (which would spike the workload). Spread them ±~15%, and for the
-    // 1-day case randomly push some to day 2, so a Monday batch fans across the week.
-    if (cardState.interval <= 1) {
-      cardState.interval = (Math.random() < 0.5) ? 1 : 2;
-    } else {
-      var fuzz = Math.round(cardState.interval * (Math.random() * 0.3 - 0.15));
-      cardState.interval = cardState.interval + fuzz;
-    }
-    // Keep mastered cards in semester-wide rotation (see MAX_INTERVAL_DAYS).
-    cardState.interval = Math.max(1, Math.min(cardState.interval, MAX_INTERVAL_DAYS));
     cardState.nextDue = nowSim() + cardState.interval * DAY_MS;
   }
 
@@ -2077,54 +2026,23 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   }
 
   function masteryFor(topicId, dok){
-    // Coverage, not lifetime batting average: the share of DISTINCT cards at this
-    // level whose most recent answer was correct. This can reach 100% (answer every
-    // card correctly once), isn't permanently dragged down by an early miss, and a
-    // wrong answer on review drops only that one card's share (recoverable). The old
-    // correct/total-over-all-attempts ratio got "sticky" — 47 attempts barely moved it.
-    const t = topicById(topicId); const ts = getTopicState(topicId);
-    if (!t) return 0;
-    const levelCards = t.cards.filter(function(c){ return c.dok === dok; });
-    if (!levelCards.length) return 0;
-    var known = 0;
-    levelCards.forEach(function(c){ var st = ts.cards[c.id]; if (st && st.lastCorrect) known++; });
-    return known / levelCards.length;
-  }
-  function levelMastered(topicId, dok, thresh){
-    const t = topicById(topicId);
-    const total = t ? t.cards.filter(function(c){ return c.dok === dok; }).length : 0;
-    if (total === 0) return true; // nothing to master at this level → don't block progression
-    return masteryFor(topicId, dok) >= thresh;
-  }
-
-  // Does this topic have any seen card that's due now? Used for retention status:
-  // a mastered topic with due cards is "slipping" (needs review) vs "holding".
-  function topicHasDue(topicId){
-    const ts = STATE.topics[topicId]; if (!ts) return false;
-    const t = topicById(topicId); if (!t) return false;
-    return t.cards.some(function(c){ const st = ts.cards[c.id]; return st && st.reps > 0 && st.nextDue <= nowSim(); });
-  }
-
-  // Single, live definition of "reached DOK 3" used everywhere (report + topic view).
-  // It reflects demonstrated DOK-3 work — answering DOK-3 questions at >=70% (the
-  // masteryFor guard needs >=3 of them) — NOT the legacy ts.adaptiveLevel field,
-  // which was initialized to 1 and never updated (that caused the report to show
-  // 0 mastered while a topic clearly showed DOK 3 at 100%).
-  function reachedDok3(topicId){
-    return masteryFor(topicId, 3) >= 0.7;
+    const ts = getTopicState(topicId);
+    const b = ts.dok[dok];
+    if (!b || b.total < 3) return 0;
+    return b.correct / b.total;
   }
 
   function computeAdaptiveLevel(topicId){
-    // Threshold-based promotion, and MONOTONIC: once a topic reaches a level it
-    // never demotes. The old version recomputed a "3 correct in a row" streak every
-    // answer, so a single miss on a resurfaced DOK-1 card reset the streak and threw
-    // the student all the way back to DOK 1. Now a miss lowers coverage slightly but
-    // the level holds (ts.maxLevel), so they keep working at their hardest level.
     const ts = getTopicState(topicId);
-    var lvl = 1;
-    if (levelMastered(topicId, 1, 0.7)) lvl = 2;
-    if (levelMastered(topicId, 1, 0.7) && levelMastered(topicId, 2, 0.6)) lvl = 3;
-    return Math.max(ts.maxLevel || 1, lvl);
+    const m1 = masteryFor(topicId, 1);
+    const m2 = masteryFor(topicId, 2);
+    // New rule: also require 3 consecutive correct at level N before
+    // unlocking level N+1. Streak is tracked in recordDokOutcome.
+    const streak1 = (ts.dok[1] && ts.dok[1].streak) || 0;
+    const streak2 = (ts.dok[2] && ts.dok[2].streak) || 0;
+    if (m1 >= 0.7 && streak1 >= 3 && m2 >= 0.6 && streak2 >= 3) return 3;
+    if (m1 >= 0.7 && streak1 >= 3) return 2;
+    return 1;
   }
 
   function pickCardForTopic(topicId){
@@ -2208,15 +2126,15 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     const dates = STATE.sessions.map(s => s.date).sort();
     const today = todayKey(0);
     let streak = 0;
-    let cursor = Date.parse(today + "T12:00:00-07:00"); // noon Pacific of today, robust to TZ
+    let cursor = new Date(today + "T00:00:00");
     for (let i = 0; i < 365; i++){
-      const key = pacificDateStr(cursor);
+      const key = cursor.toISOString().slice(0,10);
       if (dates.includes(key)) {
         streak += 1;
-        cursor = cursor - DAY_MS;
+        cursor = new Date(cursor.getTime() - DAY_MS);
       } else if (i === 0) {
         // No activity today yet. Look at yesterday for a streak.
-        cursor = cursor - DAY_MS;
+        cursor = new Date(cursor.getTime() - DAY_MS);
       } else {
         break;
       }
@@ -2237,23 +2155,6 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   /* ---------- NAVIGATION ---------- */
 
   let CURRENT_TOPIC = null;
-  // Daily session bounds, so a drill has a clear finish line instead of serving
-  // cards forever. SESSION_GOAL is today's allotment for the topic; DRILL_PRACTICE
-  // (set when entering from the optional Cumulative view) lifts the cap.
-  let SESSION_DONE = 0, SESSION_GOAL = 0, DRILL_PRACTICE = false;
-  function todoCountForTopic(topicId){
-    var topic = topicById(topicId); if (!topic) return 0;
-    var ts = STATE.topics[topicId];
-    var lvl = ts ? computeAdaptiveLevel(topicId) : 1;
-    var n = 0;
-    topic.cards.forEach(function(c){
-      var st = (ts && ts.cards) ? ts.cards[c.id] : null;
-      var reps = st ? (st.reps || 0) : 0;
-      var due = reps > 0 && st.nextDue <= nowSim();
-      if (due || (reps === 0 && c.dok <= lvl)) n++;
-    });
-    return n;
-  }
   let CURRENT_CARD = null;
   let CURRENT_CARD_CORRECT = null;  // set by MC click, consumed by rateCard
   let CURRENT_CARD_OPTIONS = null;   // shuffled option order for the current render
@@ -2298,7 +2199,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
      courseStart is not set (release scheduling disabled). */
   function currentDayInCourse(){
     if (!CONTENT.courseStart) return 0;
-    const start = new Date(CONTENT.courseStart);
+    const start = new Date(CONTENT.courseStart + "T00:00:00");
     const now = new Date(nowSim());
     const startMs = start.getTime();
     const nowMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
@@ -2386,7 +2287,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         '<div class="dr-nudge-text">' +
           '<p class="dr-nudge-eyebrow">Daily review</p>' +
           '<p class="dr-nudge-headline">You have ' + nudgeDue + ' card' + (nudgeDue === 1 ? '' : 's') + ' due for review today.</p>' +
-          '<p class="dr-nudge-sub">Take a few minutes before today’s pre-work. Cards are sharpest when you review them on the day they’re due.</p>' +
+          '<p class="dr-nudge-sub">Take a few minutes before tonight’s pre-work. Cards are sharpest when you review them on the day they’re due.</p>' +
         '</div>' +
         '<button type="button" class="btn btn-primary" id="btn-dr-nudge">Start daily review</button>';
       wrap.appendChild(nudge);
@@ -2426,7 +2327,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
           const dayName = COURSE_DAY_NAMES[(todayDay - 1) % 4];
           const tonight = document.createElement("div");
           tonight.className = "tonight-block";
-          tonight.innerHTML = `<h3>Today (Week ${wk}, ${dayName})</h3>`;
+          tonight.innerHTML = `<h3>Tonight (Week ${wk}, ${dayName})</h3>`;
           todaysTopics.forEach(t => {
             const status = topicStatus(t.id);
             const btnLabel = status === "completed" ? "Reopen" : status === "unlocked" ? "Continue" : "Start";
@@ -2544,7 +2445,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
                   ${hasVideo ? "" : '<span style="color:var(--terra-dark);">video pending</span>'}
                 </div>
               </div>
-              <div class="toolbar" style="margin:0;gap:6px;">
+              <div class="toolbar" style="margin:0;">
                 ${ !released
                   ? `<button class="btn btn-ghost" disabled>Locked</button>`
                   : status === "completed"
@@ -2553,9 +2454,6 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
                       ? `<button class="btn btn-gold" data-open-topic="${t.id}">Continue</button>`
                       : `<button class="btn btn-primary" data-open-topic="${t.id}">Start</button>`
                 }
-                ${ (PREVIEW_MODE && released && status === "locked")
-                  ? `<button class="btn btn-ghost" data-testwatch="${t.id}" title="Instructor test: simulate watching this topic's video">Mark watched (test)</button>`
-                  : "" }
               </div>
             </div>
           `;
@@ -2587,22 +2485,40 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       b.addEventListener("click", () => {
         const id = b.dataset.openTopic;
         CURRENT_TOPIC = id;
-        DRILL_PRACTICE = false;          // daily session (capped to today's allotment)
-        nav("learn", id);  // unlock: open the cards directly (no video gate)
-      });
-    });
-
-    // Instructor test only (preview mode): simulate watching a topic's video so the
-    // unlock/credit flow can be exercised without opening each lecture page. Sets the
-    // same video flag the real lecture page would set.
-    $$('[data-testwatch]').forEach(b => {
-      b.addEventListener("click", () => {
-        const id = b.dataset.testwatch;
         const ts = getTopicState(id);
-        ts.videoWatched = true;
-        saveTopicState(id, ts);
-        try { window.localStorage.setItem("bio304-video-" + id, "true"); } catch (e) {}
-        renderDashboard();
+
+        // Pre-work is three steps in sequence:
+        //   (1) the spoke HTML — video + retrieval check
+        //   (2) the weekly workbook (linked from the spoke's aside)
+        //   (3) spaced recall cards on THIS page
+        // Clicking a topic on the dashboard should always send the student
+        // to step 1. They reach step 3 by returning here via the spoke's
+        // "go to the pre-work" link after passing the retrieval check.
+        var spokeMap = window.MCAS_LECTURE_BY_TOPIC || {};
+        var spokeUrl = spokeMap[id];
+        if (spokeUrl) {
+          try { window.top.location.href = spokeUrl; }
+          catch (e) { window.location.href = spokeUrl; }
+          return;
+        }
+
+        // Fallback for any topic without a spoke mapping: keep the
+        // legacy gate-aware flow so the dashboard still works.
+        var gatePassed = false;
+        try {
+          gatePassed = window.localStorage.getItem("bio304-gate-" + id) === "true"
+                    || window.localStorage.getItem("bio304-video-" + id) === "true";
+        } catch (e) {}
+        if (gatePassed || ts.gateCompleted) {
+          if (!ts.gateCompleted) {
+            ts.gateCompleted = true;
+            ts.videoWatched = true;
+            saveTopicState(id, ts);
+          }
+          nav("learn", id);
+        } else {
+          nav("topic", id);
+        }
       });
     });
   }
@@ -2635,28 +2551,19 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     if (topic.lecturePageUrl) {
       card.innerHTML =
         '<h3>Watch the lecture first</h3>' +
-        '<p class="usage">Watch this topic\u2019s lecture video, then open its cards here to study. Your progress is saved on this device and carries from day to day.</p>' +
+        '<p class="usage">This topic\'s cards unlock after you finish the lecture video and complete the short retrieval check on the lecture page. The lecture page sets a flag that this app reads automatically; once it\'s set, you land here at the cards directly.</p>' +
         '<div class="toolbar" style="margin-top:14px;">' +
           '<a class="btn btn-primary" id="btn-go-lecture" href="' + topic.lecturePageUrl + '" target="_top">Open the lecture page &rarr;</a>' +
-          '<button type="button" class="btn btn-ghost" id="btn-back-dashboard" data-nav="dashboard">Back to today\'s list</button>' +
-        '</div>';
-    } else if (PREVIEW_MODE) {
-      // Instructor preview only: open cards for a topic whose lecture page
-      // isn't wired up yet. Never shown to students.
-      card.innerHTML =
-        '<h3>Instructor preview</h3>' +
-        '<p class="usage">No lecture page is wired up for this topic yet. Because preview mode is on, you can open its cards to review them. Students cannot do this.</p>' +
-        '<div class="toolbar" style="margin-top:14px;">' +
-          '<button type="button" class="btn btn-primary" id="btn-skip-gate">Open cards (preview)</button>' +
-          '<button type="button" class="btn btn-ghost" id="btn-back-dashboard" data-nav="dashboard">Back to today\'s list</button>' +
+          '<button type="button" class="btn btn-ghost" id="btn-back-dashboard" data-nav="dashboard">Back to tonight\'s list</button>' +
         '</div>';
     } else {
-      // Student, no lecture page yet: stays locked. No unlock control = no back door.
+      // Fallback for topics without a lecture page yet: a simple "mark complete" button
       card.innerHTML =
-        '<h3>Not open yet</h3>' +
-        '<p class="usage">This topic\'s lecture page isn\'t available yet, so its cards are still locked. Once the lecture video and retrieval check are published, this topic opens automatically.</p>' +
+        '<h3>Lecture page coming soon</h3>' +
+        '<p class="usage">A dedicated lecture page is not wired up yet for this topic. You can mark it complete to preview the cards.</p>' +
         '<div class="toolbar" style="margin-top:14px;">' +
-          '<button type="button" class="btn btn-ghost" id="btn-back-dashboard" data-nav="dashboard">Back to today\'s list</button>' +
+          '<button type="button" class="btn btn-primary" id="btn-skip-gate">Mark complete and open cards</button>' +
+          '<button type="button" class="btn btn-ghost" id="btn-back-dashboard" data-nav="dashboard">Back to tonight\'s list</button>' +
         '</div>';
     }
     var view = $("#view-topic");
@@ -2666,11 +2573,10 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     var skipBtn = document.getElementById("btn-skip-gate");
     if (skipBtn) {
       skipBtn.addEventListener("click", function () {
-        // Preview-only unlock: set persistent state and save. We deliberately do
-        // NOT write the bio304-gate-/bio304-video- cross-page flags, so a preview
-        // never masquerades as a real lecture-page pass for other surfaces.
-        ts.videoWatched = true;
         ts.gateCompleted = true;
+        ts.videoWatched = true;
+        try { window.localStorage.setItem("bio304-gate-" + topic.id, "true"); } catch(e) {}
+        try { window.localStorage.setItem("bio304-video-" + topic.id, "true"); } catch(e) {}
         saveTopicState(topic.id, ts);
         nav("learn", topic.id);
       });
@@ -2846,12 +2752,10 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
 
   function renderLearn(topicId){
     CURRENT_TOPIC = topicId;
-    SESSION_DONE = 0;
-    SESSION_GOAL = DRILL_PRACTICE ? 0 : todoCountForTopic(topicId);  // 0 = no cap (optional practice)
     const topic = topicById(topicId);
     if (!topic) { nav("dashboard"); return; }
     const ts = getTopicState(topicId);
-    // Unlock: a topic's cards open directly. Watching is tracked separately for the grade, not as an access gate.
+    if (!ts.gateCompleted) { nav("topic", topicId); return; }
     $("#learn-heading").textContent = topic.title;
     renderNotesLink(topic);
     renderMastery(topicId);
@@ -2917,6 +2821,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   }
 
   function loadNextCard(){
+    const card = pickCardForTopic(CURRENT_TOPIC);
     CURRENT_CARD_CORRECT = null;
     CURRENT_CARD_OPTIONS = null;
 
@@ -2933,36 +2838,21 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     if (rateInstructions) rateInstructions.hidden = true;
     if (ans) ans.hidden = true;
 
-    // Daily finish line: once today's allotment for this topic is done, stop
-    // (unless they're in optional practice, which has no cap).
-    if (!DRILL_PRACTICE && SESSION_GOAL > 0 && SESSION_DONE >= SESSION_GOAL) {
-      CURRENT_CARD = null;
-      $("#card-question").textContent = "🎉 You’ve finished today’s cards for this topic. Nice work — come back tomorrow, or pick another topic from Daily Review.";
-      $("#card-dok-badge").textContent = "DONE";
-      $("#card-dok-badge").className = "dok-badge dok-1";
-      $("#card-progress").textContent = SESSION_DONE + " of " + SESSION_GOAL + " done today";
-      return;
-    }
-
-    const card = pickCardForTopic(CURRENT_TOPIC);
     if (!card) {
-      CURRENT_CARD = null;
-      $("#card-question").textContent = (SESSION_GOAL > 0 && !DRILL_PRACTICE)
-        ? "🎉 You’ve finished today’s cards for this topic. Come back tomorrow, or pick another topic."
-        : "All caught up here — these cards are scheduled out. Come back tomorrow, or try another topic.";
+      $("#card-question").textContent = "All cards in this topic are scheduled out. Come back tomorrow or rotate to another topic.";
       $("#card-dok-badge").textContent = "DONE";
       $("#card-dok-badge").className = "dok-badge dok-1";
-      $("#card-progress").textContent = (SESSION_GOAL > 0 && !DRILL_PRACTICE) ? (SESSION_DONE + " of " + SESSION_GOAL + " done today") : "";
+      $("#card-progress").textContent = "";
       return;
     }
 
     CURRENT_CARD = card;
+    const topic = topicById(CURRENT_TOPIC);
+    const idx = topic.cards.findIndex(c => c.id === card.id) + 1;
     $("#card-question").textContent = card.q;
     $("#card-dok-badge").textContent = "DOK " + card.dok;
     $("#card-dok-badge").className = "dok-badge dok-" + card.dok;
-    $("#card-progress").textContent = DRILL_PRACTICE
-      ? ("Card " + (SESSION_DONE + 1))
-      : ("Card " + (SESSION_DONE + 1) + " of " + SESSION_GOAL);
+    $("#card-progress").textContent = "Card " + idx + " of " + topic.cards.length;
 
     renderMcOptions(card);
   }
@@ -3064,12 +2954,8 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     // If for some reason it wasn't recorded (legacy data), assume correct
     // so the rating still functions.
     const wasCorrect = (CURRENT_CARD_CORRECT === null) ? true : !!CURRENT_CARD_CORRECT;
-    cardSt.lastCorrect = wasCorrect;            // drives coverage-based mastery
     scheduleCard(cardSt, rating, wasCorrect);
     recordDokOutcome(CURRENT_TOPIC, CURRENT_CARD.dok, rating, wasCorrect);
-    // Ratchet the topic's level up to whatever it now qualifies for (never down).
-    const tsLvl = getTopicState(CURRENT_TOPIC);
-    tsLvl.maxLevel = Math.max(tsLvl.maxLevel || 1, computeAdaptiveLevel(CURRENT_TOPIC));
     logSessionActivity({ cardReview: true });
     saveState();
 
@@ -3084,7 +2970,6 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       logSessionActivity({ topicCompleted: CURRENT_TOPIC });
     }
     renderMastery(CURRENT_TOPIC);
-    SESSION_DONE++;            // count this answered card toward today's allotment
     loadNextCard();
   }
 
@@ -3099,95 +2984,85 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   function renderReview(){
     const body = $("#review-body");
     body.innerHTML = "";
-    if (REVIEW_MODE === "all") REVIEW_MODE = "due";   // "All unlocked cards" retired
-
-    function startedTopic(t){ return !!STATE.topics[t.id]; }
-    // Non-mutating read: never CREATE a card state just to look at it (that would
-    // wrongly inflate the "cards completed" count on the engagement report).
-    function cardStateRead(tid, cid){ var ts = STATE.topics[tid]; return (ts && ts.cards && ts.cards[cid]) ? ts.cards[cid] : null; }
-
-    // This week's assigned topics, straight from the course schedule, so Daily
-    // Review always surfaces what's due this week — even cards the student hasn't
-    // started yet. Without this, skipping a topic would leave the review empty and
-    // the work would silently go missing.
-    var weekIds = {};
-    try { topicsForWeek(currentCourseWeek()).forEach(function(t){ weekIds[t.id] = true; }); } catch(e){}
-
-    // Group by TOPIC (category). Students pick a topic and drill it; they never
-    // see individual cards listed out, and the algorithm chooses the card order.
-    var groups = [], totalCards = 0, mix = {1:0,2:0,3:0};
-    allTopics().forEach(function(t){
-      var assigned = !!weekIds[t.id];
-      var startedT = startedTopic(t);
-      if (REVIEW_MODE === "mixed") { if (!startedT) return; }   // cumulative: only started topics
-      else { if (!startedT && !assigned) return; }              // due: started topics OR this week's assigned
-      var lvl = startedT ? computeAdaptiveLevel(t.id) : 1;       // unstarted -> only the first (DOK 1) new cards are "to do" yet
-      var inScope = 0, dueCount = 0;
-      t.cards.forEach(function(c){
-        var st = cardStateRead(t.id, c.id);
-        var reps = st ? (st.reps || 0) : 0;
-        var isDue = reps > 0 && st.nextDue <= nowSim();
-        if (isDue) dueCount++;
-        var include = (REVIEW_MODE === "due")
-          ? ( isDue || (assigned && reps === 0 && c.dok <= lvl) )  // due now, OR this week's next new cards to do
-          : true;                                                  // cumulative: every card from a started topic
-        if (include) { inScope++; if (mix[c.dok] !== undefined) mix[c.dok]++; }
+    const items = [];
+    allTopics().forEach(t => {
+      const ts = STATE.topics[t.id];
+      if (REVIEW_MODE === "all" && !(ts && ts.gateCompleted)) return; // skip locked topics
+      t.cards.forEach(c => {
+        const st = getCardState(t.id, c.id, c.dok);
+        if (REVIEW_MODE === "due") {
+          if (st.reps > 0 && st.nextDue <= nowSim()) items.push({ topic: t, card: c, st: st });
+        } else {
+          // "all unlocked": include every card from an unlocked topic, whether seen or not.
+          items.push({ topic: t, card: c, st: st });
+        }
       });
-      if (inScope > 0) { groups.push({ topic: t, count: inScope, due: dueCount, assigned: assigned }); totalCards += inScope; }
     });
 
-    // Mode toggle UI (only Due + Cumulative now).
-    [["btn-review-due","due"],["btn-review-mixed","mixed"]].forEach(function(pair){
-      var b = $("#"+pair[0]); if (!b) return;
-      var on = REVIEW_MODE === pair[1];
-      b.classList.toggle("btn-primary", on); b.classList.toggle("btn-ghost", !on);
-      b.setAttribute("aria-pressed", on ? "true" : "false");
-    });
-    var note = $("#review-mode-note");
-    if (note) note.textContent = REVIEW_MODE === "due"
-      ? "Everything you need to do today, by topic — this week's new cards plus anything the algorithm has brought back for review. Click a topic and go; it picks the cards for you."
-      : "Optional. A cumulative review of every topic you've started, for extra practice before a test. Click any topic to drill more of its cards.";
+    // Update the mode toggle UI and the helper paragraph.
+    const btnDue = $("#btn-review-due");
+    const btnAll = $("#btn-review-all");
+    if (btnDue && btnAll) {
+      btnDue.classList.toggle("btn-primary", REVIEW_MODE === "due");
+      btnDue.classList.toggle("btn-ghost", REVIEW_MODE !== "due");
+      btnDue.setAttribute("aria-pressed", REVIEW_MODE === "due" ? "true" : "false");
+      btnAll.classList.toggle("btn-primary", REVIEW_MODE === "all");
+      btnAll.classList.toggle("btn-ghost", REVIEW_MODE !== "all");
+      btnAll.setAttribute("aria-pressed", REVIEW_MODE === "all" ? "true" : "false");
+    }
+    const note = $("#review-mode-note");
+    if (note) {
+      note.textContent = REVIEW_MODE === "due"
+        ? "These cards are due based on how you rated them last time. Lower confidence resurfaces first."
+        : "Drill every card from topics you've unlocked, regardless of due date. Useful before a quiz. Topics you haven't unlocked yet are not shown.";
+    }
 
-    if (!groups.length) {
+    if (!items.length) {
       body.innerHTML = REVIEW_MODE === "due"
-        ? '<div class="card"><p class="empty">🎉 Nothing to do right now — you’re caught up. New cards appear here as this week’s topics come up.</p></div>'
-        : '<div class="card"><p class="empty">No topics started yet. Do today’s cards first, then come back for extra practice.</p></div>';
+        ? '<div class="card"><p class="empty">No cards are due right now. Come back tomorrow, or start a new topic from tonight’s pre-work.</p></div>'
+        : '<div class="card"><p class="empty">No unlocked topics yet. Start tonight’s pre-work first, then come back here.</p></div>';
       return;
     }
 
-    if (REVIEW_MODE === "due") groups.sort(function(a,b){ return b.due - a.due; });
-    else groups.sort(function(a,b){ return (a.topic.dayInCourse||0) - (b.topic.dayInCourse||0); });
-
-    var wrap = document.createElement("div");
+    // Order: lowest ease first (struggle cards), then earliest due.
+    items.sort((a,b) => a.st.ease - b.st.ease || a.st.nextDue - b.st.nextDue);
+    const wrap = document.createElement("div");
     wrap.className = "card";
-    var heading = REVIEW_MODE === "due"
-      ? totalCards + " card" + (totalCards===1?"":"s") + " to do today"
-      : totalCards + " card" + (totalCards===1?"":"s") + " in your cumulative review";
-    var est = Math.max(1, Math.round(totalCards*0.5)) + "–" + Math.max(2, Math.round(totalCards*0.75));
-    wrap.innerHTML = '<h3 style="font-size:23px;margin-bottom:2px;">' + heading + '</h3>' +
-      '<p style="font-family:\'DM Sans\',sans-serif;font-size:13px;color:var(--gray-soft);margin:0 0 16px;">' +
-      mix[1] + ' DOK 1 &middot; ' + mix[2] + ' DOK 2 &middot; ' + mix[3] + ' DOK 3 &nbsp;·&nbsp; about ' + est + ' min. Pick a topic to begin.</p>';
-
-    var list = document.createElement("div");
-    groups.forEach(function(g){
-      var label = (REVIEW_MODE === "due") ? (g.count + " to do") : (g.count + " card" + (g.count===1?"":"s"));
-      var row = document.createElement("button");
-      row.type = "button";
-      row.setAttribute("data-review-open", g.topic.id);
-      row.style.cssText = "display:flex;justify-content:space-between;align-items:center;gap:14px;width:100%;text-align:left;padding:16px 18px;margin:0 0 10px;border:1.5px solid var(--gray-line);border-radius:12px;background:#fff;cursor:pointer;font-family:inherit;transition:border-color 150ms,box-shadow 150ms;";
-      row.onmouseover = function(){ row.style.borderColor = "var(--gold)"; row.style.boxShadow = "0 4px 12px rgba(11,21,48,0.08)"; };
-      row.onmouseout  = function(){ row.style.borderColor = "var(--gray-line)"; row.style.boxShadow = "none"; };
-      row.innerHTML =
-        '<span><span style="display:block;font-family:\'Plus Jakarta Sans\',sans-serif;font-weight:700;font-size:16.5px;color:var(--navy);">' + escapeHtml(g.topic.title) + '</span>' +
-        '<span style="font-family:\'DM Sans\',sans-serif;font-size:12.5px;color:var(--gray-soft);">' + label + '</span></span>' +
-        '<span class="btn btn-gold" style="pointer-events:none;white-space:nowrap;">Start →</span>';
+    const total = items.length;
+    const heading = REVIEW_MODE === "due"
+      ? total + " card" + (total === 1 ? "" : "s") + " due across topics"
+      : total + " card" + (total === 1 ? "" : "s") + " in your unlocked deck";
+    wrap.innerHTML = "<h3>" + heading + "</h3>";
+    const list = document.createElement("div");
+    items.slice(0, 30).forEach(item => {
+      const row = document.createElement("div");
+      row.style.cssText = "display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-line);";
+      row.innerHTML = `
+        <div style="flex:1; min-width:0;">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;color:var(--navy);">${escapeHtml(item.topic.title)}</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:var(--gray-soft);">DOK ${item.card.dok} &middot; last rated "${item.st.lastRating || "new"}"</div>
+        </div>
+        <button class="btn btn-gold" data-review-open="${item.topic.id}">Review</button>
+      `;
       list.appendChild(row);
     });
+    if (items.length > 30) {
+      const more = document.createElement("p");
+      more.className = "usage";
+      more.style.marginTop = "10px";
+      more.textContent = "Showing top 30 of " + items.length + ". Open a topic to drill all of its cards.";
+      list.appendChild(more);
+    }
     wrap.appendChild(list);
     body.appendChild(wrap);
 
-    $$('[data-review-open]').forEach(function(b){
-      b.addEventListener("click", function(){ DRILL_PRACTICE = (REVIEW_MODE === "mixed"); nav("learn", b.getAttribute("data-review-open")); });
+    $$('[data-review-open]').forEach(b => {
+      b.addEventListener("click", () => {
+        const tid = b.dataset.reviewOpen;
+        const ts = getTopicState(tid);
+        if (!ts.gateCompleted) nav("topic", tid);
+        else nav("learn", tid);
+      });
     });
   }
 
@@ -3202,98 +3077,31 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     const body = $("#report-body");
     body.innerHTML = "";
 
-    // ---- Weekly engagement grade (top of the report) ----
-    const wk = REPORT_WEEK || currentCourseWeek();
-    const g = weekGradeData(wk);
-
-    let tickerCls = "", tickerMsg = "";
-    if (g.eff >= g.req - 1e-9) { tickerCls = "ok"; tickerMsg = "You've reached 100% for the week. Anything more is optional buffer."; }
-    else if (!g.hasDates) { tickerCls = ""; tickerMsg = "You're at " + g.cardsPct + "% of this week's new cards. Finishing them brings you to 100%. (Daily Mon–Sun tracking turns on once courseStart is set.)"; }
-    else if (g.needDays <= 0 || g.score >= g.maxScore) { tickerCls = ""; tickerMsg = "You're at " + g.score + "%. Finish the rest of this week's required cards to reach 100%."; }
-    else if (g.maxScore >= 100) { tickerCls = ""; tickerMsg = "You're at " + g.score + "%. Finish about " + g.needDays + " more day" + (g.needDays===1?"":"s") + " of cards this week to reach 100%."; }
-    else { tickerCls = "warn"; tickerMsg = "You're at " + g.score + "%. Even finishing every remaining day, the most you can reach this week is " + g.maxScore + "%."; }
-
-    let dayGrid = "";
-    if (g.hasDates) {
-      dayGrid = '<div class="grade-days">' + g.days.map(function(d){
-        if (d.frac === null && d.kind==="prework") return '<div class="grade-day none" style="opacity:.45"><span class="gd-n">'+d.name+'</span><span class="gd-m">·</span><span class="gd-p">—</span></div>';
-        const f = Math.min(1, Math.max(0, d.frac||0));
-        const st = f>=1 ? "full" : (f>0 ? "partial" : "none");
-        const mark = f>=1 ? "✓" : (f>0 ? "◑" : "·");
-        const vid = '';
-        const opt = '';
-        return '<div class="grade-day '+st+'"><span class="gd-n">'+d.name+'</span><span class="gd-m">'+mark+'</span><span class="gd-p">'+d.label+'</span>'+vid+opt+'</div>';
-      }).join("") + '</div>';
-    }
-
-    const ppd = (GRADE.mode === "penalty");
-    const policyText = ppd
-      ? "Your grade comes from <strong>any five days out of seven</strong> (Mon\u2013Sun). Each day you miss below five costs <strong>"+GRADE.penalty+"%</strong>; a partly-done day costs a proportional slice. Finish each day\u2019s cards to bank that day."
-      : "Your weekly grade comes from <strong>any five days out of seven</strong> (Mon\u2013Sun). Each of your best five days is worth <strong>"+Math.round(100/g.req)+"%</strong>, earned in proportion to the percentage of that day\u2019s cards you complete \u2014 so a half-done day earns half. Practice on five different days, and finish each day\u2019s cards, to reach <strong>100%</strong>. You can skip any two days you like.";
-
-    const gradeCard = document.createElement("div");
-    gradeCard.className = "card grade-card";
-    gradeCard.innerHTML =
-      '<h3>Week '+wk+' engagement grade</h3>' +
-      '<div class="grade-headline"><span class="grade-num'+(g.score<80?' low':'')+'">'+g.score+'%</span>'+
-        '<span class="grade-sub">new cards completed: <strong>'+g.cardsPct+'%</strong> ('+g.cardsSeen+'/'+g.cardsTotal+')</span></div>' +
-      '<p class="grade-goal">🎯 <strong>Goal: reach DOK 3</strong> on every topic &mdash; you\u2019re at DOK 3 on <strong>'+g.dok3+'/'+g.dok3Total+'</strong> of this week\u2019s topics. (DOK 3 is the deepest "analyze &amp; apply" level; see Mastery by topic below.)</p>' +
-      '<div class="grade-bar"><div class="grade-bar-fill'+(g.score<80?' low':'')+'" style="width:'+g.score+'%"></div>' +
-        (g.hasDates && g.maxScore>g.score ? '<div class="grade-bar-max" style="left:'+g.maxScore+'%" data-l="max '+g.maxScore+'%"></div>' : '') + '</div>' +
-      dayGrid +
-      '<div class="grade-ticker '+tickerCls+'">'+tickerMsg+'</div>' +
-      '<p class="grade-policy">🔒 '+policyText+'</p>' +
-      '<p class="grade-policy">📈 <strong>Why your number moves.</strong> This is a weekly score (Mon\u2013Sun) and it starts fresh every Monday, so a new week opens at a lower number than last week\u2019s finish. A day counts once you finish that day\u2019s cards, and each day is worth its share, so the number climbs as the week goes on. Days you finish stay banked for the rest of the week \u2014 the daily review never erases credit you already earned. Spaced recall also brings cards back due over time, so clearing everything today does not empty tomorrow. A few minutes every day is what keeps you at 100%.</p>' +
-      (g.hasDates ? '' : '<p class="grade-note no-print">Daily (Mon\u2013Sun) tracking turns on once <code>courseStart</code> is set in course-content.js. Until then, the grade reflects this week\u2019s new-card completion.</p>');
-    body.appendChild(gradeCard);
-
-
-    // print header mirrors (name comes from locked state)
-    REPORT_NAME = STATE.studentName || "";
-    var rphN = $("#rph-name"), rphW = $("#rph-week");
-    if (rphN) rphN.textContent = REPORT_NAME ? REPORT_NAME : "__________________";
-    if (rphW) rphW.textContent = wk;
-
-    // Week-scoped figures for the rest of the report
-    const weekTopics = topicsForWeek(wk);
-    const weekISO = g.hasDates ? [0,1,2,3,4,5,6].map(function(o){ return weekDateISO(wk,o); }) : null;
-    const weekSessions = g.hasDates
-      ? STATE.sessions.filter(function(s){ return weekISO.indexOf(s.date) !== -1; })
-      : STATE.sessions.slice();
-    const weekCardReviews = weekSessions.reduce(function(a,s){ return a + (s.cardsReviewed||0); }, 0);
-    const daysActive = weekSessions.filter(function(s){ return (s.cardsReviewed>0) || (s.topicsCompleted && s.topicsCompleted.length); }).length;
-
     const stats = document.createElement("div");
     stats.className = "stats-row";
     stats.innerHTML = `
-      <div class="stat"><p class="stat-label">Days active</p><p class="stat-value">${daysActive}</p><p class="stat-sub">this week</p></div>
-      <div class="stat"><p class="stat-label">Card reviews</p><p class="stat-value">${weekCardReviews}</p><p class="stat-sub">this week</p></div>
-      <div class="stat"><p class="stat-label">Mastered (DOK 3)</p><p class="stat-value">${g.dok3}/${g.dok3Total}</p><p class="stat-sub">this week's topics</p></div>
-      <div class="stat"><p class="stat-label">Streak</p><p class="stat-value">${computeStreak()}</p><p class="stat-sub">days in a row</p></div>
+      <div class="stat"><p class="stat-label">Streak</p><p class="stat-value">${computeStreak()}</p><p class="stat-sub">days</p></div>
+      <div class="stat"><p class="stat-label">Sessions logged</p><p class="stat-value">${STATE.sessions.length}</p><p class="stat-sub">total</p></div>
+      <div class="stat"><p class="stat-label">Card reviews</p><p class="stat-value">${totalCardsReviewed()}</p><p class="stat-sub">all time</p></div>
+      <div class="stat"><p class="stat-label">Cards due now</p><p class="stat-value">${countDueGlobally()}</p><p class="stat-sub">across topics</p></div>
     `;
     body.appendChild(stats);
 
-    // Per-topic mastery — every topic in THIS WEEK, with DOK-3 status
+    // Per-topic mastery
     const masteryCard = document.createElement("div");
     masteryCard.className = "card";
-    masteryCard.innerHTML = '<h3>Week '+wk+' mastery by topic</h3><p class="usage">Reaching <strong>DOK 3</strong> is the bar for mastering a topic. Seeing the cards once is not the same as mastering them &mdash; keep reviewing as the cards come due so mastery holds for the cumulative exam.</p>';
-    if (!weekTopics.length) masteryCard.innerHTML += '<p class="empty">No topics scheduled for this week.</p>';
-    weekTopics.forEach(t => {
+    masteryCard.innerHTML = "<h3>Mastery by topic</h3>";
+    allTopics().forEach(t => {
       const ts = STATE.topics[t.id];
-      const started = !!ts;
-      const level = started ? computeAdaptiveLevel(t.id) : 1;
-      const mastered = started && reachedDok3(t.id);
+      if (!ts) return;
       const tWrap = document.createElement("div");
       tWrap.style.cssText = "margin:10px 0;padding:8px 0;border-bottom:1px solid var(--gray-line);";
-      const status = mastered
-        ? (topicHasDue(t.id)
-            ? '<span style="color:var(--gold-deep);font-weight:700;">DOK 3 \u2713 \u2014 review due</span>'
-            : '<span style="color:#2e7d52;font-weight:700;">DOK 3 \u2713 holding</span>')
-        : started ? '<span style="color:var(--gold-deep);font-weight:700;">working at DOK '+level+'</span>'
-                  : '<span style="color:var(--gray-soft);font-weight:700;">not started</span>';
-      tWrap.innerHTML = '<h4 style="display:flex;justify-content:space-between;gap:10px;align-items:baseline;"><span>'+escapeHtml(t.title)+'</span><span style="font-size:12px;">'+status+'</span></h4>';
+      const tt = document.createElement("h4");
+      tt.textContent = t.title;
+      tWrap.appendChild(tt);
       [1,2,3].forEach(lv => {
-        const pct = ts ? Math.round(masteryFor(t.id, lv) * 100) : 0;
+        const m = masteryFor(t.id, lv);
+        const pct = Math.round(m * 100);
         const row = document.createElement("div");
         row.className = "mastery-row";
         row.innerHTML = `<span>DOK ${lv}</span><div class="mastery-bar"><div class="mastery-fill l${lv}" style="width:${pct}%"></div></div><span>${pct}%</span>`;
@@ -3303,33 +3111,36 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     });
     body.appendChild(masteryCard);
 
-    // Session log — this week's days
+    // Sessions list
     const sessionsCard = document.createElement("div");
     sessionsCard.className = "card";
-    sessionsCard.innerHTML = "<h3>Week "+wk+" session log</h3>";
-    if (!weekSessions.length) {
-      sessionsCard.innerHTML += '<p class="empty">No sessions logged for this week yet.</p>';
+    sessionsCard.innerHTML = "<h3>Session log</h3>";
+    if (!STATE.sessions.length) {
+      sessionsCard.innerHTML += '<p class="empty">No sessions yet. Complete tonight’s pre-work to start the log.</p>';
     } else {
       const headerRow = document.createElement("div");
       headerRow.className = "session-row";
       headerRow.innerHTML = '<div class="date">Date</div><div class="topics">Topics covered</div><div>Cards</div><div>Gates</div>';
       sessionsCard.appendChild(headerRow);
-      weekSessions.slice().reverse().forEach(s => {
+      STATE.sessions.slice().reverse().forEach(s => {
         const row = document.createElement("div");
         row.className = "session-row";
-        const titles = s.topicsCompleted.map(id => { const t = topicById(id); return t ? t.title : id; }).join(", ") || "(review only)";
+        const titles = s.topicsCompleted.map(id => {
+          const t = topicById(id);
+          return t ? t.title : id;
+        }).join(", ") || "(in progress)";
         row.innerHTML = `<div class="date">${s.date}</div><div class="topics">${escapeHtml(titles)}</div><div>${s.cardsReviewed}</div><div>${(s.gates || []).length}</div>`;
         sessionsCard.appendChild(row);
       });
     }
     body.appendChild(sessionsCard);
 
-    // Gate explanations — this week's topics
+    // Gate explanations (so professor can see understanding)
     const gateCard = document.createElement("div");
     gateCard.className = "card";
-    gateCard.innerHTML = "<h3>Your explanations</h3><p class=\"usage\">What you wrote in your own words for this week's topics.</p>";
+    gateCard.innerHTML = "<h3>Your gate explanations</h3><p class=\"usage\">What you wrote in your own words to unlock each topic.</p>";
     let any = false;
-    weekTopics.forEach(t => {
+    allTopics().forEach(t => {
       const ts = STATE.topics[t.id];
       if (ts && ts.gateCompleted && ts.gateExplanation) {
         any = true;
@@ -3339,33 +3150,8 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         gateCard.appendChild(block);
       }
     });
-    if (!any) gateCard.innerHTML += '<p class="empty">No written explanations for this week yet.</p>';
+    if (!any) gateCard.innerHTML += '<p class="empty">No gate explanations submitted yet.</p>';
     body.appendChild(gateCard);
-
-    // ---- Cumulative readiness (all weeks) — supports the cumulative exam ----
-    const allT = allTopics();
-    let masteredAll = 0, holding = 0, dueBack = 0, started = 0;
-    allT.forEach(function(t){
-      const ts = STATE.topics[t.id];
-      if (!ts) return;
-      started++;
-      if (reachedDok3(t.id)){ masteredAll++; if (topicHasDue(t.id)) dueBack++; else holding++; }
-    });
-    const cumCard = document.createElement("div");
-    cumCard.className = "card";
-    cumCard.innerHTML =
-      '<h3>Cumulative readiness <span style="font-weight:600;font-size:13px;color:var(--gray-soft);">(all weeks)</span></h3>' +
-      '<p class="usage">Mastery has to be <em>kept</em>, not banked once. This is your whole-course picture for the cumulative final.</p>' +
-      '<div class="stats-row" style="margin-top:8px;">' +
-        '<div class="stat"><p class="stat-label">Mastered</p><p class="stat-value">'+masteredAll+'</p><p class="stat-sub">topics at DOK 3</p></div>' +
-        '<div class="stat"><p class="stat-label">Holding</p><p class="stat-value" style="color:#2e7d52;">'+holding+'</p><p class="stat-sub">still strong</p></div>' +
-        '<div class="stat"><p class="stat-label">Slipping</p><p class="stat-value" style="color:var(--gold-deep);">'+dueBack+'</p><p class="stat-sub">due for review</p></div>' +
-        '<div class="stat"><p class="stat-label">Topics started</p><p class="stat-value">'+started+'</p><p class="stat-sub">of '+allT.length+'</p></div>' +
-      '</div>' +
-      (dueBack>0
-        ? '<p class="usage" style="margin-top:8px;">You have <strong>'+dueBack+'</strong> mastered topic'+(dueBack===1?'':'s')+' drifting out of memory. Run a <strong>Cumulative mix</strong> in Daily review to pull them back.</p>'
-        : (masteredAll>0 ? '<p class="usage" style="margin-top:8px;">Everything you\u2019ve mastered is currently holding. Keep up the daily review to stay exam-ready.</p>' : '')) ;
-    body.appendChild(cumCard);
   }
 
   /* ---------- SETTINGS ---------- */
@@ -3443,6 +3229,21 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       b.addEventListener("click", () => nav(b.dataset.nav));
     });
 
+    // Topic / gate handlers
+    $("#btn-simulate-watch").addEventListener("click", simulateWatch);
+    $("#btn-mark-watched").addEventListener("click", markWatched);
+    $("#gate-input").addEventListener("input", (e) => {
+      const topic = topicById(CURRENT_TOPIC);
+      if (topic) updateGateMeter(topic, e.target.value);
+    });
+    $("#btn-submit-gate").addEventListener("click", submitGate);
+    $("#btn-toggle-preview-hint").addEventListener("click", () => {
+      const hint = $("#gate-preview-hint");
+      const btn = $("#btn-toggle-preview-hint");
+      const showing = !hint.hidden;
+      hint.hidden = showing;
+      btn.textContent = showing ? "Show concepts (preview)" : "Hide concepts";
+    });
 
     // Card handlers
     // (legacy btn-reveal removed; MC replaces it)
@@ -3469,47 +3270,11 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     // Review mode toggle
     const btnReviewDue = $("#btn-review-due");
     const btnReviewAll = $("#btn-review-all");
-    const btnReviewMixed = $("#btn-review-mixed");
     if (btnReviewDue) btnReviewDue.addEventListener("click", () => setReviewMode("due"));
     if (btnReviewAll) btnReviewAll.addEventListener("click", () => setReviewMode("all"));
-    if (btnReviewMixed) btnReviewMixed.addEventListener("click", () => setReviewMode("mixed"));
 
     // Report
-    $("#btn-print").addEventListener("click", () => {
-      var rd = $("#rph-date"); if (rd) rd.textContent = new Date().toLocaleDateString();
-      nav("report"); setTimeout(() => window.print(), 200);
-    });
-
-    // Report: week selector + name (name is for the printout only; not stored on server)
-    var rw = $("#report-week");
-    if (rw) {
-      var tw = totalWeeks();
-      for (var w=1; w<=tw; w++){ var o=document.createElement("option"); o.value=w; o.textContent="Week "+w; rw.appendChild(o); }
-      rw.value = currentCourseWeek();
-      rw.addEventListener("change", function(){ REPORT_WEEK = parseInt(rw.value,10); renderReport(); });
-    }
-    // Report: name is set once and then locks onto the report (deterrent against
-    // printing under another person's name). Canvas submission identity is the real
-    // backstop; this just keeps the printed report honest.
-    function refreshNameUI(){
-      var setWrap = $("#name-set-wrap"), lockWrap = $("#name-locked-wrap"), help = $("#name-help");
-      var locked = !!(STATE.studentName && STATE.studentName.trim());
-      if (setWrap) setWrap.style.display = locked ? "none" : "";
-      if (lockWrap) lockWrap.style.display = locked ? "" : "none";
-      if (locked && $("#name-locked-val")) $("#name-locked-val").textContent = STATE.studentName;
-      if (help) help.innerHTML = locked
-        ? "Locked to your report. To change it you must reset all progress (Settings), which clears your data. Your instructor also sees who submitted on Canvas."
-        : "Type your name once. It locks to your printed report and can't be edited afterward without resetting your progress.";
-      REPORT_NAME = STATE.studentName || "";
-      var n = $("#rph-name"); if (n) n.textContent = REPORT_NAME || "__________________";
-    }
-    var saveNameBtn = $("#btn-save-name");
-    if (saveNameBtn) saveNameBtn.addEventListener("click", function(){
-      var v = ($("#report-name").value || "").trim();
-      if (v.length < 2) { announce("Enter your name first."); return; }
-      STATE.studentName = v; saveState(); refreshNameUI(); renderReport();
-    });
-    refreshNameUI();
+    $("#btn-print").addEventListener("click", () => { nav("report"); setTimeout(() => window.print(), 200); });
     $("#btn-export").addEventListener("click", exportProgress);
     $("#btn-import").addEventListener("click", importProgress);
 
@@ -3543,9 +3308,10 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       if (mView  && mView[1])  deepLinkView  = mView[1];
     } catch (e) {}
     if (deepLinkTopic && topicById(deepLinkTopic)) {
-      CURRENT_TOPIC = deepLinkTopic; DRILL_PRACTICE = false;
+      CURRENT_TOPIC = deepLinkTopic;
       const ts = getTopicState(deepLinkTopic);
-      nav("learn", deepLinkTopic);  // unlock: deep-link opens the cards directly
+      if (ts.gateCompleted) nav("learn", deepLinkTopic);
+      else nav("topic", deepLinkTopic);
       try { history.replaceState(null, "", window.location.pathname + window.location.search); } catch (e) {}
     } else if (deepLinkView === "review") {
       nav("review");
@@ -3594,452 +3360,6 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
   }
 })();
 </script>
-<!-- mcas-tour -->
-<style>
-/* Tour pill — sits between header and dashboard, MCAS-styled */
-.mcas-tour-pill-row {
-  max-width: 1100px;
-  margin: 12px auto 4px;
-  padding: 0 max(20px, 4vw);
-  display: flex;
-  justify-content: flex-start;
-}
-.mcas-tour-pill {
-  appearance: none;
-  background: #FFFFFF;
-  border: 1.5px solid var(--mcas-rust);
-  color: var(--mcas-navy);
-  padding: 9px 16px;
-  border-radius: 999px;
-  font-family: inherit;
-  font-size: 13.5px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  cursor: pointer;
-  transition: background 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
-  box-shadow: 0 1px 3px rgba(11, 21, 48, 0.08);
-}
-.mcas-tour-pill:hover,
-.mcas-tour-pill:focus-visible {
-  background: var(--mcas-rust);
-  color: #FFFFFF;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(11, 21, 48, 0.12);
-  outline: none;
-}
-.mcas-tour-pill:focus-visible {
-  outline: 3px solid var(--mcas-gold);
-  outline-offset: 3px;
-}
-
-/* Tour overlay */
-.mcas-tour-active { overflow: hidden; }
-.mcas-tour-scrim {
-  position: fixed; inset: 0;
-  background: rgba(60, 68, 84, 0.35);
-  z-index: 9998;
-  opacity: 0;
-  transition: opacity 200ms ease;
-}
-.mcas-tour-scrim.is-visible { opacity: 1; }
-
-.mcas-tour-highlight {
-  position: relative;
-  z-index: 9999;
-  box-shadow: 0 0 0 4px var(--mcas-gold), 0 0 0 9999px rgba(60, 68, 84, 0.35);
-  border-radius: 8px;
-  transition: box-shadow 200ms ease;
-}
-
-.mcas-tour-tooltip {
-  position: fixed;
-  z-index: 10000;
-  max-width: 380px;
-  width: calc(100vw - 40px);
-  background: #FFFFFF;
-  color: var(--mcas-navy);
-  border-radius: 10px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
-  padding: 22px 24px 18px;
-  font-family: inherit;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 220ms ease, transform 220ms ease;
-}
-.mcas-tour-tooltip.is-visible { opacity: 1; transform: translateY(0); }
-.mcas-tour-step-count {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--mcas-rust);
-  margin: 0 0 8px 0;
-}
-.mcas-tour-title {
-  font-size: 19px;
-  font-weight: 800;
-  color: var(--mcas-navy);
-  letter-spacing: -0.01em;
-  margin: 0 0 8px 0;
-  line-height: 1.25;
-}
-.mcas-tour-body {
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--mcas-navy);
-  margin: 0 0 18px 0;
-}
-.mcas-tour-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.mcas-tour-actions-right { display: flex; gap: 8px; }
-.mcas-tour-btn {
-  appearance: none;
-  font-family: inherit;
-  font-size: 13.5px;
-  font-weight: 700;
-  padding: 9px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
-}
-.mcas-tour-btn-skip {
-  background: transparent;
-  border: none;
-  color: var(--mcas-navy);
-  opacity: 0.7;
-  padding: 9px 4px;
-}
-.mcas-tour-btn-skip:hover,
-.mcas-tour-btn-skip:focus-visible {
-  opacity: 1;
-  text-decoration: underline;
-  outline: none;
-}
-.mcas-tour-btn-secondary {
-  background: #FFFFFF;
-  border: 1.5px solid var(--mcas-navy);
-  color: var(--mcas-navy);
-}
-.mcas-tour-btn-secondary:hover,
-.mcas-tour-btn-secondary:focus-visible {
-  background: var(--mcas-navy);
-  color: #FFFFFF;
-  outline: none;
-}
-.mcas-tour-btn-primary {
-  background: var(--mcas-rust);
-  border: 1.5px solid var(--mcas-rust);
-  color: #FFFFFF;
-}
-.mcas-tour-btn-primary:hover,
-.mcas-tour-btn-primary:focus-visible {
-  background: #A0452F;
-  border-color: #A0452F;
-  outline: none;
-}
-.mcas-tour-btn:focus-visible {
-  outline: 3px solid var(--mcas-gold);
-  outline-offset: 2px;
-}
-@media (prefers-reduced-motion: reduce) {
-  .mcas-tour-scrim,
-  .mcas-tour-tooltip,
-  .mcas-tour-highlight,
-  .mcas-tour-pill { transition: none !important; }
-}
-</style>
-
-<div class="mcas-tour-scrim" id="mcas-tour-scrim" hidden></div>
-<div class="mcas-tour-tooltip" id="mcas-tour-tooltip" role="dialog"
-     aria-modal="true" aria-labelledby="mcas-tour-title" aria-describedby="mcas-tour-body" hidden tabindex="-1">
-  <p class="mcas-tour-step-count" id="mcas-tour-step-count">Step 1 of 4</p>
-  <h2 class="mcas-tour-title" id="mcas-tour-title">Title</h2>
-  <p class="mcas-tour-body" id="mcas-tour-body">Body</p>
-  <div class="mcas-tour-actions">
-    <button type="button" class="mcas-tour-btn mcas-tour-btn-skip" id="mcas-tour-skip">Skip walkthrough</button>
-    <div class="mcas-tour-actions-right">
-      <button type="button" class="mcas-tour-btn mcas-tour-btn-secondary" id="mcas-tour-back" hidden>Back</button>
-      <button type="button" class="mcas-tour-btn mcas-tour-btn-primary" id="mcas-tour-next">Next &rarr;</button>
-    </div>
-  </div>
-</div>
-
-<script>
-(function(){
-  "use strict";
-  var STORAGE_KEY = "bio304-tour-shown";
-  var STEPS = [
-    {
-      target: "#stat-topics-tonight",
-      title: "Print your workbook first",
-      body: "Each topic on today's list pairs with a printed lab workbook. Print or open {days} now so you can write while you watch. The Lab workbook button is also inside each topic view.",
-      fallbackBody: "Each topic on today's list pairs with a printed lab workbook. Print or open tonight's workbook(s) now so you can write while you watch. The Lab workbook button is also inside each topic view."
-    },
-    {
-      target: "#topic-list",
-      fallback: "#dash-heading",
-      title: "Watch the video, then explain it",
-      body: "Open a topic and watch the short video. Explain what you learned in your own words to unlock the question set. Given, not Googled — the explanation is the point."
-    },
-    {
-      target: "#topic-list",
-      fallback: "#dash-heading",
-      title: "Rate each card honestly",
-      body: "Once the question set unlocks, rate each card based on how it felt. Easy cards space out further. Harder cards come back sooner. That is how spaced recall locks the material in."
-    },
-    {
-      target: 'button[data-nav="review"]',
-      title: "Daily review, every day",
-      body: "Tomorrow morning, click Daily Review here. The system pulls only the cards that need another look. Five to ten minutes is plenty. Streaks count."
-    }
-  ];
-
-  var currentStep = 0;
-  var lastFocused = null;
-  var highlightedEl = null;
-
-  function $(sel){ return document.querySelector(sel); }
-
-  function getTonightDays(){
-    // Scan the rendered dashboard for "Day N" headers under topic-list.
-    // Returns ["Day 1"] or ["Day 1","Day 2"] etc., deduped + sorted.
-    var list = document.getElementById("topic-list");
-    if (!list) return [];
-    var text = list.textContent || "";
-    var matches = text.match(/Day\s+\d+/gi) || [];
-    var nums = matches.map(function(s){ return parseInt(s.replace(/\D/g, ""), 10); })
-                      .filter(function(n){ return n >= 1 && n <= 32; });
-    var uniq = Array.from(new Set(nums)).sort(function(a,b){ return a - b; });
-    return uniq.map(function(n){ return "Day " + n; });
-  }
-  function formatDayList(days){
-    if (!days.length) return null;
-    if (days.length === 1) return "tonight's " + days[0].toLowerCase() + " workbook";
-    if (days.length === 2) return "tonight's workbooks (" + days.join(" and ") + ")";
-    var last = days[days.length - 1];
-    var rest = days.slice(0, -1).join(", ");
-    return "tonight's workbooks (" + rest + ", and " + last + ")";
-  }
-  function substituteBody(step){
-    var body = step.body || "";
-    if (body.indexOf("{days}") === -1) return body;
-    var formatted = formatDayList(getTonightDays());
-    if (formatted) return body.replace("{days}", formatted);
-    return step.fallbackBody || body.replace("{days}", "tonight's workbook(s)");
-  }
-
-  function isEmbedded(){
-    try { return window.top !== window.self; }
-    catch (e) { return true; }
-  }
-  function tourSeen(){
-    try { return window.localStorage.getItem(STORAGE_KEY) === "1"; }
-    catch (e) { return false; }
-  }
-  function markTourSeen(){
-    try { window.localStorage.setItem(STORAGE_KEY, "1"); } catch (e) {}
-    updatePillLabel();
-  }
-  function updatePillLabel(){
-    var label = $("#mcas-tour-pill-label");
-    if (!label) return;
-    label.innerHTML = tourSeen()
-      ? "Replay the guided walkthrough &rarr;"
-      : "First time here? Take the guided walkthrough &rarr;";
-  }
-
-  function clearHighlight(){
-    if (highlightedEl) {
-      highlightedEl.classList.remove("mcas-tour-highlight");
-      highlightedEl = null;
-    }
-  }
-
-  function positionTooltip(targetEl){
-    var tip = $("#mcas-tour-tooltip");
-    var tipRect = tip.getBoundingClientRect();
-    var tw = tipRect.width, th = tipRect.height;
-    var vw = window.innerWidth, vh = window.innerHeight;
-    var gap = 14;   // space between target rect and tooltip
-    var pad = 16;   // viewport edge padding
-    var top, left;
-
-    if (!targetEl) {
-      top = Math.max(pad, (vh - th) / 2);
-      left = Math.max(pad, (vw - tw) / 2);
-      tip.style.top = top + "px";
-      tip.style.left = left + "px";
-      return;
-    }
-
-    var r = targetEl.getBoundingClientRect();
-    // Available space on each side of the target rect
-    var spaceBelow = vh - r.bottom - gap - pad;
-    var spaceAbove = r.top - gap - pad;
-    var spaceRight = vw - r.right - gap - pad;
-    var spaceLeft  = r.left - gap - pad;
-
-    // Pick the side with the most space that can fit the tooltip.
-    // Preference order if multiple fit: below, above, right, left.
-    var sides = [
-      { id: "below", fits: spaceBelow >= th, score: spaceBelow },
-      { id: "above", fits: spaceAbove >= th, score: spaceAbove },
-      { id: "right", fits: spaceRight >= tw, score: spaceRight },
-      { id: "left",  fits: spaceLeft  >= tw, score: spaceLeft  }
-    ];
-    var fits = sides.filter(function(s){ return s.fits; });
-    var chosen = null;
-    if (fits.length) {
-      fits.sort(function(a, b){ return b.score - a.score; });
-      chosen = fits[0].id;
-    }
-
-    if (chosen === "below") {
-      top  = r.bottom + gap;
-      left = r.left + (r.width - tw) / 2;
-    } else if (chosen === "above") {
-      top  = r.top - th - gap;
-      left = r.left + (r.width - tw) / 2;
-    } else if (chosen === "right") {
-      top  = r.top + (r.height - th) / 2;
-      left = r.right + gap;
-    } else if (chosen === "left") {
-      top  = r.top + (r.height - th) / 2;
-      left = r.left - tw - gap;
-    } else {
-      // Nothing fits beside the target — anchor in the viewport corner
-      // furthest from the target so the spotlight stays visible.
-      var targetCx = r.left + r.width / 2;
-      var targetCy = r.top + r.height / 2;
-      left = (targetCx > vw / 2) ? pad : Math.max(pad, vw - tw - pad);
-      top  = (targetCy > vh / 2) ? pad : Math.max(pad, vh - th - pad);
-    }
-
-    // Final viewport clamp
-    top  = Math.max(pad, Math.min(top,  vh - th - pad));
-    left = Math.max(pad, Math.min(left, vw - tw - pad));
-
-    tip.style.top  = top  + "px";
-    tip.style.left = left + "px";
-  }
-
-  function showStep(i){
-    currentStep = i;
-    var step = STEPS[i];
-    if (!step) return;
-    clearHighlight();
-
-    var target = step.target ? document.querySelector(step.target) : null;
-    if (!target && step.fallback) target = document.querySelector(step.fallback);
-
-    if (target) {
-      target.classList.add("mcas-tour-highlight");
-      highlightedEl = target;
-      try { target.scrollIntoView({ behavior: "smooth", block: "center" }); } catch (e) { target.scrollIntoView(); }
-    }
-
-    $("#mcas-tour-step-count").textContent = "Step " + (i + 1) + " of " + STEPS.length;
-    $("#mcas-tour-title").textContent = step.title;
-    $("#mcas-tour-body").textContent = substituteBody(step);
-    $("#mcas-tour-back").hidden = (i === 0);
-    $("#mcas-tour-next").textContent = (i === STEPS.length - 1) ? "Done" : "Next →";
-
-    // Position after a tick so the tooltip has dimensions
-    setTimeout(function(){ positionTooltip(target); }, 30);
-  }
-
-  function openTour(){
-    lastFocused = document.activeElement;
-    document.body.classList.add("mcas-tour-active");
-    var scrim = $("#mcas-tour-scrim");
-    var tip = $("#mcas-tour-tooltip");
-    scrim.hidden = false;
-    tip.hidden = false;
-    // Force reflow then add visible class for transition
-    void scrim.offsetWidth;
-    scrim.classList.add("is-visible");
-    tip.classList.add("is-visible");
-    showStep(0);
-    tip.focus();
-  }
-
-  function closeTour(){
-    var scrim = $("#mcas-tour-scrim");
-    var tip = $("#mcas-tour-tooltip");
-    clearHighlight();
-    scrim.classList.remove("is-visible");
-    tip.classList.remove("is-visible");
-    document.body.classList.remove("mcas-tour-active");
-    setTimeout(function(){
-      scrim.hidden = true;
-      tip.hidden = true;
-    }, 220);
-    markTourSeen();
-    if (lastFocused && typeof lastFocused.focus === "function") {
-      try { lastFocused.focus(); } catch (e) {}
-    }
-  }
-
-  function nextStep(){
-    if (currentStep >= STEPS.length - 1) {
-      closeTour();
-    } else {
-      showStep(currentStep + 1);
-    }
-  }
-  function prevStep(){
-    if (currentStep > 0) showStep(currentStep - 1);
-  }
-
-  // Wire up controls
-  document.addEventListener("DOMContentLoaded", function(){
-    var pill = $("#mcas-tour-pill");
-    if (pill) pill.style.display = "none"; // walkthrough removed (instructor)
-
-    var nextBtn = $("#mcas-tour-next");
-    var backBtn = $("#mcas-tour-back");
-    var skipBtn = $("#mcas-tour-skip");
-    var scrim   = $("#mcas-tour-scrim");
-    if (nextBtn) nextBtn.addEventListener("click", nextStep);
-    if (backBtn) backBtn.addEventListener("click", prevStep);
-    if (skipBtn) skipBtn.addEventListener("click", closeTour);
-    if (scrim)   scrim.addEventListener("click", closeTour);
-
-    document.addEventListener("keydown", function(e){
-      if ($("#mcas-tour-tooltip").hidden) return;
-      if (e.key === "Escape") { e.preventDefault(); closeTour(); }
-      else if (e.key === "ArrowRight") { e.preventDefault(); nextStep(); }
-      else if (e.key === "ArrowLeft")  { e.preventDefault(); prevStep(); }
-    });
-
-    window.addEventListener("resize", function(){
-      if (!$("#mcas-tour-tooltip").hidden) {
-        var step = STEPS[currentStep];
-        var target = step && step.target ? document.querySelector(step.target) : null;
-        if (!target && step && step.fallback) target = document.querySelector(step.fallback);
-        positionTooltip(target);
-      }
-    });
-
-    updatePillLabel();
-
-    // URL override: ?tour=0 suppresses, ?tour=1 forces
-    var params = new URLSearchParams(window.location.search);
-    var override = params.get("tour");
-
-    if (override === "0") return;
-    if (override === "1") { openTour(); return; }
-
-    // Walkthrough auto-fire disabled (instructor): it never pops up on its own.
-  });
-})();
-</script>
-<!-- mcas-tour-end -->
 <!-- mcas-chrome-footer -->
 </main>
 <div class="mcas-chrome">
@@ -4059,6 +3379,305 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
 </footer>
 </div>
 <!-- mcas-chrome-footer-end -->
+<!-- mcas-lecture-notes-injector -->
+<script>
+(function(){
+  function init(){
+    var videoPanel = document.querySelector("#video-panel, .video-panel");
+    if (!videoPanel) return;
+    if (document.getElementById("mcas-lecture-notes-input")) return;
+
+    var cfg = window.SHEET_CONFIG || {};
+    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
+    var topicId = m ? m[1] : null;
+    var keyBase = topicId || (document.title || "page").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    var key = "bio304-lecture-notes-" + keyBase;
+
+    var section = document.createElement("section");
+    section.className = "mcas-lecture-notes";
+    section.setAttribute("aria-labelledby", "mcas-lecture-notes-h");
+    section.innerHTML =
+      '<p class="mcas-lecture-notes-eyebrow">While you watch</p>' +
+      '<h2 id="mcas-lecture-notes-h">Lecture video notes</h2>' +
+      '<p class="mcas-lecture-notes-instr">A scratchpad for what stands out as the video runs. Your notes save on this device and stay here when you come back.</p>' +
+      '<textarea id="mcas-lecture-notes-input" rows="8" aria-describedby="mcas-lecture-notes-status" placeholder="Type what is clicking for you..."></textarea>' +
+      '<p class="mcas-lecture-notes-status" id="mcas-lecture-notes-status" aria-live="polite"></p>';
+
+    if (videoPanel.parentNode) videoPanel.parentNode.insertBefore(section, videoPanel.nextSibling);
+
+    var ta = section.querySelector("#mcas-lecture-notes-input");
+    var status = section.querySelector("#mcas-lecture-notes-status");
+
+    try {
+      var saved = window.localStorage.getItem(key);
+      if (saved) ta.value = saved;
+      if (status) status.textContent = saved ? "Restored from your last session." : "";
+    } catch (e) {}
+
+    var t, debounceTimer;
+    function save(){
+      try { window.localStorage.setItem(key, ta.value); } catch (e) {}
+      if (status) {
+        status.textContent = "Saved on this device";
+        clearTimeout(t);
+        t = setTimeout(function(){ if (status) status.textContent = ""; }, 1400);
+      }
+    }
+    ta.addEventListener("input", function(){
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(save, 350);
+    });
+    ta.addEventListener("blur", save);
+    window.addEventListener("pagehide", save);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+<!-- mcas-lecture-notes-injector-end -->
+<!-- mcas-step-tracker-injector -->
+<script>
+(function(){
+  function init(){
+    var cfg = window.SHEET_CONFIG || {};
+    var m = (cfg.prework || "").match(/topic=([\w-]+)/);
+    var topicId = m ? m[1] : null;
+    if (!topicId) return;
+
+    var resourceBar = document.querySelector(".resource-bar");
+    var workbookAside = document.querySelector("aside.mcas-next-up a.mcas-next-up-cta");
+    var workbookHref = workbookAside ? workbookAside.getAttribute("href") : "#";
+    var preworkHref = cfg.prework || "#";
+
+    // Derive the week number from the workbook URL (workbook_weekNN.html).
+    // Workbook flags are scoped to the week, so printing once on Monday
+    // marks Step 1 complete for every spoke in that week.
+    var weekMatch = (workbookHref || "").match(/workbook_week(\d{2})/);
+    var weekKey   = weekMatch ? weekMatch[1] : null;
+    var weekNum   = weekKey ? parseInt(weekKey, 10) : null;
+    var WB_FLAG          = weekKey ? ("bio304-workbook-week-" + weekKey)              : ("bio304-workbook-" + topicId);
+    var WB_SKIP_FLAG     = weekKey ? ("bio304-workbook-skipped-week-" + weekKey)      : ("bio304-workbook-skipped-" + topicId);
+    var WB_REMINDER_FLAG = weekKey ? ("bio304-workbook-reminder-dismissed-week-" + weekKey) : ("bio304-workbook-reminder-dismissed-" + topicId);
+
+    var tracker = document.createElement("div");
+    tracker.className = "mcas-step-tracker";
+    tracker.setAttribute("data-topic-id", topicId);
+    tracker.innerHTML =
+      '<ol class="mcas-steps" aria-label="Pre-work steps for this topic">' +
+        '<li class="mcas-step" data-step="workbook">' +
+          '<a class="mcas-step-btn" data-step-action="workbook" href="' + workbookHref + '" target="_blank" rel="noopener">' +
+            '<span class="mcas-step-num">Step 1</span>' +
+            '<span class="mcas-step-label">Print the workbook</span>' +
+            '<span class="mcas-step-state"></span>' +
+          '</a>' +
+          '<button type="button" class="mcas-step-skip" data-step-action="workbook-skip" hidden>I will do it by hand &middot; skip this step</button>' +
+        '</li>' +
+        '<li class="mcas-step" data-step="video">' +
+          '<button type="button" class="mcas-step-btn" data-step-action="video">' +
+            '<span class="mcas-step-num">Step 2</span>' +
+            '<span class="mcas-step-label">Watch the video</span>' +
+            '<span class="mcas-step-state"></span>' +
+          '</button>' +
+        '</li>' +
+        '<li class="mcas-step" data-step="gate">' +
+          '<button type="button" class="mcas-step-btn" data-step-action="gate">' +
+            '<span class="mcas-step-num">Step 3</span>' +
+            '<span class="mcas-step-label">Retrieval check</span>' +
+            '<span class="mcas-step-state"></span>' +
+          '</button>' +
+        '</li>' +
+        '<li class="mcas-step" data-step="recall">' +
+          '<a class="mcas-step-btn" data-step-action="recall" href="' + preworkHref + '" target="_top">' +
+            '<span class="mcas-step-num">Step 4</span>' +
+            '<span class="mcas-step-label">Open spaced recall</span>' +
+            '<span class="mcas-step-state"></span>' +
+          '</a>' +
+        '</li>' +
+      '</ol>';
+
+    // Insert before the existing resource-bar (or at top of main content)
+    if (resourceBar && resourceBar.parentNode) {
+      resourceBar.parentNode.insertBefore(tracker, resourceBar);
+      resourceBar.style.display = "none";
+    } else {
+      var anchor = document.querySelector("main .usage, main .subhead, main h1, main");
+      if (anchor && anchor.parentNode) {
+        anchor.parentNode.insertBefore(tracker, anchor.nextSibling);
+      }
+    }
+
+    function readFlag(k){ try { return window.localStorage.getItem(k) === "true"; } catch (e) { return false; } }
+    function writeFlag(k, v){ try { window.localStorage.setItem(k, v ? "true" : ""); } catch (e) {} }
+
+    function state(){
+      return {
+        workbook:        readFlag(WB_FLAG),
+        workbookSkipped: readFlag(WB_SKIP_FLAG),
+        video:           readFlag("bio304-video-" + topicId),
+        gate:            readFlag("bio304-gate-" + topicId)
+      };
+    }
+
+    // Persistent reminder banner: appears when the student skips Step 1
+    // and stays visible until they actively dismiss it (or open the
+    // workbook). Reminds them the workbook still needs to be done and
+    // turned in.
+    var reminder = document.createElement("div");
+    reminder.className = "mcas-step-reminder";
+    reminder.setAttribute("role", "status");
+    reminder.hidden = true;
+    reminder.innerHTML =
+      '<span><strong>Reminder.</strong> The lab workbook still needs to be completed and turned in &mdash; print it or work it by hand.</span>' +
+      '<button type="button" class="mcas-step-reminder-dismiss" aria-label="Dismiss reminder">Dismiss</button>';
+    tracker.appendChild(reminder);
+
+    function updateReminder(s){
+      var visible = s.workbookSkipped && !readFlag(WB_REMINDER_FLAG);
+      reminder.hidden = !visible;
+    }
+    var dismissBtn = reminder.querySelector(".mcas-step-reminder-dismiss");
+    if (dismissBtn) {
+      dismissBtn.addEventListener("click", function(){
+        writeFlag(WB_REMINDER_FLAG, true);
+        reminder.hidden = true;
+      });
+    }
+
+    function render(){
+      var s = state();
+      var current = !s.workbook ? "workbook"
+                  : !s.video    ? "video"
+                  : !s.gate     ? "gate"
+                  :               "recall";
+      var weekLabel = weekNum ? ("Week " + weekNum) : "this week";
+      var stateLabels = {
+        workbook: {
+          active:    "Tap to open and print",
+          completed: s.workbookSkipped
+            ? ("Skipped — do on paper, turn it in")
+            : ("Already printed " + weekLabel + " workbook"),
+          pending:   "Up next"
+        },
+        video:    { active: "Tap to start the video", completed: "Video finished", pending: "Locked until step 1" },
+        gate:     { active: "Tap to write the explanation", completed: "Retrieval check passed", pending: "Locked until step 2" },
+        recall:   { active: "Tap to drill the cards", completed: "Cards opened", pending: "Locked until step 3" }
+      };
+      tracker.querySelectorAll(".mcas-step").forEach(function(li){
+        var step = li.getAttribute("data-step");
+        var done = (step === "workbook" && s.workbook) ||
+                   (step === "video"    && s.video)    ||
+                   (step === "gate"     && s.gate);
+        var cls = done ? "is-completed" : (step === current ? "is-active" : "is-pending");
+        li.classList.remove("is-completed", "is-active", "is-pending");
+        li.classList.add(cls);
+        var stateEl = li.querySelector(".mcas-step-state");
+        if (stateEl) {
+          var labels = stateLabels[step] || {};
+          stateEl.textContent = labels[cls === "is-active" ? "active" : cls === "is-completed" ? "completed" : "pending"] || "";
+        }
+        // Show the skip link only while Step 1 is active
+        if (step === "workbook") {
+          var skipBtn = li.querySelector(".mcas-step-skip");
+          if (skipBtn) skipBtn.hidden = (cls !== "is-active");
+        }
+      });
+      updateReminder(s);
+    }
+
+    // --- Step 1: workbook click sets the WEEK flag, the anchor opens the bundle ---
+    var wbBtn = tracker.querySelector('[data-step-action="workbook"]');
+    if (wbBtn) {
+      wbBtn.addEventListener("click", function(){
+        writeFlag(WB_FLAG, true);
+        // Opening the workbook clears any prior "skipped" state and
+        // re-enables the reminder for future skips.
+        writeFlag(WB_SKIP_FLAG, false);
+        writeFlag(WB_REMINDER_FLAG, false);
+        setTimeout(render, 40);
+      });
+    }
+    var skipBtn = tracker.querySelector('[data-step-action="workbook-skip"]');
+    if (skipBtn) {
+      skipBtn.addEventListener("click", function(){
+        var ok = window.confirm("Skipping the download? The lab workbook still needs to be completed and turned in. Work it on paper or with your printed copy.");
+        if (!ok) return;
+        writeFlag(WB_FLAG, true);
+        writeFlag(WB_SKIP_FLAG, true);
+        writeFlag(WB_REMINDER_FLAG, false);
+        setTimeout(render, 40);
+      });
+    }
+
+    // --- Step 2: video click triggers the existing #video-toggle ---
+    var videoBtn = tracker.querySelector('[data-step-action="video"]');
+    if (videoBtn) {
+      videoBtn.addEventListener("click", function(){
+        var toggle = document.getElementById("video-toggle");
+        if (toggle) toggle.click();
+        var panel = document.getElementById("video-panel");
+        if (panel) setTimeout(function(){ panel.scrollIntoView({ behavior: "smooth", block: "center" }); }, 160);
+      });
+    }
+
+    // --- Step 3: gate click scrolls to the retrieval check ---
+    var gateBtn = tracker.querySelector('[data-step-action="gate"]');
+    if (gateBtn) {
+      gateBtn.addEventListener("click", function(){
+        var gate = document.getElementById("explain-gate");
+        if (gate) {
+          if (gate.hidden) gate.hidden = false;
+          gate.scrollIntoView({ behavior: "smooth", block: "center" });
+          var input = document.getElementById("gate-input");
+          if (input) setTimeout(function(){ input.focus(); }, 380);
+        }
+      });
+    }
+
+    // Watch the explain-gate's hidden attribute. The bio304-option-a IIFE
+    // reveals it via revealGate() when the YouTube video ENDS. That's our
+    // signal to set the bio304-video flag.
+    var gateSection = document.getElementById("explain-gate");
+    if (gateSection && typeof MutationObserver !== "undefined") {
+      var obs = new MutationObserver(function(){
+        if (!gateSection.hidden && !readFlag("bio304-video-" + topicId)) {
+          writeFlag("bio304-video-" + topicId, true);
+          render();
+        }
+      });
+      obs.observe(gateSection, { attributes: true, attributeFilter: ["hidden"] });
+    }
+
+    // Gate submit click → re-render after the existing handler stores its flags
+    var submitBtn = document.getElementById("gate-submit");
+    if (submitBtn) {
+      submitBtn.addEventListener("click", function(){ setTimeout(render, 80); });
+    }
+
+    // Cross-tab updates: re-render when any flag this spoke cares about
+    // changes in another tab (e.g. student opens the workbook from a
+    // sibling spoke and the week flag flips).
+    window.addEventListener("storage", function(e){
+      if (!e.key) return;
+      if (e.key === WB_FLAG || e.key === WB_SKIP_FLAG || e.key === WB_REMINDER_FLAG) {
+        render(); return;
+      }
+      if (e.key.indexOf("bio304-") === 0 && e.key.indexOf(topicId) > -1) render();
+    });
+
+    render();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+<!-- mcas-step-tracker-injector-end -->
 <!-- mcas-iframe-height-sender -->
 <script>
 /* MCAS iframe height-sender (rebrand-mcas.py) */
@@ -4075,6 +3694,5 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
 })();
 </script>
 <!-- mcas-iframe-height-sender-end -->
-<style id="mcas-hide-buttons">#link-open-notes,#link-open-workbook,#btn-review-all{display:none !important;}</style>
 </body>
 </html>
