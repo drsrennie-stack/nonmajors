@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 304 Engagement Grader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lora:ital@0;1&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1E3D4C; --navy-deep:#142a36; --navy-tint:#EDF1F3;
+    --gold:#B8924A; --terra:#C2734D; --terra-dark:#A0522D;
+    --white:#FFFFFF; --off-white:#FAFAF9; --gray-soft:#6b7780; --gray-line:#e3e6e8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--off-white); color:var(--navy);
+    font-family:"Lora",Georgia,serif; line-height:1.55; padding:24px;
+  }
+  .wrap{max-width:1080px; margin:0 auto;}
+  .eyebrow{font-family:"DM Sans",system-ui,sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:0.1em; color:var(--terra-dark); font-weight:700; margin:0 0 4px;}
+  h1{font-family:"Plus Jakarta Sans",system-ui,sans-serif; font-weight:800; color:var(--navy); margin:0 0 6px; font-size:30px;}
+  h2{font-family:"Plus Jakarta Sans",system-ui,sans-serif; font-weight:600; color:var(--terra-dark); font-size:19px; margin:0 0 10px;}
+  .sub{font-style:italic; color:var(--gray-soft); margin:0 0 20px;}
+  .card{background:var(--white); border:1px solid var(--gray-line); border-radius:10px; padding:20px 22px; margin:0 0 20px; box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .privacy{border-left:4px solid var(--gold); background:var(--navy-tint); font-size:14px; font-family:"DM Sans",system-ui,sans-serif;}
+  label{font-family:"DM Sans",system-ui,sans-serif; font-weight:500;}
+  .dropzone{
+    border:2px dashed var(--gold); border-radius:10px; padding:28px; text-align:center;
+    background:var(--white); cursor:pointer; transition:background 150ms ease, border-color 150ms ease;
+  }
+  .dropzone.drag{background:var(--navy-tint); border-color:var(--navy);}
+  .dropzone p{margin:6px 0; font-family:"DM Sans",system-ui,sans-serif;}
+  .btn{
+    font-family:"DM Sans",system-ui,sans-serif; font-weight:700; font-size:14px;
+    border-radius:8px; padding:10px 16px; cursor:pointer; border:1px solid transparent;
+  }
+  .btn:focus-visible{outline:3px solid var(--gold); outline-offset:2px;}
+  .btn-primary{background:var(--navy); color:#fff; border-color:var(--navy);}
+  .btn-primary:hover{background:var(--navy-deep);}
+  .btn-ghost{background:transparent; color:var(--navy); border-color:var(--navy);}
+  .btn-ghost:hover{background:var(--navy-tint);}
+  .toolbar{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px;}
+  .controls{display:flex; gap:18px; flex-wrap:wrap; align-items:flex-end; font-family:"DM Sans",system-ui,sans-serif;}
+  .controls .field{display:flex; flex-direction:column; gap:4px;}
+  input[type="number"], input[type="text"]{
+    font-family:"DM Sans",system-ui,sans-serif; padding:8px 10px; border:1px solid var(--navy);
+    border-radius:6px; font-size:14px; background:var(--white); color:var(--navy);
+  }
+  input[type="text"]:focus, input[type="number"]:focus{outline:3px solid var(--gold); outline-offset:1px;}
+  table{width:100%; border-collapse:collapse; font-family:"DM Sans",system-ui,sans-serif; font-size:13px;}
+  caption{text-align:left; font-style:italic; color:var(--gray-soft); padding-bottom:8px; font-family:"Lora",serif;}
+  th, td{padding:9px 10px; text-align:right; border-bottom:1px solid var(--gray-line); white-space:nowrap;}
+  th:first-child, td:first-child{text-align:left;}
+  thead th{
+    color:var(--navy); border-bottom:2px solid var(--navy); cursor:pointer; user-select:none;
+    position:sticky; top:0; background:var(--white);
+  }
+  thead th[aria-sort="descending"]::after{content:" \\25BC"; color:var(--gold);}
+  thead th[aria-sort="ascending"]::after{content:" \\25B2"; color:var(--gold);}
+  tbody tr:hover{background:var(--navy-tint);}
+  td.name input{width:160px; padding:5px 7px;}
+  .flag-mod{color:#fff; background:var(--terra-dark); border-radius:4px; padding:2px 7px; font-weight:700; font-size:11px;}
+  .flag-ok{color:var(--navy); font-weight:700;}
+  .flag-none{color:var(--gray-soft);}
+  .bigpct{font-weight:800; color:var(--navy);}
+  .empty{color:var(--gray-soft); font-style:italic; font-family:"Lora",serif;}
+  .scroller{overflow-x:auto;}
+  .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
+  .note{font-size:12px; color:var(--gray-soft); font-family:"DM Sans",system-ui,sans-serif;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important;} }
+</style>
+</head>
+<body>
+<div class="wrap" id="main-content">
+  <p class="eyebrow">BIO 304 &middot; Human Anatomy &amp; Physiology &middot; MedMasters Collaborative</p>
+  <h1>Engagement Grader</h1>
+  <p class="sub">Import the backup files your students export from the spaced-recall tool, and get a ranked, gradeable table. Coverage 50%, Consistency 30%, Depth 20%.</p>
+
+  <div class="card privacy" role="note">
+    <strong>Student privacy:</strong> everything here runs in this browser tab only. Nothing is uploaded or saved. Closing or refreshing this page clears all student data.
+  </div>
+
+  <div class="card">
+    <h2>1. Load student backups</h2>
+    <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Choose backup files or drop them here">
+      <p style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;color:var(--navy);">Drop backup files here</p>
+      <p class="note">or</p>
+      <button type="button" class="btn btn-primary" id="pick-btn">Choose backup files</button>
+      <p class="note" style="margin-top:10px;">Accepts the <code>.json</code> files students export. You can select many at once.</p>
+    </div>
+    <input type="file" id="file-input" accept=".json,application/json,text/plain" multiple class="sr-only">
+
+    <div class="toolbar">
+      <label for="paste-area" class="sr-only">Paste a backup code</label>
+      <details style="width:100%;">
+        <summary style="cursor:pointer; font-family:'DM Sans',system-ui,sans-serif; font-weight:700;">Or paste a backup code instead</summary>
+        <textarea id="paste-area" rows="4" style="width:100%; margin-top:10px; font-family:monospace; font-size:12px; padding:10px; border:1px solid var(--navy); border-radius:6px;" placeholder="Paste one student's backup code..."></textarea>
+        <div class="toolbar"><button type="button" class="btn btn-ghost" id="add-code-btn">Add this student</button></div>
+      </details>
+    </div>
+    <p id="load-status" role="status" aria-live="polite" class="note" style="margin-top:10px;"></p>
+  </div>
+
+  <div class="card">
+    <h2>2. Grade settings</h2>
+    <div class="controls">
+      <div class="field">
+        <label for="weight-input">Engagement is worth this % of the course grade</label>
+        <input type="number" id="weight-input" value="40" min="0" max="100" step="1" style="width:90px;">
+      </div>
+      <div class="field">
+        <label for="grade-date">Grade as of date (consistency window ends here)</label>
+        <input type="text" id="grade-date" placeholder="YYYY-MM-DD">
+      </div>
+      <button type="button" class="btn btn-ghost" id="recompute-btn">Recompute</button>
+    </div>
+    <p class="note" style="margin-top:8px;">A study day counts only when the student cleared every due review that day. Consistency = cleared days &divide; class weekdays since their first activity.</p>
+  </div>
+
+  <div class="card">
+    <h2>3. Class results</h2>
+    <div class="toolbar" style="margin-top:0;">
+      <button type="button" class="btn btn-primary" id="csv-btn">Download CSV</button>
+      <button type="button" class="btn btn-ghost" id="clear-btn">Clear all</button>
+    </div>
+    <div class="scroller" style="margin-top:14px;">
+      <table id="results">
+        <caption>Click a column header to sort. Names are editable and used only in this tab and the CSV.</caption>
+        <thead>
+          <tr>
+            <th data-key="name" scope="col" aria-sort="none">Student</th>
+            <th data-key="composite" scope="col" aria-sort="descending">Engagement %</th>
+            <th data-key="points" scope="col" aria-sort="none">Points</th>
+            <th data-key="coverage" scope="col" aria-sort="none">Coverage</th>
+            <th data-key="consistency" scope="col" aria-sort="none">Consistency</th>
+            <th data-key="depth" scope="col" aria-sort="none">Depth</th>
+            <th data-key="seen" scope="col" aria-sort="none">Cards seen</th>
+            <th data-key="activeDays" scope="col" aria-sort="none">Active days</th>
+            <th data-key="activated" scope="col" aria-sort="none">Topics</th>
+            <th data-key="exportedAt" scope="col" aria-sort="none">Exported</th>
+            <th data-key="integrity" scope="col" aria-sort="none">Backup</th>
+          </tr>
+        </thead>
+        <tbody id="results-body">
+          <tr><td colspan="11" class="empty">No students loaded yet.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" style="margin-top:10px;" id="content-status"></p>
+  </div>
+</div>
+
+<!-- Course content provides the card totals per section. Keep course-content.js in the same folder. -->
+<script src="course-content.js"></script>
+<script>
+(function(){
+  "use strict";
+  var DAY_MS = 24 * 60 * 60 * 1000;
+  var CONTENT = (window.BIO304_COURSE_CONTENT && window.BIO304_COURSE_CONTENT.modules) ? window.BIO304_COURSE_CONTENT : null;
+
+  var students = [];      // { name, state, exportedAt, integrity, metrics }
+  var sortKey = "composite", sortDir = "descending";
+
+  function $(s){ return document.querySelector(s); }
+
+  function allTopics(){
+    var out = [];
+    if (!CONTENT) return out;
+    (CONTENT.modules || []).forEach(function(m){ (m.topics || []).forEach(function(t){ out.push(t); }); });
+    return out;
+  }
+  function moduleByTopicId(id){
+    if (!CONTENT) return null;
+    var mods = CONTENT.modules || [];
+    for (var i=0;i<mods.length;i++){ var ts = mods[i].topics||[]; for (var j=0;j<ts.length;j++){ if (ts[j].id===id) return mods[i]; } }
+    return null;
+  }
+
+  function isActivated(ts){
+    return !!(ts && (ts.activated || ts.gateCompleted || ts.videoWatched || ts.activatedAt));
+  }
+
+  // --- grading logic (mirrors the student app) ---
+  function masteryFor(ts, dok){
+    var b = ts.dok && ts.dok[dok];
+    if (!b || b.total < 3) return 0;
+    return b.correct / b.total;
+  }
+  function adaptiveLevel(ts){
+    var m1 = masteryFor(ts,1), m2 = masteryFor(ts,2);
+    var s1 = (ts.dok && ts.dok[1] && ts.dok[1].streak) || 0;
+    var s2 = (ts.dok && ts.dok[2] && ts.dok[2].streak) || 0;
+    if (m1>=0.7 && s1>=3 && m2>=0.6 && s2>=3) return 3;
+    if (m1>=0.7 && s1>=3) return 2;
+    return 1;
+  }
+  function activatedTopicsFor(state){
+    return allTopics().filter(function(t){ return isActivated(state.topics && state.topics[t.id]); });
+  }
+  function coverageFor(state){
+    var seen=0, total=0;
+    activatedTopicsFor(state).forEach(function(t){
+      var ts = state.topics[t.id]; var tot=(t.cards||[]).length;
+      var sn=(t.cards||[]).filter(function(c){ var cs=ts.cards&&ts.cards[c.id]; return cs&&cs.history&&cs.history.length>0; }).length;
+      seen+=sn; total+=tot;
+    });
+    return { seen:seen, total:total, pct: total? seen/total : 0 };
+  }
+  function dailyFor(state){
+    var days={};
+    allTopics().forEach(function(t){
+      var ts=state.topics && state.topics[t.id]; if(!ts||!ts.cards) return;
+      Object.keys(ts.cards).forEach(function(cid){
+        var cs=ts.cards[cid]; var hist=(cs.history||[]).slice().sort(function(a,b){ return (a.at||"")<(b.at||"")?-1:1; });
+        hist.forEach(function(h){ var day=(h.at||"").slice(0,10); if(!day) return; days[day]=(days[day]||0)+1; });
+      });
+    });
+    return days;
+  }
+  function depthFor(state){
+    var ts=activatedTopicsFor(state); if(!ts.length) return 0;
+    var sum=0; ts.forEach(function(t){ var lv=adaptiveLevel(state.topics[t.id]); sum += lv>=3?1:(lv>=2?0.5:0); });
+    return sum/ts.length;
+  }
+  function consistencyFor(state, asOf){
+    var dm=dailyFor(state);
+    var activeDays=Object.keys(dm);
+    var cleared=(state.sessions||[]).filter(function(s){ return s.dueCleared; }).map(function(s){ return s.date; });
+    var anyTracked=cleared.length>0;
+    var compliant=anyTracked ? Object.keys(cleared.reduce(function(a,d){a[d]=1;return a;},{})).length : activeDays.length;
+    var expected=1;
+    if (activeDays.length){
+      var sorted=activeDays.slice().sort();
+      var start=new Date(sorted[0]+"T00:00:00");
+      var end=new Date((asOf||new Date().toISOString().slice(0,10))+"T00:00:00");
+      var cnt=0;
+      for (var t=start.getTime(); t<=end.getTime(); t+=DAY_MS){ var dow=new Date(t).getDay(); if(dow>=1&&dow<=5) cnt++; }
+      expected=Math.max(1,cnt);
+    }
+    return { activeDays:activeDays.length, compliant:compliant, expected:expected, score: Math.min(1, compliant/expected) };
+  }
+  function metricsFor(state, asOf){
+    var cov=coverageFor(state), con=consistencyFor(state, asOf), dep=depthFor(state);
+    var composite=0.5*cov.pct + 0.3*con.score + 0.2*dep;
+    return {
+      coverage:cov.pct, seen:cov.seen, total:cov.total,
+      consistency:con.score, compliant:con.compliant, expected:con.expected, activeDays:con.activeDays,
+      depth:dep, activated:activatedTopicsFor(state).length, composite:composite
+    };
+  }
+
+  // --- checksum (same djb2 as the student app) ---
+  function checksumStr(str){ var h=5381; for(var i=0;i<str.length;i++){ h=((h<<5)+h+str.charCodeAt(i))>>>0; } return h.toString(16); }
+
+  function parseBackup(raw){
+    raw=(raw||"").trim(); if(!raw) return null;
+    var payload=null;
+    try { payload=JSON.parse(raw); }
+    catch(e){ try { payload=JSON.parse(decodeURIComponent(escape(atob(raw)))); } catch(e2){ return null; } }
+    if(!payload) return null;
+    var state = payload.state ? payload.state : payload;
+    if(!state || !state.version) return null;
+    var integrity="none";
+    if(payload.checksum && payload.state){
+      integrity = (checksumStr(JSON.stringify(payload.state))===payload.checksum) ? "verified" : "MODIFIED";
+    }
+    return { state:state, exportedAt: payload.exportedAt || "", integrity:integrity };
+  }
+
+  function addStudent(name, parsed){
+    students.push({ name:name, state:parsed.state, exportedAt:parsed.exportedAt, integrity:parsed.integrity });
+    render();
+  }
+
+  function status(msg){ $("#load-status").textContent = msg; }
+
+  function handleFiles(fileList){
+    var files = Array.prototype.slice.call(fileList||[]);
+    if(!files.length) return;
+    var added=0, failed=0, pending=files.length;
+    files.forEach(function(f){
+      var reader=new FileReader();
+      reader.onload=function(){
+        var parsed=parseBackup(String(reader.result));
+        if(parsed){ addStudent(f.name.replace(/\\.[^.]+$/,""), parsed); added++; }
+        else failed++;
+        if(--pending===0) status(added+" loaded"+(failed?(", "+failed+" could not be read"):"")+".");
+      };
+      reader.onerror=function(){ failed++; if(--pending===0) status(added+" loaded, "+failed+" failed."); };
+      reader.readAsText(f);
+    });
+  }
+
+  function asOfDate(){
+    var v=$("#grade-date").value.trim();
+    return /^\\d{4}-\\d{2}-\\d{2}$/.test(v) ? v : new Date().toISOString().slice(0,10);
+  }
+  function weight(){ var w=parseFloat($("#weight-input").value); return isNaN(w)?40:w; }
+
+  function pct(x){ return Math.round(x*100)+"%"; }
+
+  function computeRows(){
+    var asOf=asOfDate(), w=weight();
+    return students.map(function(st, idx){
+      var m=metricsFor(st.state, asOf);
+      return {
+        idx:idx, name:st.name, exportedAt:(st.exportedAt||"").slice(0,10), integrity:st.integrity,
+        composite:m.composite, points:m.composite*w,  // composite fraction * points available (e.g. 40)
+        coverage:m.coverage, consistency:m.consistency, depth:m.depth,
+        seen:m.seen, total:m.total, activeDays:m.activeDays, compliant:m.compliant, expected:m.expected, activated:m.activated
+      };
+    });
+  }
+
+  function render(){
+    var body=$("#results-body");
+    if(!students.length){ body.innerHTML='<tr><td colspan="11" class="empty">No students loaded yet.</td></tr>'; return; }
+    var rows=computeRows();
+    rows.sort(function(a,b){
+      var av=a[sortKey], bv=b[sortKey];
+      if(typeof av==="string"){ av=av.toLowerCase(); bv=(bv||"").toLowerCase(); }
+      if(av<bv) return sortDir==="ascending"?-1:1;
+      if(av>bv) return sortDir==="ascending"?1:-1;
+      return 0;
+    });
+    body.innerHTML="";
+    rows.forEach(function(r){
+      var tr=document.createElement("tr");
+      var integrityCell = r.integrity==="MODIFIED" ? '<span class="flag-mod">MODIFIED</span>'
+                        : r.integrity==="verified" ? '<span class="flag-ok">Verified</span>'
+                        : '<span class="flag-none">no checksum</span>';
+      tr.innerHTML =
+        '<td class="name"><input type="text" value="'+escapeAttr(r.name)+'" data-idx="'+r.idx+'" aria-label="Student name"></td>'+
+        '<td class="bigpct">'+pct(r.composite)+'</td>'+
+        '<td>'+r.points.toFixed(1)+'</td>'+
+        '<td>'+pct(r.coverage)+' <span class="note">('+r.seen+'/'+r.total+')</span></td>'+
+        '<td>'+pct(r.consistency)+' <span class="note">('+r.compliant+'/'+r.expected+')</span></td>'+
+        '<td>'+pct(r.depth)+'</td>'+
+        '<td>'+r.seen+'</td>'+
+        '<td>'+r.activeDays+'</td>'+
+        '<td>'+r.activated+'</td>'+
+        '<td>'+(r.exportedAt||"\\u2014")+'</td>'+
+        '<td>'+integrityCell+'</td>';
+      body.appendChild(tr);
+    });
+    body.querySelectorAll('input[data-idx]').forEach(function(inp){
+      inp.addEventListener("change", function(){ students[parseInt(inp.dataset.idx,10)].name=inp.value; });
+    });
+  }
+
+  function escapeAttr(s){ return String(s||"").replace(/[&<>"']/g,function(c){return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c];}); }
+
+  function toCSV(){
+    var asOf=asOfDate(), w=weight();
+    var rows=computeRows();
+    var head=["Student","EngagementPct","PointsOf"+w,"CoveragePct","CardsSeen","CardsTotal","ConsistencyPct","DaysCleared","DaysExpected","DepthPct","ActiveDays","TopicsActivated","ExportedDate","BackupIntegrity"];
+    var lines=[head.join(",")];
+    rows.forEach(function(r){
+      lines.push([
+        '"'+String(r.name).replace(/"/g,'""')+'"',
+        Math.round(r.composite*100), r.points.toFixed(1),
+        Math.round(r.coverage*100), r.seen, r.total,
+        Math.round(r.consistency*100), r.compliant, r.expected,
+        Math.round(r.depth*100), r.activeDays, r.activated,
+        r.exportedAt||"", r.integrity
+      ].join(","));
+    });
+    return lines.join("\\n");
+  }
+
+  // --- wiring ---
+  function init(){
+    if(!CONTENT){
+      $("#content-status").textContent = "course-content.js was not found in this folder, so coverage totals can't be computed. Put this page in the same folder as course-content.js.";
+      $("#content-status").style.color = "var(--terra-dark)";
+    } else {
+      $("#content-status").textContent = "Loaded "+allTopics().length+" topics from course-content.js.";
+    }
+    $("#grade-date").value = new Date().toISOString().slice(0,10);
+
+    var fileInput=$("#file-input"), dz=$("#dropzone");
+    $("#pick-btn").addEventListener("click", function(e){ e.stopPropagation(); fileInput.click(); });
+    dz.addEventListener("click", function(){ fileInput.click(); });
+    dz.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); fileInput.click(); } });
+    fileInput.addEventListener("change", function(){ handleFiles(fileInput.files); fileInput.value=""; });
+    ["dragenter","dragover"].forEach(function(ev){ dz.addEventListener(ev, function(e){ e.preventDefault(); dz.classList.add("drag"); }); });
+    ["dragleave","drop"].forEach(function(ev){ dz.addEventListener(ev, function(e){ e.preventDefault(); dz.classList.remove("drag"); }); });
+    dz.addEventListener("drop", function(e){ if(e.dataTransfer && e.dataTransfer.files) handleFiles(e.dataTransfer.files); });
+
+    $("#add-code-btn").addEventListener("click", function(){
+      var parsed=parseBackup($("#paste-area").value);
+      if(!parsed){ status("That code could not be read."); return; }
+      addStudent("Student "+(students.length+1), parsed);
+      $("#paste-area").value=""; status("Added 1 student from code.");
+    });
+
+    $("#recompute-btn").addEventListener("click", render);
+    $("#weight-input").addEventListener("change", render);
+    $("#grade-date").addEventListener("change", render);
+    $("#clear-btn").addEventListener("click", function(){ students=[]; status(""); render(); });
+    $("#csv-btn").addEventListener("click", function(){
+      var blob=new Blob([toCSV()],{type:"text/csv"});
+      var url=URL.createObjectURL(blob); var a=document.createElement("a");
+      a.href=url; a.download="bio304-engagement-grades-"+asOfDate()+".csv";
+      document.body.appendChild(a); a.click();
+      setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 1000);
+    });
+
+    document.querySelectorAll("thead th[data-key]").forEach(function(th){
+      th.addEventListener("click", function(){
+        var k=th.dataset.key;
+        if(sortKey===k){ sortDir = (sortDir==="descending")?"ascending":"descending"; }
+        else { sortKey=k; sortDir = (k==="name") ? "ascending" : "descending"; }
+        document.querySelectorAll("thead th[data-key]").forEach(function(h){ h.setAttribute("aria-sort", h===th?sortDir:"none"); });
+        render();
+      });
+    });
+  }
+
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();
+</script>
+
+<!-- iframe height-sender: posts this page's height to a parent frame so it can resize the embed. -->
+<script>
+(function(){
+  function sendHeight(){
+    try{
+      var h=document.documentElement.scrollHeight;
+      var id=(window.frameElement&&window.frameElement.id)||"";
+      parent.postMessage({type:"resize-iframe",id:id,height:h},"*");
+    }catch(e){}
+  }
+  window.addEventListener("load",sendHeight);
+  window.addEventListener("resize",sendHeight);
+  if(window.ResizeObserver){ try{ new ResizeObserver(sendHeight).observe(document.body); }catch(e){} }
+})();
+</script>
+</body>
+</html>

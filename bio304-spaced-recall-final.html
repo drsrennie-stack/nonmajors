@@ -2376,7 +2376,12 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
      courseStart is not set (release scheduling disabled). */
   function currentDayInCourse(){
     if (!CONTENT.courseStart) return 0;
-    const start = new Date(CONTENT.courseStart + "T00:00:00");
+    // Parse robustly: courseStart may be a plain date ("2026-06-08") OR already
+    // include a time/zone ("2026-06-08T00:00:00-07:00"). Appending "T00:00:00"
+    // to the latter makes an invalid date (the old bug that forced every topic
+    // to read "Locked"), so only append when there is no time component.
+    const start = new Date(/[T ]/.test(CONTENT.courseStart) ? CONTENT.courseStart : CONTENT.courseStart + "T00:00:00");
+    if (isNaN(start.getTime())) return 0;
     const now = new Date(nowSim());
     const startMs = start.getTime();
     const nowMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
