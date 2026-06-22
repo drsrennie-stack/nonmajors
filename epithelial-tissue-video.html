@@ -24,4 +24,84 @@ h1 .accent{color:#8B3A2E}
 .layout{display:grid;grid-template-columns:1fr;gap:22px;padding-top:24px;padding-bottom:48px}
 @media(min-width:900px){.layout{grid-template-columns:1.55fr 1fr;align-items:start}}
 .frame{position:relative;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;border:1px solid #8C90A0}
-.frame iframe{position
+.frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.frame-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;background:#0B1530;color:#F5F1E8;font-size:16px;font-weight:600;line-height:1.5}
+.frame-empty[hidden]{display:none}
+.chapters{background:#FFFFFF;border:1px solid #8C90A0;border-radius:12px;padding:16px 16px;box-shadow:0 1px 3px rgba(11,21,48,.06)}
+.chapters h2{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8B3A2E;margin:4px 6px 12px}
+.ch-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.ch{display:flex;width:100%;align-items:baseline;gap:12px;text-align:left;background:none;border:0;border-radius:8px;padding:10px 12px;cursor:pointer;font-family:inherit;color:#0B1530;transition:background .15s ease}
+.ch:hover{background:#EDF1F3}
+.ch:focus-visible{outline:3px solid #C9A14A;outline-offset:2px}
+.ch[aria-current="true"]{background:#0B1530;color:#fff}
+.ch .t{flex:0 0 auto;font-variant-numeric:tabular-nums;font-weight:800;font-size:14px;color:#8B3A2E}
+.ch[aria-current="true"] .t{color:#C9A14A}
+.ch .label{font-size:15px;font-weight:600;line-height:1.35}
+.note{font-size:13.4px;color:#0B1530;opacity:.7;margin:14px 6px 0}
+.site-footer{background:#060A18;padding:40px 0 26px;color:#fff}
+.footer-copy{font-size:11.8px;color:#fff;opacity:.62}
+@media(prefers-reduced-motion:reduce){.ch{transition:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#video">Skip to the video</a>
+<header class="site-header pad">
+  <a class="crumb" href="week02_prework.html" target="_top"><span aria-hidden="true">&larr;</span> Week 2 pre-work</a>
+</header>
+<section class="intro pad">
+  <p class="eyebrow">BIO 304 &middot; Human Anatomy &amp; Physiology &middot; Week 2</p>
+  <h1>Epithelial Tissue Classification <span class="accent">concept video</span></h1>
+  <p class="lead">Watch the full walkthrough, or jump straight to a chapter.</p>
+</section>
+<main class="layout pad">
+  <div class="frame" id="video">
+    <iframe id="player"
+      src="https://www.loom.com/embed/6e5f5775557344f38367ea31f8c32b34"
+      title="Epithelial Tissue Classification concept video"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen></iframe>
+    <div class="frame-empty" id="frame-empty" hidden>This video will be posted here. Check back soon.</div>
+  </div>
+  <nav class="chapters" aria-label="Video chapters">
+    <h2>Chapters</h2>
+    <ul class="ch-list" id="ch-list">
+      <li><button class="ch" type="button" data-s="0"><span class="t">00:00</span><span class="label">Tissues and histology intro</span></button></li>
+      <li><button class="ch" type="button" data-s="142"><span class="t">02:22</span><span class="label">Four tissue types overview</span></button></li>
+      <li><button class="ch" type="button" data-s="325"><span class="t">05:25</span><span class="label">Epithelial structure and examples</span></button></li>
+      <li><button class="ch" type="button" data-s="894"><span class="t">14:54</span><span class="label">Skin-like and bladder tissue</span></button></li>
+      <li><button class="ch" type="button" data-s="1086"><span class="t">18:06</span><span class="label">Cilia and gland functions</span></button></li>
+      <li><button class="ch" type="button" data-s="1341"><span class="t">22:21</span><span class="label">Connective tissue fibers and cells</span></button></li>
+      <li><button class="ch" type="button" data-s="1941"><span class="t">32:21</span><span class="label">Cartilage and bone supporting</span></button></li>
+      <li><button class="ch" type="button" data-s="2451"><span class="t">40:51</span><span class="label">Blood, muscle, and nervous</span></button></li>
+    </ul>
+    <p class="note">Choosing a chapter restarts the player at that point.</p>
+  </nav>
+</main>
+<footer class="site-footer pad">
+  <p class="footer-copy">BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Summer 2026 &middot; Dr. Sharilyn Rennie</p>
+</footer>
+<script>
+(function(){
+  var LOOM_ID = "6e5f5775557344f38367ea31f8c32b34";
+  var BASE = "https://www.loom.com/embed/" + LOOM_ID;
+  var player = document.getElementById("player");
+  var empty = document.getElementById("frame-empty");
+  var buttons = Array.prototype.slice.call(document.querySelectorAll(".ch"));
+  if(!LOOM_ID){ player.hidden = true; empty.hidden = false; return; }
+  player.src = BASE;
+  buttons.forEach(function(b){
+    b.addEventListener("click", function(){
+      var s = b.getAttribute("data-s");
+      player.src = BASE + "?t=" + s + "&autoplay=1";
+      buttons.forEach(function(x){ x.removeAttribute("aria-current"); });
+      b.setAttribute("aria-current","true");
+      document.getElementById("video").scrollIntoView({behavior:"smooth",block:"nearest"});
+    });
+  });
+})();
+(function(){function send(){try{parent.postMessage({type:'iframe-height',id:'bio304-epithelial-tissue-video',height:document.documentElement.scrollHeight},'*');}catch(e){}}
+window.addEventListener('load',send);window.addEventListener('resize',send);
+if(window.ResizeObserver){new ResizeObserver(send).observe(document.body);}})();
+</script>
+</body>
+</html>
