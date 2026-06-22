@@ -1466,7 +1466,7 @@ body.mcas-page .mcas-next-up-gate-hint[hidden] { display: none; }
   <p class="eyebrow">BIO 304 &middot; Human Anatomy &amp; Physiology &middot; American River College</p>
   <h1 class="page-title">Nightly Pre-Work and Spaced Recall</h1>
   <p class="subhead" id="subhead-context">Tonight&rsquo;s prep, your daily review, and your engagement record</p>
-  <p class="usage">Watch each video. Explain it in your own words to unlock notes and your question set. Rate how you felt on each card. Come back tomorrow and your cards will be ready for review.</p>
+  <p class="usage">Open a topic to start its question set. Rate how you felt on each card. Come back tomorrow and your cards will be ready for review.</p>
   <nav class="top-nav" aria-label="Primary">
     <button type="button" data-nav="dashboard" aria-current="page">Tonight&rsquo;s pre-work</button>
     <button type="button" data-nav="review">Daily review</button>
@@ -2494,31 +2494,11 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
         // Clicking a topic on the dashboard should always send the student
         // to step 1. They reach step 3 by returning here via the spoke's
         // "go to the pre-work" link after passing the retrieval check.
-        var spokeMap = window.MCAS_LECTURE_BY_TOPIC || {};
-        var spokeUrl = spokeMap[id];
-        if (spokeUrl) {
-          try { window.top.location.href = spokeUrl; }
-          catch (e) { window.location.href = spokeUrl; }
-          return;
-        }
-
-        // Fallback for any topic without a spoke mapping: keep the
-        // legacy gate-aware flow so the dashboard still works.
-        var gatePassed = false;
-        try {
-          gatePassed = window.localStorage.getItem("bio304-gate-" + id) === "true"
-                    || window.localStorage.getItem("bio304-video-" + id) === "true";
-        } catch (e) {}
-        if (gatePassed || ts.gateCompleted) {
-          if (!ts.gateCompleted) {
-            ts.gateCompleted = true;
-            ts.videoWatched = true;
-            saveTopicState(id, ts);
-          }
-          nav("learn", id);
-        } else {
-          nav("topic", id);
-        }
+        // Gate removed: cards are open. Mark the topic available, then open the cards.
+        ts.gateCompleted = true;
+        ts.videoWatched = true;
+        saveTopicState(id, ts);
+        nav("learn", id);
       });
     });
   }
@@ -2755,7 +2735,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     const topic = topicById(topicId);
     if (!topic) { nav("dashboard"); return; }
     const ts = getTopicState(topicId);
-    if (!ts.gateCompleted) { nav("topic", topicId); return; }
+    if (!ts.gateCompleted) { ts.gateCompleted = true; ts.videoWatched = true; saveTopicState(topicId, ts); }
     $("#learn-heading").textContent = topic.title;
     renderNotesLink(topic);
     renderMastery(topicId);
@@ -2987,7 +2967,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     const items = [];
     allTopics().forEach(t => {
       const ts = STATE.topics[t.id];
-      if (REVIEW_MODE === "all" && !(ts && ts.gateCompleted)) return; // skip locked topics
+      // Gate removed: include all topics in "all" review mode.
       t.cards.forEach(c => {
         const st = getCardState(t.id, c.id, c.dok);
         if (REVIEW_MODE === "due") {
@@ -3060,8 +3040,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
       b.addEventListener("click", () => {
         const tid = b.dataset.reviewOpen;
         const ts = getTopicState(tid);
-        if (!ts.gateCompleted) nav("topic", tid);
-        else nav("learn", tid);
+        nav("learn", tid);
       });
     });
   }
@@ -3310,8 +3289,7 @@ window.MCAS_WORKBOOK_BY_TOPIC = {
     if (deepLinkTopic && topicById(deepLinkTopic)) {
       CURRENT_TOPIC = deepLinkTopic;
       const ts = getTopicState(deepLinkTopic);
-      if (ts.gateCompleted) nav("learn", deepLinkTopic);
-      else nav("topic", deepLinkTopic);
+      nav("learn", deepLinkTopic);
       try { history.replaceState(null, "", window.location.pathname + window.location.search); } catch (e) {}
     } else if (deepLinkView === "review") {
       nav("review");
