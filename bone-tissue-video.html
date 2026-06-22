@@ -82,24 +82,14 @@ h1 .accent{color:#8B3A2E}
   <p class="footer-copy">BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Summer 2026 &middot; Dr. Sharilyn Rennie</p>
 </footer>
 <script>
-/* ===========================================================
-   INSTRUCTOR: set LOOM_ID to the part after /embed/ in the
-   Loom share URL (https://www.loom.com/embed/XXXX). Leave it
-   empty ("") to show the "coming soon" placeholder.
-   Chapter times are seconds, set with data-s on each button.
-   =========================================================== */
 (function(){
   var LOOM_ID = "d9edbbcea2ca4ac88778adbaedf1d37d";
-  var EXTRA = "";
   var BASE = "https://www.loom.com/embed/" + LOOM_ID;
   var player = document.getElementById("player");
   var empty = document.getElementById("frame-empty");
   var buttons = Array.prototype.slice.call(document.querySelectorAll(".ch"));
-  if(!LOOM_ID){
-    player.hidden = true;
-    empty.hidden = false;
-    return;
-  }
+  if(!LOOM_ID){ player.hidden = true; empty.hidden = false; return; }
+  player.src = BASE;
   buttons.forEach(function(b){
     b.addEventListener("click", function(){
       var s = b.getAttribute("data-s");
