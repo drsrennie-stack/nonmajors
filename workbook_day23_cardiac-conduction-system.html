@@ -98,7 +98,12 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
 /* ---- Drawing & PDF-export fixes: added 2026-06 ---- */
-canvas.pad{padding:0}  /* pen-alignment fix: drawing canvas must have no inner padding */
+canvas.pad{padding:0 !important;border:0 !important}  /* pen-alignment: zero canvas padding/border */
+.canvas-tools{align-items:center}
+.up-remove{margin-top:8px}
+.canvas-tools .tool-lbl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+.canvas-tools .tool-sep{display:inline-block;width:1px;height:22px;background:var(--line)}
+.canvas-tools .mini[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
 @media print{
   .card,.band{break-inside:avoid;page-break-inside:avoid}
   .canvas-wrap{break-inside:avoid;page-break-inside:avoid}  /* drawing box never split across pages */
@@ -161,15 +166,71 @@ canvas.pad{padding:0}  /* pen-alignment fix: drawing canvas must have no inner p
     <h3>Box A. Conduction pathway</h3>
     <div class="draw-dir"><h4>Directions</h4><ol><li>Draw a heart silhouette with all four chambers.</li><li>At the top of the right atrium, draw a small oval: the SA node (sinoatrial node). Label. Note: the natural pacemaker, fires at 60 to 100 bpm.</li><li>Show the signal spreading across both atria (small arrows), causing them to contract.</li><li>At the junction of atria and ventricles (in the interatrial septum, near the tricuspid valve), draw the AV node (atrioventricular node). Label. Note: delays the signal by about 0.1 second to let atria empty.</li><li>From the AV node, draw the bundle of His (AV bundle) descending through the interventricular septum. Label.</li><li>Split into right and left bundle branches.</li><li>End in the Purkinje fibers spreading throughout the ventricular walls. Label.</li><li>Add arrows showing the direction of signal flow: SA node, atria, AV node, bundle of His, bundle branches, Purkinje fibers, ventricles contract.</li></ol></div>
     <div class="canvas-wrap"><canvas class="pad" id="cvA" style="height:380px" aria-label="Drawing canvas for Box A. Conduction pathway"></canvas></div>
-    <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvA" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvA" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvA" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvA">Clear</button></div>
-    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upA"></label><img id="upA-img" alt="Your uploaded drawing for Box A. Conduction pathway"></div>
+    <div class="canvas-tools no-print" role="group" aria-label="Drawing tools for Box A">
+      <span class="tool-lbl">Color</span>
+      <button class="swatch" data-canvas="cvA" data-group="cvA-color" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button>
+      <button class="swatch" data-canvas="cvA" data-group="cvA-color" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button>
+      <button class="swatch" data-canvas="cvA" data-group="cvA-color" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button>
+      <button class="swatch" data-canvas="cvA" data-group="cvA-color" data-color="#2E7D32" style="background:#2E7D32" aria-label="green pen" aria-pressed="false"></button>
+      <button class="swatch" data-canvas="cvA" data-group="cvA-color" data-color="#6A1B9A" style="background:#6A1B9A" aria-label="purple pen" aria-pressed="false"></button>
+      <button class="swatch" data-canvas="cvA" data-group="cvA-color" data-color="#555555" style="background:#555555" aria-label="grey pen" aria-pressed="false"></button>
+      <span class="tool-sep" aria-hidden="true"></span>
+      <span class="tool-lbl">Size</span>
+      <button class="mini" data-canvas="cvA" data-group="cvA-size" data-size="1.4" aria-label="small pen" aria-pressed="false">S</button>
+      <button class="mini" data-canvas="cvA" data-group="cvA-size" data-size="2.6" aria-label="medium pen" aria-pressed="true">M</button>
+      <button class="mini" data-canvas="cvA" data-group="cvA-size" data-size="5" aria-label="large pen" aria-pressed="false">L</button>
+      <span class="tool-sep" aria-hidden="true"></span>
+      <span class="tool-lbl">Tool</span>
+      <button class="mini" data-canvas="cvA" data-group="cvA-tool" data-tool="pen" aria-pressed="true">Pen</button>
+      <button class="mini" data-canvas="cvA" data-group="cvA-tool" data-tool="eraser" aria-pressed="false">Erase</button>
+      <button class="mini" data-canvas="cvA" data-group="cvA-tool" data-tool="line" aria-pressed="false">Line</button>
+      <button class="mini" data-canvas="cvA" data-group="cvA-tool" data-tool="arrow" aria-pressed="false">Arrow</button>
+      <button class="mini" data-canvas="cvA" data-group="cvA-tool" data-tool="rect" aria-pressed="false">Box</button>
+      <button class="mini" data-canvas="cvA" data-group="cvA-tool" data-tool="circle" aria-pressed="false">Circle</button>
+      <button class="mini" data-canvas="cvA" data-group="cvA-tool" data-tool="text" aria-pressed="false">Text</button>
+      <button class="mini" data-canvas="cvA" data-group="cvA-tool" data-tool="move" aria-pressed="false">Move</button>
+      <span class="tool-sep" aria-hidden="true"></span>
+      <button type="button" class="mini" data-undo="cvA">Undo</button>
+      <button type="button" class="mini" data-redo="cvA">Redo</button>
+      <button type="button" class="mini" data-del="cvA">Delete</button>
+      <button type="button" class="mini" data-clear="cvA">Clear</button>
+    </div>
+    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upA"></label><img id="upA-img" alt="Your uploaded drawing for Box A. Conduction pathway"><button type="button" class="mini no-print up-remove" data-removeup="upA" hidden>Remove photo</button></div>
   </article>
   <article class="card">
     <h3>Box B. Normal ECG</h3>
     <div class="draw-dir"><h4>Directions</h4><ol><li>Draw a single normal ECG cycle (one heartbeat). x-axis is time, y-axis is voltage.</li><li>Start with a flat baseline. Draw a small upward bump: the P wave. Label.</li><li>After P, a brief flat segment (PR segment), then a tall sharp downward-upward-downward complex: the QRS complex. Label Q, R, S.</li><li>After QRS, another flat segment (ST segment), then a smaller rounded upward bump: the T wave. Label.</li><li>Annotate what each wave represents: P = atrial depolarization (atria contract); QRS = ventricular depolarization (ventricles contract); T = ventricular repolarization (ventricles relax).</li><li>Note: atrial repolarization is hidden inside the QRS complex.</li></ol></div>
     <div class="canvas-wrap"><canvas class="pad" id="cvB" style="height:320px" aria-label="Drawing canvas for Box B. Normal ECG"></canvas></div>
-    <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvB" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvB" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvB" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvB">Clear</button></div>
-    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upB"></label><img id="upB-img" alt="Your uploaded drawing for Box B. Normal ECG"></div>
+    <div class="canvas-tools no-print" role="group" aria-label="Drawing tools for Box B">
+      <span class="tool-lbl">Color</span>
+      <button class="swatch" data-canvas="cvB" data-group="cvB-color" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button>
+      <button class="swatch" data-canvas="cvB" data-group="cvB-color" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button>
+      <button class="swatch" data-canvas="cvB" data-group="cvB-color" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button>
+      <button class="swatch" data-canvas="cvB" data-group="cvB-color" data-color="#2E7D32" style="background:#2E7D32" aria-label="green pen" aria-pressed="false"></button>
+      <button class="swatch" data-canvas="cvB" data-group="cvB-color" data-color="#6A1B9A" style="background:#6A1B9A" aria-label="purple pen" aria-pressed="false"></button>
+      <button class="swatch" data-canvas="cvB" data-group="cvB-color" data-color="#555555" style="background:#555555" aria-label="grey pen" aria-pressed="false"></button>
+      <span class="tool-sep" aria-hidden="true"></span>
+      <span class="tool-lbl">Size</span>
+      <button class="mini" data-canvas="cvB" data-group="cvB-size" data-size="1.4" aria-label="small pen" aria-pressed="false">S</button>
+      <button class="mini" data-canvas="cvB" data-group="cvB-size" data-size="2.6" aria-label="medium pen" aria-pressed="true">M</button>
+      <button class="mini" data-canvas="cvB" data-group="cvB-size" data-size="5" aria-label="large pen" aria-pressed="false">L</button>
+      <span class="tool-sep" aria-hidden="true"></span>
+      <span class="tool-lbl">Tool</span>
+      <button class="mini" data-canvas="cvB" data-group="cvB-tool" data-tool="pen" aria-pressed="true">Pen</button>
+      <button class="mini" data-canvas="cvB" data-group="cvB-tool" data-tool="eraser" aria-pressed="false">Erase</button>
+      <button class="mini" data-canvas="cvB" data-group="cvB-tool" data-tool="line" aria-pressed="false">Line</button>
+      <button class="mini" data-canvas="cvB" data-group="cvB-tool" data-tool="arrow" aria-pressed="false">Arrow</button>
+      <button class="mini" data-canvas="cvB" data-group="cvB-tool" data-tool="rect" aria-pressed="false">Box</button>
+      <button class="mini" data-canvas="cvB" data-group="cvB-tool" data-tool="circle" aria-pressed="false">Circle</button>
+      <button class="mini" data-canvas="cvB" data-group="cvB-tool" data-tool="text" aria-pressed="false">Text</button>
+      <button class="mini" data-canvas="cvB" data-group="cvB-tool" data-tool="move" aria-pressed="false">Move</button>
+      <span class="tool-sep" aria-hidden="true"></span>
+      <button type="button" class="mini" data-undo="cvB">Undo</button>
+      <button type="button" class="mini" data-redo="cvB">Redo</button>
+      <button type="button" class="mini" data-del="cvB">Delete</button>
+      <button type="button" class="mini" data-clear="cvB">Clear</button>
+    </div>
+    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upB"></label><img id="upB-img" alt="Your uploaded drawing for Box B. Normal ECG"><button type="button" class="mini no-print up-remove" data-removeup="upB" hidden>Remove photo</button></div>
   </article>
   <article class="card"><h3>Structures to label</h3><p>Label each on your drawing.</p><ol class="labels"><li>SA (sinoatrial) node</li><li>AV (atrioventricular) node</li><li>Bundle of His</li><li>Right bundle branch</li><li>Left bundle branch</li><li>Purkinje fibers</li><li>P wave</li><li>QRS complex</li><li>T wave</li><li>PR interval</li><li>ST segment</li><li>Atrial depolarization</li><li>Ventricular depolarization</li><li>Ventricular repolarization</li></ol></article>
   <div class="band physiology"><p class="tag">Part 3 of 4 &middot; Physiology lab</p><h2>Reason it through</h2></div>
@@ -221,29 +282,99 @@ canvas.pad{padding:0}  /* pen-alignment fix: drawing canvas must have no inner p
   document.addEventListener("paste",function(e){ if(blockable(e.target)){ e.preventDefault(); pc++; save("pastecount",pc); renderPC(); if(note){note.textContent="Pasting is disabled in this workbook. Type your own answer.";} } },true);
   document.addEventListener("drop",function(e){ if(blockable(e.target)){ e.preventDefault(); pc++; save("pastecount",pc); renderPC(); } },true);
   function setupCanvas(id){
-    var c=document.getElementById(id); if(!c)return; var ctx=c.getContext("2d");
-    var ratio=window.devicePixelRatio||1; var w=c.clientWidth,h=c.clientHeight;
-    c.width=w*ratio; c.height=h*ratio; ctx.scale(ratio,ratio);
-    ctx.lineCap="round"; ctx.lineJoin="round"; ctx.lineWidth=2.2;
-    var saved=load("draw-"+id); if(saved){ var img=new Image(); img.onload=function(){ctx.drawImage(img,0,0,w,h);}; img.src=saved; }
-    c._color="#0B1530"; var drawing=false,lastX=0,lastY=0;
-    function pos(e){ var r=c.getBoundingClientRect(); var p=e.touches?e.touches[0]:e; return {x:p.clientX-r.left,y:p.clientY-r.top}; }
-    c.addEventListener("pointerdown",function(e){drawing=true;var p=pos(e);lastX=p.x;lastY=p.y;e.preventDefault();});
-    c.addEventListener("pointermove",function(e){if(!drawing)return;var p=pos(e);ctx.strokeStyle=c._color;ctx.beginPath();ctx.moveTo(lastX,lastY);ctx.lineTo(p.x,p.y);ctx.stroke();lastX=p.x;lastY=p.y;e.preventDefault();});
-    window.addEventListener("pointerup",function(){if(!drawing)return;drawing=false;try{save("draw-"+id,c.toDataURL());}catch(e){}flagSaved();});
+    var c=document.getElementById(id); if(!c)return;
+    var ctx=c.getContext("2d");
+    var bg=document.createElement("canvas"); var bgx=bg.getContext("2d");
+    var st={color:"#0B1530",size:2.6,tool:"pen",shapes:[],sel:-1,undo:[],redo:[],guides:[],W:0,H:0}; c._st=st;
+    function r(){return window.devicePixelRatio||1;}
+    function setT(g){g.setTransform(r(),0,0,r(),0,0);g.lineCap="round";g.lineJoin="round";}
+    function fontPx(sz){return Math.round(12+sz*4);}
+    function fontStr(sz){return "600 "+fontPx(sz)+"px 'Plus Jakarta Sans Variable',system-ui,sans-serif";}
+    function geom(g,s){g.beginPath();var t=s.t,x0=s.x0,y0=s.y0,x1=s.x1,y1=s.y1;
+      if(t==="line"||t==="arrow"){g.moveTo(x0,y0);g.lineTo(x1,y1);g.stroke();
+        if(t==="arrow"){var a=Math.atan2(y1-y0,x1-x0),hl=10+s.size*2.2;g.beginPath();g.moveTo(x1,y1);g.lineTo(x1-hl*Math.cos(a-0.45),y1-hl*Math.sin(a-0.45));g.moveTo(x1,y1);g.lineTo(x1-hl*Math.cos(a+0.45),y1-hl*Math.sin(a+0.45));g.stroke();}}
+      else if(t==="rect"){g.strokeRect(Math.min(x0,x1),Math.min(y0,y1),Math.abs(x1-x0),Math.abs(y1-y0));}
+      else if(t==="circle"){var mx=(x0+x1)/2,my=(y0+y1)/2,rx=Math.abs(x1-x0)/2,ry=Math.abs(y1-y0)/2;if(g.ellipse){g.ellipse(mx,my,rx||0.1,ry||0.1,0,0,6.2832);}else{g.arc(mx,my,Math.max(rx,ry)||0.1,0,6.2832);}g.stroke();}}
+    function drawShape(g,s){g.globalCompositeOperation="source-over";
+      if(s.t==="text"){g.fillStyle=s.color;g.textBaseline="top";g.font=fontStr(s.size);g.fillText(s.text||"",s.x0,s.y0);return;}
+      g.strokeStyle=s.color;g.lineWidth=s.size;geom(g,s);}
+    function bbox(s){if(s.t==="text"){ctx.save();ctx.font=fontStr(s.size);var w=ctx.measureText(s.text||"").width;ctx.restore();return{x:s.x0,y:s.y0,X:s.x0+Math.max(8,w),Y:s.y0+fontPx(s.size)};}
+      return{x:Math.min(s.x0,s.x1),y:Math.min(s.y0,s.y1),X:Math.max(s.x0,s.x1),Y:Math.max(s.y0,s.y1)};}
+    function handles(s){if(s.t==="text")return[];if(s.t==="line"||s.t==="arrow")return[{x:s.x0,y:s.y0,k:"a"},{x:s.x1,y:s.y1,k:"b"}];
+      var b=bbox(s);return[{x:b.x,y:b.y,k:"tl"},{x:b.X,y:b.y,k:"tr"},{x:b.x,y:b.Y,k:"bl"},{x:b.X,y:b.Y,k:"br"}];}
+    function handleAt(s,p){var hs=handles(s);for(var i=0;i<hs.length;i++){if(Math.abs(p.x-hs[i].x)<=10&&Math.abs(p.y-hs[i].y)<=10)return hs[i];}return null;}
+    function render(){ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,c.width,c.height);ctx.drawImage(bg,0,0);setT(ctx);
+      for(var i=0;i<st.shapes.length;i++)drawShape(ctx,st.shapes[i]);
+      if(st.guides&&st.guides.length){ctx.save();ctx.setLineDash([4,4]);ctx.strokeStyle="rgba(43,108,176,.55)";ctx.lineWidth=1;
+        for(var k=0;k<st.guides.length;k++){var gd=st.guides[k];ctx.beginPath();if(gd.x!=null){ctx.moveTo(gd.x,0);ctx.lineTo(gd.x,st.H);}else{ctx.moveTo(0,gd.y);ctx.lineTo(st.W,gd.y);}ctx.stroke();}ctx.restore();}
+      if(st.tool==="move"&&st.sel>=0&&st.shapes[st.sel]){var s=st.shapes[st.sel],b=bbox(s);
+        ctx.save();ctx.setLineDash([6,4]);ctx.strokeStyle="#8B3A2E";ctx.lineWidth=1.2;ctx.strokeRect(b.x-6,b.y-6,(b.X-b.x)+12,(b.Y-b.y)+12);
+        ctx.setLineDash([]);var hs=handles(s);ctx.fillStyle="#C9A14A";ctx.strokeStyle="#0B1530";ctx.lineWidth=1;
+        for(var j=0;j<hs.length;j++){ctx.fillRect(hs[j].x-4,hs[j].y-4,8,8);ctx.strokeRect(hs[j].x-4,hs[j].y-4,8,8);}ctx.restore();}}
+    function snapshot(){return{bg:bg.toDataURL(),shapes:JSON.stringify(st.shapes)};}
+    function restore(sn){try{st.shapes=JSON.parse(sn.shapes);}catch(e){st.shapes=[];}var im=new Image();im.onload=function(){bgx.setTransform(1,0,0,1,0,0);bgx.clearRect(0,0,bg.width,bg.height);bgx.drawImage(im,0,0);setT(bgx);st.sel=-1;st.guides=[];render();persist();};im.src=sn.bg;}
+    function pushUndo(){try{st.undo.push(snapshot());if(st.undo.length>30)st.undo.shift();st.redo=[];}catch(e){}}
+    function persist(){try{save("draw-"+id,JSON.stringify({bg:bg.toDataURL(),shapes:st.shapes}));}catch(e){}flagSaved();}
+    function pos(e){var rc=c.getBoundingClientRect();var p=e.touches?e.touches[0]:e;var sw=rc.width?st.W/rc.width:1,sh=rc.height?st.H/rc.height:1;return{x:(p.clientX-rc.left)*sw,y:(p.clientY-rc.top)*sh};}
+    function hit(p){for(var i=st.shapes.length-1;i>=0;i--){var b=bbox(st.shapes[i]);var m=Math.max(8,(st.shapes[i].size||2)*2);if(p.x>=b.x-m&&p.x<=b.X+m&&p.y>=b.y-m&&p.y<=b.Y+m)return i;}return -1;}
+    function startResize(s,h){if(s.t==="line"||s.t==="arrow"){rkey=h.k;}else{var b=bbox(s);var ax=(h.k==="tl"||h.k==="bl")?b.X:b.x;var ay=(h.k==="tl"||h.k==="tr")?b.Y:b.y;s.x0=ax;s.y0=ay;s.x1=h.x;s.y1=h.y;rkey="b";}}
+    function snapDrag(s){var TH=6,b=bbox(s);var tX=[st.W/2],tY=[st.H/2];
+      for(var i=0;i<st.shapes.length;i++){if(i===st.sel)continue;var o=bbox(st.shapes[i]);tX.push(o.x,o.X,(o.x+o.X)/2);tY.push(o.y,o.Y,(o.y+o.Y)/2);}
+      var kx=[b.x,(b.x+b.X)/2,b.X],ky=[b.y,(b.y+b.Y)/2,b.Y];
+      var bx=null,bxd=TH,bxl=null;for(var a=0;a<kx.length;a++)for(var t=0;t<tX.length;t++){var dd=Math.abs(kx[a]-tX[t]);if(dd<bxd){bxd=dd;bx=tX[t]-kx[a];bxl=tX[t];}}
+      var by=null,byd=TH,byl=null;for(var a2=0;a2<ky.length;a2++)for(var t2=0;t2<tY.length;t2++){var d2=Math.abs(ky[a2]-tY[t2]);if(d2<byd){byd=d2;by=tY[t2]-ky[a2];byl=tY[t2];}}
+      st.guides=[];if(bx!=null){s.x0+=bx;s.x1+=bx;st.guides.push({x:bxl});}if(by!=null){s.y0+=by;s.y1+=by;st.guides.push({y:byl});}}
+    var mode=null,cur=null,lx=0,ly=0,rkey="b";
+    function begin(e){var p=pos(e);lx=p.x;ly=p.y;
+      if(st.tool==="pen"||st.tool==="eraser"){pushUndo();mode="free";bgx.globalCompositeOperation=st.tool==="eraser"?"destination-out":"source-over";bgx.strokeStyle=st.color;bgx.lineWidth=st.tool==="eraser"?st.size*5:st.size;bgx.beginPath();bgx.moveTo(p.x,p.y);bgx.lineTo(p.x+0.01,p.y);bgx.stroke();render();}
+      else if(st.tool==="text"){var tx=window.prompt("Label text:");if(tx){pushUndo();st.shapes.push({t:"text",x0:p.x,y0:p.y,x1:p.x,y1:p.y,text:tx,color:st.color,size:st.size});st.sel=st.shapes.length-1;persist();}render();mode=null;e.preventDefault();return;}
+      else if(st.tool==="move"){
+        if(st.sel>=0&&st.shapes[st.sel]){var hh=handleAt(st.shapes[st.sel],p);if(hh){pushUndo();mode="resize";startResize(st.shapes[st.sel],hh);render();e.preventDefault();return;}}
+        var h=hit(p);st.sel=h;if(h>=0){pushUndo();mode="drag";}else{mode=null;}render();}
+      else{pushUndo();mode="shape";cur={t:st.tool,x0:p.x,y0:p.y,x1:p.x,y1:p.y,color:st.color,size:st.size};}
+      e.preventDefault();}
+    function move(e){if(!mode)return;var p=pos(e);
+      if(mode==="free"){bgx.lineTo(p.x,p.y);bgx.stroke();render();}
+      else if(mode==="shape"){cur.x1=p.x;cur.y1=p.y;render();drawShape(ctx,cur);}
+      else if(mode==="drag"&&st.sel>=0){var dx=p.x-lx,dy=p.y-ly,s=st.shapes[st.sel];s.x0+=dx;s.y0+=dy;s.x1+=dx;s.y1+=dy;lx=p.x;ly=p.y;snapDrag(s);render();}
+      else if(mode==="resize"&&st.sel>=0){var s2=st.shapes[st.sel];if(s2.t==="line"||s2.t==="arrow"){if(rkey==="a"){s2.x0=p.x;s2.y0=p.y;}else{s2.x1=p.x;s2.y1=p.y;}}else{s2.x1=p.x;s2.y1=p.y;}render();}
+      e.preventDefault();}
+    function end(){if(!mode)return;var m=mode;mode=null;st.guides=[];
+      if(m==="free"){bgx.globalCompositeOperation="source-over";persist();}
+      else if(m==="shape"){if(Math.abs(cur.x1-cur.x0)+Math.abs(cur.y1-cur.y0)>3){st.shapes.push(cur);st.sel=st.shapes.length-1;}cur=null;render();persist();}
+      else if(m==="drag"||m==="resize"){render();persist();}}
+    c.addEventListener("pointerdown",begin);c.addEventListener("pointermove",move);window.addEventListener("pointerup",end);
+    c._del=function(){if(st.sel>=0){pushUndo();st.shapes.splice(st.sel,1);st.sel=-1;render();persist();}};
+    c._deselect=function(){st.guides=[];if(st.sel!==-1){st.sel=-1;render();}};
+    c._undo=function(){if(!st.undo.length)return;st.redo.push(snapshot());restore(st.undo.pop());};
+    c._redo=function(){if(!st.redo.length)return;st.undo.push(snapshot());restore(st.redo.pop());};
+    c._clear=function(){pushUndo();bgx.setTransform(1,0,0,1,0,0);bgx.clearRect(0,0,bg.width,bg.height);setT(bgx);st.shapes=[];st.sel=-1;st.guides=[];render();persist();};
+    function loadBg(d,after){if(d&&d.indexOf("data:")===0){var im=new Image();im.onload=function(){bgx.setTransform(1,0,0,1,0,0);bgx.clearRect(0,0,bg.width,bg.height);bgx.drawImage(im,0,0);setT(bgx);if(after)after();};im.src=d;}else{if(after)after();}}
+    function sizeC(){var rc=c.getBoundingClientRect();var w=Math.max(1,Math.round(rc.width)),h=Math.max(1,Math.round(rc.height));st.W=w;st.H=h;c.width=Math.round(w*r());c.height=Math.round(h*r());bg.width=c.width;bg.height=c.height;setT(ctx);setT(bgx);
+      var raw=load("draw-"+id),bgData=null;
+      if(raw){var pr=null;try{pr=JSON.parse(raw);}catch(e){}
+        if(pr&&typeof pr==="object"&&("bg" in pr)){bgData=pr.bg;st.shapes=pr.shapes||[];}
+        else if(raw.indexOf("data:")===0){bgData=raw;st.shapes=[];}}
+      loadBg(bgData,render);}
+    sizeC();
   }
-  Array.prototype.forEach.call(document.querySelectorAll("canvas.pad"),function(c){setupCanvas(c.id);});
-  Array.prototype.forEach.call(document.querySelectorAll(".swatch"),function(s){
-    s.addEventListener("click",function(){ var cid=s.getAttribute("data-canvas"); var col=s.getAttribute("data-color"); var c=document.getElementById(cid); if(c)c._color=col;
-      Array.prototype.forEach.call(document.querySelectorAll('.swatch[data-canvas="'+cid+'"]'),function(o){o.setAttribute("aria-pressed","false");}); s.setAttribute("aria-pressed","true"); });
-  });
-  Array.prototype.forEach.call(document.querySelectorAll("[data-clear]"),function(b){
-    b.addEventListener("click",function(){ var cid=b.getAttribute("data-clear"); var c=document.getElementById(cid); if(c){c.getContext("2d").clearRect(0,0,c.width,c.height);save("draw-"+cid,"");} });
-  });
+  Array.prototype.forEach.call(document.querySelectorAll("canvas.pad"),function(cv){setupCanvas(cv.id);});
+  function pressGroup(btn){var g=btn.getAttribute("data-group");if(!g)return;Array.prototype.forEach.call(document.querySelectorAll('[data-group="'+g+'"]'),function(o){o.setAttribute("aria-pressed","false");});btn.setAttribute("aria-pressed","true");}
+  Array.prototype.forEach.call(document.querySelectorAll(".swatch[data-color]"),function(s){s.addEventListener("click",function(){var c=document.getElementById(s.getAttribute("data-canvas"));if(c&&c._st)c._st.color=s.getAttribute("data-color");pressGroup(s);});});
+  Array.prototype.forEach.call(document.querySelectorAll("[data-size]"),function(b){b.addEventListener("click",function(){var c=document.getElementById(b.getAttribute("data-canvas"));if(c&&c._st)c._st.size=parseFloat(b.getAttribute("data-size"));pressGroup(b);});});
+  Array.prototype.forEach.call(document.querySelectorAll("[data-tool]"),function(b){b.addEventListener("click",function(){var c=document.getElementById(b.getAttribute("data-canvas"));if(c&&c._st){c._st.tool=b.getAttribute("data-tool");if(c._st.tool!=="move"&&c._deselect)c._deselect();}pressGroup(b);});});
+  Array.prototype.forEach.call(document.querySelectorAll("[data-undo]"),function(b){b.addEventListener("click",function(){var c=document.getElementById(b.getAttribute("data-undo"));if(c&&c._undo)c._undo();});});
+  Array.prototype.forEach.call(document.querySelectorAll("[data-redo]"),function(b){b.addEventListener("click",function(){var c=document.getElementById(b.getAttribute("data-redo"));if(c&&c._redo)c._redo();});});
+  Array.prototype.forEach.call(document.querySelectorAll("[data-del]"),function(b){b.addEventListener("click",function(){var c=document.getElementById(b.getAttribute("data-del"));if(c&&c._del)c._del();});});
+  Array.prototype.forEach.call(document.querySelectorAll("[data-clear]"),function(b){b.addEventListener("click",function(){var c=document.getElementById(b.getAttribute("data-clear"));if(c&&c._clear)c._clear();});});
+  Array.prototype.forEach.call(document.querySelectorAll("[data-removeup]"),function(b){var rid=b.getAttribute("data-removeup");if(load("up-"+rid))b.removeAttribute("hidden");b.addEventListener("click",function(){var im=document.getElementById(rid+"-img");if(im){im.src="";im.style.display="none";}try{save("up-"+rid,"");}catch(e){}b.setAttribute("hidden","");flagSaved();});});
+  document.addEventListener("keydown",function(e){var tg=((e.target&&e.target.tagName)||"").toLowerCase();if(tg==="input"||tg==="textarea"||(e.target&&e.target.isContentEditable))return;if(e.key==="Delete"||e.key==="Backspace"){var did=false;Array.prototype.forEach.call(document.querySelectorAll("canvas.pad"),function(c){if(c._st&&c._st.sel>=0&&c._del){c._del();did=true;}});if(did)e.preventDefault();}});
+  window.addEventListener("beforeprint",function(){Array.prototype.forEach.call(document.querySelectorAll("canvas.pad"),function(c){if(c._deselect)c._deselect();});});
+
   Array.prototype.forEach.call(document.querySelectorAll("[data-upload]"),function(inp){
     var id=inp.getAttribute("data-upload"); var saved=load("up-"+id); var img=document.getElementById(id+"-img");
     if(saved&&img){img.src=saved;img.style.display="block";}
-    inp.addEventListener("change",function(){var f=inp.files&&inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){try{var MAX=1600,w=im.naturalWidth||im.width,h=im.naturalHeight||im.height,s=Math.min(1,MAX/Math.max(w,h)),cw=Math.max(1,Math.round(w*s)),ch=Math.max(1,Math.round(h*s));var cv=document.createElement("canvas");cv.width=cw;cv.height=ch;var cx=cv.getContext("2d");cx.fillStyle="#fff";cx.fillRect(0,0,cw,ch);cx.drawImage(im,0,0,cw,ch);var out=cv.toDataURL("image/jpeg",0.85);if(img){img.src=out;img.style.display="block";}try{save("up-"+id,out);}catch(e){}flagSaved();}catch(e){if(img){img.src=r.result;img.style.display="block";}try{save("up-"+id,r.result);}catch(_){}flagSaved();}};im.onerror=function(){if(note){note.textContent="That image could not be read. Please upload a JPG or PNG (iPhone HEIC is not supported).";}};im.src=r.result;};r.readAsDataURL(f);});
+    inp.addEventListener("change",function(){var f=inp.files&&inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var src=r.result;var im=new Image();im.onload=function(){if(img){img.src=src;img.style.display="block";}var rb=document.querySelector('[data-removeup="'+id+'"]');if(rb)rb.removeAttribute("hidden");var toStore=src;try{var MAX=1400,w=im.naturalWidth||im.width,h=im.naturalHeight||im.height;if(w&&h){var s=Math.min(1,MAX/Math.max(w,h)),cw=Math.max(1,Math.round(w*s)),ch=Math.max(1,Math.round(h*s));var cv=document.createElement("canvas");cv.width=cw;cv.height=ch;var cx=cv.getContext("2d");cx.fillStyle="#fff";cx.fillRect(0,0,cw,ch);cx.drawImage(im,0,0,cw,ch);var a=cx.getImageData(cw>>1,ch>>1,1,1).data,b=cx.getImageData(1,1,1,1).data,c2=cx.getImageData(cw-1,ch-1,1,1).data;var black=(a[0]+a[1]+a[2]+b[0]+b[1]+b[2]+c2[0]+c2[1]+c2[2])===0;var jpg=cv.toDataURL("image/jpeg",0.85);if(!black&&jpg&&jpg.length<src.length)toStore=jpg;}}catch(e){toStore=src;}try{save("up-"+id,toStore);flagSaved();}catch(e){if(note){note.textContent="Image added. It may be too large to save on this device, re-upload if it is missing after a reload.";}}};im.onerror=function(){if(note){note.textContent="That image could not be read. Please upload a JPG or PNG (iPhone HEIC is not supported).";}};im.src=src;};r.readAsDataURL(f);});
   });
   document.getElementById("save-pdf").addEventListener("click",function(){
     var nm=(load("name")||"(no name entered)"); var sid=(load("sid")||"");
