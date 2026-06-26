@@ -96,6 +96,14 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
   .print-stamp{display:block;margin:10px 0 0;padding:10px 14px;border:1.5px solid #333;border-radius:6px;font-size:13px;font-weight:700}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---- Drawing & PDF-export fixes: added 2026-06 ---- */
+canvas.pad{padding:0}  /* pen-alignment fix: drawing canvas must have no inner padding */
+@media print{
+  .card,.band{break-inside:avoid;page-break-inside:avoid}
+  .canvas-wrap{break-inside:avoid;page-break-inside:avoid}  /* drawing box never split across pages */
+  .uploader img{break-inside:avoid;page-break-inside:avoid}
+}
 </style>
 </head>
 <body>
@@ -154,14 +162,14 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
     <div class="draw-dir"><h4>Directions</h4><ol><li>Use the patellar (knee-jerk) reflex as your example. Draw a leg with the patellar tendon being tapped by a reflex hammer.</li><li>Component 1: Receptor. Draw a muscle spindle in the quadriceps. Label.</li><li>Component 2: Sensory (afferent) neuron. Draw an axon going from the muscle spindle up to the spinal cord, entering the dorsal horn.</li><li>Component 3: Integration center. Inside the spinal cord, show a single synapse (this is a monosynaptic reflex). Label.</li><li>Component 4: Motor (efferent) neuron. Draw an axon leaving the ventral horn and going back down to the quadriceps.</li><li>Component 5: Effector. The quadriceps contracts, kicking the leg up. Label.</li><li>Add arrows showing the direction of signal flow.</li></ol></div>
     <div class="canvas-wrap"><canvas class="pad" id="cvA" style="height:380px" aria-label="Drawing canvas for Box A. The reflex arc (5 components)"></canvas></div>
     <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvA" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvA" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvA" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvA">Clear</button></div>
-    <div class="uploader no-print"><label>Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upA"></label><img id="upA-img" alt="Your uploaded drawing for Box A. The reflex arc (5 components)"></div>
+    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upA"></label><img id="upA-img" alt="Your uploaded drawing for Box A. The reflex arc (5 components)"></div>
   </article>
   <article class="card">
     <h3>Box B. Sympathetic vs parasympathetic outflow</h3>
     <div class="draw-dir"><h4>Directions</h4><ol><li>Draw a side view of the spinal column.</li><li>Sympathetic (thoracolumbar): show preganglionic fibers leaving the spinal cord from T1 through L2. Draw the sympathetic chain ganglia running parallel to the cord. Show short preganglionic fibers ending in chain ganglia, then long postganglionic fibers traveling to target organs.</li><li>Parasympathetic (craniosacral): show preganglionic fibers leaving from the brainstem (via cranial nerves III, VII, IX, and especially X, the vagus) AND from S2-S4 (sacral). Show long preganglionic fibers traveling to ganglia near or on the target organs, then very short postganglionic fibers.</li><li>Label two target organs (e.g., heart, lungs, gut) and note opposing effects: sympathetic increases heart rate, parasympathetic decreases it.</li></ol></div>
     <div class="canvas-wrap"><canvas class="pad" id="cvB" style="height:320px" aria-label="Drawing canvas for Box B. Sympathetic vs parasympathetic outflow"></canvas></div>
     <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvB" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvB" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvB" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvB">Clear</button></div>
-    <div class="uploader no-print"><label>Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upB"></label><img id="upB-img" alt="Your uploaded drawing for Box B. Sympathetic vs parasympathetic outflow"></div>
+    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upB"></label><img id="upB-img" alt="Your uploaded drawing for Box B. Sympathetic vs parasympathetic outflow"></div>
   </article>
   <article class="card"><h3>Structures to label</h3><p>Label each on your drawing.</p><ol class="labels"><li>Receptor (muscle spindle)</li><li>Sensory neuron (afferent)</li><li>Dorsal horn</li><li>Integration center (spinal cord synapse)</li><li>Motor neuron (efferent)</li><li>Ventral horn</li><li>Effector (skeletal muscle)</li><li>Sympathetic chain ganglia</li><li>Preganglionic fiber (sympathetic)</li><li>Postganglionic fiber (sympathetic)</li><li>Preganglionic fiber (parasympathetic)</li><li>Postganglionic fiber (parasympathetic)</li><li>Vagus nerve (CN X)</li></ol></article>
   <div class="band physiology"><p class="tag">Part 3 of 4 &middot; Physiology lab</p><h2>Reason it through</h2></div>
@@ -231,7 +239,7 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
   Array.prototype.forEach.call(document.querySelectorAll("[data-upload]"),function(inp){
     var id=inp.getAttribute("data-upload"); var saved=load("up-"+id); var img=document.getElementById(id+"-img");
     if(saved&&img){img.src=saved;img.style.display="block";}
-    inp.addEventListener("change",function(){ var f=inp.files&&inp.files[0]; if(!f)return; var r=new FileReader(); r.onload=function(){ if(img){img.src=r.result;img.style.display="block";} save("up-"+id,r.result); flagSaved(); }; r.readAsDataURL(f); });
+    inp.addEventListener("change",function(){var f=inp.files&&inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){try{var MAX=1600,w=im.naturalWidth||im.width,h=im.naturalHeight||im.height,s=Math.min(1,MAX/Math.max(w,h)),cw=Math.max(1,Math.round(w*s)),ch=Math.max(1,Math.round(h*s));var cv=document.createElement("canvas");cv.width=cw;cv.height=ch;var cx=cv.getContext("2d");cx.fillStyle="#fff";cx.fillRect(0,0,cw,ch);cx.drawImage(im,0,0,cw,ch);var out=cv.toDataURL("image/jpeg",0.85);if(img){img.src=out;img.style.display="block";}try{save("up-"+id,out);}catch(e){}flagSaved();}catch(e){if(img){img.src=r.result;img.style.display="block";}try{save("up-"+id,r.result);}catch(_){}flagSaved();}};im.onerror=function(){if(note){note.textContent="That image could not be read. Please upload a JPG or PNG (iPhone HEIC is not supported).";}};im.src=r.result;};r.readAsDataURL(f);});
   });
   document.getElementById("save-pdf").addEventListener("click",function(){
     var nm=(load("name")||"(no name entered)"); var sid=(load("sid")||"");

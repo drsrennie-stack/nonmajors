@@ -96,6 +96,14 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
   .print-stamp{display:block;margin:10px 0 0;padding:10px 14px;border:1.5px solid #333;border-radius:6px;font-size:13px;font-weight:700}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---- Drawing & PDF-export fixes: added 2026-06 ---- */
+canvas.pad{padding:0}  /* pen-alignment fix: drawing canvas must have no inner padding */
+@media print{
+  .card,.band{break-inside:avoid;page-break-inside:avoid}
+  .canvas-wrap{break-inside:avoid;page-break-inside:avoid}  /* drawing box never split across pages */
+  .uploader img{break-inside:avoid;page-break-inside:avoid}
+}
 </style>
 </head>
 <body>
@@ -151,14 +159,14 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
     <div class="draw-dir"><h4>Directions</h4><ol><li>Draw a long oval representing a whole muscle (cross-section). Wrap it in a thin line. Label that line Epimysium.</li><li>Inside the oval, draw three or four smaller circles. Each is a fascicle. Wrap one of them with a thin line. Label that line Perimysium.</li><li>Inside one fascicle, draw several smaller circles. Each is a muscle fiber (cell). Wrap one with a thin line. Label that line Endomysium.</li><li>Inside one muscle fiber, draw a stack of long rods. Each rod is a myofibril. Label one Myofibril.</li><li>Above your hierarchy, write the order of wrappings from outside to inside in one short sentence.</li></ol></div>
     <div class="canvas-wrap"><canvas class="pad" id="cvA" style="height:380px" aria-label="Drawing canvas for Box A. Hierarchy (whole muscle to myofibril)"></canvas></div>
     <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvA" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvA" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvA" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvA">Clear</button></div>
-    <div class="uploader no-print"><label>Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upA"></label><img id="upA-img" alt="Your uploaded drawing for Box A. Hierarchy (whole muscle to myofibril)"></div>
+    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upA"></label><img id="upA-img" alt="Your uploaded drawing for Box A. Hierarchy (whole muscle to myofibril)"></div>
   </article>
   <article class="card">
     <h3>Box B. Sarcomere close-up</h3>
     <div class="draw-dir"><h4>Directions</h4><ol><li>Draw a long rectangle. Mark the left and right ends with vertical lines. Label both lines Z line.</li><li>In the center, draw a vertical line. Label it M line.</li><li>Between the two Z lines, draw thick filaments (myosin) in the middle and thin filaments (actin) extending from each Z line.</li><li>Bracket and label the A band (the full length of the thick filaments).</li><li>Bracket and label the I band (the region with only thin filaments).</li><li>Bracket and label the H zone (the central thick-only region).</li><li>Draw a T-tubule entering from above and a sarcoplasmic reticulum wrapping the myofibril. Label both.</li></ol></div>
     <div class="canvas-wrap"><canvas class="pad" id="cvB" style="height:320px" aria-label="Drawing canvas for Box B. Sarcomere close-up"></canvas></div>
     <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvB" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvB" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvB" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvB">Clear</button></div>
-    <div class="uploader no-print"><label>Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upB"></label><img id="upB-img" alt="Your uploaded drawing for Box B. Sarcomere close-up"></div>
+    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upB"></label><img id="upB-img" alt="Your uploaded drawing for Box B. Sarcomere close-up"></div>
   </article>
   <article class="card"><h3>Structures to label</h3><p>Label each on your drawing.</p><ol class="labels"><li>Epimysium</li><li>Perimysium</li><li>Endomysium</li><li>Muscle fiber (cell)</li><li>Myofibril</li><li>Sarcomere</li><li>Z line</li><li>M line</li><li>A band</li><li>I band</li><li>H zone</li><li>Thick filament (myosin)</li><li>Thin filament (actin)</li><li>T-tubule</li><li>Sarcoplasmic reticulum</li></ol></article>
   <div class="band physiology"><p class="tag">Part 3 of 4 &middot; Physiology lab</p><h2>Reason it through</h2></div>
@@ -227,7 +235,7 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
   Array.prototype.forEach.call(document.querySelectorAll("[data-upload]"),function(inp){
     var id=inp.getAttribute("data-upload"); var saved=load("up-"+id); var img=document.getElementById(id+"-img");
     if(saved&&img){img.src=saved;img.style.display="block";}
-    inp.addEventListener("change",function(){ var f=inp.files&&inp.files[0]; if(!f)return; var r=new FileReader(); r.onload=function(){ if(img){img.src=r.result;img.style.display="block";} save("up-"+id,r.result); flagSaved(); }; r.readAsDataURL(f); });
+    inp.addEventListener("change",function(){var f=inp.files&&inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){try{var MAX=1600,w=im.naturalWidth||im.width,h=im.naturalHeight||im.height,s=Math.min(1,MAX/Math.max(w,h)),cw=Math.max(1,Math.round(w*s)),ch=Math.max(1,Math.round(h*s));var cv=document.createElement("canvas");cv.width=cw;cv.height=ch;var cx=cv.getContext("2d");cx.fillStyle="#fff";cx.fillRect(0,0,cw,ch);cx.drawImage(im,0,0,cw,ch);var out=cv.toDataURL("image/jpeg",0.85);if(img){img.src=out;img.style.display="block";}try{save("up-"+id,out);}catch(e){}flagSaved();}catch(e){if(img){img.src=r.result;img.style.display="block";}try{save("up-"+id,r.result);}catch(_){}flagSaved();}};im.onerror=function(){if(note){note.textContent="That image could not be read. Please upload a JPG or PNG (iPhone HEIC is not supported).";}};im.src=r.result;};r.readAsDataURL(f);});
   });
   document.getElementById("save-pdf").addEventListener("click",function(){
     var nm=(load("name")||"(no name entered)"); var sid=(load("sid")||"");

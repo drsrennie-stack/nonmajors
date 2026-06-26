@@ -96,6 +96,14 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
   .print-stamp{display:block;margin:10px 0 0;padding:10px 14px;border:1.5px solid #333;border-radius:6px;font-size:13px;font-weight:700}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---- Drawing & PDF-export fixes: added 2026-06 ---- */
+canvas.pad{padding:0}  /* pen-alignment fix: drawing canvas must have no inner padding */
+@media print{
+  .card,.band{break-inside:avoid;page-break-inside:avoid}
+  .canvas-wrap{break-inside:avoid;page-break-inside:avoid}  /* drawing box never split across pages */
+  .uploader img{break-inside:avoid;page-break-inside:avoid}
+}
 </style>
 </head>
 <body>
@@ -154,14 +162,14 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
     <div class="draw-dir"><h4>Directions</h4><ol><li>Draw the outline of a brain in left lateral view. Show the convoluted surface (gyri and sulci).</li><li>Divide the cerebrum into four lobes with dashed lines: Frontal (anterior, in front of the central sulcus), Parietal (behind the central sulcus), Temporal (below the lateral sulcus), Occipital (most posterior).</li><li>Label the central sulcus (separates frontal from parietal) and the lateral sulcus (separates temporal).</li><li>Draw the cerebellum below the occipital lobe.</li><li>Draw the brainstem extending down from the center: midbrain, pons, medulla oblongata. Label each.</li><li>Inside the frontal lobe, label the primary motor cortex (just anterior to the central sulcus). Inside the parietal lobe, label the primary somatosensory cortex (just posterior to the central sulcus).</li></ol></div>
     <div class="canvas-wrap"><canvas class="pad" id="cvA" style="height:380px" aria-label="Drawing canvas for Box A. Brain in lateral view"></canvas></div>
     <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvA" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvA" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvA" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvA">Clear</button></div>
-    <div class="uploader no-print"><label>Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upA"></label><img id="upA-img" alt="Your uploaded drawing for Box A. Brain in lateral view"></div>
+    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upA"></label><img id="upA-img" alt="Your uploaded drawing for Box A. Brain in lateral view"></div>
   </article>
   <article class="card">
     <h3>Box B. Spinal cord cross-section with meninges</h3>
     <div class="draw-dir"><h4>Directions</h4><ol><li>Draw a round cross-section of the spinal cord.</li><li>Inside, draw a butterfly (H) shape representing gray matter. Label dorsal horn (top), ventral horn (bottom), and central canal (small hole in the middle of the H).</li><li>Around the gray matter, draw the white matter (it surrounds the H). Label.</li><li>Wrap the cord in three meningeal layers. Innermost: pia mater (tight on the cord). Middle: arachnoid mater (with subarachnoid space below it where CSF flows). Outermost: dura mater (thick).</li><li>Label all three layers and the subarachnoid space.</li><li>Outside the dura, draw vertebral bone (the spinal cord sits inside the vertebral canal).</li></ol></div>
     <div class="canvas-wrap"><canvas class="pad" id="cvB" style="height:320px" aria-label="Drawing canvas for Box B. Spinal cord cross-section with meninges"></canvas></div>
     <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvB" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvB" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvB" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvB">Clear</button></div>
-    <div class="uploader no-print"><label>Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upB"></label><img id="upB-img" alt="Your uploaded drawing for Box B. Spinal cord cross-section with meninges"></div>
+    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upB"></label><img id="upB-img" alt="Your uploaded drawing for Box B. Spinal cord cross-section with meninges"></div>
   </article>
   <article class="card"><h3>Structures to label</h3><p>Label each on your drawing.</p><ol class="labels"><li>Frontal lobe</li><li>Parietal lobe</li><li>Temporal lobe</li><li>Occipital lobe</li><li>Central sulcus</li><li>Lateral sulcus</li><li>Cerebellum</li><li>Midbrain</li><li>Pons</li><li>Medulla oblongata</li><li>Primary motor cortex</li><li>Primary somatosensory cortex</li><li>Dorsal horn</li><li>Ventral horn</li><li>Central canal</li><li>Gray matter</li><li>White matter</li><li>Pia mater</li><li>Arachnoid mater</li><li>Dura mater</li><li>Subarachnoid space</li></ol></article>
   <div class="band physiology"><p class="tag">Part 3 of 4 &middot; Physiology lab</p><h2>Reason it through</h2></div>
@@ -236,7 +244,7 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
   Array.prototype.forEach.call(document.querySelectorAll("[data-upload]"),function(inp){
     var id=inp.getAttribute("data-upload"); var saved=load("up-"+id); var img=document.getElementById(id+"-img");
     if(saved&&img){img.src=saved;img.style.display="block";}
-    inp.addEventListener("change",function(){ var f=inp.files&&inp.files[0]; if(!f)return; var r=new FileReader(); r.onload=function(){ if(img){img.src=r.result;img.style.display="block";} save("up-"+id,r.result); flagSaved(); }; r.readAsDataURL(f); });
+    inp.addEventListener("change",function(){var f=inp.files&&inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){try{var MAX=1600,w=im.naturalWidth||im.width,h=im.naturalHeight||im.height,s=Math.min(1,MAX/Math.max(w,h)),cw=Math.max(1,Math.round(w*s)),ch=Math.max(1,Math.round(h*s));var cv=document.createElement("canvas");cv.width=cw;cv.height=ch;var cx=cv.getContext("2d");cx.fillStyle="#fff";cx.fillRect(0,0,cw,ch);cx.drawImage(im,0,0,cw,ch);var out=cv.toDataURL("image/jpeg",0.85);if(img){img.src=out;img.style.display="block";}try{save("up-"+id,out);}catch(e){}flagSaved();}catch(e){if(img){img.src=r.result;img.style.display="block";}try{save("up-"+id,r.result);}catch(_){}flagSaved();}};im.onerror=function(){if(note){note.textContent="That image could not be read. Please upload a JPG or PNG (iPhone HEIC is not supported).";}};im.src=r.result;};r.readAsDataURL(f);});
   });
   document.getElementById("save-pdf").addEventListener("click",function(){
     var nm=(load("name")||"(no name entered)"); var sid=(load("sid")||"");

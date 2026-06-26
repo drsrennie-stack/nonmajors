@@ -96,6 +96,14 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
   .print-stamp{display:block;margin:10px 0 0;padding:10px 14px;border:1.5px solid #333;border-radius:6px;font-size:13px;font-weight:700}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---- Drawing & PDF-export fixes: added 2026-06 ---- */
+canvas.pad{padding:0}  /* pen-alignment fix: drawing canvas must have no inner padding */
+@media print{
+  .card,.band{break-inside:avoid;page-break-inside:avoid}
+  .canvas-wrap{break-inside:avoid;page-break-inside:avoid}  /* drawing box never split across pages */
+  .uploader img{break-inside:avoid;page-break-inside:avoid}
+}
 </style>
 </head>
 <body>
@@ -154,14 +162,14 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
     <div class="draw-dir"><h4>Directions</h4><ol><li>Draw a single intestinal villus: a finger-like projection into the lumen.</li><li>Label the lumen at the top.</li><li>Show the villus surface lined by absorptive epithelial cells (enterocytes), each with microvilli (brush border) facing the lumen. Label both.</li><li>Inside the villus, draw a network of blood capillaries (label) and one central lac#0B1530 (a lymphatic capillary running up the center). Label.</li><li>Add a goblet cell (mucus-secreting) in the epithelium. Label.</li><li>Note the principle: water-soluble nutrients (amino acids, monosaccharides) enter the blood capillaries; fat-soluble nutrients (chylomicrons, fatty acids in lipid form) enter the lac#0B1530s and travel via lymph.</li></ol></div>
     <div class="canvas-wrap"><canvas class="pad" id="cvA" style="height:380px" aria-label="Drawing canvas for Box A. Intestinal villus close-up"></canvas></div>
     <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvA" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvA" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvA" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvA">Clear</button></div>
-    <div class="uploader no-print"><label>Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upA"></label><img id="upA-img" alt="Your uploaded drawing for Box A. Intestinal villus close-up"></div>
+    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upA"></label><img id="upA-img" alt="Your uploaded drawing for Box A. Intestinal villus close-up"></div>
   </article>
   <article class="card">
     <h3>Box B. Macronutrient digestion pathways</h3>
     <div class="draw-dir"><h4>Directions</h4><ol><li>Draw three parallel pathways: Carbohydrates, Proteins, Fats. Each pathway shows where digestion begins, where it continues, and what the final absorbed product is.</li><li>Carbohydrates: starch (mouth, salivary amylase begins) &gt; starch (stomach, no digestion) &gt; maltose (small intestine, pancreatic amylase) &gt; glucose (small intestine, brush-border enzymes like maltase). Absorbed: monosaccharides into blood.</li><li>Proteins: protein (mouth, no digestion) &gt; peptides (stomach, pepsin) &gt; shorter peptides (small intestine, pancreatic proteases) &gt; amino acids (small intestine, brush-border peptidases). Absorbed: amino acids into blood.</li><li>Fats: triglycerides (mouth, no digestion) &gt; triglycerides (stomach, minor lingual lipase) &gt; emulsified fat droplets (small intestine, bile salts from gallbladder) &gt; monoglycerides + fatty acids (small intestine, pancreatic lipase). Absorbed: re-formed triglycerides as chylomicrons into lac#0B1530.</li><li>Label each enzyme, its source (which organ), and the products at each step.</li></ol></div>
     <div class="canvas-wrap"><canvas class="pad" id="cvB" style="height:320px" aria-label="Drawing canvas for Box B. Macronutrient digestion pathways"></canvas></div>
     <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvB" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvB" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvB" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvB">Clear</button></div>
-    <div class="uploader no-print"><label>Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upB"></label><img id="upB-img" alt="Your uploaded drawing for Box B. Macronutrient digestion pathways"></div>
+    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upB"></label><img id="upB-img" alt="Your uploaded drawing for Box B. Macronutrient digestion pathways"></div>
   </article>
   <article class="card"><h3>Structures to label</h3><p>Label each on your drawing.</p><ol class="labels"><li>Villus</li><li>Microvilli (brush border)</li><li>Enterocyte</li><li>Goblet cell</li><li>Lumen</li><li>Blood capillary</li><li>Lac#0B1530</li><li>Salivary amylase</li><li>Pepsin</li><li>Pancreatic amylase</li><li>Pancreatic protease (trypsin)</li><li>Pancreatic lipase</li><li>Brush-border enzymes</li><li>Bile salts</li><li>Glucose</li><li>Amino acid</li><li>Fatty acid + monoglyceride</li><li>Chylomicron</li></ol></article>
   <div class="band physiology"><p class="tag">Part 3 of 4 &middot; Physiology lab</p><h2>Reason it through</h2></div>
@@ -231,7 +239,7 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
   Array.prototype.forEach.call(document.querySelectorAll("[data-upload]"),function(inp){
     var id=inp.getAttribute("data-upload"); var saved=load("up-"+id); var img=document.getElementById(id+"-img");
     if(saved&&img){img.src=saved;img.style.display="block";}
-    inp.addEventListener("change",function(){ var f=inp.files&&inp.files[0]; if(!f)return; var r=new FileReader(); r.onload=function(){ if(img){img.src=r.result;img.style.display="block";} save("up-"+id,r.result); flagSaved(); }; r.readAsDataURL(f); });
+    inp.addEventListener("change",function(){var f=inp.files&&inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){try{var MAX=1600,w=im.naturalWidth||im.width,h=im.naturalHeight||im.height,s=Math.min(1,MAX/Math.max(w,h)),cw=Math.max(1,Math.round(w*s)),ch=Math.max(1,Math.round(h*s));var cv=document.createElement("canvas");cv.width=cw;cv.height=ch;var cx=cv.getContext("2d");cx.fillStyle="#fff";cx.fillRect(0,0,cw,ch);cx.drawImage(im,0,0,cw,ch);var out=cv.toDataURL("image/jpeg",0.85);if(img){img.src=out;img.style.display="block";}try{save("up-"+id,out);}catch(e){}flagSaved();}catch(e){if(img){img.src=r.result;img.style.display="block";}try{save("up-"+id,r.result);}catch(_){}flagSaved();}};im.onerror=function(){if(note){note.textContent="That image could not be read. Please upload a JPG or PNG (iPhone HEIC is not supported).";}};im.src=r.result;};r.readAsDataURL(f);});
   });
   document.getElementById("save-pdf").addEventListener("click",function(){
     var nm=(load("name")||"(no name entered)"); var sid=(load("sid")||"");

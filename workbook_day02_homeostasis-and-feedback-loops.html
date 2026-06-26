@@ -96,6 +96,14 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
   .print-stamp{display:block;margin:10px 0 0;padding:10px 14px;border:1.5px solid #333;border-radius:6px;font-size:13px;font-weight:700}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---- Drawing & PDF-export fixes: added 2026-06 ---- */
+canvas.pad{padding:0}  /* pen-alignment fix: drawing canvas must have no inner padding */
+@media print{
+  .card,.band{break-inside:avoid;page-break-inside:avoid}
+  .canvas-wrap{break-inside:avoid;page-break-inside:avoid}  /* drawing box never split across pages */
+  .uploader img{break-inside:avoid;page-break-inside:avoid}
+}
 </style>
 </head>
 <body>
@@ -154,14 +162,14 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
     <div class="draw-dir"><h4>Directions</h4><ol><li>Draw 5 boxes arranged in a circle, connected by arrows clockwise.</li><li>Box 1: Stimulus (a change away from setpoint). Box 2: Sensor (detects the change). Box 3: Control center (compares to setpoint, decides action). Box 4: Effector (produces the response). Box 5: Response (returns variable toward setpoint).</li><li>Draw an arrow from Box 5 back to Box 1 with a minus sign. Label it Negative feedback: response opposes the original change.</li><li>At the center of the loop, write Setpoint and one example variable (e.g., body temperature, blood glucose, blood pressure).</li></ol></div>
     <div class="canvas-wrap"><canvas class="pad" id="cvA" style="height:380px" aria-label="Drawing canvas for Box A. Negative feedback loop (generic)"></canvas></div>
     <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvA" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvA" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvA" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvA">Clear</button></div>
-    <div class="uploader no-print"><label>Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upA"></label><img id="upA-img" alt="Your uploaded drawing for Box A. Negative feedback loop (generic)"></div>
+    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upA"></label><img id="upA-img" alt="Your uploaded drawing for Box A. Negative feedback loop (generic)"></div>
   </article>
   <article class="card">
     <h3>Box B. Worked example: body temperature drops</h3>
     <div class="draw-dir"><h4>Directions</h4><ol><li>Use the same 5-box loop. Fill in each box with the body&#x27;s response to cold.</li><li>Stimulus: cold environment, body temperature drops below 37 C.</li><li>Sensor: thermoreceptors in skin and hypothalamus.</li><li>Control center: hypothalamus.</li><li>Effector: name at least two (e.g., skeletal muscles, smooth muscle in blood vessels, arrector pili muscles).</li><li>Response: shivering, vasoconstriction, piloerection, behavioral changes. Body temperature rises back toward 37 C.</li><li>On the side, draw a small box labeled Positive feedback. Inside, name one example (childbirth, blood clotting, action potential firing). Note the arrow has a PLUS sign.</li></ol></div>
     <div class="canvas-wrap"><canvas class="pad" id="cvB" style="height:320px" aria-label="Drawing canvas for Box B. Worked example: body temperature drops"></canvas></div>
     <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvB" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvB" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvB" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvB">Clear</button></div>
-    <div class="uploader no-print"><label>Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upB"></label><img id="upB-img" alt="Your uploaded drawing for Box B. Worked example: body temperature drops"></div>
+    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upB"></label><img id="upB-img" alt="Your uploaded drawing for Box B. Worked example: body temperature drops"></div>
   </article>
   <article class="card"><h3>Structures to label</h3><p>Label each on your drawing.</p><ol class="labels"><li>Stimulus</li><li>Sensor (receptor)</li><li>Control center</li><li>Effector</li><li>Response</li><li>Setpoint</li><li>Negative feedback</li><li>Positive feedback</li><li>Hypothalamus</li><li>Thermoreceptor</li><li>Shivering</li><li>Vasoconstriction</li></ol></article>
   <div class="band physiology"><p class="tag">Part 3 of 4 &middot; Physiology lab</p><h2>Reason it through</h2></div>
@@ -230,7 +238,7 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
   Array.prototype.forEach.call(document.querySelectorAll("[data-upload]"),function(inp){
     var id=inp.getAttribute("data-upload"); var saved=load("up-"+id); var img=document.getElementById(id+"-img");
     if(saved&&img){img.src=saved;img.style.display="block";}
-    inp.addEventListener("change",function(){ var f=inp.files&&inp.files[0]; if(!f)return; var r=new FileReader(); r.onload=function(){ if(img){img.src=r.result;img.style.display="block";} save("up-"+id,r.result); flagSaved(); }; r.readAsDataURL(f); });
+    inp.addEventListener("change",function(){var f=inp.files&&inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){try{var MAX=1600,w=im.naturalWidth||im.width,h=im.naturalHeight||im.height,s=Math.min(1,MAX/Math.max(w,h)),cw=Math.max(1,Math.round(w*s)),ch=Math.max(1,Math.round(h*s));var cv=document.createElement("canvas");cv.width=cw;cv.height=ch;var cx=cv.getContext("2d");cx.fillStyle="#fff";cx.fillRect(0,0,cw,ch);cx.drawImage(im,0,0,cw,ch);var out=cv.toDataURL("image/jpeg",0.85);if(img){img.src=out;img.style.display="block";}try{save("up-"+id,out);}catch(e){}flagSaved();}catch(e){if(img){img.src=r.result;img.style.display="block";}try{save("up-"+id,r.result);}catch(_){}flagSaved();}};im.onerror=function(){if(note){note.textContent="That image could not be read. Please upload a JPG or PNG (iPhone HEIC is not supported).";}};im.src=r.result;};r.readAsDataURL(f);});
   });
   document.getElementById("save-pdf").addEventListener("click",function(){
     var nm=(load("name")||"(no name entered)"); var sid=(load("sid")||"");

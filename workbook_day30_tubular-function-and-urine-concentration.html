@@ -96,6 +96,14 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
   .print-stamp{display:block;margin:10px 0 0;padding:10px 14px;border:1.5px solid #333;border-radius:6px;font-size:13px;font-weight:700}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---- Drawing & PDF-export fixes: added 2026-06 ---- */
+canvas.pad{padding:0}  /* pen-alignment fix: drawing canvas must have no inner padding */
+@media print{
+  .card,.band{break-inside:avoid;page-break-inside:avoid}
+  .canvas-wrap{break-inside:avoid;page-break-inside:avoid}  /* drawing box never split across pages */
+  .uploader img{break-inside:avoid;page-break-inside:avoid}
+}
 </style>
 </head>
 <body>
@@ -147,14 +155,14 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
     <div class="draw-dir"><h4>Directions</h4><ol><li>Draw a nephron in the same orientation as Day 29: glomerulus, PCT (in cortex), loop of Henle (descending and ascending limbs going into medulla), DCT (back in cortex), collecting duct (going down through medulla to papilla).</li><li>Beside each segment, write what is REABSORBED (into blood) and what is SECRETED (into filtrate).</li><li>PCT: ~65 percent of water and Na+, all glucose and amino acids (via co-transport), bicarbonate (HCO3-). Reclaims most filtered nutrients.</li><li>Loop of Henle, descending limb: water reabsorbed (permeable to water, not solute). Loop of Henle, ascending thick limb: Na+ and Cl- reabsorbed (not permeable to water). This creates the medullary gradient.</li><li>DCT: fine-tuning. Na+ reabsorbed (aldosterone-regulated), Ca2+ reabsorbed (PTH-regulated), K+ secreted.</li><li>Collecting duct: water reabsorption controlled by ADH (vasopressin). Urea reabsorbed in deep medulla.</li><li>Label each segment and its key activity.</li></ol></div>
     <div class="canvas-wrap"><canvas class="pad" id="cvA" style="height:380px" aria-label="Drawing canvas for Box A. Nephron with segment functions"></canvas></div>
     <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvA" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvA" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvA" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvA">Clear</button></div>
-    <div class="uploader no-print"><label>Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upA"></label><img id="upA-img" alt="Your uploaded drawing for Box A. Nephron with segment functions"></div>
+    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upA"></label><img id="upA-img" alt="Your uploaded drawing for Box A. Nephron with segment functions"></div>
   </article>
   <article class="card">
     <h3>Box B. Medullary osmotic gradient</h3>
     <div class="draw-dir"><h4>Directions</h4><ol><li>Draw the kidney section showing cortex at top and deep medulla at bottom.</li><li>Mark interstitial osmolarity at different depths: 300 mOsm/L at cortex (same as plasma), rising to about 1200 mOsm/L deep in the medulla.</li><li>Show how the loop of Henle creates this gradient (countercurrent multiplier).</li><li>Now show two scenarios for the collecting duct passing through this gradient:</li><li>ADH ABSENT (diabetes insipidus or overhydration): collecting duct is impermeable to water; urine stays dilute (about 50 to 100 mOsm/L); large urine volume.</li><li>ADH PRESENT (dehydration or normal): aquaporins inserted in collecting duct; water leaves to enter the concentrated medullary interstitium; urine becomes concentrated (up to 1200 mOsm/L); small urine volume.</li><li>Note: the medullary gradient is what makes concentrated urine POSSIBLE; ADH controls whether the body USES it.</li></ol></div>
     <div class="canvas-wrap"><canvas class="pad" id="cvB" style="height:320px" aria-label="Drawing canvas for Box B. Medullary osmotic gradient"></canvas></div>
     <div class="canvas-tools no-print"><span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)">Pen</span><button class="swatch" data-canvas="cvB" data-color="#0B1530" style="background:#0B1530" aria-label="navy pen" aria-pressed="true"></button><button class="swatch" data-canvas="cvB" data-color="#8B3A2E" style="background:#8B3A2E" aria-label="rust pen" aria-pressed="false"></button><button class="swatch" data-canvas="cvB" data-color="#C9A14A" style="background:#C9A14A" aria-label="gold pen" aria-pressed="false"></button><button type="button" class="mini" data-clear="cvB">Clear</button></div>
-    <div class="uploader no-print"><label>Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upB"></label><img id="upB-img" alt="Your uploaded drawing for Box B. Medullary osmotic gradient"></div>
+    <div class="uploader"><label class="no-print">Prefer paper? Upload a photo of your hand drawing: <input type="file" accept="image/*" data-upload="upB"></label><img id="upB-img" alt="Your uploaded drawing for Box B. Medullary osmotic gradient"></div>
   </article>
   <article class="card"><h3>Structures to label</h3><p>Label each on your drawing.</p><ol class="labels"><li>Proximal convoluted tubule (PCT)</li><li>Loop of Henle</li><li>Descending limb</li><li>Ascending thick limb</li><li>Distal convoluted tubule (DCT)</li><li>Collecting duct</li><li>Reabsorption</li><li>Secretion</li><li>Aldosterone</li><li>ADH (vasopressin)</li><li>Parathyroid hormone (PTH)</li><li>Aquaporin (water channel)</li><li>Medullary osmotic gradient</li><li>Countercurrent multiplier</li></ol></article>
   <div class="band physiology"><p class="tag">Part 3 of 4 &middot; Physiology lab</p><h2>Reason it through</h2></div>
@@ -223,7 +231,7 @@ ol.labels li{padding:3px 0;border-bottom:1px dotted var(--line);break-inside:avo
   Array.prototype.forEach.call(document.querySelectorAll("[data-upload]"),function(inp){
     var id=inp.getAttribute("data-upload"); var saved=load("up-"+id); var img=document.getElementById(id+"-img");
     if(saved&&img){img.src=saved;img.style.display="block";}
-    inp.addEventListener("change",function(){ var f=inp.files&&inp.files[0]; if(!f)return; var r=new FileReader(); r.onload=function(){ if(img){img.src=r.result;img.style.display="block";} save("up-"+id,r.result); flagSaved(); }; r.readAsDataURL(f); });
+    inp.addEventListener("change",function(){var f=inp.files&&inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){try{var MAX=1600,w=im.naturalWidth||im.width,h=im.naturalHeight||im.height,s=Math.min(1,MAX/Math.max(w,h)),cw=Math.max(1,Math.round(w*s)),ch=Math.max(1,Math.round(h*s));var cv=document.createElement("canvas");cv.width=cw;cv.height=ch;var cx=cv.getContext("2d");cx.fillStyle="#fff";cx.fillRect(0,0,cw,ch);cx.drawImage(im,0,0,cw,ch);var out=cv.toDataURL("image/jpeg",0.85);if(img){img.src=out;img.style.display="block";}try{save("up-"+id,out);}catch(e){}flagSaved();}catch(e){if(img){img.src=r.result;img.style.display="block";}try{save("up-"+id,r.result);}catch(_){}flagSaved();}};im.onerror=function(){if(note){note.textContent="That image could not be read. Please upload a JPG or PNG (iPhone HEIC is not supported).";}};im.src=r.result;};r.readAsDataURL(f);});
   });
   document.getElementById("save-pdf").addEventListener("click",function(){
     var nm=(load("name")||"(no name entered)"); var sid=(load("sid")||"");
