@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Muscle Anatomy &middot; Study Guide &middot; BIO 304 Human Anatomy &amp; Physiology</title>
+<meta name="description" content="Week 4 study guide for BIO 304 Muscle Anatomy. Read each question, answer it on your own, then reveal the answer.">
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+:root{
+  --navy:#0B1530; --navy-deep:#142a36; --rust:#8B3A2E; --rust-dark:#A0452F;
+  --gold:#C9A14A; --gold-deep:#B8924A; --cream:#F5F1E8; --dark:#060A18;
+  --white:#FFFFFF; --offwhite:#FAFAF9;
+  --rule:rgba(11,21,48,0.16); --rule-soft:rgba(11,21,48,0.10);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--offwhite);color:var(--navy);line-height:1.6}
+a{color:inherit}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:12px;top:12px;background:var(--navy);color:#fff;padding:10px 14px;border-radius:4px;z-index:50}
+.wrap{max-width:820px;margin:0 auto;padding:40px max(20px,5vw) 64px}
+.brand{display:flex;align-items:center;gap:13px;margin-bottom:24px}
+.brand svg{height:50px;width:auto;display:block}
+.brand .logo-text{display:flex;flex-direction:column}
+.brand .logo-title{font-size:21px;font-weight:800;letter-spacing:-.02em;color:var(--navy);line-height:1}
+.brand .logo-accent{color:var(--rust)}
+.brand .logo-sub{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy);opacity:.7;margin-top:4px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--rust);margin:0 0 10px}
+h1{font-size:clamp(28px,4.4vw,44px);font-weight:800;letter-spacing:-.025em;line-height:1.06;color:var(--navy);margin:0 0 14px}
+.sub{font-size:16px;color:var(--navy);opacity:.84;margin:0 0 28px;max-width:60ch}
+/* QR block */
+.qr{display:flex;gap:20px;align-items:center;flex-wrap:wrap;padding:18px 0 26px;border-bottom:1px solid var(--rule-soft);margin-bottom:8px}
+.qr a{display:inline-block;line-height:0;text-decoration:none}
+.qr svg{width:132px;height:132px;display:block}
+.qr a:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+.qr-copy .k{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--rust);margin:0 0 6px}
+.qr-copy p{margin:0;font-size:14px;color:var(--navy);opacity:.84;max-width:34ch}
+/* controls */
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 8px}
+.ctrl{font-family:inherit;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:9px 15px;border-radius:999px;border:1px solid var(--navy);background:transparent;color:var(--navy);cursor:pointer}
+.ctrl:hover{background:var(--cream)}
+.ctrl:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+/* question + reveal */
+.qa{margin:0;padding:0;list-style:none}
+.qa > li{padding:20px 0;border-bottom:1px dotted var(--rule);}
+.q{width:100%;display:flex;justify-content:space-between;align-items:flex-start;gap:18px;background:none;border:0;padding:0;text-align:left;cursor:pointer;font-family:inherit}
+.q:focus-visible{outline:3px solid var(--gold);outline-offset:4px;border-radius:4px}
+.q .num{flex:none;font-variant-numeric:tabular-nums;font-weight:800;color:var(--rust);font-size:17px;min-width:30px}
+.q .qtext{flex:1;font-size:clamp(16px,2vw,19px);font-weight:700;color:var(--navy);line-height:1.4}
+.q .reveal{flex:none;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);border:1px solid var(--rust);border-radius:999px;padding:6px 12px;white-space:nowrap;align-self:center}
+.q[aria-expanded="true"] .reveal{background:var(--rust);color:#fff}
+.q[aria-expanded="true"] .reveal::after{content:" \2713"}
+.a{margin:14px 0 0 48px;padding:2px 0 2px 18px;border-left:3px solid var(--gold)}
+.a[hidden]{display:none}
+.a p.label{margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--rust)}
+.a ul{margin:0;padding-left:20px}
+.a li{margin:0 0 7px;font-size:15.5px;color:var(--navy)}
+.a li b{color:var(--navy)}
+.a .seq{list-style:none;padding-left:0;counter-reset:s}
+.a .seq li{position:relative;padding-left:30px;margin-bottom:9px}
+.a .seq li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;background:var(--navy);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center}
+footer{margin-top:36px;font-size:11.5px;color:var(--navy);opacity:.6;letter-spacing:.03em}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#guide">Skip to the study guide</a>
+<div class="wrap">
+  <div class="brand">
+    <svg viewBox="40 10 125 148" role="img" aria-label="Human A and P, BIO 304, American River College">
+      <g transform="translate(0, 18)">
+        <g transform="translate(60, 0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/></g>
+        <g transform="translate(100, 0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
+        <g transform="translate(140, 0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+      </g>
+    </svg>
+    <span class="logo-text"><span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span><span class="logo-sub">BIO 304 &middot; American River College</span></span>
+  </div>
+  <p class="eyebrow">BIO 304 &middot; Human Anatomy &amp; Physiology &middot; Week 4 &middot; Study Guide</p>
+  <h1>Muscle Anatomy</h1>
+  <p class="sub">Read each question and answer it out loud or on paper before you reveal. Trying first, then checking, is what makes it stick.</p>
+
+  <div class="qr">
+    <a href="https://drsrennie-stack.github.io/nonmajors/week04-muscle-anatomy-study-guide.html" target="_top" aria-label="Open this study guide. Scan with a phone camera or click.">
+      <svg viewBox="0 0 41 41" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <rect width="41" height="41" fill="#FFFFFF"/>
+        <path d="M2 2h7v1h-7zM10 2h1v1h-1zM12 2h2v1h-2zM15 2h11v1h-11zM27 2h1v1h-1zM30 2h1v1h-1zM32 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM10 3h1v1h-1zM12 3h2v1h-2zM15 3h2v1h-2zM20 3h1v1h-1zM22 3h5v1h-5zM28 3h1v1h-1zM30 3h1v1h-1zM32 3h1v1h-1zM38 3h1v1h-1zM2 4h1v1h-1zM4 4h3v1h-3zM8 4h1v1h-1zM12 4h4v1h-4zM20 4h3v1h-3zM25 4h1v1h-1zM27 4h2v1h-2zM32 4h1v1h-1zM34 4h3v1h-3zM38 4h1v1h-1zM2 5h1v1h-1zM4 5h3v1h-3zM8 5h1v1h-1zM10 5h4v1h-4zM16 5h2v1h-2zM19 5h1v1h-1zM24 5h1v1h-1zM26 5h3v1h-3zM32 5h1v1h-1zM34 5h3v1h-3zM38 5h1v1h-1zM2 6h1v1h-1zM4 6h3v1h-3zM8 6h1v1h-1zM11 6h1v1h-1zM16 6h4v1h-4zM21 6h2v1h-2zM26 6h1v1h-1zM28 6h3v1h-3zM32 6h1v1h-1zM34 6h3v1h-3zM38 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM12 7h2v1h-2zM15 7h2v1h-2zM18 7h1v1h-1zM20 7h3v1h-3zM27 7h1v1h-1zM30 7h1v1h-1zM32 7h1v1h-1zM38 7h1v1h-1zM2 8h7v1h-7zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM24 8h1v1h-1zM26 8h1v1h-1zM28 8h1v1h-1zM30 8h1v1h-1zM32 8h7v1h-7zM10 9h1v1h-1zM13 9h1v1h-1zM16 9h6v1h-6zM26 9h1v1h-1zM29 9h2v1h-2zM2 10h1v1h-1zM4 10h2v1h-2zM7 10h3v1h-3zM11 10h2v1h-2zM16 10h1v1h-1zM19 10h1v1h-1zM23 10h1v1h-1zM25 10h2v1h-2zM28 10h3v1h-3zM32 10h1v1h-1zM35 10h1v1h-1zM37 10h2v1h-2zM2 11h1v1h-1zM4 11h2v1h-2zM7 11h1v1h-1zM9 11h2v1h-2zM12 11h1v1h-1zM14 11h1v1h-1zM17 11h1v1h-1zM19 11h4v1h-4zM24 11h2v1h-2zM33 11h1v1h-1zM37 11h1v1h-1zM4 12h1v1h-1zM6 12h3v1h-3zM10 12h2v1h-2zM15 12h1v1h-1zM18 12h1v1h-1zM20 12h1v1h-1zM25 12h2v1h-2zM30 12h1v1h-1zM33 12h4v1h-4zM3 13h1v1h-1zM5 13h1v1h-1zM7 13h1v1h-1zM9 13h1v1h-1zM11 13h1v1h-1zM15 13h2v1h-2zM18 13h1v1h-1zM21 13h1v1h-1zM26 13h3v1h-3zM34 13h3v1h-3zM2 14h1v1h-1zM5 14h2v1h-2zM8 14h2v1h-2zM11 14h1v1h-1zM17 14h3v1h-3zM21 14h1v1h-1zM24 14h4v1h-4zM29 14h1v1h-1zM31 14h2v1h-2zM34 14h5v1h-5zM2 15h3v1h-3zM6 15h1v1h-1zM10 15h4v1h-4zM15 15h1v1h-1zM17 15h2v1h-2zM21 15h1v1h-1zM24 15h1v1h-1zM27 15h4v1h-4zM32 15h4v1h-4zM38 15h1v1h-1zM2 16h1v1h-1zM5 16h6v1h-6zM12 16h2v1h-2zM15 16h1v1h-1zM19 16h4v1h-4zM26 16h1v1h-1zM28 16h1v1h-1zM30 16h3v1h-3zM34 16h1v1h-1zM36 16h2v1h-2zM3 17h1v1h-1zM6 17h1v1h-1zM13 17h1v1h-1zM15 17h1v1h-1zM18 17h1v1h-1zM20 17h1v1h-1zM23 17h4v1h-4zM30 17h5v1h-5zM37 17h1v1h-1zM2 18h2v1h-2zM6 18h1v1h-1zM8 18h3v1h-3zM12 18h1v1h-1zM14 18h1v1h-1zM16 18h2v1h-2zM20 18h5v1h-5zM27 18h1v1h-1zM29 18h1v1h-1zM35 18h2v1h-2zM38 18h1v1h-1zM3 19h1v1h-1zM7 19h1v1h-1zM11 19h1v1h-1zM16 19h1v1h-1zM19 19h1v1h-1zM22 19h1v1h-1zM24 19h2v1h-2zM29 19h1v1h-1zM31 19h3v1h-3zM35 19h4v1h-4zM4 20h1v1h-1zM7 20h2v1h-2zM10 20h1v1h-1zM13 20h1v1h-1zM15 20h1v1h-1zM19 20h1v1h-1zM22 20h3v1h-3zM28 20h2v1h-2zM32 20h1v1h-1zM37 20h2v1h-2zM3 21h1v1h-1zM7 21h1v1h-1zM9 21h5v1h-5zM17 21h4v1h-4zM25 21h1v1h-1zM30 21h6v1h-6zM37 21h1v1h-1zM3 22h1v1h-1zM6 22h4v1h-4zM11 22h3v1h-3zM15 22h1v1h-1zM17 22h5v1h-5zM23 22h1v1h-1zM25 22h1v1h-1zM28 22h4v1h-4zM33 22h2v1h-2zM38 22h1v1h-1zM3 23h1v1h-1zM5 23h3v1h-3zM10 23h3v1h-3zM18 23h6v1h-6zM25 23h1v1h-1zM28 23h1v1h-1zM30 23h2v1h-2zM35 23h1v1h-1zM3 24h3v1h-3zM8 24h2v1h-2zM11 24h1v1h-1zM14 24h3v1h-3zM19 24h1v1h-1zM22 24h1v1h-1zM24 24h3v1h-3zM28 24h1v1h-1zM30 24h1v1h-1zM33 24h1v1h-1zM37 24h1v1h-1zM2 25h3v1h-3zM9 25h2v1h-2zM14 25h2v1h-2zM17 25h2v1h-2zM22 25h1v1h-1zM24 25h2v1h-2zM27 25h2v1h-2zM31 25h1v1h-1zM34 25h5v1h-5zM2 26h1v1h-1zM8 26h1v1h-1zM12 26h1v1h-1zM15 26h1v1h-1zM19 26h1v1h-1zM21 26h2v1h-2zM24 26h1v1h-1zM27 26h3v1h-3zM31 26h4v1h-4zM36 26h1v1h-1zM38 26h1v1h-1zM5 27h2v1h-2zM10 27h2v1h-2zM13 27h1v1h-1zM15 27h2v1h-2zM20 27h2v1h-2zM23 27h2v1h-2zM26 27h1v1h-1zM29 27h2v1h-2zM32 27h1v1h-1zM34 27h2v1h-2zM37 27h2v1h-2zM3 28h1v1h-1zM5 28h2v1h-2zM8 28h2v1h-2zM11 28h5v1h-5zM18 28h5v1h-5zM24 28h1v1h-1zM26 28h1v1h-1zM33 28h1v1h-1zM35 28h3v1h-3zM2 29h1v1h-1zM4 29h1v1h-1zM6 29h2v1h-2zM10 29h1v1h-1zM13 29h2v1h-2zM16 29h3v1h-3zM20 29h4v1h-4zM28 29h1v1h-1zM31 29h1v1h-1zM4 30h1v1h-1zM7 30h2v1h-2zM10 30h1v1h-1zM13 30h5v1h-5zM20 30h1v1h-1zM22 30h3v1h-3zM27 30h1v1h-1zM30 30h5v1h-5zM36 30h2v1h-2zM10 31h1v1h-1zM12 31h1v1h-1zM14 31h4v1h-4zM23 31h1v1h-1zM25 31h4v1h-4zM30 31h1v1h-1zM34 31h1v1h-1zM36 31h3v1h-3zM2 32h7v1h-7zM10 32h3v1h-3zM14 32h1v1h-1zM16 32h3v1h-3zM23 32h1v1h-1zM28 32h1v1h-1zM30 32h1v1h-1zM32 32h1v1h-1zM34 32h1v1h-1zM36 32h3v1h-3zM2 33h1v1h-1zM8 33h1v1h-1zM10 33h2v1h-2zM13 33h3v1h-3zM19 33h1v1h-1zM21 33h2v1h-2zM24 33h2v1h-2zM28 33h3v1h-3zM34 33h1v1h-1zM37 33h2v1h-2zM2 34h1v1h-1zM4 34h3v1h-3zM8 34h1v1h-1zM12 34h1v1h-1zM14 34h1v1h-1zM16 34h1v1h-1zM18 34h4v1h-4zM23 34h2v1h-2zM28 34h1v1h-1zM30 34h6v1h-6zM2 35h1v1h-1zM4 35h3v1h-3zM8 35h1v1h-1zM10 35h1v1h-1zM12 35h1v1h-1zM15 35h1v1h-1zM18 35h6v1h-6zM25 35h1v1h-1zM29 35h4v1h-4zM34 35h5v1h-5zM2 36h1v1h-1zM4 36h3v1h-3zM8 36h1v1h-1zM10 36h1v1h-1zM14 36h2v1h-2zM18 36h3v1h-3zM24 36h3v1h-3zM32 36h1v1h-1zM34 36h3v1h-3zM2 37h1v1h-1zM8 37h1v1h-1zM11 37h1v1h-1zM13 37h3v1h-3zM20 37h3v1h-3zM25 37h3v1h-3zM33 37h2v1h-2zM36 37h1v1h-1zM2 38h7v1h-7zM10 38h1v1h-1zM12 38h2v1h-2zM19 38h1v1h-1zM21 38h1v1h-1zM24 38h5v1h-5zM31 38h1v1h-1zM34 38h1v1h-1zM36 38h3v1h-3z" fill="#8B3A2E"/>
+      </svg>
+    </a>
+    <div class="qr-copy">
+      <p class="k">Take it with you</p>
+      <p>Scan with your phone camera, or click the code, to open this study guide.</p>
+    </div>
+  </div>
+
+  <div class="controls" id="guide">
+    <button class="ctrl" id="reveal-all" type="button">Reveal all</button>
+    <button class="ctrl" id="collapse-all" type="button">Collapse all</button>
+  </div>
+
+  <ol class="qa">
+
+    <li>
+      <button class="q" aria-expanded="false" aria-controls="a1"><span class="num">1</span><span class="qtext">What are the functions of skeletal muscle?</span><span class="reveal">Reveal</span></button>
+      <div class="a" id="a1" hidden>
+        <p class="label">Five jobs</p>
+        <ul>
+          <li><b>Movement</b> of the body and of substances within it</li>
+          <li><b>Posture</b>, holding you upright against gravity</li>
+          <li><b>Joint stability</b> from muscle tone</li>
+          <li><b>Heat</b> production (shivering)</li>
+          <li><b>Guarding</b> openings and protecting organs (sphincters, body wall)</li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <button class="q" aria-expanded="false" aria-controls="a2"><span class="num">2</span><span class="qtext">Define origin, insertion, and action.</span><span class="reveal">Reveal</span></button>
+      <div class="a" id="a2" hidden>
+        <p class="label">Definitions</p>
+        <ul>
+          <li><b>Origin</b>:the attachment that stays relatively fixed during contraction</li>
+          <li><b>Insertion</b>:the attachment that moves; it is pulled toward the origin</li>
+          <li><b>Action</b>:the movement produced, named at the joint crossed (for example, flexion of the elbow)</li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <button class="q" aria-expanded="false" aria-controls="a3"><span class="num">3</span><span class="qtext">Name the four functional roles in a movement, using elbow flexion as the example.</span><span class="reveal">Reveal</span></button>
+      <div class="a" id="a3" hidden>
+        <p class="label">Roles, with the elbow example</p>
+        <ul>
+          <li><b>Agonist (prime mover)</b>:mainly produces the movement: biceps brachii</li>
+          <li><b>Antagonist</b>:opposes and relaxes to allow it: triceps brachii</li>
+          <li><b>Synergist</b>:assists or adds force: brachialis</li>
+          <li><b>Fixator</b>:stabilizes the origin: rotator cuff steadying the shoulder</li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <button class="q" aria-expanded="false" aria-controls="a4"><span class="num">4</span><span class="qtext">List the three lever classes with their arrangement and an everyday example.</span><span class="reveal">Reveal</span></button>
+      <div class="a" id="a4" hidden>
+        <p class="label">Levers</p>
+        <ul>
+          <li><b>First class</b>:fulcrum in the middle, like a seesaw (body: nodding the head)</li>
+          <li><b>Second class</b>:load in the middle, like a wheelbarrow (body: standing on tiptoe)</li>
+          <li><b>Third class</b>:effort in the middle, like tweezers (body: a biceps curl); most common, trades force for speed and range</li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <button class="q" aria-expanded="false" aria-controls="a5"><span class="num">5</span><span class="qtext">What clues are used to name muscles?</span><span class="reveal">Reveal</span></button>
+      <div class="a" id="a5" hidden>
+        <p class="label">Naming clues</p>
+        <ul>
+          <li><b>Location</b>: tibialis anterior</li>
+          <li><b>Shape</b>: deltoid</li>
+          <li><b>Size</b>: gluteus maximus</li>
+          <li><b>Fiber direction</b>: rectus, oblique, transversus</li>
+          <li><b>Number of heads</b>: biceps, triceps, quadriceps</li>
+          <li><b>Attachments</b>: sternocleidomastoid</li>
+          <li><b>Action</b>: flexor, extensor, adductor</li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <button class="q" aria-expanded="false" aria-controls="a6"><span class="num">6</span><span class="qtext">Trace the connective tissue hierarchy from whole muscle to sarcomere.</span><span class="reveal">Reveal</span></button>
+      <div class="a" id="a6" hidden>
+        <p class="label">Big to small (in order)</p>
+        <ul class="seq">
+          <li><b>Whole muscle</b> wrapped in <b>epimysium</b></li>
+          <li><b>Fascicle</b> wrapped in <b>perimysium</b></li>
+          <li><b>Muscle fiber</b> wrapped in <b>endomysium</b> (membrane = sarcolemma, cytoplasm = sarcoplasm)</li>
+          <li><b>Myofibril</b> inside the fiber</li>
+          <li><b>Sarcomere</b>, the functional unit, Z-line to Z-line</li>
+        </ul>
+        <p class="label" style="margin-top:12px">Tie-in</p>
+        <ul><li>All three wrappers merge at the ends to form the <b>tendon</b>.</li></ul>
+      </div>
+    </li>
+
+    <li>
+      <button class="q" aria-expanded="false" aria-controls="a7"><span class="num">7</span><span class="qtext">Label the sarcomere: what are the A band, I band, H zone, Z-line, and M line?</span><span class="reveal">Reveal</span></button>
+      <div class="a" id="a7" hidden>
+        <p class="label">Bands and lines</p>
+        <ul>
+          <li><b>A band</b>:full length of the thick filament (width never changes)</li>
+          <li><b>I band</b>:thin filaments only</li>
+          <li><b>H zone</b>:thick filaments only, no overlap</li>
+          <li><b>Z-line</b>:sarcomere boundary; thin filaments anchor here</li>
+          <li><b>M line</b>:center; thick filaments anchor here</li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <button class="q" aria-expanded="false" aria-controls="a8"><span class="num">8</span><span class="qtext">During contraction, which bands change and which stays the same?</span><span class="reveal">Reveal</span></button>
+      <div class="a" id="a8" hidden>
+        <p class="label">What happens</p>
+        <ul>
+          <li><b>I band</b> narrows</li>
+          <li><b>H zone</b> narrows</li>
+          <li><b>A band</b> stays the same, because thick filament length never changes</li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <button class="q" aria-expanded="false" aria-controls="a9"><span class="num">9</span><span class="qtext">What are the thick and thin filaments made of?</span><span class="reveal">Reveal</span></button>
+      <div class="a" id="a9" hidden>
+        <p class="label">Filament proteins</p>
+        <ul>
+          <li><b>Thick filament</b>:myosin</li>
+          <li><b>Thin filament</b>:actin, plus the regulatory proteins troponin and tropomyosin</li>
+          <li><b>Titin</b>:an elastic protein that anchors thick filaments to the Z-line</li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <button class="q" aria-expanded="false" aria-controls="a10"><span class="num">10</span><span class="qtext">What are the T-tubules and the sarcoplasmic reticulum, and what is the triad?</span><span class="reveal">Reveal</span></button>
+      <div class="a" id="a10" hidden>
+        <p class="label">Excitation machinery</p>
+        <ul>
+          <li><b>T-tubules</b>:inward folds of the sarcolemma that carry the action potential deep into the fiber</li>
+          <li><b>Sarcoplasmic reticulum (SR)</b>:smooth ER that stores calcium and releases it when the signal arrives</li>
+          <li><b>Triad</b>:one T-tubule flanked by two SR terminal cisternae; where the signal and the calcium meet</li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <button class="q" aria-expanded="false" aria-controls="a11"><span class="num">11</span><span class="qtext">Clinical: how does dystrophin connect to Duchenne muscular dystrophy and the CK lab value?</span><span class="reveal">Reveal</span></button>
+      <div class="a" id="a11" hidden>
+        <p class="label">Clinical reasoning</p>
+        <ul>
+          <li><b>Dystrophin</b> anchors the contractile machinery to the sarcolemma</li>
+          <li>In <b>Duchenne</b>, dystrophin is defective, so every contraction tears the fiber</li>
+          <li><b>Creatine kinase (CK)</b> rises when the sarcolemma is breached, signaling muscle damage</li>
+        </ul>
+      </div>
+    </li>
+
+  </ol>
+
+  <footer>BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Summer 2026 &middot; Dr. Sharilyn Rennie</footer>
+</div>
+
+<script>
+(function(){
+  var qs = Array.prototype.slice.call(document.querySelectorAll('.q'));
+  function setOpen(btn, open){
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    var panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if (panel) panel.hidden = !open;
+    var rv = btn.querySelector('.reveal');
+    if (rv) rv.textContent = open ? 'Hide' : 'Reveal';
+  }
+  qs.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      setOpen(btn, btn.getAttribute('aria-expanded') !== 'true');
+    });
+  });
+  var ra = document.getElementById('reveal-all'), ca = document.getElementById('collapse-all');
+  if (ra) ra.addEventListener('click', function(){ qs.forEach(function(b){ setOpen(b, true); }); });
+  if (ca) ca.addEventListener('click', function(){ qs.forEach(function(b){ setOpen(b, false); }); });
+})();
+(function(){
+  var FRAME_ID = 'bio304-muscle-anatomy-study-guide';
+  function send(){ var h = Math.max(document.documentElement.scrollHeight, document.body ? document.body.scrollHeight : 0); try { parent.postMessage({ type: 'resize', id: FRAME_ID, height: h }, '*'); } catch(e){} }
+  window.addEventListener('load', send); window.addEventListener('resize', send);
+  if (window.ResizeObserver) new ResizeObserver(send).observe(document.body);
+})();
+</script>
+</body>
+</html>
