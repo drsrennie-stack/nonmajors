@@ -227,22 +227,44 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .topic-pill:hover, .topic-pill:focus-visible { background: #142A36; }
 .topic-pill .arrow { font-weight: 400; font-size: 13px; }
 .topic-pills { display: inline-flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-.topic-pill.video {
-  background: #C9A14A; color: #0B1530;
-}
-.topic-pill.video:hover, .topic-pill.video:focus-visible { background: #B08B3A; color: #0B1530; }
-.topic-pill.recall {
-  background: #8B3A2E; color: #FFFFFF;
-}
-.topic-pill.recall:hover, .topic-pill.recall:focus-visible { background: #A0452F; color: #FFFFFF; }
-.topic-pill.workbook { background:#FFFFFF; color:#8B3A2E; border:1px solid #8B3A2E; }
-.topic-pill.workbook:hover, .topic-pill.workbook:focus-visible { background:#8B3A2E; color:#FFFFFF; }
 .topic-pill.submit {
-  background: #FFFFFF; color: #0B1530; border: 1px solid #0B1530;
+  background: #8B3A2E;
 }
-.topic-pill.submit:hover, .topic-pill.submit:focus-visible { background: #0B1530; color: #FFFFFF; }
+.topic-pill.submit:hover, .topic-pill.submit:focus-visible { background: #A0452F; }
 @media (max-width: 560px) {
   .topic-pills { width: 100%; }
+}
+/* Five-button topic action row: Notes, Concept video / Lecture, Recall, Workbook, Submit workbook */
+.topic-actions { display: inline-flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-self: end; }
+.act {
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.10em; text-transform: uppercase;
+  padding: 9px 16px; border-radius: 999px;
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid transparent; white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.act .arrow { font-weight: 400; font-size: 13px; }
+.act-notes { background: #0B1530; color: #FFFFFF; border-color: #0B1530; }
+.act-notes:hover, .act-notes:focus-visible { background: #142A36; }
+.act-video { background: #C9A14A; color: #0B1530; border-color: #C9A14A; }
+.act-video:hover, .act-video:focus-visible { background: #B8924A; }
+.act-recall { background: #8B3A2E; color: #FFFFFF; border-color: #8B3A2E; }
+.act-recall:hover, .act-recall:focus-visible { background: #A0452F; }
+.act-workbook { background: transparent; color: #8B3A2E; border-color: #8B3A2E; }
+.act-workbook:hover, .act-workbook:focus-visible { background: #8B3A2E; color: #FFFFFF; }
+.act-submit { background: transparent; color: #0B1530; border-color: #0B1530; }
+.act-submit:hover, .act-submit:focus-visible { background: #0B1530; color: #FFFFFF; }
+/* Block-level video row (one video per subject) + coming-soon badge */
+.block-video { display: flex; align-items: center; gap: 14px 18px; flex-wrap: wrap; padding: 4px 0 14px; border-bottom: 1px solid rgba(11, 21, 48, 0.10); margin-bottom: 4px; }
+.block-video-note { font-size: 12.5px; color: #0B1530; opacity: 0.72; line-height: 1.5; }
+.act-soon { background: #EDE7DA; color: #7d735c; border-color: #d8cdb6; cursor: default; }
+.subject-note { font-size: 13px; color: #0B1530; opacity: 0.82; line-height: 1.55; margin: 2px 0 0; }
+.worksheet-tag { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #8B3A2E; margin: 0 0 3px; }
+.worksheet-due { display: inline-block; margin: 7px 0 0; font-size: 11px; font-weight: 800; letter-spacing: 0.03em; color: #142a36; background: #EDF1F3; border: 1px solid #1E3D4C; border-radius: 999px; padding: 3px 11px; }
+@media (max-width: 560px) {
+  .topic-pills, .topic-actions { width: 100%; }
 }
 
 /* Wednesday catch-up + Weekend quiz callouts
@@ -372,8 +394,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 <div class="hero-card">
   <div class="hero-content">
     <div class="hero-eyebrow">BIO 304 &middot; Week 5 of 8 &middot; Jul 6 to Jul 12 &middot; Nightly Pre-Work</div>
-    <h1 class="hero-headline">The nervous system and <span class="accent">the endocrine system.</span></h1>
-    <p class="hero-subhead">Four pre-work days. Six topics. The CNS and PNS, the senses that feed them, and the endocrine system that runs in parallel. Each topic page walks you through the reading, the fill-in-the-blank notes, the video, and then opens your nightly spaced-recall cards. Open one topic on Mon, Tue, Thu, Fri. Wednesday is catch-up and discussion.</p>
+    <h1 class="hero-headline">The nervous system and <span class="accent">the endocrine system.</span></h1><p class="hero-subhead">Two subjects this week. The nervous system on Monday with one video and two worksheets, and the endocrine system on Thursday with two worksheets (video coming soon). Each worksheet links its notes page, its spaced-recall cards, the printable lab, and the Canvas submit. Wednesday is your discussion. Special senses are not covered this term.</p>
     <div class="hero-ctas">
       <a href="index.html#week-5" class="cta-primary" target="_top">Back to Week 5 card</a>
       <a href="#days" class="cta-secondary">Jump to today's topic</a>
@@ -437,8 +458,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
     </div>
     <div class="deadline-item">
       <p class="deadline-label">Lab workbooks</p>
-      <p class="deadline-when">Sun, Jul 12</p>
-      <p class="deadline-what">All four submitted, 11:59 PM</p>
+      <p class="deadline-when">Tue to Sun</p>
+      <p class="deadline-what">Staggered, see each worksheet</p>
     </div>
     <div class="deadline-item">
       <p class="deadline-label">Quiz closes</p>
@@ -448,89 +469,99 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   </div>
 </div>
 
-<!-- ===== YOUR FOUR PRE-WORK DAYS (cream) ===== -->
+<!-- ===== YOUR TWO SUBJECTS THIS WEEK (cream) ===== -->
 <div class="days-section" id="days">
-  <div class="section-eyebrow">Your four pre-work days</div>
-  <h2 class="section-headline">Open one topic <span class="accent">per day</span>.</h2>
-  <p class="section-intro">Each topic links to its lecture page. The lecture page is the gate into your spaced-recall cards for that topic.</p>
+  <div class="section-eyebrow">Your week</div>
+  <h2 class="section-headline">Two subjects, <span class="accent">four worksheets</span>.</h2>
+  <p class="section-intro">Nervous system on Monday, endocrine on Thursday. One video per subject. Each worksheet has its notes page, its spaced-recall cards, the printable lab, and the Canvas submit link. <strong>Special senses are not covered this term.</strong></p>
 
   <div class="day-stack">
 
     <article class="day-card">
       <div class="day-head">
         <div class="day-num">MON 06</div>
-        <div class="day-meta">Day 17 . Pre-work</div>
+        <div class="day-meta">Nervous system . One video, two worksheets</div>
+      </div>
+      <div class="block-video">
+        <a class="act act-video" href="nervous-organization-concept-videos.html" target="_top">Watch the nervous system video <span class="arrow">&rarr;</span></a>
+        <span class="block-video-note">One video covers both worksheets. Posted Monday.</span>
       </div>
       <div class="topic-row">
         <div>
+          <p class="worksheet-tag">Worksheet 1</p>
           <p class="topic-name">CNS Organization: Brain and Spinal Cord</p>
           <p class="topic-blurb">Major brain regions, the spinal cord, and what each is responsible for.</p>
+          <p class="worksheet-due">Due Tue, Jul 7 &middot; 11:59 PM</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="cns-organization.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="cns-organization-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-cns-organization" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill workbook" href="workbook_day17_cns-organization-brain-and-spinal-cord.html" target="_top">Workbook <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074937" target="_top" rel="noopener">Submit workbook <span class="arrow">&rarr;</span></a></span>
-      </div>
-    </article>
-
-    <article class="day-card">
-      <div class="day-head">
-        <div class="day-num">TUE 07</div>
-        <div class="day-meta">Day 18 . Pre-work</div>
+        <div class="topic-actions">
+          <a class="act act-notes" href="cns-organization.html" target="_top">Notes <span class="arrow">&rarr;</span></a>
+          <a class="act act-recall" href="bio304-spaced-recall-prototype.html#topic=t-cns-organization" target="_top">Recall <span class="arrow">&rarr;</span></a>
+          <a class="act act-workbook" href="workbook_day17_cns-organization-brain-and-spinal-cord.html" target="_top">Workbook <span class="arrow">&rarr;</span></a>
+          <a class="act act-submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074937" target="_top" rel="noopener">Submit workbook <span class="arrow">&rarr;</span></a>
+        </div>
       </div>
       <div class="topic-row">
         <div>
+          <p class="worksheet-tag">Worksheet 2</p>
           <p class="topic-name">PNS and Autonomic Nervous System</p>
           <p class="topic-blurb">Cranial and spinal nerves, plus the sympathetic and parasympathetic split.</p>
+          <p class="worksheet-due">Due Wed, Jul 8 &middot; 11:59 PM</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="pns-autonomic.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="pns-autonomic-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-pns-autonomic" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill workbook" href="workbook_day18_pns-and-autonomic-nervous-system.html" target="_top">Workbook <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074939" target="_top" rel="noopener">Submit workbook <span class="arrow">&rarr;</span></a></span>
+        <div class="topic-actions">
+          <a class="act act-notes" href="pns-autonomic.html" target="_top">Notes <span class="arrow">&rarr;</span></a>
+          <a class="act act-recall" href="bio304-spaced-recall-prototype.html#topic=t-pns-autonomic" target="_top">Recall <span class="arrow">&rarr;</span></a>
+          <a class="act act-workbook" href="workbook_day18_pns-and-autonomic-nervous-system.html" target="_top">Workbook <span class="arrow">&rarr;</span></a>
+          <a class="act act-submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074939" target="_top" rel="noopener">Submit workbook <span class="arrow">&rarr;</span></a>
+        </div>
       </div>
     </article>
 
-    <aside class="day-card wed-card" aria-label="Wednesday catch-up">
+    <aside class="day-card wed-card" aria-label="Wednesday discussion">
       <div class="day-head">
         <div class="day-num">WED 08</div>
-        <div class="day-meta">Catch-up . Discussion</div>
+        <div class="day-meta">Discussion</div>
       </div>
-      <p class="wed-body">No new pre-work today. Run your Daily Review, post your initial thoughts in the <a href="week05_discussion.html" target="_top">Week 5 discussion thread</a>, and finish any lab workbook still open from Mon or Tue.</p>
+      <p class="wed-body">Post your initial thoughts in the <a href="week05_discussion.html" target="_top">Week 5 discussion</a>, run your Daily Review, and finish any nervous system workbook still open. Initial post due Friday, two replies due Sunday.</p>
     </aside>
 
     <article class="day-card">
       <div class="day-head">
         <div class="day-num">THU 09</div>
-        <div class="day-meta">Day 19 . Pre-work</div>
+        <div class="day-meta">Endocrine system . One video, two worksheets</div>
+      </div>
+      <div class="block-video">
+        <span class="act act-soon" aria-label="Endocrine video coming soon">Endocrine video &middot; coming soon</span>
+        <span class="block-video-note">The recorded endocrine lecture posts later this week. Until then, use the endocrine slides linked in each worksheet's notes page.</span>
       </div>
       <div class="topic-row">
         <div>
-          <p class="topic-name">Vision</p>
-          <p class="topic-blurb">Eye anatomy, image formation, and the visual pathway to the brain.</p>
-        </div>
-        <span class="topic-pills"><a class="topic-pill" href="vision.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="vision-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-vision" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill workbook" href="workbook_day19_vision.html" target="_top">Workbook <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074949" target="_top" rel="noopener">Submit workbook <span class="arrow">&rarr;</span></a></span>
-      </div>
-      <div class="topic-row">
-        <div>
-          <p class="topic-name">Hearing and Equilibrium</p>
-          <p class="topic-blurb">Outer, middle, inner ear. How sound becomes signal and how balance is sensed.</p>
-        </div>
-        <span class="topic-pills"><a class="topic-pill" href="hearing-equilibrium.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="hearing-equilibrium-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-hearing-equilibrium" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill workbook" href="workbook_day19_hearing-and-equilibrium.html" target="_top">Workbook <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9074983" target="_top" rel="noopener">Submit workbook <span class="arrow">&rarr;</span></a></span>
-      </div>
-    </article>
-
-    <article class="day-card">
-      <div class="day-head">
-        <div class="day-num">FRI 10</div>
-        <div class="day-meta">Day 20 . Pre-work . Quiz opens</div>
-      </div>
-      <div class="topic-row">
-        <div>
+          <p class="worksheet-tag">Worksheet 3</p>
           <p class="topic-name">Hormone Mechanisms</p>
           <p class="topic-blurb">How hormones reach targets and what they do once they get there.</p>
+          <p class="worksheet-due">Due Fri, Jul 10 &middot; 11:59 PM</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="hormone-mechanisms.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="hormone-mechanisms-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-hormone-mechanisms" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill workbook" href="workbook_day20_hormone-mechanisms.html" target="_top">Workbook <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075007" target="_top" rel="noopener">Submit workbook <span class="arrow">&rarr;</span></a></span>
+        <div class="topic-actions">
+          <a class="act act-notes" href="hormone-mechanisms.html" target="_top">Notes <span class="arrow">&rarr;</span></a>
+          <a class="act act-video" href="slides-endocrine-nonmajors.html" target="_top">Slides <span class="arrow">&rarr;</span></a>
+          <a class="act act-recall" href="bio304-spaced-recall-prototype.html#topic=t-hormone-mechanisms" target="_top">Recall <span class="arrow">&rarr;</span></a>
+          <a class="act act-workbook" href="workbook_day20_hormone-mechanisms.html" target="_top">Workbook <span class="arrow">&rarr;</span></a>
+          <a class="act act-submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075007" target="_top" rel="noopener">Submit workbook <span class="arrow">&rarr;</span></a>
+        </div>
       </div>
       <div class="topic-row">
         <div>
+          <p class="worksheet-tag">Worksheet 4</p>
           <p class="topic-name">Major Endocrine Glands</p>
           <p class="topic-blurb">Pituitary, thyroid, adrenals, pancreas, gonads. Who releases what.</p>
+          <p class="worksheet-due">Due Sun, Jul 12 &middot; 11:59 PM</p>
         </div>
-        <span class="topic-pills"><a class="topic-pill" href="major-endocrine-glands.html" target="_top">Notes <span class="arrow">&rarr;</span></a><a class="topic-pill video" href="major-endocrine-glands-video.html" target="_top">Concept video <span class="arrow">&rarr;</span></a><a class="topic-pill recall" href="bio304-spaced-recall-prototype.html#topic=t-major-glands" target="_top">Recall <span class="arrow">&rarr;</span></a><a class="topic-pill workbook" href="workbook_day20_major-endocrine-glands.html" target="_top">Workbook <span class="arrow">&rarr;</span></a><a class="topic-pill submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075071" target="_top" rel="noopener">Submit workbook <span class="arrow">&rarr;</span></a></span>
+        <div class="topic-actions">
+          <a class="act act-notes" href="major-endocrine-glands.html" target="_top">Notes <span class="arrow">&rarr;</span></a>
+          <a class="act act-video" href="slides-endocrine-nonmajors.html" target="_top">Slides <span class="arrow">&rarr;</span></a>
+          <a class="act act-recall" href="bio304-spaced-recall-prototype.html#topic=t-major-glands" target="_top">Recall <span class="arrow">&rarr;</span></a>
+          <a class="act act-workbook" href="workbook_day20_major-endocrine-glands.html" target="_top">Workbook <span class="arrow">&rarr;</span></a>
+          <a class="act act-submit" href="https://lrccd.instructure.com/courses/317432/assignments/9075071" target="_top" rel="noopener">Submit workbook <span class="arrow">&rarr;</span></a>
+        </div>
       </div>
     </article>
 
