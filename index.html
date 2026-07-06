@@ -505,46 +505,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   }
   html { scroll-behavior: auto; }
 }
-
-/* ===== WEEKLY RELEASE LOCK (added) =====
-   A week's links unlock Sunday 8:00 PM Pacific (night before its Monday start)
-   and stay open the rest of the term. Locked weeks show their open date. */
-.week-card.is-locked { background: #FBFAF7; border-style: dashed; border-color: rgba(11, 21, 48, 0.30); }
-.week-card.is-locked .week-num { color: #9aa3ad; }
-.week-card.is-locked .week-title { color: #5a6573; }
-.week-card.is-locked .week-topics { opacity: 0.72; }
-.week-lock-badge {
-  position: absolute; top: -11px; right: 16px;
-  background: #0B1530; color: #F5F1E8;
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 5px 10px; border-radius: 3px;
-  box-shadow: 0 2px 6px rgba(11, 21, 48, 0.18);
-}
-.week-lock-note {
-  display: flex; align-items: center; gap: 8px; margin-top: auto;
-  font-size: 12.5px; font-weight: 700; color: #5a6573; line-height: 1.4;
-}
-.week-lock-note svg { flex: none; }
-
-/* ===== INSTRUCTOR PREVIEW TOGGLE (client-side preview only, not security) ===== */
-.instr-toggle {
-  position: fixed; right: 16px; bottom: 16px; z-index: 9998;
-  background: #0B1530; color: #F5F1E8;
-  border: 1px solid #C9A14A; border-radius: 999px;
-  padding: 10px 16px; font-family: inherit;
-  font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-  cursor: pointer; box-shadow: 0 4px 14px rgba(11, 21, 48, 0.28);
-}
-.instr-toggle:hover { background: #142A36; }
-.instr-toggle:focus-visible { outline: 3px solid #C9A14A; outline-offset: 3px; }
-.instr-toggle.is-on { background: #C9A14A; color: #0B1530; border-color: #0B1530; }
-.instr-toggle.is-on:hover { background: #D9B065; }
-.instr-banner {
-  background: #C9A14A; color: #0B1530;
-  font-size: 13px; font-weight: 700; text-align: center;
-  padding: 9px 16px; letter-spacing: 0.04em;
-}
 </style>
 </head>
 <body>
@@ -552,7 +512,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 
 <!-- ===== SITE HEADER ===== -->
 <header class="site-header">
-  <a href="https://drsrennie-stack.github.io/nonmajors/index.html" class="site-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+  <a href="index.html" class="site-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
     <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
       <g transform="translate(0, 18)">
         <g transform="translate(60, 0) rotate(8 0 130)">
@@ -585,7 +545,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
     <h1 class="hero-headline">Eight weeks. Online. <span class="accent">Built to make it possible.</span></h1>
     <p class="hero-subhead">This is your course home for BIO 304 Human Anatomy and Physiology. The pace is real and the design is built to scaffold the effort. Four pre-work days a week (reading, fill-in-the-blank notes, video, then flashcards), one lab-and-discussion Wednesday, and a quiz that opens Friday and closes Sunday. Start with the syllabus, then take it one week at a time.</p>
     <div class="hero-ctas">
-      <a href="https://drsrennie-stack.github.io/nonmajors/biol304_syllabus.html" class="cta-primary" target="_top">Open the syllabus</a>
+      <a href="biol304_syllabus.html" class="cta-primary" target="_top">Open the syllabus</a>
       <a href="#weeks" class="cta-secondary">Jump to the eight weeks</a>
     </div>
   </div>
@@ -658,8 +618,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       <h3 class="week-title">Foundations, Cell, Membrane Transport</h3>
       <p class="week-topics">Levels of organization, anatomical terminology, body regions, homeostasis and feedback, cell structure and organelles, membrane transport.</p>
       <div class="week-actions">
-        <a class="week-pill week-pill-prework" href="https://drsrennie-stack.github.io/nonmajors/week01_prework.html" target="_top">Pre-work</a>
-        <a class="week-pill week-pill-discussion" href="https://drsrennie-stack.github.io/nonmajors/week01_discussion.html" target="_top">Discussion</a>
+        <a class="week-pill week-pill-prework" href="week01_prework.html" target="_top">Pre-work</a>
+        <a class="week-pill week-pill-discussion" href="week01_discussion.html" target="_top">Discussion</a>
       </div>
     </li>
 
@@ -669,8 +629,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       <h3 class="week-title">Tissues &amp; Integument</h3>
       <p class="week-topics">Epithelial tissue classification, connective tissues, muscle and nervous tissue overview, skin structure and layers, skin functions and accessory structures.</p>
       <div class="week-actions">
-        <a class="week-pill week-pill-prework" href="https://drsrennie-stack.github.io/nonmajors/week02_prework.html" target="_top">Pre-work</a>
-        <a class="week-pill week-pill-discussion" href="https://drsrennie-stack.github.io/nonmajors/week02_discussion.html" target="_top">Discussion</a>
+        <a class="week-pill week-pill-prework" href="week02_prework.html" target="_top">Pre-work</a>
+        <a class="week-pill week-pill-discussion" href="week02_discussion.html" target="_top">Discussion</a>
       </div>
     </li>
 
@@ -680,8 +640,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       <h3 class="week-title">Skeletal System</h3>
       <p class="week-topics">Bone tissue and bone growth, the axial skeleton, the appendicular skeleton, joints and body movements.</p>
       <div class="week-actions">
-        <a class="week-pill week-pill-prework" href="https://drsrennie-stack.github.io/nonmajors/week03_prework.html" target="_top">Pre-work</a>
-        <a class="week-pill week-pill-discussion" href="https://drsrennie-stack.github.io/nonmajors/week03_discussion.html" target="_top">Discussion</a>
+        <a class="week-pill week-pill-prework" href="week03_prework.html" target="_top">Pre-work</a>
+        <a class="week-pill week-pill-discussion" href="week03_discussion.html" target="_top">Discussion</a>
       </div>
     </li>
 
@@ -691,19 +651,20 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       <h3 class="week-title">Muscle &amp; Nervous System Intro</h3>
       <p class="week-topics">Skeletal muscle microanatomy, motor units and muscle mechanics, sliding filament and the cross-bridge cycle, neurons and resting membrane potential, action potentials and synaptic transmission.</p>
       <div class="week-actions">
-        <a class="week-pill week-pill-prework" href="https://drsrennie-stack.github.io/nonmajors/week04_prework.html" target="_top">Pre-work</a>
-        <a class="week-pill week-pill-discussion" href="https://drsrennie-stack.github.io/nonmajors/week04_discussion.html" target="_top">Discussion</a>
+        <a class="week-pill week-pill-prework" href="week04_prework.html" target="_top">Pre-work</a>
+        <a class="week-pill week-pill-discussion" href="week04_discussion.html" target="_top">Discussion</a>
       </div>
     </li>
 
     <li class="week-card" id="week-5" data-week="5">
       <div class="week-num">05</div>
       <div class="week-label">Week 5 &middot; Jul 6 to Jul 12</div>
-      <h3 class="week-title">Nervous System, Senses, Endocrine</h3>
-      <p class="week-topics">CNS organization, PNS and autonomic, vision, hearing and equilibrium, hormone mechanisms, major endocrine glands.</p>
+      <h3 class="week-title">Nervous System &amp; Endocrine</h3>
+      <p class="week-topics">CNS organization, PNS and autonomic nervous system, reflexes, hormone mechanisms, and the major endocrine glands. Special senses are not covered this term. The endocrine lecture posts later this week.</p>
       <div class="week-actions">
-        <a class="week-pill week-pill-prework" href="https://drsrennie-stack.github.io/nonmajors/week05_prework.html" target="_top">Pre-work</a>
-        <a class="week-pill week-pill-discussion" href="https://drsrennie-stack.github.io/nonmajors/week05_discussion.html" target="_top">Discussion</a>
+        <a class="week-pill week-pill-prework" href="week05_prework.html" target="_top">Pre-work</a>
+        <a class="week-pill week-pill-lab" href="nervous-organization-concept-videos.html" target="_top">Lecture</a>
+        <a class="week-pill week-pill-discussion" href="week05_discussion.html" target="_top">Discussion</a>
       </div>
     </li>
 
@@ -713,8 +674,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       <h3 class="week-title">Blood &amp; Cardiovascular</h3>
       <p class="week-topics">Blood composition and hemopoiesis, hemostasis and blood typing, heart anatomy and the cardiac cycle, cardiac conduction, blood vessels and hemodynamics.</p>
       <div class="week-actions">
-        <a class="week-pill week-pill-prework" href="https://drsrennie-stack.github.io/nonmajors/week06_prework.html" target="_top">Pre-work</a>
-        <a class="week-pill week-pill-discussion" href="https://drsrennie-stack.github.io/nonmajors/week06_discussion.html" target="_top">Discussion</a>
+        <a class="week-pill week-pill-prework" href="week06_prework.html" target="_top">Pre-work</a>
+        <a class="week-pill week-pill-discussion" href="week06_discussion.html" target="_top">Discussion</a>
       </div>
     </li>
 
@@ -724,8 +685,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       <h3 class="week-title">Immune, Respiratory, Digestive</h3>
       <p class="week-topics">Lymphatic system and innate immunity, adaptive immunity, respiratory anatomy and mechanics, gas exchange and transport, GI anatomy and motility, digestion and absorption.</p>
       <div class="week-actions">
-        <a class="week-pill week-pill-prework" href="https://drsrennie-stack.github.io/nonmajors/week07_prework.html" target="_top">Pre-work</a>
-        <a class="week-pill week-pill-discussion" href="https://drsrennie-stack.github.io/nonmajors/week07_discussion.html" target="_top">Discussion</a>
+        <a class="week-pill week-pill-prework" href="week07_prework.html" target="_top">Pre-work</a>
+        <a class="week-pill week-pill-discussion" href="week07_discussion.html" target="_top">Discussion</a>
       </div>
     </li>
 
@@ -735,8 +696,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       <h3 class="week-title">Renal, Fluid Balance, Reproductive</h3>
       <p class="week-topics">Kidney anatomy and glomerular filtration, tubular function, fluid electrolyte and acid-base balance, male and female reproductive systems, basics of pregnancy A&amp;P.</p>
       <div class="week-actions">
-        <a class="week-pill week-pill-prework" href="https://drsrennie-stack.github.io/nonmajors/week08_prework.html" target="_top">Pre-work</a>
-        <a class="week-pill week-pill-discussion" href="https://drsrennie-stack.github.io/nonmajors/week08_discussion.html" target="_top">Discussion</a>
+        <a class="week-pill week-pill-prework" href="week08_prework.html" target="_top">Pre-work</a>
+        <a class="week-pill week-pill-discussion" href="week08_discussion.html" target="_top">Discussion</a>
       </div>
     </li>
 
@@ -747,7 +708,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 <div class="grading-section" id="grading">
   <div class="section-eyebrow">How you are graded</div>
   <h2 class="section-headline">Four components, <span class="accent">four kinds of learning</span>.</h2>
-  <p class="section-intro">Pre-work engagement, lab workbooks, weekly discussions, and weekly quizzes. Full breakdown, weights, and grading scale are in the <a href="https://drsrennie-stack.github.io/nonmajors/biol304_syllabus.html" target="_top">syllabus</a>.</p>
+  <p class="section-intro">Pre-work engagement, lab workbooks, weekly discussions, and weekly quizzes. Full breakdown, weights, and grading scale are in the <a href="biol304_syllabus.html" target="_top">syllabus</a>.</p>
 </div>
 
 <!-- ===== HARD DEADLINES (dark) ===== -->
@@ -782,42 +743,42 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
       <h3 class="tools-title">Weekly pre-work hubs</h3>
       <p class="tools-desc">Eight hubs, one per week. Each hub has the four pre-work days with topic links, the Wednesday catch-up note, and the weekend quiz window. The 40% engagement grade lives here. Pick the week from the cards below.</p>
     </a></li>
-    <li><a class="tools-card" href="https://drsrennie-stack.github.io/nonmajors/discussions.html" target="_top">
+    <li><a class="tools-card" href="discussions.html" target="_top">
       <div class="tools-eyebrow">Weekly</div>
       <h3 class="tools-title">Discussions</h3>
       <p class="tools-desc">All eight weekly discussion prompts in one place. Post Friday, reply Sunday.</p>
     </a></li>
-    <li><a class="tools-card" href="https://drsrennie-stack.github.io/nonmajors/biol304_textbook.html" target="_top">
+    <li><a class="tools-card" href="biol304_textbook.html" target="_top">
       <div class="tools-eyebrow">Reference</div>
       <h3 class="tools-title">Textbook (OpenStax 2e)</h3>
       <p class="tools-desc">Free, online or PDF. No purchase, no access code.</p>
     </a></li>
-    <li><a class="tools-card" href="https://drsrennie-stack.github.io/nonmajors/biol304_reading_map.html" target="_top">
+    <li><a class="tools-card" href="biol304_reading_map.html" target="_top">
       <div class="tools-eyebrow">Reference</div>
       <h3 class="tools-title">Reading map</h3>
       <p class="tools-desc">Which textbook section supports each topic, by day.</p>
     </a></li>
-    <li><a class="tools-card" href="https://drsrennie-stack.github.io/nonmajors/biol304_tech_setup.html" target="_top">
+    <li><a class="tools-card" href="biol304_tech_setup.html" target="_top">
       <div class="tools-eyebrow">Setup</div>
       <h3 class="tools-title">Tech setup &amp; Honorlock</h3>
       <p class="tools-desc">Browser, webcam, microphone, quiet space. Do this before your first quiz.</p>
     </a></li>
-    <li><a class="tools-card" href="https://drsrennie-stack.github.io/nonmajors/submission-directions.html" target="_top">
+    <li><a class="tools-card" href="submission-directions.html" target="_top">
       <div class="tools-eyebrow">Setup</div>
       <h3 class="tools-title">Submission directions</h3>
       <p class="tools-desc">How and where to turn things in. Filename convention is here.</p>
     </a></li>
-    <li><a class="tools-card" href="https://drsrennie-stack.github.io/nonmajors/biol304_how_to_reach_me.html" target="_top">
+    <li><a class="tools-card" href="biol304_how_to_reach_me.html" target="_top">
       <div class="tools-eyebrow">Support</div>
       <h3 class="tools-title">How to reach me</h3>
       <p class="tools-desc">Forum, email, or Zoom. Three channels, three purposes.</p>
     </a></li>
-    <li><a class="tools-card" href="https://drsrennie-stack.github.io/nonmajors/ai_policy.html" target="_top">
+    <li><a class="tools-card" href="ai_policy.html" target="_top">
       <div class="tools-eyebrow">Read first</div>
       <h3 class="tools-title">AI policy</h3>
       <p class="tools-desc">What AI use is allowed, what isn't, and how detection works. Read this before the contract.</p>
     </a></li>
-    <li><a class="tools-card" href="https://drsrennie-stack.github.io/nonmajors/ai_honor_contract.html" target="_top">
+    <li><a class="tools-card" href="ai_honor_contract.html" target="_top">
       <div class="tools-eyebrow">Week 1</div>
       <h3 class="tools-title">AI Honor Contract</h3>
       <p class="tools-desc">Required, due Tuesday June 9. Sign and upload via Canvas.</p>
@@ -830,7 +791,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   <div class="cta-eyebrow">Your first step</div>
   <h2 class="cta-headline">Ready to begin? Open the <span class="accent">syllabus</span>.</h2>
   <p class="cta-subhead">The syllabus has the day-by-day flow grid, the full grading detail, every policy, and the resource index. Read it, open Week 1, and we begin June 8.</p>
-  <a href="https://drsrennie-stack.github.io/nonmajors/biol304_syllabus.html" class="cta-button" target="_top">Open the syllabus</a>
+  <a href="biol304_syllabus.html" class="cta-button" target="_top">Open the syllabus</a>
   <p class="cta-signoff">Looking forward to a great summer with you. Dr. Sharilyn Rennie</p>
 </div>
 
@@ -840,7 +801,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 <footer class="footer-section">
   <div class="footer-top">
     <div>
-      <a href="https://drsrennie-stack.github.io/nonmajors/index.html" class="footer-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+      <a href="index.html" class="footer-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
         <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
           <g transform="translate(0, 18)">
             <g transform="translate(60, 0) rotate(8 0 130)">
@@ -866,23 +827,23 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
     </div>
     <div>
       <div class="footer-col-header">Start here</div>
-      <a class="footer-link" href="https://drsrennie-stack.github.io/nonmajors/biol304_syllabus.html" target="_top">Syllabus</a>
+      <a class="footer-link" href="biol304_syllabus.html" target="_top">Syllabus</a>
       <a class="footer-link" href="#weeks">Eight weeks</a>
       <a class="footer-link" href="#grading">How you are graded</a>
     </div>
     <div>
       <div class="footer-col-header">Study tools</div>
       <a class="footer-link" href="index.html#weeks" target="_top">Weekly pre-work</a>
-      <a class="footer-link" href="https://drsrennie-stack.github.io/nonmajors/discussions.html" target="_top">Discussions</a>
-      <a class="footer-link" href="https://drsrennie-stack.github.io/nonmajors/biol304_textbook.html" target="_top">OpenStax textbook</a>
-      <a class="footer-link" href="https://drsrennie-stack.github.io/nonmajors/biol304_reading_map.html" target="_top">Reading map</a>
+      <a class="footer-link" href="discussions.html" target="_top">Discussions</a>
+      <a class="footer-link" href="biol304_textbook.html" target="_top">OpenStax textbook</a>
+      <a class="footer-link" href="biol304_reading_map.html" target="_top">Reading map</a>
     </div>
     <div>
       <div class="footer-col-header">Policies</div>
-      <a class="footer-link" href="https://drsrennie-stack.github.io/nonmajors/biol304_accessibility.html" target="_top">Accessibility</a>
-      <a class="footer-link" href="https://drsrennie-stack.github.io/nonmajors/biol304_rsi_statement.html" target="_top">RSI statement</a>
-      <a class="footer-link" href="https://drsrennie-stack.github.io/nonmajors/ai_policy.html" target="_top">AI policy (explainer)</a>
-      <a class="footer-link" href="https://drsrennie-stack.github.io/nonmajors/ai_honor_contract.html" target="_top">AI honor contract</a>
+      <a class="footer-link" href="biol304_accessibility.html" target="_top">Accessibility</a>
+      <a class="footer-link" href="biol304_rsi_statement.html" target="_top">RSI statement</a>
+      <a class="footer-link" href="ai_policy.html" target="_top">AI policy (explainer)</a>
+      <a class="footer-link" href="ai_honor_contract.html" target="_top">AI honor contract</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -929,101 +890,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
         card.appendChild(flag);
       }
     }
-  })();
-</script>
-<script>
-  /* Weekly release gating — each week's links unlock Sunday 8:00 PM Pacific
-     (the night before its Monday start) and stay open the rest of the term.
-     8:00 PM PDT the Sunday before = Monday 03:00 UTC, so the open instant for
-     each week is its Monday start date at 03:00 UTC. Past/current weeks keep
-     their links; not-yet-open weeks show their open date instead. */
-  (function () {
-    /* Instructor preview: when unlocked, skip all date gating entirely. */
-    if (sessionStorage.getItem('bio304-instructor') === 'on') return;
-    var starts = ['2026-06-08','2026-06-15','2026-06-22','2026-06-29',
-                  '2026-07-06','2026-07-13','2026-07-20','2026-07-27'];
-    var now = Date.now();
-    var fmt = new Intl.DateTimeFormat('en-US', {
-      weekday: 'long', month: 'long', day: 'numeric',
-      hour: 'numeric', minute: '2-digit', timeZone: 'America/Los_Angeles'
-    });
-    var lockIcon = '<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">' +
-      '<path d="M7 10V7a5 5 0 0 1 10 0v3" fill="none" stroke="#5a6573" stroke-width="2"/>' +
-      '<rect x="4" y="10" width="16" height="10" rx="2" fill="#5a6573"/></svg>';
-    starts.forEach(function (monday, i) {
-      var openAt = Date.parse(monday + 'T03:00:00Z');
-      if (now >= openAt) return; // already open — leave links active
-      var card = document.querySelector('.week-card[data-week="' + (i + 1) + '"]');
-      if (!card) return;
-      card.classList.add('is-locked');
-      var when = fmt.format(new Date(openAt));
-      var titleEl = card.querySelector('.week-title');
-      var title = titleEl ? titleEl.textContent : ('Week ' + (i + 1));
-      var badge = document.createElement('span');
-      badge.className = 'week-lock-badge';
-      badge.textContent = 'Opens later';
-      card.appendChild(badge);
-      var actions = card.querySelector('.week-actions');
-      if (actions) {
-        var note = document.createElement('p');
-        note.className = 'week-lock-note';
-        note.setAttribute('role', 'note');
-        note.innerHTML = lockIcon + '<span>Opens ' + when + ' Pacific</span>';
-        actions.parentNode.replaceChild(note, actions);
-      }
-      card.setAttribute('aria-label', title + ', opens ' + when + ' Pacific');
-    });
-  })();
-</script>
-<script>
-  /* ===== INSTRUCTOR PREVIEW TOGGLE =====
-     Passphrase unlocks all date-gated week cards so the instructor can verify
-     setup before release. State held in sessionStorage (clears when the tab
-     closes). Client-side preview convenience only — not real access control. */
-  (function () {
-    var KEY = 'bio304-instructor';
-    var PASS = 'Stella';
-
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'instr-toggle';
-    btn.setAttribute('aria-pressed', 'false');
-    document.body.appendChild(btn);
-
-    function isOn() { return sessionStorage.getItem(KEY) === 'on'; }
-
-    function showBanner() {
-      if (document.querySelector('.instr-banner')) return;
-      var b = document.createElement('div');
-      b.className = 'instr-banner';
-      b.setAttribute('role', 'status');
-      b.textContent = 'Instructor preview — all weeks unlocked. Students still see the release schedule.';
-      var main = document.getElementById('main');
-      main.parentNode.insertBefore(b, main);
-    }
-
-    function render() {
-      if (isOn()) {
-        btn.textContent = 'Instructor view: on — exit';
-        btn.classList.add('is-on');
-        btn.setAttribute('aria-pressed', 'true');
-        showBanner();
-      } else {
-        btn.textContent = 'Instructor view';
-        btn.classList.remove('is-on');
-        btn.setAttribute('aria-pressed', 'false');
-      }
-    }
-
-    btn.addEventListener('click', function () {
-      if (isOn()) { sessionStorage.removeItem(KEY); location.reload(); return; }
-      var entry = window.prompt('Enter the instructor passphrase to unlock all weeks for preview:');
-      if (entry === null) return;
-      if (entry === PASS) { sessionStorage.setItem(KEY, 'on'); location.reload(); }
-      else { window.alert('Incorrect passphrase.'); }
-    });
-
-    render();
   })();
 </script>
 </body>
