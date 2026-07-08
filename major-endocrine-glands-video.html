@@ -51,7 +51,7 @@ h1 .accent{color:#8B3A2E}
 <section class="intro pad">
   <p class="eyebrow">BIO 304 &middot; Human Anatomy &amp; Physiology &middot; Week 5</p>
   <h1>Major Endocrine Glands <span class="accent">concept video</span></h1>
-  <p class="lead">Watch the full walkthrough, or jump to a chapter once the video is posted.</p>
+  <p class="lead">Watch the full walkthrough, or jump to any chapter using the list.</p>
 </section>
 <main class="layout pad">
   <div class="frame" id="video">
@@ -64,9 +64,16 @@ h1 .accent{color:#8B3A2E}
   <nav class="chapters" aria-label="Video chapters">
     <h2>Chapters</h2>
     <ul class="ch-list" id="ch-list">
-      <li><button class="ch" type="button" data-s="0"><span class="t">00:00</span><span class="label">Full walkthrough</span></button></li>
+      <li><button class="ch" type="button" data-s="0"><span class="t">00:00</span><span class="label">Endocrine system overview and purpose</span></button></li>
+      <li><button class="ch" type="button" data-s="176"><span class="t">02:56</span><span class="label">Hormone types and how they act</span></button></li>
+      <li><button class="ch" type="button" data-s="303"><span class="t">05:03</span><span class="label">Major glands and their roles</span></button></li>
+      <li><button class="ch" type="button" data-s="520"><span class="t">08:40</span><span class="label">Hypothalamus and pituitary control</span></button></li>
+      <li><button class="ch" type="button" data-s="636"><span class="t">10:36</span><span class="label">Posterior pituitary hormones and effects</span></button></li>
+      <li><button class="ch" type="button" data-s="903"><span class="t">15:03</span><span class="label">Thyroid and calcium regulation</span></button></li>
+      <li><button class="ch" type="button" data-s="1129"><span class="t">18:49</span><span class="label">Pancreas hormones and blood sugar</span></button></li>
+      <li><button class="ch" type="button" data-s="1351"><span class="t">22:31</span><span class="label">How hormones stay balanced</span></button></li>
     </ul>
-    <p class="note">Add chapters and set their times when you post the video.</p>
+    <p class="note">Click any chapter to jump the video to that point.</p>
   </nav>
 </main>
 <footer class="site-footer pad">
@@ -77,18 +84,18 @@ h1 .accent{color:#8B3A2E}
    Leave it empty ("") to show the "coming soon" placeholder.
    Chapter times are seconds, set with data-s on each button. */
 (function(){
-  var LOOM_ID = "";
-  var EXTRA = "";
+  var LOOM_ID = "005a4db7195e46109dd75752d40c517d";
+  var EXTRA = "hide_owner=true&hideEmbedTopBar=true";
   var BASE = "https://www.loom.com/embed/" + LOOM_ID;
   var player = document.getElementById("player");
   var empty = document.getElementById("frame-empty");
   var buttons = Array.prototype.slice.call(document.querySelectorAll(".ch"));
   if(!LOOM_ID){ player.hidden = true; empty.hidden = false; return; }
-  player.src = BASE;
+  player.src = EXTRA ? BASE + "?" + EXTRA : BASE;
   buttons.forEach(function(b){
     b.addEventListener("click", function(){
       var s = b.getAttribute("data-s");
-      player.src = BASE + "?t=" + s + "&autoplay=1";
+      player.src = BASE + "?" + (EXTRA ? EXTRA + "&" : "") + "t=" + s + "&autoplay=1";
       buttons.forEach(function(x){ x.removeAttribute("aria-current"); });
       b.setAttribute("aria-current","true");
       document.getElementById("video").scrollIntoView({behavior:"smooth",block:"nearest"});
