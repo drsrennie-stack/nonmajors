@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Respiratory System Case Passport, BIO 304 Module 13</title>
+<meta name="description" content="A three-panel, hand-drawn case passport for the respiratory system. BIO 304 Human Anatomy and Physiology, Module 13.">
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+:root{
+  --ink:#0B1530; --rust:#8B3A2E; --rust-hover:#A0452F; --gold:#C9A14A;
+  --dark:#060A18; --border:#8C90A0; --white:#FFFFFF; --muted:#6B7180;
+  --tint:#F3F4F7;
+  --rest-shadow:0 1px 3px rgba(11,21,48,0.06); --hover-shadow:0 10px 22px rgba(11,21,48,0.12);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+html,body{margin:0;padding:0;}
+body{font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif;
+  background:var(--white);color:var(--ink);font-size:17px;line-height:1.6;}
+a{color:inherit;}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,[tabindex]:focus-visible{
+  outline:3px solid var(--rust);outline-offset:3px;border-radius:4px;}
+.skip-link{position:absolute;top:-100px;left:8px;background:var(--ink);color:var(--white);padding:12px 20px;text-decoration:none;font-weight:700;border-radius:4px;z-index:9999;letter-spacing:.04em;}
+.skip-link:focus{top:8px;}
+.wrap{max-width:920px;margin:0 auto;padding:0 max(20px,5vw);}
+.site-header{background:var(--white);border-bottom:0.5px solid rgba(11,21,48,0.10);padding:22px max(20px,5vw);}
+.site-logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none;}
+.site-logo svg{height:50px;width:auto;display:block;}
+.logo-text{display:flex;flex-direction:column;gap:3px;}
+.logo-title{font-size:25px;font-weight:800;letter-spacing:-0.02em;color:var(--ink);line-height:1;}
+.logo-title .logo-accent{color:var(--rust);}
+.logo-sub{font-size:11px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--ink);opacity:.72;}
+.progress-bar{position:sticky;top:0;z-index:30;background:var(--white);border-bottom:0.5px solid rgba(11,21,48,0.12);padding:10px 0;}
+.progress-inner{max-width:920px;margin:0 auto;padding:0 max(20px,5vw);display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.progress-inner p{margin:0;font-weight:700;font-size:15px;}
+.track{flex:1;min-width:160px;height:10px;background:var(--tint);border:1px solid var(--border);border-radius:20px;overflow:hidden;}
+.track span{display:block;height:100%;width:0;background:var(--gold);transition:width 240ms ease;}
+.masthead{padding:44px 0 8px;}
+.eyebrow{font-size:12px;font-weight:700;color:var(--rust);letter-spacing:.26em;text-transform:uppercase;margin:0 0 16px;}
+h1{font-size:clamp(32px,5vw,46px);font-weight:800;color:var(--ink);letter-spacing:-0.025em;line-height:1.08;margin:0 0 12px;}
+h1 .accent{color:var(--rust);}
+.subhead{font-size:19px;font-weight:700;color:var(--ink);opacity:.72;margin:0 0 8px;}
+h2{font-size:clamp(23px,3vw,30px);font-weight:800;letter-spacing:-0.02em;line-height:1.14;color:var(--ink);margin:0 0 12px;}
+h2 .accent{color:var(--rust);}
+h3{font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-0.01em;margin:20px 0 8px;}
+.lead{font-size:16.5px;opacity:.86;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:24px 22px;margin:18px 0;box-shadow:var(--rest-shadow);}
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:10px;}
+.meta-grid .box{border:1px solid var(--border);border-radius:8px;padding:12px 14px;background:var(--tint);}
+.meta-grid .box strong{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:var(--rust);font-weight:700;margin-bottom:5px;}
+ul.clean{margin:6px 0 0;padding-left:20px;} ul.clean li{margin:6px 0;}
+.casebar{background:var(--dark);color:var(--white);border-radius:8px;padding:22px 24px;margin:18px 0;}
+.casebar .cb-label{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px;}
+.casebar h2{color:var(--white);}
+.casebar p{margin:8px 0 0;opacity:.9;}
+.unlock-banner{background:var(--dark);color:var(--white);border-left:4px solid var(--gold);border-radius:8px;padding:14px 18px;margin:16px 0;font-size:15px;}
+.unlock-banner strong{color:var(--gold);}
+.field-note{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--rust);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px;}
+.field-note .fn-label{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--rust);display:block;margin-bottom:4px;}
+.field-note p{margin:0;}
+.panel{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--rust);border-radius:8px;margin:18px 0;box-shadow:var(--rest-shadow);overflow:hidden;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+.panel.upcoming{border-style:dashed;border-left-style:solid;}
+.panel.done{border-color:var(--gold);border-left-color:var(--gold);}
+.pg-head{width:100%;text-align:left;background:transparent;border:0;cursor:pointer;padding:18px 20px;display:flex;align-items:center;gap:16px;font-family:inherit;color:var(--ink);}
+.pg-head:hover{background:rgba(11,21,48,0.02);}
+.pg-num{flex:none;font-size:30px;font-weight:800;color:var(--rust);letter-spacing:-0.02em;line-height:1;min-width:34px;}
+.panel.done .pg-num{color:var(--gold);}
+.pg-title{flex:1;}
+.pg-title .tag{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);display:block;margin-bottom:3px;}
+.pg-title .name{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-0.015em;}
+.pg-toggle{flex:none;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);}
+.pg-body{padding:0 20px 22px;border-top:0.5px solid rgba(11,21,48,0.12);}
+.pg-body[hidden]{display:none;}
+.make{font-weight:700;margin:16px 0 2px;}
+.setup{background:var(--tint);border-left:4px solid var(--gold);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:15px;}
+.setup strong{color:var(--rust);}
+.case-note{background:var(--tint);border:1px solid var(--border);border-left:5px solid var(--ink);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:15px;}
+.case-note .cn-label{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:4px;}
+.case-note p{margin:0;}
+.step-count{font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px;}
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:step;}
+li.step{position:relative;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px 16px 14px 54px;margin:10px 0;}
+li.step[hidden]{display:none;}
+li.step::before{counter-increment:step;content:counter(step);position:absolute;left:14px;top:13px;width:28px;height:28px;border-radius:50%;background:var(--tint);border:1px solid var(--ink);color:var(--ink);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px;}
+li.step.done{background:var(--tint);border-color:var(--gold);}
+li.step.done::before{content:"\2713";background:var(--gold);color:var(--ink);border-color:var(--gold);}
+li.step .step-text{display:block;margin-bottom:10px;}
+.step-mark{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;cursor:pointer;}
+.step-mark input{width:20px;height:20px;}
+.btn{font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-radius:4px;padding:13px 22px;border:1px solid var(--rust);background:var(--rust);color:var(--white);transition:background .2s ease;}
+.btn:hover{background:var(--rust-hover);}
+.btn.secondary{background:var(--white);color:var(--ink);border:1px solid var(--border);}
+.btn.secondary:hover{border-color:var(--rust);}
+.btn.reveal{background:var(--white);color:var(--rust);border:1px solid var(--rust);padding:9px 15px;letter-spacing:.1em;}
+.btn.reveal:hover{background:var(--tint);}
+.btn.reveal[aria-disabled="true"]{color:var(--muted);border-color:var(--border);cursor:not-allowed;}
+.btn.reveal[aria-disabled="true"]:hover{background:var(--white);}
+.btn.small{padding:8px 13px;letter-spacing:.08em;}
+.photo-box{display:flex;align-items:flex-start;gap:10px;margin:16px 0 6px;background:var(--tint);border:1px solid var(--border);border-radius:8px;padding:12px 14px;}
+.photo-box input{margin-top:3px;width:20px;height:20px;flex:none;}
+.photo-box label{font-weight:700;margin:0;}
+.pg-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:14px;}
+.stampmark{flex:none;display:none;transform:rotate(-7deg);border:3px double var(--gold);color:var(--rust);border-radius:8px;padding:6px 12px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;font-size:12px;}
+.panel.done .stampmark{display:inline-block;}
+.msg{margin:10px 0 0;font-weight:700;color:var(--rust);font-size:15px;} .msg:empty{display:none;}
+.target{background:var(--tint);border:1px solid var(--ink);border-radius:8px;padding:14px 16px;margin-top:10px;}
+.target[hidden]{display:none;}
+.target h4{margin:2px 0 8px;color:var(--rust);font-size:14px;text-transform:uppercase;letter-spacing:.1em;}
+.target ul{margin:6px 0;padding-left:20px;} .target li{margin:5px 0;font-size:15px;}
+.target .how{color:var(--muted);font-style:italic;}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+.footer-section{background:var(--dark);color:var(--white);padding:48px max(20px,5vw) 30px;margin-top:36px;}
+.footer-inner{max-width:920px;margin:0 auto;}
+.footer-logo{display:inline-flex;align-items:center;gap:12px;text-decoration:none;margin-bottom:14px;}
+.footer-logo svg{height:44px;width:auto;}
+.footer-logo .logo-title{color:var(--white);font-size:22px;}
+.footer-logo .logo-accent{color:var(--gold);}
+.footer-logo .logo-sub{color:var(--white);opacity:.62;}
+.footer-tagline{font-size:14px;opacity:.72;line-height:1.6;max-width:420px;margin:0 0 22px;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border-top:1px solid rgba(245,241,232,0.16);padding-top:20px;}
+.footer-copyright{font-size:12px;opacity:.6;letter-spacing:.03em;}
+.footer-byline{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;}
+@media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important;scroll-behavior:auto !important;}}
+@media print{
+  .progress-bar,.toolbar,.pg-toggle,.btn,.no-print,.site-header{display:none !important;}
+  .panel,.card{box-shadow:none;border:1px solid #000 !important;background:#fff !important;break-inside:avoid;}
+  .pg-body[hidden]{display:block !important;} li.step[hidden]{display:block !important;} .target[hidden]{display:none !important;}
+  body{font-size:12px;}
+}
+
+.layout-demo{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start;margin:16px 0 6px;}
+.demo-fig{text-align:center;}
+.demo-cap{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--rust);margin:8px 0 0;}
+.demo-page{width:190px;height:150px;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;display:flex;background:var(--white);}
+.demo-page.horz{flex-direction:column;}
+.demo-panel{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:4px;}
+.demo-page:not(.horz) .demo-panel + .demo-panel{border-left:1.5px dashed var(--rust);}
+.demo-page.horz .demo-panel + .demo-panel{border-top:1.5px dashed var(--rust);}
+.demo-panel .n{font-weight:800;color:var(--rust);font-size:20px;line-height:1;}
+.demo-panel .l{font-size:8px;font-weight:700;letter-spacing:.01em;text-transform:uppercase;color:var(--ink);opacity:.8;text-align:center;line-height:1.1;white-space:normal;}
+.demo-legend{font-size:15px;margin:8px 0 0;}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to the passport</a>
+
+<header class="site-header">
+  <span class="site-logo" aria-label="Human Anatomy and Physiology, BIO 304">
+    <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+      <g transform="translate(0, 18)">
+        <g transform="translate(60, 0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/></g>
+        <g transform="translate(100, 0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
+        <g transform="translate(140, 0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+      </g>
+    </svg>
+    <span class="logo-text">
+      <span class="logo-title">Anatomy &amp; <span class="logo-accent">Physiology</span></span>
+      <span class="logo-sub">BIO 304 &middot; American River College</span>
+    </span>
+  </span>
+</header>
+
+<div class="progress-bar no-print" role="region" aria-label="Passport progress">
+  <div class="progress-inner">
+    <p id="count">Panels drawn: 0 of 3</p>
+    <div class="track" aria-hidden="true"><span id="track-fill"></span></div>
+    <p class="sr-only" role="status" aria-live="polite" id="live"></p>
+  </div>
+</div>
+
+<main id="main">
+  <div class="wrap">
+    <div class="masthead">
+      <p class="eyebrow">BIO 304 &middot; Human Anatomy &amp; Physiology &middot; MedMasters Collaborative</p>
+      <h1>Respiratory System <span class="accent">Case Passport</span></h1>
+      <p class="subhead">Respiratory System &middot; Module 13</p>
+    </div>
+
+    <section class="card" aria-labelledby="brief-h">
+      <h2 id="brief-h">One case. Three panels. Drawn by hand.</h2>
+      <p class="lead">This week you build a single three-panel case drawing on plain paper. No printer needed. Panel one is the <strong>normal</strong> anatomy and physiology, panel two is what goes <strong>abnormal</strong> in the case, and panel three is the <strong>treatment</strong>, drawn onto the same pathway so you can see exactly where each treatment acts and how. This screen is your coach: it walks you through each panel one step at a time. Given, not Googled. The learning happens in your hand.</p>
+    </section>
+
+    <section class="casebar" aria-labelledby="case-h">
+      <span class="cb-label">Your case this week</span>
+      <h2 id="case-h">The wheeze that will not quit</h2>
+      <p>Alex, 17, runs track and has asthma. On a smoky wildfire afternoon Alex is halfway through practice when the chest goes tight, a wheeze starts on every breath out, and the air just will not come. By the time the coach calls for help, Alex is speaking in three-word bursts, leaning forward with hands on knees, shoulders lifting with each breath. You will draw this case in three panels, and by the end you will be able to explain it start to finish, including where every treatment plugs in.</p>
+    </section>
+
+    <section class="card" aria-labelledby="brief2-h">
+      <h2 id="brief2-h">How to work it</h2>
+      <p>Draw the three panels in order. Each one is a chapter of Alex's case: normal, then abnormal, then treatment. When you finish you own one hand-made case poster that is worth far more before an exam than any typed notes.</p>
+      <p style="margin:14px 0 2px;font-weight:700;">What your paper looks like</p>
+      <div class="layout-demo" role="group" aria-label="Two ways to lay out your three panels">
+        <div class="demo-fig">
+          <div class="demo-page" aria-hidden="true">
+            <div class="demo-panel"><span class="n">1</span><span class="l">Normal</span></div>
+            <div class="demo-panel"><span class="n">2</span><span class="l">Abnormal</span></div>
+            <div class="demo-panel"><span class="n">3</span><span class="l">Treatment</span></div>
+          </div>
+          <p class="demo-cap">Vertical panels</p>
+        </div>
+        <div class="demo-fig">
+          <div class="demo-page horz" aria-hidden="true">
+            <div class="demo-panel"><span class="n">1</span><span class="l">Normal</span></div>
+            <div class="demo-panel"><span class="n">2</span><span class="l">Abnormal</span></div>
+            <div class="demo-panel"><span class="n">3</span><span class="l">Treatment</span></div>
+          </div>
+          <p class="demo-cap">Horizontal rows</p>
+        </div>
+      </div>
+      <p class="demo-legend">Set up one sheet either way: <strong>1 Normal</strong>, <strong>2 Abnormal</strong>, <strong>3 Treatment</strong>. Pick whichever fits your paper, or use three separate sheets.</p>
+
+      <div class="unlock-banner" id="unlock-note"><strong>Answer key locked.</strong> The target for each panel unlocks Monday, July 27, 2026. Until then, draw from the videos and your book. That is the assignment.</div>
+
+      <div class="field-note"><span class="fn-label">Why you, specifically</span><p>This course feeds a lot of fields: EMS and paramedic programs, radiologic technology, and mortuary and funeral service, among others. Every panel carries a <strong>Field note</strong> connecting the anatomy to what you will actually see in your work.</p></div>
+
+      <h3>Learning objectives</h3>
+      <ul class="clean">
+        <li>Draw the normal respiratory pathway: the airway tree, breathing mechanics, and gas exchange at the alveolus.</li>
+        <li>Diagram what goes wrong in an asthma attack: the abnormal anatomy and physiology of an obstructive airway.</li>
+        <li>Research one first-line drug for the case, show its mechanism in plain language, and demonstrate its impact by drawing a before and after, not by writing.</li>
+        <li>Distinguish rescue treatment from controller treatment.</li>
+        <li>Narrate the whole case, normal to abnormal to treatment, from your own drawing.</li>
+      </ul>
+
+      <div class="meta-grid">
+        <div class="box"><strong>Estimated time</strong>2 to 4 hours. Panel one is the biggest build. Panels two and three go faster once the pathway is drawn.</div>
+        <div class="box"><strong>Materials needed</strong>One large sheet divided into three panels, or three sheets. A pen or pencil and two or three colors. Plus the Module 13 videos, slides, reference sheets, and your textbook figures.</div>
+        <div class="box"><strong>What you submit</strong>A clear photo of each of your three panels. Be ready to tell Alex's whole case from your drawing.</div>
+        <div class="box"><strong>Anatomy and physiology</strong>Panel one carries the normal structure and function; panel two the abnormal structure and function; panel three the treatment mechanism. Both anatomy and physiology are graded.</div>
+      </div>
+    </section>
+
+    <div class="toolbar no-print" role="group" aria-label="Passport tools">
+      <button class="btn secondary" type="button" id="expand-all">Open all panels</button>
+      <button class="btn secondary" type="button" id="download">Download my checklist</button>
+    </div>
+
+    <!-- PANEL 1 -->
+    <section class="panel" id="pg1" data-pg>
+      <button class="pg-head" aria-expanded="true" aria-controls="pg1-body" type="button">
+        <span class="pg-num" aria-hidden="true">1</span>
+        <span class="pg-title"><span class="tag">Panel 1 &middot; Normal anatomy &amp; physiology</span><span class="name">How a healthy breath works</span></span>
+        <span class="pg-toggle" aria-hidden="true">Toggle</span>
+      </button>
+      <div class="pg-body" id="pg1-body">
+        <p class="make">What you are making: the normal pathway, from air moving in through open airways to oxygen crossing into the blood and riding to the tissues.</p>
+        <div class="case-note"><span class="cn-label">Alex's case &middot; the baseline</span><p>Before anything goes wrong, draw how Alex's airways and lungs are supposed to work on a normal training day. This is the normal that every abnormal finding in panel two is measured against.</p></div>
+        <div class="field-note"><span class="fn-label">Field note</span><p>Knowing the normal airway cold is why a medic can hear when it is obstructed, and why a rad tech reads a normal chest film before ever reading an abnormal one. This panel is your normal.</p></div>
+        <div class="setup"><strong>Set up your paper:</strong> Divide a large sheet into three panels, vertical columns or horizontal rows (or use three sheets). Head the first panel <strong>NORMAL</strong>. You will build the breathing pathway from the mouth down to the tissues.</div>
+
+        <p class="step-count" data-count>Step 1 of 6</p>
+        <ol class="steps">
+          <li class="step"><span class="step-text">Draw the airway tree top to bottom: nose and mouth &rarr; pharynx &rarr; larynx &rarr; trachea (with C-shaped cartilage rings) &rarr; bronchi &rarr; bronchioles (smooth muscle, no cartilage) &rarr; alveoli. Bracket the top part as the <strong>conducting zone</strong> (moves air) and the alveoli as the <strong>respiratory zone</strong> (gas exchange).</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+          <li class="step" hidden><span class="step-text">Draw one inhale: the diaphragm contracts and flattens, the ribs lift, the chest volume increases, and the pressure inside drops below atmospheric, so air flows in. Add an arrow "air in." Note that a normal exhale is passive elastic recoil.</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+          <li class="step" hidden><span class="step-text">Zoom in on one alveolus with a capillary beside it, separated by the thin respiratory membrane. Draw O2 diffusing from the alveolus into the blood and CO2 diffusing from the blood into the alveolus. Label it "gas exchange by diffusion, high to low partial pressure."</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+          <li class="step" hidden><span class="step-text">Draw a red blood cell in the capillary picking up oxygen: about 98 percent binds to hemoglobin, a little dissolves in plasma. Add a small oxyhemoglobin curve (an S shape) and label "hemoglobin carries oxygen to the tissues."</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+          <li class="step" hidden><span class="step-text">Draw a cross-section of a normal bronchiole: open, wide lumen, relaxed smooth muscle, thin wall, no mucus. Label it "open airway equals low resistance, easy airflow." This is the spot panel two will attack.</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+          <li class="step" hidden><span class="step-text">Write the one-line normal summary: air moves through open airways to the alveoli, oxygen diffuses into the blood and rides hemoglobin to the tissues, and exhaling is passive.</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+        </ol>
+
+        <div class="pg-actions">
+          <button class="btn reveal" type="button" aria-expanded="false" aria-controls="t1">Show me the target</button>
+          <button class="btn small secondary show-all" type="button">Show all steps</button>
+          <span class="stampmark" aria-hidden="true">Drawn</span>
+        </div>
+        <div class="target" id="t1" hidden data-enc="cQ1QczESGgAeU3wRQCUKESEFUwcNHQRxHlt5W25tQVNURVJTbRETcRAIc2tTVEVSU20RE21FRG1dHx1bJhsoEVIkFxMsGFMAFxcWdxFdIhYBYgwcAREaU2tDUj8XX20RGxUXCx01ERU/BBY/WlMYBAAKI0kTaxcFPxNIVBEAEi5ZVixFQj8AAQZeUhE/Xl0uDQ1tRwEVFwBIbVNBIgsHJQgcGAABU2tDUj8XX20AHwIAHR8kHRM6DBAlQRAbCxYGLkVaIwJENw4dEUUEFj9CRj5FFigSAx0XEwciQ0ptHwsjBFMZBAAYKFUdcUoIJF95VEVSU20RE21FRG1BTxgMTDojWVIhAEQgBBAcBBwaLkIJbQENLBEbBgQVHm1SXCMRFiwCBwdFEx0pEVUhBBA5BB0HSVIQJVRAOUUSIg0GGQBSBj0dEz0XAT4SBgYAUhciRl1hRQUkE1MdC0lTKElbLAkBbRESBxYbBSgfD2IJDXNrU1RFUlNtERNtRURtXR8dWzMdbVBfOwALIRQAVAQcF21SUj0MCCEAAQ1FExA/XkA+RRAlBFMADRsdbUNWPhUNPwAHGxcLUyBUXi8XBSMESVQqQFMkXx9tJit/QRwBEV5TL0gTKQwCKxQAHQocXXEeXyRbbm1BU1RFUlNtERNtRVghCE01RQAWKRFRIQoLKUEQEQkeUyFeUikMCipBPEZFWhIvXkY5RV11QQMRFxEWI0UTIgtEJQQeGwIeHC9YXWRFBSMFUxVFAR4sXV9tNkk+CRIEABZTIklKJQAJIgYfGwcbHW1SRj8TAWNdXBgMTHltERNtRURtQVNURVJPIVgNDEUKIhMeFQlSHD1UXW0HFiIPEBwMHR8oCxM6DAAoQR8BCBcdYRFBKAkFNQQXVAgHAC5dVmFFCCIWUwYAARo+RVIjBgFjXVwYDEx5bRETbUVEbUFTVFldBiEP"></div>
+        <div class="photo-box"><input type="checkbox" id="p1" data-req><label for="p1">I drew this panel by hand and photographed it.</label></div>
+        <button class="btn stamp-btn" type="button" data-target="pg1">Mark panel 1 drawn</button>
+        <p class="msg" role="alert" data-msg="pg1"></p>
+      </div>
+    </section>
+
+    <!-- PANEL 2 -->
+    <section class="panel" id="pg2" data-pg>
+      <button class="pg-head" aria-expanded="false" aria-controls="pg2-body" type="button">
+        <span class="pg-num" aria-hidden="true">2</span>
+        <span class="pg-title"><span class="tag">Panel 2 &middot; Abnormal anatomy &amp; physiology</span><span class="name">What the asthma attack changed</span></span>
+        <span class="pg-toggle" aria-hidden="true">Toggle</span>
+      </button>
+      <div class="pg-body" id="pg2-body" hidden>
+        <p class="make">What you are making: the same pathway, marked to show exactly what goes wrong in Alex's attack. Use a second color for every abnormal finding.</p>
+        <div class="case-note"><span class="cn-label">Alex's case &middot; mid-attack</span><p>Now it is Alex, mid-attack on the track. Redraw the pathway and mark every place it breaks, with the bronchiole as the center of the story.</p></div>
+        <div class="field-note"><span class="fn-label">Field note</span><p>Leaning forward on the knees, using neck and shoulder muscles, and speaking in short bursts are the field signs that an asthma attack is severe. And a wheeze that suddenly goes silent is worse, not better: it can mean too little air is moving to make the sound.</p></div>
+        <div class="setup"><strong>Set up your paper:</strong> Head the second panel <strong>ABNORMAL</strong>. Redraw the pathway spine, then mark the failures in a second color.</div>
+
+        <p class="step-count" data-count>Step 1 of 6</p>
+        <ol class="steps">
+          <li class="step"><span class="step-text">Zoom in on a bronchiole and draw the three things happening at once in an asthma attack: the smooth muscle squeezing tight (bronchospasm), the airway wall swelling (inflammation), and mucus plugging the lumen. Label it "airway narrows, resistance climbs."</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+          <li class="step" hidden><span class="step-text">Show what narrow airways do to airflow: air gets in but is hard to push out, so it gets trapped. Draw the lungs and ribs over-inflated. Label it "obstructive, worst on exhale, FEV1 over FVC drops."</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+          <li class="step" hidden><span class="step-text">Draw Alex working to breathe: leaning forward, neck and shoulder (accessory) muscles pulling, a wheeze on exhale. Label the wheeze "air squeezing through narrowed airways."</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+          <li class="step" hidden><span class="step-text">Follow it to the alveolus: less fresh air reaches the gas-exchange surface, so less O2 crosses into the blood and the oxygen saturation starts to fall. Mark the oxyhemoglobin point dropping and label it "hypoxemia if this continues."</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+          <li class="step" hidden><span class="step-text">Add the trigger: wildfire smoke and allergens set off mast cells, releasing histamine and inflammation that started the whole thing. Label it "the trigger lit the fuse." (This is the same mast cell from the immune passport.)</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+          <li class="step" hidden><span class="step-text">Write the one-line abnormal summary: the airways constrict, swell, and clog, resistance climbs, air is trapped on exhale, and oxygen delivery falls.</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+        </ol>
+
+        <div class="pg-actions">
+          <button class="btn reveal" type="button" aria-expanded="false" aria-controls="t2">Show me the target</button>
+          <button class="btn small secondary show-all" type="button">Show all steps</button>
+          <span class="stampmark" aria-hidden="true">Drawn</span>
+        </div>
+        <div class="target" id="t2" hidden data-enc="cQ1QczESGgAeU38RQCUKESEFUwcNHQRxHlt5W25tQVNURVJTbRETcRAIc2tTVEVSU20RE21FRG1dHx1bM1MvQ1wjBgwkDh8RRQUaOVkTLAkIbRUbBgAXUyxFRywGD20CGxULFRY+CxMvFwsjAhsbFgISPlwTZRENKgkHVBYfHCJFW20IET4CHxFMXlMkX1UhBAkgAAcdChxTZUJEIgkIKA9TAwQeH2QdEywLAG0MBhcQAVM9XUYqAg0jBlMADRdTIUReKAtKcU4fHVt4U20RE21FRG1BU1RFTh8kD3IkF0Q5ExIEFRsdKhFSIwFEJRgDERcbHStdUjkMCyNbUxsHAQc/RFA5DBIoQQMVEQYWP18fbRILPxIHVAocUyhJWywJAWFBNTEzQ1wLZ3BtAwUhDQBaWV0fJA85bUVEbUFTVEVSU20RDyEMWgwNFgxFBRw/WlojAkQ5DlMWFxcSOVlWd0UQPwgDGwFSHyhQXWFFBS4CFgcWHQE0EV44FgchBABYRQUbKFRJKEULI0EWDA0THygfD2IJDXNrU1RFUlNtERNtRURtXR8dWzQSIV1aIwJEIhkKEwAcUyxFEzkNAW0AHwIAHR84QhNlDR09DgsRCBsSZBFSPkUIKBIAVAQbAW1DViwGDCgSUwANF1MqUEBgABwuCRIaAhdTPkRBKwQHKE9PWwkbTUcRE21FRG1BU1RFUlNxXVpzMQwoQQcGDBUUKEMJbRYJIgoWVAQcF21QXyEAFioEHQdFFBo/WF0qRQksEgdUBhcfIUITZQ0NPhUSGQwcFm1QXSlFDSMHHxUIHxI5WFwjTEpxTh8dW3hTbRETbUVEbUFTSEoHH3M="></div>
+        <div class="photo-box"><input type="checkbox" id="p2" data-req><label for="p2">I drew this panel by hand and photographed it.</label></div>
+        <button class="btn stamp-btn" type="button" data-target="pg2">Mark panel 2 drawn</button>
+        <p class="msg" role="alert" data-msg="pg2"></p>
+      </div>
+    </section>
+
+    <!-- PANEL 3 -->
+    <section class="panel" id="pg3" data-pg>
+      <button class="pg-head" aria-expanded="false" aria-controls="pg3-body" type="button">
+        <span class="pg-num" aria-hidden="true">3</span>
+        <span class="pg-title"><span class="tag">Panel 3 &middot; Treatment on the pathway</span><span class="name">Research one drug, draw its impact</span></span>
+        <span class="pg-toggle" aria-hidden="true">Toggle</span>
+      </button>
+      <div class="pg-body" id="pg3-body" hidden>
+        <p class="make">What you are making: you research one first-line drug for this case, show what it does in plain terms, and prove its impact on the pathway with a before-and-after drawing, pictures, not paragraphs.</p>
+        <div class="case-note"><span class="cn-label">Alex's case &middot; the fix</span><p>Now open Alex's airways. Every treatment works at a specific spot on the pathway you just drew. Show where, and show how.</p></div>
+        <div class="field-note"><span class="fn-label">Field note</span><p>Albuterol is the single most-used breathing drug on an ambulance, and wildfire smoke season fills California ERs with exactly this attack. Knowing where each drug acts is knowing why it works.</p></div>
+        <div class="setup"><strong>Set up your paper:</strong> Head the third panel <strong>TREATMENT</strong>. Lightly redraw the bronchiole and the pathway, then attach each treatment where it acts.</div>
+
+        <p class="step-count" data-count>Step 1 of 6</p>
+        <ol class="steps">
+          <li class="step"><span class="step-text">Your first-line drug for an asthma attack is the rescue inhaler, a short-acting beta-agonist (albuterol). Write only its name on your panel, then look up in plain terms what it does. Skip the nerdy receptor details.</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+          <li class="step" hidden><span class="step-text">Capture the mechanism as a plain-language idea, not a paragraph. In three to five words or a small symbol: "relaxes the airway muscle." That is all the text this drug gets.</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+          <li class="step" hidden><span class="step-text">Draw the drug acting at its exact spot: an arrow from the inhaler to the bronchiole smooth muscle you drew clenched in panel two.</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+          <li class="step" hidden><span class="step-text">Demonstrate the impact with a picture, not words. Draw the bronchiole twice, side by side: BEFORE (narrow, muscle clenched, a thin trickle of air) and AFTER (wide open, muscle relaxed, a full stream of air), with an arrow between them for the drug. Let the two drawings show the change.</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+          <li class="step" hidden><span class="step-text">Follow the impact down the pathway with drawing only: with the airway open, show more air reaching the alveoli and the oxygen climbing back up (move the oxyhemoglobin point up). Arrows and marks, no sentences.</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+          <li class="step" hidden><span class="step-text">The real test. Tell Alex's whole case out loud, and when you reach treatment, say in plain language how albuterol works and point to your before-and-after drawing. Write the single hardest sentence to say from memory, and re-draw that spot.</span><label class="step-mark"><input type="checkbox" data-req data-step> Mark this step done</label></li>
+        </ol>
+
+        <div class="pg-actions">
+          <button class="btn reveal" type="button" aria-expanded="false" aria-controls="t3">Show me the target</button>
+          <button class="btn small secondary show-all" type="button">Show all steps</button>
+          <span class="stampmark" aria-hidden="true">Drawn</span>
+        </div>
+        <div class="target" id="t3" hidden data-enc="cQ1QczESGgAeU34RQCUKESEFUwcNHQRxHlt5W25tQVNURVJTbRETcRAIc2tTVEVSU20RE21FRG1dHx1bJhsoEVUkFxc5TB8dCxdTKUNGKkUKLAwWEF9SByVUEz8AFy4UFlQMHBssXVY/SUQsQQAcCgAHYFBQOQwKKkERERETXixWXCMMFzlBWxUJEAY5VEEiCU1jXVwYDEx5bRETbUVEbUFTVEVSTyFYDQQRF20MFhcNEx0kQl5tDAptER8VDBxTOl5BKRZEIg8fDUlSByVDVihFECJBFR0TF1M6XkEpFl5tExYYBAoWPhFHJQBELAgBAwQLUz5cXCIRDG0MBgcGHhZjDRwhDFpHQVNURVJTbRETbUVEcQ0aSiQcUyxDQSISRCsTHBlFBhsoEVc/EANtFRxUERoWbVNBIgsHJQgcGABSACBeXDkNRCAUABcJF11xHl8kW25tQVNURVJTbRETbUVYIQhNNUUQFiteQShIBSMFXhUDBhY/EVc/BBMkDxRORRNTI1BBPwoTYUEQGAAcECVUV20EDT8WEg1FBRo5WRMsRRA/CBAfCRdTIlcTLAwWYUEHHAAcUywRRCQBAWAOAxELUhIkQ0QsHEQ6CAccRRQGIV0TLAwWKw0cA0tOXCFYDUdFRG1BU1RFUlNtERNxCQ1zNRsRRRYcOl9AORcBLAxTHQgCEi5FEykXBToPX1QLHQdtRkEkERAoD0lUCB0BKBFSJBdEPwQSFw0bHSoRRyUARCwNBREKHhphEVw1HAMoD1MXCRseL1hdKkUGLAIYVBACXXEeXyRbbm1BU1RFUlNtERNxShEhXw=="></div>
+        <div class="photo-box"><input type="checkbox" id="p3" data-req><label for="p3">I drew this panel by hand, photographed it, and told the whole case out loud from my three panels.</label></div>
+        <button class="btn stamp-btn" type="button" data-target="pg3">Mark panel 3 drawn</button>
+        <p class="msg" role="alert" data-msg="pg3"></p>
+      </div>
+    </section>
+
+        <section class="card" aria-labelledby="notes-h">
+      <h2 id="notes-h">Why you draw it, and how to use it</h2>
+      <h3>Why drawing it works</h3>
+      <ul class="clean">
+        <li>Drawing from memory is <strong>retrieval practice</strong>: pulling the answer out of your own head is what builds lasting memory, far more than rereading.</li>
+        <li>Turning words into a picture is <strong>dual coding</strong>, so you store each idea twice and can find it faster on exam day.</li>
+        <li>One running case ties it together, so you remember it as a story, not a pile of facts.</li>
+        <li>Redrawing the part you got wrong is the effortful practice that actually sticks.</li>
+      </ul>
+      <h3>How to get the most out of it</h3>
+      <ul class="clean">
+        <li>Draw each panel <strong>from memory first</strong>. A little struggle is the point, do not peek.</li>
+        <li>Keep the video and your book open. Pause, look things up, and add what you missed.</li>
+        <li>Say the case out loud from your own drawing. If you can tell it without notes, you know it.</li>
+        <li>Go back and redraw whatever was hardest to say.</li>
+      </ul>
+      <h3>How AI helps, and how it does not</h3>
+      <ul class="clean">
+        <li><strong>Good uses:</strong> ask it to quiz you after you draw, or to explain a term you are stuck on.</li>
+        <li><strong>Not a shortcut:</strong> it cannot draw your page or tell your case for you. If it does the work, you skip the exact thinking the exam will test.</li>
+        <li>The drawing in your own hand is the assignment, and the one thing AI cannot hand back to you.</li>
+      </ul>
+      <h3>The answer key is your self-check</h3>
+      <ul class="clean">
+        <li>It stays locked until after the due date, so there is nothing to copy while you work.</li>
+        <li>Once it unlocks, open <strong>Show me the target</strong> on each panel and compare it to what you drew.</li>
+        <li>It is not a picture to trace. It is a short checklist of what your panel should show, so you can catch what you missed and fix it.</li>
+      </ul>
+    </section>
+
+    <div class="toolbar no-print" role="group" aria-label="Passport tools">
+      <button class="btn secondary" type="button" id="download2">Download my checklist</button>
+    </div>
+  </div>
+</main>
+
+<footer class="footer-section">
+  <div class="footer-inner">
+    <span class="footer-logo" aria-label="Human Anatomy and Physiology, BIO 304">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#FFFFFF"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#FFFFFF"/></g>
+          <g transform="translate(100, 0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
+          <g transform="translate(140, 0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+        </g>
+      </svg>
+      <span class="logo-text">
+        <span class="logo-title">Anatomy &amp; <span class="logo-accent">Physiology</span></span>
+        <span class="logo-sub">BIO 304 &middot; American River College</span>
+      </span>
+    </span>
+    <p class="footer-tagline">A drawing-first case passport. Given, not Googled: you draw it by hand, and you leave able to tell the whole case.</p>
+    <div class="footer-bottom">
+      <div class="footer-copyright">BIO 304 Human Anatomy &amp; Physiology &middot; Module 13 &middot; Respiratory System Case Passport</div>
+      <div class="footer-byline">Dr. Sharilyn Rennie</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var total = document.querySelectorAll('[data-pg]').length;
+  var UNLOCK = new Date(Date.UTC(2026, 6, 27, 7, 1, 0)); // 12:01 AM Pacific, Mon Jul 27 2026
+  var unlocked = new Date().getTime() >= UNLOCK.getTime();
+  var KEY = 'MedMastersM13';
+  function unscramble(enc){
+    try{
+      var raw = atob(enc), out = '';
+      for(var i=0;i<raw.length;i++){ out += String.fromCharCode(raw.charCodeAt(i) ^ KEY.charCodeAt(i % KEY.length)); }
+      return decodeURIComponent(escape(out));
+    }catch(e){ return ''; }
+  }
+  function updateProgress(){
+    var done = document.querySelectorAll('.panel.done').length;
+    document.getElementById('count').textContent = 'Panels drawn: ' + done + ' of ' + total;
+    document.getElementById('track-fill').style.width = (done/total*100) + '%';
+    document.getElementById('live').textContent = (done===total)
+      ? 'All three panels drawn. Case complete. Submit your photos and be ready to tell the whole case.'
+      : done + ' of ' + total + ' panels drawn.';
+  }
+  document.querySelectorAll('.pg-head').forEach(function(head){
+    head.addEventListener('click', function(){
+      var body = document.getElementById(head.getAttribute('aria-controls'));
+      var open = head.getAttribute('aria-expanded') === 'true';
+      head.setAttribute('aria-expanded', String(!open));
+      if(open){ body.setAttribute('hidden',''); } else { body.removeAttribute('hidden'); }
+    });
+  });
+  document.querySelectorAll('ol.steps').forEach(function(list){
+    var steps = Array.prototype.slice.call(list.querySelectorAll('li.step'));
+    var counter = list.parentElement.querySelector('[data-count]');
+    function refresh(){
+      var doneCount = 0, revealUpTo = 0;
+      steps.forEach(function(step){
+        var box = step.querySelector('input[data-step]');
+        if(box.checked){ step.classList.add('done'); doneCount++; } else { step.classList.remove('done'); }
+      });
+      for(var i=0;i<steps.length;i++){ if(steps[i].querySelector('input[data-step]').checked){ revealUpTo = i+1; } }
+      for(var j=0;j<steps.length;j++){ if(j <= revealUpTo){ steps[j].removeAttribute('hidden'); } }
+      if(counter){ counter.textContent = 'Step ' + Math.min(doneCount+1, steps.length) + ' of ' + steps.length + (doneCount===steps.length ? ' (all steps drawn)' : ''); }
+    }
+    steps.forEach(function(step){
+      var box = step.querySelector('input[data-step]');
+      box.addEventListener('change', function(){
+        refresh();
+        if(box.checked){
+          var idx = steps.indexOf(step);
+          if(idx+1 < steps.length){ var nb = steps[idx+1].querySelector('input[data-step]'); if(nb){ nb.focus(); } }
+        }
+      });
+    });
+  });
+  document.querySelectorAll('.show-all').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var body = btn.closest('.pg-body');
+      body.querySelectorAll('li.step[hidden]').forEach(function(s){ s.removeAttribute('hidden'); });
+      btn.setAttribute('hidden','');
+    });
+  });
+  document.querySelectorAll('.btn.reveal').forEach(function(btn){
+    var panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if(!unlocked){
+      btn.textContent = 'Answer key unlocks Mon, Jul 27';
+      btn.setAttribute('aria-disabled','true');
+      btn.addEventListener('click', function(){
+        var msg = btn.closest('.pg-body').querySelector('.msg');
+        if(msg){ msg.textContent = 'The target for this panel unlocks Monday, July 27. Draw your panel from the videos and your book, then come back to check it.'; }
+      });
+      return;
+    }
+    btn.addEventListener('click', function(){
+      if(panel.getAttribute('data-filled') !== 'yes'){
+        panel.innerHTML = unscramble(panel.getAttribute('data-enc') || '');
+        panel.setAttribute('data-filled','yes');
+      }
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      if(open){ panel.setAttribute('hidden',''); btn.textContent = 'Show me the target'; }
+      else { panel.removeAttribute('hidden'); btn.textContent = 'Hide the target'; }
+    });
+  });
+  document.querySelectorAll('.stamp-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var id = btn.getAttribute('data-target');
+      var section = document.getElementById(id);
+      var msg = document.querySelector('[data-msg="' + id + '"]');
+      var reqs = section.querySelectorAll('[data-req]');
+      var firstUnchecked = null;
+      for(var i=0;i<reqs.length;i++){ if(!reqs[i].checked){ firstUnchecked = reqs[i]; break; } }
+      if(firstUnchecked){
+        msg.textContent = 'Check off every step and confirm your photo before you mark this panel drawn.';
+        var li = firstUnchecked.closest('li.step'); if(li){ li.removeAttribute('hidden'); }
+        firstUnchecked.focus();
+        return;
+      }
+      section.classList.remove('upcoming');
+      section.classList.add('done');
+      msg.textContent = 'Panel marked drawn. On to the next one.';
+      updateProgress();
+    });
+  });
+  document.getElementById('expand-all').addEventListener('click', function(){
+    var anyClosed = Array.prototype.some.call(document.querySelectorAll('.pg-head'), function(h){ return h.getAttribute('aria-expanded') === 'false'; });
+    document.querySelectorAll('.pg-head').forEach(function(head){
+      var body = document.getElementById(head.getAttribute('aria-controls'));
+      head.setAttribute('aria-expanded', String(anyClosed));
+      if(anyClosed){ body.removeAttribute('hidden'); } else { body.setAttribute('hidden',''); }
+    });
+    this.textContent = anyClosed ? 'Close all panels' : 'Open all panels';
+  });
+  if(unlocked){
+    var note = document.getElementById('unlock-note');
+    if(note){ note.innerHTML = '<strong>Answer key unlocked.</strong> Draw each panel first, then use "Show me the target" to check your work.'; }
+  }
+  function downloadChecklist(){
+    var lines = ['<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>My Respiratory Case Passport checklist</title>',
+      '<style>body{font-family:Georgia,serif;max-width:640px;margin:24px auto;padding:0 16px;color:#0B1530}h1{font-size:22px}li{margin:6px 0}</style></head><body>',
+      '<h1>Respiratory System Case Passport, checklist</h1><p>BIO 304 Module 13, the wheeze that will not quit. Attach a photo of each panel marked drawn.</p><ul>'];
+    document.querySelectorAll('[data-pg]').forEach(function(section){
+      var name = section.querySelector('.name').textContent;
+      var done = section.classList.contains('done') ? 'DRAWN' : 'not yet';
+      lines.push('<li>' + name.replace(/[<>&]/g,'') + ' : ' + done + '</li>');
+    });
+    lines.push('</ul></body></html>');
+    var blob = new Blob([lines.join('\n')], {type:'text/html'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a'); a.href = url; a.download = 'my-respiratory-case-passport-checklist.html';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+  }
+  var d1 = document.getElementById('download'); if(d1) d1.addEventListener('click', downloadChecklist);
+  var d2 = document.getElementById('download2'); if(d2) d2.addEventListener('click', downloadChecklist);
+  updateProgress();
+})();
+</script>
+<script>
+(function(){
+  var FRAME_ID = 'respiratory-case-passport-m13';
+  function sendHeight(){
+    var h = Math.max(document.documentElement.scrollHeight, document.body ? document.body.scrollHeight : 0);
+    parent.postMessage({ type:'resize', id:FRAME_ID, height:h }, '*');
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  if(window.ResizeObserver){ new ResizeObserver(sendHeight).observe(document.body); }
+})();
+</script>
+</body>
+</html>
