@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIO 304 &middot; Immune System Case Passport</title>
+<meta name="meta-description" content="Immune System Case Passport assignment for BIO 304. Draw the three-panel case by hand, photograph your panels, and submit. Hand-drawn only.">
+<style>
+  @import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+  :root{
+    --navy:#0B1530; --navy-2:#142A36; --ink-navy:#060A18;
+    --rust:#8B3A2E; --rust-2:#A0452F; --gold:#C9A14A; --gold-2:#D9B065;
+    --cream:#F5F1E8; --white:#FFFFFF; --off:#FAFAF9; --ink:#33405E;
+    --line:rgba(11,21,48,0.14);
+    --card-sh:0 1px 3px rgba(11,21,48,0.06);
+    --lift:0 6px 16px rgba(11,21,48,0.10),0 3px 6px rgba(11,21,48,0.06);
+  }
+  *{box-sizing:border-box;font-style:normal!important;margin:0;padding:0}
+  html,body{font-size:16px;line-height:1.65}
+  body{font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,sans-serif;background:var(--white);color:var(--navy);-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .skip{position:absolute;left:-999px;top:0;background:var(--navy);color:#fff;padding:11px 16px;z-index:99;border-radius:4px;text-decoration:none}
+  .skip:focus{left:12px;top:12px}
+  :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .pad{padding-left:max(40px,5vw);padding-right:max(40px,5vw)}
+  .wrap{max-width:920px;margin:0 auto}
+  .site-header{background:var(--white);padding-top:28px;padding-bottom:28px}
+  .site-logo{display:inline-flex;align-items:center;gap:16px;text-decoration:none}
+  .site-logo svg{height:58px;width:auto;display:block}
+  .logo-text{display:flex;flex-direction:column;gap:3px}
+  .logo-title{font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--navy);line-height:1}
+  .logo-title .logo-accent{color:var(--rust)}
+  .logo-sub{font-size:10.5px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--navy);opacity:.72}
+  .hero-card{background:var(--white);padding-top:50px;padding-bottom:58px}
+  .hero-content{max-width:760px}
+  .hero-eyebrow{font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.28em;text-transform:uppercase;margin-bottom:22px}
+  .hero-headline{font-size:46px;font-weight:800;color:var(--navy);letter-spacing:-.025em;line-height:1.06;margin:0 0 20px}
+  .hero-headline .accent{color:var(--rust)}
+  .hero-subhead{font-size:16px;font-weight:400;color:var(--navy);line-height:1.6;opacity:.84;margin:0;max-width:620px}
+  section{padding-top:64px;padding-bottom:64px}
+  .white{background:var(--white)}
+  .ink{background:var(--ink-navy);color:var(--cream)}
+  .sec-eyebrow{font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--rust);margin-bottom:14px}
+  .ink .sec-eyebrow{color:var(--gold)}
+  .sec-headline{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.14;margin:0 0 8px;color:var(--navy)}
+  .ink .sec-headline{color:#fff}
+  .sec-headline .accent{color:var(--rust)}
+  .ink .sec-headline .accent{color:var(--gold-2)}
+  .sec-intro{font-size:16px;color:var(--ink);max-width:640px;margin:0 0 28px}
+  .ink .sec-intro{color:#c3cbe0}
+  .steps{counter-reset:step;display:grid;gap:14px}
+  .step{counter-increment:step;position:relative;background:var(--white);border:1px solid var(--line);border-radius:8px;padding:22px 24px 22px 70px;box-shadow:var(--card-sh);transition:transform .2s ease,box-shadow .2s ease}
+  .step:hover{transform:translateY(-2px);box-shadow:var(--lift)}
+  .step:before{content:counter(step);position:absolute;left:22px;top:20px;width:34px;height:34px;border-radius:999px;background:var(--navy);color:var(--gold);font-size:15px;font-weight:800;display:grid;place-items:center}
+  .step h3{font-size:18px;font-weight:800;letter-spacing:-.01em;margin:0 0 4px}
+  .step p{font-size:14.5px;color:var(--ink);margin:0}
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:30px}
+  .btn-primary{display:inline-block;background:var(--rust);color:#fff;padding:15px 28px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;transition:background .2s ease}
+  .btn-primary:hover{background:var(--rust-2)}
+  .btn-outline{display:inline-block;background:transparent;color:var(--navy);border:1px solid var(--navy);padding:14px 26px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;transition:background .2s ease,color .2s ease}
+  .btn-outline:hover{background:var(--navy);color:#fff}
+  .ink .btn-outline{color:#fff;border-color:var(--gold)}
+  .ink .btn-outline:hover{background:var(--gold);color:var(--navy)}
+  .submit-cue{display:flex;align-items:center;gap:15px;background:var(--off);border:1px solid var(--line);border-radius:8px;padding:20px 22px;max-width:600px;margin-top:26px}
+  .submit-cue .arrow{flex:0 0 auto;width:40px;height:40px;border-radius:999px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-size:21px;font-weight:800}
+  .submit-cue b{display:block;font-size:15.5px;font-weight:800;color:var(--navy)}
+  .submit-cue span{font-size:13px;color:var(--ink)}
+  .callout{background:var(--off);border:1px solid var(--line);border-left:4px solid var(--rust);border-radius:0 8px 8px 0;padding:18px 22px;max-width:660px;margin-top:26px}
+  .callout b{display:block;font-size:15.5px;color:var(--navy);margin-bottom:4px}
+  .callout p{font-size:14px;color:var(--ink);margin:0}
+  .rubric{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:14px}
+  .rubric caption{text-align:left;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);margin-bottom:8px}
+  .rubric th,.rubric td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+  .rubric thead th{background:var(--navy);color:#fff;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+  .rubric tbody th{background:var(--off);color:var(--navy);width:26%}
+  .rubric td.pts,.rubric th.pts{text-align:center;width:60px;font-weight:800}
+  .rubric tfoot th,.rubric tfoot td{background:var(--off);font-weight:800;color:var(--navy)}
+  .footer-section{background:var(--ink-navy);padding-top:56px;padding-bottom:32px;padding-left:max(40px,5vw);padding-right:max(40px,5vw)}
+  .footer-section .wrap{max-width:1080px}
+  .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;margin-bottom:22px}
+  .footer-logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none;margin-bottom:16px}
+  .footer-logo svg{height:50px;width:auto}
+  .footer-logo .logo-text{gap:2px}
+  .footer-logo .logo-title{color:#F5F1E8;font-size:22px}
+  .footer-logo .logo-title .logo-accent{color:#C9A14A}
+  .footer-logo .logo-sub{color:#F5F1E8;opacity:.72}
+  .footer-tagline{font-size:13px;color:#F5F1E8;opacity:.82;line-height:1.6;max-width:320px;margin:0}
+  .footer-col-header{font-size:10px;font-weight:700;color:#C9A14A;letter-spacing:.24em;text-transform:uppercase;margin-bottom:16px}
+  .footer-link{font-size:13px;font-weight:500;color:#F5F1E8;opacity:.88;display:block;margin-bottom:10px;text-decoration:none}
+  .footer-link:hover,.footer-link:focus-visible{opacity:1;text-decoration:underline}
+  .footer-link.help{color:#C9A14A;opacity:1;font-weight:700}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+  .footer-copyright{font-size:11px;color:#F5F1E8;opacity:.72;letter-spacing:.03em}
+  .footer-byline{font-size:11px;font-weight:700;color:#C9A14A;letter-spacing:.16em;text-transform:uppercase}
+  .footer-section a:focus-visible{outline-color:#C9A14A}
+  @media(max-width:680px){.footer-top{grid-template-columns:1fr 1fr;gap:32px}.hero-headline{font-size:34px}}
+  @media(max-width:460px){.hero-headline{font-size:29px}.footer-top{grid-template-columns:1fr}.footer-bottom{flex-direction:column;align-items:flex-start}}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}.step:hover{transform:none}}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="site-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/></g>
+          <g transform="translate(100, 0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
+          <g transform="translate(140, 0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+        </g>
+      </svg>
+      <span class="logo-text"><span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span><span class="logo-sub">BIO 304 &middot; American River College</span></span>
+    </a>
+  </div>
+</header>
+
+<div class="hero-card" id="main">
+  <div class="wrap">
+    <div class="hero-content">
+      <div class="hero-eyebrow">BIO 304 &middot; Module 12 &middot; Immune System</div>
+      <h1 class="hero-headline">Immune System Case <span class="accent">Passport</span></h1>
+      <p class="hero-subhead">This week you draw one clinical case, the nail in the foot, by hand in three panels: normal, then abnormal, then treatment. The passport is your coach and walks you through every step. Draw each panel yourself, photograph your three panels, and submit them here. Due Sunday, July 26 at 11:59 PM.</p>
+    </div>
+  </div>
+</div>
+
+<section class="white">
+  <div class="wrap pad">
+    <p class="sec-eyebrow">How to complete it</p>
+    <h2 class="sec-headline">Four steps, <span class="accent">by hand.</span></h2>
+    <p class="sec-intro">The passport does the coaching. Your job is to draw it, photograph it, and turn it in.</p>
+    <div class="steps">
+      <div class="step">
+        <h3>Open the passport and set up your paper</h3>
+        <p>Open the interactive passport (button below). Take one sheet you can split into three panels, or three sheets, plus a pencil or pen and two or three colors. No printer needed.</p>
+      </div>
+      <div class="step">
+        <h3>Draw the three panels</h3>
+        <p>The passport walks you through each panel one step at a time: panel 1 the normal immune defense, panel 2 the spreading wound infection, and panel 3 one first-line treatment you research. Draw from memory first, then use the reference to check yourself.</p>
+      </div>
+      <div class="step">
+        <h3>Photograph your three panels</h3>
+        <p>Take a clear, well-lit photo of each panel. Number them 1, 2, and 3 so they are easy to follow.</p>
+      </div>
+      <div class="step">
+        <h3>Submit your photos</h3>
+        <p>Upload your three photos on the submission page (button below). Be ready to tell the case out loud from your own drawing.</p>
+      </div>
+    </div>
+    <div class="btn-row">
+      <a class="btn-primary" href="immune-passport.html" target="_top">Open the passport &rarr;</a>
+      <a class="btn-outline" href="https://lrccd.instructure.com/courses/317432/assignments/9167857" target="_top" rel="noopener">Go to the submission page &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section class="ink">
+  <div class="wrap pad">
+    <p class="sec-eyebrow">The one rule</p>
+    <h2 class="sec-headline">It has to be <span class="accent">hand-drawn.</span></h2>
+    <p class="sec-intro">Draw every panel yourself, on paper, with pencil, pen, or colored pencils. Not on an iPad or any tablet, and not with AI. The whole point is the thinking that happens in your hand while you draw, pause the video, and look things up, and that is the one thing an app cannot do for you. Your drawings will be checked.</p>
+    <p class="sec-intro" style="margin-bottom:0"><strong style="color:#fff">Why it is drawn:</strong> drawing from memory is retrieval practice, turning words into a picture is dual coding, and one running case ties it into a story. That combination is what makes it stick far better than typed notes.</p>
+  </div>
+</section>
+
+<section class="white">
+  <div class="wrap pad">
+    <p class="sec-eyebrow">No shortcuts</p>
+    <h2 class="sec-headline">Googling the answers <span class="accent">defeats the point.</span></h2>
+    <p class="sec-intro">This map is built so the only way through it is to actually engage with the material. If you go looking for a finished answer to copy, you skip the learning, and it will show. Build it from your own sources: your notes, your textbook, your online lecture video, and any YouTube videos you choose. Pulling it together yourself is the assignment.</p>
+  </div>
+</section>
+
+<section class="ink">
+  <div class="wrap pad">
+    <p class="sec-eyebrow">Why it works</p>
+    <h2 class="sec-headline">A map with less text is <span class="accent">how you remember.</span></h2>
+    <p class="sec-intro">Turning your notes into a picture with only a few words forces you to organize the information, and organizing it is exactly what lets you pull it back out on an exam. This is a skill worth keeping. Once you can do it here, use the same technique in your other classes to learn and hold on to a lot of material, faster.</p>
+  </div>
+</section>
+
+<section class="white">
+  <div class="wrap pad">
+    <p class="sec-eyebrow">How you are graded</p>
+    <h2 class="sec-headline">Completeness and accuracy, <span class="accent">in your own words.</span></h2>
+    <p class="sec-intro">You will not be graded on your art. You will be graded on how complete and accurate your map is, how well you translated the information into your own drawing, and that the work is your own, in your own words.</p>
+    <table class="rubric">
+      <caption>Drawing rubric</caption>
+      <thead><tr><th scope="col">What I am looking for</th><th scope="col">Full marks means</th><th class="pts" scope="col">Pts</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Completeness</th><td>All three panels are done, each with its required parts: normal, abnormal, and the treatment mapped onto the pathway.</td><td class="pts">8</td></tr>
+        <tr><th scope="row">Accuracy</th><td>The anatomy, physiology, and where the treatment acts are correct and in the right place on the pathway.</td><td class="pts">8</td></tr>
+        <tr><th scope="row">Your own map, your own words</th><td>You translated the material into your own drawing with only a few words, not copied sentences.</td><td class="pts">2</td></tr>
+        <tr><th scope="row">Hand-drawn and submitted right</th><td>Drawn by hand with pencil, pen, or colored pencils, no tablet and no AI, with clear photos of all three panels.</td><td class="pts">2</td></tr>
+      </tbody>
+      <tfoot><tr><th scope="row">Total</th><td></td><td class="pts">20</td></tr></tfoot>
+    </table>
+    <div class="callout">
+      <b>Plan your time</b>
+      <p>BIO 304 expects about 25 to 30 hours a week. Each passport should take about 2 to 4 hours. If you have not been keeping up so far, this will feel like a lot of work, and some of that is the catching up, not the drawing. Coming in prepared, having read and watched the material first, makes it go much faster.</p>
+    </div>
+  </div>
+</section>
+
+<section class="white">
+  <div class="wrap pad">
+    <p class="sec-eyebrow">What you submit</p>
+    <h2 class="sec-headline">Three photos, <span class="accent">your own hand.</span></h2>
+    <p class="sec-intro">A clear photo of each of your three panels. The answer key inside the passport stays locked until after the deadline, so you can go back and check your work once it opens.</p>
+    <div class="submit-cue">
+      <span class="arrow" aria-hidden="true">&rarr;</span>
+      <div><b>Submit your three panels on the assignment page.</b>
+      <span>Hand-drawn only. Due Sunday, July 26 at 11:59 PM.</span></div>
+    </div>
+    <div class="btn-row">
+      <a class="btn-primary" href="https://lrccd.instructure.com/courses/317432/assignments/9167857" target="_top" rel="noopener">Go to the submission page &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer-section">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="footer-logo" target="_top" aria-label="BIO 304 Human Anatomy and Physiology, course home">
+          <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#F5F1E8"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#F5F1E8"/></g>
+          <g transform="translate(100, 0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
+          <g transform="translate(140, 0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+        </g>
+      </svg>
+          <span class="logo-text"><span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span><span class="logo-sub">BIO 304 &middot; American River College</span></span>
+        </a>
+        <p class="footer-tagline">Eight weeks, online, designed to make a 4-credit A&amp;P possible. Same rhythm every week, real deadlines, real support.</p>
+      </div>
+      <div>
+        <div class="footer-col-header">Start here</div>
+        <a class="footer-link help" href="https://lrccd.instructure.com/courses/317432/discussion_topics/6464370" target="_blank" rel="noopener">Virtual Office Forum (Ask me)</a>
+        <a class="footer-link" href="biol304_syllabus.html" target="_top">Syllabus</a>
+        <a class="footer-link" href="week07_prework.html" target="_top">Week 7 hub</a>
+      </div>
+      <div>
+        <div class="footer-col-header">This assignment</div>
+        <a class="footer-link" href="immune-passport.html" target="_top">Open the passport</a>
+        <a class="footer-link" href="week07_schedule.html" target="_top">Week 7 due dates</a>
+      </div>
+      <div>
+        <div class="footer-col-header">Policies</div>
+        <a class="footer-link" href="biol304_accessibility.html" target="_top">Accessibility</a>
+        <a class="footer-link" href="ai_policy.html" target="_top">AI policy (explainer)</a>
+        <a class="footer-link" href="ai_honor_contract.html" target="_top">AI honor contract</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">BIO 304 Human Anatomy &amp; Physiology &middot; American River College &middot; Summer 2026</div>
+      <div class="footer-byline">Dr. Sharilyn Rennie</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function send(){var h=document.documentElement.scrollHeight;try{window.parent.postMessage({type:"resize",id:"bio304-immune-passport-assignment",height:h},"*");}catch(e){}}
+  window.addEventListener("load",send);
+  window.addEventListener("resize",send);
+  if(window.ResizeObserver){new ResizeObserver(send).observe(document.body);}
+})();
+</script>
+</body>
+</html>

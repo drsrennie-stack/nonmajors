@@ -141,6 +141,9 @@ li.step .step-text{display:block;margin-bottom:10px;}
 .demo-panel .n{font-weight:800;color:var(--rust);font-size:20px;line-height:1;}
 .demo-panel .l{font-size:8px;font-weight:700;letter-spacing:.01em;text-transform:uppercase;color:var(--ink);opacity:.8;text-align:center;line-height:1.1;white-space:normal;}
 .demo-legend{font-size:15px;margin:8px 0 0;}
+.rule-note{background:#FFFFFF;border:1px solid var(--rust);border-left:5px solid var(--rust);border-radius:0 8px 8px 0;padding:12px 16px;margin:16px 0;font-size:15px;}
+.rule-note .rn-label{display:block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);margin-bottom:4px;}
+.rule-note p{margin:0;}
 </style>
 </head>
 <body>
@@ -212,8 +215,9 @@ li.step .step-text{display:block;margin-bottom:10px;}
         </div>
       </div>
       <p class="demo-legend">Set up one sheet either way: <strong>1 Normal</strong>, <strong>2 Abnormal</strong>, <strong>3 Treatment</strong>. Pick whichever fits your paper, or use three separate sheets.</p>
+      <div class="rule-note"><span class="rn-label">Hand-drawn only &middot; this will be checked</span><p>Draw every panel yourself, on paper, with pencil, pen, or colored pencils. Not on an iPad or any device, and not with AI. Your drawings will be checked, so make them your own.</p></div>
 
-      <div class="unlock-banner" id="unlock-note"><strong>Answer key locked.</strong> The target for each panel unlocks Sunday, July 26, 2026. Until then, draw from the videos and your book. That is the assignment.</div>
+      <div class="unlock-banner" id="unlock-note"><strong>Answer key locked.</strong> The target for each panel unlocks Monday, July 27, 2026. Until then, draw from the videos and your book. That is the assignment.</div>
 
       <div class="field-note"><span class="fn-label">Why you, specifically</span><p>This course feeds a lot of fields: EMS and paramedic programs, radiologic technology, and mortuary and funeral service, among others. Every panel carries a <strong>Field note</strong> connecting the anatomy to what you will actually see in your work.</p></div>
 
@@ -228,7 +232,7 @@ li.step .step-text{display:block;margin-bottom:10px;}
 
       <div class="meta-grid">
         <div class="box"><strong>Estimated time</strong>2 to 4 hours. Panel one is the biggest build. Panels two and three go faster once the pathway is drawn.</div>
-        <div class="box"><strong>Materials needed</strong>One large sheet divided into three panels, or three sheets. A pen or pencil and two or three colors. Plus the Module 13 videos, slides, reference sheets, and your textbook figures.</div>
+        <div class="box"><strong>Materials needed</strong>One large sheet divided into three panels, or three sheets. A pen or pencil and two or three colors, hand-drawn only (no tablets, no AI). Plus the Module 13 videos, slides, reference sheets, and your textbook figures.</div>
         <div class="box"><strong>What you submit</strong>A clear photo of each of your three panels. Be ready to tell Alex's whole case from your drawing.</div>
         <div class="box"><strong>Anatomy and physiology</strong>Panel one carries the normal structure and function; panel two the abnormal structure and function; panel three the treatment mechanism. Both anatomy and physiology are graded.</div>
       </div>
@@ -268,7 +272,7 @@ li.step .step-text{display:block;margin-bottom:10px;}
           <span class="stampmark" aria-hidden="true">Drawn</span>
         </div>
         <div class="target" id="t1" hidden data-enc="cQ1QczESGgAeU3wRQCUKESEFUwcNHQRxHlt5W25tQVNURVJTbRETcRAIc2tTVEVSU20RE21FRG1dHx1bJhsoEVIkFxMsGFMAFxcWdxFdIhYBYgwcAREaU2tDUj8XX20RGxUXCx01ERU/BBY/WlMYBAAKI0kTaxcFPxNIVBEAEi5ZVixFQj8AAQZeUhE/Xl0uDQ1tRwEVFwBIbVNBIgsHJQgcGAABU2tDUj8XX20AHwIAHR8kHRM6DBAlQRAbCxYGLkVaIwJENw4dEUUEFj9CRj5FFigSAx0XEwciQ0ptHwsjBFMZBAAYKFUdcUoIJF95VEVSU20RE21FRG1BTxgMTDojWVIhAEQgBBAcBBwaLkIJbQENLBEbBgQVHm1SXCMRFiwCBwdFEx0pEVUhBBA5BB0HSVIQJVRAOUUSIg0GGQBSBj0dEz0XAT4SBgYAUhciRl1hRQUkE1MdC0lTKElbLAkBbRESBxYbBSgfD2IJDXNrU1RFUlNtERNtRURtXR8dWzMdbVBfOwALIRQAVAQcF21SUj0MCCEAAQ1FExA/XkA+RRAlBFMADRsdbUNWPhUNPwAHGxcLUyBUXi8XBSMESVQqQFMkXx9tJit/QRwBEV5TL0gTKQwCKxQAHQocXXEeXyRbbm1BU1RFUlNtERNtRVghCE01RQAWKRFRIQoLKUEQEQkeUyFeUikMCipBPEZFWhIvXkY5RV11QQMRFxEWI0UTIgtEJQQeGwIeHC9YXWRFBSMFUxVFAR4sXV9tNkk+CRIEABZTIklKJQAJIgYfGwcbHW1SRj8TAWNdXBgMTHltERNtRURtQVNURVJPIVgNDEUKIhMeFQlSHD1UXW0HFiIPEBwMHR8oCxM6DAAoQR8BCBcdYRFBKAkFNQQXVAgHAC5dVmFFCCIWUwYAARo+RVIjBgFjXVwYDEx5bRETbUVEbUFTVFldBiEP"></div>
-        <div class="photo-box"><input type="checkbox" id="p1" data-req><label for="p1">I drew this panel by hand and photographed it.</label></div>
+        <div class="photo-box"><input type="checkbox" id="p1" data-req><label for="p1">I drew this panel by hand with pencil, pen, or colored pencils, not on a device or with AI, and photographed it.</label></div>
         <button class="btn stamp-btn" type="button" data-target="pg1">Mark panel 1 drawn</button>
         <p class="msg" role="alert" data-msg="pg1"></p>
       </div>
@@ -303,7 +307,7 @@ li.step .step-text{display:block;margin-bottom:10px;}
           <span class="stampmark" aria-hidden="true">Drawn</span>
         </div>
         <div class="target" id="t2" hidden data-enc="cQ1QczESGgAeU38RQCUKESEFUwcNHQRxHlt5W25tQVNURVJTbRETcRAIc2tTVEVSU20RE21FRG1dHx1bM1MvQ1wjBgwkDh8RRQUaOVkTLAkIbRUbBgAXUyxFRywGD20CGxULFRY+CxMvFwsjAhsbFgISPlwTZRENKgkHVBYfHCJFW20IET4CHxFMXlMkX1UhBAkgAAcdChxTZUJEIgkIKA9TAwQeH2QdEywLAG0MBhcQAVM9XUYqAg0jBlMADRdTIUReKAtKcU4fHVt4U20RE21FRG1BU1RFTh8kD3IkF0Q5ExIEFRsdKhFSIwFEJRgDERcbHStdUjkMCyNbUxsHAQc/RFA5DBIoQQMVEQYWP18fbRILPxIHVAocUyhJWywJAWFBNTEzQ1wLZ3BtAwUhDQBaWV0fJA85bUVEbUFTVEVSU20RDyEMWgwNFgxFBRw/WlojAkQ5DlMWFxcSOVlWd0UQPwgDGwFSHyhQXWFFBS4CFgcWHQE0EV44FgchBABYRQUbKFRJKEULI0EWDA0THygfD2IJDXNrU1RFUlNtERNtRURtXR8dWzQSIV1aIwJEIhkKEwAcUyxFEzkNAW0AHwIAHR84QhNlDR09DgsRCBsSZBFSPkUIKBIAVAQbAW1DViwGDCgSUwANF1MqUEBgABwuCRIaAhdTPkRBKwQHKE9PWwkbTUcRE21FRG1BU1RFUlNxXVpzMQwoQQcGDBUUKEMJbRYJIgoWVAQcF21QXyEAFioEHQdFFBo/WF0qRQksEgdUBhcfIUITZQ0NPhUSGQwcFm1QXSlFDSMHHxUIHxI5WFwjTEpxTh8dW3hTbRETbUVEbUFTSEoHH3M="></div>
-        <div class="photo-box"><input type="checkbox" id="p2" data-req><label for="p2">I drew this panel by hand and photographed it.</label></div>
+        <div class="photo-box"><input type="checkbox" id="p2" data-req><label for="p2">I drew this panel by hand with pencil, pen, or colored pencils, not on a device or with AI, and photographed it.</label></div>
         <button class="btn stamp-btn" type="button" data-target="pg2">Mark panel 2 drawn</button>
         <p class="msg" role="alert" data-msg="pg2"></p>
       </div>
@@ -338,23 +342,40 @@ li.step .step-text{display:block;margin-bottom:10px;}
           <span class="stampmark" aria-hidden="true">Drawn</span>
         </div>
         <div class="target" id="t3" hidden data-enc="cQ1QczESGgAeU34RQCUKESEFUwcNHQRxHlt5W25tQVNURVJTbRETcRAIc2tTVEVSU20RE21FRG1dHx1bJhsoEVUkFxc5TB8dCxdTKUNGKkUKLAwWEF9SByVUEz8AFy4UFlQMHBssXVY/SUQsQQAcCgAHYFBQOQwKKkERERETXixWXCMMFzlBWxUJEAY5VEEiCU1jXVwYDEx5bRETbUVEbUFTVEVSTyFYDQQRF20MFhcNEx0kQl5tDAptER8VDBxTOl5BKRZEIg8fDUlSByVDVihFECJBFR0TF1M6XkEpFl5tExYYBAoWPhFHJQBELAgBAwQLUz5cXCIRDG0MBgcGHhZjDRwhDFpHQVNURVJTbRETbUVEcQ0aSiQcUyxDQSISRCsTHBlFBhsoEVc/EANtFRxUERoWbVNBIgsHJQgcGABSACBeXDkNRCAUABcJF11xHl8kW25tQVNURVJTbRETbUVYIQhNNUUQFiteQShIBSMFXhUDBhY/EVc/BBMkDxRORRNTI1BBPwoTYUEQGAAcECVUV20EDT8WEg1FBRo5WRMsRRA/CBAfCRdTIlcTLAwWYUEHHAAcUywRRCQBAWAOAxELUhIkQ0QsHEQ6CAccRRQGIV0TLAwWKw0cA0tOXCFYDUdFRG1BU1RFUlNtERNxCQ1zNRsRRRYcOl9AORcBLAxTHQgCEi5FEykXBToPX1QLHQdtRkEkERAoD0lUCB0BKBFSJBdEPwQSFw0bHSoRRyUARCwNBREKHhphEVw1HAMoD1MXCRseL1hdKkUGLAIYVBACXXEeXyRbbm1BU1RFUlNtERNxShEhXw=="></div>
-        <div class="photo-box"><input type="checkbox" id="p3" data-req><label for="p3">I drew this panel by hand, photographed it, and told the whole case out loud from my three panels.</label></div>
+        <div class="photo-box"><input type="checkbox" id="p3" data-req><label for="p3">I drew this panel by hand with pencil, pen, or colored pencils, not on a device or with AI, photographed it, and told the whole case out loud from my three panels.</label></div>
         <button class="btn stamp-btn" type="button" data-target="pg3">Mark panel 3 drawn</button>
         <p class="msg" role="alert" data-msg="pg3"></p>
       </div>
     </section>
 
-    <section class="card" aria-labelledby="ai-h">
-      <h2 id="ai-h">Using AI on this passport</h2>
-      <p>You may use AI as a study partner: ask it to quiz you after you draw, or to explain a term you are stuck on. You may not ask it to make your panels. There is nothing to type in here on purpose. The whole assignment is the drawing in your own hand and the case you can tell out loud, and those are the two things an app cannot hand back to you photographed on your paper.</p>
-    </section>
-
-    <section class="card no-print" aria-labelledby="notes-h">
-      <h2 id="notes-h">Instructor notes</h2>
-      <p><strong>Why this promotes learning.</strong> The assignment is one integrated case rendered as three panels: normal, abnormal, and treatment on the pathway. The asthma case forces the student to build normal airway anatomy and breathing physiology first, then locate the obstructive pathophysiology on that same pathway, then map each intervention to its site of action. The final step has them narrate the whole case from their own drawing, so recall is spoken, not typed.</p>
-      <p><strong>Evidence-based principles built in.</strong> Retrieval practice (draw from memory; targets unlock only after the due date), dual coding, sequencing and organization (one continuous pathway from airway to alveolus to blood), comparison (normal versus obstructed airway, rescue versus controller), prediction and application (where does each treatment act), and case-based synthesis (tell Alex start to finish). Anatomy and physiology are balanced across the normal and abnormal panels.</p>
-      <p><strong>Why AI cannot shortcut it.</strong> The submission is a photo of the student's own three panels plus the spoken case. There is no field to paste into, and the answer targets stay hidden and scrambled in the page source until the unlock date, so there is nothing to copy during the assignment window.</p>
-      <p><strong>Answer key.</strong> Each panel's target unlocks Sunday, July 26, 2026. Change the UNLOCK value near the top of the passport script if this module's due date differs.</p>
+        <section class="card" aria-labelledby="notes-h">
+      <h2 id="notes-h">Why you draw it, and how to use it</h2>
+      <h3>Why drawing it works</h3>
+      <ul class="clean">
+        <li>Drawing from memory is <strong>retrieval practice</strong>: pulling the answer out of your own head is what builds lasting memory, far more than rereading.</li>
+        <li>Turning words into a picture is <strong>dual coding</strong>, so you store each idea twice and can find it faster on exam day.</li>
+        <li>One running case ties it together, so you remember it as a story, not a pile of facts.</li>
+        <li>Redrawing the part you got wrong is the effortful practice that actually sticks.</li>
+      </ul>
+      <h3>How to get the most out of it</h3>
+      <ul class="clean">
+        <li>Draw each panel <strong>from memory first</strong>. A little struggle is the point, do not peek.</li>
+        <li>Keep the video and your book open. Pause, look things up, and add what you missed.</li>
+        <li>Say the case out loud from your own drawing. If you can tell it without notes, you know it.</li>
+        <li>Go back and redraw whatever was hardest to say.</li>
+      </ul>
+      <h3>How AI helps, and how it does not</h3>
+      <ul class="clean">
+        <li><strong>Good uses:</strong> ask it to quiz you after you draw, or to explain a term you are stuck on.</li>
+        <li><strong>Not a shortcut:</strong> it cannot draw your page or tell your case for you. If it does the work, you skip the exact thinking the exam will test.</li>
+        <li>The drawing in your own hand is the assignment, and the one thing AI cannot hand back to you.</li>
+      </ul>
+      <h3>The answer key is your self-check</h3>
+      <ul class="clean">
+        <li>It stays locked until after the due date, so there is nothing to copy while you work.</li>
+        <li>Once it unlocks, open <strong>Show me the target</strong> on each panel and compare it to what you drew.</li>
+        <li>It is not a picture to trace. It is a short checklist of what your panel should show, so you can catch what you missed and fix it.</li>
+      </ul>
     </section>
 
     <div class="toolbar no-print" role="group" aria-label="Passport tools">
@@ -390,7 +411,7 @@ li.step .step-text{display:block;margin-bottom:10px;}
 (function(){
   "use strict";
   var total = document.querySelectorAll('[data-pg]').length;
-  var UNLOCK = new Date(Date.UTC(2026, 6, 26, 7, 1, 0)); // 12:01 AM Pacific, Sun Jul 26 2026
+  var UNLOCK = new Date(Date.UTC(2026, 6, 27, 7, 1, 0)); // 12:01 AM Pacific, Mon Jul 27 2026
   var unlocked = new Date().getTime() >= UNLOCK.getTime();
   var KEY = 'MedMastersM13';
   function unscramble(enc){
@@ -450,11 +471,11 @@ li.step .step-text{display:block;margin-bottom:10px;}
   document.querySelectorAll('.btn.reveal').forEach(function(btn){
     var panel = document.getElementById(btn.getAttribute('aria-controls'));
     if(!unlocked){
-      btn.textContent = 'Answer key unlocks Sun, Jul 26';
+      btn.textContent = 'Answer key unlocks Mon, Jul 27';
       btn.setAttribute('aria-disabled','true');
       btn.addEventListener('click', function(){
         var msg = btn.closest('.pg-body').querySelector('.msg');
-        if(msg){ msg.textContent = 'The target for this panel unlocks Sunday, July 26. Draw your panel from the videos and your book, then come back to check it.'; }
+        if(msg){ msg.textContent = 'The target for this panel unlocks Monday, July 27. Draw your panel from the videos and your book, then come back to check it.'; }
       });
       return;
     }
