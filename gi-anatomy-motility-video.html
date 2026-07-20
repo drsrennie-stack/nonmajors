@@ -56,6 +56,7 @@ h1 .accent{color:#8B3A2E}
 <main class="layout pad">
   <div class="frame" id="video">
     <iframe id="player"
+      src="https://www.loom.com/embed/a15dd99caae14b3ab292bc94d9230340?t=12"
       title="GI Tract Anatomy & Motility concept video"
       allow="autoplay; fullscreen; picture-in-picture"
       allowfullscreen></iframe>
@@ -64,9 +65,18 @@ h1 .accent{color:#8B3A2E}
   <nav class="chapters" aria-label="Video chapters">
     <h2>Chapters</h2>
     <ul class="ch-list" id="ch-list">
-      <li><button class="ch" type="button" data-s="0"><span class="t">00:00</span><span class="label">Full walkthrough</span></button></li>
+      <li><button class="ch" type="button" data-s="12"><span class="t">00:00</span><span class="label">Digestive organ overview</span></button></li>
+      <li><button class="ch" type="button" data-s="197"><span class="t">03:17</span><span class="label">GI tract core processes</span></button></li>
+      <li><button class="ch" type="button" data-s="357"><span class="t">05:57</span><span class="label">GI wall layers and mucosa</span></button></li>
+      <li><button class="ch" type="button" data-s="510"><span class="t">08:30</span><span class="label">Epithelial types and functions</span></button></li>
+      <li><button class="ch" type="button" data-s="944"><span class="t">15:44</span><span class="label">Muscle layers and gut nerves</span></button></li>
+      <li><button class="ch" type="button" data-s="1147"><span class="t">19:07</span><span class="label">Autonomic control and plexuses</span></button></li>
+      <li><button class="ch" type="button" data-s="1642"><span class="t">27:22</span><span class="label">Peritoneum and abdominal folds</span></button></li>
+      <li><button class="ch" type="button" data-s="2271"><span class="t">37:51</span><span class="label">Mouth and pharynx anatomy</span></button></li>
+      <li><button class="ch" type="button" data-s="4171"><span class="t">1:09:31</span><span class="label">Stomach, pancreas, liver, gallbladder</span></button></li>
+      <li><button class="ch" type="button" data-s="6153"><span class="t">1:42:33</span><span class="label">Small and large intestines</span></button></li>
     </ul>
-    <p class="note">Add chapters and set their times when you post the video.</p>
+    <p class="note">Select a chapter to jump there. The video opens just past the title slide.</p>
   </nav>
 </main>
 <footer class="site-footer pad">
@@ -77,14 +87,14 @@ h1 .accent{color:#8B3A2E}
    Leave it empty ("") to show the "coming soon" placeholder.
    Chapter times are seconds, set with data-s on each button. */
 (function(){
-  var LOOM_ID = "";
-  var EXTRA = "";
+  var LOOM_ID = "a15dd99caae14b3ab292bc94d9230340";
+  var EXTRA = "?t=12";
   var BASE = "https://www.loom.com/embed/" + LOOM_ID;
   var player = document.getElementById("player");
   var empty = document.getElementById("frame-empty");
   var buttons = Array.prototype.slice.call(document.querySelectorAll(".ch"));
   if(!LOOM_ID){ player.hidden = true; empty.hidden = false; return; }
-  player.src = BASE;
+  player.src = BASE + EXTRA;
   buttons.forEach(function(b){
     b.addEventListener("click", function(){
       var s = b.getAttribute("data-s");
