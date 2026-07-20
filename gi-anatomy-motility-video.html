@@ -38,6 +38,14 @@ h1 .accent{color:#8B3A2E}
 .ch[aria-current="true"] .t{color:#C9A14A}
 .ch .label{font-size:15px;font-weight:600;line-height:1.35}
 .note{font-size:13.4px;color:#0B1530;opacity:.7;margin:14px 6px 0}
+.video-poster{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#0B1530;color:#F5F1E8;border:0;cursor:pointer;font-family:inherit;text-align:center;padding:24px}
+.video-poster .vp-play{width:72px;height:72px;border-radius:50%;background:#C9A14A;display:flex;align-items:center;justify-content:center;transition:background .15s ease}
+.video-poster .vp-play svg{width:30px;height:30px;fill:#0B1530;margin-left:4px}
+.video-poster .vp-label{font-size:15px;font-weight:700;letter-spacing:.02em}
+.video-poster:hover .vp-play{background:#D9B45E}
+.video-poster:focus-visible{outline:3px solid #C9A14A;outline-offset:-3px}
+.video-poster[hidden]{display:none}
+@media(prefers-reduced-motion:reduce){.video-poster .vp-play{transition:none}}
 .site-footer{background:#060A18;padding:40px 0 26px;color:#fff}
 .footer-copy{font-size:11.8px;color:#fff;opacity:.62}
 @media(prefers-reduced-motion:reduce){.ch{transition:none}}
@@ -56,16 +64,19 @@ h1 .accent{color:#8B3A2E}
 <main class="layout pad">
   <div class="frame" id="video">
     <iframe id="player"
-      src="https://www.loom.com/embed/a15dd99caae14b3ab292bc94d9230340?t=12"
       title="GI Tract Anatomy & Motility concept video"
       allow="autoplay; fullscreen; picture-in-picture"
       allowfullscreen></iframe>
+    <button type="button" class="video-poster" id="video-poster" aria-label="Play the GI lecture from the first topic (skips the title slide)">
+      <span class="vp-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+      <span class="vp-label">Play lecture</span>
+    </button>
     <div class="frame-empty" id="frame-empty" hidden>This video will be posted here. Check back soon.</div>
   </div>
   <nav class="chapters" aria-label="Video chapters">
     <h2>Chapters</h2>
     <ul class="ch-list" id="ch-list">
-      <li><button class="ch" type="button" data-s="12"><span class="t">00:00</span><span class="label">Digestive organ overview</span></button></li>
+      <li><button class="ch" type="button" data-s="14"><span class="t">00:00</span><span class="label">Digestive organ overview</span></button></li>
       <li><button class="ch" type="button" data-s="197"><span class="t">03:17</span><span class="label">GI tract core processes</span></button></li>
       <li><button class="ch" type="button" data-s="357"><span class="t">05:57</span><span class="label">GI wall layers and mucosa</span></button></li>
       <li><button class="ch" type="button" data-s="510"><span class="t">08:30</span><span class="label">Epithelial types and functions</span></button></li>
@@ -88,17 +99,21 @@ h1 .accent{color:#8B3A2E}
    Chapter times are seconds, set with data-s on each button. */
 (function(){
   var LOOM_ID = "a15dd99caae14b3ab292bc94d9230340";
-  var EXTRA = "?t=12";
+  var START = 14; // seconds; skips the title slide so it never shows
   var BASE = "https://www.loom.com/embed/" + LOOM_ID;
   var player = document.getElementById("player");
   var empty = document.getElementById("frame-empty");
+  var poster = document.getElementById("video-poster");
   var buttons = Array.prototype.slice.call(document.querySelectorAll(".ch"));
-  if(!LOOM_ID){ player.hidden = true; empty.hidden = false; return; }
-  player.src = BASE + EXTRA;
+  if(!LOOM_ID){ player.hidden = true; if(poster){ poster.hidden = true; } empty.hidden = false; return; }
+  function play(s){
+    player.src = BASE + "?t=" + s + "&autoplay=1";
+    if(poster){ poster.hidden = true; }
+  }
+  if(poster){ poster.addEventListener("click", function(){ play(START); }); }
   buttons.forEach(function(b){
     b.addEventListener("click", function(){
-      var s = b.getAttribute("data-s");
-      player.src = BASE + "?t=" + s + "&autoplay=1";
+      play(b.getAttribute("data-s"));
       buttons.forEach(function(x){ x.removeAttribute("aria-current"); });
       b.setAttribute("aria-current","true");
       document.getElementById("video").scrollIntoView({behavior:"smooth",block:"nearest"});
