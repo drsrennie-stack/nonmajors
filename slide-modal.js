@@ -1,5 +1,5 @@
 /*
- * slide-modal.js — Cowork / MedMasters lecture page integration
+ * slide-modal.js — Cowork lecture page integration
  * Dr. Sharilyn Rennie
  *
  * Drop in any lecture page. Looks for buttons / links with a data-slide attribute,
