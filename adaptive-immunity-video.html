@@ -56,6 +56,7 @@ h1 .accent{color:#8B3A2E}
 <main class="layout pad">
   <div class="frame" id="video">
     <iframe id="player"
+      src="https://www.loom.com/embed/d40314d22b8346cdb4ca84078a6b952b"
       title="Adaptive Immunity concept video"
       allow="autoplay; fullscreen; picture-in-picture"
       allowfullscreen></iframe>
@@ -64,9 +65,16 @@ h1 .accent{color:#8B3A2E}
   <nav class="chapters" aria-label="Video chapters">
     <h2>Chapters</h2>
     <ul class="ch-list" id="ch-list">
-      <li><button class="ch" type="button" data-s="0"><span class="t">00:00</span><span class="label">Full walkthrough</span></button></li>
+      <li><button class="ch" type="button" data-s="0"><span class="t">00:00</span><span class="label">Adaptive immunity basics</span></button></li>
+      <li><button class="ch" type="button" data-s="118"><span class="t">01:58</span><span class="label">Key adaptive immunity traits</span></button></li>
+      <li><button class="ch" type="button" data-s="304"><span class="t">05:04</span><span class="label">Specificity, memory, and tolerance</span></button></li>
+      <li><button class="ch" type="button" data-s="491"><span class="t">08:11</span><span class="label">T cell activation checkpoints</span></button></li>
+      <li><button class="ch" type="button" data-s="1142"><span class="t">19:02</span><span class="label">B cell activation and antibodies</span></button></li>
+      <li><button class="ch" type="button" data-s="1489"><span class="t">24:49</span><span class="label">Antibody types and jobs</span></button></li>
+      <li><button class="ch" type="button" data-s="2011"><span class="t">33:31</span><span class="label">Primary and secondary responses</span></button></li>
+      <li><button class="ch" type="button" data-s="2193"><span class="t">36:33</span><span class="label">Immune signals, disorders, and stress</span></button></li>
     </ul>
-    <p class="note">Add chapters and set their times when you post the video.</p>
+    <p class="note">Select a chapter to jump there.</p>
   </nav>
 </main>
 <footer class="site-footer pad">
@@ -77,7 +85,7 @@ h1 .accent{color:#8B3A2E}
    Leave it empty ("") to show the "coming soon" placeholder.
    Chapter times are seconds, set with data-s on each button. */
 (function(){
-  var LOOM_ID = "";
+  var LOOM_ID = "d40314d22b8346cdb4ca84078a6b952b";
   var EXTRA = "";
   var BASE = "https://www.loom.com/embed/" + LOOM_ID;
   var player = document.getElementById("player");
@@ -88,7 +96,7 @@ h1 .accent{color:#8B3A2E}
   buttons.forEach(function(b){
     b.addEventListener("click", function(){
       var s = b.getAttribute("data-s");
-      player.src = BASE + "?t=" + s + "&autoplay=1";
+      player.src = BASE + "?t=" + s + "s&autoplay=1";
       buttons.forEach(function(x){ x.removeAttribute("aria-current"); });
       b.setAttribute("aria-current","true");
       document.getElementById("video").scrollIntoView({behavior:"smooth",block:"nearest"});

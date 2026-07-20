@@ -95,7 +95,7 @@ h1 .accent{color:#8B3A2E}
   buttons.forEach(function(b){
     b.addEventListener("click", function(){
       var s = b.getAttribute("data-s");
-      player.src = BASE + "?t=" + s + "&autoplay=1";
+      player.src = BASE + "?t=" + s + "s&autoplay=1";
       buttons.forEach(function(x){ x.removeAttribute("aria-current"); });
       b.setAttribute("aria-current","true");
       document.getElementById("video").scrollIntoView({behavior:"smooth",block:"nearest"});

@@ -107,7 +107,7 @@ h1 .accent{color:#8B3A2E}
   var buttons = Array.prototype.slice.call(document.querySelectorAll(".ch"));
   if(!LOOM_ID){ player.hidden = true; if(poster){ poster.hidden = true; } empty.hidden = false; return; }
   function play(s){
-    player.src = BASE + "?t=" + s + "&autoplay=1";
+    player.src = BASE + "?t=" + s + "s&autoplay=1";
     if(poster){ poster.hidden = true; }
   }
   if(poster){ poster.addEventListener("click", function(){ play(START); }); }
