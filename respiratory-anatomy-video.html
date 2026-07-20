@@ -56,6 +56,7 @@ h1 .accent{color:#8B3A2E}
 <main class="layout pad">
   <div class="frame" id="video">
     <iframe id="player"
+      src="https://www.loom.com/embed/febbff020ed243f9bf368734c8f631b3"
       title="Respiratory Anatomy & Mechanics concept video"
       allow="autoplay; fullscreen; picture-in-picture"
       allowfullscreen></iframe>
@@ -64,9 +65,16 @@ h1 .accent{color:#8B3A2E}
   <nav class="chapters" aria-label="Video chapters">
     <h2>Chapters</h2>
     <ul class="ch-list" id="ch-list">
-      <li><button class="ch" type="button" data-s="0"><span class="t">00:00</span><span class="label">Full walkthrough</span></button></li>
+      <li><button class="ch" type="button" data-s="0"><span class="t">00:00</span><span class="label">Respiratory gas exchange overview</span></button></li>
+      <li><button class="ch" type="button" data-s="173"><span class="t">02:53</span><span class="label">Upper and lower airways</span></button></li>
+      <li><button class="ch" type="button" data-s="509"><span class="t">08:29</span><span class="label">Throat and voice box functions</span></button></li>
+      <li><button class="ch" type="button" data-s="853"><span class="t">14:13</span><span class="label">Trachea and bronchi pathway</span></button></li>
+      <li><button class="ch" type="button" data-s="1238"><span class="t">20:38</span><span class="label">Tiny air sacs for exchange</span></button></li>
+      <li><button class="ch" type="button" data-s="1713"><span class="t">28:33</span><span class="label">How breathing pressure works</span></button></li>
+      <li><button class="ch" type="button" data-s="2309"><span class="t">38:29</span><span class="label">Brain control of breathing</span></button></li>
+      <li><button class="ch" type="button" data-s="2547"><span class="t">42:27</span><span class="label">Oxygen and CO2 triggers</span></button></li>
     </ul>
-    <p class="note">Add chapters and set their times when you post the video.</p>
+    <p class="note">Select a chapter to jump there.</p>
   </nav>
 </main>
 <footer class="site-footer pad">
@@ -77,7 +85,7 @@ h1 .accent{color:#8B3A2E}
    Leave it empty ("") to show the "coming soon" placeholder.
    Chapter times are seconds, set with data-s on each button. */
 (function(){
-  var LOOM_ID = "";
+  var LOOM_ID = "febbff020ed243f9bf368734c8f631b3";
   var EXTRA = "";
   var BASE = "https://www.loom.com/embed/" + LOOM_ID;
   var player = document.getElementById("player");
